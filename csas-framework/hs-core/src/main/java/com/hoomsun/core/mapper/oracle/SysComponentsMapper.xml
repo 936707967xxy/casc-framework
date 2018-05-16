@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysComponentsMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysComponents">
+    <id column="CPT_ID" jdbcType="VARCHAR" property="cptId" />
+    <result column="PATH" jdbcType="VARCHAR" property="path" />
+    <result column="COMPONENT" jdbcType="VARCHAR" property="component" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="ICONCLS" jdbcType="VARCHAR" property="iconcls" />
+    <result column="HIDDEN" jdbcType="DECIMAL" property="hidden" />
+    <result column="PARENT_ID" jdbcType="VARCHAR" property="parentId" />
+    <result column="ASCRIPTION" jdbcType="VARCHAR" property="ascription" />
+    <result column="SORT" jdbcType="DECIMAL" property="sort" />
+    <result column="REDIRECT" jdbcType="VARCHAR" property="redirect" />
+    <result column="DROPDOWN" jdbcType="DECIMAL" property="dropdown" />
+    <result column="CPT_TYPE" jdbcType="VARCHAR" property="cptType" />
+    <result column="CPT_VALUE" jdbcType="VARCHAR" property="cptValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CPT_ID, PATH, COMPONENT, NAME, ICONCLS, HIDDEN, PARENT_ID, ASCRIPTION, SORT, REDIRECT, 
+    DROPDOWN, CPT_TYPE, CPT_VALUE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_COMPONENTS
+    where CPT_ID = #{cptId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_COMPONENTS
+    where CPT_ID = #{cptId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysComponents">
+    insert into HS_COMPONENTS (CPT_ID, PATH, COMPONENT, 
+      NAME, ICONCLS, HIDDEN, 
+      PARENT_ID, ASCRIPTION, SORT, 
+      REDIRECT, DROPDOWN, CPT_TYPE, 
+      CPT_VALUE)
+    values (#{cptId,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{component,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{iconcls,jdbcType=VARCHAR}, #{hidden,jdbcType=DECIMAL}, 
+      #{parentId,jdbcType=VARCHAR}, #{ascription,jdbcType=VARCHAR}, #{sort,jdbcType=DECIMAL}, 
+      #{redirect,jdbcType=VARCHAR}, #{dropdown,jdbcType=DECIMAL}, #{cptType,jdbcType=VARCHAR}, 
+      #{cptValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysComponents">
+    insert into HS_COMPONENTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cptId != null">
+        CPT_ID,
+      </if>
+      <if test="path != null">
+        PATH,
+      </if>
+      <if test="component != null">
+        COMPONENT,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="iconcls != null">
+        ICONCLS,
+      </if>
+      <if test="hidden != null">
+        HIDDEN,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="ascription != null">
+        ASCRIPTION,
+      </if>
+      <if test="sort != null">
+        SORT,
+      </if>
+      <if test="redirect != null">
+        REDIRECT,
+      </if>
+      <if test="dropdown != null">
+        DROPDOWN,
+      </if>
+      <if test="cptType != null">
+        CPT_TYPE,
+      </if>
+      <if test="cptValue != null">
+        CPT_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cptId != null">
+        #{cptId,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null">
+        #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="iconcls != null">
+        #{iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="hidden != null">
+        #{hidden,jdbcType=DECIMAL},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="ascription != null">
+        #{ascription,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="redirect != null">
+        #{redirect,jdbcType=VARCHAR},
+      </if>
+      <if test="dropdown != null">
+        #{dropdown,jdbcType=DECIMAL},
+      </if>
+      <if test="cptType != null">
+        #{cptType,jdbcType=VARCHAR},
+      </if>
+      <if test="cptValue != null">
+        #{cptValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysComponents">
+    update HS_COMPONENTS
+    <set>
+      <if test="path != null">
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="component != null">
+        COMPONENT = #{component,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="iconcls != null">
+        ICONCLS = #{iconcls,jdbcType=VARCHAR},
+      </if>
+      <if test="hidden != null">
+        HIDDEN = #{hidden,jdbcType=DECIMAL},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="ascription != null">
+        ASCRIPTION = #{ascription,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        SORT = #{sort,jdbcType=DECIMAL},
+      </if>
+      <if test="redirect != null">
+        REDIRECT = #{redirect,jdbcType=VARCHAR},
+      </if>
+      <if test="dropdown != null">
+        DROPDOWN = #{dropdown,jdbcType=DECIMAL},
+      </if>
+      <if test="cptType != null">
+        CPT_TYPE = #{cptType,jdbcType=VARCHAR},
+      </if>
+      <if test="cptValue != null">
+        CPT_VALUE = #{cptValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CPT_ID = #{cptId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysComponents">
+    update HS_COMPONENTS
+    set PATH = #{path,jdbcType=VARCHAR},
+      COMPONENT = #{component,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      ICONCLS = #{iconcls,jdbcType=VARCHAR},
+      HIDDEN = #{hidden,jdbcType=DECIMAL},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      ASCRIPTION = #{ascription,jdbcType=VARCHAR},
+      SORT = #{sort,jdbcType=DECIMAL},
+      REDIRECT = #{redirect,jdbcType=VARCHAR},
+      DROPDOWN = #{dropdown,jdbcType=DECIMAL},
+      CPT_TYPE = #{cptType,jdbcType=VARCHAR},
+      CPT_VALUE = #{cptValue,jdbcType=VARCHAR}
+    where CPT_ID = #{cptId,jdbcType=VARCHAR}
+  </update>
+
+	<!-- 查询出所有的数据 -->
+	<select id="findAll" resultMap="BaseResultMap">
+  	<![CDATA[ SELECT CPT_ID, PATH, COMPONENT, NAME, ICONCLS, HIDDEN, PARENT_ID, ASCRIPTION,CPT_VALUE
+  	FROM HS_COMPONENTS]]>
+  	<if test="systemName != '' and systemName != null">
+  		WHERE ASCRIPTION=#{systemName}
+  	</if>
+	</select>
+	
+	<select id="findByName" resultMap="BaseResultMap">
+  	<![CDATA[ SELECT CPT_ID, PATH, COMPONENT, NAME, ICONCLS, HIDDEN, PARENT_ID, ASCRIPTION,REDIRECT, 
+    DROPDOWN, CPT_TYPE,CPT_VALUE
+  	FROM HS_COMPONENTS WHERE 1<>2 ]]>
+  	<if test="systemName != '' and systemName != null">
+  		and ASCRIPTION=#{systemName}
+  	</if>
+  	<if test="name != '' and name != null">
+  		and NAME like #{name}
+  	</if>
+	</select>
+
+	<!-- 分页查询数据 ywzou -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	<![CDATA[ select 
+  	comp.CPT_ID, comp.PATH, comp.COMPONENT, comp.NAME, comp.ICONCLS, comp.HIDDEN, comp.PARENT_ID, comp.SORT,comp.ASCRIPTION,
+  	 parent.NAME NAME_PARENT 
+  	from
+  		(
+				SELECT
+					comp.*, ROWNUM r 
+				FROM
+					(
+						SELECT
+							*
+						FROM 
+							HS_COMPONENTS  
+					) comp
+				WHERE
+					 ROWNUM <= (#{pageIndex}/#{pageSize}+1)*#{pageSize}  
+			) comp  
+	LEFT JOIN HS_COMPONENTS parent on comp.PARENT_ID=parent.CPT_ID  
+  	 where 1<>2]]>
+	  	 <if test="systemName != '' and systemName != null">
+	  		and ASCRIPTION=#{systemName}
+	  	</if>
+		<if test="name != null and name != ''">
+			and comp.NAME like #{name}
+		</if>
+		<if test="pageIndex != null and pageSize != null">
+			and r > #{pageIndex}
+		</if>
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	<![CDATA[ select count(CPT_ID) from HS_COMPONENTS where 1<>2]]>
+  	<if test="systemName != '' and systemName != null">
+  		and ASCRIPTION=#{systemName}
+  	</if>
+		<if test="name != null and name != ''">
+			and NAME like #{name}
+		</if>
+	</select>
+	
+	<select id="selectByCptId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select 
+	    CPT_ID, PATH, COMPONENT, NAME, ICONCLS, HIDDEN, PARENT_ID, ASCRIPTION, SORT, REDIRECT, 
+    	DROPDOWN, LOWER(CPT_TYPE) CPT_TYPE, CPT_VALUE
+	    from HS_COMPONENTS
+	    where CPT_ID = #{cptId,jdbcType=VARCHAR}
+  	</select>
+</mapper>

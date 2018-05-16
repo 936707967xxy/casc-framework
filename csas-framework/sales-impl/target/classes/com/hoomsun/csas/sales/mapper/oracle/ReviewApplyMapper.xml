@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.ReviewApplyMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.ReviewApply">
+		<id column="RECON_ID" jdbcType="VARCHAR" property="reconId" />
+		<result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+		<result column="CUST_MOBILE" jdbcType="VARCHAR" property="custMobile" />
+		<result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+		<result column="PROC_STATUS" jdbcType="VARCHAR" property="procStatus" />
+		<result column="PROC_STATUS_VAL" jdbcType="VARCHAR" property="procStatusVal" />
+		<result column="PROC_ID" jdbcType="VARCHAR" property="procId" />
+		<result column="EMPLOYEE_ID" jdbcType="VARCHAR" property="employeeId" />
+		<result column="EMPLOYEE_NAME" jdbcType="VARCHAR" property="employeeName" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="REMARK" jdbcType="VARCHAR" property="remark" />
+		<result column="REVIEW_TYPE" jdbcType="VARCHAR" property="reviewType" />
+		<result column="REVIEW_TYPE_VAL" jdbcType="VARCHAR" property="reviewTypeVal" />
+		<result column="TASK_ID" jdbcType="VARCHAR" property="taskId" />
+		<result column="TASK_KEY" jdbcType="VARCHAR" property="taskKey" />
+		<result column="TASK_NAME" jdbcType="VARCHAR" property="taskName" />
+		<result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+		<result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="APPLY_AMOUNT" jdbcType="DECIMAL" property="applyAmount" />
+		<result column="SALES_EMP_ID" jdbcType="VARCHAR" property="salesEmpId" />
+		<result column="SALES_EMP_NAME" jdbcType="VARCHAR" property="salesEmpName" />
+		<result column="CREATE_EMPLOYEE" jdbcType="VARCHAR" property="createEmployee" />
+		<result column="CREATE_EMPLOYEE_VAL" jdbcType="VARCHAR" property="createEmployeeVal" />
+		<result column="REVIEW_DATE" jdbcType="TIMESTAMP" property="reviewDate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		RECON_ID, CUST_NAME, CUST_MOBILE, ID_NUMBER, PROC_STATUS, PROC_STATUS_VAL, PROC_ID,
+		EMPLOYEE_ID, EMPLOYEE_NAME, APPLY_ID, REMARK, REVIEW_TYPE, REVIEW_TYPE_VAL, TASK_ID,
+		TASK_KEY, TASK_NAME, PRODUCT_ID, PRODUCT_NAME, LOAN_ID, APPLY_AMOUNT, SALES_EMP_ID,
+		SALES_EMP_NAME, CREATE_EMPLOYEE, CREATE_EMPLOYEE_VAL,REVIEW_DATE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_REVIEW_APPLY
+		where RECON_ID = #{reconId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_REVIEW_APPLY
+		where RECON_ID = #{reconId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.ReviewApply">
+		insert into HS_REVIEW_APPLY (RECON_ID, CUST_NAME, CUST_MOBILE,
+		ID_NUMBER, PROC_STATUS, PROC_STATUS_VAL,
+		PROC_ID, EMPLOYEE_ID, EMPLOYEE_NAME,
+		APPLY_ID, REMARK, REVIEW_TYPE,
+		REVIEW_TYPE_VAL, TASK_ID, TASK_KEY,
+		TASK_NAME, PRODUCT_ID, PRODUCT_NAME,
+		LOAN_ID, APPLY_AMOUNT, SALES_EMP_ID,
+		SALES_EMP_NAME, CREATE_EMPLOYEE, CREATE_EMPLOYEE_VAL,REVIEW_DATE
+		)
+		values (#{reconId,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{custMobile,jdbcType=VARCHAR},
+		#{idNumber,jdbcType=VARCHAR}, #{procStatus,jdbcType=VARCHAR}, #{procStatusVal,jdbcType=VARCHAR},
+		#{procId,jdbcType=VARCHAR}, #{employeeId,jdbcType=VARCHAR}, #{employeeName,jdbcType=VARCHAR},
+		#{applyId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{reviewType,jdbcType=VARCHAR},
+		#{reviewTypeVal,jdbcType=VARCHAR}, #{taskId,jdbcType=VARCHAR}, #{taskKey,jdbcType=VARCHAR},
+		#{taskName,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR},
+		#{loanId,jdbcType=VARCHAR}, #{applyAmount,jdbcType=DECIMAL}, #{salesEmpId,jdbcType=VARCHAR},
+		#{salesEmpName,jdbcType=VARCHAR}, #{createEmployee,jdbcType=VARCHAR}, #{createEmployeeVal,jdbcType=VARCHAR},
+		#{reviewDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.ReviewApply">
+		insert into HS_REVIEW_APPLY
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="reconId != null">
+				RECON_ID,
+			</if>
+			<if test="custName != null">
+				CUST_NAME,
+			</if>
+			<if test="custMobile != null">
+				CUST_MOBILE,
+			</if>
+			<if test="idNumber != null">
+				ID_NUMBER,
+			</if>
+			<if test="procStatus != null">
+				PROC_STATUS,
+			</if>
+			<if test="procStatusVal != null">
+				PROC_STATUS_VAL,
+			</if>
+			<if test="procId != null">
+				PROC_ID,
+			</if>
+			<if test="employeeId != null">
+				EMPLOYEE_ID,
+			</if>
+			<if test="employeeName != null">
+				EMPLOYEE_NAME,
+			</if>
+			<if test="applyId != null">
+				APPLY_ID,
+			</if>
+			<if test="remark != null">
+				REMARK,
+			</if>
+			<if test="reviewType != null">
+				REVIEW_TYPE,
+			</if>
+			<if test="reviewTypeVal != null">
+				REVIEW_TYPE_VAL,
+			</if>
+			<if test="taskId != null">
+				TASK_ID,
+			</if>
+			<if test="taskKey != null">
+				TASK_KEY,
+			</if>
+			<if test="taskName != null">
+				TASK_NAME,
+			</if>
+			<if test="productId != null">
+				PRODUCT_ID,
+			</if>
+			<if test="productName != null">
+				PRODUCT_NAME,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="applyAmount != null">
+				APPLY_AMOUNT,
+			</if>
+			<if test="salesEmpId != null">
+				SALES_EMP_ID,
+			</if>
+			<if test="salesEmpName != null">
+				SALES_EMP_NAME,
+			</if>
+			<if test="createEmployee != null">
+				CREATE_EMPLOYEE,
+			</if>
+			<if test="createEmployeeVal != null">
+				CREATE_EMPLOYEE_VAL,
+			</if>
+			<if test="reviewDate != null">
+				REVIEW_DATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="reconId != null">
+				#{reconId,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				#{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="custMobile != null">
+				#{custMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="idNumber != null">
+				#{idNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="procStatus != null">
+				#{procStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="procStatusVal != null">
+				#{procStatusVal,jdbcType=VARCHAR},
+			</if>
+			<if test="procId != null">
+				#{procId,jdbcType=VARCHAR},
+			</if>
+			<if test="employeeId != null">
+				#{employeeId,jdbcType=VARCHAR},
+			</if>
+			<if test="employeeName != null">
+				#{employeeName,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="reviewType != null">
+				#{reviewType,jdbcType=VARCHAR},
+			</if>
+			<if test="reviewTypeVal != null">
+				#{reviewTypeVal,jdbcType=VARCHAR},
+			</if>
+			<if test="taskId != null">
+				#{taskId,jdbcType=VARCHAR},
+			</if>
+			<if test="taskKey != null">
+				#{taskKey,jdbcType=VARCHAR},
+			</if>
+			<if test="taskName != null">
+				#{taskName,jdbcType=VARCHAR},
+			</if>
+			<if test="productId != null">
+				#{productId,jdbcType=VARCHAR},
+			</if>
+			<if test="productName != null">
+				#{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyAmount != null">
+				#{applyAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="salesEmpId != null">
+				#{salesEmpId,jdbcType=VARCHAR},
+			</if>
+			<if test="salesEmpName != null">
+				#{salesEmpName,jdbcType=VARCHAR},
+			</if>
+			<if test="createEmployee != null">
+				#{createEmployee,jdbcType=VARCHAR},
+			</if>
+			<if test="createEmployeeVal != null">
+				#{createEmployeeVal,jdbcType=VARCHAR},
+			</if>
+			<if test="reviewDate != null">
+				#{reviewDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.ReviewApply">
+		update HS_REVIEW_APPLY
+		<set>
+			<if test="custName != null">
+				CUST_NAME = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="custMobile != null">
+				CUST_MOBILE = #{custMobile,jdbcType=VARCHAR},
+			</if>
+			<if test="idNumber != null">
+				ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="procStatus != null">
+				PROC_STATUS = #{procStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="procStatusVal != null">
+				PROC_STATUS_VAL = #{procStatusVal,jdbcType=VARCHAR},
+			</if>
+			<if test="procId != null">
+				PROC_ID = #{procId,jdbcType=VARCHAR},
+			</if>
+			<if test="employeeId != null">
+				EMPLOYEE_ID = #{employeeId,jdbcType=VARCHAR},
+			</if>
+			<if test="employeeName != null">
+				EMPLOYEE_NAME = #{employeeName,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				APPLY_ID = #{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				REMARK = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="reviewType != null">
+				REVIEW_TYPE = #{reviewType,jdbcType=VARCHAR},
+			</if>
+			<if test="reviewTypeVal != null">
+				REVIEW_TYPE_VAL = #{reviewTypeVal,jdbcType=VARCHAR},
+			</if>
+			<if test="taskId != null">
+				TASK_ID = #{taskId,jdbcType=VARCHAR},
+			</if>
+			<if test="taskKey != null">
+				TASK_KEY = #{taskKey,jdbcType=VARCHAR},
+			</if>
+			<if test="taskName != null">
+				TASK_NAME = #{taskName,jdbcType=VARCHAR},
+			</if>
+			<if test="productId != null">
+				PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+			</if>
+			<if test="productName != null">
+				PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyAmount != null">
+				APPLY_AMOUNT = #{applyAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="salesEmpId != null">
+				SALES_EMP_ID = #{salesEmpId,jdbcType=VARCHAR},
+			</if>
+			<if test="salesEmpName != null">
+				SALES_EMP_NAME = #{salesEmpName,jdbcType=VARCHAR},
+			</if>
+			<if test="createEmployee != null">
+				CREATE_EMPLOYEE = #{createEmployee,jdbcType=VARCHAR},
+			</if>
+			<if test="createEmployeeVal != null">
+				CREATE_EMPLOYEE_VAL = #{createEmployeeVal,jdbcType=VARCHAR},
+			</if>
+			<if test="reviewDate != null">
+				REVIEW_DATE = #{reviewDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where RECON_ID = #{reconId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.ReviewApply">
+		update HS_REVIEW_APPLY
+		set CUST_NAME = #{custName,jdbcType=VARCHAR},
+		CUST_MOBILE = #{custMobile,jdbcType=VARCHAR},
+		ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+		PROC_STATUS = #{procStatus,jdbcType=VARCHAR},
+		PROC_STATUS_VAL = #{procStatusVal,jdbcType=VARCHAR},
+		PROC_ID = #{procId,jdbcType=VARCHAR},
+		EMPLOYEE_ID = #{employeeId,jdbcType=VARCHAR},
+		EMPLOYEE_NAME = #{employeeName,jdbcType=VARCHAR},
+		APPLY_ID = #{applyId,jdbcType=VARCHAR},
+		REMARK = #{remark,jdbcType=VARCHAR},
+		REVIEW_TYPE = #{reviewType,jdbcType=VARCHAR},
+		REVIEW_TYPE_VAL = #{reviewTypeVal,jdbcType=VARCHAR},
+		TASK_ID = #{taskId,jdbcType=VARCHAR},
+		TASK_KEY = #{taskKey,jdbcType=VARCHAR},
+		TASK_NAME = #{taskName,jdbcType=VARCHAR},
+		PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+		PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+		LOAN_ID = #{loanId,jdbcType=VARCHAR},
+		APPLY_AMOUNT = #{applyAmount,jdbcType=DECIMAL},
+		SALES_EMP_ID = #{salesEmpId,jdbcType=VARCHAR},
+		SALES_EMP_NAME = #{salesEmpName,jdbcType=VARCHAR},
+		CREATE_EMPLOYEE = #{createEmployee,jdbcType=VARCHAR},
+		CREATE_EMPLOYEE_VAL = #{createEmployeeVal,jdbcType=VARCHAR},
+		REVIEW_DATE = #{reviewDate,jdbcType=TIMESTAMP}
+		where RECON_ID = #{reconId,jdbcType=VARCHAR}
+	</update>
+
+
+	<select id="findPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT * FROM (
+		SELECT
+		ROWNUM r,
+		AP.*
+		FROM (
+		SELECT
+		app.CUST_MOBILE,app.STORE_ID,app.SALES_EMP_ID,app.SALES_EMP_NAME,
+		app.CREATE_EMPLOYEE,app.CREATE_EMPLOYEE_VAL, app.APPLY_ID,app.PROC_STATUS_VAL,
+		app.PROC_STATUS, app.PROC_INST_ID PROC_ID,
+		app.PRODUCT_NAME,
+		app.ID_NUMBER, app.CUST_NAME, app.LOAN_ID,app.APPLY_AMOUNT,
+		app.PRODUCT_ID, tbl.ASSIGNEE_
+		FROM
+		HS_APPLY app
+		RIGHT JOIN (
+		SELECT
+		RE.BUSINESS_KEY_,
+		RT.ASSIGNEE_
+		FROM ACT_RU_EXECUTION RE
+		RIGHT JOIN ACT_RU_TASK RT ON RE.ID_ = RT.EXECUTION_ID_
+		WHERE RT.TASK_DEF_KEY_ IN('makeCon','rejectPool')
+		GROUP BY RT.ASSIGNEE_, RE.BUSINESS_KEY_
+		) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+		WHERE app.DEL_STATUE = 0
+		AND app.STORE_ID = #{storeId}
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName}
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId}
+		</if>
+		ORDER BY app.APPLY_DATE DESC
+		) AP
+		WHERE <![CDATA[ROWNUM <=  #{pageIndex} * #{pageSize}]]>
+		) WHERE r > (#{pageIndex} -1) * #{pageSize}
+	</select>
+
+	<select id="pageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+		count(app.APPLY_ID)
+		FROM
+		HS_APPLY app
+		RIGHT JOIN (
+		SELECT
+		RE.BUSINESS_KEY_,
+		RT.ASSIGNEE_
+		FROM ACT_RU_EXECUTION RE
+		RIGHT JOIN ACT_RU_TASK RT ON RE.ID_ = RT.EXECUTION_ID_
+		WHERE RT.TASK_DEF_KEY_ IN('makeCon','rejectPool')
+		GROUP BY RT.ASSIGNEE_, RE.BUSINESS_KEY_
+		) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+		WHERE app.DEL_STATUE = 0
+		AND app.STORE_ID = #{storeId}
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName}
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId}
+		</if>
+	</select>
+
+	<select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_REVIEW_APPLY
+		where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+
+
+	<select id="findByApplyId" resultMap="BaseResultMap">
+		select
+		RECON_ID, CUST_NAME, CUST_MOBILE, ID_NUMBER, PROC_STATUS, PROC_STATUS_VAL, PROC_ID,
+		EMPLOYEE_ID, EMPLOYEE_NAME, APPLY_ID, REMARK, REVIEW_TYPE, REVIEW_TYPE_VAL, TASK_ID,
+		TASK_KEY, TASK_NAME, PRODUCT_ID, PRODUCT_NAME, LOAN_ID, APPLY_AMOUNT, SALES_EMP_ID,
+		SALES_EMP_NAME, CREATE_EMPLOYEE, CREATE_EMPLOYEE_VAL,REVIEW_DATE
+		from HS_REVIEW_APPLY where APPLY_ID=#{applyId} AND REVIEW_DATE=(
+		select max(tb.REVIEW_DATE) from HS_REVIEW_APPLY tb where tb.APPLY_ID=#{applyId} and tb.PROC_ID=#{procId}
+		) and APPLY_ID=#{applyId} and PROC_ID=#{procId}
+	</select>
+
+</mapper>

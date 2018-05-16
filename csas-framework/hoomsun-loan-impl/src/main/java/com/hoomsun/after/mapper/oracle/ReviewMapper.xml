@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.ReviewMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.Review">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+    <result column="STREAM" jdbcType="DECIMAL" property="stream" />
+    <result column="COMMENT_DESC" jdbcType="VARCHAR" property="commentDesc" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="APPLICATION_CAST_ID" jdbcType="VARCHAR" property="applicationCastId" />
+    <result column="APPLICATION_CAST_NAME" jdbcType="VARCHAR" property="applicationCastName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, LOAN_ID, CON_NO, STREAM, COMMENT_DESC, CREATE_TIME, UPDATE_DATE, APPLICATION_CAST_ID, 
+    APPLICATION_CAST_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFTER_REVIEW
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFTER_REVIEW
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.after.api.model.table.Review">
+    insert into HS_AFTER_REVIEW (ID, LOAN_ID, CON_NO, 
+      STREAM, COMMENT_DESC, CREATE_TIME, 
+      UPDATE_DATE, APPLICATION_CAST_ID, APPLICATION_CAST_NAME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR}, #{conNo,jdbcType=VARCHAR}, 
+      #{stream,jdbcType=DECIMAL}, #{commentDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{applicationCastId,jdbcType=VARCHAR}, #{applicationCastName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.Review">
+    insert into HS_AFTER_REVIEW
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="conNo != null">
+        CON_NO,
+      </if>
+      <if test="stream != null">
+        STREAM,
+      </if>
+      <if test="commentDesc != null">
+        COMMENT_DESC,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+      <if test="applicationCastId != null">
+        APPLICATION_CAST_ID,
+      </if>
+      <if test="applicationCastName != null">
+        APPLICATION_CAST_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="conNo != null">
+        #{conNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stream != null">
+        #{stream,jdbcType=DECIMAL},
+      </if>
+      <if test="commentDesc != null">
+        #{commentDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applicationCastId != null">
+        #{applicationCastId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationCastName != null">
+        #{applicationCastName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.Review">
+    update HS_AFTER_REVIEW
+    <set>
+      <if test="loanId != null">
+        LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="conNo != null">
+        CON_NO = #{conNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stream != null">
+        STREAM = #{stream,jdbcType=DECIMAL},
+      </if>
+      <if test="commentDesc != null">
+        COMMENT_DESC = #{commentDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="applicationCastId != null">
+        APPLICATION_CAST_ID = #{applicationCastId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationCastName != null">
+        APPLICATION_CAST_NAME = #{applicationCastName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.Review">
+    update HS_AFTER_REVIEW
+    set LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      CON_NO = #{conNo,jdbcType=VARCHAR},
+      STREAM = #{stream,jdbcType=DECIMAL},
+      COMMENT_DESC = #{commentDesc,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      APPLICATION_CAST_ID = #{applicationCastId,jdbcType=VARCHAR},
+      APPLICATION_CAST_NAME = #{applicationCastName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

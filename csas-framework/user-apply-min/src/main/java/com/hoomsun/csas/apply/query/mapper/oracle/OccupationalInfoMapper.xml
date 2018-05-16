@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.apply.query.dao.OccupationalInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.hoomsun.csas.apply.query.model.OccupationalInfo">
+		<id column="OCINFO_PK_ID" jdbcType="VARCHAR" property="ocinfoPkId" />
+		<result column="FULL_WORK_NAME" jdbcType="VARCHAR" property="fullWorkName" />
+		<result column="INDUSTRY_IN" jdbcType="VARCHAR" property="industryIn" />
+		<result column="COMPANY_ADDRESS" jdbcType="VARCHAR" property="companyAddress" />
+		<result column="COMPANY_PROV_CODE" jdbcType="VARCHAR" property="companyProvCode" />
+		<result column="COMPANY_PROV_NAME" jdbcType="VARCHAR" property="companyProvName" />
+		<result column="COMPANY_CITY_CODE" jdbcType="VARCHAR" property="companyCityCode" />
+		<result column="COMPANY_CITY_NAME" jdbcType="VARCHAR" property="companyCityName" />
+		<result column="COMPANY_AREA_CODE" jdbcType="VARCHAR" property="companyAreaCode" />
+		<result column="COMPANY_AREA_NAME" jdbcType="VARCHAR" property="companyAreaName" />
+		<result column="COMPANY_ADDRESS_DETAIL" jdbcType="VARCHAR"
+			property="companyAddressDetail" />
+		<result column="COMPANY_ZIP_CODE" jdbcType="VARCHAR" property="companyZipCode" />
+		<result column="COMPANY_TEL" jdbcType="VARCHAR" property="companyTel" />
+		<result column="COMPANY_TEL_CODE" jdbcType="VARCHAR" property="companyTelCode" />
+		<result column="COMPANY_TEL_VALUE" jdbcType="VARCHAR" property="companyTelValue" />
+		<result column="COMPANY_TEL_EXT" jdbcType="VARCHAR" property="companyTelExt" />
+		<result column="COMPANY_SIZE" jdbcType="DECIMAL" property="companySize" />
+		<result column="COMPANY_SIZE_VAL" jdbcType="VARCHAR" property="companySizeVal" />
+		<result column="COMPANY_KIND" jdbcType="DECIMAL" property="companyKind" />
+		<result column="COMPANY_KIND_VA" jdbcType="VARCHAR" property="companyKindVa" />
+		<result column="COMPANY_KIND_TXT" jdbcType="VARCHAR" property="companyKindTxt" />
+		<result column="POSITION" jdbcType="DECIMAL" property="position" />
+		<result column="POSITION_VAL" jdbcType="VARCHAR" property="positionVal" />
+		<result column="POSITION_TXT" jdbcType="VARCHAR" property="positionTxt" />
+		<result column="WORK_DEPT" jdbcType="VARCHAR" property="workDept" />
+		<result column="START_WORK_TIME" jdbcType="OTHER" property="startWorkTime" />
+		<result column="PAY_DAY_MONTHLY_VAL" jdbcType="VARCHAR"
+			property="payDayMonthlyVal" />
+		<result column="SOCIAL_SECURITY" jdbcType="DECIMAL" property="socialSecurity" />
+		<result column="SOCIAL_SECURITY_VAL" jdbcType="VARCHAR"
+			property="socialSecurityVal" />
+		<result column="JOB_TITLE" jdbcType="VARCHAR" property="jobTitle" />
+		<result column="OTHTER_INCOME_MONTHLY" jdbcType="VARCHAR"
+			property="othterIncomeMonthly" />
+		<result column="SALARY_MONTHLY" jdbcType="VARCHAR" property="salaryMonthly" />
+		<result column="PAY_METHOD" jdbcType="DECIMAL" property="payMethod" />
+		<result column="PAY_METHOD_VAL" jdbcType="VARCHAR" property="payMethodVal" />
+		<result column="PRIVATE_TYPE" jdbcType="DECIMAL" property="privateType" />
+		<result column="PRIVATE_TYPE_VAL" jdbcType="VARCHAR" property="privateTypeVal" />
+		<result column="PRIVATE_TYPE_TEXT" jdbcType="VARCHAR" property="privateTypeText" />
+		<result column="COMPANY_REGTIME" jdbcType="OTHER" property="companyRegtime" />
+		<result column="PERCENTAGE_SHARES" jdbcType="VARCHAR" property="percentageShares" />
+		<result column="EMPLOYEES_NUM" jdbcType="VARCHAR" property="employeesNum" />
+		<result column="PREMISES" jdbcType="DECIMAL" property="premises" />
+		<result column="PREMISES_VAL" jdbcType="VARCHAR" property="premisesVal" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="CREATE_TIME" jdbcType="OTHER" property="createTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		OCINFO_PK_ID, FULL_WORK_NAME, INDUSTRY_IN, COMPANY_ADDRESS, COMPANY_PROV_CODE,
+		COMPANY_PROV_NAME, COMPANY_CITY_CODE, COMPANY_CITY_NAME,
+		COMPANY_AREA_CODE, COMPANY_AREA_NAME,
+		COMPANY_ADDRESS_DETAIL, COMPANY_ZIP_CODE, COMPANY_TEL, COMPANY_TEL_CODE, COMPANY_TEL_VALUE,
+		COMPANY_TEL_EXT, COMPANY_SIZE, COMPANY_SIZE_VAL, COMPANY_KIND,
+		COMPANY_KIND_VA, COMPANY_KIND_TXT,
+		POSITION, POSITION_VAL, POSITION_TXT, WORK_DEPT, START_WORK_TIME,
+		PAY_DAY_MONTHLY_VAL,
+		SOCIAL_SECURITY, SOCIAL_SECURITY_VAL, JOB_TITLE, OTHTER_INCOME_MONTHLY,
+		SALARY_MONTHLY,
+		PAY_METHOD, PAY_METHOD_VAL, PRIVATE_TYPE, PRIVATE_TYPE_VAL, PRIVATE_TYPE_TEXT,
+		COMPANY_REGTIME,
+		PERCENTAGE_SHARES, EMPLOYEES_NUM, PREMISES, PREMISES_VAL, APPLY_ID, CREATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_OCCUPATIONAL_INFO
+		where OCINFO_PK_ID = #{ocinfoPkId,jdbcType=VARCHAR}
+	</select>
+</mapper>

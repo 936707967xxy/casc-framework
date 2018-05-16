@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.api.dao.CmrateProductMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.CmrateProduct">
+    <id column="CMRATE_ID" jdbcType="VARCHAR" property="cmrateId" />
+    <result column="EFFDATE" jdbcType="VARCHAR" property="effdate" />
+    <result column="CURRSIGN" jdbcType="VARCHAR" property="currsign" />
+    <result column="CURRSIGN_VAL" jdbcType="VARCHAR" property="currsignVal" />
+    <result column="RATECODE" jdbcType="VARCHAR" property="ratecode" />
+    <result column="PRODID" jdbcType="VARCHAR" property="prodid" />
+    <result column="PRODNAME" jdbcType="VARCHAR" property="prodname" />
+    <result column="BASICINTERATE" jdbcType="DECIMAL" property="basicinterate" />
+    <result column="BASICINTERATEYEAR" jdbcType="DECIMAL" property="basicinterateyear" />
+    <result column="BASICFINERATE" jdbcType="DECIMAL" property="basicfinerate" />
+    <result column="DEFAULTRATE" jdbcType="DECIMAL" property="defaultrate" />
+    <result column="MINDEFAULTRATE" jdbcType="DECIMAL" property="mindefaultrate" />
+    <result column="URGENTRATE" jdbcType="DECIMAL" property="urgentrate" />
+    <result column="FILENO" jdbcType="VARCHAR" property="fileno" />
+    <result column="PRODFEE" jdbcType="DECIMAL" property="prodfee" />
+    <result column="AUDITFEEPRO" jdbcType="DECIMAL" property="auditfeepro" />
+    <result column="SERVFEEPRO" jdbcType="DECIMAL" property="servfeepro" />
+    <result column="CONSFEEPRO" jdbcType="DECIMAL" property="consfeepro" />
+    <result column="MORETERM" jdbcType="VARCHAR" property="moreterm" />
+    <result column="REFUNDPRO" jdbcType="DECIMAL" property="refundpro" />
+    <result column="EFFFLAG" jdbcType="VARCHAR" property="effflag" />
+    <result column="EFFFLAG_VAL" jdbcType="VARCHAR" property="effflagVal" />
+    <result column="MIX_CREDIT_AMT" jdbcType="DECIMAL" property="mixCreditAmt" />
+    <result column="MAX_CREDIT_AMT" jdbcType="DECIMAL" property="maxCreditAmt" />
+    <result column="PROMONTHRATE" jdbcType="DECIMAL" property="promonthrate" />
+    <result column="RISK_RATE" jdbcType="DECIMAL" property="riskRate" />
+    <result column="NEW_STATUS" jdbcType="VARCHAR" property="newStatus" />
+    <result column="NEW_STATUS_VAL" jdbcType="VARCHAR" property="newStatusVal" />
+    <result column="STERM" jdbcType="VARCHAR" property="sterm" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CMRATE_ID, EFFDATE, CURRSIGN, CURRSIGN_VAL, RATECODE, PRODID, PRODNAME, BASICINTERATE, 
+    BASICINTERATEYEAR, BASICFINERATE, DEFAULTRATE, MINDEFAULTRATE, URGENTRATE, FILENO, 
+    PRODFEE, AUDITFEEPRO, SERVFEEPRO, CONSFEEPRO, MORETERM, REFUNDPRO, EFFFLAG, EFFFLAG_VAL, 
+    MIX_CREDIT_AMT, MAX_CREDIT_AMT, PROMONTHRATE, RISK_RATE, NEW_STATUS, NEW_STATUS_VAL, 
+    STERM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CMRATE_PRODUCT
+    where CMRATE_ID = #{cmrateId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CMRATE_PRODUCT
+    where CMRATE_ID = #{cmrateId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.CmrateProduct">
+    insert into HS_CMRATE_PRODUCT (CMRATE_ID, EFFDATE, CURRSIGN, 
+      CURRSIGN_VAL, RATECODE, PRODID, 
+      PRODNAME, BASICINTERATE, BASICINTERATEYEAR, 
+      BASICFINERATE, DEFAULTRATE, MINDEFAULTRATE, 
+      URGENTRATE, FILENO, PRODFEE, 
+      AUDITFEEPRO, SERVFEEPRO, CONSFEEPRO, 
+      MORETERM, REFUNDPRO, EFFFLAG, 
+      EFFFLAG_VAL, MIX_CREDIT_AMT, MAX_CREDIT_AMT, 
+      PROMONTHRATE, RISK_RATE, NEW_STATUS, 
+      NEW_STATUS_VAL, STERM)
+    values (#{cmrateId,jdbcType=VARCHAR}, #{effdate,jdbcType=VARCHAR}, 'CNY', 
+      	'人民币', #{ratecode,jdbcType=VARCHAR}, #{prodid,jdbcType=VARCHAR}, 
+      #{prodname,jdbcType=VARCHAR}, #{basicinterate,jdbcType=DECIMAL}, #{basicinterateyear,jdbcType=DECIMAL}, 
+      #{basicfinerate,jdbcType=DECIMAL}, #{defaultrate,jdbcType=DECIMAL}, #{mindefaultrate,jdbcType=DECIMAL}, 
+      #{urgentrate,jdbcType=DECIMAL}, #{fileno,jdbcType=VARCHAR}, #{prodfee,jdbcType=DECIMAL}, 
+      #{auditfeepro,jdbcType=DECIMAL}, #{servfeepro,jdbcType=DECIMAL}, #{consfeepro,jdbcType=DECIMAL}, 
+      #{moreterm,jdbcType=VARCHAR}, #{refundpro,jdbcType=DECIMAL}, '1', 
+      	'已生效', #{mixCreditAmt,jdbcType=DECIMAL}, #{maxCreditAmt,jdbcType=DECIMAL}, 
+      #{promonthrate,jdbcType=DECIMAL}, #{riskRate,jdbcType=DECIMAL}, '01', 
+      	'新产品', #{sterm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.CmrateProduct">
+    insert into HS_CMRATE_PRODUCT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cmrateId != null">
+        CMRATE_ID,
+      </if>
+      <if test="effdate != null">
+        EFFDATE,
+      </if>
+<!--       <if test="currsign != null"> -->
+        CURRSIGN,
+<!--       </if> -->
+<!--       <if test="currsignVal != null"> -->
+        CURRSIGN_VAL,
+<!--       </if> -->
+      <if test="ratecode != null">
+        RATECODE,
+      </if>
+      <if test="prodid != null">
+        PRODID,
+      </if>
+      <if test="prodname != null">
+        PRODNAME,
+      </if>
+      <if test="basicinterate != null">
+        BASICINTERATE,
+      </if>
+      <if test="basicinterateyear != null">
+        BASICINTERATEYEAR,
+      </if>
+      <if test="basicfinerate != null">
+        BASICFINERATE,
+      </if>
+      <if test="defaultrate != null">
+        DEFAULTRATE,
+      </if>
+      <if test="mindefaultrate != null">
+        MINDEFAULTRATE,
+      </if>
+      <if test="urgentrate != null">
+        URGENTRATE,
+      </if>
+      <if test="fileno != null">
+        FILENO,
+      </if>
+      <if test="prodfee != null">
+        PRODFEE,
+      </if>
+      <if test="auditfeepro != null">
+        AUDITFEEPRO,
+      </if>
+      <if test="servfeepro != null">
+        SERVFEEPRO,
+      </if>
+      <if test="consfeepro != null">
+        CONSFEEPRO,
+      </if>
+      <if test="moreterm != null">
+        MORETERM,
+      </if>
+      <if test="refundpro != null">
+        REFUNDPRO,
+      </if>
+<!--       <if test="effflag != null"> -->
+        EFFFLAG,
+<!--       </if> -->
+<!--       <if test="effflagVal != null"> -->
+        EFFFLAG_VAL,
+<!--       </if> -->
+      <if test="mixCreditAmt != null">
+        MIX_CREDIT_AMT,
+      </if>
+      <if test="maxCreditAmt != null">
+        MAX_CREDIT_AMT,
+      </if>
+      <if test="promonthrate != null">
+        PROMONTHRATE,
+      </if>
+      <if test="riskRate != null">
+        RISK_RATE,
+      </if>
+<!--       <if test="newStatus != null"> -->
+        NEW_STATUS,
+<!--       </if> -->
+<!--       <if test="newStatusVal != null"> -->
+        NEW_STATUS_VAL,
+<!--       </if> -->
+      <if test="sterm != null">
+        STERM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cmrateId != null">
+        #{cmrateId,jdbcType=VARCHAR},
+      </if>
+      <if test="effdate != null">
+        #{effdate,jdbcType=VARCHAR},
+      </if>
+<!--       <if test="currsign != null"> -->
+        'CNY',
+<!--       </if> -->
+<!--       <if test="currsignVal != null"> -->
+                      '人民币',
+<!--       </if> -->
+      <if test="ratecode != null">
+        #{ratecode,jdbcType=VARCHAR},
+      </if>
+      <if test="prodid != null">
+        #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null">
+        #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="basicinterate != null">
+        #{basicinterate,jdbcType=DECIMAL},
+      </if>
+      <if test="basicinterateyear != null">
+        #{basicinterateyear,jdbcType=DECIMAL},
+      </if>
+      <if test="basicfinerate != null">
+        #{basicfinerate,jdbcType=DECIMAL},
+      </if>
+      <if test="defaultrate != null">
+        #{defaultrate,jdbcType=DECIMAL},
+      </if>
+      <if test="mindefaultrate != null">
+        #{mindefaultrate,jdbcType=DECIMAL},
+      </if>
+      <if test="urgentrate != null">
+        #{urgentrate,jdbcType=DECIMAL},
+      </if>
+      <if test="fileno != null">
+        #{fileno,jdbcType=VARCHAR},
+      </if>
+      <if test="prodfee != null">
+        #{prodfee,jdbcType=DECIMAL},
+      </if>
+      <if test="auditfeepro != null">
+        #{auditfeepro,jdbcType=DECIMAL},
+      </if>
+      <if test="servfeepro != null">
+        #{servfeepro,jdbcType=DECIMAL},
+      </if>
+      <if test="consfeepro != null">
+        #{consfeepro,jdbcType=DECIMAL},
+      </if>
+      <if test="moreterm != null">
+        #{moreterm,jdbcType=VARCHAR},
+      </if>
+      <if test="refundpro != null">
+        #{refundpro,jdbcType=DECIMAL},
+      </if>
+<!--       <if test="effflag != null"> -->
+        '1',
+<!--       </if> -->
+<!--       <if test="effflagVal != null"> -->
+                     '已生效',
+<!--       </if> -->
+      <if test="mixCreditAmt != null">
+        #{mixCreditAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCreditAmt != null">
+        #{maxCreditAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="promonthrate != null">
+        #{promonthrate,jdbcType=DECIMAL},
+      </if>
+      <if test="riskRate != null">
+        #{riskRate,jdbcType=DECIMAL},
+      </if>
+<!--       <if test="newStatus != null"> -->
+        '01',
+<!--       </if> -->
+<!--       <if test="newStatusVal != null"> -->
+                          '新产品',
+<!--       </if> -->
+      <if test="sterm != null">
+        #{sterm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.CmrateProduct">
+    update HS_CMRATE_PRODUCT
+    <set>
+      <if test="effdate != null">
+        EFFDATE = #{effdate,jdbcType=VARCHAR},
+      </if>
+      <if test="currsign != null">
+        CURRSIGN = #{currsign,jdbcType=VARCHAR},
+      </if>
+      <if test="currsignVal != null">
+        CURRSIGN_VAL = #{currsignVal,jdbcType=VARCHAR},
+      </if>
+      <if test="ratecode != null">
+        RATECODE = #{ratecode,jdbcType=VARCHAR},
+      </if>
+      <if test="prodid != null">
+        PRODID = #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null">
+        PRODNAME = #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="basicinterate != null">
+        BASICINTERATE = #{basicinterate,jdbcType=DECIMAL},
+      </if>
+      <if test="basicinterateyear != null">
+        BASICINTERATEYEAR = #{basicinterateyear,jdbcType=DECIMAL},
+      </if>
+      <if test="basicfinerate != null">
+        BASICFINERATE = #{basicfinerate,jdbcType=DECIMAL},
+      </if>
+      <if test="defaultrate != null">
+        DEFAULTRATE = #{defaultrate,jdbcType=DECIMAL},
+      </if>
+      <if test="mindefaultrate != null">
+        MINDEFAULTRATE = #{mindefaultrate,jdbcType=DECIMAL},
+      </if>
+      <if test="urgentrate != null">
+        URGENTRATE = #{urgentrate,jdbcType=DECIMAL},
+      </if>
+      <if test="fileno != null">
+        FILENO = #{fileno,jdbcType=VARCHAR},
+      </if>
+      <if test="prodfee != null">
+        PRODFEE = #{prodfee,jdbcType=DECIMAL},
+      </if>
+      <if test="auditfeepro != null">
+        AUDITFEEPRO = #{auditfeepro,jdbcType=DECIMAL},
+      </if>
+      <if test="servfeepro != null">
+        SERVFEEPRO = #{servfeepro,jdbcType=DECIMAL},
+      </if>
+      <if test="consfeepro != null">
+        CONSFEEPRO = #{consfeepro,jdbcType=DECIMAL},
+      </if>
+      <if test="moreterm != null">
+        MORETERM = #{moreterm,jdbcType=VARCHAR},
+      </if>
+      <if test="refundpro != null">
+        REFUNDPRO = #{refundpro,jdbcType=DECIMAL},
+      </if>
+      <if test="effflag != null">
+        EFFFLAG = #{effflag,jdbcType=VARCHAR},
+      </if>
+      <if test="effflagVal != null">
+        EFFFLAG_VAL = #{effflagVal,jdbcType=VARCHAR},
+      </if>
+      <if test="mixCreditAmt != null">
+        MIX_CREDIT_AMT = #{mixCreditAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCreditAmt != null">
+        MAX_CREDIT_AMT = #{maxCreditAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="promonthrate != null">
+        PROMONTHRATE = #{promonthrate,jdbcType=DECIMAL},
+      </if>
+      <if test="riskRate != null">
+        RISK_RATE = #{riskRate,jdbcType=DECIMAL},
+      </if>
+      <if test="newStatus != null">
+        NEW_STATUS = #{newStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="newStatusVal != null">
+        NEW_STATUS_VAL = #{newStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="sterm != null">
+        STERM = #{sterm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CMRATE_ID = #{cmrateId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.CmrateProduct">
+    update HS_CMRATE_PRODUCT
+    set EFFDATE = #{effdate,jdbcType=VARCHAR},
+      CURRSIGN = 'CNY',
+      CURRSIGN_VAL = '人民币',
+      RATECODE = #{ratecode,jdbcType=VARCHAR},
+      PRODID = #{prodid,jdbcType=VARCHAR},
+      PRODNAME = #{prodname,jdbcType=VARCHAR},
+      BASICINTERATE = #{basicinterate,jdbcType=DECIMAL},
+      BASICINTERATEYEAR = #{basicinterateyear,jdbcType=DECIMAL},
+      BASICFINERATE = #{basicfinerate,jdbcType=DECIMAL},
+      DEFAULTRATE = #{defaultrate,jdbcType=DECIMAL},
+      MINDEFAULTRATE = #{mindefaultrate,jdbcType=DECIMAL},
+      URGENTRATE = #{urgentrate,jdbcType=DECIMAL},
+      FILENO = #{fileno,jdbcType=VARCHAR},
+      PRODFEE = #{prodfee,jdbcType=DECIMAL},
+      AUDITFEEPRO = #{auditfeepro,jdbcType=DECIMAL},
+      SERVFEEPRO = #{servfeepro,jdbcType=DECIMAL},
+      CONSFEEPRO = #{consfeepro,jdbcType=DECIMAL},
+      MORETERM = #{moreterm,jdbcType=VARCHAR},
+      REFUNDPRO = #{refundpro,jdbcType=DECIMAL},
+      EFFFLAG = '1',
+      EFFFLAG_VAL = '已生效',
+      MIX_CREDIT_AMT = #{mixCreditAmt,jdbcType=DECIMAL},
+      MAX_CREDIT_AMT = #{maxCreditAmt,jdbcType=DECIMAL},
+      PROMONTHRATE = #{promonthrate,jdbcType=DECIMAL},
+      RISK_RATE = #{riskRate,jdbcType=DECIMAL},
+      NEW_STATUS = '01',
+      NEW_STATUS_VAL = '新产品',
+      STERM = #{sterm,jdbcType=VARCHAR}
+    where CMRATE_ID = #{cmrateId,jdbcType=VARCHAR}
+  </update>
+  
+<!-- 查询客户所选对应小产品 -->
+ <select id="findAllDataApp" parameterType="java.util.Map" resultType="java.util.Map">
+    select PRODID,PRODNAME,STERM,PROMONTHRATE
+    from HS_CMRATE_PRODUCT
+    where PRODID  LIKE  CONCAT(CONCAT(#{APPLYAPPROVALL}),'%')  and  PROMONTHRATE =  CONCAT(CONCAT(#{RATE}),'%')
+  </select>
+  
+  <!-- 提交申请时查询   -->
+   <select id="findDataApp" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CMRATE_PRODUCT
+    where PRODID = #{prodid,jdbcType=VARCHAR}
+  </select>
+   <!-- 提交申请时查询计算利率    -->
+   <select id="findDataAppBill" parameterType="java.lang.String" resultType="java.util.Map">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CMRATE_PRODUCT
+    where PRODID = #{prodid,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findAllData" resultMap="BaseResultMap">
+  		SELECT CMRATE_ID,PRODNAME FROM HS_CMRATE_PRODUCT
+  </select>
+  
+  <select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	<![CDATA[
+  		SELECT    
+  		 CMRATE_ID, EFFDATE, CURRSIGN, CURRSIGN_VAL, RATECODE, PRODID, PRODNAME, BASICINTERATE, 
+    BASICINTERATEYEAR, BASICFINERATE, DEFAULTRATE, MINDEFAULTRATE, URGENTRATE, FILENO, 
+    PRODFEE, AUDITFEEPRO, SERVFEEPRO, CONSFEEPRO, MORETERM, REFUNDPRO, EFFFLAG, EFFFLAG_VAL, 
+    MIX_CREDIT_AMT, MAX_CREDIT_AMT, PROMONTHRATE, RISK_RATE, NEW_STATUS, NEW_STATUS_VAL, 
+    STERM 
+  		FROM 
+  		HS_CMRATE_PRODUCT   
+  		  where 1<>2 
+  	]]>
+		<if test="prodname != null and prodname != ''">
+			and PRODNAME like #{prodname}
+		</if>
+		ORDER BY PRODNAME
+		<if test="pageIndex != null and pageSize != null">
+			limit #{pageIndex},#{pageSize}
+		</if>
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	<![CDATA[select count(CMRATE_ID) from HS_CMRATE_PRODUCT where 1<>2]]>
+		<if test="prodname != null and prodname != ''">
+			and PRODNAME like #{prodname}
+		</if>
+	</select>
+</mapper>

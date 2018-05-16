@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysEmpRoleMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysEmpRole">
+		<id column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+		<id column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="com.hoomsun.core.model.SysEmpRole">
+		delete from HS_EMP_ROLE
+		where EMP_ID = #{empId,jdbcType=VARCHAR}
+		and ROLE_ID = #{roleId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.core.model.SysEmpRole">
+		insert into HS_EMP_ROLE (EMP_ID, ROLE_ID)
+		values (#{empId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.core.model.SysEmpRole">
+		insert into HS_EMP_ROLE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="empId != null">
+				EMP_ID,
+			</if>
+			<if test="roleId != null">
+				ROLE_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="empId != null">
+				#{empId,jdbcType=VARCHAR},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 根据员工ID删除角色和员工的关联关系 -->
+	<delete id="deleteByEmpId" parameterType="java.lang.String">
+		delete from HS_EMP_ROLE where EMP_ID=#{empId}
+	</delete>
+
+	<!-- 根据角色ID删除角色和与员工的关联关系 -->
+	<delete id="deleteByRoleId" parameterType="java.lang.String">
+		delete from HS_EMP_ROLE where ROLE_ID=#{roleId}
+	</delete>
+
+	<!-- 根据角色ID批量删除员工角色关系 -->
+	<delete id="batchDeleteByRoleId" parameterType="java.util.List">
+		delete from HS_EMP_ROLE where ROLE_ID in
+		<foreach collection="roleIds" item="item" index="index" separator="," open="(" close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 批量添加员工和角色的关联关系 -->
+	<insert id="batchIntser" parameterType="java.util.List">
+<!-- 		<foreach collection="empRoles" item="item" close=";" separator=";"> -->
+<!-- 		insert into HS_EMP_ROLE(EMP_ID, ROLE_ID) VALUES(#{item.empId,jdbcType=VARCHAR}, #{item.roleId,jdbcType=VARCHAR}) -->
+<!-- 		</foreach> -->
+		insert into HS_EMP_ROLE(EMP_ID, ROLE_ID)
+		<foreach collection="empRoles" item="item" separator="union all">
+		SELECT 
+		#{item.empId,jdbcType=VARCHAR}, #{item.roleId,jdbcType=VARCHAR}
+		FROM DUAL
+		</foreach>
+	</insert>
+	
+	<!-- 根据员工ID获取关联关系 -->
+	<select id="findByEmpId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	 select EMP_ID, ROLE_ID from HS_EMP_ROLE where EMP_ID=#{empId}
+	</select>
+</mapper>

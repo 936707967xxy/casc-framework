@@ -1,0 +1,291 @@
+[
+	{
+		"path": "/",
+		"component": "Home",
+		"value": "HomeLoan",
+		"name": "放款审核",
+		"sort": 1,
+		"type": "menu",
+		"redirect": "",
+		"dropdown": true,
+		"hidden": false,
+		"iconCls": "el-icon-setting",
+		"children": [
+			{
+				"path": "/loan",
+				"component": "LoanList",
+				"value": "LoanList",
+				"name": "放款列表",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 101,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "/loanaudit",
+						"component": "LoanAudit",
+						"value": "loan_audit",
+						"name": "放款审批",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10101,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "/loan/Details",
+						"component": "LoanDetails",
+						"value": "loan_details",
+						"name": "详情",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10102,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			}
+		]
+	},
+	{
+		"path": "/",
+		"component": "Home",
+		"value": "HomeSys",
+		"name": "系统管理",
+		"sort": 3,
+		"type": "menu",
+		"redirect": "",
+		"dropdown": true,
+		"hidden": false,
+		"iconCls": "el-icon-setting",
+		"children": [
+			{
+				"path": "/emp",
+				"component": "Emp",
+				"value": "Emp",
+				"name": "员工管理",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 301,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value": "emp_create",
+						"name": "员工添加",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30101,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "emp_update",
+						"name": "员工修改",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30102,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "emp_delete",
+						"name": "员工删除",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30103,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "emp_lock",
+						"name": "员工锁定",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30104,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "emp_unlock",
+						"name": "员工解锁",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30105,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "emp_grant",
+						"name": "员工授权",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30106,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "emp_query",
+						"name": "员工查询",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30107,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "emp_details",
+						"name": "员工详情",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30108,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/role",
+				"component": "Role",
+				"value": "Role",
+				"name": "角色管理",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 302,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value": "role_create",
+						"name": "添加角色",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30201,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "role_update",
+						"name": "修改角色",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30202,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "role_remove",
+						"name": "删除角色",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30203,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "role_query",
+						"name": "检索角色",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30204,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "role_grant",
+						"name": "授权角色",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30205,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/resources",
+				"component": "Resources",
+				"value": "Resources",
+				"name": "资源管理",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 303,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value": "cpt_create",
+						"name": "添加组件",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30301,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "cpt_update",
+						"name": "修改组件",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30302,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "cpt_remove",
+						"name": "删除组件",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30303,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value": "cpt_query",
+						"name": "检索组件",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30304,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			}
+		]
+	}
+]

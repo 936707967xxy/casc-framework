@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.CreditCardBillsMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.CreditCardBills">
+		<id column="CB_ID" jdbcType="VARCHAR" property="cbId" />
+		<result column="BILLS_DATE" jdbcType="OTHER" property="billsDate" />
+		<result column="REPAYMENT_DATE" jdbcType="OTHER" property="repaymentDate" />
+		<result column="MINNI_MONEY" jdbcType="VARCHAR" property="minniMoney" />
+		<result column="CURRENTSTERM_SHOULDMONEY" jdbcType="VARCHAR" property="currentstermShouldmoney" />
+		<result column="REPAYMENT_STATUS" jdbcType="VARCHAR" property="repaymentStatus" />
+		<result column="CB_FKID" jdbcType="VARCHAR" property="cbFkid" />
+		<result column="CREDITLIMIT" jdbcType="VARCHAR" property="CreditLimit" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hoomsun.csas.sales.api.model.CreditCardBills">
+		<result column="DATAS" jdbcType="CLOB" property="datas" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		CB_ID, BILLS_DATE, REPAYMENT_DATE, MINNI_MONEY, CURRENTSTERM_SHOULDMONEY, REPAYMENT_STATUS,
+		CB_FKID,CREDITLIMIT
+	</sql>
+	<sql id="Blob_Column_List">
+		DATAS
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from HS_CREDIT_CARD_BILLS
+		where CB_ID = #{cbId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_CREDIT_CARD_BILLS
+		where CB_ID = #{cbId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.CreditCardBills">
+		insert into HS_CREDIT_CARD_BILLS (CB_ID, BILLS_DATE, REPAYMENT_DATE,
+		MINNI_MONEY, CURRENTSTERM_SHOULDMONEY, REPAYMENT_STATUS,
+		CB_FKID, DATAS,CREDITLIMIT)
+		values (#{cbId,jdbcType=VARCHAR}, #{billsDate,jdbcType=OTHER}, #{repaymentDate,jdbcType=OTHER},
+		#{minniMoney,jdbcType=VARCHAR}, #{currentstermShouldmoney,jdbcType=VARCHAR}, #{repaymentStatus,jdbcType=VARCHAR},
+		#{cbFkid,jdbcType=VARCHAR}, #{datas,jdbcType=CLOB}, #{CreditLimit,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.CreditCardBills">
+		insert into HS_CREDIT_CARD_BILLS
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cbId != null">
+				CB_ID,
+			</if>
+			<if test="billsDate != null">
+				BILLS_DATE,
+			</if>
+			<if test="repaymentDate != null">
+				REPAYMENT_DATE,
+			</if>
+			<if test="minniMoney != null">
+				MINNI_MONEY,
+			</if>
+			<if test="currentstermShouldmoney != null">
+				CURRENTSTERM_SHOULDMONEY,
+			</if>
+			<if test="repaymentStatus != null">
+				REPAYMENT_STATUS,
+			</if>
+			<if test="cbFkid != null">
+				CB_FKID,
+			</if>
+			<if test="datas != null">
+				DATAS,
+			</if>
+			<if test="CreditLimit != null">
+				CREDITLIMIT,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cbId != null">
+				#{cbId,jdbcType=VARCHAR},
+			</if>
+			<if test="billsDate != null">
+				#{billsDate,jdbcType=OTHER},
+			</if>
+			<if test="repaymentDate != null">
+				#{repaymentDate,jdbcType=OTHER},
+			</if>
+			<if test="minniMoney != null">
+				#{minniMoney,jdbcType=VARCHAR},
+			</if>
+			<if test="currentstermShouldmoney != null">
+				#{currentstermShouldmoney,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentStatus != null">
+				#{repaymentStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="cbFkid != null">
+				#{cbFkid,jdbcType=VARCHAR},
+			</if>
+			<if test="datas != null">
+				#{datas,jdbcType=CLOB},
+			</if>
+			<if test="CreditLimit != null">
+				#{CreditLimit,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.CreditCardBills">
+		update HS_CREDIT_CARD_BILLS
+		<set>
+			<if test="billsDate != null">
+				BILLS_DATE = #{billsDate,jdbcType=OTHER},
+			</if>
+			<if test="repaymentDate != null">
+				REPAYMENT_DATE = #{repaymentDate,jdbcType=OTHER},
+			</if>
+			<if test="minniMoney != null">
+				MINNI_MONEY = #{minniMoney,jdbcType=VARCHAR},
+			</if>
+			<if test="currentstermShouldmoney != null">
+				CURRENTSTERM_SHOULDMONEY = #{currentstermShouldmoney,jdbcType=VARCHAR},
+			</if>
+			<if test="repaymentStatus != null">
+				REPAYMENT_STATUS = #{repaymentStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="cbFkid != null">
+				CB_FKID = #{cbFkid,jdbcType=VARCHAR},
+			</if>
+			<if test="datas != null">
+				DATAS = #{datas,jdbcType=CLOB},
+			</if>
+			<if test="CreditLimit != null">
+				CREDITLIMIT = #{CreditLimit,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where CB_ID = #{cbId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hoomsun.csas.sales.api.model.CreditCardBills">
+		update HS_CREDIT_CARD_BILLS
+		set BILLS_DATE = #{billsDate,jdbcType=OTHER},
+		REPAYMENT_DATE = #{repaymentDate,jdbcType=OTHER},
+		MINNI_MONEY = #{minniMoney,jdbcType=VARCHAR},
+		CURRENTSTERM_SHOULDMONEY = #{currentstermShouldmoney,jdbcType=VARCHAR},
+		REPAYMENT_STATUS = #{repaymentStatus,jdbcType=VARCHAR},
+		CB_FKID = #{cbFkid,jdbcType=VARCHAR},
+		DATAS = #{datas,jdbcType=CLOB},
+		CREDITLIMIT = #{CreditLimit,jdbcType=VARCHAR}
+		where CB_ID = #{cbId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.CreditCardBills">
+		update HS_CREDIT_CARD_BILLS
+		set BILLS_DATE = #{billsDate,jdbcType=OTHER},
+		REPAYMENT_DATE = #{repaymentDate,jdbcType=OTHER},
+		MINNI_MONEY = #{minniMoney,jdbcType=VARCHAR},
+		CURRENTSTERM_SHOULDMONEY = #{currentstermShouldmoney,jdbcType=VARCHAR},
+		REPAYMENT_STATUS = #{repaymentStatus,jdbcType=VARCHAR},
+		CB_FKID = #{cbFkid,jdbcType=VARCHAR},
+		CREDITLIMIT = #{CreditLimit,jdbcType=VARCHAR}
+		where CB_ID = #{cbId,jdbcType=VARCHAR}
+	</update>
+	
+	
+	
+	<resultMap id="CREDIT_CARD_BILLS_MAP" type="com.hoomsun.csas.sales.api.model.CreditCardBills" extends="BaseResultMap">
+		<collection property="cardBillsInfos" javaType="java.util.ArrayList" ofType="com.hoomsun.csas.sales.api.model.CreditCardBillsInfo" resultMap="com.hoomsun.csas.sales.dao.CreditCardBillsInfoMapper.BaseResultMap" />
+	</resultMap>
+	
+</mapper>

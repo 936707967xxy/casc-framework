@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.AuthenticationUrlMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.AuthenticationUrl">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="FK_ID" jdbcType="VARCHAR" property="fkId" />
+    <result column="URL_PHOTOGET" jdbcType="VARCHAR" property="urlPhotoget" />
+    <result column="URL_BACKCARD" jdbcType="VARCHAR" property="urlBackcard" />
+    <result column="URL_PHOTOLIVING" jdbcType="VARCHAR" property="urlPhotoliving" />
+    <result column="URL_FRONTCARD" jdbcType="VARCHAR" property="urlFrontcard" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, FK_ID, URL_PHOTOGET, URL_BACKCARD, URL_PHOTOLIVING, URL_FRONTCARD
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFRESH_AUTHENTICATION_URL
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFRESH_AUTHENTICATION_URL
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.AuthenticationUrl">
+    insert into HS_AFRESH_AUTHENTICATION_URL (ID, FK_ID, URL_PHOTOGET, 
+      URL_BACKCARD, URL_PHOTOLIVING, URL_FRONTCARD
+      )
+    values (#{id,jdbcType=VARCHAR}, #{fkId,jdbcType=VARCHAR}, #{urlPhotoget,jdbcType=VARCHAR}, 
+      #{urlBackcard,jdbcType=VARCHAR}, #{urlPhotoliving,jdbcType=VARCHAR}, #{urlFrontcard,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.AuthenticationUrl">
+    insert into HS_AFRESH_AUTHENTICATION_URL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="fkId != null">
+        FK_ID,
+      </if>
+      <if test="urlPhotoget != null">
+        URL_PHOTOGET,
+      </if>
+      <if test="urlBackcard != null">
+        URL_BACKCARD,
+      </if>
+      <if test="urlPhotoliving != null">
+        URL_PHOTOLIVING,
+      </if>
+      <if test="urlFrontcard != null">
+        URL_FRONTCARD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="fkId != null">
+        #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="urlPhotoget != null">
+        #{urlPhotoget,jdbcType=VARCHAR},
+      </if>
+      <if test="urlBackcard != null">
+        #{urlBackcard,jdbcType=VARCHAR},
+      </if>
+      <if test="urlPhotoliving != null">
+        #{urlPhotoliving,jdbcType=VARCHAR},
+      </if>
+      <if test="urlFrontcard != null">
+        #{urlFrontcard,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.AuthenticationUrl">
+    update HS_AFRESH_AUTHENTICATION_URL
+    <set>
+      <if test="fkId != null">
+        FK_ID = #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="urlPhotoget != null">
+        URL_PHOTOGET = #{urlPhotoget,jdbcType=VARCHAR},
+      </if>
+      <if test="urlBackcard != null">
+        URL_BACKCARD = #{urlBackcard,jdbcType=VARCHAR},
+      </if>
+      <if test="urlPhotoliving != null">
+        URL_PHOTOLIVING = #{urlPhotoliving,jdbcType=VARCHAR},
+      </if>
+      <if test="urlFrontcard != null">
+        URL_FRONTCARD = #{urlFrontcard,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.AuthenticationUrl">
+    update HS_AFRESH_AUTHENTICATION_URL
+    set FK_ID = #{fkId,jdbcType=VARCHAR},
+      URL_PHOTOGET = #{urlPhotoget,jdbcType=VARCHAR},
+      URL_BACKCARD = #{urlBackcard,jdbcType=VARCHAR},
+      URL_PHOTOLIVING = #{urlPhotoliving,jdbcType=VARCHAR},
+      URL_FRONTCARD = #{urlFrontcard,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+   <select id="selectByFkid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFRESH_AUTHENTICATION_URL
+    where  FK_ID = #{fkId,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

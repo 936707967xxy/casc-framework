@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.risk.dao.UserHeadInfoVoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.risk.model.UserHeadInfoVo">
+    <id column="PO_ID" jdbcType="VARCHAR" property="poId" />
+    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+    <result column="CUST_SEX" jdbcType="VARCHAR" property="custSex" />
+    <result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+    <result column="CUST_AGE" jdbcType="DECIMAL" property="custAge" />
+    <result column="IS_LOCAL_PERSON" jdbcType="VARCHAR" property="isLocalPerson" />
+    <result column="FORECAST_LIVE_TIME_TD" jdbcType="VARCHAR" property="forecastLiveTimeTd" />
+    <result column="FORECAST_LIVE_TIME_ZX" jdbcType="VARCHAR" property="forecastLiveTimeZx" />
+    <result column="FORECAST_LIVE_TIME_PQ" jdbcType="VARCHAR" property="forecastLiveTimePq" />
+    <result column="MARITAL_STATUS_CUST" jdbcType="VARCHAR" property="maritalStatusCust" />
+    <result column="MARITAL_STATUS_TD" jdbcType="VARCHAR" property="maritalStatusTd" />
+    <result column="MARITAL_STATUS_ZX" jdbcType="VARCHAR" property="maritalStatusZx" />
+    <result column="ADDRESS_CUST" jdbcType="VARCHAR" property="addressCust" />
+    <result column="ADDRESS_PQ" jdbcType="VARCHAR" property="addressPq" />
+    <result column="ADDRESS_TD" jdbcType="VARCHAR" property="addressTd" />
+    <result column="ADDRESS_ZX" jdbcType="VARCHAR" property="addressZx" />
+    <result column="ADDRESS_XS_ADD" jdbcType="VARCHAR" property="addressXsAdd" />
+    <result column="COMPANY_NAME_CUST" jdbcType="VARCHAR" property="companyNameCust" />
+    <result column="COMPANY_NAME_SB" jdbcType="VARCHAR" property="companyNameSb" />
+    <result column="COMPANY_NAME_TD" jdbcType="VARCHAR" property="companyNameTd" />
+    <result column="COMPANY_NAME_ZX" jdbcType="VARCHAR" property="companyNameZx" />
+    <result column="JOB_TITLE" jdbcType="VARCHAR" property="jobTitle" />
+    <result column="POSITION" jdbcType="VARCHAR" property="position" />
+    <result column="INDUSTRY_IN" jdbcType="VARCHAR" property="industryIn" />
+    <result column="COMPANY_KIND" jdbcType="VARCHAR" property="companyKind" />
+    <result column="IN_COME_AVERAGE" jdbcType="VARCHAR" property="inComeAverage" />
+    <result column="IN_COME_MODEL" jdbcType="VARCHAR" property="inComeModel" />
+    <result column="IN_COME_COEF" jdbcType="VARCHAR" property="inComeCoef" />
+    <result column="IN_COME_CUST" jdbcType="VARCHAR" property="inComeCust" />
+    <result column="LIABILITIES_LOAN" jdbcType="VARCHAR" property="liabilitiesLoan" />
+    <result column="LIABILITIES_CARD" jdbcType="VARCHAR" property="liabilitiesCard" />
+    <result column="LIABILITIES_CURRENT" jdbcType="VARCHAR" property="liabilitiesCurrent" />
+    <result column="PROPERTY_TYPE_ZX" jdbcType="VARCHAR" property="propertyTypeZx" />
+    <result column="PROPERTY_TYPE_CUST" jdbcType="VARCHAR" property="propertyTypeCust" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="SUGGEST_RESULT_ID" jdbcType="DECIMAL" property="suggestResultId" />
+    <result column="SUGGEST_RESULT_VAL" jdbcType="VARCHAR" property="suggestResultVal" />
+    <result column="SUGGEST_RESULT_CAUSE" jdbcType="VARCHAR" property="suggestResultCause" />
+    <result column="RANK" jdbcType="VARCHAR" property="rank" />
+    <result column="GRADE" jdbcType="VARCHAR" property="grade" />
+    <result column="RADIO" jdbcType="VARCHAR" property="radio" />
+    <result column="EASY_LOANA_MOUNT" jdbcType="VARCHAR" property="easyLoanaMount" />
+    <result column="WEIXIN_LOAN_AMOUNT" jdbcType="VARCHAR" property="weixinLoanAmount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PO_ID, CUST_NAME, CUST_SEX, ID_NUMBER, CUST_AGE, IS_LOCAL_PERSON, FORECAST_LIVE_TIME_TD, 
+    FORECAST_LIVE_TIME_ZX, FORECAST_LIVE_TIME_PQ, MARITAL_STATUS_CUST, MARITAL_STATUS_TD, 
+    MARITAL_STATUS_ZX, ADDRESS_CUST, ADDRESS_PQ, ADDRESS_TD, ADDRESS_ZX, ADDRESS_XS_ADD, 
+    COMPANY_NAME_CUST, COMPANY_NAME_SB, COMPANY_NAME_TD, COMPANY_NAME_ZX, JOB_TITLE, 
+    POSITION, INDUSTRY_IN, COMPANY_KIND, IN_COME_AVERAGE, IN_COME_MODEL, IN_COME_COEF, 
+    IN_COME_CUST, LIABILITIES_LOAN, LIABILITIES_CARD, LIABILITIES_CURRENT, PROPERTY_TYPE_ZX, 
+    PROPERTY_TYPE_CUST, APPLY_ID, CREATED_TIME, SUGGEST_RESULT_ID, SUGGEST_RESULT_VAL, 
+    SUGGEST_RESULT_CAUSE, RANK, GRADE, RADIO, EASY_LOANA_MOUNT, WEIXIN_LOAN_AMOUNT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_HEAD_PORTRAIT_BASE_INFO
+    where PO_ID = #{poId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_HEAD_PORTRAIT_BASE_INFO
+    where PO_ID = #{poId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.risk.model.UserHeadInfoVo">
+    insert into HS_HEAD_PORTRAIT_BASE_INFO (PO_ID, CUST_NAME, CUST_SEX, 
+      ID_NUMBER, CUST_AGE, IS_LOCAL_PERSON, 
+      FORECAST_LIVE_TIME_TD, FORECAST_LIVE_TIME_ZX, 
+      FORECAST_LIVE_TIME_PQ, MARITAL_STATUS_CUST, 
+      MARITAL_STATUS_TD, MARITAL_STATUS_ZX, ADDRESS_CUST, 
+      ADDRESS_PQ, ADDRESS_TD, ADDRESS_ZX, 
+      ADDRESS_XS_ADD, COMPANY_NAME_CUST, COMPANY_NAME_SB, 
+      COMPANY_NAME_TD, COMPANY_NAME_ZX, JOB_TITLE, 
+      POSITION, INDUSTRY_IN, COMPANY_KIND, 
+      IN_COME_AVERAGE, IN_COME_MODEL, IN_COME_COEF, 
+      IN_COME_CUST, LIABILITIES_LOAN, LIABILITIES_CARD, 
+      LIABILITIES_CURRENT, PROPERTY_TYPE_ZX, PROPERTY_TYPE_CUST, 
+      APPLY_ID, CREATED_TIME, SUGGEST_RESULT_ID, 
+      SUGGEST_RESULT_VAL, SUGGEST_RESULT_CAUSE, RANK, 
+      GRADE, RADIO, EASY_LOANA_MOUNT, 
+      WEIXIN_LOAN_AMOUNT)
+    values (#{poId,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{custSex,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{custAge,jdbcType=DECIMAL}, #{isLocalPerson,jdbcType=VARCHAR}, 
+      #{forecastLiveTimeTd,jdbcType=VARCHAR}, #{forecastLiveTimeZx,jdbcType=VARCHAR}, 
+      #{forecastLiveTimePq,jdbcType=VARCHAR}, #{maritalStatusCust,jdbcType=VARCHAR}, 
+      #{maritalStatusTd,jdbcType=VARCHAR}, #{maritalStatusZx,jdbcType=VARCHAR}, #{addressCust,jdbcType=VARCHAR}, 
+      #{addressPq,jdbcType=VARCHAR}, #{addressTd,jdbcType=VARCHAR}, #{addressZx,jdbcType=VARCHAR}, 
+      #{addressXsAdd,jdbcType=VARCHAR}, #{companyNameCust,jdbcType=VARCHAR}, #{companyNameSb,jdbcType=VARCHAR}, 
+      #{companyNameTd,jdbcType=VARCHAR}, #{companyNameZx,jdbcType=VARCHAR}, #{jobTitle,jdbcType=VARCHAR}, 
+      #{position,jdbcType=VARCHAR}, #{industryIn,jdbcType=VARCHAR}, #{companyKind,jdbcType=VARCHAR}, 
+      #{inComeAverage,jdbcType=VARCHAR}, #{inComeModel,jdbcType=VARCHAR}, #{inComeCoef,jdbcType=VARCHAR}, 
+      #{inComeCust,jdbcType=VARCHAR}, #{liabilitiesLoan,jdbcType=VARCHAR}, #{liabilitiesCard,jdbcType=VARCHAR}, 
+      #{liabilitiesCurrent,jdbcType=VARCHAR}, #{propertyTypeZx,jdbcType=VARCHAR}, #{propertyTypeCust,jdbcType=VARCHAR}, 
+      #{applyId,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{suggestResultId,jdbcType=DECIMAL}, 
+      #{suggestResultVal,jdbcType=VARCHAR}, #{suggestResultCause,jdbcType=VARCHAR}, #{rank,jdbcType=VARCHAR}, 
+      #{grade,jdbcType=VARCHAR}, #{radio,jdbcType=VARCHAR}, #{easyLoanaMount,jdbcType=VARCHAR}, 
+      #{weixinLoanAmount,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.risk.model.UserHeadInfoVo">
+    insert into HS_HEAD_PORTRAIT_BASE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="poId != null">
+        PO_ID,
+      </if>
+      <if test="custName != null">
+        CUST_NAME,
+      </if>
+      <if test="custSex != null">
+        CUST_SEX,
+      </if>
+      <if test="idNumber != null">
+        ID_NUMBER,
+      </if>
+      <if test="custAge != null">
+        CUST_AGE,
+      </if>
+      <if test="isLocalPerson != null">
+        IS_LOCAL_PERSON,
+      </if>
+      <if test="forecastLiveTimeTd != null">
+        FORECAST_LIVE_TIME_TD,
+      </if>
+      <if test="forecastLiveTimeZx != null">
+        FORECAST_LIVE_TIME_ZX,
+      </if>
+      <if test="forecastLiveTimePq != null">
+        FORECAST_LIVE_TIME_PQ,
+      </if>
+      <if test="maritalStatusCust != null">
+        MARITAL_STATUS_CUST,
+      </if>
+      <if test="maritalStatusTd != null">
+        MARITAL_STATUS_TD,
+      </if>
+      <if test="maritalStatusZx != null">
+        MARITAL_STATUS_ZX,
+      </if>
+      <if test="addressCust != null">
+        ADDRESS_CUST,
+      </if>
+      <if test="addressPq != null">
+        ADDRESS_PQ,
+      </if>
+      <if test="addressTd != null">
+        ADDRESS_TD,
+      </if>
+      <if test="addressZx != null">
+        ADDRESS_ZX,
+      </if>
+      <if test="addressXsAdd != null">
+        ADDRESS_XS_ADD,
+      </if>
+      <if test="companyNameCust != null">
+        COMPANY_NAME_CUST,
+      </if>
+      <if test="companyNameSb != null">
+        COMPANY_NAME_SB,
+      </if>
+      <if test="companyNameTd != null">
+        COMPANY_NAME_TD,
+      </if>
+      <if test="companyNameZx != null">
+        COMPANY_NAME_ZX,
+      </if>
+      <if test="jobTitle != null">
+        JOB_TITLE,
+      </if>
+      <if test="position != null">
+        POSITION,
+      </if>
+      <if test="industryIn != null">
+        INDUSTRY_IN,
+      </if>
+      <if test="companyKind != null">
+        COMPANY_KIND,
+      </if>
+      <if test="inComeAverage != null">
+        IN_COME_AVERAGE,
+      </if>
+      <if test="inComeModel != null">
+        IN_COME_MODEL,
+      </if>
+      <if test="inComeCoef != null">
+        IN_COME_COEF,
+      </if>
+      <if test="inComeCust != null">
+        IN_COME_CUST,
+      </if>
+      <if test="liabilitiesLoan != null">
+        LIABILITIES_LOAN,
+      </if>
+      <if test="liabilitiesCard != null">
+        LIABILITIES_CARD,
+      </if>
+      <if test="liabilitiesCurrent != null">
+        LIABILITIES_CURRENT,
+      </if>
+      <if test="propertyTypeZx != null">
+        PROPERTY_TYPE_ZX,
+      </if>
+      <if test="propertyTypeCust != null">
+        PROPERTY_TYPE_CUST,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="suggestResultId != null">
+        SUGGEST_RESULT_ID,
+      </if>
+      <if test="suggestResultVal != null">
+        SUGGEST_RESULT_VAL,
+      </if>
+      <if test="suggestResultCause != null">
+        SUGGEST_RESULT_CAUSE,
+      </if>
+      <if test="rank != null">
+        RANK,
+      </if>
+      <if test="grade != null">
+        GRADE,
+      </if>
+      <if test="radio != null">
+        RADIO,
+      </if>
+      <if test="easyLoanaMount != null">
+        EASY_LOANA_MOUNT,
+      </if>
+      <if test="weixinLoanAmount != null">
+        WEIXIN_LOAN_AMOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="poId != null">
+        #{poId,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custSex != null">
+        #{custSex,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="custAge != null">
+        #{custAge,jdbcType=DECIMAL},
+      </if>
+      <if test="isLocalPerson != null">
+        #{isLocalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastLiveTimeTd != null">
+        #{forecastLiveTimeTd,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastLiveTimeZx != null">
+        #{forecastLiveTimeZx,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastLiveTimePq != null">
+        #{forecastLiveTimePq,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusCust != null">
+        #{maritalStatusCust,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusTd != null">
+        #{maritalStatusTd,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusZx != null">
+        #{maritalStatusZx,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCust != null">
+        #{addressCust,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPq != null">
+        #{addressPq,jdbcType=VARCHAR},
+      </if>
+      <if test="addressTd != null">
+        #{addressTd,jdbcType=VARCHAR},
+      </if>
+      <if test="addressZx != null">
+        #{addressZx,jdbcType=VARCHAR},
+      </if>
+      <if test="addressXsAdd != null">
+        #{addressXsAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameCust != null">
+        #{companyNameCust,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameSb != null">
+        #{companyNameSb,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameTd != null">
+        #{companyNameTd,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameZx != null">
+        #{companyNameZx,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTitle != null">
+        #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="industryIn != null">
+        #{industryIn,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKind != null">
+        #{companyKind,jdbcType=VARCHAR},
+      </if>
+      <if test="inComeAverage != null">
+        #{inComeAverage,jdbcType=VARCHAR},
+      </if>
+      <if test="inComeModel != null">
+        #{inComeModel,jdbcType=VARCHAR},
+      </if>
+      <if test="inComeCoef != null">
+        #{inComeCoef,jdbcType=VARCHAR},
+      </if>
+      <if test="inComeCust != null">
+        #{inComeCust,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesLoan != null">
+        #{liabilitiesLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesCard != null">
+        #{liabilitiesCard,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesCurrent != null">
+        #{liabilitiesCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyTypeZx != null">
+        #{propertyTypeZx,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyTypeCust != null">
+        #{propertyTypeCust,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suggestResultId != null">
+        #{suggestResultId,jdbcType=DECIMAL},
+      </if>
+      <if test="suggestResultVal != null">
+        #{suggestResultVal,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestResultCause != null">
+        #{suggestResultCause,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        #{rank,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="radio != null">
+        #{radio,jdbcType=VARCHAR},
+      </if>
+      <if test="easyLoanaMount != null">
+        #{easyLoanaMount,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinLoanAmount != null">
+        #{weixinLoanAmount,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.risk.model.UserHeadInfoVo">
+    update HS_HEAD_PORTRAIT_BASE_INFO
+    <set>
+      <if test="custName != null">
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custSex != null">
+        CUST_SEX = #{custSex,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="custAge != null">
+        CUST_AGE = #{custAge,jdbcType=DECIMAL},
+      </if>
+      <if test="isLocalPerson != null">
+        IS_LOCAL_PERSON = #{isLocalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastLiveTimeTd != null">
+        FORECAST_LIVE_TIME_TD = #{forecastLiveTimeTd,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastLiveTimeZx != null">
+        FORECAST_LIVE_TIME_ZX = #{forecastLiveTimeZx,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastLiveTimePq != null">
+        FORECAST_LIVE_TIME_PQ = #{forecastLiveTimePq,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusCust != null">
+        MARITAL_STATUS_CUST = #{maritalStatusCust,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusTd != null">
+        MARITAL_STATUS_TD = #{maritalStatusTd,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusZx != null">
+        MARITAL_STATUS_ZX = #{maritalStatusZx,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCust != null">
+        ADDRESS_CUST = #{addressCust,jdbcType=VARCHAR},
+      </if>
+      <if test="addressPq != null">
+        ADDRESS_PQ = #{addressPq,jdbcType=VARCHAR},
+      </if>
+      <if test="addressTd != null">
+        ADDRESS_TD = #{addressTd,jdbcType=VARCHAR},
+      </if>
+      <if test="addressZx != null">
+        ADDRESS_ZX = #{addressZx,jdbcType=VARCHAR},
+      </if>
+      <if test="addressXsAdd != null">
+        ADDRESS_XS_ADD = #{addressXsAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameCust != null">
+        COMPANY_NAME_CUST = #{companyNameCust,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameSb != null">
+        COMPANY_NAME_SB = #{companyNameSb,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameTd != null">
+        COMPANY_NAME_TD = #{companyNameTd,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameZx != null">
+        COMPANY_NAME_ZX = #{companyNameZx,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTitle != null">
+        JOB_TITLE = #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        POSITION = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="industryIn != null">
+        INDUSTRY_IN = #{industryIn,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKind != null">
+        COMPANY_KIND = #{companyKind,jdbcType=VARCHAR},
+      </if>
+      <if test="inComeAverage != null">
+        IN_COME_AVERAGE = #{inComeAverage,jdbcType=VARCHAR},
+      </if>
+      <if test="inComeModel != null">
+        IN_COME_MODEL = #{inComeModel,jdbcType=VARCHAR},
+      </if>
+      <if test="inComeCoef != null">
+        IN_COME_COEF = #{inComeCoef,jdbcType=VARCHAR},
+      </if>
+      <if test="inComeCust != null">
+        IN_COME_CUST = #{inComeCust,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesLoan != null">
+        LIABILITIES_LOAN = #{liabilitiesLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesCard != null">
+        LIABILITIES_CARD = #{liabilitiesCard,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesCurrent != null">
+        LIABILITIES_CURRENT = #{liabilitiesCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyTypeZx != null">
+        PROPERTY_TYPE_ZX = #{propertyTypeZx,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyTypeCust != null">
+        PROPERTY_TYPE_CUST = #{propertyTypeCust,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="suggestResultId != null">
+        SUGGEST_RESULT_ID = #{suggestResultId,jdbcType=DECIMAL},
+      </if>
+      <if test="suggestResultVal != null">
+        SUGGEST_RESULT_VAL = #{suggestResultVal,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestResultCause != null">
+        SUGGEST_RESULT_CAUSE = #{suggestResultCause,jdbcType=VARCHAR},
+      </if>
+      <if test="rank != null">
+        RANK = #{rank,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        GRADE = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="radio != null">
+        RADIO = #{radio,jdbcType=VARCHAR},
+      </if>
+      <if test="easyLoanaMount != null">
+        EASY_LOANA_MOUNT = #{easyLoanaMount,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinLoanAmount != null">
+        WEIXIN_LOAN_AMOUNT = #{weixinLoanAmount,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PO_ID = #{poId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.risk.model.UserHeadInfoVo">
+    update HS_HEAD_PORTRAIT_BASE_INFO
+    set CUST_NAME = #{custName,jdbcType=VARCHAR},
+      CUST_SEX = #{custSex,jdbcType=VARCHAR},
+      ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      CUST_AGE = #{custAge,jdbcType=DECIMAL},
+      IS_LOCAL_PERSON = #{isLocalPerson,jdbcType=VARCHAR},
+      FORECAST_LIVE_TIME_TD = #{forecastLiveTimeTd,jdbcType=VARCHAR},
+      FORECAST_LIVE_TIME_ZX = #{forecastLiveTimeZx,jdbcType=VARCHAR},
+      FORECAST_LIVE_TIME_PQ = #{forecastLiveTimePq,jdbcType=VARCHAR},
+      MARITAL_STATUS_CUST = #{maritalStatusCust,jdbcType=VARCHAR},
+      MARITAL_STATUS_TD = #{maritalStatusTd,jdbcType=VARCHAR},
+      MARITAL_STATUS_ZX = #{maritalStatusZx,jdbcType=VARCHAR},
+      ADDRESS_CUST = #{addressCust,jdbcType=VARCHAR},
+      ADDRESS_PQ = #{addressPq,jdbcType=VARCHAR},
+      ADDRESS_TD = #{addressTd,jdbcType=VARCHAR},
+      ADDRESS_ZX = #{addressZx,jdbcType=VARCHAR},
+      ADDRESS_XS_ADD = #{addressXsAdd,jdbcType=VARCHAR},
+      COMPANY_NAME_CUST = #{companyNameCust,jdbcType=VARCHAR},
+      COMPANY_NAME_SB = #{companyNameSb,jdbcType=VARCHAR},
+      COMPANY_NAME_TD = #{companyNameTd,jdbcType=VARCHAR},
+      COMPANY_NAME_ZX = #{companyNameZx,jdbcType=VARCHAR},
+      JOB_TITLE = #{jobTitle,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=VARCHAR},
+      INDUSTRY_IN = #{industryIn,jdbcType=VARCHAR},
+      COMPANY_KIND = #{companyKind,jdbcType=VARCHAR},
+      IN_COME_AVERAGE = #{inComeAverage,jdbcType=VARCHAR},
+      IN_COME_MODEL = #{inComeModel,jdbcType=VARCHAR},
+      IN_COME_COEF = #{inComeCoef,jdbcType=VARCHAR},
+      IN_COME_CUST = #{inComeCust,jdbcType=VARCHAR},
+      LIABILITIES_LOAN = #{liabilitiesLoan,jdbcType=VARCHAR},
+      LIABILITIES_CARD = #{liabilitiesCard,jdbcType=VARCHAR},
+      LIABILITIES_CURRENT = #{liabilitiesCurrent,jdbcType=VARCHAR},
+      PROPERTY_TYPE_ZX = #{propertyTypeZx,jdbcType=VARCHAR},
+      PROPERTY_TYPE_CUST = #{propertyTypeCust,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      SUGGEST_RESULT_ID = #{suggestResultId,jdbcType=DECIMAL},
+      SUGGEST_RESULT_VAL = #{suggestResultVal,jdbcType=VARCHAR},
+      SUGGEST_RESULT_CAUSE = #{suggestResultCause,jdbcType=VARCHAR},
+      RANK = #{rank,jdbcType=VARCHAR},
+      GRADE = #{grade,jdbcType=VARCHAR},
+      RADIO = #{radio,jdbcType=VARCHAR},
+      EASY_LOANA_MOUNT = #{easyLoanaMount,jdbcType=VARCHAR},
+      WEIXIN_LOAN_AMOUNT = #{weixinLoanAmount,jdbcType=VARCHAR}
+    where PO_ID = #{poId,jdbcType=VARCHAR}
+  </update>
+  
+  
+	<!-- 以下是编码区域 -->
+<!--获取资信  --> 
+   <select id="selectCis" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT   *	FROM HS_CIS  where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+<!--获取征信   -->   
+  <select id="selectPbccrc" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT   *	FROM HS_PBCCRC  where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+<!--获取同盾   -->   
+   <select id="selectTongdun" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT   *	FROM HS_TONGDUN  where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+<!--获取社保   -->   
+   <select id="selectSocialsecurity" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT   *	FROM  HS_SOCIALSECURITY   where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+ <!--获取职业  -->  
+  <select id="selectOccupationalinfo" parameterType="java.lang.String" resultType="java.util.Map">
+    SELECT   *	FROM HS_OCCUPATIONAL_INFO  where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+<!-- 用户画像所需 -->	
+	<select id="findApplybyApplyId"  parameterType="java.lang.String"  resultType="java.util.Map"  >
+		SELECT   * 	FROM HS_APPLY   WHERE  APPLY_ID = #{applyId}	
+	</select>
+<!-- 获取所有门店城市   -->
+    <select id="findStorebyId" parameterType="java.lang.String" resultType="java.util.Map">
+      SELECT DEPT_ID,DEPT_LATITUDE,DEPT_LONGITUDE,DEPT_WORK_ADDR,DEPT_NAME,CITY_NAME,PROVINCE_NAME FROM   HS_DEPARTMENT 
+      WHERE DEPT_ID=#{deptId}
+    </select>
+  
+</mapper>

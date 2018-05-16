@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.LoanbalMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.Loanbal">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+		<result column="TEL" jdbcType="VARCHAR" property="tel" />
+		<result column="REPAY_DATE" jdbcType="TIMESTAMP" property="repayDate" />
+		<result column="CURRENT_PERIOD" jdbcType="DECIMAL" property="currentPeriod" />
+		<result column="LOAN_PERIOD" jdbcType="DECIMAL" property="loanPeriod" />
+		<result column="LOAN_MONEY" jdbcType="DECIMAL" property="loanMoney" />
+		<result column="LOAN_DATE" jdbcType="TIMESTAMP" property="loanDate" />
+		<result column="DELAY_FLAG" jdbcType="VARCHAR" property="delayFlag" />
+		<result column="SETTLE_FLAG" jdbcType="VARCHAR" property="settleFlag" />
+		<result column="UPDOWN_STATUS" jdbcType="VARCHAR" property="updownStatus" />
+		<result column="POS_TYPE" jdbcType="VARCHAR" property="posType" />
+		<result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+		<result column="PRODUCTALIAS" jdbcType="VARCHAR" property="productalias" />
+		<result column="CUSTOMER_OR_LOAN" jdbcType="VARCHAR" property="customerOrLoan" />
+		<result column="MANAGER_CAST_ID" jdbcType="VARCHAR" property="managerCastId" />
+		<result column="MANAGER_CAST" jdbcType="VARCHAR" property="managerCast" />
+		<result column="LOAN_MANAGER_CAST_ID" jdbcType="VARCHAR"
+			property="loanManagerCastId" />
+		<result column="LOAN_MANAGER_CAST" jdbcType="VARCHAR" property="loanManagerCast" />
+		<result column="LAON_LEAVE" jdbcType="VARCHAR" property="laonLeave" />
+		<result column="HANG_UP" jdbcType="VARCHAR" property="hangUp" />
+		<result column="HANG_UP_DATE" jdbcType="TIMESTAMP" property="hangUpDate" />
+		<result column="M_SECTION" jdbcType="DECIMAL" property="mSection" />
+		<result column="SALES_DEPTMENT" jdbcType="VARCHAR" property="salesDeptment" />
+		<result column="CURRENT_VERSION" jdbcType="VARCHAR" property="currentVersion" />
+		<result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="STATEMENT_DATE" jdbcType="DECIMAL" property="statementDate" />
+		<result column="CON_MONEY" jdbcType="DECIMAL" property="conMoney" />
+		<result column="NORMAL_SUB_MONEY" jdbcType="DECIMAL" property="normalSubMoney" />
+		<result column="NORMAL_SUB_DATE" jdbcType="TIMESTAMP" property="normalSubDate" />
+		<result column="NORMAL_SUB_STREAM" jdbcType="DECIMAL" property="normalSubStream" />
+		<result column="OVERDUE_SUB_MONEY" jdbcType="DECIMAL" property="overdueSubMoney" />
+		<result column="OVERDUE_SUB_DATE" jdbcType="TIMESTAMP"
+			property="overdueSubDate" />
+		<result column="OVERDUE_SUB_STREAM" jdbcType="DECIMAL"
+			property="overdueSubStream" />
+		<result column="ADVANCED_SUB_MONEY" jdbcType="DECIMAL"
+			property="advancedSubMoney" />
+		<result column="ADVANCED_SUB_DATE" jdbcType="TIMESTAMP"
+			property="advancedSubDate" />
+		<result column="ADVANCED_SUB_STREAM" jdbcType="DECIMAL"
+			property="advancedSubStream" />
+		<result column="CAST_ID" jdbcType="VARCHAR" property="castId" />
+		<result column="OUTBOUND_LEAVE" jdbcType="VARCHAR" property="outboundLeave" />
+		<result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+		<result column="HANG_UP_DEDUCT" jdbcType="VARCHAR" property="hangUpDeduct" />
+		<result column="HANG_UP_DEDUCT_DATE" jdbcType="VARCHAR"
+			property="hangUpDeductDate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, LOAN_ID, CON_NO, APPLY_ID, CAST_NAME, CARD_NO, TEL,
+		REPAY_DATE,
+		CURRENT_PERIOD,
+		LOAN_PERIOD, LOAN_MONEY, LOAN_DATE,
+		DELAY_FLAG, SETTLE_FLAG, UPDOWN_STATUS,
+		POS_TYPE,
+		PRODUCT_NAME,
+		PRODUCTALIAS, CUSTOMER_OR_LOAN, MANAGER_CAST_ID, MANAGER_CAST,
+		LOAN_MANAGER_CAST_ID,
+		LOAN_MANAGER_CAST, LAON_LEAVE, HANG_UP,
+		HANG_UP_DATE, M_SECTION, SALES_DEPTMENT,
+		CURRENT_VERSION, UPDATE_DATE,
+		CREATE_TIME, STATEMENT_DATE, CON_MONEY,
+		NORMAL_SUB_MONEY,
+		NORMAL_SUB_DATE, NORMAL_SUB_STREAM, OVERDUE_SUB_MONEY,
+		OVERDUE_SUB_DATE,
+		OVERDUE_SUB_STREAM,
+		ADVANCED_SUB_MONEY,
+		ADVANCED_SUB_DATE, ADVANCED_SUB_STREAM, CAST_ID,
+		OUTBOUND_LEAVE,PRODUCT_ID,HANG_UP_DEDUCT,HANG_UP_DEDUCT_DATE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_LOANBAL
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_LOANBAL
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.Loanbal">
+		insert into HS_AFTER_LOANBAL
+		(ID, LOAN_ID, CON_NO,
+		APPLY_ID, CAST_NAME, CARD_NO,
+		TEL, REPAY_DATE,
+		CURRENT_PERIOD,
+		LOAN_PERIOD, LOAN_MONEY, LOAN_DATE,
+		DELAY_FLAG,
+		SETTLE_FLAG, UPDOWN_STATUS,
+		POS_TYPE, PRODUCT_NAME, PRODUCTALIAS,
+		CUSTOMER_OR_LOAN, MANAGER_CAST_ID, MANAGER_CAST,
+		LOAN_MANAGER_CAST_ID,
+		LOAN_MANAGER_CAST, LAON_LEAVE,
+		HANG_UP, HANG_UP_DATE, M_SECTION,
+		SALES_DEPTMENT, CURRENT_VERSION, UPDATE_DATE,
+		CREATE_TIME,
+		STATEMENT_DATE, CON_MONEY,
+		NORMAL_SUB_MONEY, NORMAL_SUB_DATE,
+		NORMAL_SUB_STREAM,
+		OVERDUE_SUB_MONEY, OVERDUE_SUB_DATE,
+		OVERDUE_SUB_STREAM,
+		ADVANCED_SUB_MONEY, ADVANCED_SUB_DATE,
+		ADVANCED_SUB_STREAM,
+		CAST_ID,
+		OUTBOUND_LEAVE,PRODUCT_ID,HANG_UP_DEDUCT,HANG_UP_DEDUCT_DATE)
+		values
+		(#{id,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR},
+		#{conNo,jdbcType=VARCHAR},
+		#{applyId,jdbcType=VARCHAR},
+		#{castName,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR}, #{repayDate,jdbcType=TIMESTAMP},
+		#{currentPeriod,jdbcType=DECIMAL},
+		#{loanPeriod,jdbcType=DECIMAL},
+		#{loanMoney,jdbcType=DECIMAL}, #{loanDate,jdbcType=TIMESTAMP},
+		#{delayFlag,jdbcType=VARCHAR}, #{settleFlag,jdbcType=VARCHAR},
+		#{updownStatus,jdbcType=VARCHAR},
+		#{posType,jdbcType=VARCHAR},
+		#{productName,jdbcType=VARCHAR}, #{productalias,jdbcType=VARCHAR},
+		#{customerOrLoan,jdbcType=VARCHAR}, #{managerCastId,jdbcType=VARCHAR},
+		#{managerCast,jdbcType=VARCHAR},
+		#{loanManagerCastId,jdbcType=VARCHAR},
+		#{loanManagerCast,jdbcType=VARCHAR}, #{laonLeave,jdbcType=VARCHAR},
+		#{hangUp,jdbcType=VARCHAR}, #{hangUpDate,jdbcType=TIMESTAMP},
+		#{mSection,jdbcType=DECIMAL},
+		#{salesDeptment,jdbcType=VARCHAR},
+		#{currentVersion,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP},
+		#{createTime,jdbcType=TIMESTAMP}, #{statementDate,jdbcType=DECIMAL},
+		#{conMoney,jdbcType=DECIMAL},
+		#{normalSubMoney,jdbcType=DECIMAL},
+		#{normalSubDate,jdbcType=TIMESTAMP},
+		#{normalSubStream,jdbcType=DECIMAL},
+		#{overdueSubMoney,jdbcType=DECIMAL},
+		#{overdueSubDate,jdbcType=TIMESTAMP},
+		#{overdueSubStream,jdbcType=DECIMAL},
+		#{advancedSubMoney,jdbcType=DECIMAL},
+		#{advancedSubDate,jdbcType=TIMESTAMP},
+		#{advancedSubStream,jdbcType=DECIMAL},
+		#{castId,jdbcType=VARCHAR},
+		#{outboundLeave,jdbcType=VARCHAR},#{productId,jdbcType=VARCHAR},
+		#{hangUpDeduct,jdbcType=VARCHAR},#{hangUpDeductDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.Loanbal">
+		insert into HS_AFTER_LOANBAL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="conNo != null">
+				CON_NO,
+			</if>
+			<if test="applyId != null">
+				APPLY_ID,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="cardNo != null">
+				CARD_NO,
+			</if>
+			<if test="tel != null">
+				TEL,
+			</if>
+			<if test="repayDate != null">
+				REPAY_DATE,
+			</if>
+			<if test="currentPeriod != null">
+				CURRENT_PERIOD,
+			</if>
+			<if test="loanPeriod != null">
+				LOAN_PERIOD,
+			</if>
+			<if test="loanMoney != null">
+				LOAN_MONEY,
+			</if>
+			<if test="loanDate != null">
+				LOAN_DATE,
+			</if>
+			<if test="delayFlag != null">
+				DELAY_FLAG,
+			</if>
+			<if test="settleFlag != null">
+				SETTLE_FLAG,
+			</if>
+			<if test="updownStatus != null">
+				UPDOWN_STATUS,
+			</if>
+			<if test="posType != null">
+				POS_TYPE,
+			</if>
+			<if test="productName != null">
+				PRODUCT_NAME,
+			</if>
+			<if test="productalias != null">
+				PRODUCTALIAS,
+			</if>
+			<if test="customerOrLoan != null">
+				CUSTOMER_OR_LOAN,
+			</if>
+			<if test="managerCastId != null">
+				MANAGER_CAST_ID,
+			</if>
+			<if test="managerCast != null">
+				MANAGER_CAST,
+			</if>
+			<if test="loanManagerCastId != null">
+				LOAN_MANAGER_CAST_ID,
+			</if>
+			<if test="loanManagerCast != null">
+				LOAN_MANAGER_CAST,
+			</if>
+			<if test="laonLeave != null">
+				LAON_LEAVE,
+			</if>
+			<if test="hangUp != null">
+				HANG_UP,
+			</if>
+			<if test="hangUpDate != null">
+				HANG_UP_DATE,
+			</if>
+			<if test="mSection != null">
+				M_SECTION,
+			</if>
+			<if test="salesDeptment != null">
+				SALES_DEPTMENT,
+			</if>
+			<if test="currentVersion != null">
+				CURRENT_VERSION,
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="statementDate != null">
+				STATEMENT_DATE,
+			</if>
+			<if test="conMoney != null">
+				CON_MONEY,
+			</if>
+			<if test="normalSubMoney != null">
+				NORMAL_SUB_MONEY,
+			</if>
+			<if test="normalSubDate != null">
+				NORMAL_SUB_DATE,
+			</if>
+			<if test="normalSubStream != null">
+				NORMAL_SUB_STREAM,
+			</if>
+			<if test="overdueSubMoney != null">
+				OVERDUE_SUB_MONEY,
+			</if>
+			<if test="overdueSubDate != null">
+				OVERDUE_SUB_DATE,
+			</if>
+			<if test="overdueSubStream != null">
+				OVERDUE_SUB_STREAM,
+			</if>
+			<if test="advancedSubMoney != null">
+				ADVANCED_SUB_MONEY,
+			</if>
+			<if test="advancedSubDate != null">
+				ADVANCED_SUB_DATE,
+			</if>
+			<if test="advancedSubStream != null">
+				ADVANCED_SUB_STREAM,
+			</if>
+			<if test="castId != null">
+				CAST_ID,
+			</if>
+			<if test="outboundLeave != null">
+				OUTBOUND_LEAVE,
+			</if>
+			<if test="productId != null">
+				PRODUCT_ID,
+			</if>
+			<if test="hangUpDeduct != null">
+				HANG_UP_DEDUCT,
+			</if>
+			<if test="hangUpDeductDate != null">
+				HANG_UP_DEDUCT_DATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				#{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="repayDate != null">
+				#{repayDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="currentPeriod != null">
+				#{currentPeriod,jdbcType=DECIMAL},
+			</if>
+			<if test="loanPeriod != null">
+				#{loanPeriod,jdbcType=DECIMAL},
+			</if>
+			<if test="loanMoney != null">
+				#{loanMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="loanDate != null">
+				#{loanDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delayFlag != null">
+				#{delayFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="settleFlag != null">
+				#{settleFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="updownStatus != null">
+				#{updownStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="posType != null">
+				#{posType,jdbcType=VARCHAR},
+			</if>
+			<if test="productName != null">
+				#{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="productalias != null">
+				#{productalias,jdbcType=VARCHAR},
+			</if>
+			<if test="customerOrLoan != null">
+				#{customerOrLoan,jdbcType=VARCHAR},
+			</if>
+			<if test="managerCastId != null">
+				#{managerCastId,jdbcType=VARCHAR},
+			</if>
+			<if test="managerCast != null">
+				#{managerCast,jdbcType=VARCHAR},
+			</if>
+			<if test="loanManagerCastId != null">
+				#{loanManagerCastId,jdbcType=VARCHAR},
+			</if>
+			<if test="loanManagerCast != null">
+				#{loanManagerCast,jdbcType=VARCHAR},
+			</if>
+			<if test="laonLeave != null">
+				#{laonLeave,jdbcType=VARCHAR},
+			</if>
+			<if test="hangUp != null">
+				#{hangUp,jdbcType=VARCHAR},
+			</if>
+			<if test="hangUpDate != null">
+				#{hangUpDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mSection != null">
+				#{mSection,jdbcType=DECIMAL},
+			</if>
+			<if test="salesDeptment != null">
+				#{salesDeptment,jdbcType=VARCHAR},
+			</if>
+			<if test="currentVersion != null">
+				#{currentVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="statementDate != null">
+				#{statementDate,jdbcType=DECIMAL},
+			</if>
+			<if test="conMoney != null">
+				#{conMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="normalSubMoney != null">
+				#{normalSubMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="normalSubDate != null">
+				#{normalSubDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="normalSubStream != null">
+				#{normalSubStream,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueSubMoney != null">
+				#{overdueSubMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueSubDate != null">
+				#{overdueSubDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="overdueSubStream != null">
+				#{overdueSubStream,jdbcType=DECIMAL},
+			</if>
+			<if test="advancedSubMoney != null">
+				#{advancedSubMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="advancedSubDate != null">
+				#{advancedSubDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="advancedSubStream != null">
+				#{advancedSubStream,jdbcType=DECIMAL},
+			</if>
+			<if test="castId != null">
+				#{castId,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundLeave != null">
+				#{outboundLeave,jdbcType=VARCHAR},
+			</if>
+			<if test="productId != null">
+				#{productId,jdbcType=VARCHAR},
+			</if>
+			<if test="hangUpDeduct != null">
+				#{hangUpDeduct,jdbcType=VARCHAR},
+			</if>
+			<if test="hangUpDeductDate != null">
+				#{hangUpDeductDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.Loanbal">
+		update HS_AFTER_LOANBAL
+		<set>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				CON_NO = #{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				APPLY_ID = #{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				TEL = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="repayDate != null">
+				REPAY_DATE = #{repayDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="currentPeriod != null">
+				CURRENT_PERIOD = #{currentPeriod,jdbcType=DECIMAL},
+			</if>
+			<if test="loanPeriod != null">
+				LOAN_PERIOD = #{loanPeriod,jdbcType=DECIMAL},
+			</if>
+			<if test="loanMoney != null">
+				LOAN_MONEY = #{loanMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="loanDate != null">
+				LOAN_DATE = #{loanDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="delayFlag != null">
+				DELAY_FLAG = #{delayFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="settleFlag != null">
+				SETTLE_FLAG = #{settleFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="updownStatus != null">
+				UPDOWN_STATUS = #{updownStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="posType != null">
+				POS_TYPE = #{posType,jdbcType=VARCHAR},
+			</if>
+			<if test="productName != null">
+				PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="productalias != null">
+				PRODUCTALIAS = #{productalias,jdbcType=VARCHAR},
+			</if>
+			<if test="customerOrLoan != null">
+				CUSTOMER_OR_LOAN = #{customerOrLoan,jdbcType=VARCHAR},
+			</if>
+			<if test="managerCastId != null">
+				MANAGER_CAST_ID = #{managerCastId,jdbcType=VARCHAR},
+			</if>
+			<if test="managerCast != null">
+				MANAGER_CAST = #{managerCast,jdbcType=VARCHAR},
+			</if>
+			<if test="loanManagerCastId != null">
+				LOAN_MANAGER_CAST_ID =
+				#{loanManagerCastId,jdbcType=VARCHAR},
+			</if>
+			<if test="loanManagerCast != null">
+				LOAN_MANAGER_CAST = #{loanManagerCast,jdbcType=VARCHAR},
+			</if>
+			<if test="laonLeave != null">
+				LAON_LEAVE = #{laonLeave,jdbcType=VARCHAR},
+			</if>
+			<if test="hangUp != null">
+				HANG_UP = #{hangUp,jdbcType=VARCHAR},
+			</if>
+			<if test="hangUpDate != null">
+				HANG_UP_DATE = #{hangUpDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="mSection != null">
+				M_SECTION = #{mSection,jdbcType=DECIMAL},
+			</if>
+			<if test="salesDeptment != null">
+				SALES_DEPTMENT = #{salesDeptment,jdbcType=VARCHAR},
+			</if>
+			<if test="currentVersion != null">
+				CURRENT_VERSION = #{currentVersion,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="statementDate != null">
+				STATEMENT_DATE = #{statementDate,jdbcType=DECIMAL},
+			</if>
+			<if test="conMoney != null">
+				CON_MONEY = #{conMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="normalSubMoney != null">
+				NORMAL_SUB_MONEY = #{normalSubMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="normalSubDate != null">
+				NORMAL_SUB_DATE = #{normalSubDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="normalSubStream != null">
+				NORMAL_SUB_STREAM = #{normalSubStream,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueSubMoney != null">
+				OVERDUE_SUB_MONEY = #{overdueSubMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueSubDate != null">
+				OVERDUE_SUB_DATE = #{overdueSubDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="overdueSubStream != null">
+				OVERDUE_SUB_STREAM =
+				#{overdueSubStream,jdbcType=DECIMAL},
+			</if>
+			<if test="advancedSubMoney != null">
+				ADVANCED_SUB_MONEY =
+				#{advancedSubMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="advancedSubDate != null">
+				ADVANCED_SUB_DATE =
+				#{advancedSubDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="advancedSubStream != null">
+				ADVANCED_SUB_STREAM =
+				#{advancedSubStream,jdbcType=DECIMAL},
+			</if>
+			<if test="castId != null">
+				CAST_ID = #{castId,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundLeave != null">
+				OUTBOUND_LEAVE = #{outboundLeave,jdbcType=VARCHAR},
+			</if>
+			<if test="productId != null">
+				PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+			</if>
+			<if test="hangUpDeduct != null">
+				HANG_UP_DEDUCT = #{hangUpDeduct,jdbcType=VARCHAR},
+			</if>
+			<if test="hangUpDeductDate != null">
+				HANG_UP_DEDUCT_DATE =
+				#{hangUpDeductDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.Loanbal">
+		update
+		HS_AFTER_LOANBAL
+		set LOAN_ID = #{loanId,jdbcType=VARCHAR},
+		CON_NO =
+		#{conNo,jdbcType=VARCHAR},
+		APPLY_ID = #{applyId,jdbcType=VARCHAR},
+		CAST_NAME = #{castName,jdbcType=VARCHAR},
+		CARD_NO =
+		#{cardNo,jdbcType=VARCHAR},
+		TEL = #{tel,jdbcType=VARCHAR},
+		REPAY_DATE =
+		#{repayDate,jdbcType=TIMESTAMP},
+		CURRENT_PERIOD =
+		#{currentPeriod,jdbcType=DECIMAL},
+		LOAN_PERIOD =
+		#{loanPeriod,jdbcType=DECIMAL},
+		LOAN_MONEY =
+		#{loanMoney,jdbcType=DECIMAL},
+		LOAN_DATE =
+		#{loanDate,jdbcType=TIMESTAMP},
+		DELAY_FLAG =
+		#{delayFlag,jdbcType=VARCHAR},
+		SETTLE_FLAG =
+		#{settleFlag,jdbcType=VARCHAR},
+		UPDOWN_STATUS =
+		#{updownStatus,jdbcType=VARCHAR},
+		POS_TYPE =
+		#{posType,jdbcType=VARCHAR},
+		PRODUCT_NAME =
+		#{productName,jdbcType=VARCHAR},
+		PRODUCTALIAS =
+		#{productalias,jdbcType=VARCHAR},
+		CUSTOMER_OR_LOAN =
+		#{customerOrLoan,jdbcType=VARCHAR},
+		MANAGER_CAST_ID =
+		#{managerCastId,jdbcType=VARCHAR},
+		MANAGER_CAST =
+		#{managerCast,jdbcType=VARCHAR},
+		LOAN_MANAGER_CAST_ID =
+		#{loanManagerCastId,jdbcType=VARCHAR},
+		LOAN_MANAGER_CAST =
+		#{loanManagerCast,jdbcType=VARCHAR},
+		LAON_LEAVE =
+		#{laonLeave,jdbcType=VARCHAR},
+		HANG_UP = #{hangUp,jdbcType=VARCHAR},
+		HANG_UP_DATE = #{hangUpDate,jdbcType=TIMESTAMP},
+		M_SECTION =
+		#{mSection,jdbcType=DECIMAL},
+		SALES_DEPTMENT =
+		#{salesDeptment,jdbcType=VARCHAR},
+		CURRENT_VERSION =
+		#{currentVersion,jdbcType=VARCHAR},
+		UPDATE_DATE =
+		#{updateDate,jdbcType=TIMESTAMP},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		STATEMENT_DATE =
+		#{statementDate,jdbcType=DECIMAL},
+		CON_MONEY =
+		#{conMoney,jdbcType=DECIMAL},
+		NORMAL_SUB_MONEY =
+		#{normalSubMoney,jdbcType=DECIMAL},
+		NORMAL_SUB_DATE =
+		#{normalSubDate,jdbcType=TIMESTAMP},
+		NORMAL_SUB_STREAM =
+		#{normalSubStream,jdbcType=DECIMAL},
+		OVERDUE_SUB_MONEY =
+		#{overdueSubMoney,jdbcType=DECIMAL},
+		OVERDUE_SUB_DATE =
+		#{overdueSubDate,jdbcType=TIMESTAMP},
+		OVERDUE_SUB_STREAM =
+		#{overdueSubStream,jdbcType=DECIMAL},
+		ADVANCED_SUB_MONEY =
+		#{advancedSubMoney,jdbcType=DECIMAL},
+		ADVANCED_SUB_DATE =
+		#{advancedSubDate,jdbcType=TIMESTAMP},
+		ADVANCED_SUB_STREAM =
+		#{advancedSubStream,jdbcType=DECIMAL},
+		CAST_ID =
+		#{castId,jdbcType=VARCHAR},
+		OUTBOUND_LEAVE =
+		#{outboundLeave,jdbcType=VARCHAR},
+		PRODUCT_ID =
+		#{productId,jdbcType=VARCHAR},
+		HANG_UP_DEDUCT =
+		#{hangUpDeduct,jdbcType=VARCHAR},
+		HANG_UP_DEDUCT_DATE =
+		#{hangUpDeductDate,jdbcType=TIMESTAMP}
+		where ID =
+		#{id,jdbcType=VARCHAR}
+	</update>
+
+
+
+	<!-- -->
+
+	<select id="selectByLoanId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_LOANBAL
+		where LOAN_ID = #{loanId ,jdbcType=VARCHAR}
+
+	</select>
+
+	<update id="updateNomalSubToNull" parameterType="java.lang.String">
+
+		update
+		HS_AFTER_LOANBAL
+
+		set NORMAL_SUB_MONEY = 0,
+		NORMAL_SUB_DATE = null,
+		NORMAL_SUB_STREAM =null
+		where LOAN_ID =#{loanId}
+
+	</update>
+	<update id="updateOverduelSubToNull" parameterType="java.lang.String">
+
+		update
+		HS_AFTER_LOANBAL
+
+		set OVERDUE_SUB_MONEY =0,
+		OVERDUE_SUB_DATE=null,
+		OVERDUE_SUB_STREAM=null
+		where LOAN_ID =#{loanId}
+
+	</update>
+
+	<update id="updateOverduelSub" parameterType="java.util.Map">
+
+		update
+		HS_AFTER_LOANBAL
+
+		set OVERDUE_SUB_MONEY =#{overdueSubMoney},
+		OVERDUE_SUB_DATE=#{overdueSubDate},
+		OVERDUE_SUB_STREAM=#{overdueSubStream}
+		where LOAN_ID =#{loanId}
+
+	</update>
+	<update id="updateAdvanceSubToNull" parameterType="java.lang.String">
+
+		update
+		HS_AFTER_LOANBAL
+
+		set ADVANCED_SUB_MONEY =0,
+		ADVANCED_SUB_DATE=null,
+		ADVANCED_SUB_STREAM=null
+		where LOAN_ID =#{loanId}
+
+	</update>
+
+	<update id="updateSettleFlagByLoanId" parameterType="java.lang.String">
+		update
+		HS_AFTER_LOANBAL
+
+		set SETTLE_FLAG=1
+		where LOAN_ID =#{loanId}
+
+
+	</update>
+
+	<update id="updateNextPaymentByLoanId" parameterType="java.util.Map">
+		update
+		HS_AFTER_LOANBAL
+		set REPAY_DATE = #{repatDate},
+		CURRENT_PERIOD=#{currentPeriod}
+		where LOAN_ID =#{loanId}
+
+
+	</update>
+
+	<update id="updateMSectionDelayFlagByLoanId" parameterType="java.util.Map">
+		update
+		HS_AFTER_LOANBAL
+		set M_SECTION =#{mSection},
+		DELAY_FLAG
+		=#{delayFlag}
+		where LOAN_ID =#{loanId}
+	</update>
+
+	<update id="updatecustomerOrLoanByloanId" parameterType="java.util.Map">
+		update
+		HS_AFTER_LOANBAL
+		set CUSTOMER_OR_LOAN =#{customerOrLoan}
+		where LOAN_ID
+		=#{loanId}
+
+
+	</update>
+
+	<update id="updateLoanManagerTonull" parameterType="java.lang.String">
+
+		update
+		HS_AFTER_LOANBAL
+		set LOAN_MANAGER_CAST_ID =null,
+		LOAN_MANAGER_CAST= null
+		where LOAN_ID =#{loanId}
+
+	</update>
+
+	<update id="updateTelByCustId" parameterType="java.util.Map">
+
+		update
+		HS_AFTER_LOANBAL
+		set TEL =#{tel}
+		where CAST_ID = #{custId}
+
+
+	</update>
+
+	<update id="updateHangUpByLoanId" parameterType="java.util.Map">
+
+		update
+		HS_AFTER_LOANBAL
+		set
+		HANG_UP = #{hangUp,jdbcType=VARCHAR},
+		HANG_UP_DATE =
+		#{hangUpDate,jdbcType=TIMESTAMP}
+		where
+		LOAN_ID=#{loanId}
+
+
+	</update>
+
+	<update id="updateHangUpDeductByLoanId" parameterType="java.util.Map">
+
+		update
+		HS_AFTER_LOANBAL
+		set
+		HANG_UP_DEDUCT = #{hangUpDeduct,jdbcType=VARCHAR},
+		HANG_UP_DEDUCT_DATE =
+		#{hangUpDeductDate,jdbcType=TIMESTAMP}
+		where
+		LOAN_ID=#{loanId}
+
+
+	</update>
+
+	<update id="updateOverdueLeaveByLoanId" parameterType="java.util.Map">
+
+		update
+		HS_AFTER_LOANBAL
+		set
+		LAON_LEAVE = #{leave}
+		where
+		LOAN_ID=#{loanId}
+
+
+	</update>
+	<update id="updateOutBoundByLoanId" parameterType="java.util.Map">
+
+		update
+		HS_AFTER_LOANBAL
+		set
+		OUTBOUND_LEAVE = #{leave}
+		where
+		LOAN_ID=#{loanId}
+
+
+	</update>
+
+	<select id="selectByCustId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_LOANBAL
+		where CAST_ID = #{custId ,jdbcType=VARCHAR} and
+		SETTLE_FLAG !='1'
+
+	</select>
+
+	<select id="selectByApplyId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_LOANBAL
+		where APPLY_ID = #{applyId ,jdbcType=VARCHAR}
+
+	</select>
+
+	<select id="selectLessDate" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_LOANBAL
+
+		where
+		LOAN_ID in
+		<foreach collection="loanIds" open="(" close=")" separator=","
+			item="loanId">
+
+			#{loanId}
+		</foreach>
+		
+		<![CDATA[ and REPAY_DATE < #{date} and SETTLE_FLAG !='1']]>
+
+
+	</select>
+
+
+	<update id="updateProjectId" parameterType="java.util.Map">
+
+		update
+		HS_AFTER_LOANBAL
+		set
+		PRODUCT_ID = #{projectId}
+		where
+		LOAN_ID=#{loanId}
+
+	</update>
+
+</mapper>

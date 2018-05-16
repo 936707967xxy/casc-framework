@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.risk.dao.UserApplyMapperRisk">
+	<resultMap id="USER_APPLY_BASE_RESULT_MAP" type="com.hoomsun.risk.model.UserApply">
+		<id column="APPLY_ID" property="applyId" />
+		<result column="LOAN_ID" property="applyCode" />
+		<result column="CUST_NAME" property="custName" />
+		<result column="CUST_ID" property="custId" />
+		<result column="ID_NUMBER" property="idNumber" />
+		<result column="CUST_MOBILE" property="mobile" />
+		<result column="HOUSE_TEL" property="houseTel" />
+		<result column="HOUSE_ADDRESS" property="houseAddr" />
+		<result column="FULL_WORK_NAME" property="comName" />
+		<result column="COMPANY_TEL" property="comTel" />
+		<result column="COMPANY_ADDRESS" property="comAddr" />
+
+		<result column="STORE_ID" property="storeId" />
+		<result column="STORE_NAME" property="storeName" />
+		<result column="SALES_EMP_ID" property="salesId" />
+		<result column="SALES_EMP_NAME" property="salesName" />
+		<result column="APPLY_DATE" property="applyDate" />
+		<result column="POSITION" property="position" />
+		<result column="POSITION_VAL" property="positionVal" />
+		<result column="SOCIAL_SECURITY" property="social" />
+		<result column="SOCIAL_SECURITY_VAL" property="socialVal" />
+		<result column="INDUSTRY_IN" property="industry" />
+		<result column="INDUSTRY_IN_VAL" property="industryVal" />
+		<result column="COMPANY_KIND" property="comScale" />
+		<result column="COMPANY_KIND_VA" property="comScaleVal" />
+		<result column="MARITAL_STATUS" property="marital" />
+		<result column="MARITAL_STATUS_VAL" property="maritalVal" />
+		
+		<result column="EDU_BACKGROUND" property="education" />
+		<result column="EDU_BACKGROUND_VAL" property="educationVal" />
+		<result column="PROC_STATUS" property="procStatus" />
+		<result column="PROC_STATUS_VAL" property="procStatusVal" />
+		<result column="RAISE_PERSON" property="raisePerson" />
+		<result column="CHILD_NUMBER" property="childNumber" />
+		<result column="PROPERTY_ADDRESS_DETAIL" property="estate" />
+		<result column="APPLY_ADDRESS" property="applyAddress" />
+	</resultMap>
+
+	<sql id="USER_APPLY_COLUMN_LIST">
+		APP.APPLY_ID,APP.APPLY_DATE,APP.CUST_ID,APP.CUST_NAME,
+		APP.CUST_MOBILE,APP.LOAN_ID,APP.ID_NUMBER,APP.HOUSE_ADDRESS,
+		APP.STORE_ID,APP.STORE_NAME,APP.SALES_EMP_ID,APP.SALES_EMP_NAME,
+		APP.MARITAL_STATUS,APP.MARITAL_STATUS_VAL,APP.HOUSE_TEL,
+		APP.EDU_BACKGROUND,APP.EDU_BACKGROUND_VAL,APP.PROC_STATUS,APP.PROC_STATUS_VAL,
+		APP.RAISE_PERSON,APP.CHILD_NUMBER,APP.APPLY_ADDRESS,
+		OCC.FULL_WORK_NAME,OCC.COMPANY_ADDRESS,OCC.COMPANY_TEL,OCC.POSITION,
+		OCC.POSITION_VAL,OCC.SOCIAL_SECURITY,OCC.SOCIAL_SECURITY_VAL,OCC.COMPANY_KIND,
+		OCC.COMPANY_KIND_VA,OCC.INDUSTRY_IN,OCC.INDUSTRY_IN_VAL
+	</sql>
+	<select id="findUserApplyById" resultMap="USER_APPLY_BASE_RESULT_MAP" parameterType="java.lang.String">
+		SELECT
+		<include refid="USER_APPLY_COLUMN_LIST" />
+		FROM HS_APPLY APP
+		LEFT JOIN HS_OCCUPATIONAL_INFO OCC ON APP.APPLY_ID=OCC.APPLY_ID WHERE APP.APPLY_ID = #{applyId}
+	</select>
+
+	<select id="findUserApply" resultMap="USER_APPLY_BASE_RESULT_MAP">
+		SELECT
+		<include refid="USER_APPLY_COLUMN_LIST" />
+		FROM HS_APPLY APP
+		LEFT JOIN HS_OCCUPATIONAL_INFO OCC ON APP.APPLY_ID=OCC.APPLY_ID 
+		<![CDATA[WHERE APP.APPLY_DATE>=#{start} AND APP.APPLY_DATE<=#{end}]]>
+	</select>
+	
+	
+	<resultMap type="com.hoomsun.risk.model.UserApply" id="USER_APPLY_MAP" extends="USER_APPLY_BASE_RESULT_MAP">
+		<collection property="contacts" javaType="java.util.ArrayList" ofType="com.hoomsun.risk.model.UserContact" resultMap="USER_CONTACT_RESULT_MAP"/>
+	</resultMap>
+	
+	<select id="findUserApplyCont" parameterType="java.lang.String" resultMap="USER_APPLY_MAP">
+		SELECT
+		<include refid="USER_APPLY_COLUMN_LIST" />,
+		<include refid="USER_CONTACT_COLUMN_LIST" />
+		FROM HS_APPLY APP
+		LEFT JOIN HS_OCCUPATIONAL_INFO OCC ON APP.APPLY_ID=OCC.APPLY_ID 
+		LEFT JOIN HS_CONTACTS CONT ON APP.APPLY_ID=CONT.APPLY_ID 
+		WHERE APP.APPLY_ID = #{applyId}
+	</select>
+	
+	<!-- 联系人 通话记录 -->
+	<resultMap id="USER_CONTACT_RESULT_MAP" type="com.hoomsun.risk.model.UserContact">
+		<id column="CONT_ID" property="linkId" />
+		<result column="APPLY_ID" property="applyId" />
+		<result column="NAME" property="linkName" />
+		<result column="PHONE" property="linkPhone" />
+		<result column="ADD_DATE" property="addDate" jdbcType="TIMESTAMP"/>
+		<result column="CALLCOUNTS" property="callCounts" />
+		<result column="CALL_TIME" property="callTime" />
+		<result column="MOBILE_ADDRESS" property="attribution" />
+		<result column="RELATIONSHIP" property="relationship" />
+		<result column="RELATIONSHIP_VAL" property="relationshipVal" />
+		<result column="COMPANY_NAME" property="comName" />
+		<result column="CONTACT_ADDRESS" property="comAddr" />
+		<result column="IS_FILL_IN" property="source" />
+		<result column="IS_FILL_IN_VAL" property="sourceVal" />
+		<result column="PHONE_TYPE" property="phoneType" />
+		<result column="PHONE_TYPE_VAL" property="phoneTypeVal" />
+		<result column="IS_KNOW" property="know" />
+		<result column="IS_KNOW_VAL" property="knowVal" />
+	</resultMap>
+	
+	<sql id="USER_CONTACT_COLUMN_LIST">
+		CONT.CONT_ID,CONT.APPLY_ID,CONT.NAME,CONT.PHONE,CONT.ADD_DATE,CONT.CALLCOUNTS,CONT.CALL_TIME,
+		CONT.MOBILE_ADDRESS,CONT.RELATIONSHIP,CONT.RELATIONSHIP_VAL,CONT.COMPANY_NAME,CONT.CONTACT_ADDRESS,
+		CONT.IS_FILL_IN,CONT.IS_FILL_IN_VAL,CONT.PHONE_TYPE,CONT.PHONE_TYPE_VAL
+	</sql>
+	
+	<!-- 根据申请ID获取联系人信息 -->
+	<select id="findContactByApplyId" resultMap="USER_CONTACT_RESULT_MAP" parameterType="java.lang.String">
+		SELECT 
+		<include refid="USER_CONTACT_COLUMN_LIST" />
+		FROM HS_CONTACTS CONT WHERE APP.APPLY_ID = #{applyId}
+	</select>
+	
+	<select id="findUserContact" resultMap="USER_CONTACT_RESULT_MAP">
+		SELECT 
+		<include refid="USER_CONTACT_COLUMN_LIST" />
+		FROM HS_CONTACTS CONT
+		<![CDATA[WHERE CONT.ADD_DATE >= #{start} AND CONT.ADD_DATE <= #{end}]]>
+	</select>
+	
+	<resultMap type="com.hoomsun.risk.model.vo.UserApplyVo" id="USER_APPLY_MAP_VO">
+		<id property="applyId" column="APPLY_ID"/>
+		<result property="loanId" column="LOAN_ID"/>
+		<result property="idNumber" column="ID_NUMBER"/>
+		<result property="custName" column="CUST_NAME"/>
+		<result property="applyDate" column="APPLY_DATE"/>
+		<result property="graduateInstitutions" column="GRADUATE_INSTITUTIONS"/>
+		<result property="raisePerson" column="RAISE_PERSON"/>
+		<result property="childNumber" column="CHILD_NUMBER"/>
+		<result property="maritalStatusVal" column="MARITAL_STATUS_VAL"/>
+		<result property="startResidenceDate" column="START_RESIDENCE_DATE"/>
+		<result property="comeHereDate" column="COME_HERE_DATE"/>
+		<result property="eduBackgroundVal" column="EDU_BACKGROUND_VAL"/>
+		<result property="rresidenceAddress" column="RRESIDENCE_ADDRESS"/>
+		<result property="houseAddress" column="HOUSE_ADDRESS"/>
+		<result property="liveConditionsVal" column="LIVE_CONDITIONS_VAL"/>
+		<result property="propertyTypeVal" column="PROPERTY_TYPE_VAL"/>
+		<result property="carHavaVal" column="CAR_HAVA_VAL"/>
+		<result property="fullWorkName" column="FULL_WORK_NAME"/>
+		<result property="industryInVal" column="INDUSTRY_IN_VAL"/>
+		<result property="companyAddress" column="COMPANY_ADDRESS"/>
+		<result property="companyKindVa" column="COMPANY_KIND_VA"/>
+		<result property="positionVal" column="POSITION_VAL"/>
+		<result property="jobTitle" column="JOB_TITLE"/>
+		<result property="startWorkTime" column="START_WORK_TIME"/>
+		<result property="socialSecurityVal" column="SOCIAL_SECURITY_VAL"/>
+		<result property="salaryMonthly" column="SALARY_MONTHLY"/>
+		<result property="othterIncomeMonthly" column="OTHTER_INCOME_MONTHLY"/>
+		<result property="privateTypeVal" column="PRIVATE_TYPE_VAL"/>
+		<result property="companyRegtime" column="COMPANY_REGTIME"/>
+		<result property="percentageShares" column="PERCENTAGE_SHARES"/>
+		<result property="employeesNum" column="EMPLOYEES_NUM"/>
+		<result property="premisesVal" column="PREMISES_VAL"/>
+		<result property="applyAddress" column="APPLY_ADDRESS"/>
+	</resultMap>
+	<select id="findByIdNumber" parameterType="java.lang.String" resultMap="USER_APPLY_MAP_VO">
+		SELECT * FROM(
+		SELECT  
+		  APP.APPLY_ID,
+		  APP.LOAN_ID,
+		  APP.ID_NUMBER,
+		  APP.CUST_NAME,
+		  APP.APPLY_DATE,
+		  APP.GRADUATE_INSTITUTIONS,
+		  APP.RAISE_PERSON,
+		  APP.CHILD_NUMBER,
+		  APP.MARITAL_STATUS_VAL,
+		  APP.START_RESIDENCE_DATE,
+		  APP.COME_HERE_DATE,
+		  APP.EDU_BACKGROUND_VAL,
+		  APP.RRESIDENCE_ADDRESS,
+		  APP.HOUSE_ADDRESS,
+		  APP.LIVE_CONDITIONS_VAL,
+		  APP.APPLY_ADDRESS,
+		  ASSET.PROPERTY_TYPE_VAL,
+		  ASSET.CAR_HAVA_VAL,
+		  OCC.FULL_WORK_NAME,
+		  OCC.INDUSTRY_IN_VAL,
+		  OCC.COMPANY_ADDRESS,
+		  OCC.COMPANY_KIND_VA,
+		  OCC.POSITION_VAL,
+		  OCC.JOB_TITLE,
+		  OCC.START_WORK_TIME,
+		  OCC.SOCIAL_SECURITY_VAL,
+		  OCC.SALARY_MONTHLY,
+		  OCC.OTHTER_INCOME_MONTHLY,
+		  OCC.PRIVATE_TYPE_VAL,
+		  OCC.COMPANY_REGTIME,
+		  OCC.PERCENTAGE_SHARES,
+		  OCC.EMPLOYEES_NUM,
+		  OCC.PREMISES_VAL
+		FROM
+		  HS_APPLY APP,
+		  HS_ASSET_INFO ASSET,
+		  HS_OCCUPATIONAL_INFO OCC
+		WHERE
+		  APP.ID_NUMBER = #{idNumber}
+		  AND APP.APPLY_ID = ASSET.APPLY_ID
+		  AND OCC.APPLY_ID = APP.APPLY_ID
+		  ORDER BY APP.APPLY_DATE
+		) WHERE ROWNUM=1
+	</select>
+	
+</mapper>

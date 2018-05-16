@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserPbccrcHtmlMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserPbccrcHtml">
+    <id column="PH_ID" jdbcType="VARCHAR" property="phId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="CR_ID" jdbcType="VARCHAR" property="crId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hoomsun.csas.sales.api.model.UserPbccrcHtml">
+    <result column="HTML_DATA" jdbcType="LONGVARCHAR" property="htmlData" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PH_ID, APPLY_ID, CR_ID
+  </sql>
+  <sql id="Blob_Column_List">
+    HTML_DATA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from HS_PBCCRC_HTML
+    where PH_ID = #{phId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PBCCRC_HTML
+    where PH_ID = #{phId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserPbccrcHtml">
+    insert into HS_PBCCRC_HTML (PH_ID, APPLY_ID, CR_ID, 
+      HTML_DATA)
+    values (#{phId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{crId,jdbcType=VARCHAR}, 
+      #{htmlData,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserPbccrcHtml">
+    insert into HS_PBCCRC_HTML
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="phId != null">
+        PH_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="crId != null">
+        CR_ID,
+      </if>
+      <if test="htmlData != null">
+        HTML_DATA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="phId != null">
+        #{phId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="crId != null">
+        #{crId,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlData != null">
+        #{htmlData,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserPbccrcHtml">
+    update HS_PBCCRC_HTML
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="crId != null">
+        CR_ID = #{crId,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlData != null">
+        HTML_DATA = #{htmlData,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where PH_ID = #{phId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hoomsun.csas.sales.api.model.UserPbccrcHtml">
+    update HS_PBCCRC_HTML
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      CR_ID = #{crId,jdbcType=VARCHAR},
+      HTML_DATA = #{htmlData,jdbcType=LONGVARCHAR}
+    where PH_ID = #{phId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserPbccrcHtml">
+    update HS_PBCCRC_HTML
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      CR_ID = #{crId,jdbcType=VARCHAR}
+    where PH_ID = #{phId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByApplyId" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  	select 
+  	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+  	from HS_PBCCRC_HTML where APPLY_ID=#{applyId}
+  </select>
+  
+  <select id="selectByCrId" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  	select 
+  	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+  	from HS_PBCCRC_HTML where CR_ID=#{crId}
+  </select>
+  
+</mapper>

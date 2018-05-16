@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.UserCountMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.UserCount">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="CAST_ID" jdbcType="VARCHAR" property="castId" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="SEX" jdbcType="VARCHAR" property="sex" />
+		<result column="TEL" jdbcType="VARCHAR" property="tel" />
+		<result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+		<result column="CAST_SOURCE" jdbcType="VARCHAR" property="castSource" />
+		<result column="BANK" jdbcType="VARCHAR" property="bank" />
+		<result column="BANK_PHONE" jdbcType="VARCHAR" property="bankPhone" />
+		<result column="BANK_ACCOUNT" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+		<result column="BANK_CODE2" jdbcType="VARCHAR" property="bankCode2" />
+		<result column="BANK_CODE3" jdbcType="VARCHAR" property="bankCode3" />
+		<result column="BAL" jdbcType="DECIMAL" property="bal" />
+		<result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, CAST_ID, CAST_NAME, SEX, TEL, CARD_NO, CAST_SOURCE,
+		BANK, BANK_PHONE,
+		BANK_ACCOUNT,
+		BANK_CODE,BANK_CODE2,BANK_CODE3, BAL,
+		UPDATE_DATE, CREATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_USER_COUNT
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_USER_COUNT
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.UserCount">
+		insert into
+		HS_AFTER_USER_COUNT (ID, CAST_ID, CAST_NAME,
+		SEX, TEL, CARD_NO,
+		CAST_SOURCE,
+		BANK, BANK_PHONE, BANK_ACCOUNT,
+		BANK_CODE,BANK_CODE2,BANK_CODE3, BAL,
+		UPDATE_DATE,
+		CREATE_TIME)
+		values
+		(#{id,jdbcType=VARCHAR},
+		#{castId,jdbcType=VARCHAR},
+		#{castName,jdbcType=VARCHAR},
+		#{sex,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR},
+		#{cardNo,jdbcType=VARCHAR},
+		#{castSource,jdbcType=VARCHAR},
+		#{bank,jdbcType=VARCHAR},
+		#{bankPhone,jdbcType=VARCHAR},
+		#{bankAccount,jdbcType=VARCHAR},
+		#{bankCode,jdbcType=VARCHAR},
+		#{bankCode2,jdbcType=VARCHAR},
+		#{bankCode3,jdbcType=VARCHAR},
+		#{bal,jdbcType=DECIMAL},
+		#{updateDate,jdbcType=TIMESTAMP},
+		#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.UserCount">
+		insert into HS_AFTER_USER_COUNT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="castId != null">
+				CAST_ID,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="sex != null">
+				SEX,
+			</if>
+			<if test="tel != null">
+				TEL,
+			</if>
+			<if test="cardNo != null">
+				CARD_NO,
+			</if>
+			<if test="castSource != null">
+				CAST_SOURCE,
+			</if>
+			<if test="bank != null">
+				BANK,
+			</if>
+			<if test="bankPhone != null">
+				BANK_PHONE,
+			</if>
+			<if test="bankAccount != null">
+				BANK_ACCOUNT,
+			</if>
+			<if test="bankCode != null">
+				BANK_CODE,
+			</if>
+			<if test="bankCode2 != null">
+				BANK_CODE2,
+			</if>
+			<if test="bankCode3 != null">
+				BANK_CODE3,
+			</if>
+			<if test="bal != null">
+				BAL,
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="castId != null">
+				#{castId,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castSource != null">
+				#{castSource,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				#{bank,jdbcType=VARCHAR},
+			</if>
+			<if test="bankPhone != null">
+				#{bankPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				#{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode != null">
+				#{bankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode2 != null">
+				#{bankCode2,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode3 != null">
+				#{bankCode3,jdbcType=VARCHAR},
+			</if>
+			<if test="bal != null">
+				#{bal,jdbcType=DECIMAL},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.UserCount">
+		update HS_AFTER_USER_COUNT
+		<set>
+			<if test="castId != null">
+				CAST_ID = #{castId,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				TEL = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castSource != null">
+				CAST_SOURCE = #{castSource,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				BANK = #{bank,jdbcType=VARCHAR},
+			</if>
+			<if test="bankPhone != null">
+				BANK_PHONE = #{bankPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				BANK_ACCOUNT = #{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode != null">
+				BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode2 != null">
+				BANK_CODE2 = #{bankCode2,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode3 != null">
+				BANK_CODE3 = #{bankCode3,jdbcType=VARCHAR},
+			</if>
+			<if test="bal != null">
+				BAL = #{bal,jdbcType=DECIMAL},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.UserCount">
+		update
+		HS_AFTER_USER_COUNT
+		set CAST_ID = #{castId,jdbcType=VARCHAR},
+		CAST_NAME
+		= #{castName,jdbcType=VARCHAR},
+		SEX = #{sex,jdbcType=VARCHAR},
+		TEL =
+		#{tel,jdbcType=VARCHAR},
+		CARD_NO = #{cardNo,jdbcType=VARCHAR},
+		CAST_SOURCE = #{castSource,jdbcType=VARCHAR},
+		BANK =
+		#{bank,jdbcType=VARCHAR},
+		BANK_PHONE = #{bankPhone,jdbcType=VARCHAR},
+		BANK_ACCOUNT = #{bankAccount,jdbcType=VARCHAR},
+		BANK_CODE =
+		#{bankCode,jdbcType=VARCHAR},
+		BANK_CODE2 =
+		#{bankCode2,jdbcType=VARCHAR},
+		BANK_CODE3 =
+		#{bankCode3,jdbcType=VARCHAR},
+		BAL = #{bal,jdbcType=DECIMAL},
+		UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- -->
+
+	<select id="selectByCustId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_USER_COUNT
+		where CAST_ID = #{custId ,jdbcType=VARCHAR}
+
+	</select>
+
+	<update id="updatebal" parameterType="java.util.Map">
+
+		update HS_AFTER_USER_COUNT
+
+		set BAL = #{bal}
+
+		where CAST_ID=#{custId}
+	</update>
+</mapper>

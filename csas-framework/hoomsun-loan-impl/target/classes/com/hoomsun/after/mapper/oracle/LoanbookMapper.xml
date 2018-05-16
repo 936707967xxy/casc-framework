@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.LoanbookMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.Loanbook">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="REPAY_DATE" jdbcType="TIMESTAMP" property="repayDate" />
+		<result column="STREAM" jdbcType="DECIMAL" property="stream" />
+		<result column="RECEIVE_CORPUS" jdbcType="DECIMAL" property="receiveCorpus" />
+		<result column="RECEIVE_SHOULDINTE" jdbcType="DECIMAL"
+			property="receiveShouldinte" />
+		<result column="AMT" jdbcType="DECIMAL" property="amt" />
+		<result column="RECEIVE_PENALTY" jdbcType="DECIMAL" property="receivePenalty" />
+		<result column="RECEIVE_INTEREST" jdbcType="DECIMAL" property="receiveInterest" />
+		<result column="RECEIVE_PENALTY_INTEREST" jdbcType="DECIMAL"
+			property="receivePenaltyInterest" />
+		<result column="RECEIVE_MONEY" jdbcType="DECIMAL" property="receiveMoney" />
+		<result column="RECEIVE_ADVANCE" jdbcType="DECIMAL" property="receiveAdvance" />
+		<result column="CHANNEL_SERVICE_FEE" jdbcType="DECIMAL"
+			property="channelServiceFee" />
+		<result column="OVERDUE_DAYS" jdbcType="DECIMAL" property="overdueDays" />
+		<result column="SUB_MONEY" jdbcType="DECIMAL" property="subMoney" />
+		<result column="ACTUAL_MONEY" jdbcType="DECIMAL" property="actualMoney" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="LOANBOOK_TYPE" jdbcType="VARCHAR" property="loanbookType" />
+		<result column="LOANBOOK_TYPE_VAL" jdbcType="VARCHAR" property="loanbookTypeVal" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, LOAN_ID, CON_NO, CAST_NAME, REPAY_DATE, STREAM, RECEIVE_CORPUS,
+		RECEIVE_SHOULDINTE,
+		AMT, RECEIVE_PENALTY, RECEIVE_INTEREST, RECEIVE_PENALTY_INTEREST,
+		RECEIVE_MONEY,
+		RECEIVE_ADVANCE, CHANNEL_SERVICE_FEE, OVERDUE_DAYS, SUB_MONEY, ACTUAL_MONEY,
+		CREATE_TIME,
+		UPDATE_DATE, LOANBOOK_TYPE, LOANBOOK_TYPE_VAL
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_LOANBOOK
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_AFTER_LOANBOOK
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.Loanbook">
+		insert into HS_AFTER_LOANBOOK (ID, LOAN_ID, CON_NO,
+		CAST_NAME, REPAY_DATE, STREAM,
+		RECEIVE_CORPUS, RECEIVE_SHOULDINTE, AMT,
+		RECEIVE_PENALTY, RECEIVE_INTEREST, RECEIVE_PENALTY_INTEREST,
+		RECEIVE_MONEY, RECEIVE_ADVANCE, CHANNEL_SERVICE_FEE,
+		OVERDUE_DAYS, SUB_MONEY, ACTUAL_MONEY,
+		CREATE_TIME, UPDATE_DATE, LOANBOOK_TYPE,
+		LOANBOOK_TYPE_VAL)
+		values (#{id,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR},
+		#{conNo,jdbcType=VARCHAR},
+		#{castName,jdbcType=VARCHAR}, #{repayDate,jdbcType=TIMESTAMP}, #{stream,jdbcType=DECIMAL},
+		#{receiveCorpus,jdbcType=DECIMAL},
+		#{receiveShouldinte,jdbcType=DECIMAL}, #{amt,jdbcType=DECIMAL},
+		#{receivePenalty,jdbcType=DECIMAL},
+		#{receiveInterest,jdbcType=DECIMAL},
+		#{receivePenaltyInterest,jdbcType=DECIMAL},
+		#{receiveMoney,jdbcType=DECIMAL}, #{receiveAdvance,jdbcType=DECIMAL},
+		#{channelServiceFee,jdbcType=DECIMAL},
+		#{overdueDays,jdbcType=DECIMAL}, #{subMoney,jdbcType=DECIMAL},
+		#{actualMoney,jdbcType=DECIMAL},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{loanbookType,jdbcType=VARCHAR},
+		#{loanbookTypeVal,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.Loanbook">
+		insert into HS_AFTER_LOANBOOK
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="conNo != null">
+				CON_NO,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="repayDate != null">
+				REPAY_DATE,
+			</if>
+			<if test="stream != null">
+				STREAM,
+			</if>
+			<if test="receiveCorpus != null">
+				RECEIVE_CORPUS,
+			</if>
+			<if test="receiveShouldinte != null">
+				RECEIVE_SHOULDINTE,
+			</if>
+			<if test="amt != null">
+				AMT,
+			</if>
+			<if test="receivePenalty != null">
+				RECEIVE_PENALTY,
+			</if>
+			<if test="receiveInterest != null">
+				RECEIVE_INTEREST,
+			</if>
+			<if test="receivePenaltyInterest != null">
+				RECEIVE_PENALTY_INTEREST,
+			</if>
+			<if test="receiveMoney != null">
+				RECEIVE_MONEY,
+			</if>
+			<if test="receiveAdvance != null">
+				RECEIVE_ADVANCE,
+			</if>
+			<if test="channelServiceFee != null">
+				CHANNEL_SERVICE_FEE,
+			</if>
+			<if test="overdueDays != null">
+				OVERDUE_DAYS,
+			</if>
+			<if test="subMoney != null">
+				SUB_MONEY,
+			</if>
+			<if test="actualMoney != null">
+				ACTUAL_MONEY,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE,
+			</if>
+			<if test="loanbookType != null">
+				LOANBOOK_TYPE,
+			</if>
+			<if test="loanbookTypeVal != null">
+				LOANBOOK_TYPE_VAL,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				#{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="repayDate != null">
+				#{repayDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="stream != null">
+				#{stream,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveCorpus != null">
+				#{receiveCorpus,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveShouldinte != null">
+				#{receiveShouldinte,jdbcType=DECIMAL},
+			</if>
+			<if test="amt != null">
+				#{amt,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenalty != null">
+				#{receivePenalty,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveInterest != null">
+				#{receiveInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenaltyInterest != null">
+				#{receivePenaltyInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveMoney != null">
+				#{receiveMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveAdvance != null">
+				#{receiveAdvance,jdbcType=DECIMAL},
+			</if>
+			<if test="channelServiceFee != null">
+				#{channelServiceFee,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueDays != null">
+				#{overdueDays,jdbcType=DECIMAL},
+			</if>
+			<if test="subMoney != null">
+				#{subMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="actualMoney != null">
+				#{actualMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loanbookType != null">
+				#{loanbookType,jdbcType=VARCHAR},
+			</if>
+			<if test="loanbookTypeVal != null">
+				#{loanbookTypeVal,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.Loanbook">
+		update HS_AFTER_LOANBOOK
+		<set>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				CON_NO = #{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="repayDate != null">
+				REPAY_DATE = #{repayDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="stream != null">
+				STREAM = #{stream,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveCorpus != null">
+				RECEIVE_CORPUS = #{receiveCorpus,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveShouldinte != null">
+				RECEIVE_SHOULDINTE = #{receiveShouldinte,jdbcType=DECIMAL},
+			</if>
+			<if test="amt != null">
+				AMT = #{amt,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenalty != null">
+				RECEIVE_PENALTY = #{receivePenalty,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveInterest != null">
+				RECEIVE_INTEREST = #{receiveInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenaltyInterest != null">
+				RECEIVE_PENALTY_INTEREST = #{receivePenaltyInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveMoney != null">
+				RECEIVE_MONEY = #{receiveMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveAdvance != null">
+				RECEIVE_ADVANCE = #{receiveAdvance,jdbcType=DECIMAL},
+			</if>
+			<if test="channelServiceFee != null">
+				CHANNEL_SERVICE_FEE = #{channelServiceFee,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueDays != null">
+				OVERDUE_DAYS = #{overdueDays,jdbcType=DECIMAL},
+			</if>
+			<if test="subMoney != null">
+				SUB_MONEY = #{subMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="actualMoney != null">
+				ACTUAL_MONEY = #{actualMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loanbookType != null">
+				LOANBOOK_TYPE = #{loanbookType,jdbcType=VARCHAR},
+			</if>
+			<if test="loanbookTypeVal != null">
+				LOANBOOK_TYPE_VAL = #{loanbookTypeVal,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.Loanbook">
+		update HS_AFTER_LOANBOOK
+		set LOAN_ID = #{loanId,jdbcType=VARCHAR},
+		CON_NO = #{conNo,jdbcType=VARCHAR},
+		CAST_NAME = #{castName,jdbcType=VARCHAR},
+		REPAY_DATE = #{repayDate,jdbcType=TIMESTAMP},
+		STREAM = #{stream,jdbcType=DECIMAL},
+		RECEIVE_CORPUS = #{receiveCorpus,jdbcType=DECIMAL},
+		RECEIVE_SHOULDINTE = #{receiveShouldinte,jdbcType=DECIMAL},
+		AMT = #{amt,jdbcType=DECIMAL},
+		RECEIVE_PENALTY = #{receivePenalty,jdbcType=DECIMAL},
+		RECEIVE_INTEREST = #{receiveInterest,jdbcType=DECIMAL},
+		RECEIVE_PENALTY_INTEREST = #{receivePenaltyInterest,jdbcType=DECIMAL},
+		RECEIVE_MONEY = #{receiveMoney,jdbcType=DECIMAL},
+		RECEIVE_ADVANCE = #{receiveAdvance,jdbcType=DECIMAL},
+		CHANNEL_SERVICE_FEE = #{channelServiceFee,jdbcType=DECIMAL},
+		OVERDUE_DAYS = #{overdueDays,jdbcType=DECIMAL},
+		SUB_MONEY = #{subMoney,jdbcType=DECIMAL},
+		ACTUAL_MONEY = #{actualMoney,jdbcType=DECIMAL},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+		LOANBOOK_TYPE = #{loanbookType,jdbcType=VARCHAR},
+		LOANBOOK_TYPE_VAL = #{loanbookTypeVal,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

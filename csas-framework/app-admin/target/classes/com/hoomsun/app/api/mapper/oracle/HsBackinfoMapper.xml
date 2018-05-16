@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.HsBackinfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.HsBackinfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="FK_ID" jdbcType="VARCHAR" property="fkId" />
+    <result column="ADD_DATA" jdbcType="OTHER" property="addData" />
+    <result column="BACK_INFO" jdbcType="VARCHAR" property="backInfo" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, FK_ID, ADD_DATA, BACK_INFO, PHONE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_BACKINFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_BACKINFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.HsBackinfo">
+    insert into HS_BACKINFO (ID, FK_ID, ADD_DATA, 
+      BACK_INFO, PHONE)
+    values (#{id,jdbcType=VARCHAR}, #{fkId,jdbcType=VARCHAR}, #{addData,jdbcType=OTHER}, 
+      #{backInfo,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.HsBackinfo">
+    insert into HS_BACKINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="fkId != null">
+        FK_ID,
+      </if>
+      <if test="addData != null">
+        ADD_DATA,
+      </if>
+      <if test="backInfo != null">
+        BACK_INFO,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="fkId != null">
+        #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="addData != null">
+        #{addData,jdbcType=OTHER},
+      </if>
+      <if test="backInfo != null">
+        #{backInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.HsBackinfo">
+    update HS_BACKINFO
+    <set>
+      <if test="fkId != null">
+        FK_ID = #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="addData != null">
+        ADD_DATA = #{addData,jdbcType=OTHER},
+      </if>
+      <if test="backInfo != null">
+        BACK_INFO = #{backInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.HsBackinfo">
+    update HS_BACKINFO
+    set FK_ID = #{fkId,jdbcType=VARCHAR},
+      ADD_DATA = #{addData,jdbcType=OTHER},
+      BACK_INFO = #{backInfo,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

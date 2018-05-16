@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.hoomsun</groupId>
+		<artifactId>csas-framework</artifactId>
+		<version>2.0.0</version>
+	</parent>
+
+	<artifactId>hs-contract</artifactId>
+	<version>2.0.0</version>
+	<name>hs-contract</name>
+	<description>hs-contract</description>
+
+	<distributionManagement>
+		<repository>
+			<id>hs-deploy-release</id>
+			<url>http://192.168.1.178:9088/nexus/content/repositories/releases/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>hs-deploy-snapshot</id>
+			<url>http://192.168.1.178:9088/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencies>
+		<!-- always needed -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>kernel</artifactId>
+			<version>7.1.0</version>
+		</dependency>
+
+		<!-- always needed -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>io</artifactId>
+			<version>7.1.0</version>
+		</dependency>
+
+		<!-- always needed -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>layout</artifactId>
+			<version>7.1.0</version>
+		</dependency>
+
+		<!-- only needed for forms -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>forms</artifactId>
+			<version>7.1.0</version>
+		</dependency>
+
+		<!-- only needed for PDF/A -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>pdfa</artifactId>
+			<version>7.1.0</version>
+		</dependency>
+
+		<!-- only needed for digital signatures -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>sign</artifactId>
+			<version>7.1.0</version>
+		</dependency>
+
+		<!-- only needed for barcodes -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>barcodes</artifactId>
+			<version>7.1.0</version>
+		</dependency>
+
+		<!-- only needed for Asian fonts -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>font-asian</artifactId>
+			<version>7.1.0</version>
+		</dependency>
+
+		<!-- only needed for hyphenation -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>hyph</artifactId>
+			<version>7.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>hs-core</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>sales-api</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+	</dependencies>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<finalName>hs-contract</finalName>
+	</build>
+</project>

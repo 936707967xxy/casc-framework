@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysProductTypeMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysProductType">
+    <id column="PROD_ID" jdbcType="VARCHAR" property="prodId" />
+    <result column="PROD_CODE" jdbcType="VARCHAR" property="prodCode" />
+    <result column="PROD_NAME" jdbcType="VARCHAR" property="prodName" />
+    <result column="EFFFLAG_VAL" jdbcType="VARCHAR" property="effflagVal" />
+    <result column="MIX_CREDIT_AMT" jdbcType="VARCHAR" property="mixCreditAmt" />
+    <result column="MAX_CREDIT_AMT" jdbcType="VARCHAR" property="maxCreditAmt" />
+    <result column="PRODUCTDESC" jdbcType="VARCHAR" property="productdesc" />
+    <result column="AMTLIMIT" jdbcType="VARCHAR" property="amtlimit" />
+    <result column="PRODUCTURL" jdbcType="VARCHAR" property="producturl" />
+    <result column="MAX_RATE" jdbcType="VARCHAR" property="maxRate" />
+    <result column="ISOPEN" jdbcType="DECIMAL" property="isopen" />
+    <result column="ISOPEN_VAL" jdbcType="VARCHAR" property="isopenVal" />
+    <result column="GOTOURL" jdbcType="VARCHAR" property="gotourl" />
+    <result column="ISONLINE" jdbcType="DECIMAL" property="isonline" />
+    <result column="DELETE_SIGN" jdbcType="DECIMAL" property="deleteSign" />
+    <result column="PROD_ALIAS" jdbcType="VARCHAR" property="prodAlias" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PROD_ID, PROD_CODE, PROD_NAME, EFFFLAG_VAL, MIX_CREDIT_AMT, MAX_CREDIT_AMT, PRODUCTDESC, 
+    AMTLIMIT, PRODUCTURL, MAX_RATE, ISOPEN, ISOPEN_VAL, GOTOURL, ISONLINE, DELETE_SIGN, 
+    PROD_ALIAS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PRODUCT_TYPE
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PRODUCT_TYPE
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysProductType">
+    insert into HS_PRODUCT_TYPE (PROD_ID, PROD_CODE, PROD_NAME, 
+      EFFFLAG_VAL, MIX_CREDIT_AMT, MAX_CREDIT_AMT, 
+      PRODUCTDESC, AMTLIMIT, PRODUCTURL, 
+      MAX_RATE, ISOPEN, ISOPEN_VAL, 
+      GOTOURL, ISONLINE, DELETE_SIGN, 
+      PROD_ALIAS)
+    values (#{prodId,jdbcType=VARCHAR}, #{prodCode,jdbcType=VARCHAR}, #{prodName,jdbcType=VARCHAR}, 
+      #{effflagVal,jdbcType=VARCHAR}, #{mixCreditAmt,jdbcType=VARCHAR}, #{maxCreditAmt,jdbcType=VARCHAR}, 
+      #{productdesc,jdbcType=VARCHAR}, #{amtlimit,jdbcType=VARCHAR}, #{producturl,jdbcType=VARCHAR}, 
+      #{maxRate,jdbcType=VARCHAR}, #{isopen,jdbcType=DECIMAL}, #{isopenVal,jdbcType=VARCHAR}, 
+      #{gotourl,jdbcType=VARCHAR}, #{isonline,jdbcType=DECIMAL}, #{deleteSign,jdbcType=DECIMAL}, 
+      #{prodAlias,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysProductType">
+    insert into HS_PRODUCT_TYPE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prodId != null">
+        PROD_ID,
+      </if>
+      <if test="prodCode != null">
+        PROD_CODE,
+      </if>
+      <if test="prodName != null">
+        PROD_NAME,
+      </if>
+      <if test="effflagVal != null">
+        EFFFLAG_VAL,
+      </if>
+      <if test="mixCreditAmt != null">
+        MIX_CREDIT_AMT,
+      </if>
+      <if test="maxCreditAmt != null">
+        MAX_CREDIT_AMT,
+      </if>
+      <if test="productdesc != null">
+        PRODUCTDESC,
+      </if>
+      <if test="amtlimit != null">
+        AMTLIMIT,
+      </if>
+      <if test="producturl != null">
+        PRODUCTURL,
+      </if>
+      <if test="maxRate != null">
+        MAX_RATE,
+      </if>
+      <if test="isopen != null">
+        ISOPEN,
+      </if>
+      <if test="isopenVal != null">
+        ISOPEN_VAL,
+      </if>
+      <if test="gotourl != null">
+        GOTOURL,
+      </if>
+      <if test="isonline != null">
+        ISONLINE,
+      </if>
+      <if test="deleteSign != null">
+        DELETE_SIGN,
+      </if>
+      <if test="prodAlias != null">
+        PROD_ALIAS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prodId != null">
+        #{prodId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodCode != null">
+        #{prodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="prodName != null">
+        #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="effflagVal != null">
+        #{effflagVal,jdbcType=VARCHAR},
+      </if>
+      <if test="mixCreditAmt != null">
+        #{mixCreditAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="maxCreditAmt != null">
+        #{maxCreditAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="productdesc != null">
+        #{productdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="amtlimit != null">
+        #{amtlimit,jdbcType=VARCHAR},
+      </if>
+      <if test="producturl != null">
+        #{producturl,jdbcType=VARCHAR},
+      </if>
+      <if test="maxRate != null">
+        #{maxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="isopen != null">
+        #{isopen,jdbcType=DECIMAL},
+      </if>
+      <if test="isopenVal != null">
+        #{isopenVal,jdbcType=VARCHAR},
+      </if>
+      <if test="gotourl != null">
+        #{gotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="isonline != null">
+        #{isonline,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteSign != null">
+        #{deleteSign,jdbcType=DECIMAL},
+      </if>
+      <if test="prodAlias != null">
+        #{prodAlias,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysProductType">
+    update HS_PRODUCT_TYPE
+    <set>
+      <if test="prodCode != null">
+        PROD_CODE = #{prodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="prodName != null">
+        PROD_NAME = #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="effflagVal != null">
+        EFFFLAG_VAL = #{effflagVal,jdbcType=VARCHAR},
+      </if>
+      <if test="mixCreditAmt != null">
+        MIX_CREDIT_AMT = #{mixCreditAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="maxCreditAmt != null">
+        MAX_CREDIT_AMT = #{maxCreditAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="productdesc != null">
+        PRODUCTDESC = #{productdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="amtlimit != null">
+        AMTLIMIT = #{amtlimit,jdbcType=VARCHAR},
+      </if>
+      <if test="producturl != null">
+        PRODUCTURL = #{producturl,jdbcType=VARCHAR},
+      </if>
+      <if test="maxRate != null">
+        MAX_RATE = #{maxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="isopen != null">
+        ISOPEN = #{isopen,jdbcType=DECIMAL},
+      </if>
+      <if test="isopenVal != null">
+        ISOPEN_VAL = #{isopenVal,jdbcType=VARCHAR},
+      </if>
+      <if test="gotourl != null">
+        GOTOURL = #{gotourl,jdbcType=VARCHAR},
+      </if>
+      <if test="isonline != null">
+        ISONLINE = #{isonline,jdbcType=DECIMAL},
+      </if>
+      <if test="deleteSign != null">
+        DELETE_SIGN = #{deleteSign,jdbcType=DECIMAL},
+      </if>
+      <if test="prodAlias != null">
+        PROD_ALIAS = #{prodAlias,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysProductType">
+    update HS_PRODUCT_TYPE
+    set PROD_CODE = #{prodCode,jdbcType=VARCHAR},
+      PROD_NAME = #{prodName,jdbcType=VARCHAR},
+      EFFFLAG_VAL = #{effflagVal,jdbcType=VARCHAR},
+      MIX_CREDIT_AMT = #{mixCreditAmt,jdbcType=VARCHAR},
+      MAX_CREDIT_AMT = #{maxCreditAmt,jdbcType=VARCHAR},
+      PRODUCTDESC = #{productdesc,jdbcType=VARCHAR},
+      AMTLIMIT = #{amtlimit,jdbcType=VARCHAR},
+      PRODUCTURL = #{producturl,jdbcType=VARCHAR},
+      MAX_RATE = #{maxRate,jdbcType=VARCHAR},
+      ISOPEN = #{isopen,jdbcType=DECIMAL},
+      ISOPEN_VAL = #{isopenVal,jdbcType=VARCHAR},
+      GOTOURL = #{gotourl,jdbcType=VARCHAR},
+      ISONLINE = #{isonline,jdbcType=DECIMAL},
+      DELETE_SIGN = #{deleteSign,jdbcType=DECIMAL},
+      PROD_ALIAS = #{prodAlias,jdbcType=VARCHAR}
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="findPager" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	<![CDATA[
+  	SELECT TBL.* FROM (
+  	SELECT ROWNUM R,PT.PROD_ID, PT.PROD_CODE, PT.PROD_NAME, PT.EFFFLAG_VAL, PT.MIX_CREDIT_AMT, PT.MAX_CREDIT_AMT, PT.PRODUCTDESC, 
+    PT.AMTLIMIT, PT.PRODUCTURL, PT.MAX_RATE, PT.ISOPEN, PT.ISOPEN_VAL, PT.GOTOURL, PT.ISONLINE, PT.PROD_ALIAS 
+    FROM HS_PRODUCT_TYPE PT
+    WHERE 1<>2]]>
+    AND DELETE_SIGN = 0
+    <if test="prodName != null and prodName !=''"> and PT.PROD_NAME like #{prodName}</if>
+    <![CDATA[) TBL WHERE TBL.R <= (#{pageIndex}*#{pageSize}) AND TBL.R > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+  </select>
+  <select id="findPagerCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+   <![CDATA[ SELECT COUNT(PT.PROD_ID) FROM HS_PRODUCT_TYPE PT WHERE 1<>2]]>
+   	AND DELETE_SIGN = 0
+    <if test="prodName != null and prodName !=''"> and PT.PROD_NAME like #{prodName}</if>
+  </select>
+  
+  <select id="findAllData" resultMap="BaseResultMap">
+  	SELECT ROWNUM R,PT.PROD_ID, PT.PROD_CODE, PT.PROD_NAME, PT.EFFFLAG_VAL, PT.MIX_CREDIT_AMT, PT.MAX_CREDIT_AMT, PT.PRODUCTDESC, 
+    PT.AMTLIMIT, PT.PRODUCTURL, PT.MAX_RATE, PT.ISOPEN, PT.ISOPEN_VAL, PT.GOTOURL, PT.ISONLINE, PT.PROD_ALIAS  
+    FROM HS_PRODUCT_TYPE PT
+    WHERE DELETE_SIGN = 0 and  ISOPEN='1'   AND  PROD_ID!='ebd0eaf7369649bda23bdd6a75015766'
+  </select>
+  
+  <update id="updateDeleteSign" parameterType="java.lang.String">
+    update HS_PRODUCT_TYPE
+    <set>
+        DELETE_SIGN = 1
+    </set>
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 用于下拉选择，添加小产品使用  -->
+  <select id="findAllProType" resultMap="BaseResultMap">
+  	SELECT PT.PROD_ID, PT.PROD_NAME, PT.PROD_ALIAS  FROM HS_PRODUCT_TYPE PT
+    WHERE DELETE_SIGN = 0 and  ISOPEN='1'
+   <if test="prodName != null and prodName !=''"> and PT.PROD_NAME like #{prodName}</if>
+    <if test="isonline != null">
+        and  ISONLINE = #{isonline,jdbcType=DECIMAL}
+    </if>
+  </select>
+  
+   <!-- 额度接口返回产品信息  -->
+  <select id="findProTypebyCode" resultMap="BaseResultMap">
+  	SELECT PT.MIX_CREDIT_AMT, PT.MAX_CREDIT_AMT,PT.MAX_RATE FROM HS_PRODUCT_TYPE PT
+    WHERE DELETE_SIGN = 0    and  PROD_CODE = #{prodCode,jdbcType=VARCHAR} 
+  </select>
+  
+  <select id="findOnlineData" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT   PROD_ID, PROD_CODE, PROD_NAME, EFFFLAG_VAL, MIX_CREDIT_AMT, MAX_CREDIT_AMT, PRODUCTDESC, 
+             AMTLIMIT, PRODUCTURL, MAX_RATE, ISOPEN, ISOPEN_VAL, GOTOURL, ISONLINE, DELETE_SIGN, PROD_ALIAS
+     FROM HS_PRODUCT_TYPE PT
+    WHERE  ISONLINE = #{isonline}  and  ISOPEN='1'  and DELETE_SIGN = 0
+  </select>
+  
+   <!-- 返回禁用产品  -->
+  <select id="findTypeExcept" resultMap="BaseResultMap">
+  		SELECT PT.PROD_ID, PT.PROD_NAME, PT.PROD_ALIAS  FROM HS_PRODUCT_TYPE PT
+    WHERE DELETE_SIGN = 0
+    <if test="except != null">
+        and  PT.PROD_ID <![CDATA[<>]]> #{except}
+    </if>
+  </select>
+</mapper>

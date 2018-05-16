@@ -1,0 +1,1011 @@
+[
+	{
+		"path": "/",
+		"component": "Home",
+		"value":"HomeApp",
+		"name": "申请管理",
+		"sort": 1,
+		"type": "menu",
+		"redirect": "",
+		"dropdown": true,
+		"hidden": false,
+		"iconCls": "el-icon-setting",
+		"children": [
+			{
+				"path": "/apply",
+				"component": "ApplyListView",
+				"value":"ApplyListView",
+				"name": "进件申请",
+				"sort": 101,
+				"type": "menu",
+				"redirect": "",
+				"dropdown": true,
+				"hidden": false,
+				"iconCls": "",
+				"children": [
+					{
+						"path": "",
+						"component": "CreateApply",
+						"value":"apply_create",
+						"name": "添加申请",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10101,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "UpdateApply",
+						"value":"apply_update",
+						"name": "修改申请",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10102,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"apply_upload",
+						"name": "影像上传",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10103,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "SubmitApply",
+						"value":"apply_submit",
+						"name": "提交申请",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10104,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"apply_withdraw",
+						"name": "撤回申请",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10105,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/qccheck",
+				"component": "QcCheck",
+				"value":"QcCheck",
+				"name": "质检复核",
+				"sort": 102,
+				"type": "menu",
+				"redirect": "",
+				"dropdown": true,
+				"hidden": false,
+				"iconCls": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"qc_sign",
+						"name": "任务签收",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10201,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "/qcaudit/:applyId",
+						"component": "QcAudit",
+						"value":"qc_audit",
+						"name": "任务审核",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10202,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"qc_transfer",
+						"name": "任务转办",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10203,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"qc_withdraw",
+						"name": "任务撤回",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10204,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "QcDetails",
+						"value":"qc_show",
+						"name": "任务详情",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10205,
+						"type": "action",
+						"redirect": ""
+					}
+					
+				]
+			},
+			{
+				"path": "/making",
+				"component": "Making",
+				"value":"MakingList",
+				"name": "合同管理",
+				"sort": 103,
+				"type": "menu",
+				"redirect": "",
+				"dropdown": true,
+				"hidden": false,
+				"iconCls": "",
+				"children": [
+					{
+						"path": "",
+						"component": "CreateCon",
+						"value":"con_credit",
+						"name": "生成合同",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10301,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "SubmitCon",
+						"value":"con_submit",
+						"name": "提交合同",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10302,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"con_upload",
+						"name": "影像上传",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10303,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"con_sign",
+						"name": "任务签收",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10304,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "ConDetail",
+						"value":"con_detail",
+						"name": "查看详情",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10305,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"con_withdraw",
+						"name": "任务撤回",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10306,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"con_rollback",
+						"name": "任务退回",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10307,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"con_reject",
+						"name": "任务拒贷",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10308,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"con_waiver",
+						"name": "任务放弃",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10309,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"con_complaint",
+						"name": "任务转办",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10310,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/reviewapply",
+				"component": "ReviewApplyList",
+				"value":"ReviewApplyList",
+				"name": "复议申请",
+				"sort": 104,
+				"type": "menu",
+				"redirect": "",
+				"dropdown": true,
+				"hidden": false,
+				"iconCls": "",
+				"children": [
+					{
+						"path": "",
+						"component": "ReviewApply",
+						"value":"review_apply",
+						"name": "提交申请",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10401,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "ReviewDetails",
+						"value":"review_details",
+						"name": "详情",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 10402,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			}
+		]
+	},
+	{
+		"path": "/",
+		"component": "Home",
+		"value":"HomeInten",
+		"name": "咨询管理",
+		"sort": 2,
+		"type": "menu",
+		"redirect": "",
+		"dropdown": true,
+		"hidden": false,
+		"iconCls": "el-icon-setting",
+		"children": [
+			{
+				"path": "/intention",
+				"component": "Intention",
+				"value":"Intention",
+				"name": "客户咨询",
+				"sort": 201,
+				"type": "menu",
+				"redirect": "",
+				"dropdown": true,
+				"hidden": false,
+				"iconCls": "el-icon-setting",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"intention_cteate",
+						"name": "添加咨询",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 20101,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"intention_update",
+						"name": "修改咨询",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 20102,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"intention_remove",
+						"name": "删除咨询",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 20103,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/applyCheck",
+				"component": "ApplyCheck",
+				"value":"ApplyCheck",
+				"name": "申请列表",
+				"sort": 202,
+				"type": "menu",
+				"redirect": "",
+				"dropdown": true,
+				"hidden": false,
+				"iconCls": "el-icon-setting",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"apply_track",
+						"name": "追踪",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 20201,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			}
+		]
+	},
+	{
+		"path": "/",
+		"component": "Home",
+		"value":"HomeSys",
+		"name": "系统管理",
+		"sort": 3,
+		"type": "menu",
+		"redirect": "",
+		"dropdown": true,
+		"hidden": false,
+		"iconCls": "el-icon-setting",
+		"children": [
+			{
+				"path": "/emp",
+				"component": "Emp",
+				"value":"Emp",
+				"name": "员工管理",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 301,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"emp_create",
+						"name": "员工添加",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30101,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"emp_update",
+						"name": "员工修改",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30102,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"emp_delete",
+						"name": "员工删除",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30103,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"emp_lock",
+						"name": "员工锁定",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30104,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"emp_unlock",
+						"name": "员工解锁",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30105,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"emp_grant",
+						"name": "员工授权",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30106,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"emp_query",
+						"name": "员工查询",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30107,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"emp_details",
+						"name": "员工详情",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30108,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/role",
+				"component": "Role",
+				"value":"Role",
+				"name": "角色管理",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 302,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"role_create",
+						"name": "添加角色",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30201,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"role_update",
+						"name": "修改角色",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30202,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"role_remove",
+						"name": "删除角色",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30203,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"role_query",
+						"name": "检索角色",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30204,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"role_grant",
+						"name": "授权角色",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30205,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/resources",
+				"component": "Resources",
+				"value":"Resources",
+				"name": "资源管理",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 303,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"cpt_create",
+						"name": "添加组件",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30301,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"cpt_update",
+						"name": "修改组件",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30302,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"cpt_remove",
+						"name": "删除组件",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30303,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "",
+						"component": "",
+						"value":"cpt_query",
+						"name": "检索组件",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 30304,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			}
+		]
+	},
+	{
+		"path": "/",
+		"component": "Home",
+		"value":"HomeSupp",
+		"name": "补充资料",
+		"sort": 4,
+		"type": "menu",
+		"redirect": "",
+		"dropdown": true,
+		"hidden": false,
+		"iconCls": "el-icon-setting",
+		"children": [
+			{
+				"path": "/supplement",
+				"component": "SupplementList",
+				"value":"SupplementList",
+				"name": "补充资料",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 401,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "supplementupdate",
+						"component": "Supplement",
+						"value":"suppl_update",
+						"name": "修改资料",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 40101,
+						"type": "action",
+						"redirect": ""
+					},
+					{
+						"path": "submitsupplement",
+						"component": "SupplementSubmit",
+						"value":"suppl_submit",
+						"name": "提交资料",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 40102,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			}
+		]
+	},
+	{
+		"path": "/",
+		"component": "Home",
+		"value":"HomeStatistics",
+		"name": "业绩统计",
+		"sort": 5,
+		"type": "menu",
+		"redirect": "",
+		"dropdown": true,
+		"hidden": false,
+		"iconCls": "el-icon-setting",
+		"children": [
+			{
+				"path": "/bigarea",
+				"component": "BigAreaPF",
+				"value":"BigAreaPF",
+				"name": "事业部",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 501,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"bigarea_export",
+						"name": "导出",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 50101,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/area",
+				"component": "AreaView",
+				"value":"AreaPF",
+				"name": "大区统计",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 502,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"area_export",
+						"name": "导出",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 50201,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/citystatistics",
+				"component": "CityStatistics",
+				"value":"CityStatistics",
+				"name": "分部统计",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 503,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"city_export",
+						"name": "导出",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 50301,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/storestatistics",
+				"component": "StoreStatistics",
+				"value":"StoreStatistics",
+				"name": "门店统计",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 504,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"store_export",
+						"name": "导出",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 50401,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			},
+			{
+				"path": "/teamstatistics",
+				"component": "TeamStatistics",
+				"value":"TeamStatistics",
+				"name": "团队统计",
+				"dropdown": false,
+				"hidden": false,
+				"sort": 505,
+				"type": "menu",
+				"redirect": "",
+				"children": [
+					{
+						"path": "",
+						"component": "",
+						"value":"team_export",
+						"name": "导出",
+						"dropdown": false,
+						"hidden": true,
+						"sort": 50501,
+						"type": "action",
+						"redirect": ""
+					}
+				]
+			}
+		]
+	},
+	{
+		"path": "/",
+		"component": "Home",
+		"name": "贷后管理",
+		"sort": 6,
+		"value":"AfterLoanHome",
+		"type": "menu",
+		"iconCls":"fa fa-object-group",
+		"hidden": false,
+		"dropdown": true,
+		"children": [{
+				"path": "normalRepay",
+				"sort": 601,
+				"value":"normalRepay",
+				"component": "normalRepay",
+				"type": "menu",
+				"name": "正常客户列表",
+				"iconCls": "fa fa-address-book",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"normal_single_deduct","name": "发起单笔划扣","dropdown": false,"hidden": true,"sort": 60101,"type": "action","redirect": ""},
+					{"path": "","component": "","value":"normal_qh_deduct","name": "提前结清划扣","dropdown": false,"hidden": true,"sort": 60102,"type": "action","redirect": ""},
+					{"path": "","component": "","value":"normal_dbcg_deduct","name": "发起单笔存公","dropdown": false,"hidden": true,"sort": 60103,"type": "action","redirect": ""},
+					{"path": "","component": "","value":"normal_qhcg_deduct","name": "提前结清存公","dropdown": false,"hidden": true,"sort": 60104,"type": "action","redirect": ""},
+					{"path": "","component": "","value":"normal_hkjl_deduct","name": "客户还款记录","dropdown": false,"hidden": true,"sort": 60105,"type": "action","redirect": ""}
+				]
+			},
+			{
+				"path": "taskassignmenthy",
+				"sort": 602,
+				"value":"taskAssignmentHY",
+				"component": "taskAssignmentHY",
+				"name": "任务分派(后援)",
+				"type": "menu",
+				"iconCls": "fa fa-tasks",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"task_assig_hy","name": "任务分派","dropdown": false,"hidden": true,"sort": 60301,"type": "action","redirect": ""}
+				]
+			},
+			{
+				"path": "taskassignmentyyb",
+				"sort": 603,
+				"value":"taskAssignmentYYB",
+				"component": "taskAssignmentYYB",
+				"name": "任务分派(营业部)",
+				"iconCls": "fa fa-tasks",
+				"type": "menu",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"task_assig_store","name": "任务分派","dropdown": false,"hidden": true,"sort": 60301,"type": "action","redirect": ""}
+				]
+			},
+			{
+				"path": "taskassignmentqy",
+				"sort": 604,
+				"value":"taskAssignmentQY",
+				"component": "taskAssignmentQY",
+				"name": "任务分派(区域)",
+				"iconCls": "fa fa-tasks",
+				"type": "menu",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"task_assig_area","name": "任务分派","dropdown": false,"hidden": true,"sort": 60401,"type": "action","redirect": ""}
+				]
+			},
+			{
+				"path": "mitigateapproved1",
+				"sort": 605,
+				"value":"mitigateApproved1",
+				"component": "mitigateApproved1",
+				"name": "减免一级审批",
+				"iconCls": "fa fa-share-square-o",
+				"type": "menu",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"reduce_audit_yj","name": "审批","dropdown": false,"hidden": true,"sort": 60501,"type": "action","redirect": ""}
+				]
+			},
+			{
+				"path": "mitigateapproved2",
+				"sort": 606,
+				"value":"mitigateApproved2",
+				"component": "mitigateApproved2",
+				"name": "减免二级审批",
+				"iconCls": "fa fa-share-square-o",
+				"type": "menu",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"reduce_audit_ej","name": "审批","dropdown": false,"hidden": true,"sort": 60601,"type": "action","redirect": ""}
+				]
+			},
+			{
+				"path": "overduededucttask",
+				"sort": 607,
+				"component": "overdueDeductTask",
+				"value":"overdueDeductTask",
+				"name": "催收任务列表",
+				"iconCls": "fa fa-recycle",
+				"type": "menu",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"urge_tip","name": "催收提醒","dropdown": false,"hidden": true,"sort": 60701,"type": "action","redirect": ""},
+					{"path": "","component": "","value":"urge_dbhk","name": "发起单笔划扣","dropdown": false,"hidden": true,"sort": 60702,"type": "action","redirect": ""},
+					{"path": "","component": "","value":"urge_qhhk","name": "提前结清划扣","dropdown": false,"hidden": true,"sort": 60703,"type": "action","redirect": ""},
+					{"path": "","component": "","value":"urge_dbcg","name": "发起单笔存公","dropdown": false,"hidden": true,"sort": 60704,"type": "action","redirect": ""},
+					{"path": "","component": "","value":"urge_qhcg","name": "提前结清存公","dropdown": false,"hidden": true,"sort": 60705,"type": "action","redirect": ""},
+					{"path": "","component": "","value":"urge_jmsq","name": "减免申请","dropdown": false,"hidden": true,"sort": 60706,"type": "action","redirect": ""},
+					{"path": "","component": "","value":"urge_hkjl","name": "客户还款记录","dropdown": false,"hidden": true,"sort": 60707,"type": "action","redirect": ""}
+				]
+			},
+			{
+				"path": "repaymentRecord",
+				"sort": 608,
+				"value":"repaymentRecord",
+				"component": "repaymentRecord",
+				"name": "客户划扣记录",
+				"iconCls": "fa fa-book",
+				"type": "menu",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"hk_query","name": "查证","dropdown": false,"hidden": true,"sort": 60801,"type": "action","redirect": ""}
+				]
+			},
+			{
+				"path": "infochangesapply",
+				"sort": 609,
+				"component": "infoChangesApply",
+				"value":"infoChangesApply",
+				"name": "信息变更申请",
+				"iconCls": "fa fa-id-card",
+				"type": "menu",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"user_update_apply","name": "发起申请","dropdown": false,"hidden": true,"sort": 60901,"type": "action","redirect": ""}
+				]
+			},
+			{
+				"path": "infochangesappove",
+				"sort": 610,
+				"component": "infoChangesAppove",
+				"value":"infoChangesAppove",
+				"name": "信息变更审批",
+				"iconCls": "fa fa-id-card",
+				"type": "menu",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"user_update_audit","name": "审批","dropdown": false,"hidden": true,"sort": 61001,"type": "action","redirect": ""}
+				]
+			},
+			{
+				"path": "fuyourecord",
+				"sort": 611,
+				"component": "fuyouRecord",
+				"value":"fuyouRecord",
+				"name": "富友划扣核查",
+				"iconCls": "fa fa-id-card",
+				"type": "menu",
+				"hidden": false,
+				"dropdown": true,
+				"redirect": "",
+				"children": [
+					{"path": "","component": "","value":"fuyou_record_audit","name": "核查","dropdown": false,"hidden": true,"sort": 61101,"type": "action","redirect": ""}
+				]
+			}
+		]
+	}
+]

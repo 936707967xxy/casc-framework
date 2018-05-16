@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.BorrowerMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.Borrower">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME_BEFORE" jdbcType="VARCHAR" property="nameBefore" />
+    <result column="GRADUATE_INSTITUTIONS" jdbcType="VARCHAR" property="graduateInstitutions" />
+    <result column="RAISE_PERSON" jdbcType="VARCHAR" property="raisePerson" />
+    <result column="CHILD_NUMBER" jdbcType="VARCHAR" property="childNumber" />
+    <result column="MARITAL_STATUS" jdbcType="DECIMAL" property="maritalStatus" />
+    <result column="MARITAL_STATUS_VAL" jdbcType="VARCHAR" property="maritalStatusVal" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="START_RESIDENCE_DATE" jdbcType="OTHER" property="startResidenceDate" />
+    <result column="COME_HERE_DATE" jdbcType="OTHER" property="comeHereDate" />
+    <result column="EDU_BACKGROUND" jdbcType="DECIMAL" property="eduBackground" />
+    <result column="EDU_BACKGROUND_VAL" jdbcType="VARCHAR" property="eduBackgroundVal" />
+    <result column="QQ_WECHAT" jdbcType="VARCHAR" property="qqWechat" />
+    <result column="RRESIDENCE_ADDRESS" jdbcType="VARCHAR" property="rresidenceAddress" />
+    <result column="RRESIDENCE_PROV_CODE" jdbcType="VARCHAR" property="rresidenceProvCode" />
+    <result column="RRESIDENCE_PROV_NAME" jdbcType="VARCHAR" property="rresidenceProvName" />
+    <result column="RRESIDENCE_CITY_CODE" jdbcType="VARCHAR" property="rresidenceCityCode" />
+    <result column="RRESIDENCE_CITY_NAME" jdbcType="VARCHAR" property="rresidenceCityName" />
+    <result column="RRESIDENCE_AREA_CODE" jdbcType="VARCHAR" property="rresidenceAreaCode" />
+    <result column="RRESIDENCE_AREA_NAME" jdbcType="VARCHAR" property="rresidenceAreaName" />
+    <result column="RRESIDENCE_ADDRESS_DETAIL" jdbcType="VARCHAR" property="rresidenceAddressDetail" />
+    <result column="RRESIDENCE_ZIP_CODE" jdbcType="VARCHAR" property="rresidenceZipCode" />
+    <result column="HOUSE_ADDRESS" jdbcType="VARCHAR" property="houseAddress" />
+    <result column="HOUSE_PROV_CODE" jdbcType="VARCHAR" property="houseProvCode" />
+    <result column="HOUSE_PROV_NAME" jdbcType="VARCHAR" property="houseProvName" />
+    <result column="HOUSE_CITY_NAME" jdbcType="VARCHAR" property="houseCityName" />
+    <result column="HOUSE_CITY_CODE" jdbcType="VARCHAR" property="houseCityCode" />
+    <result column="HOUSE_AREA_NAME" jdbcType="VARCHAR" property="houseAreaName" />
+    <result column="HOUSE_AREA_CODE" jdbcType="VARCHAR" property="houseAreaCode" />
+    <result column="HOUSE_ADDRESS_DETAIL" jdbcType="VARCHAR" property="houseAddressDetail" />
+    <result column="HOUSE_ZIP_CODE" jdbcType="VARCHAR" property="houseZipCode" />
+    <result column="VALID_MAIL_ADDR" jdbcType="DECIMAL" property="validMailAddr" />
+    <result column="VALID_MAIL_ADDR_VAL" jdbcType="VARCHAR" property="validMailAddrVal" />
+    <result column="VALID_MAIL_ADDR_TXT" jdbcType="VARCHAR" property="validMailAddrTxt" />
+    <result column="FK_ID" jdbcType="VARCHAR" property="fkId" />
+    <result column="LIVE_CONDITIONS" jdbcType="DECIMAL" property="liveConditions" />
+    <result column="LIVE_CONDITIONS_VAL" jdbcType="VARCHAR" property="liveConditionsVal" />
+    <result column="RENT_MONTHLY_PAY" jdbcType="VARCHAR" property="rentMonthlyPay" />
+    <result column="CAR_HAVA" jdbcType="DECIMAL" property="carHava" />
+    <result column="CAR_HAVA_VAL" jdbcType="VARCHAR" property="carHavaVal" />
+    <result column="PROPERTY_TYPE" jdbcType="DECIMAL" property="propertyType" />
+    <result column="PROPERTY_TYPE_VAL" jdbcType="VARCHAR" property="propertyTypeVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NAME_BEFORE, GRADUATE_INSTITUTIONS, RAISE_PERSON, CHILD_NUMBER, MARITAL_STATUS, 
+    MARITAL_STATUS_VAL, EMAIL, START_RESIDENCE_DATE, COME_HERE_DATE, EDU_BACKGROUND, 
+    EDU_BACKGROUND_VAL, QQ_WECHAT, RRESIDENCE_ADDRESS, RRESIDENCE_PROV_CODE, RRESIDENCE_PROV_NAME, 
+    RRESIDENCE_CITY_CODE, RRESIDENCE_CITY_NAME, RRESIDENCE_AREA_CODE, RRESIDENCE_AREA_NAME, 
+    RRESIDENCE_ADDRESS_DETAIL, RRESIDENCE_ZIP_CODE, HOUSE_ADDRESS, HOUSE_PROV_CODE, HOUSE_PROV_NAME, 
+    HOUSE_CITY_NAME, HOUSE_CITY_CODE, HOUSE_AREA_NAME, HOUSE_AREA_CODE, HOUSE_ADDRESS_DETAIL, 
+    HOUSE_ZIP_CODE, VALID_MAIL_ADDR, VALID_MAIL_ADDR_VAL, VALID_MAIL_ADDR_TXT, FK_ID, 
+    LIVE_CONDITIONS, LIVE_CONDITIONS_VAL, RENT_MONTHLY_PAY, CAR_HAVA, CAR_HAVA_VAL, PROPERTY_TYPE, 
+    PROPERTY_TYPE_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_BORROWER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_BORROWER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.Borrower">
+    insert into HS_BORROWER (ID, NAME_BEFORE, GRADUATE_INSTITUTIONS, 
+      RAISE_PERSON, CHILD_NUMBER, MARITAL_STATUS, 
+      MARITAL_STATUS_VAL, EMAIL, START_RESIDENCE_DATE, 
+      COME_HERE_DATE, EDU_BACKGROUND, EDU_BACKGROUND_VAL, 
+      QQ_WECHAT, RRESIDENCE_ADDRESS, RRESIDENCE_PROV_CODE, 
+      RRESIDENCE_PROV_NAME, RRESIDENCE_CITY_CODE, 
+      RRESIDENCE_CITY_NAME, RRESIDENCE_AREA_CODE, 
+      RRESIDENCE_AREA_NAME, RRESIDENCE_ADDRESS_DETAIL, 
+      RRESIDENCE_ZIP_CODE, HOUSE_ADDRESS, HOUSE_PROV_CODE, 
+      HOUSE_PROV_NAME, HOUSE_CITY_NAME, HOUSE_CITY_CODE, 
+      HOUSE_AREA_NAME, HOUSE_AREA_CODE, HOUSE_ADDRESS_DETAIL, 
+      HOUSE_ZIP_CODE, VALID_MAIL_ADDR, VALID_MAIL_ADDR_VAL, 
+      VALID_MAIL_ADDR_TXT, FK_ID, LIVE_CONDITIONS, 
+      LIVE_CONDITIONS_VAL, RENT_MONTHLY_PAY, CAR_HAVA, 
+      CAR_HAVA_VAL, PROPERTY_TYPE, PROPERTY_TYPE_VAL
+      )
+    values (#{id,jdbcType=VARCHAR}, #{nameBefore,jdbcType=VARCHAR}, #{graduateInstitutions,jdbcType=VARCHAR}, 
+      #{raisePerson,jdbcType=VARCHAR}, #{childNumber,jdbcType=VARCHAR}, #{maritalStatus,jdbcType=DECIMAL}, 
+      #{maritalStatusVal,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{startResidenceDate,jdbcType=OTHER}, 
+      #{comeHereDate,jdbcType=OTHER}, #{eduBackground,jdbcType=DECIMAL}, #{eduBackgroundVal,jdbcType=VARCHAR}, 
+      #{qqWechat,jdbcType=VARCHAR}, #{rresidenceAddress,jdbcType=VARCHAR}, #{rresidenceProvCode,jdbcType=VARCHAR}, 
+      #{rresidenceProvName,jdbcType=VARCHAR}, #{rresidenceCityCode,jdbcType=VARCHAR}, 
+      #{rresidenceCityName,jdbcType=VARCHAR}, #{rresidenceAreaCode,jdbcType=VARCHAR}, 
+      #{rresidenceAreaName,jdbcType=VARCHAR}, #{rresidenceAddressDetail,jdbcType=VARCHAR}, 
+      #{rresidenceZipCode,jdbcType=VARCHAR}, #{houseAddress,jdbcType=VARCHAR}, #{houseProvCode,jdbcType=VARCHAR}, 
+      #{houseProvName,jdbcType=VARCHAR}, #{houseCityName,jdbcType=VARCHAR}, #{houseCityCode,jdbcType=VARCHAR}, 
+      #{houseAreaName,jdbcType=VARCHAR}, #{houseAreaCode,jdbcType=VARCHAR}, #{houseAddressDetail,jdbcType=VARCHAR}, 
+      #{houseZipCode,jdbcType=VARCHAR}, #{validMailAddr,jdbcType=DECIMAL}, #{validMailAddrVal,jdbcType=VARCHAR}, 
+      #{validMailAddrTxt,jdbcType=VARCHAR}, #{fkId,jdbcType=VARCHAR}, #{liveConditions,jdbcType=DECIMAL}, 
+      #{liveConditionsVal,jdbcType=VARCHAR}, #{rentMonthlyPay,jdbcType=VARCHAR}, #{carHava,jdbcType=DECIMAL}, 
+      #{carHavaVal,jdbcType=VARCHAR}, #{propertyType,jdbcType=DECIMAL}, #{propertyTypeVal,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.Borrower">
+    insert into HS_BORROWER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="nameBefore != null">
+        NAME_BEFORE,
+      </if>
+      <if test="graduateInstitutions != null">
+        GRADUATE_INSTITUTIONS,
+      </if>
+      <if test="raisePerson != null">
+        RAISE_PERSON,
+      </if>
+      <if test="childNumber != null">
+        CHILD_NUMBER,
+      </if>
+      <if test="maritalStatus != null">
+        MARITAL_STATUS,
+      </if>
+      <if test="maritalStatusVal != null">
+        MARITAL_STATUS_VAL,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="startResidenceDate != null">
+        START_RESIDENCE_DATE,
+      </if>
+      <if test="comeHereDate != null">
+        COME_HERE_DATE,
+      </if>
+      <if test="eduBackground != null">
+        EDU_BACKGROUND,
+      </if>
+      <if test="eduBackgroundVal != null">
+        EDU_BACKGROUND_VAL,
+      </if>
+      <if test="qqWechat != null">
+        QQ_WECHAT,
+      </if>
+      <if test="rresidenceAddress != null">
+        RRESIDENCE_ADDRESS,
+      </if>
+      <if test="rresidenceProvCode != null">
+        RRESIDENCE_PROV_CODE,
+      </if>
+      <if test="rresidenceProvName != null">
+        RRESIDENCE_PROV_NAME,
+      </if>
+      <if test="rresidenceCityCode != null">
+        RRESIDENCE_CITY_CODE,
+      </if>
+      <if test="rresidenceCityName != null">
+        RRESIDENCE_CITY_NAME,
+      </if>
+      <if test="rresidenceAreaCode != null">
+        RRESIDENCE_AREA_CODE,
+      </if>
+      <if test="rresidenceAreaName != null">
+        RRESIDENCE_AREA_NAME,
+      </if>
+      <if test="rresidenceAddressDetail != null">
+        RRESIDENCE_ADDRESS_DETAIL,
+      </if>
+      <if test="rresidenceZipCode != null">
+        RRESIDENCE_ZIP_CODE,
+      </if>
+      <if test="houseAddress != null">
+        HOUSE_ADDRESS,
+      </if>
+      <if test="houseProvCode != null">
+        HOUSE_PROV_CODE,
+      </if>
+      <if test="houseProvName != null">
+        HOUSE_PROV_NAME,
+      </if>
+      <if test="houseCityName != null">
+        HOUSE_CITY_NAME,
+      </if>
+      <if test="houseCityCode != null">
+        HOUSE_CITY_CODE,
+      </if>
+      <if test="houseAreaName != null">
+        HOUSE_AREA_NAME,
+      </if>
+      <if test="houseAreaCode != null">
+        HOUSE_AREA_CODE,
+      </if>
+      <if test="houseAddressDetail != null">
+        HOUSE_ADDRESS_DETAIL,
+      </if>
+      <if test="houseZipCode != null">
+        HOUSE_ZIP_CODE,
+      </if>
+      <if test="validMailAddr != null">
+        VALID_MAIL_ADDR,
+      </if>
+      <if test="validMailAddrVal != null">
+        VALID_MAIL_ADDR_VAL,
+      </if>
+      <if test="validMailAddrTxt != null">
+        VALID_MAIL_ADDR_TXT,
+      </if>
+      <if test="fkId != null">
+        FK_ID,
+      </if>
+      <if test="liveConditions != null">
+        LIVE_CONDITIONS,
+      </if>
+      <if test="liveConditionsVal != null">
+        LIVE_CONDITIONS_VAL,
+      </if>
+      <if test="rentMonthlyPay != null">
+        RENT_MONTHLY_PAY,
+      </if>
+      <if test="carHava != null">
+        CAR_HAVA,
+      </if>
+      <if test="carHavaVal != null">
+        CAR_HAVA_VAL,
+      </if>
+      <if test="propertyType != null">
+        PROPERTY_TYPE,
+      </if>
+      <if test="propertyTypeVal != null">
+        PROPERTY_TYPE_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="nameBefore != null">
+        #{nameBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateInstitutions != null">
+        #{graduateInstitutions,jdbcType=VARCHAR},
+      </if>
+      <if test="raisePerson != null">
+        #{raisePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="childNumber != null">
+        #{childNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        #{maritalStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="maritalStatusVal != null">
+        #{maritalStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="startResidenceDate != null">
+        #{startResidenceDate,jdbcType=OTHER},
+      </if>
+      <if test="comeHereDate != null">
+        #{comeHereDate,jdbcType=OTHER},
+      </if>
+      <if test="eduBackground != null">
+        #{eduBackground,jdbcType=DECIMAL},
+      </if>
+      <if test="eduBackgroundVal != null">
+        #{eduBackgroundVal,jdbcType=VARCHAR},
+      </if>
+      <if test="qqWechat != null">
+        #{qqWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAddress != null">
+        #{rresidenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceProvCode != null">
+        #{rresidenceProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceProvName != null">
+        #{rresidenceProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceCityCode != null">
+        #{rresidenceCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceCityName != null">
+        #{rresidenceCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAreaCode != null">
+        #{rresidenceAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAreaName != null">
+        #{rresidenceAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAddressDetail != null">
+        #{rresidenceAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceZipCode != null">
+        #{rresidenceZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null">
+        #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvCode != null">
+        #{houseProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvName != null">
+        #{houseProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityName != null">
+        #{houseCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityCode != null">
+        #{houseCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaName != null">
+        #{houseAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaCode != null">
+        #{houseAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddressDetail != null">
+        #{houseAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="houseZipCode != null">
+        #{houseZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validMailAddr != null">
+        #{validMailAddr,jdbcType=DECIMAL},
+      </if>
+      <if test="validMailAddrVal != null">
+        #{validMailAddrVal,jdbcType=VARCHAR},
+      </if>
+      <if test="validMailAddrTxt != null">
+        #{validMailAddrTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="fkId != null">
+        #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="liveConditions != null">
+        #{liveConditions,jdbcType=DECIMAL},
+      </if>
+      <if test="liveConditionsVal != null">
+        #{liveConditionsVal,jdbcType=VARCHAR},
+      </if>
+      <if test="rentMonthlyPay != null">
+        #{rentMonthlyPay,jdbcType=VARCHAR},
+      </if>
+      <if test="carHava != null">
+        #{carHava,jdbcType=DECIMAL},
+      </if>
+      <if test="carHavaVal != null">
+        #{carHavaVal,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyType != null">
+        #{propertyType,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyTypeVal != null">
+        #{propertyTypeVal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.Borrower">
+    update HS_BORROWER
+    <set>
+      <if test="nameBefore != null">
+        NAME_BEFORE = #{nameBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateInstitutions != null">
+        GRADUATE_INSTITUTIONS = #{graduateInstitutions,jdbcType=VARCHAR},
+      </if>
+      <if test="raisePerson != null">
+        RAISE_PERSON = #{raisePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="childNumber != null">
+        CHILD_NUMBER = #{childNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        MARITAL_STATUS = #{maritalStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="maritalStatusVal != null">
+        MARITAL_STATUS_VAL = #{maritalStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="startResidenceDate != null">
+        START_RESIDENCE_DATE = #{startResidenceDate,jdbcType=OTHER},
+      </if>
+      <if test="comeHereDate != null">
+        COME_HERE_DATE = #{comeHereDate,jdbcType=OTHER},
+      </if>
+      <if test="eduBackground != null">
+        EDU_BACKGROUND = #{eduBackground,jdbcType=DECIMAL},
+      </if>
+      <if test="eduBackgroundVal != null">
+        EDU_BACKGROUND_VAL = #{eduBackgroundVal,jdbcType=VARCHAR},
+      </if>
+      <if test="qqWechat != null">
+        QQ_WECHAT = #{qqWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAddress != null">
+        RRESIDENCE_ADDRESS = #{rresidenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceProvCode != null">
+        RRESIDENCE_PROV_CODE = #{rresidenceProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceProvName != null">
+        RRESIDENCE_PROV_NAME = #{rresidenceProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceCityCode != null">
+        RRESIDENCE_CITY_CODE = #{rresidenceCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceCityName != null">
+        RRESIDENCE_CITY_NAME = #{rresidenceCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAreaCode != null">
+        RRESIDENCE_AREA_CODE = #{rresidenceAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAreaName != null">
+        RRESIDENCE_AREA_NAME = #{rresidenceAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAddressDetail != null">
+        RRESIDENCE_ADDRESS_DETAIL = #{rresidenceAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceZipCode != null">
+        RRESIDENCE_ZIP_CODE = #{rresidenceZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null">
+        HOUSE_ADDRESS = #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvCode != null">
+        HOUSE_PROV_CODE = #{houseProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvName != null">
+        HOUSE_PROV_NAME = #{houseProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityName != null">
+        HOUSE_CITY_NAME = #{houseCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityCode != null">
+        HOUSE_CITY_CODE = #{houseCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaName != null">
+        HOUSE_AREA_NAME = #{houseAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaCode != null">
+        HOUSE_AREA_CODE = #{houseAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddressDetail != null">
+        HOUSE_ADDRESS_DETAIL = #{houseAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="houseZipCode != null">
+        HOUSE_ZIP_CODE = #{houseZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validMailAddr != null">
+        VALID_MAIL_ADDR = #{validMailAddr,jdbcType=DECIMAL},
+      </if>
+      <if test="validMailAddrVal != null">
+        VALID_MAIL_ADDR_VAL = #{validMailAddrVal,jdbcType=VARCHAR},
+      </if>
+      <if test="validMailAddrTxt != null">
+        VALID_MAIL_ADDR_TXT = #{validMailAddrTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="fkId != null">
+        FK_ID = #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="liveConditions != null">
+        LIVE_CONDITIONS = #{liveConditions,jdbcType=DECIMAL},
+      </if>
+      <if test="liveConditionsVal != null">
+        LIVE_CONDITIONS_VAL = #{liveConditionsVal,jdbcType=VARCHAR},
+      </if>
+      <if test="rentMonthlyPay != null">
+        RENT_MONTHLY_PAY = #{rentMonthlyPay,jdbcType=VARCHAR},
+      </if>
+      <if test="carHava != null">
+        CAR_HAVA = #{carHava,jdbcType=DECIMAL},
+      </if>
+      <if test="carHavaVal != null">
+        CAR_HAVA_VAL = #{carHavaVal,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyType != null">
+        PROPERTY_TYPE = #{propertyType,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyTypeVal != null">
+        PROPERTY_TYPE_VAL = #{propertyTypeVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.Borrower">
+    update HS_BORROWER
+    set NAME_BEFORE = #{nameBefore,jdbcType=VARCHAR},
+      GRADUATE_INSTITUTIONS = #{graduateInstitutions,jdbcType=VARCHAR},
+      RAISE_PERSON = #{raisePerson,jdbcType=VARCHAR},
+      CHILD_NUMBER = #{childNumber,jdbcType=VARCHAR},
+      MARITAL_STATUS = #{maritalStatus,jdbcType=DECIMAL},
+      MARITAL_STATUS_VAL = #{maritalStatusVal,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      START_RESIDENCE_DATE = #{startResidenceDate,jdbcType=OTHER},
+      COME_HERE_DATE = #{comeHereDate,jdbcType=OTHER},
+      EDU_BACKGROUND = #{eduBackground,jdbcType=DECIMAL},
+      EDU_BACKGROUND_VAL = #{eduBackgroundVal,jdbcType=VARCHAR},
+      QQ_WECHAT = #{qqWechat,jdbcType=VARCHAR},
+      RRESIDENCE_ADDRESS = #{rresidenceAddress,jdbcType=VARCHAR},
+      RRESIDENCE_PROV_CODE = #{rresidenceProvCode,jdbcType=VARCHAR},
+      RRESIDENCE_PROV_NAME = #{rresidenceProvName,jdbcType=VARCHAR},
+      RRESIDENCE_CITY_CODE = #{rresidenceCityCode,jdbcType=VARCHAR},
+      RRESIDENCE_CITY_NAME = #{rresidenceCityName,jdbcType=VARCHAR},
+      RRESIDENCE_AREA_CODE = #{rresidenceAreaCode,jdbcType=VARCHAR},
+      RRESIDENCE_AREA_NAME = #{rresidenceAreaName,jdbcType=VARCHAR},
+      RRESIDENCE_ADDRESS_DETAIL = #{rresidenceAddressDetail,jdbcType=VARCHAR},
+      RRESIDENCE_ZIP_CODE = #{rresidenceZipCode,jdbcType=VARCHAR},
+      HOUSE_ADDRESS = #{houseAddress,jdbcType=VARCHAR},
+      HOUSE_PROV_CODE = #{houseProvCode,jdbcType=VARCHAR},
+      HOUSE_PROV_NAME = #{houseProvName,jdbcType=VARCHAR},
+      HOUSE_CITY_NAME = #{houseCityName,jdbcType=VARCHAR},
+      HOUSE_CITY_CODE = #{houseCityCode,jdbcType=VARCHAR},
+      HOUSE_AREA_NAME = #{houseAreaName,jdbcType=VARCHAR},
+      HOUSE_AREA_CODE = #{houseAreaCode,jdbcType=VARCHAR},
+      HOUSE_ADDRESS_DETAIL = #{houseAddressDetail,jdbcType=VARCHAR},
+      HOUSE_ZIP_CODE = #{houseZipCode,jdbcType=VARCHAR},
+      VALID_MAIL_ADDR = #{validMailAddr,jdbcType=DECIMAL},
+      VALID_MAIL_ADDR_VAL = #{validMailAddrVal,jdbcType=VARCHAR},
+      VALID_MAIL_ADDR_TXT = #{validMailAddrTxt,jdbcType=VARCHAR},
+      FK_ID = #{fkId,jdbcType=VARCHAR},
+      LIVE_CONDITIONS = #{liveConditions,jdbcType=DECIMAL},
+      LIVE_CONDITIONS_VAL = #{liveConditionsVal,jdbcType=VARCHAR},
+      RENT_MONTHLY_PAY = #{rentMonthlyPay,jdbcType=VARCHAR},
+      CAR_HAVA = #{carHava,jdbcType=DECIMAL},
+      CAR_HAVA_VAL = #{carHavaVal,jdbcType=VARCHAR},
+      PROPERTY_TYPE = #{propertyType,jdbcType=DECIMAL},
+      PROPERTY_TYPE_VAL = #{propertyTypeVal,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByFkid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hs_borrower
+    where FK_ID = #{fkId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="updateByFkid" parameterType="com.hoomsun.app.api.model.Borrower">
+    update hs_borrower
+    <set>
+      <if test="nameBefore != null">
+        NAME_BEFORE = #{nameBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateInstitutions != null">
+        GRADUATE_INSTITUTIONS = #{graduateInstitutions,jdbcType=VARCHAR},
+      </if>
+      <if test="raisePerson != null">
+        RAISE_PERSON = #{raisePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="childNumber != null">
+        CHILD_NUMBER = #{childNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        MARITAL_STATUS = #{maritalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="maritalStatusVal != null">
+        MARITAL_STATUS_VAL = #{maritalStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="startResidenceDate != null">
+        START_RESIDENCE_DATE = #{startResidenceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comeHereDate != null">
+        COME_HERE_DATE = #{comeHereDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eduBackground != null">
+        EDU_BACKGROUND = #{eduBackground,jdbcType=INTEGER},
+      </if>
+      <if test="eduBackgroundVal != null">
+        EDU_BACKGROUND_VAL = #{eduBackgroundVal,jdbcType=VARCHAR},
+      </if>
+      <if test="qqWechat != null">
+        QQ_WECHAT = #{qqWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAddress != null">
+        RRESIDENCE_ADDRESS = #{rresidenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceProvCode != null">
+        RRESIDENCE_PROV_CODE = #{rresidenceProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceProvName != null">
+        RRESIDENCE_PROV_NAME = #{rresidenceProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceCityCode != null">
+        RRESIDENCE_CITY_CODE = #{rresidenceCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceCityName != null">
+        RRESIDENCE_CITY_NAME = #{rresidenceCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAreaCode != null">
+        RRESIDENCE_AREA_CODE = #{rresidenceAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAreaName != null">
+        RRESIDENCE_AREA_NAME = #{rresidenceAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAddressDetail != null">
+        RRESIDENCE_ADDRESS_DETAIL = #{rresidenceAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null">
+        HOUSE_ADDRESS = #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceZipCode != null">
+        RRESIDENCE_ZIP_CODE = #{rresidenceZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvCode != null">
+        HOUSE_PROV_CODE = #{houseProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvName != null">
+        HOUSE_PROV_NAME = #{houseProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityName != null">
+        HOUSE_CITY_NAME = #{houseCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityCode != null">
+        HOUSE_CITY_CODE = #{houseCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaName != null">
+        HOUSE_AREA_NAME = #{houseAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaCode != null">
+        HOUSE_AREA_CODE = #{houseAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddressDetail != null">
+        HOUSE_ADDRESS_DETAIL = #{houseAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="houseZipCode != null">
+        HOUSE_ZIP_CODE = #{houseZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validMailAddr != null">
+        VALID_MAIL_ADDR = #{validMailAddr,jdbcType=INTEGER},
+      </if>
+      <if test="validMailAddrVal != null">
+        VALID_MAIL_ADDR_VAL = #{validMailAddrVal,jdbcType=VARCHAR},
+      </if>
+      <if test="validMailAddrTxt != null">
+        VALID_MAIL_ADDR_TXT = #{validMailAddrTxt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where  FK_ID = #{fkId,jdbcType=VARCHAR}
+  </select>
+</mapper>

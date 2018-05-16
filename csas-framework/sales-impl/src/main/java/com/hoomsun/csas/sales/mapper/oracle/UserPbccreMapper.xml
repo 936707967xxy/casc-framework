@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserPbccreMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserPbccre">
+    <id column="CR_ID" jdbcType="VARCHAR" property="crId" />
+    <result column="CREDIT_TIME" jdbcType="VARCHAR" property="creditTime" />
+    <result column="JSTYSYQZH" jdbcType="VARCHAR" property="jstysyqzh" />
+    <result column="IS_DZ" jdbcType="VARCHAR" property="isDz" />
+    <result column="IS_DQYQ" jdbcType="VARCHAR" property="isDqyq" />
+    <result column="HJK_SUM" jdbcType="VARCHAR" property="hjkSum" />
+    <result column="HJK_USE" jdbcType="VARCHAR" property="hjkUse" />
+    <result column="HJK_AMT" jdbcType="VARCHAR" property="hjkAmt" />
+    <result column="HJK_USER_AMT" jdbcType="VARCHAR" property="hjkUserAmt" />
+    <result column="HJK_YQ_RATE" jdbcType="VARCHAR" property="hjkYqRate" />
+    <result column="HJK_YQ_AMT" jdbcType="VARCHAR" property="hjkYqAmt" />
+    <result column="HJK_YQ_SUM" jdbcType="VARCHAR" property="hjkYqSum" />
+    <result column="HJK_DQYQ_SUM" jdbcType="VARCHAR" property="hjkDqyqSum" />
+    <result column="FD_SUM" jdbcType="VARCHAR" property="fdSum" />
+    <result column="FD_AMT" jdbcType="VARCHAR" property="fdAmt" />
+    <result column="FD_YH" jdbcType="VARCHAR" property="fdYh" />
+    <result column="FD_YHQS" jdbcType="VARCHAR" property="fdYhqs" />
+    <result column="OTHER_SUM" jdbcType="VARCHAR" property="otherSum" />
+    <result column="OTHER_AMT" jdbcType="VARCHAR" property="otherAmt" />
+    <result column="OTHER_YH" jdbcType="VARCHAR" property="otherYh" />
+    <result column="WLD_AMT" jdbcType="VARCHAR" property="wldAmt" />
+    <result column="WLD_TIME" jdbcType="VARCHAR" property="wldTime" />
+    <result column="WLD_OVER_TIME" jdbcType="VARCHAR" property="wldOverTime" />
+    <result column="WLD_SUM" jdbcType="VARCHAR" property="wldSum" />
+    <result column="DK_YQ_RATE" jdbcType="VARCHAR" property="dkYqRate" />
+    <result column="DK_FEIYINHANG" jdbcType="VARCHAR" property="dkFeiyinhang" />
+    <result column="YIYUE_DYWW_SUM" jdbcType="VARCHAR" property="yiyueDywwSum" />
+    <result column="YIYUE_DYWW_AMT" jdbcType="VARCHAR" property="yiyueDywwAmt" />
+    <result column="YQ_RATE_XYLN" jdbcType="VARCHAR" property="yqRateXyln" />
+    <result column="DK_YQ_SUM" jdbcType="VARCHAR" property="dkYqSum" />
+    <result column="YQ_RATE_DYLN" jdbcType="VARCHAR" property="yqRateDyln" />
+    <result column="DK_YQ_AMT" jdbcType="VARCHAR" property="dkYqAmt" />
+    <result column="DK_DQYQ_SUM" jdbcType="VARCHAR" property="dkDqyqSum" />
+    <result column="JLYCXCHGRCX" jdbcType="VARCHAR" property="jlycxchgrcx" />
+    <result column="JLYCXCHBQSC" jdbcType="VARCHAR" property="jlycxchbqsc" />
+    <result column="JLYCXCHDHCW" jdbcType="VARCHAR" property="jlycxchdhcw" />
+    <result column="ZXYYCXCS" jdbcType="VARCHAR" property="zxyycxcs" />
+    <result column="ADD_DATE" jdbcType="OTHER" property="addDate" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="LIABILITIES_LOAN" jdbcType="VARCHAR" property="liabilitiesLoan" />
+    <result column="LIABILITIES_CARD" jdbcType="VARCHAR" property="liabilitiesCard" />
+    <result column="LIABILITIES_CURRENT" jdbcType="VARCHAR" property="liabilitiesCurrent" />
+    <result column="PROPERTY_TYPE_ZX" jdbcType="VARCHAR" property="propertyTypeZx" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CR_ID, CREDIT_TIME, JSTYSYQZH, IS_DZ, IS_DQYQ, HJK_SUM, HJK_USE, HJK_AMT, HJK_USER_AMT, 
+    HJK_YQ_RATE, HJK_YQ_AMT, HJK_YQ_SUM, HJK_DQYQ_SUM, FD_SUM, FD_AMT, FD_YH, FD_YHQS, 
+    OTHER_SUM, OTHER_AMT, OTHER_YH, WLD_AMT, WLD_TIME, WLD_OVER_TIME, WLD_SUM, DK_YQ_RATE, 
+    DK_FEIYINHANG, YIYUE_DYWW_SUM, YIYUE_DYWW_AMT, YQ_RATE_XYLN, DK_YQ_SUM, YQ_RATE_DYLN, 
+    DK_YQ_AMT, DK_DQYQ_SUM, JLYCXCHGRCX, JLYCXCHBQSC, JLYCXCHDHCW, ZXYYCXCS, ADD_DATE, 
+    APPLY_ID, LIABILITIES_LOAN, LIABILITIES_CARD, LIABILITIES_CURRENT, PROPERTY_TYPE_ZX
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PBCCRC
+    where CR_ID = #{crId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PBCCRC
+    where CR_ID = #{crId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserPbccre">
+    insert into HS_PBCCRC (CR_ID, CREDIT_TIME, JSTYSYQZH, 
+      IS_DZ, IS_DQYQ, HJK_SUM, 
+      HJK_USE, HJK_AMT, HJK_USER_AMT, 
+      HJK_YQ_RATE, HJK_YQ_AMT, HJK_YQ_SUM, 
+      HJK_DQYQ_SUM, FD_SUM, FD_AMT, 
+      FD_YH, FD_YHQS, OTHER_SUM, 
+      OTHER_AMT, OTHER_YH, WLD_AMT, 
+      WLD_TIME, WLD_OVER_TIME, WLD_SUM, 
+      DK_YQ_RATE, DK_FEIYINHANG, YIYUE_DYWW_SUM, 
+      YIYUE_DYWW_AMT, YQ_RATE_XYLN, DK_YQ_SUM, 
+      YQ_RATE_DYLN, DK_YQ_AMT, DK_DQYQ_SUM, 
+      JLYCXCHGRCX, JLYCXCHBQSC, JLYCXCHDHCW, 
+      ZXYYCXCS, ADD_DATE, APPLY_ID, 
+      LIABILITIES_LOAN, LIABILITIES_CARD, LIABILITIES_CURRENT, 
+      PROPERTY_TYPE_ZX)
+    values (#{crId,jdbcType=VARCHAR}, #{creditTime,jdbcType=VARCHAR}, #{jstysyqzh,jdbcType=VARCHAR}, 
+      #{isDz,jdbcType=VARCHAR}, #{isDqyq,jdbcType=VARCHAR}, #{hjkSum,jdbcType=VARCHAR}, 
+      #{hjkUse,jdbcType=VARCHAR}, #{hjkAmt,jdbcType=VARCHAR}, #{hjkUserAmt,jdbcType=VARCHAR}, 
+      #{hjkYqRate,jdbcType=VARCHAR}, #{hjkYqAmt,jdbcType=VARCHAR}, #{hjkYqSum,jdbcType=VARCHAR}, 
+      #{hjkDqyqSum,jdbcType=VARCHAR}, #{fdSum,jdbcType=VARCHAR}, #{fdAmt,jdbcType=VARCHAR}, 
+      #{fdYh,jdbcType=VARCHAR}, #{fdYhqs,jdbcType=VARCHAR}, #{otherSum,jdbcType=VARCHAR}, 
+      #{otherAmt,jdbcType=VARCHAR}, #{otherYh,jdbcType=VARCHAR}, #{wldAmt,jdbcType=VARCHAR}, 
+      #{wldTime,jdbcType=VARCHAR}, #{wldOverTime,jdbcType=VARCHAR}, #{wldSum,jdbcType=VARCHAR}, 
+      #{dkYqRate,jdbcType=VARCHAR}, #{dkFeiyinhang,jdbcType=VARCHAR}, #{yiyueDywwSum,jdbcType=VARCHAR}, 
+      #{yiyueDywwAmt,jdbcType=VARCHAR}, #{yqRateXyln,jdbcType=VARCHAR}, #{dkYqSum,jdbcType=VARCHAR}, 
+      #{yqRateDyln,jdbcType=VARCHAR}, #{dkYqAmt,jdbcType=VARCHAR}, #{dkDqyqSum,jdbcType=VARCHAR}, 
+      #{jlycxchgrcx,jdbcType=VARCHAR}, #{jlycxchbqsc,jdbcType=VARCHAR}, #{jlycxchdhcw,jdbcType=VARCHAR}, 
+      #{zxyycxcs,jdbcType=VARCHAR}, #{addDate,jdbcType=OTHER}, #{applyId,jdbcType=VARCHAR}, 
+      #{liabilitiesLoan,jdbcType=VARCHAR}, #{liabilitiesCard,jdbcType=VARCHAR}, #{liabilitiesCurrent,jdbcType=VARCHAR}, 
+      #{propertyTypeZx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserPbccre">
+    insert into HS_PBCCRC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="crId != null">
+        CR_ID,
+      </if>
+      <if test="creditTime != null">
+        CREDIT_TIME,
+      </if>
+      <if test="jstysyqzh != null">
+        JSTYSYQZH,
+      </if>
+      <if test="isDz != null">
+        IS_DZ,
+      </if>
+      <if test="isDqyq != null">
+        IS_DQYQ,
+      </if>
+      <if test="hjkSum != null">
+        HJK_SUM,
+      </if>
+      <if test="hjkUse != null">
+        HJK_USE,
+      </if>
+      <if test="hjkAmt != null">
+        HJK_AMT,
+      </if>
+      <if test="hjkUserAmt != null">
+        HJK_USER_AMT,
+      </if>
+      <if test="hjkYqRate != null">
+        HJK_YQ_RATE,
+      </if>
+      <if test="hjkYqAmt != null">
+        HJK_YQ_AMT,
+      </if>
+      <if test="hjkYqSum != null">
+        HJK_YQ_SUM,
+      </if>
+      <if test="hjkDqyqSum != null">
+        HJK_DQYQ_SUM,
+      </if>
+      <if test="fdSum != null">
+        FD_SUM,
+      </if>
+      <if test="fdAmt != null">
+        FD_AMT,
+      </if>
+      <if test="fdYh != null">
+        FD_YH,
+      </if>
+      <if test="fdYhqs != null">
+        FD_YHQS,
+      </if>
+      <if test="otherSum != null">
+        OTHER_SUM,
+      </if>
+      <if test="otherAmt != null">
+        OTHER_AMT,
+      </if>
+      <if test="otherYh != null">
+        OTHER_YH,
+      </if>
+      <if test="wldAmt != null">
+        WLD_AMT,
+      </if>
+      <if test="wldTime != null">
+        WLD_TIME,
+      </if>
+      <if test="wldOverTime != null">
+        WLD_OVER_TIME,
+      </if>
+      <if test="wldSum != null">
+        WLD_SUM,
+      </if>
+      <if test="dkYqRate != null">
+        DK_YQ_RATE,
+      </if>
+      <if test="dkFeiyinhang != null">
+        DK_FEIYINHANG,
+      </if>
+      <if test="yiyueDywwSum != null">
+        YIYUE_DYWW_SUM,
+      </if>
+      <if test="yiyueDywwAmt != null">
+        YIYUE_DYWW_AMT,
+      </if>
+      <if test="yqRateXyln != null">
+        YQ_RATE_XYLN,
+      </if>
+      <if test="dkYqSum != null">
+        DK_YQ_SUM,
+      </if>
+      <if test="yqRateDyln != null">
+        YQ_RATE_DYLN,
+      </if>
+      <if test="dkYqAmt != null">
+        DK_YQ_AMT,
+      </if>
+      <if test="dkDqyqSum != null">
+        DK_DQYQ_SUM,
+      </if>
+      <if test="jlycxchgrcx != null">
+        JLYCXCHGRCX,
+      </if>
+      <if test="jlycxchbqsc != null">
+        JLYCXCHBQSC,
+      </if>
+      <if test="jlycxchdhcw != null">
+        JLYCXCHDHCW,
+      </if>
+      <if test="zxyycxcs != null">
+        ZXYYCXCS,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="liabilitiesLoan != null">
+        LIABILITIES_LOAN,
+      </if>
+      <if test="liabilitiesCard != null">
+        LIABILITIES_CARD,
+      </if>
+      <if test="liabilitiesCurrent != null">
+        LIABILITIES_CURRENT,
+      </if>
+      <if test="propertyTypeZx != null">
+        PROPERTY_TYPE_ZX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="crId != null">
+        #{crId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditTime != null">
+        #{creditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jstysyqzh != null">
+        #{jstysyqzh,jdbcType=VARCHAR},
+      </if>
+      <if test="isDz != null">
+        #{isDz,jdbcType=VARCHAR},
+      </if>
+      <if test="isDqyq != null">
+        #{isDqyq,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkSum != null">
+        #{hjkSum,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkUse != null">
+        #{hjkUse,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkAmt != null">
+        #{hjkAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkUserAmt != null">
+        #{hjkUserAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqRate != null">
+        #{hjkYqRate,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqAmt != null">
+        #{hjkYqAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqSum != null">
+        #{hjkYqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkDqyqSum != null">
+        #{hjkDqyqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="fdSum != null">
+        #{fdSum,jdbcType=VARCHAR},
+      </if>
+      <if test="fdAmt != null">
+        #{fdAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="fdYh != null">
+        #{fdYh,jdbcType=VARCHAR},
+      </if>
+      <if test="fdYhqs != null">
+        #{fdYhqs,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSum != null">
+        #{otherSum,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAmt != null">
+        #{otherAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="otherYh != null">
+        #{otherYh,jdbcType=VARCHAR},
+      </if>
+      <if test="wldAmt != null">
+        #{wldAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="wldTime != null">
+        #{wldTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wldOverTime != null">
+        #{wldOverTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wldSum != null">
+        #{wldSum,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqRate != null">
+        #{dkYqRate,jdbcType=VARCHAR},
+      </if>
+      <if test="dkFeiyinhang != null">
+        #{dkFeiyinhang,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyueDywwSum != null">
+        #{yiyueDywwSum,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyueDywwAmt != null">
+        #{yiyueDywwAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="yqRateXyln != null">
+        #{yqRateXyln,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqSum != null">
+        #{dkYqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="yqRateDyln != null">
+        #{yqRateDyln,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqAmt != null">
+        #{dkYqAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="dkDqyqSum != null">
+        #{dkDqyqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchgrcx != null">
+        #{jlycxchgrcx,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchbqsc != null">
+        #{jlycxchbqsc,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchdhcw != null">
+        #{jlycxchdhcw,jdbcType=VARCHAR},
+      </if>
+      <if test="zxyycxcs != null">
+        #{zxyycxcs,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=OTHER},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesLoan != null">
+        #{liabilitiesLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesCard != null">
+        #{liabilitiesCard,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesCurrent != null">
+        #{liabilitiesCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyTypeZx != null">
+        #{propertyTypeZx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserPbccre">
+    update HS_PBCCRC
+    <set>
+      <if test="creditTime != null">
+        CREDIT_TIME = #{creditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jstysyqzh != null">
+        JSTYSYQZH = #{jstysyqzh,jdbcType=VARCHAR},
+      </if>
+      <if test="isDz != null">
+        IS_DZ = #{isDz,jdbcType=VARCHAR},
+      </if>
+      <if test="isDqyq != null">
+        IS_DQYQ = #{isDqyq,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkSum != null">
+        HJK_SUM = #{hjkSum,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkUse != null">
+        HJK_USE = #{hjkUse,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkAmt != null">
+        HJK_AMT = #{hjkAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkUserAmt != null">
+        HJK_USER_AMT = #{hjkUserAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqRate != null">
+        HJK_YQ_RATE = #{hjkYqRate,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqAmt != null">
+        HJK_YQ_AMT = #{hjkYqAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqSum != null">
+        HJK_YQ_SUM = #{hjkYqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkDqyqSum != null">
+        HJK_DQYQ_SUM = #{hjkDqyqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="fdSum != null">
+        FD_SUM = #{fdSum,jdbcType=VARCHAR},
+      </if>
+      <if test="fdAmt != null">
+        FD_AMT = #{fdAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="fdYh != null">
+        FD_YH = #{fdYh,jdbcType=VARCHAR},
+      </if>
+      <if test="fdYhqs != null">
+        FD_YHQS = #{fdYhqs,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSum != null">
+        OTHER_SUM = #{otherSum,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAmt != null">
+        OTHER_AMT = #{otherAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="otherYh != null">
+        OTHER_YH = #{otherYh,jdbcType=VARCHAR},
+      </if>
+      <if test="wldAmt != null">
+        WLD_AMT = #{wldAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="wldTime != null">
+        WLD_TIME = #{wldTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wldOverTime != null">
+        WLD_OVER_TIME = #{wldOverTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wldSum != null">
+        WLD_SUM = #{wldSum,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqRate != null">
+        DK_YQ_RATE = #{dkYqRate,jdbcType=VARCHAR},
+      </if>
+      <if test="dkFeiyinhang != null">
+        DK_FEIYINHANG = #{dkFeiyinhang,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyueDywwSum != null">
+        YIYUE_DYWW_SUM = #{yiyueDywwSum,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyueDywwAmt != null">
+        YIYUE_DYWW_AMT = #{yiyueDywwAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="yqRateXyln != null">
+        YQ_RATE_XYLN = #{yqRateXyln,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqSum != null">
+        DK_YQ_SUM = #{dkYqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="yqRateDyln != null">
+        YQ_RATE_DYLN = #{yqRateDyln,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqAmt != null">
+        DK_YQ_AMT = #{dkYqAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="dkDqyqSum != null">
+        DK_DQYQ_SUM = #{dkDqyqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchgrcx != null">
+        JLYCXCHGRCX = #{jlycxchgrcx,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchbqsc != null">
+        JLYCXCHBQSC = #{jlycxchbqsc,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchdhcw != null">
+        JLYCXCHDHCW = #{jlycxchdhcw,jdbcType=VARCHAR},
+      </if>
+      <if test="zxyycxcs != null">
+        ZXYYCXCS = #{zxyycxcs,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=OTHER},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesLoan != null">
+        LIABILITIES_LOAN = #{liabilitiesLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesCard != null">
+        LIABILITIES_CARD = #{liabilitiesCard,jdbcType=VARCHAR},
+      </if>
+      <if test="liabilitiesCurrent != null">
+        LIABILITIES_CURRENT = #{liabilitiesCurrent,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyTypeZx != null">
+        PROPERTY_TYPE_ZX = #{propertyTypeZx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CR_ID = #{crId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserPbccre">
+    update HS_PBCCRC
+    set CREDIT_TIME = #{creditTime,jdbcType=VARCHAR},
+      JSTYSYQZH = #{jstysyqzh,jdbcType=VARCHAR},
+      IS_DZ = #{isDz,jdbcType=VARCHAR},
+      IS_DQYQ = #{isDqyq,jdbcType=VARCHAR},
+      HJK_SUM = #{hjkSum,jdbcType=VARCHAR},
+      HJK_USE = #{hjkUse,jdbcType=VARCHAR},
+      HJK_AMT = #{hjkAmt,jdbcType=VARCHAR},
+      HJK_USER_AMT = #{hjkUserAmt,jdbcType=VARCHAR},
+      HJK_YQ_RATE = #{hjkYqRate,jdbcType=VARCHAR},
+      HJK_YQ_AMT = #{hjkYqAmt,jdbcType=VARCHAR},
+      HJK_YQ_SUM = #{hjkYqSum,jdbcType=VARCHAR},
+      HJK_DQYQ_SUM = #{hjkDqyqSum,jdbcType=VARCHAR},
+      FD_SUM = #{fdSum,jdbcType=VARCHAR},
+      FD_AMT = #{fdAmt,jdbcType=VARCHAR},
+      FD_YH = #{fdYh,jdbcType=VARCHAR},
+      FD_YHQS = #{fdYhqs,jdbcType=VARCHAR},
+      OTHER_SUM = #{otherSum,jdbcType=VARCHAR},
+      OTHER_AMT = #{otherAmt,jdbcType=VARCHAR},
+      OTHER_YH = #{otherYh,jdbcType=VARCHAR},
+      WLD_AMT = #{wldAmt,jdbcType=VARCHAR},
+      WLD_TIME = #{wldTime,jdbcType=VARCHAR},
+      WLD_OVER_TIME = #{wldOverTime,jdbcType=VARCHAR},
+      WLD_SUM = #{wldSum,jdbcType=VARCHAR},
+      DK_YQ_RATE = #{dkYqRate,jdbcType=VARCHAR},
+      DK_FEIYINHANG = #{dkFeiyinhang,jdbcType=VARCHAR},
+      YIYUE_DYWW_SUM = #{yiyueDywwSum,jdbcType=VARCHAR},
+      YIYUE_DYWW_AMT = #{yiyueDywwAmt,jdbcType=VARCHAR},
+      YQ_RATE_XYLN = #{yqRateXyln,jdbcType=VARCHAR},
+      DK_YQ_SUM = #{dkYqSum,jdbcType=VARCHAR},
+      YQ_RATE_DYLN = #{yqRateDyln,jdbcType=VARCHAR},
+      DK_YQ_AMT = #{dkYqAmt,jdbcType=VARCHAR},
+      DK_DQYQ_SUM = #{dkDqyqSum,jdbcType=VARCHAR},
+      JLYCXCHGRCX = #{jlycxchgrcx,jdbcType=VARCHAR},
+      JLYCXCHBQSC = #{jlycxchbqsc,jdbcType=VARCHAR},
+      JLYCXCHDHCW = #{jlycxchdhcw,jdbcType=VARCHAR},
+      ZXYYCXCS = #{zxyycxcs,jdbcType=VARCHAR},
+      ADD_DATE = #{addDate,jdbcType=OTHER},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      LIABILITIES_LOAN = #{liabilitiesLoan,jdbcType=VARCHAR},
+      LIABILITIES_CARD = #{liabilitiesCard,jdbcType=VARCHAR},
+      LIABILITIES_CURRENT = #{liabilitiesCurrent,jdbcType=VARCHAR},
+      PROPERTY_TYPE_ZX = #{propertyTypeZx,jdbcType=VARCHAR}
+    where CR_ID = #{crId,jdbcType=VARCHAR}
+  </update>
+  
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserPbccreMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserPbccre">
+    <id column="CR_ID" jdbcType="VARCHAR" property="crId" />
+    <result column="CREDIT_TIME" jdbcType="VARCHAR" property="creditTime" />
+    <result column="JSTYSYQZH" jdbcType="VARCHAR" property="jstysyqzh" />
+    <result column="IS_DZ" jdbcType="VARCHAR" property="isDz" />
+    <result column="IS_DQYQ" jdbcType="VARCHAR" property="isDqyq" />
+    <result column="HJK_SUM" jdbcType="VARCHAR" property="hjkSum" />
+    <result column="HJK_USE" jdbcType="VARCHAR" property="hjkUse" />
+    <result column="HJK_AMT" jdbcType="VARCHAR" property="hjkAmt" />
+    <result column="HJK_USER_AMT" jdbcType="VARCHAR" property="hjkUserAmt" />
+    <result column="HJK_YQ_RATE" jdbcType="VARCHAR" property="hjkYqRate" />
+    <result column="HJK_YQ_AMT" jdbcType="VARCHAR" property="hjkYqAmt" />
+    <result column="HJK_YQ_SUM" jdbcType="VARCHAR" property="hjkYqSum" />
+    <result column="HJK_DQYQ_SUM" jdbcType="VARCHAR" property="hjkDqyqSum" />
+    <result column="FD_SUM" jdbcType="VARCHAR" property="fdSum" />
+    <result column="FD_AMT" jdbcType="VARCHAR" property="fdAmt" />
+    <result column="FD_YH" jdbcType="VARCHAR" property="fdYh" />
+    <result column="FD_YHQS" jdbcType="VARCHAR" property="fdYhqs" />
+    <result column="OTHER_SUM" jdbcType="VARCHAR" property="otherSum" />
+    <result column="OTHER_AMT" jdbcType="VARCHAR" property="otherAmt" />
+    <result column="OTHER_YH" jdbcType="VARCHAR" property="otherYh" />
+    <result column="WLD_AMT" jdbcType="VARCHAR" property="wldAmt" />
+    <result column="WLD_TIME" jdbcType="VARCHAR" property="wldTime" />
+    <result column="WLD_OVER_TIME" jdbcType="VARCHAR" property="wldOverTime" />
+    <result column="WLD_SUM" jdbcType="VARCHAR" property="wldSum" />
+    <result column="DK_YQ_RATE" jdbcType="VARCHAR" property="dkYqRate" />
+    <result column="DK_FEIYINHANG" jdbcType="VARCHAR" property="dkFeiyinhang" />
+    <result column="YIYUE_DYWW_SUM" jdbcType="VARCHAR" property="yiyueDywwSum" />
+    <result column="YIYUE_DYWW_AMT" jdbcType="VARCHAR" property="yiyueDywwAmt" />
+    <result column="YQ_RATE_XYLN" jdbcType="VARCHAR" property="yqRateXyln" />
+    <result column="DK_YQ_SUM" jdbcType="VARCHAR" property="dkYqSum" />
+    <result column="YQ_RATE_DYLN" jdbcType="VARCHAR" property="yqRateDyln" />
+    <result column="DK_YQ_AMT" jdbcType="VARCHAR" property="dkYqAmt" />
+    <result column="DK_DQYQ_SUM" jdbcType="VARCHAR" property="dkDqyqSum" />
+    <result column="JLYCXCHGRCX" jdbcType="VARCHAR" property="jlycxchgrcx" />
+    <result column="JLYCXCHBQSC" jdbcType="VARCHAR" property="jlycxchbqsc" />
+    <result column="JLYCXCHDHCW" jdbcType="VARCHAR" property="jlycxchdhcw" />
+    <result column="ZXYYCXCS" jdbcType="VARCHAR" property="zxyycxcs" />
+    <result column="ADD_DATE" jdbcType="OTHER" property="addDate" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CR_ID, CREDIT_TIME, JSTYSYQZH, IS_DZ, IS_DQYQ, HJK_SUM, HJK_USE, HJK_AMT, HJK_USER_AMT, 
+    HJK_YQ_RATE, HJK_YQ_AMT, HJK_YQ_SUM, HJK_DQYQ_SUM, FD_SUM, FD_AMT, FD_YH, FD_YHQS, 
+    OTHER_SUM, OTHER_AMT, OTHER_YH, WLD_AMT, WLD_TIME, WLD_OVER_TIME, WLD_SUM, DK_YQ_RATE, 
+    DK_FEIYINHANG, YIYUE_DYWW_SUM, YIYUE_DYWW_AMT, YQ_RATE_XYLN, DK_YQ_SUM, YQ_RATE_DYLN, 
+    DK_YQ_AMT, DK_DQYQ_SUM, JLYCXCHGRCX, JLYCXCHBQSC, JLYCXCHDHCW, ZXYYCXCS, ADD_DATE, 
+    APPLY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PBCCRC
+    where CR_ID = #{crId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PBCCRC
+    where CR_ID = #{crId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserPbccre">
+    insert into HS_PBCCRC (CR_ID, CREDIT_TIME, JSTYSYQZH, 
+      IS_DZ, IS_DQYQ, HJK_SUM, 
+      HJK_USE, HJK_AMT, HJK_USER_AMT, 
+      HJK_YQ_RATE, HJK_YQ_AMT, HJK_YQ_SUM, 
+      HJK_DQYQ_SUM, FD_SUM, FD_AMT, 
+      FD_YH, FD_YHQS, OTHER_SUM, 
+      OTHER_AMT, OTHER_YH, WLD_AMT, 
+      WLD_TIME, WLD_OVER_TIME, WLD_SUM, 
+      DK_YQ_RATE, DK_FEIYINHANG, YIYUE_DYWW_SUM, 
+      YIYUE_DYWW_AMT, YQ_RATE_XYLN, DK_YQ_SUM, 
+      YQ_RATE_DYLN, DK_YQ_AMT, DK_DQYQ_SUM, 
+      JLYCXCHGRCX, JLYCXCHBQSC, JLYCXCHDHCW, 
+      ZXYYCXCS, ADD_DATE, APPLY_ID
+      )
+    values (#{crId,jdbcType=VARCHAR}, #{creditTime,jdbcType=VARCHAR}, #{jstysyqzh,jdbcType=VARCHAR}, 
+      #{isDz,jdbcType=VARCHAR}, #{isDqyq,jdbcType=VARCHAR}, #{hjkSum,jdbcType=VARCHAR}, 
+      #{hjkUse,jdbcType=VARCHAR}, #{hjkAmt,jdbcType=VARCHAR}, #{hjkUserAmt,jdbcType=VARCHAR}, 
+      #{hjkYqRate,jdbcType=VARCHAR}, #{hjkYqAmt,jdbcType=VARCHAR}, #{hjkYqSum,jdbcType=VARCHAR}, 
+      #{hjkDqyqSum,jdbcType=VARCHAR}, #{fdSum,jdbcType=VARCHAR}, #{fdAmt,jdbcType=VARCHAR}, 
+      #{fdYh,jdbcType=VARCHAR}, #{fdYhqs,jdbcType=VARCHAR}, #{otherSum,jdbcType=VARCHAR}, 
+      #{otherAmt,jdbcType=VARCHAR}, #{otherYh,jdbcType=VARCHAR}, #{wldAmt,jdbcType=VARCHAR}, 
+      #{wldTime,jdbcType=VARCHAR}, #{wldOverTime,jdbcType=VARCHAR}, #{wldSum,jdbcType=VARCHAR}, 
+      #{dkYqRate,jdbcType=VARCHAR}, #{dkFeiyinhang,jdbcType=VARCHAR}, #{yiyueDywwSum,jdbcType=VARCHAR}, 
+      #{yiyueDywwAmt,jdbcType=VARCHAR}, #{yqRateXyln,jdbcType=VARCHAR}, #{dkYqSum,jdbcType=VARCHAR}, 
+      #{yqRateDyln,jdbcType=VARCHAR}, #{dkYqAmt,jdbcType=VARCHAR}, #{dkDqyqSum,jdbcType=VARCHAR}, 
+      #{jlycxchgrcx,jdbcType=VARCHAR}, #{jlycxchbqsc,jdbcType=VARCHAR}, #{jlycxchdhcw,jdbcType=VARCHAR}, 
+      #{zxyycxcs,jdbcType=VARCHAR}, #{addDate,jdbcType=OTHER}, #{applyId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserPbccre">
+    insert into HS_PBCCRC
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="crId != null">
+        CR_ID,
+      </if>
+      <if test="creditTime != null">
+        CREDIT_TIME,
+      </if>
+      <if test="jstysyqzh != null">
+        JSTYSYQZH,
+      </if>
+      <if test="isDz != null">
+        IS_DZ,
+      </if>
+      <if test="isDqyq != null">
+        IS_DQYQ,
+      </if>
+      <if test="hjkSum != null">
+        HJK_SUM,
+      </if>
+      <if test="hjkUse != null">
+        HJK_USE,
+      </if>
+      <if test="hjkAmt != null">
+        HJK_AMT,
+      </if>
+      <if test="hjkUserAmt != null">
+        HJK_USER_AMT,
+      </if>
+      <if test="hjkYqRate != null">
+        HJK_YQ_RATE,
+      </if>
+      <if test="hjkYqAmt != null">
+        HJK_YQ_AMT,
+      </if>
+      <if test="hjkYqSum != null">
+        HJK_YQ_SUM,
+      </if>
+      <if test="hjkDqyqSum != null">
+        HJK_DQYQ_SUM,
+      </if>
+      <if test="fdSum != null">
+        FD_SUM,
+      </if>
+      <if test="fdAmt != null">
+        FD_AMT,
+      </if>
+      <if test="fdYh != null">
+        FD_YH,
+      </if>
+      <if test="fdYhqs != null">
+        FD_YHQS,
+      </if>
+      <if test="otherSum != null">
+        OTHER_SUM,
+      </if>
+      <if test="otherAmt != null">
+        OTHER_AMT,
+      </if>
+      <if test="otherYh != null">
+        OTHER_YH,
+      </if>
+      <if test="wldAmt != null">
+        WLD_AMT,
+      </if>
+      <if test="wldTime != null">
+        WLD_TIME,
+      </if>
+      <if test="wldOverTime != null">
+        WLD_OVER_TIME,
+      </if>
+      <if test="wldSum != null">
+        WLD_SUM,
+      </if>
+      <if test="dkYqRate != null">
+        DK_YQ_RATE,
+      </if>
+      <if test="dkFeiyinhang != null">
+        DK_FEIYINHANG,
+      </if>
+      <if test="yiyueDywwSum != null">
+        YIYUE_DYWW_SUM,
+      </if>
+      <if test="yiyueDywwAmt != null">
+        YIYUE_DYWW_AMT,
+      </if>
+      <if test="yqRateXyln != null">
+        YQ_RATE_XYLN,
+      </if>
+      <if test="dkYqSum != null">
+        DK_YQ_SUM,
+      </if>
+      <if test="yqRateDyln != null">
+        YQ_RATE_DYLN,
+      </if>
+      <if test="dkYqAmt != null">
+        DK_YQ_AMT,
+      </if>
+      <if test="dkDqyqSum != null">
+        DK_DQYQ_SUM,
+      </if>
+      <if test="jlycxchgrcx != null">
+        JLYCXCHGRCX,
+      </if>
+      <if test="jlycxchbqsc != null">
+        JLYCXCHBQSC,
+      </if>
+      <if test="jlycxchdhcw != null">
+        JLYCXCHDHCW,
+      </if>
+      <if test="zxyycxcs != null">
+        ZXYYCXCS,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="crId != null">
+        #{crId,jdbcType=VARCHAR},
+      </if>
+      <if test="creditTime != null">
+        #{creditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jstysyqzh != null">
+        #{jstysyqzh,jdbcType=VARCHAR},
+      </if>
+      <if test="isDz != null">
+        #{isDz,jdbcType=VARCHAR},
+      </if>
+      <if test="isDqyq != null">
+        #{isDqyq,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkSum != null">
+        #{hjkSum,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkUse != null">
+        #{hjkUse,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkAmt != null">
+        #{hjkAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkUserAmt != null">
+        #{hjkUserAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqRate != null">
+        #{hjkYqRate,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqAmt != null">
+        #{hjkYqAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqSum != null">
+        #{hjkYqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkDqyqSum != null">
+        #{hjkDqyqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="fdSum != null">
+        #{fdSum,jdbcType=VARCHAR},
+      </if>
+      <if test="fdAmt != null">
+        #{fdAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="fdYh != null">
+        #{fdYh,jdbcType=VARCHAR},
+      </if>
+      <if test="fdYhqs != null">
+        #{fdYhqs,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSum != null">
+        #{otherSum,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAmt != null">
+        #{otherAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="otherYh != null">
+        #{otherYh,jdbcType=VARCHAR},
+      </if>
+      <if test="wldAmt != null">
+        #{wldAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="wldTime != null">
+        #{wldTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wldOverTime != null">
+        #{wldOverTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wldSum != null">
+        #{wldSum,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqRate != null">
+        #{dkYqRate,jdbcType=VARCHAR},
+      </if>
+      <if test="dkFeiyinhang != null">
+        #{dkFeiyinhang,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyueDywwSum != null">
+        #{yiyueDywwSum,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyueDywwAmt != null">
+        #{yiyueDywwAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="yqRateXyln != null">
+        #{yqRateXyln,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqSum != null">
+        #{dkYqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="yqRateDyln != null">
+        #{yqRateDyln,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqAmt != null">
+        #{dkYqAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="dkDqyqSum != null">
+        #{dkDqyqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchgrcx != null">
+        #{jlycxchgrcx,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchbqsc != null">
+        #{jlycxchbqsc,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchdhcw != null">
+        #{jlycxchdhcw,jdbcType=VARCHAR},
+      </if>
+      <if test="zxyycxcs != null">
+        #{zxyycxcs,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=OTHER},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserPbccre">
+    update HS_PBCCRC
+    <set>
+      <if test="creditTime != null">
+        CREDIT_TIME = #{creditTime,jdbcType=VARCHAR},
+      </if>
+      <if test="jstysyqzh != null">
+        JSTYSYQZH = #{jstysyqzh,jdbcType=VARCHAR},
+      </if>
+      <if test="isDz != null">
+        IS_DZ = #{isDz,jdbcType=VARCHAR},
+      </if>
+      <if test="isDqyq != null">
+        IS_DQYQ = #{isDqyq,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkSum != null">
+        HJK_SUM = #{hjkSum,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkUse != null">
+        HJK_USE = #{hjkUse,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkAmt != null">
+        HJK_AMT = #{hjkAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkUserAmt != null">
+        HJK_USER_AMT = #{hjkUserAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqRate != null">
+        HJK_YQ_RATE = #{hjkYqRate,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqAmt != null">
+        HJK_YQ_AMT = #{hjkYqAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkYqSum != null">
+        HJK_YQ_SUM = #{hjkYqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="hjkDqyqSum != null">
+        HJK_DQYQ_SUM = #{hjkDqyqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="fdSum != null">
+        FD_SUM = #{fdSum,jdbcType=VARCHAR},
+      </if>
+      <if test="fdAmt != null">
+        FD_AMT = #{fdAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="fdYh != null">
+        FD_YH = #{fdYh,jdbcType=VARCHAR},
+      </if>
+      <if test="fdYhqs != null">
+        FD_YHQS = #{fdYhqs,jdbcType=VARCHAR},
+      </if>
+      <if test="otherSum != null">
+        OTHER_SUM = #{otherSum,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAmt != null">
+        OTHER_AMT = #{otherAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="otherYh != null">
+        OTHER_YH = #{otherYh,jdbcType=VARCHAR},
+      </if>
+      <if test="wldAmt != null">
+        WLD_AMT = #{wldAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="wldTime != null">
+        WLD_TIME = #{wldTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wldOverTime != null">
+        WLD_OVER_TIME = #{wldOverTime,jdbcType=VARCHAR},
+      </if>
+      <if test="wldSum != null">
+        WLD_SUM = #{wldSum,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqRate != null">
+        DK_YQ_RATE = #{dkYqRate,jdbcType=VARCHAR},
+      </if>
+      <if test="dkFeiyinhang != null">
+        DK_FEIYINHANG = #{dkFeiyinhang,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyueDywwSum != null">
+        YIYUE_DYWW_SUM = #{yiyueDywwSum,jdbcType=VARCHAR},
+      </if>
+      <if test="yiyueDywwAmt != null">
+        YIYUE_DYWW_AMT = #{yiyueDywwAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="yqRateXyln != null">
+        YQ_RATE_XYLN = #{yqRateXyln,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqSum != null">
+        DK_YQ_SUM = #{dkYqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="yqRateDyln != null">
+        YQ_RATE_DYLN = #{yqRateDyln,jdbcType=VARCHAR},
+      </if>
+      <if test="dkYqAmt != null">
+        DK_YQ_AMT = #{dkYqAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="dkDqyqSum != null">
+        DK_DQYQ_SUM = #{dkDqyqSum,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchgrcx != null">
+        JLYCXCHGRCX = #{jlycxchgrcx,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchbqsc != null">
+        JLYCXCHBQSC = #{jlycxchbqsc,jdbcType=VARCHAR},
+      </if>
+      <if test="jlycxchdhcw != null">
+        JLYCXCHDHCW = #{jlycxchdhcw,jdbcType=VARCHAR},
+      </if>
+      <if test="zxyycxcs != null">
+        ZXYYCXCS = #{zxyycxcs,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=OTHER},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CR_ID = #{crId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserPbccre">
+    update HS_PBCCRC
+    set CREDIT_TIME = #{creditTime,jdbcType=VARCHAR},
+      JSTYSYQZH = #{jstysyqzh,jdbcType=VARCHAR},
+      IS_DZ = #{isDz,jdbcType=VARCHAR},
+      IS_DQYQ = #{isDqyq,jdbcType=VARCHAR},
+      HJK_SUM = #{hjkSum,jdbcType=VARCHAR},
+      HJK_USE = #{hjkUse,jdbcType=VARCHAR},
+      HJK_AMT = #{hjkAmt,jdbcType=VARCHAR},
+      HJK_USER_AMT = #{hjkUserAmt,jdbcType=VARCHAR},
+      HJK_YQ_RATE = #{hjkYqRate,jdbcType=VARCHAR},
+      HJK_YQ_AMT = #{hjkYqAmt,jdbcType=VARCHAR},
+      HJK_YQ_SUM = #{hjkYqSum,jdbcType=VARCHAR},
+      HJK_DQYQ_SUM = #{hjkDqyqSum,jdbcType=VARCHAR},
+      FD_SUM = #{fdSum,jdbcType=VARCHAR},
+      FD_AMT = #{fdAmt,jdbcType=VARCHAR},
+      FD_YH = #{fdYh,jdbcType=VARCHAR},
+      FD_YHQS = #{fdYhqs,jdbcType=VARCHAR},
+      OTHER_SUM = #{otherSum,jdbcType=VARCHAR},
+      OTHER_AMT = #{otherAmt,jdbcType=VARCHAR},
+      OTHER_YH = #{otherYh,jdbcType=VARCHAR},
+      WLD_AMT = #{wldAmt,jdbcType=VARCHAR},
+      WLD_TIME = #{wldTime,jdbcType=VARCHAR},
+      WLD_OVER_TIME = #{wldOverTime,jdbcType=VARCHAR},
+      WLD_SUM = #{wldSum,jdbcType=VARCHAR},
+      DK_YQ_RATE = #{dkYqRate,jdbcType=VARCHAR},
+      DK_FEIYINHANG = #{dkFeiyinhang,jdbcType=VARCHAR},
+      YIYUE_DYWW_SUM = #{yiyueDywwSum,jdbcType=VARCHAR},
+      YIYUE_DYWW_AMT = #{yiyueDywwAmt,jdbcType=VARCHAR},
+      YQ_RATE_XYLN = #{yqRateXyln,jdbcType=VARCHAR},
+      DK_YQ_SUM = #{dkYqSum,jdbcType=VARCHAR},
+      YQ_RATE_DYLN = #{yqRateDyln,jdbcType=VARCHAR},
+      DK_YQ_AMT = #{dkYqAmt,jdbcType=VARCHAR},
+      DK_DQYQ_SUM = #{dkDqyqSum,jdbcType=VARCHAR},
+      JLYCXCHGRCX = #{jlycxchgrcx,jdbcType=VARCHAR},
+      JLYCXCHBQSC = #{jlycxchbqsc,jdbcType=VARCHAR},
+      JLYCXCHDHCW = #{jlycxchdhcw,jdbcType=VARCHAR},
+      ZXYYCXCS = #{zxyycxcs,jdbcType=VARCHAR},
+      ADD_DATE = #{addDate,jdbcType=OTHER},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    where CR_ID = #{crId,jdbcType=VARCHAR}
+  </update> -->
+  
+
+  <!-- 编辑区域 不可替换 -->
+  <select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PBCCRC
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 是否存在征信数据 -->
+  <select id="checkByApplyId" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	select count(CR_ID) from HS_PBCCRC
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

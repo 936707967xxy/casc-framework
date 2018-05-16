@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.apply.query.dao.AssetInfoMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.csas.apply.query.model.AssetInfo">
+		<id column="ASINFO_PK_ID" jdbcType="VARCHAR" property="asinfoPkId" />
+		<result column="PROPERTY_TYPE" jdbcType="DECIMAL" property="propertyType" />
+		<result column="PROPERTY_TYPE_VAL" jdbcType="VARCHAR" property="propertyTypeVal" />
+		<result column="PRO_BUY_TIME" jdbcType="OTHER" property="proBuyTime" />
+		<result column="PRO_BUY_PRICE" jdbcType="VARCHAR" property="proBuyPrice" />
+		<result column="GFA" jdbcType="VARCHAR" property="gfa" />
+		<result column="PRO_LOAN_LIFE" jdbcType="VARCHAR" property="proLoanLife" />
+		<result column="PRO_MORTGAGE_MONTHLY" jdbcType="VARCHAR"
+			property="proMortgageMonthly" />
+		<result column="PRO_LOANS" jdbcType="VARCHAR" property="proLoans" />
+		<result column="PRO_CREDIT_PERIOD" jdbcType="VARCHAR" property="proCreditPeriod" />
+		<result column="PROPERTY_ADDRESS" jdbcType="VARCHAR" property="propertyAddress" />
+		<result column="PROPERTY_PROV_CODE" jdbcType="VARCHAR"
+			property="propertyProvCode" />
+		<result column="PROPERTY_PROV_NAME" jdbcType="VARCHAR"
+			property="propertyProvName" />
+		<result column="PROPERTY_CITY_CODE" jdbcType="VARCHAR"
+			property="propertyCityCode" />
+		<result column="PROPERTY_CITY_NAME" jdbcType="VARCHAR"
+			property="propertyCityName" />
+		<result column="PROPERTY_AREA_CODE" jdbcType="VARCHAR"
+			property="propertyAreaCode" />
+		<result column="PROPERTY_AREA_NAME" jdbcType="VARCHAR"
+			property="propertyAreaName" />
+		<result column="PROPERTY_ADDRESS_DETAIL" jdbcType="VARCHAR"
+			property="propertyAddressDetail" />
+		<result column="PROPERTY_ZIP_CODE" jdbcType="VARCHAR" property="propertyZipCode" />
+		<result column="IS_HOME_ADDRESS" jdbcType="DECIMAL" property="isHomeAddress" />
+		<result column="IS_HOME_ADDRESS_VAL" jdbcType="VARCHAR"
+			property="isHomeAddressVal" />
+		<result column="CAR_HAVA" jdbcType="DECIMAL" property="carHava" />
+		<result column="CAR_HAVA_VAL" jdbcType="VARCHAR" property="carHavaVal" />
+		<result column="PRICE_CAR" jdbcType="VARCHAR" property="priceCar" />
+		<result column="CAR_AGE" jdbcType="VARCHAR" property="carAge" />
+		<result column="CAR_LOAN_DATE" jdbcType="OTHER" property="carLoanDate" />
+		<result column="CAR_MORTGAGE_MONTHLY" jdbcType="VARCHAR"
+			property="carMortgageMonthly" />
+		<result column="CAR_LOAN_CEILING" jdbcType="VARCHAR" property="carLoanCeiling" />
+		<result column="CAR_BANLANCE_VAL" jdbcType="VARCHAR" property="carBanlanceVal" />
+		<result column="CAR_PERIOD_VAL" jdbcType="VARCHAR" property="carPeriodVal" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="CREATE_TIME" jdbcType="OTHER" property="createTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ASINFO_PK_ID, PROPERTY_TYPE, PROPERTY_TYPE_VAL, PRO_BUY_TIME, PRO_BUY_PRICE, GFA,
+		PRO_LOAN_LIFE, PRO_MORTGAGE_MONTHLY, PRO_LOANS, PRO_CREDIT_PERIOD,
+		PROPERTY_ADDRESS,
+		PROPERTY_PROV_CODE, PROPERTY_PROV_NAME, PROPERTY_CITY_CODE, PROPERTY_CITY_NAME,
+		PROPERTY_AREA_CODE,
+		PROPERTY_AREA_NAME, PROPERTY_ADDRESS_DETAIL, PROPERTY_ZIP_CODE, IS_HOME_ADDRESS,
+		IS_HOME_ADDRESS_VAL, CAR_HAVA, CAR_HAVA_VAL, PRICE_CAR, CAR_AGE,
+		CAR_LOAN_DATE, CAR_MORTGAGE_MONTHLY,
+		CAR_LOAN_CEILING, CAR_BANLANCE_VAL, CAR_PERIOD_VAL, APPLY_ID, CREATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_ASSET_INFO
+		where ASINFO_PK_ID = #{asinfoPkId,jdbcType=VARCHAR}
+	</select>
+</mapper>

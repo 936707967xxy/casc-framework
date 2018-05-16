@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.AssetInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.AssetInfo">
+    <id column="ASINFO_PK_ID" jdbcType="VARCHAR" property="asinfoPkId" />
+    <result column="PROPERTY_TYPE" jdbcType="DECIMAL" property="propertyType" />
+    <result column="PROPERTY_TYPE_VAL" jdbcType="VARCHAR" property="propertyTypeVal" />
+    <result column="PRO_BUY_TIME" jdbcType="OTHER" property="proBuyTime" />
+    <result column="PRO_BUY_PRICE" jdbcType="VARCHAR" property="proBuyPrice" />
+    <result column="GFA" jdbcType="VARCHAR" property="gfa" />
+    <result column="PRO_LOAN_LIFE" jdbcType="VARCHAR" property="proLoanLife" />
+    <result column="PRO_MORTGAGE_MONTHLY" jdbcType="VARCHAR" property="proMortgageMonthly" />
+    <result column="PRO_LOANS" jdbcType="VARCHAR" property="proLoans" />
+    <result column="PRO_CREDIT_PERIOD" jdbcType="VARCHAR" property="proCreditPeriod" />
+    <result column="PROPERTY_ADDRESS" jdbcType="VARCHAR" property="propertyAddress" />
+    <result column="PROPERTY_PROV_CODE" jdbcType="VARCHAR" property="propertyProvCode" />
+    <result column="PROPERTY_PROV_NAME" jdbcType="VARCHAR" property="propertyProvName" />
+    <result column="PROPERTY_CITY_CODE" jdbcType="VARCHAR" property="propertyCityCode" />
+    <result column="PROPERTY_CITY_NAME" jdbcType="VARCHAR" property="propertyCityName" />
+    <result column="PROPERTY_AREA_CODE" jdbcType="VARCHAR" property="propertyAreaCode" />
+    <result column="PROPERTY_AREA_NAME" jdbcType="VARCHAR" property="propertyAreaName" />
+    <result column="PROPERTY_ADDRESS_DETAIL" jdbcType="VARCHAR" property="propertyAddressDetail" />
+    <result column="PROPERTY_ZIP_CODE" jdbcType="VARCHAR" property="propertyZipCode" />
+    <result column="IS_HOME_ADDRESS" jdbcType="DECIMAL" property="isHomeAddress" />
+    <result column="IS_HOME_ADDRESS_VAL" jdbcType="VARCHAR" property="isHomeAddressVal" />
+    <result column="CAR_HAVA" jdbcType="DECIMAL" property="carHava" />
+    <result column="CAR_HAVA_VAL" jdbcType="VARCHAR" property="carHavaVal" />
+    <result column="PRICE_CAR" jdbcType="VARCHAR" property="priceCar" />
+    <result column="CAR_AGE" jdbcType="VARCHAR" property="carAge" />
+    <result column="CAR_LOAN_DATE" jdbcType="OTHER" property="carLoanDate" />
+    <result column="CAR_MORTGAGE_MONTHLY" jdbcType="VARCHAR" property="carMortgageMonthly" />
+    <result column="CAR_LOAN_CEILING" jdbcType="VARCHAR" property="carLoanCeiling" />
+    <result column="CAR_BANLANCE_VAL" jdbcType="VARCHAR" property="carBanlanceVal" />
+    <result column="CAR_PERIOD_VAL" jdbcType="VARCHAR" property="carPeriodVal" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="CREATE_TIME" jdbcType="OTHER" property="createTime" />
+  </resultMap>
+  
+  <!-- liushuai add 用与联查  -->
+  <resultMap id="BaseResultById" type="com.hoomsun.csas.sales.api.model.AssetInfo">
+    <id column="ASS_ASINFO_PK_ID" jdbcType="VARCHAR" property="asinfoPkId" />
+    <result column="ASS_PROPERTY_TYPE" jdbcType="DECIMAL" property="propertyType" />
+    <result column="ASS_PROPERTY_TYPE_VAL" jdbcType="VARCHAR" property="propertyTypeVal" />
+    <result column="ASS_PRO_BUY_TIME" jdbcType="OTHER" property="proBuyTime" />
+    <result column="ASS_PRO_BUY_PRICE" jdbcType="VARCHAR" property="proBuyPrice" />
+    <result column="ASS_GFA" jdbcType="VARCHAR" property="gfa" />
+    <result column="ASS_PRO_LOAN_LIFE" jdbcType="VARCHAR" property="proLoanLife" />
+    <result column="ASS_PRO_MORTGAGE_MONTHLY" jdbcType="VARCHAR" property="proMortgageMonthly" />
+    <result column="ASS_PRO_LOANS" jdbcType="VARCHAR" property="proLoans" />
+    <result column="ASS_PRO_CREDIT_PERIOD" jdbcType="VARCHAR" property="proCreditPeriod" />
+    <result column="ASS_PROPERTY_ADDRESS" jdbcType="VARCHAR" property="propertyAddress" />
+    <result column="ASS_PROPERTY_PROV_CODE" jdbcType="VARCHAR" property="propertyProvCode" />
+    <result column="ASS_PROPERTY_PROV_NAME" jdbcType="VARCHAR" property="propertyProvName" />
+    <result column="ASS_PROPERTY_CITY_CODE" jdbcType="VARCHAR" property="propertyCityCode" />
+    <result column="ASS_PROPERTY_CITY_NAME" jdbcType="VARCHAR" property="propertyCityName" />
+    <result column="ASS_PROPERTY_AREA_CODE" jdbcType="VARCHAR" property="propertyAreaCode" />
+    <result column="ASS_PROPERTY_AREA_NAME" jdbcType="VARCHAR" property="propertyAreaName" />
+    <result column="ASS_PROPERTY_ADDRESS_DETAIL" jdbcType="VARCHAR" property="propertyAddressDetail" />
+    <result column="ASS_PROPERTY_ZIP_CODE" jdbcType="VARCHAR" property="propertyZipCode" />
+    <result column="ASS_IS_HOME_ADDRESS" jdbcType="DECIMAL" property="isHomeAddress" />
+    <result column="ASS_IS_HOME_ADDRESS_VAL" jdbcType="VARCHAR" property="isHomeAddressVal" />
+    <result column="ASS_CAR_HAVA" jdbcType="DECIMAL" property="carHava" />
+    <result column="ASS_CAR_HAVA_VAL" jdbcType="VARCHAR" property="carHavaVal" />
+    <result column="ASS_PRICE_CAR" jdbcType="VARCHAR" property="priceCar" />
+    <result column="ASS_CAR_AGE" jdbcType="VARCHAR" property="carAge" />
+    <result column="ASS_CAR_LOAN_DATE" jdbcType="OTHER" property="carLoanDate" />
+    <result column="ASS_CAR_MORTGAGE_MONTHLY" jdbcType="VARCHAR" property="carMortgageMonthly" />
+    <result column="ASS_CAR_LOAN_CEILING" jdbcType="VARCHAR" property="carLoanCeiling" />
+    <result column="ASS_CAR_BANLANCE_VAL" jdbcType="VARCHAR" property="carBanlanceVal" />
+    <result column="ASS_CAR_PERIOD_VAL" jdbcType="VARCHAR" property="carPeriodVal" />
+    <result column="ASS_APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="ASS_CREATE_TIME" jdbcType="OTHER" property="createTime" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    ASINFO_PK_ID, PROPERTY_TYPE, PROPERTY_TYPE_VAL, PRO_BUY_TIME, PRO_BUY_PRICE, GFA, 
+    PRO_LOAN_LIFE, PRO_MORTGAGE_MONTHLY, PRO_LOANS, PRO_CREDIT_PERIOD, PROPERTY_ADDRESS, 
+    PROPERTY_PROV_CODE, PROPERTY_PROV_NAME, PROPERTY_CITY_CODE, PROPERTY_CITY_NAME, PROPERTY_AREA_CODE, 
+    PROPERTY_AREA_NAME, PROPERTY_ADDRESS_DETAIL, PROPERTY_ZIP_CODE, IS_HOME_ADDRESS, 
+    IS_HOME_ADDRESS_VAL, CAR_HAVA, CAR_HAVA_VAL, PRICE_CAR, CAR_AGE, CAR_LOAN_DATE, CAR_MORTGAGE_MONTHLY, 
+    CAR_LOAN_CEILING, CAR_BANLANCE_VAL, CAR_PERIOD_VAL, APPLY_ID, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_ASSET_INFO
+    where ASINFO_PK_ID = #{asinfoPkId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_ASSET_INFO
+    where ASINFO_PK_ID = #{asinfoPkId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.AssetInfo">
+    insert into HS_ASSET_INFO (ASINFO_PK_ID, PROPERTY_TYPE, PROPERTY_TYPE_VAL, 
+      PRO_BUY_TIME, PRO_BUY_PRICE, GFA, 
+      PRO_LOAN_LIFE, PRO_MORTGAGE_MONTHLY, PRO_LOANS, 
+      PRO_CREDIT_PERIOD, PROPERTY_ADDRESS, PROPERTY_PROV_CODE, 
+      PROPERTY_PROV_NAME, PROPERTY_CITY_CODE, PROPERTY_CITY_NAME, 
+      PROPERTY_AREA_CODE, PROPERTY_AREA_NAME, PROPERTY_ADDRESS_DETAIL, 
+      PROPERTY_ZIP_CODE, IS_HOME_ADDRESS, IS_HOME_ADDRESS_VAL, 
+      CAR_HAVA, CAR_HAVA_VAL, PRICE_CAR, 
+      CAR_AGE, CAR_LOAN_DATE, CAR_MORTGAGE_MONTHLY, 
+      CAR_LOAN_CEILING, CAR_BANLANCE_VAL, CAR_PERIOD_VAL, 
+      APPLY_ID, CREATE_TIME)
+    values (#{asinfoPkId,jdbcType=VARCHAR}, #{propertyType,jdbcType=DECIMAL}, #{propertyTypeVal,jdbcType=VARCHAR}, 
+      #{proBuyTime,jdbcType=OTHER}, #{proBuyPrice,jdbcType=VARCHAR}, #{gfa,jdbcType=VARCHAR}, 
+      #{proLoanLife,jdbcType=VARCHAR}, #{proMortgageMonthly,jdbcType=VARCHAR}, #{proLoans,jdbcType=VARCHAR}, 
+      #{proCreditPeriod,jdbcType=VARCHAR}, #{propertyAddress,jdbcType=VARCHAR}, #{propertyProvCode,jdbcType=VARCHAR}, 
+      #{propertyProvName,jdbcType=VARCHAR}, #{propertyCityCode,jdbcType=VARCHAR}, #{propertyCityName,jdbcType=VARCHAR}, 
+      #{propertyAreaCode,jdbcType=VARCHAR}, #{propertyAreaName,jdbcType=VARCHAR}, #{propertyAddressDetail,jdbcType=VARCHAR}, 
+      #{propertyZipCode,jdbcType=VARCHAR}, #{isHomeAddress,jdbcType=DECIMAL}, #{isHomeAddressVal,jdbcType=VARCHAR}, 
+      #{carHava,jdbcType=DECIMAL}, #{carHavaVal,jdbcType=VARCHAR}, #{priceCar,jdbcType=VARCHAR}, 
+      #{carAge,jdbcType=VARCHAR}, #{carLoanDate,jdbcType=OTHER}, #{carMortgageMonthly,jdbcType=VARCHAR}, 
+      #{carLoanCeiling,jdbcType=VARCHAR}, #{carBanlanceVal,jdbcType=VARCHAR}, #{carPeriodVal,jdbcType=VARCHAR}, 
+      #{applyId,jdbcType=VARCHAR}, #{createTime,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.AssetInfo">
+    insert into HS_ASSET_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="asinfoPkId != null">
+        ASINFO_PK_ID,
+      </if>
+      <if test="propertyType != null">
+        PROPERTY_TYPE,
+      </if>
+      <if test="propertyTypeVal != null">
+        PROPERTY_TYPE_VAL,
+      </if>
+      <if test="proBuyTime != null">
+        PRO_BUY_TIME,
+      </if>
+      <if test="proBuyPrice != null">
+        PRO_BUY_PRICE,
+      </if>
+      <if test="gfa != null">
+        GFA,
+      </if>
+      <if test="proLoanLife != null">
+        PRO_LOAN_LIFE,
+      </if>
+      <if test="proMortgageMonthly != null">
+        PRO_MORTGAGE_MONTHLY,
+      </if>
+      <if test="proLoans != null">
+        PRO_LOANS,
+      </if>
+      <if test="proCreditPeriod != null">
+        PRO_CREDIT_PERIOD,
+      </if>
+      <if test="propertyAddress != null">
+        PROPERTY_ADDRESS,
+      </if>
+      <if test="propertyProvCode != null">
+        PROPERTY_PROV_CODE,
+      </if>
+      <if test="propertyProvName != null">
+        PROPERTY_PROV_NAME,
+      </if>
+      <if test="propertyCityCode != null">
+        PROPERTY_CITY_CODE,
+      </if>
+      <if test="propertyCityName != null">
+        PROPERTY_CITY_NAME,
+      </if>
+      <if test="propertyAreaCode != null">
+        PROPERTY_AREA_CODE,
+      </if>
+      <if test="propertyAreaName != null">
+        PROPERTY_AREA_NAME,
+      </if>
+      <if test="propertyAddressDetail != null">
+        PROPERTY_ADDRESS_DETAIL,
+      </if>
+      <if test="propertyZipCode != null">
+        PROPERTY_ZIP_CODE,
+      </if>
+      <if test="isHomeAddress != null">
+        IS_HOME_ADDRESS,
+      </if>
+      <if test="isHomeAddressVal != null">
+        IS_HOME_ADDRESS_VAL,
+      </if>
+      <if test="carHava != null">
+        CAR_HAVA,
+      </if>
+      <if test="carHavaVal != null">
+        CAR_HAVA_VAL,
+      </if>
+      <if test="priceCar != null">
+        PRICE_CAR,
+      </if>
+      <if test="carAge != null">
+        CAR_AGE,
+      </if>
+      <if test="carLoanDate != null">
+        CAR_LOAN_DATE,
+      </if>
+      <if test="carMortgageMonthly != null">
+        CAR_MORTGAGE_MONTHLY,
+      </if>
+      <if test="carLoanCeiling != null">
+        CAR_LOAN_CEILING,
+      </if>
+      <if test="carBanlanceVal != null">
+        CAR_BANLANCE_VAL,
+      </if>
+      <if test="carPeriodVal != null">
+        CAR_PERIOD_VAL,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="asinfoPkId != null">
+        #{asinfoPkId,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyType != null">
+        #{propertyType,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyTypeVal != null">
+        #{propertyTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="proBuyTime != null">
+        #{proBuyTime,jdbcType=OTHER},
+      </if>
+      <if test="proBuyPrice != null">
+        #{proBuyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="gfa != null">
+        #{gfa,jdbcType=VARCHAR},
+      </if>
+      <if test="proLoanLife != null">
+        #{proLoanLife,jdbcType=VARCHAR},
+      </if>
+      <if test="proMortgageMonthly != null">
+        #{proMortgageMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="proLoans != null">
+        #{proLoans,jdbcType=VARCHAR},
+      </if>
+      <if test="proCreditPeriod != null">
+        #{proCreditPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAddress != null">
+        #{propertyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyProvCode != null">
+        #{propertyProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyProvName != null">
+        #{propertyProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyCityCode != null">
+        #{propertyCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyCityName != null">
+        #{propertyCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAreaCode != null">
+        #{propertyAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAreaName != null">
+        #{propertyAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAddressDetail != null">
+        #{propertyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyZipCode != null">
+        #{propertyZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isHomeAddress != null">
+        #{isHomeAddress,jdbcType=DECIMAL},
+      </if>
+      <if test="isHomeAddressVal != null">
+        #{isHomeAddressVal,jdbcType=VARCHAR},
+      </if>
+      <if test="carHava != null">
+        #{carHava,jdbcType=DECIMAL},
+      </if>
+      <if test="carHavaVal != null">
+        #{carHavaVal,jdbcType=VARCHAR},
+      </if>
+      <if test="priceCar != null">
+        #{priceCar,jdbcType=VARCHAR},
+      </if>
+      <if test="carAge != null">
+        #{carAge,jdbcType=VARCHAR},
+      </if>
+      <if test="carLoanDate != null">
+        #{carLoanDate,jdbcType=OTHER},
+      </if>
+      <if test="carMortgageMonthly != null">
+        #{carMortgageMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="carLoanCeiling != null">
+        #{carLoanCeiling,jdbcType=VARCHAR},
+      </if>
+      <if test="carBanlanceVal != null">
+        #{carBanlanceVal,jdbcType=VARCHAR},
+      </if>
+      <if test="carPeriodVal != null">
+        #{carPeriodVal,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.AssetInfo">
+    update HS_ASSET_INFO
+    set PROPERTY_TYPE = #{propertyType,jdbcType=DECIMAL},
+      PROPERTY_TYPE_VAL = #{propertyTypeVal,jdbcType=VARCHAR},
+      PRO_BUY_TIME = #{proBuyTime,jdbcType=OTHER},
+      PRO_BUY_PRICE = #{proBuyPrice,jdbcType=VARCHAR},
+      GFA = #{gfa,jdbcType=VARCHAR},
+      PRO_LOAN_LIFE = #{proLoanLife,jdbcType=VARCHAR},
+      PRO_MORTGAGE_MONTHLY = #{proMortgageMonthly,jdbcType=VARCHAR},
+      PRO_LOANS = #{proLoans,jdbcType=VARCHAR},
+      PRO_CREDIT_PERIOD = #{proCreditPeriod,jdbcType=VARCHAR},
+      PROPERTY_ADDRESS = #{propertyAddress,jdbcType=VARCHAR},
+      PROPERTY_PROV_CODE = #{propertyProvCode,jdbcType=VARCHAR},
+      PROPERTY_PROV_NAME = #{propertyProvName,jdbcType=VARCHAR},
+      PROPERTY_CITY_CODE = #{propertyCityCode,jdbcType=VARCHAR},
+      PROPERTY_CITY_NAME = #{propertyCityName,jdbcType=VARCHAR},
+      PROPERTY_AREA_CODE = #{propertyAreaCode,jdbcType=VARCHAR},
+      PROPERTY_AREA_NAME = #{propertyAreaName,jdbcType=VARCHAR},
+      PROPERTY_ADDRESS_DETAIL = #{propertyAddressDetail,jdbcType=VARCHAR},
+      PROPERTY_ZIP_CODE = #{propertyZipCode,jdbcType=VARCHAR},
+      IS_HOME_ADDRESS = #{isHomeAddress,jdbcType=DECIMAL},
+      IS_HOME_ADDRESS_VAL = #{isHomeAddressVal,jdbcType=VARCHAR},
+      CAR_HAVA = #{carHava,jdbcType=DECIMAL},
+      CAR_HAVA_VAL = #{carHavaVal,jdbcType=VARCHAR},
+      PRICE_CAR = #{priceCar,jdbcType=VARCHAR},
+      CAR_AGE = #{carAge,jdbcType=VARCHAR},
+      CAR_LOAN_DATE = #{carLoanDate,jdbcType=OTHER},
+      CAR_MORTGAGE_MONTHLY = #{carMortgageMonthly,jdbcType=VARCHAR},
+      CAR_LOAN_CEILING = #{carLoanCeiling,jdbcType=VARCHAR},
+      CAR_BANLANCE_VAL = #{carBanlanceVal,jdbcType=VARCHAR},
+      CAR_PERIOD_VAL = #{carPeriodVal,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=OTHER}
+    where ASINFO_PK_ID = #{asinfoPkId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 以下为编码区域 -->
+  <!-- 根据applyId删除资产信息 -->
+  <delete id="deleteByApplyId" parameterType="java.lang.String">
+  	delete form HS_ASSET_INFO where APPLY_ID=#{applyId} 
+  </delete>
+  <!--根据applyId修改资产信息 -->
+  <update id="updateByApplyId" parameterType="com.hoomsun.csas.sales.api.model.AssetInfo">
+    update HS_ASSET_INFO
+    <set>
+      <if test="propertyType != null">
+        PROPERTY_TYPE = #{propertyType,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyTypeVal != null">
+        PROPERTY_TYPE_VAL = #{propertyTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="proBuyTime != null">
+        PRO_BUY_TIME = #{proBuyTime,jdbcType=OTHER},
+      </if>
+      <if test="proBuyPrice != null">
+        PRO_BUY_PRICE = #{proBuyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="gfa != null">
+        GFA = #{gfa,jdbcType=VARCHAR},
+      </if>
+      <if test="proLoanLife != null">
+        PRO_LOAN_LIFE = #{proLoanLife,jdbcType=VARCHAR},
+      </if>
+      <if test="proMortgageMonthly != null">
+        PRO_MORTGAGE_MONTHLY = #{proMortgageMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="proLoans != null">
+        PRO_LOANS = #{proLoans,jdbcType=VARCHAR},
+      </if>
+      <if test="proCreditPeriod != null">
+        PRO_CREDIT_PERIOD = #{proCreditPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAddress != null">
+        PROPERTY_ADDRESS = #{propertyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyProvCode != null">
+        PROPERTY_PROV_CODE = #{propertyProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyProvName != null">
+        PROPERTY_PROV_NAME = #{propertyProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyCityCode != null">
+        PROPERTY_CITY_CODE = #{propertyCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyCityName != null">
+        PROPERTY_CITY_NAME = #{propertyCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAreaCode != null">
+        PROPERTY_AREA_CODE = #{propertyAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAreaName != null">
+        PROPERTY_AREA_NAME = #{propertyAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAddressDetail != null">
+        PROPERTY_ADDRESS_DETAIL = #{propertyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyZipCode != null">
+        PROPERTY_ZIP_CODE = #{propertyZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isHomeAddress != null">
+        IS_HOME_ADDRESS = #{isHomeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isHomeAddressVal != null">
+        IS_HOME_ADDRESS_VAL = #{isHomeAddressVal,jdbcType=VARCHAR},
+      </if>
+      <if test="carHava != null">
+        CAR_HAVA = #{carHava,jdbcType=VARCHAR},
+      </if>
+      <if test="carHavaVal != null">
+        CAR_HAVA_VAL = #{carHavaVal,jdbcType=VARCHAR},
+      </if>
+      <if test="priceCar != null">
+        PRICE_CAR = #{priceCar,jdbcType=VARCHAR},
+      </if>
+      <if test="carAge != null">
+        CAR_AGE = #{carAge,jdbcType=VARCHAR},
+      </if>
+      <if test="carLoanDate != null">
+        CAR_LOAN_DATE = #{carLoanDate,jdbcType=OTHER},
+      </if>
+      <if test="carMortgageMonthly != null">
+        CAR_MORTGAGE_MONTHLY = #{carMortgageMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="carLoanCeiling != null">
+        CAR_LOAN_CEILING = #{carLoanCeiling,jdbcType=VARCHAR},
+      </if>
+      <if test="carBanlanceVal != null">
+        CAR_BANLANCE_VAL = #{carBanlanceVal,jdbcType=VARCHAR},
+      </if>
+      <if test="carPeriodVal != null">
+        CAR_PERIOD_VAL = #{carPeriodVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 以下是编码区域 -->
+  <!-- 根据applyId查询 -->
+  <select id="selectByApplyId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+		ASINFO_PK_ID, PROPERTY_TYPE, PROPERTY_TYPE_VAL, PRO_BUY_TIME, PRO_BUY_PRICE, GFA, 
+    PRO_LOAN_LIFE, PRO_MORTGAGE_MONTHLY, PRO_LOANS, PRO_CREDIT_PERIOD, PROPERTY_ADDRESS, 
+    PROPERTY_PROV_CODE, PROPERTY_PROV_NAME, PROPERTY_CITY_CODE, PROPERTY_CITY_NAME, PROPERTY_AREA_CODE, 
+    PROPERTY_AREA_NAME, PROPERTY_ADDRESS_DETAIL, PROPERTY_ZIP_CODE, IS_HOME_ADDRESS, 
+    IS_HOME_ADDRESS_VAL, CAR_HAVA, CAR_HAVA_VAL, PRICE_CAR, CAR_AGE, CAR_LOAN_DATE, CAR_MORTGAGE_MONTHLY, 
+    CAR_LOAN_CEILING, CAR_BANLANCE_VAL, CAR_PERIOD_VAL, APPLY_ID, CREATE_TIME
+ 	from HS_ASSET_INFO where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.AssetInfo">
+    update HS_ASSET_INFO
+    <set>
+      <if test="propertyType != null">
+        PROPERTY_TYPE = #{propertyType,jdbcType=DECIMAL},
+      </if>
+      <if test="propertyTypeVal != null">
+        PROPERTY_TYPE_VAL = #{propertyTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="proBuyTime != null">
+        PRO_BUY_TIME = #{proBuyTime,jdbcType=OTHER},
+      </if>
+      <if test="proBuyTime == null">
+      	 PRO_BUY_TIME = null,
+      </if>
+      <if test="proBuyPrice != null">
+        PRO_BUY_PRICE = #{proBuyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="gfa != null">
+        GFA = #{gfa,jdbcType=VARCHAR},
+      </if>
+      <if test="proLoanLife != null">
+        PRO_LOAN_LIFE = #{proLoanLife,jdbcType=VARCHAR},
+      </if>
+      <if test="proMortgageMonthly != null">
+        PRO_MORTGAGE_MONTHLY = #{proMortgageMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="proLoans != null">
+        PRO_LOANS = #{proLoans,jdbcType=VARCHAR},
+      </if>
+      <if test="proCreditPeriod != null">
+        PRO_CREDIT_PERIOD = #{proCreditPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAddress != null">
+        PROPERTY_ADDRESS = #{propertyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyProvCode != null">
+        PROPERTY_PROV_CODE = #{propertyProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyProvName != null">
+        PROPERTY_PROV_NAME = #{propertyProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyCityCode != null">
+        PROPERTY_CITY_CODE = #{propertyCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyCityName != null">
+        PROPERTY_CITY_NAME = #{propertyCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAreaCode != null">
+        PROPERTY_AREA_CODE = #{propertyAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAreaName != null">
+        PROPERTY_AREA_NAME = #{propertyAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyAddressDetail != null">
+        PROPERTY_ADDRESS_DETAIL = #{propertyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyZipCode != null">
+        PROPERTY_ZIP_CODE = #{propertyZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isHomeAddress != null">
+        IS_HOME_ADDRESS = #{isHomeAddress,jdbcType=DECIMAL},
+      </if>
+      <if test="isHomeAddress == null">
+        IS_HOME_ADDRESS = null,
+      </if>
+      <if test="isHomeAddressVal != null">
+        IS_HOME_ADDRESS_VAL = #{isHomeAddressVal,jdbcType=VARCHAR},
+      </if>
+      <if test="carHava != null">
+        CAR_HAVA = #{carHava,jdbcType=DECIMAL},
+      </if>
+      <if test="carHavaVal != null">
+        CAR_HAVA_VAL = #{carHavaVal,jdbcType=VARCHAR},
+      </if>
+      <if test="priceCar != null">
+        PRICE_CAR = #{priceCar,jdbcType=VARCHAR},
+      </if>
+      <if test="carAge != null">
+        CAR_AGE = #{carAge,jdbcType=VARCHAR},
+      </if>
+      <if test="carLoanDate != null">
+        CAR_LOAN_DATE = #{carLoanDate,jdbcType=OTHER},
+      </if>
+      <if test="carLoanDate == null">
+        CAR_LOAN_DATE = null,
+      </if>
+      <if test="carMortgageMonthly != null">
+        CAR_MORTGAGE_MONTHLY = #{carMortgageMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="carLoanCeiling != null">
+        CAR_LOAN_CEILING = #{carLoanCeiling,jdbcType=VARCHAR},
+      </if>
+      <if test="carBanlanceVal != null">
+        CAR_BANLANCE_VAL = #{carBanlanceVal,jdbcType=VARCHAR},
+      </if>
+      <if test="carPeriodVal != null">
+        CAR_PERIOD_VAL = #{carPeriodVal,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=OTHER},
+      </if>
+    </set>
+    where ASINFO_PK_ID = #{asinfoPkId,jdbcType=VARCHAR}
+  </update>
+</mapper>

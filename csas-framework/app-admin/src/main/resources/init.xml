@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<init>
+	<resources>
+		<resource id="01" type="menu" name="基础设置" level="1">
+			<resource id="0101" type="menu" name="员工管理" url="/sys/emp/listview.do" level="2">
+				<resource id="010101" type="action" name="添加员工" value="emp_add"></resource>
+				<resource id="010102" type="action" name="修改员工" value="emp_edit"></resource>
+				<resource id="010103" type="action" name="删除员工" value="emp_delete"></resource>
+				<resource id="010104" type="action" name="查询员工" value="emp_query"></resource>
+				<resource id="010105" type="action" name="员工授权" value="emp_grant"></resource>
+				<resource id="010106" type="action" name="查看员工" value="emp_info"></resource>
+			</resource>
+			<resource id="0102" type="menu" name="部门管理" url="/sys/dept/listview.do" level="2">
+				<resource id="010201" type="action" name="添加部门" value="dept_add"></resource>
+				<resource id="010202" type="action" name="修改部门" value="dept_edit"></resource>
+				<resource id="010203" type="action" name="删除部门" value="dept_delete"></resource>
+				<resource id="010204" type="action" name="查询部门" value="dept_query"></resource>
+			</resource>
+			<resource id="0103" type="menu" name="公司管理" url="/sys/company/listview.do" level="2">
+				<resource id="010301" type="action" name="添加公司" value="com_add"></resource>
+				<resource id="010302" type="action" name="修改公司" value="com_edit"></resource>
+				<resource id="010303" type="action" name="删除公司" value="com_delete"></resource>
+				<resource id="010304" type="action" name="查询公司" value="com_query"></resource>
+			</resource>
+			<resource id="0104" type="menu" name="职位管理" url="/sys/job/listview.do" level="2">
+				<resource id="010401" type="action" name="添加职位" value="job_add"></resource>
+				<resource id="010402" type="action" name="修改职位" value="job_edit"></resource>
+				<resource id="010403" type="action" name="删除职位" value="job_delete"></resource>
+				<resource id="010404" type="action" name="查询职位" value="job_query"></resource>
+			</resource>
+			<resource id="0105" type="menu" name="流程管理" url="/sys/flow/listview.do" level="2">
+				<resource id="010501" type="action" name="添加流程" value="flow_add"></resource>
+				<resource id="010502" type="action" name="修改流程" value="flow_edit"></resource>
+				<resource id="010503" type="action" name="删除流程" value="flow_delete"></resource>
+				<resource id="010504" type="action" name="查询流程" value="flow_query"></resource>
+				<resource id="010504" type="action" name="部署流程" value="flow_deploy"></resource>
+			</resource>
+			<resource id="0106" type="menu" name="审批组" url="/sys/auditgroup/listview.do" level="2">
+				<resource id="010601" type="action" name="添加审批组" value="group_add"></resource>
+				<resource id="010602" type="action" name="修改审批组" value="group_edit"></resource>
+				<resource id="010603" type="action" name="删除审批组" value="group_delete"></resource>
+				<resource id="010604" type="action" name="查询审批组" value="group_query"></resource>
+				<resource id="010604" type="action" name="人员绑定" value="group_bind"></resource>
+			</resource>
+			<!-- 测试 -->
+			<resource id="0107" type="menu" name="产品" url="/sys/pro/listview.do" level="2">
+				<resource id="010701" type="action" name="添加产品" value="pro_add"></resource>
+				<resource id="010702" type="action" name="修改产品" value="pro_edit"></resource>
+				<resource id="010703" type="action" name="删除产品" value="pro_delete"></resource>
+				<resource id="010704" type="action" name="查询产品" value="pro_query"></resource>
+<!-- 				<resource id="010704" type="action" name="产品绑定" value="pro_bind"></resource> -->
+			</resource>
+		</resource>
+
+		<resource id="02" type="menu" name="系统管理" level="1">
+			<resource id="0201" type="menu" name="资源管理" url="/sys/resource/listview.do" level="2">
+				<resource id="020101" type="action" name="添加资源" value="dataRes_add"></resource>
+				<resource id="020102" type="action" name="修改资源" value="dataRes_edit"></resource>
+				<resource id="020103" type="action" name="删除资源" value="dataRes_delete"></resource>
+				<resource id="020104" type="action" name="查询资源" value="dataRes_query"></resource>
+			</resource>
+			<resource id="0202" type="menu" name="角色管理" url="/sys/role/listview.do" level="2">
+				<resource id="020201" type="action" name="添加角色" value="role_add"></resource>
+				<resource id="020202" type="action" name="修改角色" value="role_edit"></resource>
+				<resource id="020203" type="action" name="删除角色" value="role_delete"></resource>
+				<resource id="020204" type="action" name="查询角色" value="role_query"></resource>
+				<resource id="020205" type="action" name="角色授权" value="role_grant"></resource>
+			</resource>
+			<resource id="0203" type="menu" name="数据监控" url="/sys/druid" level="2">
+				<resource id="020301" type="action" name="添加角色" value="show_druid"></resource>
+			</resource>
+			<resource id="0204" type="menu" name="系统监控" url="/sys/molody" level="2">
+				<resource id="020401" type="action" name="添加角色" value="show_molody"></resource>
+			</resource>
+			<resource id="0205" type="menu" name="用户登录日志" url="/sys/logininfo/listview.do" level="2">
+				<resource id="020501" type="action" name="登录日志查询" value="logininfo_query"></resource>
+				<resource id="020502" type="action" name="登录日志删除" value="logininfo_delete"></resource>
+			</resource>
+			<resource id="0206" type="menu" name="用户操作日志" url="/sys/logaspect/listview.do" level="2">
+				<resource id="020601" type="action" name="操作日志查询" value="logaspect_query"></resource>
+				<resource id="020602" type="action" name="操作日志删除" value="logaspect_delete"></resource>
+			</resource>
+			<resource id="0207" type="menu" name="防火墙" url="/sys/firewall/listview.do" level="2">
+				<resource id="020701" type="action" name="防火墙查询" value="firewall_query"></resource>
+				<resource id="020702" type="action" name="防火墙增加" value="firewall_add"></resource>
+				<resource id="020703" type="action" name="防火墙修改" value="firewall_edit"></resource>
+				<resource id="020704" type="action" name="防火墙删除" value="firewall_delete"></resource> 
+			</resource>
+		</resource>
+		
+		<resource id="03" type="menu" name="信用审核" level="1">
+			<resource id="0301" type="menu" name="初审审批" url="/sys/preaudit/listview.do" level="2">
+				<resource id="030101" type="action" name="初审审核" value="preaudit_audit"></resource>
+				<resource id="030102" type="action" name="初审签收" value="preaudit_sign"></resource>
+				<resource id="030103" type="action" name="初审发送" value="preaudit_send"></resource>
+				<resource id="030104" type="action" name="初审撤回" value="preaudit_withdraw"></resource>
+				<resource id="030105" type="action" name="初审查看" value="preaudit_show"></resource>
+				<resource id="030106" type="action" name="初审转办" value="preaudit_complaint"></resource>
+			</resource>
+			<resource id="0302" type="menu" name="终审审批" url="/sys/finishaudiu/listview.do" level="2">
+				<resource id="030201" type="action" name="终审审核" value="finish_audit"></resource>
+				<resource id="030202" type="action" name="终审签收" value="finish_sign"></resource>
+				<resource id="030203" type="action" name="终审发送" value="finish_send"></resource>
+				<resource id="030204" type="action" name="终审退回" value="finish_rollback"></resource>
+				<resource id="030205" type="action" name="终审撤回" value="finish_withdraw"></resource>
+				<resource id="030206" type="action" name="终审查看" value="finish_show"></resource>
+				<resource id="030205" type="action" name="终审转办" value="finish_complaint"></resource>
+			</resource>
+			<resource id="0303" type="menu" name="流程追踪" url="/sys/flowtrack/listview.do" level="2">
+				<resource id="030301" type="action" name="流程追踪" value="flow_track"></resource>
+			</resource>
+		</resource>
+		
+		<resource id="04" type="menu" name="APP管理" level="1">
+			<resource id="0401" type="menu" name="通知公告管理" url="/sys/hot/listview.do" level="2">
+				<resource id="040101" type="action" name="添加公告" value="hot_add"></resource>
+				<resource id="040102" type="action" name="修改公告" value="hot_edit"></resource>
+				<resource id="040103" type="action" name="删除公告" value="hot_delete"></resource>
+				<resource id="040104" type="action" name="查询公告" value="hot_query"></resource>
+			</resource>
+			<resource id="0402" type="menu" name="轮播管理" url="/sys/banner/listview.do" level="2">
+				<resource id="040201" type="action" name="添加Banner" value="banner_add"></resource>
+				<resource id="040202" type="action" name="修改Banner" value="banner_edit"></resource>
+				<resource id="040203" type="action" name="删除Banner" value="banner_delete"></resource>
+				<resource id="040204" type="action" name="查询Banner" value="banner_query"></resource>
+			</resource>
+			<resource id="0403" type="menu" name="大产品管理" url="/sys/cmrate/listview.do" level="2">
+				<resource id="040301" type="action" name="添加大产品" value="cmrate_add"></resource>
+				<resource id="040302" type="action" name="修改大产品" value="cmrate_edit"></resource>
+				<resource id="040303" type="action" name="删除大产品" value="cmrate_delete"></resource>
+				<resource id="040304" type="action" name="查询大产品" value="cmrate_query"></resource>
+			</resource>
+			<resource id="0404" type="menu" name="银行接口管理" url="/sys/bankitf/listview.do" level="2">
+				<resource id="040401" type="action" name="添加银行接口" value="bankitf_add"></resource>
+				<resource id="040402" type="action" name="修改银行接口" value="bankitf_edit"></resource>
+				<resource id="040403" type="action" name="删除银行接口" value="bankitf_delete"></resource>
+				<resource id="040404" type="action" name="查询银行接口" value="bankitf_query"></resource>
+			</resource>
+			<resource id="0405" type="menu" name="版本管理" url="/sys/version/listview.do" level="2">
+				<resource id="040501" type="action" name="添加版本信息" value="version_add"></resource>
+				<resource id="040502" type="action" name="修改版本信息" value="version_edit"></resource>
+				<resource id="040503" type="action" name="删除版本信息" value="version_delete"></resource>
+				<resource id="040504" type="action" name="查询版本信息" value="version_query"></resource>
+			</resource>
+			<resource id="0406" type="menu" name="门店管理" url="/sys/store/listview.do" level="2">
+				<resource id="040601" type="action" name="添加门店" value="store_add"></resource>
+				<resource id="040602" type="action" name="修改门店" value="store_edit"></resource>
+				<resource id="040603" type="action" name="删除门店" value="store_delete"></resource>
+				<resource id="040604" type="action" name="查询门店" value="store_query"></resource>
+			</resource>
+			<resource id="0407" type="menu" name="产品管理" url="/sys/product/listview.do" level="2">
+				<resource id="040701" type="action" name="添加产品" value="product_add"></resource>
+				<resource id="040702" type="action" name="修改产品" value="product_edit"></resource>
+				<resource id="040703" type="action" name="删除产品" value="product_delete"></resource>
+				<resource id="040704" type="action" name="查询产品" value="product_query"></resource>
+			</resource>
+			<resource id="0408" type="menu" name="APP用户登录日志" url="/sys/applogininfo/listview.do" level="2">
+				<resource id="040801" type="action" name="APP登录日志查询" value="applogininfo_query"></resource>
+				<resource id="040802" type="action" name="APP登录日志删除" value="applogininfo_delete"></resource>
+			</resource>
+			<resource id="0409" type="menu" name="推送消息" url="/sys/notice/listview.do" level="2">
+				<resource id="040901" type="action" name="推送消息添加" value="notice_add"></resource>
+				<resource id="040902" type="action" name="推送消息查询" value="notice_query"></resource>
+			</resource>
+		</resource>
+		
+		<resource id="05" type="menu" name="数据统计" level="1">
+			<resource id="0501" type="menu" name="合同统计" url="/sys/contract/listview.do" level="2">
+				<resource id="050101" type="action" name="合同查询" value="contract_query"></resource>
+				<resource id="050102" type="action" name="合同详情" value="contract_details"></resource>
+			</resource>
+			<resource id="0502" type="menu" name="放款统计" url="/sys/loans/listview.do" level="2">
+				<resource id="050201" type="action" name="放款查询" value="loans_query"></resource>
+				<resource id="050202" type="action" name="放款详情" value="loans_details"></resource>
+			</resource>
+			<resource id="0503" type="menu" name="逾期统计" url="/sys/overdue/listview.do" level="2">
+				<resource id="050301" type="action" name="逾期查询" value="overdue_query"></resource>
+				<resource id="050302" type="action" name="逾期详情" value="overdue_details"></resource>
+			</resource>
+		</resource>
+		
+	</resources>
+
+	<roles>
+		<role id="system_role_id" name="超级管理员" descs="拥有最大权限" default="true"></role>
+	</roles>
+
+	<coms>
+		<com id="system_com_id" name="红上金融信息服务（上海）有限公司" descs="初始默认公司" workAddr="上海"></com>
+	</coms>
+
+	<depts>
+		<dept id="system_dept_id" name="技术部" workAddr="Home" comId="system_com_id"></dept>
+	</depts>
+	
+	<jobs>
+		<dept id="system_job_id" name="技术员"></dept>
+	</jobs>
+	
+	<emps>
+		<emp id="system_emp_id" name="admin" password="admin123" worknum="88888888" roleId="system_role_id" deptId="system_dept_id" comId="system_com_id" jobId="system_job_id"></emp>
+	</emps>
+</init>

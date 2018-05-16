@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.SupplementSubmitMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.SupplementSubmit">
+    <id column="SUB_PK_ID" jdbcType="VARCHAR" property="subPkId" />
+    <result column="SUBMIT_TYPE_TEXT" jdbcType="VARCHAR" property="submitTypeText" />
+    <result column="SUBMIT_EMP_ID" jdbcType="VARCHAR" property="submitEmpId" />
+    <result column="SUBMIT_EMP_NAME" jdbcType="VARCHAR" property="submitEmpName" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="SUBMIT_DATE" jdbcType="TIMESTAMP" property="submitDate" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+    <result column="TASK_ID" jdbcType="VARCHAR" property="taskId" />
+    <result column="HANDLE_OPINION" jdbcType="DECIMAL" property="handleOpinion" />
+    <result column="HANDLE_OPINION_VAL" jdbcType="VARCHAR" property="handleOpinionVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SUB_PK_ID, SUBMIT_TYPE_TEXT, SUBMIT_EMP_ID, SUBMIT_EMP_NAME, APPLY_ID, SUBMIT_DATE, 
+    PROC_INST_ID, TASK_ID, HANDLE_OPINION, HANDLE_OPINION_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_SUPPLEMENT_SUBMIT
+    where SUB_PK_ID = #{subPkId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_SUPPLEMENT_SUBMIT
+    where SUB_PK_ID = #{subPkId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.SupplementSubmit">
+    insert into HS_SUPPLEMENT_SUBMIT (SUB_PK_ID, SUBMIT_TYPE_TEXT, SUBMIT_EMP_ID, 
+      SUBMIT_EMP_NAME, APPLY_ID, SUBMIT_DATE, 
+      PROC_INST_ID, TASK_ID, HANDLE_OPINION, 
+      HANDLE_OPINION_VAL)
+    values (#{subPkId,jdbcType=VARCHAR}, #{submitTypeText,jdbcType=VARCHAR}, #{submitEmpId,jdbcType=VARCHAR}, 
+      #{submitEmpName,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{submitDate,jdbcType=TIMESTAMP}, 
+      #{procInstId,jdbcType=VARCHAR}, #{taskId,jdbcType=VARCHAR}, #{handleOpinion,jdbcType=DECIMAL}, 
+      #{handleOpinionVal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.SupplementSubmit">
+    insert into HS_SUPPLEMENT_SUBMIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subPkId != null">
+        SUB_PK_ID,
+      </if>
+      <if test="submitTypeText != null">
+        SUBMIT_TYPE_TEXT,
+      </if>
+      <if test="submitEmpId != null">
+        SUBMIT_EMP_ID,
+      </if>
+      <if test="submitEmpName != null">
+        SUBMIT_EMP_NAME,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="submitDate != null">
+        SUBMIT_DATE,
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID,
+      </if>
+      <if test="taskId != null">
+        TASK_ID,
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION,
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subPkId != null">
+        #{subPkId,jdbcType=VARCHAR},
+      </if>
+      <if test="submitTypeText != null">
+        #{submitTypeText,jdbcType=VARCHAR},
+      </if>
+      <if test="submitEmpId != null">
+        #{submitEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="submitEmpName != null">
+        #{submitEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="submitDate != null">
+        #{submitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="procInstId != null">
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinion != null">
+        #{handleOpinion,jdbcType=DECIMAL},
+      </if>
+      <if test="handleOpinionVal != null">
+        #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.SupplementSubmit">
+    update HS_SUPPLEMENT_SUBMIT
+    <set>
+      <if test="submitTypeText != null">
+        SUBMIT_TYPE_TEXT = #{submitTypeText,jdbcType=VARCHAR},
+      </if>
+      <if test="submitEmpId != null">
+        SUBMIT_EMP_ID = #{submitEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="submitEmpName != null">
+        SUBMIT_EMP_NAME = #{submitEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="submitDate != null">
+        SUBMIT_DATE = #{submitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        TASK_ID = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION = #{handleOpinion,jdbcType=DECIMAL},
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SUB_PK_ID = #{subPkId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.SupplementSubmit">
+    update HS_SUPPLEMENT_SUBMIT
+    set SUBMIT_TYPE_TEXT = #{submitTypeText,jdbcType=VARCHAR},
+      SUBMIT_EMP_ID = #{submitEmpId,jdbcType=VARCHAR},
+      SUBMIT_EMP_NAME = #{submitEmpName,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      SUBMIT_DATE = #{submitDate,jdbcType=TIMESTAMP},
+      PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=VARCHAR},
+      HANDLE_OPINION = #{handleOpinion,jdbcType=DECIMAL},
+      HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR}
+    where SUB_PK_ID = #{subPkId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 以下是编码区域 -->
+  <!-- 查询提交显示内容 -->
+  <select id="findById" resultMap="BaseResultMap">
+   SELECT  SUB_PK_ID, SUBMIT_TYPE_TEXT <!-- ,SUBMIT_EMP_ID, SUBMIT_EMP_NAME, APPLY_ID, SUBMIT_DATE, 
+    PROC_INST_ID, TASK_ID, HANDLE_OPINION, HANDLE_OPINION_VAL --> FROM HS_SUPPLEMENT_SUBMIT 
+    WHERE APPLY_ID=#{applyId} AND SUBMIT_DATE IN (
+    	SELECT MAX(SUBMIT_DATE) FROM HS_SUPPLEMENT_SUBMIT WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    )
+  </select>
+  
+  <!-- 显示补充资料历史批核意见信息 -->
+  <select id="beforeSubmit" resultType="java.util.Map">
+	SELECT
+		HT.ID_,
+		HT.NAME_,
+		HT.TASK_DEF_KEY_,
+		HT.DELETE_REASON_,
+		HT.CLAIM_TIME_,
+		HT.END_TIME_,
+		HT.DURATION_,
+		VI.REMARKS REMARKS_,
+		VI.HANDLE_OPINION,
+		VI.HANDLE_OPINION_VAL,
+		VI.EMP_ID,
+		VI.EMP_NAME,
+		VI.AUDIT_DATE
+	FROM
+		ACT_HI_PROCINST HP,
+		ACT_HI_TASKINST HT,
+		AUDIT_VIEWS VI
+	WHERE
+		HP.PROC_INST_ID_ = HT.PROC_INST_ID_
+	AND HP.BUSINESS_KEY_ = #{applyId}
+	AND HP.BUSINESS_KEY_ = VI.APPLY_ID
+	AND HT.PROC_INST_ID_ = VI.PROC_INST_ID
+	AND HT.ID_ = VI.TASK_ID AND (VI.HANDLE_OPINION=3 OR(VI.HANDLE_OPINION=2 AND(HT.TASK_DEF_KEY_='qcCheck' OR HT.TASK_DEF_KEY_='preAudit')))
+	ORDER BY
+		VI.AUDIT_DATE
+  </select>
+ 	
+  <!--是否是协议审核退回 -->
+  <select id="isConAudit" resultType="java.util.Map">
+	SELECT
+	task.PROC_INST_ID_,
+	TASK.TASK_DEF_KEY_,
+	TASK.NAME_
+	FROM
+		ACT_HI_TASKINST task
+	WHERE
+		TASK.END_TIME_ = (
+			SELECT
+				MAX (TASK.END_TIME_)
+			FROM
+				ACT_HI_TASKINST TASK
+			WHERE
+				TASK.PROC_INST_ID_ = (
+					SELECT
+						APP.PROC_INST_ID
+					FROM
+						HS_APPLY app
+					WHERE
+						APP.APPLY_ID = #{applyId}
+				)
+	)
+  </select>
+</mapper>

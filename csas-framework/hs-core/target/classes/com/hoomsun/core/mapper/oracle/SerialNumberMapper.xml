@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SerialNumberMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.core.model.SerialNumber">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="MODEL" jdbcType="VARCHAR" property="model" />
+		<result column="CODE" jdbcType="DECIMAL" property="code" />
+		<result column="CREATETIME" jdbcType="VARCHAR" property="createtime" />
+		<result column="CODLENGTH" jdbcType="DECIMAL" property="codlength" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+		<result column="TYPEVAL" jdbcType="VARCHAR" property="typeval" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, MODEL, CODE, CREATETIME, CODLENGTH, TYPE, TYPEVAL
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_SERIALNUMBER
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_SERIALNUMBER
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.core.model.SerialNumber">
+		insert into HS_SERIALNUMBER (ID, MODEL, CODE,
+		CREATETIME, CODLENGTH, TYPE,
+		TYPEVAL)
+		values (#{id,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{code,jdbcType=DECIMAL},
+		#{createtime,jdbcType=VARCHAR}, #{codlength,jdbcType=DECIMAL}, #{type,jdbcType=VARCHAR},
+		#{typeval,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.core.model.SerialNumber">
+		insert into HS_SERIALNUMBER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="model != null">
+				MODEL,
+			</if>
+			<if test="code != null">
+				CODE,
+			</if>
+			<if test="createtime != null">
+				CREATETIME,
+			</if>
+			<if test="codlength != null">
+				CODLENGTH,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+			<if test="typeval != null">
+				TYPEVAL,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="model != null">
+				#{model,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=DECIMAL},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="codlength != null">
+				#{codlength,jdbcType=DECIMAL},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="typeval != null">
+				#{typeval,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SerialNumber">
+		update HS_SERIALNUMBER
+		<set>
+			<if test="model != null">
+				MODEL = #{model,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				CODE = #{code,jdbcType=DECIMAL},
+			</if>
+			<if test="createtime != null">
+				CREATETIME = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="codlength != null">
+				CODLENGTH = #{codlength,jdbcType=DECIMAL},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="typeval != null">
+				TYPEVAL = #{typeval,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SerialNumber">
+		update HS_SERIALNUMBER
+		set MODEL = #{model,jdbcType=VARCHAR},
+		CODE = #{code,jdbcType=DECIMAL},
+		CREATETIME = #{createtime,jdbcType=VARCHAR},
+		CODLENGTH = #{codlength,jdbcType=DECIMAL},
+		TYPE = #{type,jdbcType=VARCHAR},
+		TYPEVAL = #{typeval,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+
+
+	<!-- 分页查询 -->
+
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+	<![CDATA[
+		SELECT
+			it. ID,
+			it. MODEL,
+			it.CODE,
+			it.CREATETIME,
+			it.CODLENGTH,
+			it. TYPE,
+			it.TYPEVAL
+		FROM
+			(
+				SELECT
+					it. ID,
+					it. MODEL,
+					it.CODE,
+					it.CREATETIME,
+					it.CODLENGTH,
+					it. TYPE,
+					it.TYPEVAL,
+					ROWNUM r
+				FROM
+					HS_SERIALNUMBER it
+				WHERE
+					ROWNUM <=#{page}*#{rows}
+			) it
+		WHERE
+			1 <> 2
+		      
+      ]]>
+		<if test="typeval != null and typeval != ''">
+			and it.TYPEVAL like #{typeval}
+		</if>
+		and r>(#{page}-1)*#{rows}
+	</select>
+
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[
+			
+			SELECT count(it.ID) from HS_SERIALNUMBER it WHERE 1<>2
+
+		]]>
+		<if test="id != null and id != '' "> and it.ID like #{id}</if>
+	</select>
+
+	<select id="findByType" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM HS_SERIALNUMBER
+		where TYPE = #{type,jdbcType=VARCHAR}
+	</select>
+
+
+	<select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM HS_SERIALNUMBER
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+
+	<parameterMap type="java.util.Map" id="SERIAL_NUMBER_PROCEDURE_MAP">
+		<parameter property="p_type" mode="IN" jdbcType="INTEGER"/>
+		<parameter property="p_prefix" mode="IN" jdbcType="VARCHAR"/>
+		<parameter property="s_num" mode="OUT" jdbcType="VARCHAR"/>
+	</parameterMap>
+	<select id="getSerialNumber" parameterMap="SERIAL_NUMBER_PROCEDURE_MAP" statementType="CALLABLE">
+        {CALL SERIAL_NUMBER(?,?,?)}
+    </select>
+</mapper>

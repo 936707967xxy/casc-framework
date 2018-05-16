@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.apply.query.dao.AfreshContacterInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="com.hoomsun.csas.apply.query.model.AfreshContacterInfo">
+		<id column="CNINFO_PK_ID" jdbcType="VARCHAR" property="cninfoPkId" />
+		<result column="FK_ID" jdbcType="VARCHAR" property="fkId" />
+		<result column="CONTACTER_TIME" jdbcType="OTHER" property="contacterTime" />
+		<result column="PO_CONTACT_NAME" jdbcType="VARCHAR" property="poContactName" />
+		<result column="PO_MOBILE" jdbcType="VARCHAR" property="poMobile" />
+		<result column="PO_RELATIONSHIP" jdbcType="DECIMAL" property="poRelationship" />
+		<result column="PO_RELATIONSHIP_VAL" jdbcType="VARCHAR"
+			property="poRelationshipVal" />
+		<result column="PO_COMPANY" jdbcType="VARCHAR" property="poCompany" />
+		<result column="QSONE_ADDRESS" jdbcType="VARCHAR" property="qsoneAddress" />
+		<result column="IS_FAMILY_KNOW" jdbcType="DECIMAL" property="isFamilyKnow" />
+		<result column="IS_FAMILY_KNOW_VAL" jdbcType="VARCHAR"
+			property="isFamilyKnowVal" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		CNINFO_PK_ID, FK_ID, CONTACTER_TIME, PO_CONTACT_NAME,
+		PO_MOBILE, PO_RELATIONSHIP,
+		PO_RELATIONSHIP_VAL, PO_COMPANY,
+		QSONE_ADDRESS, IS_FAMILY_KNOW,
+		IS_FAMILY_KNOW_VAL,
+		APPLY_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFRESH_CONTACTER_INFO
+		where CNINFO_PK_ID =
+		#{cninfoPkId,jdbcType=VARCHAR}
+	</select>
+</mapper>

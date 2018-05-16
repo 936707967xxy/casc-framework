@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.audit.dao.PhoneVerifyMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.audit.model.PhoneVerify">
+    <id column="PV_ID" jdbcType="VARCHAR" property="pvId" />
+    <result column="TEL_NUMBER" jdbcType="VARCHAR" property="telNumber" />
+    <result column="KNOW_VAL" jdbcType="DECIMAL" property="knowVal" />
+    <result column="KNOW_STR" jdbcType="VARCHAR" property="knowStr" />
+    <result column="TEL_STATUS" jdbcType="DECIMAL" property="telStatus" />
+    <result column="TEL_STATUSVAL" jdbcType="VARCHAR" property="telStatusval" />
+    <result column="CONS_ID" jdbcType="VARCHAR" property="consId" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="RELATION" jdbcType="DECIMAL" property="relation" />
+    <result column="RELATION_VAL" jdbcType="VARCHAR" property="relationVal" />
+    <result column="CK_STATUS" jdbcType="DECIMAL" property="ckStatus" />
+    <result column="CK_STATUS_VAL" jdbcType="VARCHAR" property="ckStatusVal" />
+    <result column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+    <result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+    <result column="CK_DATE" jdbcType="TIMESTAMP" property="ckDate" />
+    <result column="RELATION_NAME" jdbcType="VARCHAR" property="relationName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PV_ID, TEL_NUMBER, KNOW_VAL, KNOW_STR, TEL_STATUS, TEL_STATUSVAL, CONS_ID, REMARK, 
+    APPLY_ID, RELATION, RELATION_VAL, CK_STATUS, CK_STATUS_VAL, EMP_ID, EMP_NAME, CK_DATE, 
+    RELATION_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PHONE_VERIFY
+    where PV_ID = #{pvId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PHONE_VERIFY
+    where PV_ID = #{pvId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.audit.model.PhoneVerify">
+    insert into HS_PHONE_VERIFY (PV_ID, TEL_NUMBER, KNOW_VAL, 
+      KNOW_STR, TEL_STATUS, TEL_STATUSVAL, 
+      CONS_ID, REMARK, APPLY_ID, 
+      RELATION, RELATION_VAL, CK_STATUS, 
+      CK_STATUS_VAL, EMP_ID, EMP_NAME, 
+      CK_DATE, RELATION_NAME)
+    values (#{pvId,jdbcType=VARCHAR}, #{telNumber,jdbcType=VARCHAR}, #{knowVal,jdbcType=DECIMAL}, 
+      #{knowStr,jdbcType=VARCHAR}, #{telStatus,jdbcType=DECIMAL}, #{telStatusval,jdbcType=VARCHAR}, 
+      #{consId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, 
+      #{relation,jdbcType=DECIMAL}, #{relationVal,jdbcType=VARCHAR}, #{ckStatus,jdbcType=DECIMAL}, 
+      #{ckStatusVal,jdbcType=VARCHAR}, #{empId,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, 
+      #{ckDate,jdbcType=TIMESTAMP}, #{relationName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.audit.model.PhoneVerify">
+    insert into HS_PHONE_VERIFY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pvId != null">
+        PV_ID,
+      </if>
+      <if test="telNumber != null">
+        TEL_NUMBER,
+      </if>
+      <if test="knowVal != null">
+        KNOW_VAL,
+      </if>
+      <if test="knowStr != null">
+        KNOW_STR,
+      </if>
+      <if test="telStatus != null">
+        TEL_STATUS,
+      </if>
+      <if test="telStatusval != null">
+        TEL_STATUSVAL,
+      </if>
+      <if test="consId != null">
+        CONS_ID,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="relation != null">
+        RELATION,
+      </if>
+      <if test="relationVal != null">
+        RELATION_VAL,
+      </if>
+      <if test="ckStatus != null">
+        CK_STATUS,
+      </if>
+      <if test="ckStatusVal != null">
+        CK_STATUS_VAL,
+      </if>
+      <if test="empId != null">
+        EMP_ID,
+      </if>
+      <if test="empName != null">
+        EMP_NAME,
+      </if>
+      <if test="ckDate != null">
+        CK_DATE,
+      </if>
+      <if test="relationName != null">
+        RELATION_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pvId != null">
+        #{pvId,jdbcType=VARCHAR},
+      </if>
+      <if test="telNumber != null">
+        #{telNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="knowVal != null">
+        #{knowVal,jdbcType=DECIMAL},
+      </if>
+      <if test="knowStr != null">
+        #{knowStr,jdbcType=VARCHAR},
+      </if>
+      <if test="telStatus != null">
+        #{telStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="telStatusval != null">
+        #{telStatusval,jdbcType=VARCHAR},
+      </if>
+      <if test="consId != null">
+        #{consId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null">
+        #{relation,jdbcType=DECIMAL},
+      </if>
+      <if test="relationVal != null">
+        #{relationVal,jdbcType=VARCHAR},
+      </if>
+      <if test="ckStatus != null">
+        #{ckStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="ckStatusVal != null">
+        #{ckStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="ckDate != null">
+        #{ckDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="relationName != null">
+        #{relationName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.audit.model.PhoneVerify">
+    update HS_PHONE_VERIFY
+    <set>
+      <if test="telNumber != null">
+        TEL_NUMBER = #{telNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="knowVal != null">
+        KNOW_VAL = #{knowVal,jdbcType=DECIMAL},
+      </if>
+      <if test="knowStr != null">
+        KNOW_STR = #{knowStr,jdbcType=VARCHAR},
+      </if>
+      <if test="telStatus != null">
+        TEL_STATUS = #{telStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="telStatusval != null">
+        TEL_STATUSVAL = #{telStatusval,jdbcType=VARCHAR},
+      </if>
+      <if test="consId != null">
+        CONS_ID = #{consId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null">
+        RELATION = #{relation,jdbcType=DECIMAL},
+      </if>
+      <if test="relationVal != null">
+        RELATION_VAL = #{relationVal,jdbcType=VARCHAR},
+      </if>
+      <if test="ckStatus != null">
+        CK_STATUS = #{ckStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="ckStatusVal != null">
+        CK_STATUS_VAL = #{ckStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null">
+        EMP_ID = #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        EMP_NAME = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="ckDate != null">
+        CK_DATE = #{ckDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="relationName != null">
+        RELATION_NAME = #{relationName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PV_ID = #{pvId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.audit.model.PhoneVerify">
+    update HS_PHONE_VERIFY
+    set TEL_NUMBER = #{telNumber,jdbcType=VARCHAR},
+      KNOW_VAL = #{knowVal,jdbcType=DECIMAL},
+      KNOW_STR = #{knowStr,jdbcType=VARCHAR},
+      TEL_STATUS = #{telStatus,jdbcType=DECIMAL},
+      TEL_STATUSVAL = #{telStatusval,jdbcType=VARCHAR},
+      CONS_ID = #{consId,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      RELATION = #{relation,jdbcType=DECIMAL},
+      RELATION_VAL = #{relationVal,jdbcType=VARCHAR},
+      CK_STATUS = #{ckStatus,jdbcType=DECIMAL},
+      CK_STATUS_VAL = #{ckStatusVal,jdbcType=VARCHAR},
+      EMP_ID = #{empId,jdbcType=VARCHAR},
+      EMP_NAME = #{empName,jdbcType=VARCHAR},
+      CK_DATE = #{ckDate,jdbcType=TIMESTAMP},
+      RELATION_NAME = #{relationName,jdbcType=VARCHAR}
+    where PV_ID = #{pvId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 以下为编辑区域不可修改 -->
+  <select id="checkByApplyId" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(PV_ID) FROM HS_PHONE_VERIFY WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="checkByApplyTel" resultType="java.lang.Integer">
+  	SELECT COUNT(PV_ID) FROM HS_PHONE_VERIFY WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR} and TEL_NUMBER = #{telNumber,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <select id="checkById" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(PV_ID) FROM HS_PHONE_VERIFY WHERE PV_ID = #{pvId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+  	PV_ID, TEL_NUMBER, KNOW_VAL, KNOW_STR, TEL_STATUS, TEL_STATUSVAL, CONS_ID, REMARK, 
+    APPLY_ID, RELATION, RELATION_VAL, CK_STATUS, CK_STATUS_VAL, EMP_ID, EMP_NAME, CK_DATE, 
+    RELATION_NAME 
+    from HS_PHONE_VERIFY
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findByConsId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select 
+  	PV_ID, TEL_NUMBER, KNOW_VAL, KNOW_STR, TEL_STATUS, TEL_STATUSVAL, CONS_ID, REMARK, 
+    APPLY_ID, RELATION, RELATION_VAL, CK_STATUS, CK_STATUS_VAL, EMP_ID, EMP_NAME, CK_DATE, 
+    RELATION_NAME
+    from HS_PHONE_VERIFY
+    where CONS_ID = #{consId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="queryByApplyTel" resultMap="BaseResultMap">
+  	SELECT 
+	PV_ID
+	FROM HS_PHONE_VERIFY WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR} and TEL_NUMBER = #{telNumber,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.BatchStatusMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.BatchStatus">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="BATCH_TYPE" jdbcType="VARCHAR" property="batchType" />
+    <result column="BATCH_DATE" jdbcType="TIMESTAMP" property="batchDate" />
+    <result column="BATCH_STATUS" jdbcType="VARCHAR" property="batchStatus" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, BATCH_TYPE, BATCH_DATE, BATCH_STATUS, CREATE_TIME, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFTER_BATCH_STATUS
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFTER_BATCH_STATUS
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.after.api.model.table.BatchStatus">
+    insert into HS_AFTER_BATCH_STATUS (ID, BATCH_TYPE, BATCH_DATE, 
+      BATCH_STATUS, CREATE_TIME, UPDATE_DATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{batchType,jdbcType=VARCHAR}, #{batchDate,jdbcType=TIMESTAMP}, 
+      #{batchStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.BatchStatus">
+    insert into HS_AFTER_BATCH_STATUS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="batchType != null">
+        BATCH_TYPE,
+      </if>
+      <if test="batchDate != null">
+        BATCH_DATE,
+      </if>
+      <if test="batchStatus != null">
+        BATCH_STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="batchType != null">
+        #{batchType,jdbcType=VARCHAR},
+      </if>
+      <if test="batchDate != null">
+        #{batchDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchStatus != null">
+        #{batchStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.BatchStatus">
+    update HS_AFTER_BATCH_STATUS
+    <set>
+      <if test="batchType != null">
+        BATCH_TYPE = #{batchType,jdbcType=VARCHAR},
+      </if>
+      <if test="batchDate != null">
+        BATCH_DATE = #{batchDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchStatus != null">
+        BATCH_STATUS = #{batchStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.BatchStatus">
+    update HS_AFTER_BATCH_STATUS
+    set BATCH_TYPE = #{batchType,jdbcType=VARCHAR},
+      BATCH_DATE = #{batchDate,jdbcType=TIMESTAMP},
+      BATCH_STATUS = #{batchStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.PbccrcChartViewMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.PbccrcChartView">
+    <id column="PB_VIEW_ID" jdbcType="VARCHAR" property="pbViewId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="LOAN_PURPOSE_INFO" jdbcType="VARCHAR" property="loanPurposeInfo" />
+    <result column="CARD_LIMIT_INFO" jdbcType="VARCHAR" property="cardLimitInfo" />
+    <result column="LOAN_STATUS_INFO" jdbcType="VARCHAR" property="loanStatusInfo" />
+    <result column="CARD_USED_TIME_INFO" jdbcType="VARCHAR" property="cardUsedTimeInfo" />
+    <result column="SELECT_WITH_LOAN_INFO" jdbcType="VARCHAR" property="selectWithLoanInfo" />
+    <result column="CARD_USED_INFO" jdbcType="VARCHAR" property="cardUsedInfo" />
+    <result column="ACCOUNT_INFO" jdbcType="VARCHAR" property="accountInfo" />
+    <result column="LOAN_MONEY_INFO" jdbcType="VARCHAR" property="loanMoneyInfo" />
+    <result column="LOAN_INSTITUTION_INFO" jdbcType="VARCHAR" property="loanInstitutionInfo" />
+    <result column="SELECT_INFO" jdbcType="VARCHAR" property="selectInfo" />
+    <result column="OVERDUEINFO" jdbcType="VARCHAR" property="overdueinfo" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapVo" type="com.hoomsun.csas.sales.api.model.vo.PbccrcChartViewVo">
+    <id column="PB_VIEW_ID" jdbcType="VARCHAR" property="pbViewId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="LOAN_PURPOSE_INFO" jdbcType="VARCHAR" property="loanPurposeInfo" />
+    <result column="CARD_LIMIT_INFO" jdbcType="VARCHAR" property="cardLimitInfo" />
+    <result column="LOAN_STATUS_INFO" jdbcType="VARCHAR" property="loanStatusInfo" />
+    <result column="CARD_USED_TIME_INFO" jdbcType="VARCHAR" property="cardUsedTimeInfo" />
+    <result column="SELECT_WITH_LOAN_INFO" jdbcType="VARCHAR" property="selectWithLoanInfo" />
+    <result column="CARD_USED_INFO" jdbcType="VARCHAR" property="cardUsedInfo" />
+    <result column="ACCOUNT_INFO" jdbcType="VARCHAR" property="accountInfo" />
+    <result column="LOAN_MONEY_INFO" jdbcType="VARCHAR" property="loanMoneyInfo" />
+    <result column="LOAN_INSTITUTION_INFO" jdbcType="VARCHAR" property="loanInstitutionInfo" />
+    <result column="SELECT_INFO" jdbcType="VARCHAR" property="selectInfo" />
+    <result column="OVERDUEINFO" jdbcType="VARCHAR" property="overdueinfo" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List">
+    PB_VIEW_ID, APPLY_ID, LOAN_PURPOSE_INFO, CARD_LIMIT_INFO, LOAN_STATUS_INFO, CARD_USED_TIME_INFO, 
+    SELECT_WITH_LOAN_INFO, CARD_USED_INFO, ACCOUNT_INFO, LOAN_MONEY_INFO, LOAN_INSTITUTION_INFO, 
+    SELECT_INFO, OVERDUEINFO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PBCCRC_CHART_VIEW
+    where PB_VIEW_ID = #{pbViewId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PBCCRC_CHART_VIEW
+    where PB_VIEW_ID = #{pbViewId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.PbccrcChartView">
+    insert into HS_PBCCRC_CHART_VIEW (PB_VIEW_ID, APPLY_ID, LOAN_PURPOSE_INFO, 
+      CARD_LIMIT_INFO, LOAN_STATUS_INFO, CARD_USED_TIME_INFO, 
+      SELECT_WITH_LOAN_INFO, CARD_USED_INFO, ACCOUNT_INFO, 
+      LOAN_MONEY_INFO, LOAN_INSTITUTION_INFO, SELECT_INFO, 
+      OVERDUEINFO)
+    values (#{pbViewId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{loanPurposeInfo,jdbcType=VARCHAR}, 
+      #{cardLimitInfo,jdbcType=VARCHAR}, #{loanStatusInfo,jdbcType=VARCHAR}, #{cardUsedTimeInfo,jdbcType=VARCHAR}, 
+      #{selectWithLoanInfo,jdbcType=VARCHAR}, #{cardUsedInfo,jdbcType=VARCHAR}, #{accountInfo,jdbcType=VARCHAR}, 
+      #{loanMoneyInfo,jdbcType=VARCHAR}, #{loanInstitutionInfo,jdbcType=VARCHAR}, #{selectInfo,jdbcType=VARCHAR}, 
+      #{overdueinfo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.PbccrcChartView">
+    insert into HS_PBCCRC_CHART_VIEW
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pbViewId != null">
+        PB_VIEW_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="loanPurposeInfo != null">
+        LOAN_PURPOSE_INFO,
+      </if>
+      <if test="cardLimitInfo != null">
+        CARD_LIMIT_INFO,
+      </if>
+      <if test="loanStatusInfo != null">
+        LOAN_STATUS_INFO,
+      </if>
+      <if test="cardUsedTimeInfo != null">
+        CARD_USED_TIME_INFO,
+      </if>
+      <if test="selectWithLoanInfo != null">
+        SELECT_WITH_LOAN_INFO,
+      </if>
+      <if test="cardUsedInfo != null">
+        CARD_USED_INFO,
+      </if>
+      <if test="accountInfo != null">
+        ACCOUNT_INFO,
+      </if>
+      <if test="loanMoneyInfo != null">
+        LOAN_MONEY_INFO,
+      </if>
+      <if test="loanInstitutionInfo != null">
+        LOAN_INSTITUTION_INFO,
+      </if>
+      <if test="selectInfo != null">
+        SELECT_INFO,
+      </if>
+      <if test="overdueinfo != null">
+        OVERDUEINFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pbViewId != null">
+        #{pbViewId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanPurposeInfo != null">
+        #{loanPurposeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardLimitInfo != null">
+        #{cardLimitInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanStatusInfo != null">
+        #{loanStatusInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardUsedTimeInfo != null">
+        #{cardUsedTimeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="selectWithLoanInfo != null">
+        #{selectWithLoanInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardUsedInfo != null">
+        #{cardUsedInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountInfo != null">
+        #{accountInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanMoneyInfo != null">
+        #{loanMoneyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInstitutionInfo != null">
+        #{loanInstitutionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="selectInfo != null">
+        #{selectInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueinfo != null">
+        #{overdueinfo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.PbccrcChartView">
+    update HS_PBCCRC_CHART_VIEW
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanPurposeInfo != null">
+        LOAN_PURPOSE_INFO = #{loanPurposeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardLimitInfo != null">
+        CARD_LIMIT_INFO = #{cardLimitInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanStatusInfo != null">
+        LOAN_STATUS_INFO = #{loanStatusInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardUsedTimeInfo != null">
+        CARD_USED_TIME_INFO = #{cardUsedTimeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="selectWithLoanInfo != null">
+        SELECT_WITH_LOAN_INFO = #{selectWithLoanInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardUsedInfo != null">
+        CARD_USED_INFO = #{cardUsedInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountInfo != null">
+        ACCOUNT_INFO = #{accountInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanMoneyInfo != null">
+        LOAN_MONEY_INFO = #{loanMoneyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="loanInstitutionInfo != null">
+        LOAN_INSTITUTION_INFO = #{loanInstitutionInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="selectInfo != null">
+        SELECT_INFO = #{selectInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueinfo != null">
+        OVERDUEINFO = #{overdueinfo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PB_VIEW_ID = #{pbViewId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.PbccrcChartView">
+    update HS_PBCCRC_CHART_VIEW
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      LOAN_PURPOSE_INFO = #{loanPurposeInfo,jdbcType=VARCHAR},
+      CARD_LIMIT_INFO = #{cardLimitInfo,jdbcType=VARCHAR},
+      LOAN_STATUS_INFO = #{loanStatusInfo,jdbcType=VARCHAR},
+      CARD_USED_TIME_INFO = #{cardUsedTimeInfo,jdbcType=VARCHAR},
+      SELECT_WITH_LOAN_INFO = #{selectWithLoanInfo,jdbcType=VARCHAR},
+      CARD_USED_INFO = #{cardUsedInfo,jdbcType=VARCHAR},
+      ACCOUNT_INFO = #{accountInfo,jdbcType=VARCHAR},
+      LOAN_MONEY_INFO = #{loanMoneyInfo,jdbcType=VARCHAR},
+      LOAN_INSTITUTION_INFO = #{loanInstitutionInfo,jdbcType=VARCHAR},
+      SELECT_INFO = #{selectInfo,jdbcType=VARCHAR},
+      OVERDUEINFO = #{overdueinfo,jdbcType=VARCHAR}
+    where PB_VIEW_ID = #{pbViewId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMapVo">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PBCCRC_CHART_VIEW
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+</mapper>

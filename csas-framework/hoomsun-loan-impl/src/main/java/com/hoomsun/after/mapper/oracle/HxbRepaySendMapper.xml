@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.HxbRepaySendMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.HxbRepaySend">
+    <result column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="STREAM" jdbcType="DECIMAL" property="stream" />
+    <result column="REPAID_TYPE" jdbcType="VARCHAR" property="repaidType" />
+    <result column="REPAID_TIME" jdbcType="TIMESTAMP" property="repaidTime" />
+    <result column="OVERDUE_FLAG" jdbcType="VARCHAR" property="overdueFlag" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hoomsun.after.api.model.table.HxbRepaySend">
+    insert into HS_AFTER_HXB_REPAYSEND (ID, LOAN_ID, STREAM, 
+      REPAID_TYPE, REPAID_TIME, OVERDUE_FLAG, 
+      CREATE_DATE, UPDATE_DATE)
+    values (#{id,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR}, #{stream,jdbcType=DECIMAL}, 
+      #{repaidType,jdbcType=VARCHAR}, #{repaidTime,jdbcType=TIMESTAMP}, #{overdueFlag,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.HxbRepaySend">
+    insert into HS_AFTER_HXB_REPAYSEND
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="stream != null">
+        STREAM,
+      </if>
+      <if test="repaidType != null">
+        REPAID_TYPE,
+      </if>
+      <if test="repaidTime != null">
+        REPAID_TIME,
+      </if>
+      <if test="overdueFlag != null">
+        OVERDUE_FLAG,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="stream != null">
+        #{stream,jdbcType=DECIMAL},
+      </if>
+      <if test="repaidType != null">
+        #{repaidType,jdbcType=VARCHAR},
+      </if>
+      <if test="repaidTime != null">
+        #{repaidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overdueFlag != null">
+        #{overdueFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

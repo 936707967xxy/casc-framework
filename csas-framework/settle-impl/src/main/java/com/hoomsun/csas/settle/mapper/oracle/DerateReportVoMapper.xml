@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.settle.dao.DerateReportVoMapper">
+	<resultMap type="com.hoomsun.csas.settle.model.vo.DerateReportVo" id="DERATE_REPORT_RESULT_MAP">
+		<result column="SHOULD_DATE" property="shouldDate" />
+		<result column="SERIAL_ID" property="serialId" />
+		<result column="CARD_NO" property="cardNo" />
+	    <result column="CON_NO" property="conNo" />    
+		<result column="CAST_NAME" property="castName" />
+	    <result column="STORE_NAME" property="storeName"/>
+		<result column="OVERDUE_NUM" property="overdueNum" />
+	    <result column="OVERDUE_DAYS" property="overdueDays" />
+		<result column="SHOULD_CAPI" property="shouldCapi" />
+	    <result column="SHOULD_INTE" property="shouldInte" />
+	    <result column="SHOULD_PRINCIPAL" property="shouldPrincipal" />
+	    <result column="RECEIVE_PENALTY" property="receivePenalty" />
+	    <result column="RECEIVE_INTEREST" property="receiveInterest" />
+		<result column="RECEIVE_PENALTY_INTEREST" property="receivePenaltyInterest" />
+		<result column="RECEIVE_TOTAL_MONEY" property="receiveTotalMoney" />
+	    <result column="RECEIVED_MONEY" property="receivedMoney" />
+		<result column="ADVANCE_SHOULD" property="advanceShould" />
+		<result column="ADVANCE_MONEY" property="advanceMoney" />
+		<result column="ADVANCE_REDUCE" property="advanceReduce" />
+		<result column="APPLICATION_DESC" property="applicationDesc" />
+	  	
+	</resultMap>
+	
+    <select id="findPager" parameterType="java.util.Map" resultMap="DERATE_REPORT_RESULT_MAP">
+ 
+    	
+ 		SELECT tab.* FROM (
+			  SELECT 
+			  	  ROWNUM r,
+				  rp.SHOULD_DATE ,                            
+				  aoa.SERIAL_ID,                      
+				  aoa.CON_NO,                        
+				  aoa.CAST_NAME,                      
+				  aoa.CARD_NO,                        
+				  ha.STORE_NAME,                      
+				  aoa.OVERDUE_NUM,                   
+				  aoa.OVERDUE_DAYS,                  
+				  rp.SHOULD_CAPI ,                     
+				  rp.SHOULD_INTE ,                
+				  rp.SHOULD_CAPI + rp.SHOULD_INTE SHOULD_PRINCIPAL,
+				  aoa.RECEIVE_PENALTY,                
+				  aoa.RECEIVE_INTEREST,               
+				  aoa.RECEIVE_PENALTY_INTEREST,       
+				  aoa.RECEIVE_TOTAL_MONEY,             
+				  aor.RECEIVED_MONEY ,                 
+				  rp.ADVANCE_SHOULD,                  
+				  rp.ADVANCE_MONEY,                  
+				  rp.ADVANCE_REDUCE,                  
+				  aoa.APPLICATION_DESC                
+				  FROM HS_AFTER_OVERDUE_APPLY aoa                                                                           
+				  LEFT JOIN HS_APPLY ha ON aoa.LOAN_ID = ha.APPLY_ID                                                        
+				  LEFT JOIN HS_REPAYMENT_PLAN rp ON rp.APPLY_ID = aoa.LOAN_ID AND aoa.OVERDUE_NUM = rp.SHOULD_TERM          
+				  LEFT JOIN HS_AFTER_OVERDUE_RECORD aor ON aor.OVERDUE_NUM = aoa.OVERDUE_NUM and aoa.LOAN_ID = aor.LOAN_ID  
+       <![CDATA[ WHERE ROWNUM <=  #{pageIndex} * #{pageSize} ]]> 
+		<if test="startDate != null and startDate != ''">
+		    <![CDATA[ AND to_char(rp.SHOULD_DATE ,'yyyy-mm-dd')>=#{startDate}]]>
+		</if>
+		<if test="endDate != null and endDate != ''">
+		   <![CDATA[ AND to_char(rp.SHOULD_DATE ,'yyyy-mm-dd')<=#{endDate}]]>
+		</if>
+    	<if test="castName != null and castName != ''">
+			AND aoa.CAST_NAME like #{castName} 
+		</if>	
+    	<if test="cardNo != null and cardNo != ''">
+			AND aoa.CARD_NO like #{cardNo} 
+		</if>
+		<if test="conNo != null and conNo != ''">
+			AND aoa.CON_NO like #{conNo} 
+		</if>
+       		ORDER BY  rp.SHOULD_DATE DESC
+	     ) 
+    	tab  WHERE r > (#{pageIndex} -1) * #{pageSize}
+    	
+	</select>
+	
+	<select id="findPagerCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		 <![CDATA[
+			SELECT
+				COUNT(aoa.CON_NO)
+			FROM HS_AFTER_OVERDUE_APPLY aoa  
+	 	  LEFT JOIN HS_APPLY ha ON aoa.LOAN_ID = ha.APPLY_ID                                                        
+		  LEFT JOIN HS_REPAYMENT_PLAN rp ON rp.APPLY_ID = aoa.LOAN_ID AND aoa.OVERDUE_NUM = rp.SHOULD_TERM          
+		  LEFT JOIN HS_AFTER_OVERDUE_RECORD aor ON aor.OVERDUE_NUM = aoa.OVERDUE_NUM and aoa.LOAN_ID = aor.LOAN_ID  
+		   WHERE 1<>2
+ 		   ]]>
+ 		<if test="startDate != null and startDate != ''">
+		    <![CDATA[ AND to_char(rp.SHOULD_DATE ,'yyyy-mm-dd')>=#{startDate}]]>
+		</if>
+		<if test="endDate != null and endDate != ''">
+		   <![CDATA[ AND to_char(rp.SHOULD_DATE ,'yyyy-mm-dd')<=#{endDate}]]>
+		</if>
+    	<if test="castName != null and castName != ''">
+			AND aoa.CAST_NAME like #{castName} 
+		</if>	
+		<if test="castName != null and castName != ''">
+			AND aoa.CAST_NAME like #{castName} 
+		</if>	
+    	<if test="cardNo != null and cardNo != ''">
+			AND aoa.CARD_NO like #{cardNo} 
+		</if>
+		<if test="conNo != null and conNo != ''">
+			AND aoa.CON_NO like #{conNo} 
+		</if>
+	</select>
+	
+	<select id="findDerateList"  parameterType="java.util.Map"  resultMap="DERATE_REPORT_RESULT_MAP" >
+		<![CDATA[	SELECT
+		rp.SHOULD_DATE,
+		aoa.SERIAL_ID,
+		aoa.CON_NO,
+		aoa.CAST_NAME,
+		aoa.CARD_NO,
+		ha.STORE_NAME,
+		aoa.OVERDUE_NUM,
+		aoa.OVERDUE_DAYS,
+		rp.SHOULD_CAPI,
+		rp.SHOULD_INTE,
+		rp.SHOULD_CAPI + rp.SHOULD_INTE SHOULD_PRINCIPAL,
+		aoa.RECEIVE_PENALTY,
+		aoa.RECEIVE_INTEREST,
+		aoa.RECEIVE_PENALTY_INTEREST,
+		aoa.RECEIVE_TOTAL_MONEY,
+		aor.RECEIVED_MONEY,
+		rp.ADVANCE_SHOULD,
+		rp.ADVANCE_MONEY,
+		rp.ADVANCE_REDUCE,
+		aoa.APPLICATION_DESC
+	FROM
+		HS_AFTER_OVERDUE_APPLY aoa
+	LEFT JOIN HS_APPLY ha ON aoa.LOAN_ID = ha.APPLY_ID
+	LEFT JOIN HS_REPAYMENT_PLAN rp ON rp.APPLY_ID = aoa.LOAN_ID
+	AND aoa.OVERDUE_NUM = rp.SHOULD_TERM
+	LEFT JOIN HS_AFTER_OVERDUE_RECORD aor ON aor.OVERDUE_NUM = aoa.OVERDUE_NUM
+	AND aoa.LOAN_ID = aor.LOAN_ID
+	WHERE 1<>2 ]]>
+	<if test="startDate != null and startDate != ''">
+	    <![CDATA[ AND to_char(rp.SHOULD_DATE ,'yyyy-mm-dd')>=#{startDate}]]>
+	</if>
+	<if test="endDate != null and endDate != ''">
+	   <![CDATA[ AND to_char(rp.SHOULD_DATE ,'yyyy-mm-dd')<=#{endDate}]]>
+	</if>
+	</select>
+</mapper>

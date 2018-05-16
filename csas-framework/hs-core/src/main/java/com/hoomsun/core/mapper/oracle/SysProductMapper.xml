@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysProductMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysProduct">
+    <id column="PROD_ID" jdbcType="VARCHAR" property="prodId" />
+    <result column="PROD_CODE" jdbcType="VARCHAR" property="prodCode" />
+    <result column="PROD_NAME" jdbcType="VARCHAR" property="prodName" />
+    <result column="PAY_TYPE" jdbcType="DECIMAL" property="payType" />
+    <result column="PAY_TYPE_VAL" jdbcType="VARCHAR" property="payTypeVal" />
+    <result column="STERM" jdbcType="DECIMAL" property="sterm" />
+    <result column="MONTH_RATE" jdbcType="DECIMAL" property="monthRate" />
+    <result column="YEAR_RATE" jdbcType="DECIMAL" property="yearRate" />
+    <result column="PUNISH_RATE" jdbcType="DECIMAL" property="punishRate" />
+    <result column="DEFAULT_RATE" jdbcType="DECIMAL" property="defaultRate" />
+    <result column="URGENT_RATE" jdbcType="DECIMAL" property="urgentRate" />
+    <result column="GUARANTEE" jdbcType="DECIMAL" property="guarantee" />
+    <result column="OVER_UP" jdbcType="DECIMAL" property="overUp" />
+    <result column="COMPUTE_TYPE" jdbcType="DECIMAL" property="computeType" />
+    <result column="EARNING_INTEREST" jdbcType="DECIMAL" property="earningInterest" />
+    <result column="PROD_STATE" jdbcType="DECIMAL" property="prodState" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_EMP" jdbcType="VARCHAR" property="createEmp" />
+    <result column="DEL_FLAG" jdbcType="DECIMAL" property="delFlag" />
+    <result column="PROD_TYPE" jdbcType="VARCHAR" property="prodType" />
+    <result column="MIX_CREDIT_AMT" jdbcType="DECIMAL" property="mixCreditAmt" />
+    <result column="MAX_CREDIT_AMT" jdbcType="DECIMAL" property="maxCreditAmt" />
+    <result column="RISK_RATE" jdbcType="DECIMAL" property="riskRate" />
+    <result column="REAL_MONTH_RATE" jdbcType="DECIMAL" property="realMonthRate" />
+    <result column="PROD_ALIAS" jdbcType="VARCHAR" property="prodAlias" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PROD_ID, PROD_CODE, PROD_NAME, PAY_TYPE, PAY_TYPE_VAL, STERM, MONTH_RATE, YEAR_RATE, 
+    PUNISH_RATE, DEFAULT_RATE, URGENT_RATE, GUARANTEE, OVER_UP, COMPUTE_TYPE, EARNING_INTEREST, 
+    PROD_STATE, CREATE_TIME, CREATE_EMP, DEL_FLAG, PROD_TYPE, MIX_CREDIT_AMT, MAX_CREDIT_AMT, 
+    RISK_RATE, REAL_MONTH_RATE, PROD_ALIAS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PRODUCT
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PRODUCT
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysProduct">
+    insert into HS_PRODUCT (PROD_ID, PROD_CODE, PROD_NAME, 
+      PAY_TYPE, PAY_TYPE_VAL, STERM, 
+      MONTH_RATE, YEAR_RATE, PUNISH_RATE, 
+      DEFAULT_RATE, URGENT_RATE, GUARANTEE, 
+      OVER_UP, COMPUTE_TYPE, EARNING_INTEREST, 
+      PROD_STATE, CREATE_TIME, CREATE_EMP, 
+      DEL_FLAG, PROD_TYPE, MIX_CREDIT_AMT, 
+      MAX_CREDIT_AMT, RISK_RATE, REAL_MONTH_RATE, 
+      PROD_ALIAS)
+    values (#{prodId,jdbcType=VARCHAR}, #{prodCode,jdbcType=VARCHAR}, #{prodName,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=DECIMAL}, #{payTypeVal,jdbcType=VARCHAR}, #{sterm,jdbcType=DECIMAL}, 
+      #{monthRate,jdbcType=DECIMAL}, #{yearRate,jdbcType=DECIMAL}, #{punishRate,jdbcType=DECIMAL}, 
+      #{defaultRate,jdbcType=DECIMAL}, #{urgentRate,jdbcType=DECIMAL}, #{guarantee,jdbcType=DECIMAL}, 
+      #{overUp,jdbcType=DECIMAL}, #{computeType,jdbcType=DECIMAL}, #{earningInterest,jdbcType=DECIMAL}, 
+      #{prodState,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{createEmp,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=DECIMAL}, #{prodType,jdbcType=VARCHAR}, #{mixCreditAmt,jdbcType=DECIMAL}, 
+      #{maxCreditAmt,jdbcType=DECIMAL}, #{riskRate,jdbcType=DECIMAL}, #{realMonthRate,jdbcType=DECIMAL}, 
+      #{prodAlias,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysProduct">
+    insert into HS_PRODUCT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prodId != null">
+        PROD_ID,
+      </if>
+      <if test="prodCode != null">
+        PROD_CODE,
+      </if>
+      <if test="prodName != null">
+        PROD_NAME,
+      </if>
+      <if test="payType != null">
+        PAY_TYPE,
+      </if>
+      <if test="payTypeVal != null">
+        PAY_TYPE_VAL,
+      </if>
+      <if test="sterm != null">
+        STERM,
+      </if>
+      <if test="monthRate != null">
+        MONTH_RATE,
+      </if>
+      <if test="yearRate != null">
+        YEAR_RATE,
+      </if>
+      <if test="punishRate != null">
+        PUNISH_RATE,
+      </if>
+      <if test="defaultRate != null">
+        DEFAULT_RATE,
+      </if>
+      <if test="urgentRate != null">
+        URGENT_RATE,
+      </if>
+      <if test="guarantee != null">
+        GUARANTEE,
+      </if>
+      <if test="overUp != null">
+        OVER_UP,
+      </if>
+      <if test="computeType != null">
+        COMPUTE_TYPE,
+      </if>
+      <if test="earningInterest != null">
+        EARNING_INTEREST,
+      </if>
+      <if test="prodState != null">
+        PROD_STATE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createEmp != null">
+        CREATE_EMP,
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG,
+      </if>
+      <if test="prodType != null">
+        PROD_TYPE,
+      </if>
+      <if test="mixCreditAmt != null">
+        MIX_CREDIT_AMT,
+      </if>
+      <if test="maxCreditAmt != null">
+        MAX_CREDIT_AMT,
+      </if>
+      <if test="riskRate != null">
+        RISK_RATE,
+      </if>
+      <if test="realMonthRate != null">
+        REAL_MONTH_RATE,
+      </if>
+      <if test="prodAlias != null">
+        PROD_ALIAS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prodId != null">
+        #{prodId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodCode != null">
+        #{prodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="prodName != null">
+        #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=DECIMAL},
+      </if>
+      <if test="payTypeVal != null">
+        #{payTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="sterm != null">
+        #{sterm,jdbcType=DECIMAL},
+      </if>
+      <if test="monthRate != null">
+        #{monthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="yearRate != null">
+        #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="punishRate != null">
+        #{punishRate,jdbcType=DECIMAL},
+      </if>
+      <if test="defaultRate != null">
+        #{defaultRate,jdbcType=DECIMAL},
+      </if>
+      <if test="urgentRate != null">
+        #{urgentRate,jdbcType=DECIMAL},
+      </if>
+      <if test="guarantee != null">
+        #{guarantee,jdbcType=DECIMAL},
+      </if>
+      <if test="overUp != null">
+        #{overUp,jdbcType=DECIMAL},
+      </if>
+      <if test="computeType != null">
+        #{computeType,jdbcType=DECIMAL},
+      </if>
+      <if test="earningInterest != null">
+        #{earningInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="prodState != null">
+        #{prodState,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="prodType != null">
+        #{prodType,jdbcType=VARCHAR},
+      </if>
+      <if test="mixCreditAmt != null">
+        #{mixCreditAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCreditAmt != null">
+        #{maxCreditAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="riskRate != null">
+        #{riskRate,jdbcType=DECIMAL},
+      </if>
+      <if test="realMonthRate != null">
+        #{realMonthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="prodAlias != null">
+        #{prodAlias,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysProduct">
+    update HS_PRODUCT
+    <set>
+      <if test="prodCode != null">
+        PROD_CODE = #{prodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="prodName != null">
+        PROD_NAME = #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        PAY_TYPE = #{payType,jdbcType=DECIMAL},
+      </if>
+      <if test="payTypeVal != null">
+        PAY_TYPE_VAL = #{payTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="sterm != null">
+        STERM = #{sterm,jdbcType=DECIMAL},
+      </if>
+      <if test="monthRate != null">
+        MONTH_RATE = #{monthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="yearRate != null">
+        YEAR_RATE = #{yearRate,jdbcType=DECIMAL},
+      </if>
+      <if test="punishRate != null">
+        PUNISH_RATE = #{punishRate,jdbcType=DECIMAL},
+      </if>
+      <if test="defaultRate != null">
+        DEFAULT_RATE = #{defaultRate,jdbcType=DECIMAL},
+      </if>
+      <if test="urgentRate != null">
+        URGENT_RATE = #{urgentRate,jdbcType=DECIMAL},
+      </if>
+      <if test="guarantee != null">
+        GUARANTEE = #{guarantee,jdbcType=DECIMAL},
+      </if>
+      <if test="overUp != null">
+        OVER_UP = #{overUp,jdbcType=DECIMAL},
+      </if>
+      <if test="computeType != null">
+        COMPUTE_TYPE = #{computeType,jdbcType=DECIMAL},
+      </if>
+      <if test="earningInterest != null">
+        EARNING_INTEREST = #{earningInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="prodState != null">
+        PROD_STATE = #{prodState,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        CREATE_EMP = #{createEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="prodType != null">
+        PROD_TYPE = #{prodType,jdbcType=VARCHAR},
+      </if>
+      <if test="mixCreditAmt != null">
+        MIX_CREDIT_AMT = #{mixCreditAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="maxCreditAmt != null">
+        MAX_CREDIT_AMT = #{maxCreditAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="riskRate != null">
+        RISK_RATE = #{riskRate,jdbcType=DECIMAL},
+      </if>
+      <if test="realMonthRate != null">
+        REAL_MONTH_RATE = #{realMonthRate,jdbcType=DECIMAL},
+      </if>
+      <if test="prodAlias != null">
+        PROD_ALIAS = #{prodAlias,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysProduct">
+    update HS_PRODUCT
+    set PROD_CODE = #{prodCode,jdbcType=VARCHAR},
+      PROD_NAME = #{prodName,jdbcType=VARCHAR},
+      PAY_TYPE = #{payType,jdbcType=DECIMAL},
+      PAY_TYPE_VAL = #{payTypeVal,jdbcType=VARCHAR},
+      STERM = #{sterm,jdbcType=DECIMAL},
+      MONTH_RATE = #{monthRate,jdbcType=DECIMAL},
+      YEAR_RATE = #{yearRate,jdbcType=DECIMAL},
+      PUNISH_RATE = #{punishRate,jdbcType=DECIMAL},
+      DEFAULT_RATE = #{defaultRate,jdbcType=DECIMAL},
+      URGENT_RATE = #{urgentRate,jdbcType=DECIMAL},
+      GUARANTEE = #{guarantee,jdbcType=DECIMAL},
+      OVER_UP = #{overUp,jdbcType=DECIMAL},
+      COMPUTE_TYPE = #{computeType,jdbcType=DECIMAL},
+      EARNING_INTEREST = #{earningInterest,jdbcType=DECIMAL},
+      PROD_STATE = #{prodState,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_EMP = #{createEmp,jdbcType=VARCHAR},
+      DEL_FLAG = #{delFlag,jdbcType=DECIMAL},
+      PROD_TYPE = #{prodType,jdbcType=VARCHAR},
+      MIX_CREDIT_AMT = #{mixCreditAmt,jdbcType=DECIMAL},
+      MAX_CREDIT_AMT = #{maxCreditAmt,jdbcType=DECIMAL},
+      RISK_RATE = #{riskRate,jdbcType=DECIMAL},
+      REAL_MONTH_RATE = #{realMonthRate,jdbcType=DECIMAL},
+      PROD_ALIAS = #{prodAlias,jdbcType=VARCHAR}
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </update>
+  
+  <resultMap type="com.hoomsun.core.model.SysProduct" id="BaseResultMap2" extends="BaseResultMap">
+  	<result column="PROD_ALIAS_TYPE" jdbcType="VARCHAR" property="prodAliasType" />
+  </resultMap>
+  
+  <!-- 分页展示数据 -->
+  <select id="findPager" resultMap="BaseResultMap2" parameterType="java.util.Map">
+  	<![CDATA[SELECT TBL.* FROM (
+		SELECT ROWNUM R, PROD.PROD_ID, PROD.PROD_CODE, PROD.PROD_NAME, PROD.PAY_TYPE, PROD.PAY_TYPE_VAL, PROD.STERM, PROD.MONTH_RATE,PROD.YEAR_RATE, 
+    	PROD.PUNISH_RATE, PROD.DEFAULT_RATE, PROD.URGENT_RATE, PROD.GUARANTEE, PROD.OVER_UP, PROD.COMPUTE_TYPE, PROD.EARNING_INTEREST, 
+    	PROD.PROD_STATE,  PROD.MIX_CREDIT_AMT, PROD.MAX_CREDIT_AMT, PROD.RISK_RATE, PROD.REAL_MONTH_RATE, 
+    	PROD.PROD_ALIAS, 
+    	PT.PROD_NAME PROD_TYPE, PT.PROD_ALIAS PROD_ALIAS_TYPE
+    	FROM HS_PRODUCT PROD 
+    	LEFT JOIN HS_PRODUCT_TYPE PT ON PROD.PROD_TYPE=PT.PROD_ID
+    	WHERE 1<>2]]>
+    	AND PROD.DEL_FLAG = 0
+    	<if test="prodName != null and prodName != ''">AND PROD.PROD_NAME LIKE #{prodName}</if>
+    	ORDER BY PROD.CREATE_TIME DESC
+  	<![CDATA[) TBL WHERE TBL.R <= (#{pageIndex}*#{pageSize}) AND TBL.R > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+  </select>
+  <select id="findPagerCount"  resultType="java.lang.Integer"  parameterType="java.util.Map">
+ 	<![CDATA[SELECT COUNT(PROD.PROD_ID) FROM HS_PRODUCT PROD WHERE 1<>2]]>
+ 	AND PROD.DEL_FLAG = 0
+   	<if test="prodName != null and prodName != ''">AND PROD.PROD_NAME LIKE #{prodName}</if>
+  </select>
+  
+  <select id="findByTypeId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT
+  	<include refid="Base_Column_List" />
+    from HS_PRODUCT
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findByTypeIdShow" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT
+  		PROD_ID, PROD_NAME, STERM, PROD_ALIAS
+    from HS_PRODUCT
+    where PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+    AND DEL_FLAG = 0 AND PROD_STATE = 1
+  </select>
+  
+  
+  <resultMap type="com.hoomsun.core.model.SysProduct" id="PRODUCT_RATE_ADV_MAP" extends="BaseResultMap">
+  	<collection property="productRates" javaType="java.util.ArrayList" ofType="com.hoomsun.core.model.SysProductRate" resultMap="com.hoomsun.core.dao.SysProductRateMapper.rateMap"/>
+  	<collection property="productAdvances" javaType="java.util.ArrayList" ofType="com.hoomsun.core.model.SysProductAdvance" resultMap="com.hoomsun.core.dao.SysProductAdvanceMapper.advanceMap"/>
+  </resultMap>
+  
+  <select id="findById" resultMap="PRODUCT_RATE_ADV_MAP" parameterType="java.lang.String">
+  	SELECT PROU.PROD_ID, PROU.PROD_CODE, PROU.PROD_NAME, PROU.PAY_TYPE, PROU.PAY_TYPE_VAL, PROU.STERM, PROU.MONTH_RATE, PROU.YEAR_RATE, 
+    PROU.PUNISH_RATE, PROU.DEFAULT_RATE, PROU.URGENT_RATE, PROU.GUARANTEE, PROU.OVER_UP, PROU.COMPUTE_TYPE, PROU.EARNING_INTEREST, 
+    PROU.PROD_STATE,PROU.DEL_FLAG, PROU.PROD_TYPE, PROU.MIX_CREDIT_AMT, PROU.MAX_CREDIT_AMT, 
+    PROU.RISK_RATE, PROU.REAL_MONTH_RATE, PROU.PROD_ALIAS,
+    RT.PR_ID RAT_PR_ID, RT.PR_NAME RAT_PR_NAME, RT.PR_TYPE RAT_PR_TYPE, RT.CHARGING RAT_CHARGING, RT.COMPUTE RAT_COMPUTE, RT.PROPORTION RAT_PROPORTION, RT.ISPERIOD RAT_ISPERIOD, RT.ISCAPITAL RAT_ISCAPITAL,RT.PROD_ID RAT_PROD_ID, 
+    ADV.ID ADV_ID, ADV.PROD_ID ADV_PROD_ID, ADV.START_PERIODS ADV_START_PERIODS, ADV.END_PERIODS ADV_END_PERIODS, ADV.RATE ADV_RATE, ADV.COMPUTE_TYPE ADV_COMPUTE_TYPE
+    from HS_PRODUCT PROU
+    LEFT JOIN HS_PRODUCT_RATE RT ON PROU.PROD_ID=RT.PROD_ID
+    LEFT JOIN HS_PRODUCT_ADVANCE ADV ON PROU.PROD_ID=ADV.PROD_ID
+    WHERE PROU.PROD_ID=#{prodId}  ORDER BY ADV.START_PERIODS
+<!--     AND PROU.DEL_FLAG = 0 -->
+  </select>
+  
+  
+  <select id="findByName" resultMap="PRODUCT_RATE_ADV_MAP" parameterType="java.lang.String">
+  	SELECT PROU.PROD_ID, PROU.PROD_CODE, PROU.PROD_NAME, PROU.PAY_TYPE, PROU.PAY_TYPE_VAL, PROU.STERM, PROU.MONTH_RATE, PROU.YEAR_RATE, 
+    PROU.PUNISH_RATE, PROU.DEFAULT_RATE, PROU.URGENT_RATE, PROU.GUARANTEE, PROU.OVER_UP, PROU.COMPUTE_TYPE, PROU.EARNING_INTEREST, 
+    PROU.PROD_STATE,PROU.DEL_FLAG, PROU.PROD_TYPE, PROU.MIX_CREDIT_AMT, PROU.MAX_CREDIT_AMT, 
+    PROU.RISK_RATE, PROU.REAL_MONTH_RATE,PROU.PROD_ALIAS,
+    RT.PR_ID RAT_PR_ID, RT.PR_NAME RAT_PR_NAME, RT.PR_TYPE RAT_PR_TYPE, RT.CHARGING RAT_CHARGING, RT.COMPUTE RAT_COMPUTE, RT.PROPORTION RAT_PROPORTION, RT.ISPERIOD RAT_ISPERIOD, RT.ISCAPITAL RAT_ISCAPITAL,RT.PROD_ID RAT_PROD_ID,
+    ADV.ID ADV_ID, ADV.PROD_ID ADV_PROD_ID, ADV.START_PERIODS ADV_START_PERIODS, ADV.END_PERIODS ADV_END_PERIODS, ADV.RATE ADV_RATE, ADV.COMPUTE_TYPE ADV_COMPUTE_TYPE
+    from HS_PRODUCT PROU
+    LEFT JOIN HS_PRODUCT_RATE RT ON PROU.PROD_ID=RT.PROD_ID
+    LEFT JOIN HS_PRODUCT_ADVANCE ADV ON PROU.PROD_ID=ADV.PROD_ID
+    WHERE PROD_NAME = #{prodName,jdbcType=VARCHAR}  AND PROU.DEL_FLAG = 0 
+  </select>
+  
+  <!-- liushuai add  伪删除  -->
+  <update id="updateDeleteSign" parameterType="java.lang.String">
+    update HS_PRODUCT
+    <set>
+        DEL_FLAG = 1
+    </set>
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  <!-- liushuai add  多个伪删除  -->
+  <update id="updateMultiDeleteSign" parameterType="java.util.List">
+    update HS_PRODUCT
+    <set>
+        DEL_FLAG = 1
+    </set>
+    where PROD_ID IN 
+   	<foreach collection="prodIds" index="index" item="item" open="(" separator="," close=")">  
+           #{item}
+    </foreach>
+  </update>
+  
+  <!-- liushuai add 修改产品的时候，先将产品状态更改  -->
+  <update id="updateOldSign" parameterType="java.lang.String">
+    update HS_PRODUCT
+    <set>
+        DEL_FLAG = 2
+    </set>
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </update>
+  
+
+  <!-- APP小产品的查询  -->
+  <select id="findproductData" parameterType="java.util.Map" resultType="java.util.Map">
+  	select     PRODUCT.PROD_ID,PRODUCT.PROD_TYPE,PRODUCT.PROD_ALIAS,
+  	  PRODUCT.PROD_CODE,PRODUCT.PROD_NAME,PRODUCT.STERM,PRODUCT.MONTH_RATE,PRODUCT.YEAR_RATE,
+  	  PRODUCT.REAL_MONTH_RATE,PRODUCT_TYPE.PROD_CODE  CODE,PRODUCT_TYPE.PROD_NAME  NAME ,
+      PRODUCT_TYPE.MIX_CREDIT_AMT,PRODUCT_TYPE.AMTLIMIT,PRODUCT_TYPE.MAX_CREDIT_AMT  
+  	 from HS_PRODUCT  PRODUCT  
+  	 LEFT JOIN HS_PRODUCT_TYPE  PRODUCT_TYPE ON  PRODUCT.PROD_TYPE=PRODUCT_TYPE.PROD_ID   
+  	 WHERE PRODUCT.DEL_FLAG='0'  AND PROD_STATE = 1  AND  
+  	 PRODUCT.REAL_MONTH_RATE = #{realMonthRate,jdbcType=DECIMAL}   AND  PRODUCT.PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+  </select>
+  
+  
+   <!--   门店小产品的查询  -->
+  <select id="findproductCreData" parameterType="java.util.Map" resultType="java.util.Map">	
+		SELECT   PRO.*,ROWNUM   from(
+		select     PRODUCT.PROD_ID,PRODUCT.PROD_TYPE,PRODUCT.PROD_ALIAS,
+		  	  PRODUCT.PROD_CODE,PRODUCT.PROD_NAME,PRODUCT.STERM,PRODUCT.MONTH_RATE,PRODUCT.YEAR_RATE,
+		  	  PRODUCT.REAL_MONTH_RATE,PRODUCT_TYPE.PROD_CODE  CODE,PRODUCT_TYPE.PROD_NAME  NAME ,
+		      PRODUCT_TYPE.MIX_CREDIT_AMT,PRODUCT_TYPE.AMTLIMIT,PRODUCT_TYPE.MAX_CREDIT_AMT 
+		  	 from HS_PRODUCT  PRODUCT  
+		  	 LEFT JOIN HS_PRODUCT_TYPE  PRODUCT_TYPE ON  PRODUCT.PROD_TYPE=PRODUCT_TYPE.PROD_ID   
+		  	 WHERE PRODUCT.DEL_FLAG='0'  AND PROD_STATE = 1  AND  PRODUCT.PROD_TYPE = #{prodType,jdbcType=VARCHAR}
+		ORDER BY PRODUCT.REAL_MONTH_RATE  DESC
+		) PRO    <![CDATA[ WHERE  ROWNUM<=2]]>	 
+  </select>
+  
+  <!--  添加申请时产品的查询  -->
+  <select id="findproductbyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT
+  		PROD_ID, PROD_NAME, MONTH_RATE, YEAR_RATE, STERM,REAL_MONTH_RATE,PAY_TYPE_VAL,PAY_TYPE,PROD_ALIAS
+    from HS_PRODUCT
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+    AND DEL_FLAG = 0
+  </select>
+  
+  
+  <!-- 终审表中插入产品信息  -->
+  <select id="findByTypeIdFinalAudit" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT
+  		PROD_ID, PROD_NAME, REAL_MONTH_RATE,MONTH_RATE, YEAR_RATE, STERM, PAY_TYPE, PAY_TYPE_VAL, MAX_CREDIT_AMT, PROD_ALIAS
+    from HS_PRODUCT
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+    AND DEL_FLAG = 0
+  </select>
+  
+  <select id="findAllById" parameterType="java.lang.String" resultMap="PRODUCT_RATE_ADV_MAP">
+  	SELECT PROU.PROD_ID, PROU.PROD_CODE, PROU.PROD_NAME, PROU.PAY_TYPE, PROU.PAY_TYPE_VAL, PROU.STERM, PROU.MONTH_RATE, PROU.YEAR_RATE, 
+    PROU.PUNISH_RATE, PROU.DEFAULT_RATE, PROU.URGENT_RATE, PROU.GUARANTEE, PROU.OVER_UP, PROU.COMPUTE_TYPE, PROU.EARNING_INTEREST, 
+    PROU.PROD_STATE,PROU.DEL_FLAG, PROU.PROD_TYPE, PROU.MIX_CREDIT_AMT, PROU.MAX_CREDIT_AMT, PROU.PROD_ALIAS,
+    PROU.RISK_RATE, PROU.REAL_MONTH_RATE,
+    RT.PR_ID RAT_PR_ID, RT.PR_NAME RAT_PR_NAME, RT.PR_TYPE RAT_PR_TYPE, RT.CHARGING RAT_CHARGING, RT.COMPUTE RAT_COMPUTE, RT.PROPORTION RAT_PROPORTION, RT.ISPERIOD RAT_ISPERIOD, RT.ISCAPITAL RAT_ISCAPITAL,
+    ADV.ID ADV_ID, ADV.PROD_ID ADV_PROD_ID, ADV.START_PERIODS ADV_START_PERIODS, ADV.END_PERIODS ADV_END_PERIODS, ADV.RATE ADV_RATE, ADV.COMPUTE_TYPE ADV_COMPUTE_TYPE
+    from HS_PRODUCT PROU
+    LEFT JOIN HS_PRODUCT_RATE RT ON PROU.PROD_ID=RT.PROD_ID
+    LEFT JOIN HS_PRODUCT_ADVANCE ADV ON PROU.PROD_ID=ADV.PROD_ID
+    WHERE PROU.PROD_ID=#{prodId}
+  </select>
+  
+  
+  <select id="findProTypeByProId" parameterType="java.lang.String" resultMap="com.hoomsun.core.dao.SysProductTypeMapper.BaseResultMap">
+  	SELECT 
+  		TP.PROD_ID, TP.PROD_CODE, TP.PROD_NAME, TP.EFFFLAG_VAL, TP.MIX_CREDIT_AMT, TP.MAX_CREDIT_AMT, TP.PRODUCTDESC, 
+  		TP.AMTLIMIT, TP.PRODUCTURL, TP.MAX_RATE, TP.ISOPEN, TP.ISOPEN_VAL, TP.GOTOURL, TP.ISONLINE, TP.DELETE_SIGN, 
+    	TP.PROD_ALIAS
+    FROM HS_PRODUCT_TYPE TP 
+    LEFT JOIN HS_PRODUCT PRO ON TP.PROD_ID = PRO.PROD_TYPE
+    WHERE PRO.PROD_ID = #{prodId} AND TP.DELETE_SIGN = 0 AND  TP.ISOPEN='1'
+  </select>
+  
+  
+  <select id="findSameTypePros" parameterType="java.lang.String" resultMap="BaseResultMap">
+  SELECT 
+  	PROD_ID, PROD_CODE, PROD_NAME, PAY_TYPE, PAY_TYPE_VAL, STERM, MONTH_RATE, YEAR_RATE, 
+    PUNISH_RATE, DEFAULT_RATE, URGENT_RATE, GUARANTEE, OVER_UP, COMPUTE_TYPE, EARNING_INTEREST, 
+    PROD_STATE, CREATE_TIME, CREATE_EMP, DEL_FLAG, PROD_TYPE, MIX_CREDIT_AMT, MAX_CREDIT_AMT, 
+    RISK_RATE, REAL_MONTH_RATE, PROD_ALIAS
+  FROM HS_PRODUCT
+  WHERE PROD_TYPE = (SELECT PROD_TYPE FROM HS_PRODUCT WHERE PROD_ID=#{prodId})
+   		AND DEL_FLAG = 0 
+  </select>
+</mapper>

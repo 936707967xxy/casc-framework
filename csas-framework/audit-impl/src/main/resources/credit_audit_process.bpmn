@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="creditAudit" name="creditAuditProcess" isExecutable="true">
+    <startEvent id="startEvent" name="Start"></startEvent>
+    <exclusiveGateway id="auditTppe_ExclusiveGateway" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flowToAuditTppeExclusiveGateway" sourceRef="startEvent" targetRef="auditTppe_ExclusiveGateway"></sequenceFlow>
+    <userTask id="preAudit" name="初审" activiti:candidateGroups="PRE_AUDIT_GROUP"></userTask>
+    <sequenceFlow id="flowToPreAudit" sourceRef="auditTppe_ExclusiveGateway" targetRef="preAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{AUDIT_TYPE==0}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="finalAudit" name="终审" activiti:candidateGroups="FINAL_AUDIT_GROUP"></userTask>
+    <sequenceFlow id="flowToFinalAudit" sourceRef="preAudit" targetRef="finalAudit"></sequenceFlow>
+    <userTask id="sign" name="签约"></userTask>
+    <sequenceFlow id="flowToSign" sourceRef="finalAudit" targetRef="sign"></sequenceFlow>
+    <userTask id="fullConfirm" name="满标确认"></userTask>
+    <sequenceFlow id="flowToFullConfirm" sourceRef="sign" targetRef="fullConfirm"></sequenceFlow>
+    <endEvent id="endEvent" name="End"></endEvent>
+    <sequenceFlow id="flowToEndEvent" sourceRef="fullConfirm" targetRef="endEvent"></sequenceFlow>
+    <sequenceFlow id="flowJumpFinalAudit" sourceRef="auditTppe_ExclusiveGateway" targetRef="finalAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{AUDIT_TYPE==1}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_creditAudit">
+    <bpmndi:BPMNPlane bpmnElement="creditAudit" id="BPMNPlane_creditAudit">
+      <bpmndi:BPMNShape bpmnElement="startEvent" id="BPMNShape_startEvent">
+        <omgdc:Bounds height="35.0" width="35.0" x="300.0" y="170.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="auditTppe_ExclusiveGateway" id="BPMNShape_auditTppe_ExclusiveGateway">
+        <omgdc:Bounds height="40.0" width="40.0" x="380.0" y="168.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="preAudit" id="BPMNShape_preAudit">
+        <omgdc:Bounds height="55.0" width="105.0" x="465.0" y="161.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="finalAudit" id="BPMNShape_finalAudit">
+        <omgdc:Bounds height="55.0" width="105.0" x="615.0" y="161.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sign" id="BPMNShape_sign">
+        <omgdc:Bounds height="55.0" width="105.0" x="615.0" y="260.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="fullConfirm" id="BPMNShape_fullConfirm">
+        <omgdc:Bounds height="55.0" width="105.0" x="465.0" y="260.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endEvent" id="BPMNShape_endEvent">
+        <omgdc:Bounds height="35.0" width="35.0" x="383.0" y="270.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flowToAuditTppeExclusiveGateway" id="BPMNEdge_flowToAuditTppeExclusiveGateway">
+        <omgdi:waypoint x="335.0" y="187.0"></omgdi:waypoint>
+        <omgdi:waypoint x="380.0" y="188.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flowToPreAudit" id="BPMNEdge_flowToPreAudit">
+        <omgdi:waypoint x="420.0" y="188.0"></omgdi:waypoint>
+        <omgdi:waypoint x="465.0" y="188.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flowToFinalAudit" id="BPMNEdge_flowToFinalAudit">
+        <omgdi:waypoint x="570.0" y="188.0"></omgdi:waypoint>
+        <omgdi:waypoint x="615.0" y="188.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flowToSign" id="BPMNEdge_flowToSign">
+        <omgdi:waypoint x="667.0" y="216.0"></omgdi:waypoint>
+        <omgdi:waypoint x="667.0" y="260.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flowToFullConfirm" id="BPMNEdge_flowToFullConfirm">
+        <omgdi:waypoint x="615.0" y="287.0"></omgdi:waypoint>
+        <omgdi:waypoint x="570.0" y="287.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flowToEndEvent" id="BPMNEdge_flowToEndEvent">
+        <omgdi:waypoint x="465.0" y="287.0"></omgdi:waypoint>
+        <omgdi:waypoint x="418.0" y="287.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flowJumpFinalAudit" id="BPMNEdge_flowJumpFinalAudit">
+        <omgdi:waypoint x="400.0" y="168.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="136.0"></omgdi:waypoint>
+        <omgdi:waypoint x="666.0" y="136.0"></omgdi:waypoint>
+        <omgdi:waypoint x="667.0" y="161.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

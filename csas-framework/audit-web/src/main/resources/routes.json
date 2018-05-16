@@ -1,0 +1,477 @@
+[
+	{
+		"path": "/",
+		"component": "Home",
+		"value":"HomeSys",
+		"name": "系统管理",
+		"sort":4,
+		"type":"menu",
+		"redirect":"",
+		"dropdown":true,
+		"hidden":false,
+		"iconCls": "el-icon-setting",
+		"children": [
+			{
+				"path": "/role",
+				"component": "Role",
+				"value":"Role",
+				"name": "角色管理",
+				"dropdown":false,
+				"hidden":false,
+				"sort":401,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"role_create","name": "添加角色","dropdown":false,"hidden":true,"sort":40101,"type":"action","redirect":""},
+					{"path": "","component": "","value":"role_update","name": "修改角色","dropdown":false,"hidden":true,"sort":40102,"type":"action","redirect":""},
+					{"path": "","component": "","value":"role_remove","name": "删除角色","dropdown":false,"hidden":true,"sort":40103,"type":"action","redirect":""},
+					{"path": "","component": "","value":"role_query","name": "检索角色","dropdown":false,"hidden":true,"sort":40104,"type":"action","redirect":""},
+					{"path": "","component": "","value":"role_grant","name": "授权角色","dropdown":false,"hidden":true,"sort":40105,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/resources",
+				"component": "Resources",
+				"value":"Resources",
+				"name": "资源管理",
+				"dropdown":false,
+				"hidden":false,
+				"sort":402,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"cpt_create","name": "添加组件","dropdown":false,"hidden":true,"sort":40201,"type":"action","redirect":""},
+					{"path": "","component": "","value":"cpt_update","name": "修改组件","dropdown":false,"hidden":true,"sort":40202,"type":"action","redirect":""},
+					{"path": "","component": "","value":"cpt_remove","name": "删除组件","dropdown":false,"hidden":true,"sort":40203,"type":"action","redirect":""},
+					{"path": "","component": "","value":"cpt_query","name": "检索组件","dropdown":false,"hidden":true,"sort":40204,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/flow",
+				"component": "Flow",
+				"value":"Flow",
+				"name": "流程管理",
+				"dropdown":false,
+				"hidden":false,
+				"sort":403,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"flow_create","name": "添加流程","dropdown":false,"hidden":true,"sort":40301,"type":"action","redirect":""},
+					{"path": "","component": "","value":"flow_update","name": "修改流程","dropdown":false,"hidden":true,"sort":40302,"type":"action","redirect":""},
+					{"path": "","component": "","value":"flow_remove","name": "删除流程","dropdown":false,"hidden":true,"sort":40303,"type":"action","redirect":""},
+					{"path": "","component": "","value":"flow_deploy","name": "部署流程","dropdown":false,"hidden":true,"sort":40304,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/group",
+				"component": "Group",
+				"value":"Group",
+				"name": "审批组",
+				"dropdown":false,
+				"hidden":false,
+				"sort":404,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"group_create","name": "添加组","dropdown":false,"hidden":true,"sort":40401,"type":"action","redirect":""},
+					{"path": "","component": "","value":"group_update","name": "修改组","dropdown":false,"hidden":true,"sort":40402,"type":"action","redirect":""},
+					{"path": "","component": "","value":"group_remove","name": "删除组","dropdown":false,"hidden":true,"sort":40403,"type":"action","redirect":""},
+					{"path": "","component": "","value":"group_deploy","name": "检索组","dropdown":false,"hidden":true,"sort":40404,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/firewall",
+				"component": "FireWall",
+				"name": "防火墙",
+				"value":"FireWall",
+				"dropdown":false,
+				"hidden":false,
+				"sort":405,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"firewall_create","name": "添加规则","dropdown":false,"hidden":true,"sort":40501,"type":"action","redirect":""},
+					{"path": "","component": "","value":"firewall_update","name": "修改规则","dropdown":false,"hidden":true,"sort":40502,"type":"action","redirect":""},
+					{"path": "","component": "","value":"firewall_remove","name": "删除规则","dropdown":false,"hidden":true,"sort":40503,"type":"action","redirect":""},
+					{"path": "","component": "","value":"firewall_deploy","name": "检索规则","dropdown":false,"hidden":true,"sort":40504,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/operationlog",
+				"component": "OperationLog",
+				"value":"OperationLog",
+				"name": "操作日志",
+				"dropdown":false,
+				"hidden":false,
+				"sort":406,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"optlog_create","name": "添加日志","dropdown":false,"hidden":true,"sort":40601,"type":"action","redirect":""},
+					{"path": "","component": "","value":"optlog_update","name": "修改日志","dropdown":false,"hidden":true,"sort":40602,"type":"action","redirect":""},
+					{"path": "","component": "","value":"optlog_remove","name": "删除日志","dropdown":false,"hidden":true,"sort":40603,"type":"action","redirect":""},
+					{"path": "","component": "","value":"optlog_deploy","name": "检索日志","dropdown":false,"hidden":true,"sort":40604,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/loginlog",
+				"component": "LoginLog",
+				"value":"LoginLog",
+				"name": "登录日志",
+				"dropdown":false,
+				"hidden":false,
+				"sort":407,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"loginlog_create","name": "添加日志","dropdown":false,"hidden":true,"sort":40701,"type":"action","redirect":""},
+					{"path": "","component": "","value":"loginlog_update","name": "修改日志","dropdown":false,"hidden":true,"sort":40702,"type":"action","redirect":""},
+					{"path": "","component": "","value":"loginlog_remove","name": "删除日志","dropdown":false,"hidden":true,"sort":40703,"type":"action","redirect":""},
+					{"path": "","component": "","value":"loginlog_deploy","name": "检索日志","dropdown":false,"hidden":true,"sort":40704,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/datamonitoring",
+				"component": "DataMonitoring",
+				"name": "数据监控",
+				"value":"DataMonitoring",
+				"dropdown":false,
+				"hidden":false,
+				"sort":408,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"druid_query","name": "查看","dropdown":false,"hidden":true,"sort":40801,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/systemmonitoring",
+				"component": "SystemMonitoring",
+				"value":"SystemMonitoring",
+				"name": "系统监控",
+				"dropdown":false,
+				"hidden":false,
+				"sort":409,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"monitoring_query","name": "查看","dropdown":false,"hidden":true,"sort":40901,"type":"action","redirect":""}
+				]
+			}
+		]
+	},
+	{
+		"path": "/",
+		"component": "Home",
+		"value":"HomeAudit",
+		"name": "信用审核",
+		"type":"menu",
+		"dropdown":false,
+		"hidden":false,
+		"sort":1,
+		"iconCls": "fa fa-id-card-o",
+		"children": [
+			{
+				"path": "/preaudit",
+				"component": "PreAuditList",
+				"value": "PreAuditList",
+				"name": "初审审批",
+				"dropdown":false,
+				"hidden":false,
+				"sort":101,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"preaudit_sign","name": "签收","dropdown":false,"hidden":true,"sort":10101,"type":"action","redirect":""},
+					{"path": "","component": "PreAudit","value":"preaudit_audit","name": "审核","dropdown":false,"hidden":true,"sort":10102,"type":"action","redirect":""},
+					{"path": "","component": "","value":"preaudit_withdraw","name": "撤回","dropdown":false,"hidden":true,"sort":10103,"type":"action","redirect":""},
+					{"path": "","component": "","value":"preaudit_complaint","name": "转办","dropdown":false,"hidden":true,"sort":10104,"type":"action","redirect":""},
+					{"path": "","component": "","value":"preaudit_send","name": "提交","dropdown":false,"hidden":true,"sort":10105,"type":"action","redirect":""},
+					{"path": "","component": "PreDetails","value":"preaudit_show","name": "详情","dropdown":false,"hidden":true,"sort":10106,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/finalaudit",
+				"component": "FinalAuditList",
+				"value":"FinalAuditList",
+				"name": "终审审批",
+				"dropdown":false,
+				"hidden":false,
+				"sort":102,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"finalaudit_sign","name": "签收","dropdown":false,"hidden":true,"sort":10201,"type":"action","redirect":""},
+					{"path": "","component": "FinalAudit","value":"finalaudit_audit","name": "审核","dropdown":false,"hidden":true,"sort":10202,"type":"action","redirect":""},
+					{"path": "","component": "","value":"finalaudit_withdraw","name": "撤回","dropdown":false,"hidden":true,"sort":10203,"type":"action","redirect":""},
+					{"path": "","component": "","value":"finalaudit_complaint","name": "转办","dropdown":false,"hidden":true,"sort":10204,"type":"action","redirect":""},
+					{"path": "","component": "","value":"finalaudit_send","name": "提交","dropdown":false,"hidden":true,"sort":10205,"type":"action","redirect":""},
+					{"path": "","component": "FinalDetails","value":"finalaudit_show","name": "详情","dropdown":false,"hidden":true,"sort":10206,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/processtracking",
+				"component": "ProcessTrackingList",
+				"value":"ProcessTrackingList",
+				"name": "流程追踪",
+				"dropdown":false,
+				"hidden":false,
+				"sort":103,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "ProcessTracking","value":"tracking_details","name": "详情","dropdown":false,"hidden":true,"sort":10301,"type":"action","redirect":""},
+					{"path": "","component": "","value":"tracking_query","name": "检索","dropdown":false,"hidden":true,"sort":10302,"type":"action","redirect":""},
+					{"path": "","component": "","value":"proc_tracking","name": "检索","dropdown":false,"hidden":true,"sort":10303,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/conaudit",
+				"component": "ConAuditList",
+				"value":"ConAuditList",
+				"name": "合同审核",
+				"dropdown":false,
+				"hidden":false,
+				"sort":104,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"conad_sign","name": "签收","dropdown":false,"hidden":true,"sort":10401,"type":"action","redirect":""},
+					{"path": "","component": "ConAudit","value":"conad_audit","name": "审核","dropdown":false,"hidden":true,"sort":10402,"type":"action","redirect":""},
+					{"path": "","component": "","value":"conad_withdraw","name": "撤回","dropdown":false,"hidden":true,"sort":10403,"type":"action","redirect":""},
+					{"path": "","component": "","value":"conad_complaint","name": "转办","dropdown":false,"hidden":true,"sort":10404,"type":"action","redirect":""},
+					{"path": "","component": "","value":"conad_send","name": "提交","dropdown":false,"hidden":true,"sort":10405,"type":"action","redirect":""},
+					{"path": "","component": "ConAuditDetails","value":"conad_show","name": "详情","dropdown":false,"hidden":true,"sort":10406,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/excessaudit",
+				"component": "ExcessAuditList",
+				"value":"ExcessAuditList",
+				"name": "超额审批",
+				"dropdown":false,
+				"hidden":false,
+				"sort":105,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"conad_sign","name": "签收","dropdown":false,"hidden":true,"sort":10501,"type":"action","redirect":""},
+					{"path": "","component": "ExcessAudit","value":"conad_audit","name": "审核","dropdown":false,"hidden":true,"sort":10502,"type":"action","redirect":""},
+					{"path": "","component": "","value":"conad_withdraw","name": "撤回","dropdown":false,"hidden":true,"sort":10503,"type":"action","redirect":""},
+					{"path": "","component": "","value":"conad_complaint","name": "转办","dropdown":false,"hidden":true,"sort":10504,"type":"action","redirect":""},
+					{"path": "","component": "","value":"conad_send","name": "提交","dropdown":false,"hidden":true,"sort":10505,"type":"action","redirect":""},
+					{"path": "","component": "ConAuditDetails","value":"conad_show","name": "详情","dropdown":false,"hidden":true,"sort":10506,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/reviewaudit",
+				"component": "ReviewAuditList",
+				"value":"ReviewAuditList",
+				"name": "复议审核",
+				"dropdown":false,
+				"hidden":false,
+				"sort":106,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"review_sign","name": "签收","dropdown":false,"hidden":true,"sort":10601,"type":"action","redirect":""},
+					{"path": "","component": "ReviewAudit","value":"review_audit","name": "审核","dropdown":false,"hidden":true,"sort":10602,"type":"action","redirect":""},
+					{"path": "","component": "","value":"review_withdraw","name": "撤回","dropdown":false,"hidden":true,"sort":10603,"type":"action","redirect":""},
+					{"path": "","component": "","value":"review_complaint","name": "转办","dropdown":false,"hidden":true,"sort":10604,"type":"action","redirect":""},
+					{"path": "","component": "","value":"review_send","name": "提交","dropdown":false,"hidden":true,"sort":10605,"type":"action","redirect":""},
+					{"path": "","component": "ReviewAuditDetails","value":"review_show","name": "详情","dropdown":false,"hidden":true,"sort":10606,"type":"action","redirect":""}
+				]
+			}
+		]
+	},
+	{
+		"path": "/",
+		"component": "Home",
+		"value":"Home",
+		"type":"menu",
+		"name": "数据统计",
+		"dropdown":true,
+		"hidden":false,
+		"sort":2,
+		"iconCls": "fa fa-id-card-o",
+		"children": [
+			{
+				"path": "/contract",
+				"component": "ContractList",
+				"value": "ContractList",
+				"name": "合同统计",
+				"dropdown":false,
+				"hidden":false,
+				"sort":201,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"contr_details","name": "详情","dropdown":false,"hidden":true,"sort":20101,"type":"action","redirect":""},
+					{"path": "","component": "","value":"contr_query","name": "检索","dropdown":false,"hidden":true,"sort":20102,"type":"action","redirect":""}
+				]
+			}
+		]
+	},
+	{
+		"path": "/",
+		"component": "Home",
+		"value":"HomeSet",
+		"type":"menu",
+		"name": "基础设置",
+		"dropdown":true,
+		"hidden":false,
+		"sort":3,
+		"iconCls": "fa fa-id-card-o",
+		"children": [
+			{
+				"path": "/emp",
+				"component": "Emp",
+				"value": "Emp",
+				"name": "员工管理",
+				"dropdown":false,
+				"hidden":false,
+				"sort":301,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"emp_create","name": "员工添加","dropdown":false,"hidden":true,"sort":30101,"type":"action","redirect":""},
+					{"path": "","component": "","value":"emp_update","name": "员工修改","dropdown":false,"hidden":true,"sort":30102,"type":"action","redirect":""},
+					{"path": "","component": "","value":"emp_delete","name": "员工删除","dropdown":false,"hidden":true,"sort":30103,"type":"action","redirect":""},
+					{"path": "","component": "","value":"emp_lock","name": "员工锁定","dropdown":false,"hidden":true,"sort":30104,"type":"action","redirect":""},
+					{"path": "","component": "","value":"emp_unlock","name": "员工解锁","dropdown":false,"hidden":true,"sort":30105,"type":"action","redirect":""},
+					{"path": "","component": "","value":"emp_grant","name": "员工授权","dropdown":false,"hidden":true,"sort":30106,"type":"action","redirect":""},
+					{"path": "","component": "","value":"emp_query","name": "员工查询","dropdown":false,"hidden":true,"sort":30107,"type":"action","redirect":""},
+					{"path": "","component": "","value":"emp_details","name": "员工详情","dropdown":false,"hidden":true,"sort":30108,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/product",
+				"component": "Product",
+				"value":"Product",
+				"name": "产品管理",
+				"dropdown":false,
+				"hidden":false,
+				"sort":302,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "AddProduct","value":"prod_create","name": "产品添加","dropdown":false,"hidden":true,"sort":30201,"type":"action","redirect":""},
+					{"path": "","component": "EditProduct","value":"prod_update","name": "产品修改","dropdown":false,"hidden":true,"sort":30202,"type":"action","redirect":""},
+					{"path": "","component": "","value":"prod_delete","name": "产品删除","dropdown":false,"hidden":true,"sort":30203,"type":"action","redirect":""},
+					{"path": "","component": "","value":"prod_query","name": "产品查询","dropdown":false,"hidden":true,"sort":30204,"type":"action","redirect":""},
+					{"path": "","component": "","value":"prod_details","name": "产品详情","dropdown":false,"hidden":true,"sort":30205,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/producttype",
+				"component": "ProductType",
+				"value":"ProductType",
+				"name": "产品类型",
+				"dropdown":false,
+				"hidden":false,
+				"sort":303,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "AddProductType","value":"prodt_create","name": "类型添加","dropdown":false,"hidden":true,"sort":30301,"type":"action","redirect":""},
+					{"path": "","component": "EditProductType","value":"prodt_update","name": "类型修改","dropdown":false,"hidden":true,"sort":30302,"type":"action","redirect":""},
+					{"path": "","component": "","value":"prodt_delete","name": "类型删除","dropdown":false,"hidden":true,"sort":30303,"type":"action","redirect":""},
+					{"path": "","component": "","value":"prodt_query","name": "类型查询","dropdown":false,"hidden":true,"sort":30304,"type":"action","redirect":""},
+					{"path": "","component": "","value":"prodt_details","name": "型品详情","dropdown":false,"hidden":true,"sort":30305,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/blacklist",
+				"component": "BlackList",
+				"value":"BlackList",
+				"name": "黑名单",
+				"dropdown":false,
+				"hidden":false,
+				"sort":304,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"bkl_create","name": "黑名单转入","dropdown":false,"hidden":true,"sort":30401,"type":"action","redirect":""},
+					{"path": "","component": "","value":"bkl_update","name": "黑名单转出","dropdown":false,"hidden":true,"sort":30402,"type":"action","redirect":""},
+					{"path": "","component": "","value":"bkl_delete","name": "黑名单删除","dropdown":false,"hidden":true,"sort":30403,"type":"action","redirect":""},
+					{"path": "","component": "","value":"bkl_query","name": "黑名单查询","dropdown":false,"hidden":true,"sort":30404,"type":"action","redirect":""},
+					{"path": "","component": "","value":"bkl_details","name": "黑名单详情","dropdown":false,"hidden":true,"sort":30405,"type":"action","redirect":""},
+					{"path": "","component": "","value":"bkl_audit","name": "黑名单审核","dropdown":false,"hidden":true,"sort":30406,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/serialnumber",
+				"component": "SerialNumber",
+				"value":"SerialNumber",
+				"name": "业务编号",
+				"dropdown":false,
+				"hidden":false,
+				"sort":306,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"serl_create","name": "编号添加","dropdown":false,"hidden":true,"sort":30501,"type":"action","redirect":""},
+					{"path": "","component": "","value":"serl_update","name": "编号修改","dropdown":false,"hidden":true,"sort":30502,"type":"action","redirect":""},
+					{"path": "","component": "","value":"serl_delete","name": "编号删除","dropdown":false,"hidden":true,"sort":30503,"type":"action","redirect":""},
+					{"path": "","component": "","value":"serl_query","name": "编号查询","dropdown":false,"hidden":true,"sort":30504,"type":"action","redirect":""},
+					{"path": "","component": "","value":"serl_details","name": "编号详情","dropdown":false,"hidden":true,"sort":30505,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/company",
+				"component": "Company",
+				"value":"Company",
+				"name": "公司管理",
+				"dropdown":false,
+				"hidden":false,
+				"sort":307,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"com_create","name": "公司添加","dropdown":false,"hidden":true,"sort":30701,"type":"action","redirect":""},
+					{"path": "","component": "","value":"com_update","name": "公司修改","dropdown":false,"hidden":true,"sort":30702,"type":"action","redirect":""},
+					{"path": "","component": "","value":"com_delete","name": "公司删除","dropdown":false,"hidden":true,"sort":30703,"type":"action","redirect":""},
+					{"path": "","component": "","value":"com_query","name": "公司查询","dropdown":false,"hidden":true,"sort":30704,"type":"action","redirect":""},
+					{"path": "","component": "","value":"com_details","name": "公司详情","dropdown":false,"hidden":true,"sort":30705,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/dept",
+				"component": "Dept",
+				"value":"Dept",
+				"name": "部门管理",
+				"dropdown":false,
+				"hidden":false,
+				"sort":308,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"dept_create","name": "部门添加","dropdown":false,"hidden":true,"sort":30801,"type":"action","redirect":""},
+					{"path": "","component": "","value":"dept_update","name": "部门修改","dropdown":false,"hidden":true,"sort":30802,"type":"action","redirect":""},
+					{"path": "","component": "","value":"dept_delete","name": "部门删除","dropdown":false,"hidden":true,"sort":30803,"type":"action","redirect":""},
+					{"path": "","component": "","value":"dept_query","name": "部门查询","dropdown":false,"hidden":true,"sort":30804,"type":"action","redirect":""},
+					{"path": "","component": "","value":"dept_details","name": "部门详情","dropdown":false,"hidden":true,"sort":30805,"type":"action","redirect":""}
+				]
+			},
+			{
+				"path": "/job",
+				"component": "Job",
+				"value":"Job",
+				"name": "岗位管理",
+				"dropdown":false,
+				"hidden":false,
+				"sort":308,
+				"type":"menu",
+				"redirect":"",
+				"children": [
+					{"path": "","component": "","value":"job_create","name": "岗位添加","dropdown":false,"hidden":true,"sort":30901,"type":"action","redirect":""},
+					{"path": "","component": "","value":"job_update","name": "岗位修改","dropdown":false,"hidden":true,"sort":30902,"type":"action","redirect":""},
+					{"path": "","component": "","value":"job_delete","name": "岗位删除","dropdown":false,"hidden":true,"sort":30903,"type":"action","redirect":""},
+					{"path": "","component": "","value":"job_query","name": "岗位查询","dropdown":false,"hidden":true,"sort":30904,"type":"action","redirect":""},
+					{"path": "","component": "","value":"job_details","name": "岗位详情","dropdown":false,"hidden":true,"sort":30905,"type":"action","redirect":""}
+				]
+			}
+		]
+	}
+]

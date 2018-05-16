@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysCompanyMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysCompany">
+		<id column="COM_ID" jdbcType="VARCHAR" property="comId" />
+		<result column="COM_DESC" jdbcType="VARCHAR" property="comDesc" />
+		<result column="COM_NAME" jdbcType="VARCHAR" property="comName" />
+		<result column="COM_STATUS" jdbcType="INTEGER" property="comStatus" />
+		<result column="COM_WORK_ADDR" jdbcType="VARCHAR" property="comWorkAddr" />
+		<result column="COM_PARENT" jdbcType="VARCHAR" property="comParent" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		COM_ID, COM_DESC, COM_NAME, COM_STATUS, COM_WORK_ADDR, COM_PARENT
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_COMPANY
+		where COM_ID = #{comId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_COMPANY
+		where COM_ID = #{comId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.core.model.SysCompany">
+		insert into HS_COMPANY (COM_ID, COM_DESC, COM_NAME,
+		COM_STATUS, COM_WORK_ADDR, COM_PARENT
+		)
+		values (#{comId,jdbcType=VARCHAR}, #{comDesc,jdbcType=VARCHAR},
+		#{comName,jdbcType=VARCHAR},
+		#{comStatus,jdbcType=INTEGER}, #{comWorkAddr,jdbcType=VARCHAR}, #{comParent,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.core.model.SysCompany">
+		insert into HS_COMPANY
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="comId != null">
+				COM_ID,
+			</if>
+			<if test="comDesc != null">
+				COM_DESC,
+			</if>
+			<if test="comName != null">
+				COM_NAME,
+			</if>
+			<if test="comStatus != null">
+				COM_STATUS,
+			</if>
+			<if test="comWorkAddr != null">
+				COM_WORK_ADDR,
+			</if>
+			<if test="comParent != null">
+				COM_PARENT,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="comId != null">
+				#{comId,jdbcType=VARCHAR},
+			</if>
+			<if test="comDesc != null">
+				#{comDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="comName != null">
+				#{comName,jdbcType=VARCHAR},
+			</if>
+			<if test="comStatus != null">
+				#{comStatus,jdbcType=INTEGER},
+			</if>
+			<if test="comWorkAddr != null">
+				#{comWorkAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="comParent != null">
+				#{comParent,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysCompany">
+		update HS_COMPANY
+		<set>
+			<if test="comDesc != null">
+				COM_DESC = #{comDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="comName != null">
+				COM_NAME = #{comName,jdbcType=VARCHAR},
+			</if>
+			<if test="comStatus != null">
+				COM_STATUS = #{comStatus,jdbcType=INTEGER},
+			</if>
+			<if test="comWorkAddr != null">
+				COM_WORK_ADDR = #{comWorkAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="comParent != null">
+				COM_PARENT = #{comParent,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where COM_ID = #{comId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysCompany">
+		update HS_COMPANY
+		set COM_DESC = #{comDesc,jdbcType=VARCHAR},
+		COM_NAME = #{comName,jdbcType=VARCHAR},
+		COM_STATUS = #{comStatus,jdbcType=INTEGER},
+		COM_WORK_ADDR = #{comWorkAddr,jdbcType=VARCHAR},
+		COM_PARENT = #{comParent,jdbcType=VARCHAR}
+		where COM_ID = #{comId,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 分页查询数据 liushuai -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+	<![CDATA[SELECT com.COM_ID, com.COM_DESC, com.COM_NAME, com.COM_STATUS, com.COM_WORK_ADDR,parent.COM_NAME COM_PARENT
+		FROM 
+		(SELECT ROWNUM r ,com.COM_ID, com.COM_DESC, com.COM_NAME, com.COM_STATUS, com.COM_WORK_ADDR,com.COM_PARENT FROM
+			(SELECT COM_ID, COM_DESC, COM_NAME, COM_STATUS, COM_WORK_ADDR,COM_PARENT  FROM HS_COMPANY where 1<>2]]>
+			<if test="comName != null and comName != ''">
+				and COM_NAME like #{comName}
+			</if>
+			) com   
+		<![CDATA[WHERE ROWNUM <= (#{pageIndex}*#{pageSize})
+		) com  LEFT JOIN HS_COMPANY parent on com.COM_PARENT=parent.COM_ID 
+		
+		WHERE r > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+	
+	
+	
+	 	<!-- <![CDATA[ select 
+		com.COM_ID, com.COM_DESC, com.COM_NAME, com.COM_STATUS, com.COM_WORK_ADDR, parent.COM_NAME COM_PARENT
+		from
+		(
+				SELECT
+					com.*, ROWNUM r
+				FROM
+					(
+						SELECT 
+							* 
+						FROM 
+							HS_COMPANY 
+					) com 
+				WHERE
+					 ROWNUM <= (#{pageIndex}/#{pageSize}+1)*#{pageSize} 
+			) com 
+		LEFT JOIN HS_COMPANY parent on com.COM_PARENT=parent.COM_ID 
+		where 1<>2]]>
+		<if test="comName != null and comName != ''">
+			and com.COM_NAME like #{comName}
+		</if>
+		<if test="pageIndex != null and pageSize != null">
+			and r > #{pageIndex} 
+		</if> -->
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+	 	<![CDATA[ select count(COM_ID) from HS_COMPANY where 1<>2]]>
+		<if test="comName != null and comName != ''">
+			and COM_NAME like #{comName}
+		</if>
+	</select>
+
+	<!-- 查询出所有的数据 -->
+	<select id="findAllData" resultMap="BaseResultMap">
+	    select COM_ID as COM_PARENT, COM_NAME	  from HS_COMPANY 
+	</select>
+	
+	<!-- 查询出所有的数据 -->
+	<select id="findtreeData"  resultType="java.util.Map">
+	    select COM_ID as value, COM_NAME as laber   from HS_COMPANY 
+	</select>
+	
+	<resultMap type="com.hoomsun.core.model.vo.VueLazyTree" id="VueTreeData">
+		<result column="COM_ID" jdbcType="VARCHAR" property="nodeKey" />
+		<result column="COM_NAME" jdbcType="VARCHAR"  property="name" />
+	</resultMap>
+	
+	<select id="findVueTreeData"  parameterType="java.lang.String" resultMap="VueTreeData" >
+	    select COM_ID, COM_NAME from HS_COMPANY 
+	    WHERE   
+	    <if test="comParent != null">
+	    	COM_PARENT = #{comParent}
+	    </if>
+	    <if test="comParent == null">
+	    	COM_PARENT IS NULL
+	    </if>
+	</select>
+	
+	<resultMap  id="companyShow" extends="BaseResultMap" type="com.hoomsun.core.model.SysCompany">
+		<result column="COM_PARENT_NAME" jdbcType="VARCHAR" property="comParentName"/>
+	</resultMap>
+	<!-- 回显查询  -->
+	<select id="selectByComId" parameterType="java.lang.String" resultMap="companyShow">
+		select
+		child.COM_ID, child.COM_DESC, child.COM_NAME, child.COM_STATUS, child.COM_WORK_ADDR, child.COM_PARENT,
+		parent.COM_NAME COM_PARENT_NAME
+		from HS_COMPANY child
+		LEFT JOIN HS_COMPANY parent ON child.COM_PARENT = parent.COM_ID
+		where child.COM_ID = #{comId,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

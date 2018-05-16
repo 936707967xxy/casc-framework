@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.CmbTransInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.CmbTransInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="C_ETYDAT" jdbcType="VARCHAR" property="cEtydat" />
+    <result column="ETYTIM" jdbcType="VARCHAR" property="etytim" />
+    <result column="C_VLTDAT" jdbcType="VARCHAR" property="cVltdat" />
+    <result column="TRSCOD" jdbcType="VARCHAR" property="trscod" />
+    <result column="NARYUR" jdbcType="VARCHAR" property="naryur" />
+    <result column="C_TRSAMT" jdbcType="VARCHAR" property="cTrsamt" />
+    <result column="C_TRSAMTC" jdbcType="VARCHAR" property="cTrsamtc" />
+    <result column="AMTCDR" jdbcType="VARCHAR" property="amtcdr" />
+    <result column="C_TRSBLV" jdbcType="VARCHAR" property="cTrsblv" />
+    <result column="REFNBR" jdbcType="VARCHAR" property="refnbr" />
+    <result column="YURREF" jdbcType="VARCHAR" property="yurref" />
+    <result column="C_RPYBBK" jdbcType="VARCHAR" property="cRpybbk" />
+    <result column="RPYNAM" jdbcType="VARCHAR" property="rpynam" />
+    <result column="RPYACC" jdbcType="VARCHAR" property="rpyacc" />
+    <result column="RPYBBN" jdbcType="VARCHAR" property="rpybbn" />
+    <result column="RPYBNK" jdbcType="VARCHAR" property="rpybnk" />
+    <result column="RPYADR" jdbcType="VARCHAR" property="rpyadr" />
+    <result column="C_GSBBBK" jdbcType="VARCHAR" property="cGsbbbk" />
+    <result column="GSBACC" jdbcType="VARCHAR" property="gsbacc" />
+    <result column="GSBNAM" jdbcType="VARCHAR" property="gsbnam" />
+    <result column="INFFLG" jdbcType="VARCHAR" property="infflg" />
+    <result column="CHKNBR" jdbcType="VARCHAR" property="chknbr" />
+    <result column="NAREXT" jdbcType="VARCHAR" property="narext" />
+    <result column="TRSANL" jdbcType="VARCHAR" property="trsanl" />
+    <result column="REFSUB" jdbcType="VARCHAR" property="refsub" />
+    <result column="BBKNBR" jdbcType="VARCHAR" property="bbknbr" />
+    <result column="TRSAMTC" jdbcType="VARCHAR" property="trsamtc" />
+    <result column="GSBBBK" jdbcType="VARCHAR" property="gsbbbk" />
+    <result column="RSV30Z" jdbcType="VARCHAR" property="rsv30z" />
+    <result column="TRSBLV" jdbcType="VARCHAR" property="trsblv" />
+    <result column="RSV50Z" jdbcType="VARCHAR" property="rsv50z" />
+    <result column="C_ATHFLG" jdbcType="VARCHAR" property="cAthflg" />
+    <result column="VLTDAT" jdbcType="VARCHAR" property="vltdat" />
+    <result column="ETYDAT" jdbcType="VARCHAR" property="etydat" />
+    <result column="APDFLG" jdbcType="VARCHAR" property="apdflg" />
+    <result column="TRSAMT" jdbcType="VARCHAR" property="trsamt" />
+    <result column="RSV31Z" jdbcType="VARCHAR" property="rsv31z" />
+    <result column="RPYBBK" jdbcType="VARCHAR" property="rpybbk" />
+    <result column="ATHFLG" jdbcType="VARCHAR" property="athflg" />
+    <result column="C_BBKNBR" jdbcType="VARCHAR" property="cBbknbr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, C_ETYDAT, ETYTIM, C_VLTDAT, TRSCOD, NARYUR, C_TRSAMT, C_TRSAMTC, AMTCDR, C_TRSBLV, 
+    REFNBR, YURREF, C_RPYBBK, RPYNAM, RPYACC, RPYBBN, RPYBNK, RPYADR, C_GSBBBK, GSBACC, 
+    GSBNAM, INFFLG, CHKNBR, NAREXT, TRSANL, REFSUB, BBKNBR, TRSAMTC, GSBBBK, RSV30Z, 
+    TRSBLV, RSV50Z, C_ATHFLG, VLTDAT, ETYDAT, APDFLG, TRSAMT, RSV31Z, RPYBBK, ATHFLG, 
+    C_BBKNBR
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CMB_TRANSINFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CMB_TRANSINFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.CmbTransInfo">
+    insert into HS_CMB_TRANSINFO (ID, C_ETYDAT, ETYTIM, 
+      C_VLTDAT, TRSCOD, NARYUR, 
+      C_TRSAMT, C_TRSAMTC, AMTCDR, 
+      C_TRSBLV, REFNBR, YURREF, 
+      C_RPYBBK, RPYNAM, RPYACC, 
+      RPYBBN, RPYBNK, RPYADR, 
+      C_GSBBBK, GSBACC, GSBNAM, 
+      INFFLG, CHKNBR, NAREXT, 
+      TRSANL, REFSUB, BBKNBR, 
+      TRSAMTC, GSBBBK, RSV30Z, 
+      TRSBLV, RSV50Z, C_ATHFLG, 
+      VLTDAT, ETYDAT, APDFLG, 
+      TRSAMT, RSV31Z, RPYBBK, 
+      ATHFLG, C_BBKNBR)
+    values (#{id,jdbcType=VARCHAR}, #{cEtydat,jdbcType=VARCHAR}, #{etytim,jdbcType=VARCHAR}, 
+      #{cVltdat,jdbcType=VARCHAR}, #{trscod,jdbcType=VARCHAR}, #{naryur,jdbcType=VARCHAR}, 
+      #{cTrsamt,jdbcType=VARCHAR}, #{cTrsamtc,jdbcType=VARCHAR}, #{amtcdr,jdbcType=VARCHAR}, 
+      #{cTrsblv,jdbcType=VARCHAR}, #{refnbr,jdbcType=VARCHAR}, #{yurref,jdbcType=VARCHAR}, 
+      #{cRpybbk,jdbcType=VARCHAR}, #{rpynam,jdbcType=VARCHAR}, #{rpyacc,jdbcType=VARCHAR}, 
+      #{rpybbn,jdbcType=VARCHAR}, #{rpybnk,jdbcType=VARCHAR}, #{rpyadr,jdbcType=VARCHAR}, 
+      #{cGsbbbk,jdbcType=VARCHAR}, #{gsbacc,jdbcType=VARCHAR}, #{gsbnam,jdbcType=VARCHAR}, 
+      #{infflg,jdbcType=VARCHAR}, #{chknbr,jdbcType=VARCHAR}, #{narext,jdbcType=VARCHAR}, 
+      #{trsanl,jdbcType=VARCHAR}, #{refsub,jdbcType=VARCHAR}, #{bbknbr,jdbcType=VARCHAR}, 
+      #{trsamtc,jdbcType=VARCHAR}, #{gsbbbk,jdbcType=VARCHAR}, #{rsv30z,jdbcType=VARCHAR}, 
+      #{trsblv,jdbcType=VARCHAR}, #{rsv50z,jdbcType=VARCHAR}, #{cAthflg,jdbcType=VARCHAR}, 
+      #{vltdat,jdbcType=VARCHAR}, #{etydat,jdbcType=VARCHAR}, #{apdflg,jdbcType=VARCHAR}, 
+      #{trsamt,jdbcType=VARCHAR}, #{rsv31z,jdbcType=VARCHAR}, #{rpybbk,jdbcType=VARCHAR}, 
+      #{athflg,jdbcType=VARCHAR}, #{cBbknbr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.CmbTransInfo">
+    insert into HS_CMB_TRANSINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="cEtydat != null">
+        C_ETYDAT,
+      </if>
+      <if test="etytim != null">
+        ETYTIM,
+      </if>
+      <if test="cVltdat != null">
+        C_VLTDAT,
+      </if>
+      <if test="trscod != null">
+        TRSCOD,
+      </if>
+      <if test="naryur != null">
+        NARYUR,
+      </if>
+      <if test="cTrsamt != null">
+        C_TRSAMT,
+      </if>
+      <if test="cTrsamtc != null">
+        C_TRSAMTC,
+      </if>
+      <if test="amtcdr != null">
+        AMTCDR,
+      </if>
+      <if test="cTrsblv != null">
+        C_TRSBLV,
+      </if>
+      <if test="refnbr != null">
+        REFNBR,
+      </if>
+      <if test="yurref != null">
+        YURREF,
+      </if>
+      <if test="cRpybbk != null">
+        C_RPYBBK,
+      </if>
+      <if test="rpynam != null">
+        RPYNAM,
+      </if>
+      <if test="rpyacc != null">
+        RPYACC,
+      </if>
+      <if test="rpybbn != null">
+        RPYBBN,
+      </if>
+      <if test="rpybnk != null">
+        RPYBNK,
+      </if>
+      <if test="rpyadr != null">
+        RPYADR,
+      </if>
+      <if test="cGsbbbk != null">
+        C_GSBBBK,
+      </if>
+      <if test="gsbacc != null">
+        GSBACC,
+      </if>
+      <if test="gsbnam != null">
+        GSBNAM,
+      </if>
+      <if test="infflg != null">
+        INFFLG,
+      </if>
+      <if test="chknbr != null">
+        CHKNBR,
+      </if>
+      <if test="narext != null">
+        NAREXT,
+      </if>
+      <if test="trsanl != null">
+        TRSANL,
+      </if>
+      <if test="refsub != null">
+        REFSUB,
+      </if>
+      <if test="bbknbr != null">
+        BBKNBR,
+      </if>
+      <if test="trsamtc != null">
+        TRSAMTC,
+      </if>
+      <if test="gsbbbk != null">
+        GSBBBK,
+      </if>
+      <if test="rsv30z != null">
+        RSV30Z,
+      </if>
+      <if test="trsblv != null">
+        TRSBLV,
+      </if>
+      <if test="rsv50z != null">
+        RSV50Z,
+      </if>
+      <if test="cAthflg != null">
+        C_ATHFLG,
+      </if>
+      <if test="vltdat != null">
+        VLTDAT,
+      </if>
+      <if test="etydat != null">
+        ETYDAT,
+      </if>
+      <if test="apdflg != null">
+        APDFLG,
+      </if>
+      <if test="trsamt != null">
+        TRSAMT,
+      </if>
+      <if test="rsv31z != null">
+        RSV31Z,
+      </if>
+      <if test="rpybbk != null">
+        RPYBBK,
+      </if>
+      <if test="athflg != null">
+        ATHFLG,
+      </if>
+      <if test="cBbknbr != null">
+        C_BBKNBR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="cEtydat != null">
+        #{cEtydat,jdbcType=VARCHAR},
+      </if>
+      <if test="etytim != null">
+        #{etytim,jdbcType=VARCHAR},
+      </if>
+      <if test="cVltdat != null">
+        #{cVltdat,jdbcType=VARCHAR},
+      </if>
+      <if test="trscod != null">
+        #{trscod,jdbcType=VARCHAR},
+      </if>
+      <if test="naryur != null">
+        #{naryur,jdbcType=VARCHAR},
+      </if>
+      <if test="cTrsamt != null">
+        #{cTrsamt,jdbcType=VARCHAR},
+      </if>
+      <if test="cTrsamtc != null">
+        #{cTrsamtc,jdbcType=VARCHAR},
+      </if>
+      <if test="amtcdr != null">
+        #{amtcdr,jdbcType=VARCHAR},
+      </if>
+      <if test="cTrsblv != null">
+        #{cTrsblv,jdbcType=VARCHAR},
+      </if>
+      <if test="refnbr != null">
+        #{refnbr,jdbcType=VARCHAR},
+      </if>
+      <if test="yurref != null">
+        #{yurref,jdbcType=VARCHAR},
+      </if>
+      <if test="cRpybbk != null">
+        #{cRpybbk,jdbcType=VARCHAR},
+      </if>
+      <if test="rpynam != null">
+        #{rpynam,jdbcType=VARCHAR},
+      </if>
+      <if test="rpyacc != null">
+        #{rpyacc,jdbcType=VARCHAR},
+      </if>
+      <if test="rpybbn != null">
+        #{rpybbn,jdbcType=VARCHAR},
+      </if>
+      <if test="rpybnk != null">
+        #{rpybnk,jdbcType=VARCHAR},
+      </if>
+      <if test="rpyadr != null">
+        #{rpyadr,jdbcType=VARCHAR},
+      </if>
+      <if test="cGsbbbk != null">
+        #{cGsbbbk,jdbcType=VARCHAR},
+      </if>
+      <if test="gsbacc != null">
+        #{gsbacc,jdbcType=VARCHAR},
+      </if>
+      <if test="gsbnam != null">
+        #{gsbnam,jdbcType=VARCHAR},
+      </if>
+      <if test="infflg != null">
+        #{infflg,jdbcType=VARCHAR},
+      </if>
+      <if test="chknbr != null">
+        #{chknbr,jdbcType=VARCHAR},
+      </if>
+      <if test="narext != null">
+        #{narext,jdbcType=VARCHAR},
+      </if>
+      <if test="trsanl != null">
+        #{trsanl,jdbcType=VARCHAR},
+      </if>
+      <if test="refsub != null">
+        #{refsub,jdbcType=VARCHAR},
+      </if>
+      <if test="bbknbr != null">
+        #{bbknbr,jdbcType=VARCHAR},
+      </if>
+      <if test="trsamtc != null">
+        #{trsamtc,jdbcType=VARCHAR},
+      </if>
+      <if test="gsbbbk != null">
+        #{gsbbbk,jdbcType=VARCHAR},
+      </if>
+      <if test="rsv30z != null">
+        #{rsv30z,jdbcType=VARCHAR},
+      </if>
+      <if test="trsblv != null">
+        #{trsblv,jdbcType=VARCHAR},
+      </if>
+      <if test="rsv50z != null">
+        #{rsv50z,jdbcType=VARCHAR},
+      </if>
+      <if test="cAthflg != null">
+        #{cAthflg,jdbcType=VARCHAR},
+      </if>
+      <if test="vltdat != null">
+        #{vltdat,jdbcType=VARCHAR},
+      </if>
+      <if test="etydat != null">
+        #{etydat,jdbcType=VARCHAR},
+      </if>
+      <if test="apdflg != null">
+        #{apdflg,jdbcType=VARCHAR},
+      </if>
+      <if test="trsamt != null">
+        #{trsamt,jdbcType=VARCHAR},
+      </if>
+      <if test="rsv31z != null">
+        #{rsv31z,jdbcType=VARCHAR},
+      </if>
+      <if test="rpybbk != null">
+        #{rpybbk,jdbcType=VARCHAR},
+      </if>
+      <if test="athflg != null">
+        #{athflg,jdbcType=VARCHAR},
+      </if>
+      <if test="cBbknbr != null">
+        #{cBbknbr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.CmbTransInfo">
+    update HS_CMB_TRANSINFO
+    <set>
+      <if test="cEtydat != null">
+        C_ETYDAT = #{cEtydat,jdbcType=VARCHAR},
+      </if>
+      <if test="etytim != null">
+        ETYTIM = #{etytim,jdbcType=VARCHAR},
+      </if>
+      <if test="cVltdat != null">
+        C_VLTDAT = #{cVltdat,jdbcType=VARCHAR},
+      </if>
+      <if test="trscod != null">
+        TRSCOD = #{trscod,jdbcType=VARCHAR},
+      </if>
+      <if test="naryur != null">
+        NARYUR = #{naryur,jdbcType=VARCHAR},
+      </if>
+      <if test="cTrsamt != null">
+        C_TRSAMT = #{cTrsamt,jdbcType=VARCHAR},
+      </if>
+      <if test="cTrsamtc != null">
+        C_TRSAMTC = #{cTrsamtc,jdbcType=VARCHAR},
+      </if>
+      <if test="amtcdr != null">
+        AMTCDR = #{amtcdr,jdbcType=VARCHAR},
+      </if>
+      <if test="cTrsblv != null">
+        C_TRSBLV = #{cTrsblv,jdbcType=VARCHAR},
+      </if>
+      <if test="refnbr != null">
+        REFNBR = #{refnbr,jdbcType=VARCHAR},
+      </if>
+      <if test="yurref != null">
+        YURREF = #{yurref,jdbcType=VARCHAR},
+      </if>
+      <if test="cRpybbk != null">
+        C_RPYBBK = #{cRpybbk,jdbcType=VARCHAR},
+      </if>
+      <if test="rpynam != null">
+        RPYNAM = #{rpynam,jdbcType=VARCHAR},
+      </if>
+      <if test="rpyacc != null">
+        RPYACC = #{rpyacc,jdbcType=VARCHAR},
+      </if>
+      <if test="rpybbn != null">
+        RPYBBN = #{rpybbn,jdbcType=VARCHAR},
+      </if>
+      <if test="rpybnk != null">
+        RPYBNK = #{rpybnk,jdbcType=VARCHAR},
+      </if>
+      <if test="rpyadr != null">
+        RPYADR = #{rpyadr,jdbcType=VARCHAR},
+      </if>
+      <if test="cGsbbbk != null">
+        C_GSBBBK = #{cGsbbbk,jdbcType=VARCHAR},
+      </if>
+      <if test="gsbacc != null">
+        GSBACC = #{gsbacc,jdbcType=VARCHAR},
+      </if>
+      <if test="gsbnam != null">
+        GSBNAM = #{gsbnam,jdbcType=VARCHAR},
+      </if>
+      <if test="infflg != null">
+        INFFLG = #{infflg,jdbcType=VARCHAR},
+      </if>
+      <if test="chknbr != null">
+        CHKNBR = #{chknbr,jdbcType=VARCHAR},
+      </if>
+      <if test="narext != null">
+        NAREXT = #{narext,jdbcType=VARCHAR},
+      </if>
+      <if test="trsanl != null">
+        TRSANL = #{trsanl,jdbcType=VARCHAR},
+      </if>
+      <if test="refsub != null">
+        REFSUB = #{refsub,jdbcType=VARCHAR},
+      </if>
+      <if test="bbknbr != null">
+        BBKNBR = #{bbknbr,jdbcType=VARCHAR},
+      </if>
+      <if test="trsamtc != null">
+        TRSAMTC = #{trsamtc,jdbcType=VARCHAR},
+      </if>
+      <if test="gsbbbk != null">
+        GSBBBK = #{gsbbbk,jdbcType=VARCHAR},
+      </if>
+      <if test="rsv30z != null">
+        RSV30Z = #{rsv30z,jdbcType=VARCHAR},
+      </if>
+      <if test="trsblv != null">
+        TRSBLV = #{trsblv,jdbcType=VARCHAR},
+      </if>
+      <if test="rsv50z != null">
+        RSV50Z = #{rsv50z,jdbcType=VARCHAR},
+      </if>
+      <if test="cAthflg != null">
+        C_ATHFLG = #{cAthflg,jdbcType=VARCHAR},
+      </if>
+      <if test="vltdat != null">
+        VLTDAT = #{vltdat,jdbcType=VARCHAR},
+      </if>
+      <if test="etydat != null">
+        ETYDAT = #{etydat,jdbcType=VARCHAR},
+      </if>
+      <if test="apdflg != null">
+        APDFLG = #{apdflg,jdbcType=VARCHAR},
+      </if>
+      <if test="trsamt != null">
+        TRSAMT = #{trsamt,jdbcType=VARCHAR},
+      </if>
+      <if test="rsv31z != null">
+        RSV31Z = #{rsv31z,jdbcType=VARCHAR},
+      </if>
+      <if test="rpybbk != null">
+        RPYBBK = #{rpybbk,jdbcType=VARCHAR},
+      </if>
+      <if test="athflg != null">
+        ATHFLG = #{athflg,jdbcType=VARCHAR},
+      </if>
+      <if test="cBbknbr != null">
+        C_BBKNBR = #{cBbknbr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.CmbTransInfo">
+    update HS_CMB_TRANSINFO
+    set C_ETYDAT = #{cEtydat,jdbcType=VARCHAR},
+      ETYTIM = #{etytim,jdbcType=VARCHAR},
+      C_VLTDAT = #{cVltdat,jdbcType=VARCHAR},
+      TRSCOD = #{trscod,jdbcType=VARCHAR},
+      NARYUR = #{naryur,jdbcType=VARCHAR},
+      C_TRSAMT = #{cTrsamt,jdbcType=VARCHAR},
+      C_TRSAMTC = #{cTrsamtc,jdbcType=VARCHAR},
+      AMTCDR = #{amtcdr,jdbcType=VARCHAR},
+      C_TRSBLV = #{cTrsblv,jdbcType=VARCHAR},
+      REFNBR = #{refnbr,jdbcType=VARCHAR},
+      YURREF = #{yurref,jdbcType=VARCHAR},
+      C_RPYBBK = #{cRpybbk,jdbcType=VARCHAR},
+      RPYNAM = #{rpynam,jdbcType=VARCHAR},
+      RPYACC = #{rpyacc,jdbcType=VARCHAR},
+      RPYBBN = #{rpybbn,jdbcType=VARCHAR},
+      RPYBNK = #{rpybnk,jdbcType=VARCHAR},
+      RPYADR = #{rpyadr,jdbcType=VARCHAR},
+      C_GSBBBK = #{cGsbbbk,jdbcType=VARCHAR},
+      GSBACC = #{gsbacc,jdbcType=VARCHAR},
+      GSBNAM = #{gsbnam,jdbcType=VARCHAR},
+      INFFLG = #{infflg,jdbcType=VARCHAR},
+      CHKNBR = #{chknbr,jdbcType=VARCHAR},
+      NAREXT = #{narext,jdbcType=VARCHAR},
+      TRSANL = #{trsanl,jdbcType=VARCHAR},
+      REFSUB = #{refsub,jdbcType=VARCHAR},
+      BBKNBR = #{bbknbr,jdbcType=VARCHAR},
+      TRSAMTC = #{trsamtc,jdbcType=VARCHAR},
+      GSBBBK = #{gsbbbk,jdbcType=VARCHAR},
+      RSV30Z = #{rsv30z,jdbcType=VARCHAR},
+      TRSBLV = #{trsblv,jdbcType=VARCHAR},
+      RSV50Z = #{rsv50z,jdbcType=VARCHAR},
+      C_ATHFLG = #{cAthflg,jdbcType=VARCHAR},
+      VLTDAT = #{vltdat,jdbcType=VARCHAR},
+      ETYDAT = #{etydat,jdbcType=VARCHAR},
+      APDFLG = #{apdflg,jdbcType=VARCHAR},
+      TRSAMT = #{trsamt,jdbcType=VARCHAR},
+      RSV31Z = #{rsv31z,jdbcType=VARCHAR},
+      RPYBBK = #{rpybbk,jdbcType=VARCHAR},
+      ATHFLG = #{athflg,jdbcType=VARCHAR},
+      C_BBKNBR = #{cBbknbr,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+<!--存取获取到数据  --> 
+
+ <insert id="insertMapSelective" parameterType="java.util.Map">
+    insert into HS_CMB_TRANSINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="C_ETYDAT != null">
+        C_ETYDAT,
+      </if>
+      <if test="ETYTIM != null">
+        ETYTIM,
+      </if>
+      <if test="C_VLTDAT != null">
+        C_VLTDAT,
+      </if>
+      <if test="TRSCOD != null">
+        TRSCOD,
+      </if>
+      <if test="NARYUR != null">
+        NARYUR,
+      </if>
+      <if test="C_TRSAMT != null">
+        C_TRSAMT,
+      </if>
+      <if test="C_TRSAMTC != null">
+        C_TRSAMTC,
+      </if>
+      <if test="AMTCDR != null">
+        AMTCDR,
+      </if>
+      <if test="C_TRSBLV != null">
+        C_TRSBLV,
+      </if>
+      <if test="REFNBR != null">
+        REFNBR,
+      </if>
+      <if test="YURREF != null">
+        YURREF,
+      </if>
+      <if test="C_RPYBBK != null">
+        C_RPYBBK,
+      </if>
+      <if test="RPYNAM != null">
+        RPYNAM,
+      </if>
+      <if test="RPYACC != null">
+        RPYACC,
+      </if>
+      <if test="RPYBBN != null">
+        RPYBBN,
+      </if>
+      <if test="RPYBNK != null">
+        RPYBNK,
+      </if>
+      <if test="RPYADR != null">
+        RPYADR,
+      </if>
+      <if test="C_GSBBBK != null">
+        C_GSBBBK,
+      </if>
+      <if test="GSBACC != null">
+        GSBACC,
+      </if>
+      <if test="GSBNAM != null">
+        GSBNAM,
+      </if>
+      <if test="INFFLG != null">
+        INFFLG,
+      </if>
+      <if test="CHKNBR != null">
+        CHKNBR,
+      </if>
+      <if test="NAREXT != null">
+        NAREXT,
+      </if>
+      <if test="TRSANL != null">
+        TRSANL,
+      </if>
+      <if test="REFSUB != null">
+        REFSUB,
+      </if>
+      <if test="BBKNBR != null">
+        BBKNBR,
+      </if>
+      <if test="TRSAMTC != null">
+        TRSAMTC,
+      </if>
+      <if test="GSBBBK != null">
+        GSBBBK,
+      </if>
+      <if test="RSV30Z != null">
+        RSV30Z,
+      </if>
+      <if test="TRSBLV != null">
+        TRSBLV,
+      </if>
+      <if test="RSV50Z != null">
+        RSV50Z,
+      </if>
+      <if test="C_ATHFLG != null">
+        C_ATHFLG,
+      </if>
+      <if test="VLTDAT != null">
+        VLTDAT,
+      </if>
+      <if test="ETYDAT != null">
+        ETYDAT,
+      </if>
+      <if test="APDFLG != null">
+        APDFLG,
+      </if>
+      <if test="TRSAMT != null">
+        TRSAMT,
+      </if>
+      <if test="RSV31Z != null">
+        RSV31Z,
+      </if>
+      <if test="RPYBBK != null">
+        RPYBBK,
+      </if>
+      <if test="ATHFLG != null">
+        ATHFLG,
+      </if>
+      <if test="C_BBKNBR != null">
+        C_BBKNBR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=VARCHAR},
+      </if>
+      <if test="C_ETYDAT != null">
+        #{C_ETYDAT,jdbcType=VARCHAR},
+      </if>
+      <if test="ETYTIM != null">
+        #{ETYTIM,jdbcType=VARCHAR},
+      </if>
+      <if test="C_VLTDAT != null">
+        #{C_VLTDAT,jdbcType=VARCHAR},
+      </if>
+      <if test="TRSCOD != null">
+        #{TRSCOD,jdbcType=VARCHAR},
+      </if>
+      <if test="NARYUR != null">
+        #{NARYUR,jdbcType=VARCHAR},
+      </if>
+      <if test="C_TRSAMT != null">
+        #{C_TRSAMT,jdbcType=VARCHAR},
+      </if>
+      <if test="C_TRSAMTC != null">
+        #{C_TRSAMTC,jdbcType=VARCHAR},
+      </if>
+      <if test="AMTCDR != null">
+        #{AMTCDR,jdbcType=VARCHAR},
+      </if>
+      <if test="C_TRSBLV != null">
+        #{C_TRSBLV,jdbcType=VARCHAR},
+      </if>
+      <if test="REFNBR != null">
+        #{REFNBR,jdbcType=VARCHAR},
+      </if>
+      <if test="YURREF != null">
+        #{YURREF,jdbcType=VARCHAR},
+      </if>
+      <if test="C_RPYBBK != null">
+        #{C_RPYBBK,jdbcType=VARCHAR},
+      </if>
+      <if test="RPYNAM != null">
+        #{RPYNAM,jdbcType=VARCHAR},
+      </if>
+      <if test="RPYACC != null">
+        #{RPYACC,jdbcType=VARCHAR},
+      </if>
+      <if test="RPYBBN != null">
+        #{RPYBBN,jdbcType=VARCHAR},
+      </if>
+      <if test="RPYBNK != null">
+        #{RPYBNK,jdbcType=VARCHAR},
+      </if>
+      <if test="RPYADR != null">
+        #{RPYADR,jdbcType=VARCHAR},
+      </if>
+      <if test="C_GSBBBK != null">
+        #{C_GSBBBK,jdbcType=VARCHAR},
+      </if>
+      <if test="GSBACC != null">
+        #{GSBACC,jdbcType=VARCHAR},
+      </if>
+      <if test="GSBNAM != null">
+        #{GSBNAM,jdbcType=VARCHAR},
+      </if>
+      <if test="INFFLG != null">
+        #{INFFLG,jdbcType=VARCHAR},
+      </if>
+      <if test="CHKNBR != null">
+        #{CHKNBR,jdbcType=VARCHAR},
+      </if>
+      <if test="NAREXT != null">
+        #{NAREXT,jdbcType=VARCHAR},
+      </if>
+      <if test="TRSANL != null">
+        #{TRSANL,jdbcType=VARCHAR},
+      </if>
+      <if test="REFSUB != null">
+        #{REFSUB,jdbcType=VARCHAR},
+      </if>
+      <if test="BBKNBR != null">
+        #{BBKNBR,jdbcType=VARCHAR},
+      </if>
+      <if test="TRSAMTC != null">
+        #{TRSAMTC,jdbcType=VARCHAR},
+      </if>
+      <if test="GSBBBK != null">
+        #{GSBBBK,jdbcType=VARCHAR},
+      </if>
+      <if test="RSV30Z != null">
+        #{RSV30Z,jdbcType=VARCHAR},
+      </if>
+      <if test="TRSBLV != null">
+        #{TRSBLV,jdbcType=VARCHAR},
+      </if>
+      <if test="RSV50Z != null">
+        #{RSV50Z,jdbcType=VARCHAR},
+      </if>
+      <if test="C_ATHFLG != null">
+        #{C_ATHFLG,jdbcType=VARCHAR},
+      </if>
+      <if test="VLTDAT != null">
+        #{VLTDAT,jdbcType=VARCHAR},
+      </if>
+      <if test="ETYDAT != null">
+        #{ETYDAT,jdbcType=VARCHAR},
+      </if>
+      <if test="APDFLG != null">
+        #{APDFLG,jdbcType=VARCHAR},
+      </if>
+      <if test="TRSAMT != null">
+        #{TRSAMT,jdbcType=VARCHAR},
+      </if>
+      <if test="RSV31Z != null">
+        #{RSV31Z,jdbcType=VARCHAR},
+      </if>
+      <if test="RPYBBK != null">
+        #{RPYBBK,jdbcType=VARCHAR},
+      </if>
+      <if test="ATHFLG != null">
+        #{ATHFLG,jdbcType=VARCHAR},
+      </if>
+      <if test="C_BBKNBR != null">
+        #{C_BBKNBR,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+<!-- 查询该笔记录是否存在于交易表中       支付方卡号/银行交易流水号检索  -->  
+   <select id="selectByMap" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CMB_TRANSINFO
+    where      REFNBR=#{REFNBR,jdbcType=VARCHAR}
+  </select>
+  
+  
+<!-- 分页查询数据 刘栋梁 -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">		
+		   <![CDATA[
+		  	SELECT ver.* FROM (
+		  	SELECT 
+			  	ROWNUM R,TRANSINFO.*   FROM  HS_CMB_TRANSINFO   TRANSINFO
+		    WHERE   RPYACC=#{rpyacc} AND ROWNUM <= (#{pageIndex}*#{pageSize})  ]]>
+		    <![CDATA[) ver WHERE  ver.R > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+		    ORDER BY ETYDAT DESC
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map"	resultType="java.lang.Integer">
+	 	<![CDATA[ select count(ID) from HS_CMB_TRANSINFO where  RPYACC=#{rpyacc}  ]]>
+	</select> 
+  
+</mapper>

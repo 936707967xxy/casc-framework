@@ -1,0 +1,19 @@
+-------------------------------------------------------------|V1.0|----------------------------------------------------------------------
+Author: xinyuan.xu@hoomsun.com
+Date: 2018-03-29
+Description:
+1、结清客户模块列表查询
+2、结清客户模块列表导出
+3、结清客户列表---->客户还款记录信息
+Code List:
+ADD:
+/sales-web-2.0.0/src/main/java/com/hoomsun/csas/controller/after/SettleCustomerController.java
+/hoomsun-loan-impl-2.0.0/src/main/java/com/hoomsun/after/server/impl/SettleCustomerServerImpl.java
+/hoomsun-loan-impl-2.0.0/src/main/java/com/hoomsun/after/mapper/oracle/SettleCustomerMapper.xml
+/hoomsun-loan-impl-2.0.0/src/main/java/com/hoomsun/after/dao/SettleCustomerMapper.java
+/hoomsun-loan-api-2.0.0/src/main/java/com/hoomsun/after/api/model/param/SettleCustomerReq.java
+/hoomsun-loan-api-2.0.0/src/main/java/com/hoomsun/after/api/model/vo/SettleCustomerResult.java
+/hoomsun-loan-api-2.0.0/src/main/java/com/hoomsun/after/api/server/SettleCustomerServer.java
+/hoomsun-loan-api-2.0.0/src/main/java/com/hoomsun/after/api/model/vo/LoanBookCustomerResult.java
+UPDATE:
+/sales-web-2.0.0/src/main/java/com/hoomsun/csas/controller/after/DeductController.java

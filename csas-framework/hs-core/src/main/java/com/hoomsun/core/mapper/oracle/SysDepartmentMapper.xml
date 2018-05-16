@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysDepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysDepartment">
+    <id column="DEPT_ID" jdbcType="VARCHAR" property="deptId" />
+    <result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+    <result column="ADD_EMP" jdbcType="VARCHAR" property="addEmp" />
+    <result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+    <result column="DEPT_STATUS" jdbcType="DECIMAL" property="deptStatus" />
+    <result column="DEPT_TEL" jdbcType="VARCHAR" property="deptTel" />
+    <result column="DEPT_WORK_ADDR" jdbcType="VARCHAR" property="deptWorkAddr" />
+    <result column="MODIFY_DATE" jdbcType="VARCHAR" property="modifyDate" />
+    <result column="MODIFY_EMP" jdbcType="VARCHAR" property="modifyEmp" />
+    <result column="COM_ID" jdbcType="VARCHAR" property="comId" />
+    <result column="DEPT_PARENT" jdbcType="VARCHAR" property="deptParent" />
+    <result column="DEPT_CLASS" jdbcType="VARCHAR" property="deptClass" />
+    <result column="DEPT_WORK_ADDR_NO" jdbcType="VARCHAR" property="deptWorkAddrNo" />
+    <result column="DEPT_NO" jdbcType="VARCHAR" property="deptNo" />
+    <result column="DEPT_LONGITUDE" jdbcType="VARCHAR" property="deptLongitude" />
+    <result column="DEPT_LATITUDE" jdbcType="VARCHAR" property="deptLatitude" />
+    <result column="LEVEL_VAL" jdbcType="VARCHAR" property="levelVal" />
+    <result column="LEVEL_TEXT" jdbcType="VARCHAR" property="levelText" />
+    <result column="DEPT_CODE" jdbcType="VARCHAR" property="deptCode" />
+    <result column="STORE_FLAG" jdbcType="DECIMAL" property="storeFlag" />
+    <result column="OA_ID" jdbcType="VARCHAR" property="oaId" />
+    <result column="MANAGER" jdbcType="VARCHAR" property="manager" />
+    <result column="OA_PARENT" jdbcType="VARCHAR" property="oaParent" />
+    <result column="CITY_NAME" jdbcType="VARCHAR" property="cityName" />
+    <result column="CITY_CODE" jdbcType="VARCHAR" property="cityCode" />
+    <result column="PROVINCE_NAME" jdbcType="VARCHAR" property="provinceName" />
+    <result column="PROVINCE_CODE" jdbcType="VARCHAR" property="provinceCode" />
+    <result column="FOUND_DATE" jdbcType="TIMESTAMP" property="foundDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DEPT_ID, ADD_DATE, ADD_EMP, DEPT_NAME, DEPT_STATUS, DEPT_TEL, DEPT_WORK_ADDR, MODIFY_DATE, 
+    MODIFY_EMP, COM_ID, DEPT_PARENT, DEPT_CLASS, DEPT_WORK_ADDR_NO, DEPT_NO, DEPT_LONGITUDE, 
+    DEPT_LATITUDE, LEVEL_VAL, LEVEL_TEXT, DEPT_CODE, STORE_FLAG, OA_ID, MANAGER, OA_PARENT, 
+    CITY_NAME, CITY_CODE, PROVINCE_NAME, PROVINCE_CODE, FOUND_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_DEPARTMENT
+    where DEPT_ID = #{deptId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_DEPARTMENT
+    where DEPT_ID = #{deptId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysDepartment">
+    insert into HS_DEPARTMENT (DEPT_ID, ADD_DATE, ADD_EMP, 
+      DEPT_NAME, DEPT_STATUS, DEPT_TEL, 
+      DEPT_WORK_ADDR, MODIFY_DATE, MODIFY_EMP, 
+      COM_ID, DEPT_PARENT, DEPT_CLASS, 
+      DEPT_WORK_ADDR_NO, DEPT_NO, DEPT_LONGITUDE, 
+      DEPT_LATITUDE, LEVEL_VAL, LEVEL_TEXT, 
+      DEPT_CODE, STORE_FLAG, OA_ID, 
+      MANAGER, OA_PARENT, CITY_NAME, 
+      CITY_CODE, PROVINCE_NAME, PROVINCE_CODE, 
+      FOUND_DATE)
+    values (#{deptId,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}, #{addEmp,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{deptStatus,jdbcType=DECIMAL}, #{deptTel,jdbcType=VARCHAR}, 
+      #{deptWorkAddr,jdbcType=VARCHAR}, #{modifyDate,jdbcType=VARCHAR}, #{modifyEmp,jdbcType=VARCHAR}, 
+      #{comId,jdbcType=VARCHAR}, #{deptParent,jdbcType=VARCHAR}, #{deptClass,jdbcType=VARCHAR}, 
+      #{deptWorkAddrNo,jdbcType=VARCHAR}, #{deptNo,jdbcType=VARCHAR}, #{deptLongitude,jdbcType=VARCHAR}, 
+      #{deptLatitude,jdbcType=VARCHAR}, #{levelVal,jdbcType=VARCHAR}, #{levelText,jdbcType=VARCHAR}, 
+      #{deptCode,jdbcType=VARCHAR}, #{storeFlag,jdbcType=DECIMAL}, #{oaId,jdbcType=VARCHAR}, 
+      #{manager,jdbcType=VARCHAR}, #{oaParent,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{foundDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysDepartment">
+    insert into HS_DEPARTMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptId != null">
+        DEPT_ID,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="addEmp != null">
+        ADD_EMP,
+      </if>
+      <if test="deptName != null">
+        DEPT_NAME,
+      </if>
+      <if test="deptStatus != null">
+        DEPT_STATUS,
+      </if>
+      <if test="deptTel != null">
+        DEPT_TEL,
+      </if>
+      <if test="deptWorkAddr != null">
+        DEPT_WORK_ADDR,
+      </if>
+      <if test="modifyDate != null">
+        MODIFY_DATE,
+      </if>
+      <if test="modifyEmp != null">
+        MODIFY_EMP,
+      </if>
+      <if test="comId != null">
+        COM_ID,
+      </if>
+      <if test="deptParent != null">
+        DEPT_PARENT,
+      </if>
+      <if test="deptClass != null">
+        DEPT_CLASS,
+      </if>
+      <if test="deptWorkAddrNo != null">
+        DEPT_WORK_ADDR_NO,
+      </if>
+      <if test="deptNo != null">
+        DEPT_NO,
+      </if>
+      <if test="deptLongitude != null">
+        DEPT_LONGITUDE,
+      </if>
+      <if test="deptLatitude != null">
+        DEPT_LATITUDE,
+      </if>
+      <if test="levelVal != null">
+        LEVEL_VAL,
+      </if>
+      <if test="levelText != null">
+        LEVEL_TEXT,
+      </if>
+      <if test="deptCode != null">
+        DEPT_CODE,
+      </if>
+      <if test="storeFlag != null">
+        STORE_FLAG,
+      </if>
+      <if test="oaId != null">
+        OA_ID,
+      </if>
+      <if test="manager != null">
+        MANAGER,
+      </if>
+      <if test="oaParent != null">
+        OA_PARENT,
+      </if>
+      <if test="cityName != null">
+        CITY_NAME,
+      </if>
+      <if test="cityCode != null">
+        CITY_CODE,
+      </if>
+      <if test="provinceName != null">
+        PROVINCE_NAME,
+      </if>
+      <if test="provinceCode != null">
+        PROVINCE_CODE,
+      </if>
+      <if test="foundDate != null">
+        FOUND_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptId != null">
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="addEmp != null">
+        #{addEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptStatus != null">
+        #{deptStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="deptTel != null">
+        #{deptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="deptWorkAddr != null">
+        #{deptWorkAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyEmp != null">
+        #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="comId != null">
+        #{comId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptParent != null">
+        #{deptParent,jdbcType=VARCHAR},
+      </if>
+      <if test="deptClass != null">
+        #{deptClass,jdbcType=VARCHAR},
+      </if>
+      <if test="deptWorkAddrNo != null">
+        #{deptWorkAddrNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNo != null">
+        #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptLongitude != null">
+        #{deptLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="deptLatitude != null">
+        #{deptLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="levelVal != null">
+        #{levelVal,jdbcType=VARCHAR},
+      </if>
+      <if test="levelText != null">
+        #{levelText,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null">
+        #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeFlag != null">
+        #{storeFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="oaId != null">
+        #{oaId,jdbcType=VARCHAR},
+      </if>
+      <if test="manager != null">
+        #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="oaParent != null">
+        #{oaParent,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="foundDate != null">
+        #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysDepartment">
+    update HS_DEPARTMENT
+    <set>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="addEmp != null">
+        ADD_EMP = #{addEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptStatus != null">
+        DEPT_STATUS = #{deptStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="deptTel != null">
+        DEPT_TEL = #{deptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="deptWorkAddr != null">
+        DEPT_WORK_ADDR = #{deptWorkAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyEmp != null">
+        MODIFY_EMP = #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="comId != null">
+        COM_ID = #{comId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptParent != null">
+        DEPT_PARENT = #{deptParent,jdbcType=VARCHAR},
+      </if>
+      <if test="deptClass != null">
+        DEPT_CLASS = #{deptClass,jdbcType=VARCHAR},
+      </if>
+      <if test="deptWorkAddrNo != null">
+        DEPT_WORK_ADDR_NO = #{deptWorkAddrNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptNo != null">
+        DEPT_NO = #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptLongitude != null">
+        DEPT_LONGITUDE = #{deptLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="deptLatitude != null">
+        DEPT_LATITUDE = #{deptLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="levelVal != null">
+        LEVEL_VAL = #{levelVal,jdbcType=VARCHAR},
+      </if>
+      <if test="levelText != null">
+        LEVEL_TEXT = #{levelText,jdbcType=VARCHAR},
+      </if>
+      <if test="deptCode != null">
+        DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      </if>
+      <if test="storeFlag != null">
+        STORE_FLAG = #{storeFlag,jdbcType=DECIMAL},
+      </if>
+      <if test="oaId != null">
+        OA_ID = #{oaId,jdbcType=VARCHAR},
+      </if>
+      <if test="manager != null">
+        MANAGER = #{manager,jdbcType=VARCHAR},
+      </if>
+      <if test="oaParent != null">
+        OA_PARENT = #{oaParent,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null">
+        CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null">
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null">
+        PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null">
+        PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="foundDate != null">
+        FOUND_DATE = #{foundDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where DEPT_ID = #{deptId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysDepartment">
+    update HS_DEPARTMENT
+    set ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      ADD_EMP = #{addEmp,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      DEPT_STATUS = #{deptStatus,jdbcType=DECIMAL},
+      DEPT_TEL = #{deptTel,jdbcType=VARCHAR},
+      DEPT_WORK_ADDR = #{deptWorkAddr,jdbcType=VARCHAR},
+      MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+      MODIFY_EMP = #{modifyEmp,jdbcType=VARCHAR},
+      COM_ID = #{comId,jdbcType=VARCHAR},
+      DEPT_PARENT = #{deptParent,jdbcType=VARCHAR},
+      DEPT_CLASS = #{deptClass,jdbcType=VARCHAR},
+      DEPT_WORK_ADDR_NO = #{deptWorkAddrNo,jdbcType=VARCHAR},
+      DEPT_NO = #{deptNo,jdbcType=VARCHAR},
+      DEPT_LONGITUDE = #{deptLongitude,jdbcType=VARCHAR},
+      DEPT_LATITUDE = #{deptLatitude,jdbcType=VARCHAR},
+      LEVEL_VAL = #{levelVal,jdbcType=VARCHAR},
+      LEVEL_TEXT = #{levelText,jdbcType=VARCHAR},
+      DEPT_CODE = #{deptCode,jdbcType=VARCHAR},
+      STORE_FLAG = #{storeFlag,jdbcType=DECIMAL},
+      OA_ID = #{oaId,jdbcType=VARCHAR},
+      MANAGER = #{manager,jdbcType=VARCHAR},
+      OA_PARENT = #{oaParent,jdbcType=VARCHAR},
+      CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      FOUND_DATE = #{foundDate,jdbcType=TIMESTAMP}
+    where DEPT_ID = #{deptId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+	  	SELECT  
+  		DEPT.DEPT_ID,
+  		DEPT.DEPT_NAME,
+  		DEPT.DEPT_TEL,
+  		DEPT.DEPT_STATUS,
+  		DEPT.DEPT_WORK_ADDR,
+  		DEPT.DEPT_CLASS,DEPT.DEPT_WORK_ADDR_NO, DEPT.DEPT_NO,
+  		COM.COM_NAME COM_ID,
+  		PDEPT.DEPT_NAME DEPT_PARENT     
+  		FROM (
+				SELECT
+					DEPT.*, ROWNUM r
+				FROM HS_DEPARTMENT DEPT
+				<![CDATA[WHERE 1<>2]]>
+				<if test="deptName != null and deptName != ''">
+					and DEPT.DEPT_NAME like #{deptName}
+				</if>
+				<if test="comId != null and comId != ''">
+					and DEPT.COM_ID=#{comId}
+				</if>
+				<![CDATA[and ROWNUM <= #{pageSize}*#{pageIndex}]]>
+		) DEPT 
+		LEFT JOIN HS_COMPANY COM  ON DEPT.COM_ID = COM.COM_ID 
+  		LEFT JOIN HS_DEPARTMENT PDEPT  ON DEPT.DEPT_PARENT = PDEPT.DEPT_ID 
+  		<![CDATA[WHERE 1<>2]]>
+		and r >  (#{pageSize}*(#{pageIndex} - 1))
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	<![CDATA[select count(DEPT_ID) from HS_DEPARTMENT where 1<>2]]>
+		<if test="deptName != null and deptName != ''">
+			and DEPT_NAME like #{deptName}
+		</if>
+		<if test="comId != null and comId != ''">
+			and DEPT.COM_ID=#{comId}
+		</if>
+	</select>
+	<select id="findAllData" resultMap="BaseResultMap">
+		SELECT  
+		<include refid="Base_Column_List"/>
+		FROM HS_DEPARTMENT 
+	</select>
+	<!-- 根据公司ID删除公司和部门的关系 -->
+	<delete id="deleteByComId" parameterType="java.lang.String">
+		delete from HS_DEPARTMENT where COM_ID=#{comId}
+	</delete>
+	<!-- 获取某公司和部门的关联关系 -->
+	<select id="findByComId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	 select DEPT_ID, DEPT_NAME,DEPT_PARENT from HS_DEPARTMENT where COM_ID=#{comId}
+	</select>
+	
+	<!-- 获取某公司和部门的关联关系 -->
+	<select id="findByCom" parameterType="java.lang.String" resultType="java.util.Map">
+	 select DEPT_ID as value, DEPT_NAME as laber from HS_DEPARTMENT where COM_ID=#{comId}
+	</select>
+	
+	
+	<!-- liushuai add 删除多个  -->
+	<delete id="deleteByMultiDepts" parameterType="java.util.List">
+	    delete from HS_DEPARTMENT
+	    where DEPT_ID IN 
+	    <foreach collection="deptIds" index="index" item="item" open="(" separator="," close=")">  
+            #{item}
+        </foreach>
+	 </delete>
+	 
+	 <resultMap type="com.hoomsun.core.model.vo.VueLazyTree" id="VueTreeData">
+		<result column="DEPT_ID" jdbcType="VARCHAR" property="nodeKey" />
+		<result column="DEPT_NAME" jdbcType="VARCHAR"  property="name" />
+	</resultMap>
+	 
+	 <select id="findVueTreeData"  parameterType="java.lang.String" resultMap="VueTreeData" >
+	    select DEPT_ID, DEPT_NAME from HS_DEPARTMENT 
+	    WHERE   
+	    <if test="deptParent != null">
+	    	DEPT_PARENT = #{deptParent}
+	    </if>
+	    <if test="deptParent == null">
+	    	DEPT_PARENT IS NULL
+	    </if>
+	</select>
+	
+	
+	<resultMap  id="deptShow" extends="BaseResultMap" type="com.hoomsun.core.model.SysDepartment">
+		<result column="COM_NAME" jdbcType="VARCHAR" property="comName"/>
+		<result column="DEPT_PARENT_NAME" jdbcType="VARCHAR" property="deptParentName"/>
+	</resultMap>
+	<!-- 回显查询  -->
+	<select id="selectByDeptId" parameterType="java.lang.String" resultMap="deptShow">
+		select
+		child.DEPT_ID, child.DEPT_NAME, child.DEPT_STATUS, child.DEPT_WORK_ADDR, 
+		child.COM_ID, child.DEPT_PARENT, child.DEPT_CLASS, child.DEPT_WORK_ADDR_NO, 
+		child.DEPT_NO, child.MANAGER, child.DEPT_LONGITUDE, child.DEPT_LATITUDE,
+		com.COM_NAME, parent.DEPT_NAME DEPT_PARENT_NAME
+		from HS_DEPARTMENT child
+		LEFT JOIN HS_DEPARTMENT parent ON child.DEPT_PARENT = parent.DEPT_ID
+		LEFT JOIN HS_COMPANY com ON child.COM_ID = com.COM_ID
+		where child.DEPT_ID =#{deptId,jdbcType=VARCHAR}
+	</select>
+  
+  
+  	<!-- 获取所有营业部的ID和名称，用于前端下拉列表显示  -->
+  	<select id="selectAllStoreInfoShow" resultMap="BaseResultMap">
+  		SELECT DEPT_ID, DEPT_NAME FROM HS_DEPARTMENT WHERE STORE_FLAG=3 ORDER BY DEPT_NAME
+  	</select>
+</mapper>

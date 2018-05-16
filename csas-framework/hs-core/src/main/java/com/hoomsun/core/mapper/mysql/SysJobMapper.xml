@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysJobMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysJob">
+		<id column="JOB_ID" jdbcType="VARCHAR" property="jobId" />
+		<result column="JOB_NAME" jdbcType="VARCHAR" property="jobName" />
+		<result column="JOB_DESC" jdbcType="VARCHAR" property="jobDesc" />
+		<result column="JOB_PARENT" jdbcType="VARCHAR" property="jobParent" />
+		<result column="ADD_EMP" jdbcType="VARCHAR" property="addEmp" />
+		<result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		JOB_ID, JOB_NAME, JOB_DESC, JOB_PARENT, ADD_EMP, ADD_DATE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_JOB
+		where JOB_ID = #{jobId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_JOB
+		where JOB_ID = #{jobId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.core.model.SysJob">
+		insert into HS_JOB (JOB_ID, JOB_NAME, JOB_DESC,
+		JOB_PARENT, ADD_EMP, ADD_DATE
+		)
+		values (#{jobId,jdbcType=VARCHAR}, #{jobName,jdbcType=VARCHAR},
+		#{jobDesc,jdbcType=VARCHAR},
+		#{jobParent,jdbcType=VARCHAR}, #{addEmp,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.core.model.SysJob">
+		insert into HS_JOB
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="jobId != null">
+				JOB_ID,
+			</if>
+			<if test="jobName != null">
+				JOB_NAME,
+			</if>
+			<if test="jobDesc != null">
+				JOB_DESC,
+			</if>
+			<if test="jobParent != null">
+				JOB_PARENT,
+			</if>
+			<if test="addEmp != null">
+				ADD_EMP,
+			</if>
+			<if test="addDate != null">
+				ADD_DATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="jobId != null">
+				#{jobId,jdbcType=VARCHAR},
+			</if>
+			<if test="jobName != null">
+				#{jobName,jdbcType=VARCHAR},
+			</if>
+			<if test="jobDesc != null">
+				#{jobDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="jobParent != null">
+				#{jobParent,jdbcType=VARCHAR},
+			</if>
+			<if test="addEmp != null">
+				#{addEmp,jdbcType=VARCHAR},
+			</if>
+			<if test="addDate != null">
+				#{addDate,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysJob">
+		update HS_JOB
+		<set>
+			<if test="jobName != null">
+				JOB_NAME = #{jobName,jdbcType=VARCHAR},
+			</if>
+			<if test="jobDesc != null">
+				JOB_DESC = #{jobDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="jobParent != null">
+				JOB_PARENT = #{jobParent,jdbcType=VARCHAR},
+			</if>
+			<if test="addEmp != null">
+				ADD_EMP = #{addEmp,jdbcType=VARCHAR},
+			</if>
+			<if test="addDate != null">
+				ADD_DATE = #{addDate,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where JOB_ID = #{jobId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysJob">
+		update HS_JOB
+		set JOB_NAME = #{jobName,jdbcType=VARCHAR},
+		JOB_DESC = #{jobDesc,jdbcType=VARCHAR},
+		JOB_PARENT = #{jobParent,jdbcType=VARCHAR},
+		ADD_EMP = #{addEmp,jdbcType=VARCHAR},
+		ADD_DATE = #{addDate,jdbcType=VARCHAR}
+		where JOB_ID = #{jobId,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 分页查询 -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+		<![CDATA[
+			SELECT job.JOB_ID, job.JOB_NAME, job.JOB_DESC,pjob.JOB_NAME AS JOB_PARENT
+			FROM HS_JOB as job 
+			LEFT JOIN HS_JOB AS pjob ON job.JOB_PARENT = pjob.JOB_ID
+			WHERE 1<>2
+		]]>
+		<if test="jobName != null and jobName != ''"> and job.JOB_NAME like #{jobName}</if>
+		limit #{pageIndex},#{pageSize}
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT count(job.JOB_ID) FROM HS_JOB as job  WHERE 1<>2
+		]]>
+		<if test="jobName != null and jobName != ''"> AND job.JOB_NAME like #{jobName}</if>
+	</select>
+	
+	<select id="findAll" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM HS_JOB
+	</select>
+	
+	<select id="findByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_JOB
+		where JOB_NAME = #{jobName,jdbcType=VARCHAR}
+	</select>
+</mapper>

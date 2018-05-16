@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.BannerMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.Banner">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="TIME" jdbcType="VARCHAR" property="time" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="BANNERURL" jdbcType="VARCHAR" property="bannerurl" />
+    <result column="ISOPEN" jdbcType="VARCHAR" property="isopen" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TIME, CONTENT, BANNERURL, ISOPEN
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_BANNER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_BANNER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.Banner">
+    insert into HS_BANNER (ID, TIME, CONTENT, 
+      BANNERURL, ISOPEN)
+    values (#{id,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{bannerurl,jdbcType=VARCHAR}, #{isopen,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.Banner">
+    insert into HS_BANNER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="time != null">
+        TIME,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+      <if test="bannerurl != null">
+        BANNERURL,
+      </if>
+      <if test="isopen != null">
+        ISOPEN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerurl != null">
+        #{bannerurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isopen != null">
+        #{isopen,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.Banner">
+    update HS_BANNER
+    <set>
+      <if test="time != null">
+        TIME = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="bannerurl != null">
+        BANNERURL = #{bannerurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isopen != null">
+        ISOPEN = #{isopen,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.Banner">
+    update HS_BANNER
+    set TIME = #{time,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      BANNERURL = #{bannerurl,jdbcType=VARCHAR},
+      ISOPEN = #{isopen,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 分页查询数据  -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+	    <![CDATA[
+	  	SELECT ver.* FROM (
+	  	SELECT 
+		  	ROWNUM R,BANNER.*   FROM  HS_BANNER BANNER
+	    WHERE 1<>2]]>
+	    <![CDATA[) ver WHERE ver.R <= (#{pageIndex}*#{pageSize}) AND ver.R > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+	     ORDER BY TIME DESC
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+	 	select count(ID)
+	 	from HS_BANNER
+	 	ORDER BY TIME
+	</select>
+
+	<!-- 查询出所有的数据 -->
+	<select id="findAllData" resultMap="BaseResultMap">
+		select ID, TIME, CONTENT, BANNERURL, ISOPEN
+		from HS_BANNER
+		ORDER BY TIME
+	</select>
+	<!-- 查询出所有app展现数据 -->
+	<select id="selectByisopen" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_BANNER
+    where ISOPEN='0'
+  </select>
+</mapper>

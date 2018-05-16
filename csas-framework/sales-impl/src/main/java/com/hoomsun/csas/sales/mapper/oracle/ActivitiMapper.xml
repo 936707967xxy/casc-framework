@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.ActivitiMapper">
+	<resultMap id="HISTORIC_TASK_VO_RESULT_MAP" type="com.hoomsun.csas.sales.api.model.vo.HistoricTaskVo">
+		<id column="ID_" property="taskId" />
+		<result column="PROC_INST_ID_" property="procInstId" />
+		<result column="BUSINESS_KEY_" property="businessKey" />
+		<result column="TASK_DEF_KEY_" property="taskDefKey" />
+		<result column="PROC_DEF_ID_" property="procDefId" />
+		<result column="EXECUTION_ID_" property="executionId" />
+		<result column="NAME_" property="name" />
+		<result column="PARENT_ID_" jdbcType="VARCHAR" property="parentId" />
+		<result column="ASSIGNEE_" property="assignee" />
+		<result column="START_TIME_" property="startTime" />
+		<result column="CLAIM_TIME_" property="claitmTime" />
+		<result column="END_TIME_" property="endTime" />
+		<result column="DURATION_" property="duration" />
+		<result column="DELETE_REASON_" property="deleteReason" />
+		<result column="HANDLE_OPINION" property="handleOption" />
+		<result column="HANDLE_OPINION_VAL" property="handleOptionVal" />
+		<result column="REMARKS_" property="remarks" />
+		<result column="APPROVED_AMOUNT" property="money" />
+		<result column="PRODUCT_NAME" property="product" />
+		<result column="REJECT_TYPE_VAL" property="rejectType" />
+	</resultMap>
+
+	<select id="findHistoricTask" resultMap="HISTORIC_TASK_VO_RESULT_MAP" parameterType="java.lang.String">
+		SELECT ht.ID_,ht.PROC_INST_ID_,ht.TASK_DEF_KEY_,ht.NAME_,ht.DELETE_REASON_,
+		ht.ASSIGNEE_,ht.START_TIME_,ht.CLAIM_TIME_,ht.END_TIME_,
+		tbl.HANDLE_OPINION_VAL,tbl.APPROVED_AMOUNT,tbl.PRODUCT_NAME,
+		tbl.HANDLE_OPINION,tbl.IN_HANDLE_OPINION REMARKS_,tbl.REJECT_TYPE_VAL
+		FROM ACT_HI_PROCINST hp
+		left join ACT_HI_TASKINST ht on hp.PROC_INST_ID_=ht.PROC_INST_ID_
+		left join HS_FINAL_AUDIT tbl ON ht.PROC_INST_ID_=tbl.PROC_INST_ID and ht.ID_=tbl.TASK_ID 
+		where hp.BUSINESS_KEY_=#{applyId}
+		order by ht.START_TIME_
+	</select>
+
+	<!--获取审批历史 只要使用与信审 初审 终审 合同核查 -->
+	<select id="selectClaimTaskSign" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT
+		(SELECT COUNT(ID_) FROM ACT_RU_TASK WHERE ASSIGNEE_=#{empId}) -
+		NVL((SELECT PARAM_VALUE FROM HS_SYSTEM_PARAM WHERE PARAM_KEY='CLAIM_TASK_COUNT'),0)
+		FROM dual
+	</select>
+
+	<resultMap type="com.hoomsun.csas.sales.api.model.vo.UpcomingTaskVo" id="RUN_TAKS_MAP">
+		<id column="ID_" property="taskId" />
+		<result column="PROC_INST_ID_" property="procInstId" />
+		<result column="BUSINESS_KEY_" property="businessKey" />
+		<result column="TASK_DEF_KEY_" property="taskKey" />
+		<result column="TASK_NAME_" property="taskName" />
+		<result column="CUST_NAME" property="custName" />
+		<result column="ID_NUMBER" property="idNumber" />
+		<result column="LOAN_ID" property="loanId" />
+		<result column="APPLY_DATE" property="applyDate" />
+		<result column="ASSIGNEE_" property="assignee" />
+	</resultMap>
+
+	<!-- 待办 -->
+	<select id="findRunTask" resultMap="RUN_TAKS_MAP">
+		SELECT * FROM(
+			SELECT
+			ROWNUM r,
+			RE.BUSINESS_KEY_ ,
+			RT.ID_,
+			RT.TASK_DEF_KEY_,
+			RT.NAME_ TASK_NAME_,
+			EM.EMP_NAME ASSIGNEE_,
+			AP.CUST_NAME,
+			REPLACE (
+				AP.ID_NUMBER,
+				SUBSTR (AP.ID_NUMBER, 6, 8),
+				'********'
+			) AS ID_NUMBER,
+			AP.LOAN_ID,
+			AP.CUST_MOBILE,
+			AP.APPLY_DATE
+			FROM ACT_RU_EXECUTION RE
+			INNER JOIN ACT_RU_TASK RT ON RE.ID_ = RT.EXECUTION_ID_
+			RIGHT JOIN HS_APPLY AP ON RE.BUSINESS_KEY_ = AP.APPLY_ID 
+			LEFT JOIN HS_EMPLOYEE EM ON RT.ASSIGNEE_ = EM.EMP_ID 
+			WHERE RT.TASK_DEF_KEY_
+			in ('qcCheck','makeCon','addData')
+			and AP.STORE_ID=#{storeId}
+			<if test="isMgr != 1">
+				 and (RT.ASSIGNEE_ is null or RT.ASSIGNEE_=#{empId})
+			</if>
+			order by AP.APPLY_DATE desc
+		)WHERE
+					<![CDATA[r < 10]]>
+	</select>
+
+</mapper>

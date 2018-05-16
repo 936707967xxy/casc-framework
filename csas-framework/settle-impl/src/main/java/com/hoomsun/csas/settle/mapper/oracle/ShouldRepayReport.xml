@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.settle.dao.ShouldRepayReportMapper">
+	<resultMap type="com.hoomsun.csas.settle.model.vo.ShouldRepayReport" id="SHOULD_REPAY_REPORT_RESULT_MAP">
+		<!-- <result column="CUST_TYPE" property="custType" /> -->
+		<result column="POS_TYPE" property="postype" />	
+		<result column="CON_NO" property="conNo" />
+		<result column="SERIAL_ID" property="serialId" />
+		<result column="CAST_NAME" property="castName" />
+		<result column="CARD_NO" property="cardNo" />
+		<result column="CUST_SEX" property="custSex" />
+		<result column="LOAN_USE_VAL" property="loanUseVal" />
+	    <result column="DEPARTMENT" property="department" />
+		<result column="PRODUCT_ID" property="productId" />
+	    <result column="PRODUCT_NAME" property="productName"/>
+	    <result column="UPDOWN_STATUS" property="updownStatus"/>
+		<result column="LOAN_PERIOD" property="loanPeriod" />
+		<result column="CURRENT_PERIOD" property="currentPeriod" />
+		<result column="SURPLUS_PERIOD" property="surplusPeriod" />
+		<result column="REPAY_DATE" property="repayDate" />
+		<result column="LOAN_DATE" property="loanDate" />
+		<result column="REPLAYMENT_DATE" property="replaymentDate" />
+	    <result column="END_TIME" property="endTime" />
+		<result column="PRODUCT_RATE" property="productRate" />
+	    <result column="CONTRACT_ACCOUNT" property="contractAccount" />
+	    <result column="LOAN_MONEY" property="loanMoney" />
+	    <result column="SHOULD_CAPI" property="shouldCapi" />
+		<result column="SHOULD_INTE" property="shouldInte" />
+	    <result column="AMT" property="amt" />
+	    <result column="REPAY_TYPE" property="repayType" />
+		<result column="BANK" property="bank" />
+	    <result column="BANK_ACCOUNT" property="bankAccount" />
+	    <result column="BANK_PHONE" property="bankPhone" />
+   	    <result column="BIG_AREA" property="bigArea"/>
+   		<result column="STORE_NAME" property="storeName"/>
+   		<result column="SALES_EMP_NAME" property="salesEmpName"/>
+   		<result column="TEAM_LEADER" property="teamLeader"/>
+   		<result column="STATEMENT_DATE" property="statementDate"/>
+	    		
+	    	
+	</resultMap>
+	
+    <select id="findPager" parameterType="java.util.Map" resultMap="SHOULD_REPAY_REPORT_RESULT_MAP">
+ 
+    	
+ 		SELECT tab.* FROM (
+		  	SELECT 
+			  	ROWNUM r,BAL.POS_TYPE,BAL.CON_NO,BAL.SERIAL_ID,BAL.CAST_NAME,BAL.CARD_NO,
+			  	APP.CUST_SEX,APP.LOAN_USE_VAL,BAL.DEPARTMENT,BAL.PRODUCT_ID,BAL.PRODUCT_NAME,
+			  	BAL.UPDOWN_STATUS,BAL.LOAN_PERIOD,BAL.CURRENT_PERIOD,BAL.SURPLUS_PERIOD,BOOK.REPAY_DATE,
+			  	BAL.LOAN_DATE,BAL.REPLAYMENT_DATE,BAL.END_TIME,APP.PRODUCT_RATE,
+			  	BAL.CONTRACT_ACCOUNT,BAL.LOAN_MONEY,BAL.SHOULD_CAPI,BAL.SHOULD_INTE,BAL.AMT,
+			  	BOOK.REPAY_TYPE,BAL.BANK,BAL.BANK_ACCOUNT,BAL.BANK_PHONE,BAL.BIG_AREA,
+			  	APP.STORE_NAME,APP.SALES_EMP_NAME,BAL.TEAM_LEADER,BAL.STATEMENT_DATE,APP.LOAN_ID
+		    FROM HS_AFTER_LOANBAL  BAL
+	        LEFT JOIN HS_AFTER_LOAN_BOOK BOOK ON BAL.LOAN_ID=BOOK.LOAN_ID
+	        LEFT JOIN HS_APPLY APP ON  BAL.LOAN_ID=APP.APPLY_ID 
+	        WHERE BAL.UPDOWN_STATUS='1'
+       <![CDATA[  AND ROWNUM <=  #{pageIndex} * #{pageSize} ]]> 
+        <if test="startDate != null and startDate != ''">
+		    <![CDATA[ AND to_char(BAL.LOAN_DATE,'yyyy-mm-dd')>=#{startDate}]]>
+		</if>
+		<if test="endDate != null and endDate != ''">
+		   <![CDATA[ AND to_char(BAL.LOAN_DATE,'yyyy-mm-dd')<=#{endDate}]]>
+		</if>
+    	<if test="castName != null and castName != ''">
+			AND BAL.CAST_NAME like #{castName} 
+		</if>	
+    	<if test="cardNo != null and cardNo != ''">
+			AND BAL.CARD_NO like #{cardNo} 
+		</if>
+		<if test="conNo != null and conNo != ''">
+			AND BAL.CON_NO like #{conNo} 
+		</if>
+       	<if test="loanId != null and loanId != ''">
+			AND APP.LOAN_ID like #{loanId} 
+		</if>
+        ORDER BY BAL.LOAN_DATE DESC
+	     ) 
+    	tab  WHERE r > (#{pageIndex} -1) * #{pageSize}
+    	
+	</select>
+	
+	<select id="findPagerCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		 <![CDATA[
+			SELECT
+			 COUNT(BAL.LOAN_ID)
+			  FROM HS_AFTER_LOANBAL  BAL
+ 			LEFT JOIN HS_AFTER_LOAN_BOOK BOOK ON BAL.LOAN_ID=BOOK.LOAN_ID
+ 		    LEFT JOIN HS_APPLY APP ON  BAL.LOAN_ID=APP.APPLY_ID
+ 			
+ 			WHERE  BAL.UPDOWN_STATUS='1'
+ 		   ]]>
+ 		   <if test="startDate != null and startDate != ''">
+			    <![CDATA[ AND to_char(BAL.LOAN_DATE,'yyyy-mm-dd')>=#{startDate}]]>
+			</if>
+			<if test="endDate != null and endDate != ''">
+			   <![CDATA[ AND to_char(BAL.LOAN_DATE,'yyyy-mm-dd')<=#{endDate}]]>
+			</if>
+			<if test="cardNo != null and cardNo != ''">
+			    AND BAL.CARD_NO like #{cardNo}
+			</if>
+			<if test="castName != null and castName != ''">
+			  	 AND BAL.CAST_NAME like #{castName} 
+			</if>
+			<if test="conNo != null and conNo != ''">
+			   	 AND BAL.CON_NO like #{conNo} 
+			</if>
+			<if test="loanId != null and loanId != ''">
+				AND APP.LOAN_ID like #{loanId} 
+			</if>
+	</select>
+	
+	    <select id="findBalList" parameterType="java.util.Map" resultMap="SHOULD_REPAY_REPORT_RESULT_MAP">
+			SELECT 
+			  	ROWNUM r,BAL.POS_TYPE,BAL.CON_NO,BAL.SERIAL_ID,BAL.CAST_NAME,BAL.CARD_NO,
+			  	APP.CUST_SEX,APP.LOAN_USE_VAL,BAL.DEPARTMENT,BAL.PRODUCT_ID,BAL.PRODUCT_NAME,
+			  	BAL.UPDOWN_STATUS,BAL.LOAN_PERIOD,BAL.CURRENT_PERIOD,BAL.SURPLUS_PERIOD,BOOK.REPAY_DATE,
+			  	BAL.LOAN_DATE,BAL.REPLAYMENT_DATE,BAL.END_TIME,APP.PRODUCT_RATE,
+			  	BAL.CONTRACT_ACCOUNT,BAL.LOAN_MONEY,BAL.SHOULD_CAPI,BAL.SHOULD_INTE,BAL.AMT,
+			  	BOOK.REPAY_TYPE,BAL.BANK,BAL.BANK_ACCOUNT,BAL.BANK_PHONE,BAL.BIG_AREA,
+			  	APP.STORE_NAME,APP.SALES_EMP_NAME,BAL.TEAM_LEADER,BAL.STATEMENT_DATE,APP.LOAN_ID
+		    FROM HS_AFTER_LOANBAL  BAL
+	        LEFT JOIN HS_AFTER_LOAN_BOOK BOOK ON BAL.LOAN_ID=BOOK.LOAN_ID
+	        LEFT JOIN HS_APPLY APP ON  BAL.LOAN_ID=APP.APPLY_ID 
+	       	WHERE  BAL.UPDOWN_STATUS='1' 
+	       	
+	       	<if test="startDate != null and startDate != ''">
+			    <![CDATA[ AND to_char(BAL.LOAN_DATE,'yyyy-mm-dd')>=#{startDate}]]>
+			</if>
+			<if test="endDate != null and endDate != ''">
+			   <![CDATA[ AND to_char(BAL.LOAN_DATE,'yyyy-mm-dd')<=#{endDate}]]>
+			</if>
+			  
+	    </select>
+</mapper>

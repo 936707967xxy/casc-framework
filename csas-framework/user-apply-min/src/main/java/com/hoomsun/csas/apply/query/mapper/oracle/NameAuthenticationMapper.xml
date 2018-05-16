@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.apply.query.dao.NameAuthenticationMapper">
+	<resultMap id="BaseResultMap"
+		type="com.hoomsun.csas.apply.query.model.NameAuthentication">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="CUSTNAME" jdbcType="VARCHAR" property="custname" />
+		<result column="PAPERID" jdbcType="VARCHAR" property="paperid" />
+		<result column="ISAUTHENTICATION" jdbcType="VARCHAR" property="isauthentication" />
+		<result column="ISAUTHENTICATION_VAL" jdbcType="VARCHAR"
+			property="isauthenticationVal" />
+		<result column="AUTHENTICATION_MESG" jdbcType="VARCHAR"
+			property="authenticationMesg" />
+		<result column="RENFA_MESG" jdbcType="VARCHAR" property="renfaMesg" />
+		<result column="ISSESAME" jdbcType="VARCHAR" property="issesame" />
+		<result column="ISSESAME_VAL" jdbcType="VARCHAR" property="issesameVal" />
+		<result column="SESAME_GRADEVAL" jdbcType="VARCHAR" property="sesameGradeval" />
+		<result column="SESAME_TIME" jdbcType="VARCHAR" property="sesameTime" />
+		<result column="INCOME" jdbcType="VARCHAR" property="income" />
+		<result column="INCOME_TIME" jdbcType="VARCHAR" property="incomeTime" />
+		<result column="PHONE_TIME" jdbcType="VARCHAR" property="phoneTime" />
+		<result column="PHONE" jdbcType="VARCHAR" property="phone" />
+		<result column="PWD" jdbcType="VARCHAR" property="pwd" />
+		<result column="REGISTRATIONID" jdbcType="VARCHAR" property="registrationid" />
+		<result column="UUID" jdbcType="VARCHAR" property="uuid" />
+		<result column="PHOTOPATH" jdbcType="VARCHAR" property="photopath" />
+		<result column="INVITEDEPTID" jdbcType="VARCHAR" property="invitedeptid" />
+		<result column="INVITECODE" jdbcType="VARCHAR" property="invitecode" />
+		<result column="BANKPWD" jdbcType="VARCHAR" property="bankpwd" />
+		<result column="WXTAKEN" jdbcType="VARCHAR" property="wxtaken" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+		<result column="PUBLIC_KEY" jdbcType="VARCHAR" property="publicKey" />
+		<result column="PRIVATE_KEY" jdbcType="VARCHAR" property="privateKey" />
+		<result column="SIGN" jdbcType="VARCHAR" property="sign" />
+		<result column="CREATE_TIME" jdbcType="OTHER" property="createTime" />
+		<result column="PAY_ACCOUNT" jdbcType="VARCHAR" property="payAccount" />
+		<result column="PAY_PASSWORD" jdbcType="VARCHAR" property="payPassword" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, CUSTNAME, PAPERID, ISAUTHENTICATION,
+		ISAUTHENTICATION_VAL,
+		AUTHENTICATION_MESG,
+		RENFA_MESG, ISSESAME,
+		ISSESAME_VAL, SESAME_GRADEVAL, SESAME_TIME, INCOME,
+		INCOME_TIME,
+		PHONE_TIME, PHONE, PWD, REGISTRATIONID, UUID, PHOTOPATH, INVITEDEPTID,
+		INVITECODE,
+		BANKPWD, WXTAKEN, TYPE, PUBLIC_KEY, PRIVATE_KEY, SIGN,
+		CREATE_TIME,
+		PAY_ACCOUNT,
+		PAY_PASSWORD
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_NAME_AUTHENTICATION
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+</mapper>

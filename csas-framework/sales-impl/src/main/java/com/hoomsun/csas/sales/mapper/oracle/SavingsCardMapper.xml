@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.SavingsCardMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.SavingsCard">
+    <id column="SC_ID" jdbcType="VARCHAR" property="scId" />
+    <result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+    <result column="ACCOUNT_TYPE" jdbcType="DECIMAL" property="accountType" />
+    <result column="ACCOUNT_TYPE_VAL" jdbcType="VARCHAR" property="accountTypeVal" />
+    <result column="CURRENT_BALANCE" jdbcType="DECIMAL" property="currentBalance" />
+    <result column="INTEREST_ONE" jdbcType="DECIMAL" property="interestOne" />
+    <result column="INTEREST_TWO" jdbcType="DECIMAL" property="interestTwo" />
+    <result column="SPEND_HABIT_TYPE" jdbcType="DECIMAL" property="spendHabitType" />
+    <result column="SPEND_HABIT_TYPE_VAL" jdbcType="VARCHAR" property="spendHabitTypeVal" />
+    <result column="INCOME_STABILITY" jdbcType="VARCHAR" property="incomeStability" />
+    <result column="REVENUE_TREND" jdbcType="VARCHAR" property="revenueTrend" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="CREATE_DATE" jdbcType="DATE" property="createDate" />
+    <result column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+    <result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+    <result column="STABILITY" jdbcType="DECIMAL" property="stability" />
+    <result column="TREND" jdbcType="DECIMAL" property="trend" />
+    <result column="BANK_NAME" jdbcType="VARCHAR" property="bankName" />
+    <result column="INCOME_STABILITY_VAL" jdbcType="DECIMAL" property="incomeStabilityVal" />
+    <result column="REVENUE_TREND_VAL" jdbcType="DECIMAL" property="revenueTrendVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SC_ID, CARD_NO, ACCOUNT_TYPE, ACCOUNT_TYPE_VAL, CURRENT_BALANCE, INTEREST_ONE, INTEREST_TWO, 
+    SPEND_HABIT_TYPE, SPEND_HABIT_TYPE_VAL, INCOME_STABILITY, REVENUE_TREND, APPLY_ID, 
+    CREATE_DATE, EMP_ID, EMP_NAME, STABILITY, TREND, BANK_NAME, INCOME_STABILITY_VAL, 
+    REVENUE_TREND_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_SAVINGS_CARD
+    where SC_ID = #{scId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_SAVINGS_CARD
+    where SC_ID = #{scId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.SavingsCard">
+    insert into HS_SAVINGS_CARD (SC_ID, CARD_NO, ACCOUNT_TYPE, 
+      ACCOUNT_TYPE_VAL, CURRENT_BALANCE, INTEREST_ONE, 
+      INTEREST_TWO, SPEND_HABIT_TYPE, SPEND_HABIT_TYPE_VAL, 
+      INCOME_STABILITY, REVENUE_TREND, APPLY_ID, 
+      CREATE_DATE, EMP_ID, EMP_NAME, 
+      STABILITY, TREND, BANK_NAME, 
+      INCOME_STABILITY_VAL, REVENUE_TREND_VAL)
+    values (#{scId,jdbcType=VARCHAR}, #{cardNo,jdbcType=VARCHAR}, #{accountType,jdbcType=DECIMAL}, 
+      #{accountTypeVal,jdbcType=VARCHAR}, #{currentBalance,jdbcType=DECIMAL}, #{interestOne,jdbcType=DECIMAL}, 
+      #{interestTwo,jdbcType=DECIMAL}, #{spendHabitType,jdbcType=DECIMAL}, #{spendHabitTypeVal,jdbcType=VARCHAR}, 
+      #{incomeStability,jdbcType=VARCHAR}, #{revenueTrend,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=DATE}, #{empId,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, 
+      #{stability,jdbcType=DECIMAL}, #{trend,jdbcType=DECIMAL}, #{bankName,jdbcType=VARCHAR}, 
+      #{incomeStabilityVal,jdbcType=DECIMAL}, #{revenueTrendVal,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.SavingsCard">
+    insert into HS_SAVINGS_CARD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="scId != null">
+        SC_ID,
+      </if>
+      <if test="cardNo != null">
+        CARD_NO,
+      </if>
+      <if test="accountType != null">
+        ACCOUNT_TYPE,
+      </if>
+      <if test="accountTypeVal != null">
+        ACCOUNT_TYPE_VAL,
+      </if>
+      <if test="currentBalance != null">
+        CURRENT_BALANCE,
+      </if>
+      <if test="interestOne != null">
+        INTEREST_ONE,
+      </if>
+      <if test="interestTwo != null">
+        INTEREST_TWO,
+      </if>
+      <if test="spendHabitType != null">
+        SPEND_HABIT_TYPE,
+      </if>
+      <if test="spendHabitTypeVal != null">
+        SPEND_HABIT_TYPE_VAL,
+      </if>
+      <if test="incomeStability != null">
+        INCOME_STABILITY,
+      </if>
+      <if test="revenueTrend != null">
+        REVENUE_TREND,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="empId != null">
+        EMP_ID,
+      </if>
+      <if test="empName != null">
+        EMP_NAME,
+      </if>
+      <if test="stability != null">
+        STABILITY,
+      </if>
+      <if test="trend != null">
+        TREND,
+      </if>
+      <if test="bankName != null">
+        BANK_NAME,
+      </if>
+      <if test="incomeStabilityVal != null">
+        INCOME_STABILITY_VAL,
+      </if>
+      <if test="revenueTrendVal != null">
+        REVENUE_TREND_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="scId != null">
+        #{scId,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNo != null">
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null">
+        #{accountType,jdbcType=DECIMAL},
+      </if>
+      <if test="accountTypeVal != null">
+        #{accountTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="currentBalance != null">
+        #{currentBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="interestOne != null">
+        #{interestOne,jdbcType=DECIMAL},
+      </if>
+      <if test="interestTwo != null">
+        #{interestTwo,jdbcType=DECIMAL},
+      </if>
+      <if test="spendHabitType != null">
+        #{spendHabitType,jdbcType=DECIMAL},
+      </if>
+      <if test="spendHabitTypeVal != null">
+        #{spendHabitTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeStability != null">
+        #{incomeStability,jdbcType=VARCHAR},
+      </if>
+      <if test="revenueTrend != null">
+        #{revenueTrend,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="stability != null">
+        #{stability,jdbcType=DECIMAL},
+      </if>
+      <if test="trend != null">
+        #{trend,jdbcType=DECIMAL},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeStabilityVal != null">
+        #{incomeStabilityVal,jdbcType=DECIMAL},
+      </if>
+      <if test="revenueTrendVal != null">
+        #{revenueTrendVal,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.SavingsCard">
+    update HS_SAVINGS_CARD
+    <set>
+      <if test="cardNo != null">
+        CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="accountType != null">
+        ACCOUNT_TYPE = #{accountType,jdbcType=DECIMAL},
+      </if>
+      <if test="accountTypeVal != null">
+        ACCOUNT_TYPE_VAL = #{accountTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="currentBalance != null">
+        CURRENT_BALANCE = #{currentBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="interestOne != null">
+        INTEREST_ONE = #{interestOne,jdbcType=DECIMAL},
+      </if>
+      <if test="interestTwo != null">
+        INTEREST_TWO = #{interestTwo,jdbcType=DECIMAL},
+      </if>
+      <if test="spendHabitType != null">
+        SPEND_HABIT_TYPE = #{spendHabitType,jdbcType=DECIMAL},
+      </if>
+      <if test="spendHabitTypeVal != null">
+        SPEND_HABIT_TYPE_VAL = #{spendHabitTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeStability != null">
+        INCOME_STABILITY = #{incomeStability,jdbcType=VARCHAR},
+      </if>
+      <if test="revenueTrend != null">
+        REVENUE_TREND = #{revenueTrend,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="empId != null">
+        EMP_ID = #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        EMP_NAME = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="stability != null">
+        STABILITY = #{stability,jdbcType=DECIMAL},
+      </if>
+      <if test="trend != null">
+        TREND = #{trend,jdbcType=DECIMAL},
+      </if>
+      <if test="bankName != null">
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeStabilityVal != null">
+        INCOME_STABILITY_VAL = #{incomeStabilityVal,jdbcType=DECIMAL},
+      </if>
+      <if test="revenueTrendVal != null">
+        REVENUE_TREND_VAL = #{revenueTrendVal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where SC_ID = #{scId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.SavingsCard">
+    update HS_SAVINGS_CARD
+    set CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      ACCOUNT_TYPE = #{accountType,jdbcType=DECIMAL},
+      ACCOUNT_TYPE_VAL = #{accountTypeVal,jdbcType=VARCHAR},
+      CURRENT_BALANCE = #{currentBalance,jdbcType=DECIMAL},
+      INTEREST_ONE = #{interestOne,jdbcType=DECIMAL},
+      INTEREST_TWO = #{interestTwo,jdbcType=DECIMAL},
+      SPEND_HABIT_TYPE = #{spendHabitType,jdbcType=DECIMAL},
+      SPEND_HABIT_TYPE_VAL = #{spendHabitTypeVal,jdbcType=VARCHAR},
+      INCOME_STABILITY = #{incomeStability,jdbcType=VARCHAR},
+      REVENUE_TREND = #{revenueTrend,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=DATE},
+      EMP_ID = #{empId,jdbcType=VARCHAR},
+      EMP_NAME = #{empName,jdbcType=VARCHAR},
+      STABILITY = #{stability,jdbcType=DECIMAL},
+      TREND = #{trend,jdbcType=DECIMAL},
+      BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      INCOME_STABILITY_VAL = #{incomeStabilityVal,jdbcType=DECIMAL},
+      REVENUE_TREND_VAL = #{revenueTrendVal,jdbcType=DECIMAL}
+    where SC_ID = #{scId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  <select id="countCard" parameterType="java.lang.String"  resultType="java.lang.Integer">
+    select 
+    count(SC_ID)
+    from HS_SAVINGS_CARD
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <resultMap type="com.hoomsun.csas.sales.api.model.SavingsCard" id="SAVINGS_BILLS_RESULT_MAP" extends="BaseResultMap">
+  	<collection property="savingsBills" javaType="java.util.ArrayList" ofType="com.hoomsun.csas.sales.api.model.SavingsBills" resultMap="com.hoomsun.csas.sales.dao.SavingsBillsMapper.BaseResultMap"/>
+  </resultMap>
+  <select id="findByApplyId" parameterType="java.lang.String" resultMap="SAVINGS_BILLS_RESULT_MAP">
+    SELECT 
+    card.SC_ID, card.CARD_NO, card.ACCOUNT_TYPE, card.ACCOUNT_TYPE_VAL, card.CURRENT_BALANCE, card.INTEREST_ONE, card.INTEREST_TWO, 
+    card.SPEND_HABIT_TYPE, card.SPEND_HABIT_TYPE_VAL, card.INCOME_STABILITY, card.REVENUE_TREND, card.APPLY_ID, 
+    card.CREATE_DATE, card.EMP_ID, card.EMP_NAME, card.STABILITY, card.TREND, card.BANK_NAME, card.INCOME_STABILITY_VAL, 
+    card.REVENUE_TREND_VAL,
+    bills.SB_ID, bills.SC_ID, bills.STREAM_VAL, bills.THE_AVERAGE, bills.COEFFICINT_VARIATION, bills.TOTAL, bills.ONE_MONTH, bills.TWO_MONTH, 
+    bills.THREE_MONTH, bills.FOUR_MONTH, bills.FIVE_MONTH, bills.SIX_MONTH, bills.STANDARD, bills.VARIANCE, bills.MEDIAN, bills.STREAM_NAME
+    FROM HS_SAVINGS_CARD card 
+    LEFT JOIN HS_SAVINGS_BILLS bills on card.SC_ID=bills.SC_ID
+    WHERE card.APPLY_ID = #{applyId}
+    ORDER BY bills.STREAM_VAL
+  </select>
+</mapper>

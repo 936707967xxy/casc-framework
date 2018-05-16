@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.BlackInfoMapper">
+   <resultMap id="BaseResultMap" type="com.hoomsun.core.model.BlackInfo">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CUSTNAME" jdbcType="VARCHAR" property="custname" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="SEX_VAL" jdbcType="VARCHAR" property="sexVal" />
+    <result column="IDNUMBER" jdbcType="VARCHAR" property="idnumber" />
+    <result column="OPERATOR" jdbcType="VARCHAR" property="operator" />
+    <result column="ISBLACKFLAG" jdbcType="VARCHAR" property="isblackflag" />
+    <result column="CUSTSTATE" jdbcType="VARCHAR" property="custstate" />
+    <result column="CUSTSTATE_VAL" jdbcType="VARCHAR" property="custstateVal" />
+    <result column="CUSTTYPE" jdbcType="VARCHAR" property="custtype" />
+    <result column="CUSTTYPE_VAL" jdbcType="VARCHAR" property="custtypeVal" />
+    <result column="ROLLIN_DATE" jdbcType="OTHER" property="rollinDate" />
+    <result column="ROLLIN_CAUSE" jdbcType="VARCHAR" property="rollinCause" />
+    <result column="ROLLOUT_DATE" jdbcType="OTHER" property="rolloutDate" />
+    <result column="ROLLOUT_CAUSE" jdbcType="VARCHAR" property="rolloutCause" />
+    <result column="BLACK_REMARK" jdbcType="VARCHAR" property="blackRemark" />
+    <result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
+    <result column="COMPANY_SHORT_NAME" jdbcType="VARCHAR" property="companyShortName" />
+    <result column="ORGCODE" jdbcType="VARCHAR" property="orgcode" />
+    <result column="ROLLIN_PERSON" jdbcType="VARCHAR" property="rollinPerson" />
+    <result column="ROLLIN_PERSON_VAL" jdbcType="VARCHAR" property="rollinPersonVal" />
+    <result column="ROLLOUT_PEROSN" jdbcType="VARCHAR" property="rolloutPerosn" />
+    <result column="ROLLOUT_PEROSN_VAL" jdbcType="VARCHAR" property="rolloutPerosnVal" />
+    <result column="HOUSE_ADDRESS" jdbcType="VARCHAR" property="houseAddress" />
+    <result column="HOUSE_PROV_CODE" jdbcType="VARCHAR" property="houseProvCode" />
+    <result column="HOUSE_PROV_NAME" jdbcType="VARCHAR" property="houseProvName" />
+    <result column="HOUSE_CITY_CODE" jdbcType="VARCHAR" property="houseCityCode" />
+    <result column="HOUSE_CITY_NAME" jdbcType="VARCHAR" property="houseCityName" />
+    <result column="HOUSE_AREA_CODE" jdbcType="VARCHAR" property="houseAreaCode" />
+    <result column="HOUSE_AREA_NAME" jdbcType="VARCHAR" property="houseAreaName" />
+    <result column="HOUSE_ADDRESS_DETAIL" jdbcType="VARCHAR" property="houseAddressDetail" />
+    <result column="HOUSE_ADDRESS_PHONE" jdbcType="VARCHAR" property="houseAddressPhone" />
+    <result column="COMPANY_ADDRESS" jdbcType="VARCHAR" property="companyAddress" />
+    <result column="COMPANY_PROV_CODE" jdbcType="VARCHAR" property="companyProvCode" />
+    <result column="COMPANY_PROV_NAME" jdbcType="VARCHAR" property="companyProvName" />
+    <result column="COMPANY_CITY_CODE" jdbcType="VARCHAR" property="companyCityCode" />
+    <result column="COMPANY_CITY_NAME" jdbcType="VARCHAR" property="companyCityName" />
+    <result column="COMPANY_AREA_CODE" jdbcType="VARCHAR" property="companyAreaCode" />
+    <result column="COMPANY_AREA_NAME" jdbcType="VARCHAR" property="companyAreaName" />
+    <result column="COMPANY_ADDRESS_DETAIL" jdbcType="VARCHAR" property="companyAddressDetail" />
+    <result column="COMPANY_PHONE" jdbcType="VARCHAR" property="companyPhone" />
+    <result column="LEGAL_PERSON_ID" jdbcType="VARCHAR" property="legalPersonId" />
+    <result column="LEGAL_PERSON_NAME" jdbcType="VARCHAR" property="legalPersonName" />
+    <result column="DEALOPINIONS" jdbcType="VARCHAR" property="dealopinions" />
+    <result column="DEALOPINIONSVAL" jdbcType="VARCHAR" property="dealopinionsval" />
+    <result column="DEAL_PERSON_ID" jdbcType="VARCHAR" property="dealPersonId" />
+    <result column="DEAL_PERSON_NAME" jdbcType="VARCHAR" property="dealPersonName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CUSTNAME, PHONE, SEX, SEX_VAL, IDNUMBER, OPERATOR, ISBLACKFLAG, CUSTSTATE, CUSTSTATE_VAL, 
+    CUSTTYPE, CUSTTYPE_VAL, ROLLIN_DATE, ROLLIN_CAUSE, ROLLOUT_DATE, ROLLOUT_CAUSE, BLACK_REMARK, 
+    COMPANY_NAME, COMPANY_SHORT_NAME, ORGCODE, ROLLIN_PERSON, ROLLIN_PERSON_VAL, ROLLOUT_PEROSN, 
+    ROLLOUT_PEROSN_VAL, HOUSE_ADDRESS, HOUSE_PROV_CODE, HOUSE_PROV_NAME, HOUSE_CITY_CODE, 
+    HOUSE_CITY_NAME, HOUSE_AREA_CODE, HOUSE_AREA_NAME, HOUSE_ADDRESS_DETAIL, HOUSE_ADDRESS_PHONE, 
+    COMPANY_ADDRESS, COMPANY_PROV_CODE, COMPANY_PROV_NAME, COMPANY_CITY_CODE, COMPANY_CITY_NAME, 
+    COMPANY_AREA_CODE, COMPANY_AREA_NAME, COMPANY_ADDRESS_DETAIL, COMPANY_PHONE, LEGAL_PERSON_ID, 
+    LEGAL_PERSON_NAME, DEALOPINIONS, DEALOPINIONSVAL, DEAL_PERSON_ID, DEAL_PERSON_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_BLACKINFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_BLACKINFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.BlackInfo">
+    insert into HS_BLACKINFO (ID, CUSTNAME, PHONE, 
+      SEX, SEX_VAL, IDNUMBER, 
+      OPERATOR, ISBLACKFLAG, CUSTSTATE, 
+      CUSTSTATE_VAL, CUSTTYPE, CUSTTYPE_VAL, 
+      ROLLIN_DATE, ROLLIN_CAUSE, ROLLOUT_DATE, 
+      ROLLOUT_CAUSE, BLACK_REMARK, COMPANY_NAME, 
+      COMPANY_SHORT_NAME, ORGCODE, ROLLIN_PERSON, 
+      ROLLIN_PERSON_VAL, ROLLOUT_PEROSN, ROLLOUT_PEROSN_VAL, 
+      HOUSE_ADDRESS, HOUSE_PROV_CODE, HOUSE_PROV_NAME, 
+      HOUSE_CITY_CODE, HOUSE_CITY_NAME, HOUSE_AREA_CODE, 
+      HOUSE_AREA_NAME, HOUSE_ADDRESS_DETAIL, HOUSE_ADDRESS_PHONE, 
+      COMPANY_ADDRESS, COMPANY_PROV_CODE, COMPANY_PROV_NAME, 
+      COMPANY_CITY_CODE, COMPANY_CITY_NAME, COMPANY_AREA_CODE, 
+      COMPANY_AREA_NAME, COMPANY_ADDRESS_DETAIL, 
+      COMPANY_PHONE, LEGAL_PERSON_ID, LEGAL_PERSON_NAME, 
+      DEALOPINIONS, DEALOPINIONSVAL, DEAL_PERSON_ID, 
+      DEAL_PERSON_NAME)
+    values (#{id,jdbcType=VARCHAR}, #{custname,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{sexVal,jdbcType=VARCHAR}, #{idnumber,jdbcType=VARCHAR}, 
+      #{operator,jdbcType=VARCHAR}, #{isblackflag,jdbcType=VARCHAR}, #{custstate,jdbcType=VARCHAR}, 
+      #{custstateVal,jdbcType=VARCHAR}, #{custtype,jdbcType=VARCHAR}, #{custtypeVal,jdbcType=VARCHAR}, 
+      #{rollinDate,jdbcType=OTHER}, #{rollinCause,jdbcType=VARCHAR}, #{rolloutDate,jdbcType=OTHER}, 
+      #{rolloutCause,jdbcType=VARCHAR}, #{blackRemark,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{companyShortName,jdbcType=VARCHAR}, #{orgcode,jdbcType=VARCHAR}, #{rollinPerson,jdbcType=VARCHAR}, 
+      #{rollinPersonVal,jdbcType=VARCHAR}, #{rolloutPerosn,jdbcType=VARCHAR}, #{rolloutPerosnVal,jdbcType=VARCHAR}, 
+      #{houseAddress,jdbcType=VARCHAR}, #{houseProvCode,jdbcType=VARCHAR}, #{houseProvName,jdbcType=VARCHAR}, 
+      #{houseCityCode,jdbcType=VARCHAR}, #{houseCityName,jdbcType=VARCHAR}, #{houseAreaCode,jdbcType=VARCHAR}, 
+      #{houseAreaName,jdbcType=VARCHAR}, #{houseAddressDetail,jdbcType=VARCHAR}, #{houseAddressPhone,jdbcType=VARCHAR}, 
+      #{companyAddress,jdbcType=VARCHAR}, #{companyProvCode,jdbcType=VARCHAR}, #{companyProvName,jdbcType=VARCHAR}, 
+      #{companyCityCode,jdbcType=VARCHAR}, #{companyCityName,jdbcType=VARCHAR}, #{companyAreaCode,jdbcType=VARCHAR}, 
+      #{companyAreaName,jdbcType=VARCHAR}, #{companyAddressDetail,jdbcType=VARCHAR}, 
+      #{companyPhone,jdbcType=VARCHAR}, #{legalPersonId,jdbcType=VARCHAR}, #{legalPersonName,jdbcType=VARCHAR}, 
+      #{dealopinions,jdbcType=VARCHAR}, #{dealopinionsval,jdbcType=VARCHAR}, #{dealPersonId,jdbcType=VARCHAR}, 
+      #{dealPersonName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.BlackInfo">
+    insert into HS_BLACKINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="custname != null">
+        CUSTNAME,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="sexVal != null">
+        SEX_VAL,
+      </if>
+      <if test="idnumber != null">
+        IDNUMBER,
+      </if>
+      <if test="operator != null">
+        OPERATOR,
+      </if>
+      <if test="isblackflag != null">
+        ISBLACKFLAG,
+      </if>
+      <if test="custstate != null">
+        CUSTSTATE,
+      </if>
+      <if test="custstateVal != null">
+        CUSTSTATE_VAL,
+      </if>
+      <if test="custtype != null">
+        CUSTTYPE,
+      </if>
+      <if test="custtypeVal != null">
+        CUSTTYPE_VAL,
+      </if>
+      <if test="rollinDate != null">
+        ROLLIN_DATE,
+      </if>
+      <if test="rollinCause != null">
+        ROLLIN_CAUSE,
+      </if>
+      <if test="rolloutDate != null">
+        ROLLOUT_DATE,
+      </if>
+      <if test="rolloutCause != null">
+        ROLLOUT_CAUSE,
+      </if>
+      <if test="blackRemark != null">
+        BLACK_REMARK,
+      </if>
+      <if test="companyName != null">
+        COMPANY_NAME,
+      </if>
+      <if test="companyShortName != null">
+        COMPANY_SHORT_NAME,
+      </if>
+      <if test="orgcode != null">
+        ORGCODE,
+      </if>
+      <if test="rollinPerson != null">
+        ROLLIN_PERSON,
+      </if>
+      <if test="rollinPersonVal != null">
+        ROLLIN_PERSON_VAL,
+      </if>
+      <if test="rolloutPerosn != null">
+        ROLLOUT_PEROSN,
+      </if>
+      <if test="rolloutPerosnVal != null">
+        ROLLOUT_PEROSN_VAL,
+      </if>
+      <if test="houseAddress != null">
+        HOUSE_ADDRESS,
+      </if>
+      <if test="houseProvCode != null">
+        HOUSE_PROV_CODE,
+      </if>
+      <if test="houseProvName != null">
+        HOUSE_PROV_NAME,
+      </if>
+      <if test="houseCityCode != null">
+        HOUSE_CITY_CODE,
+      </if>
+      <if test="houseCityName != null">
+        HOUSE_CITY_NAME,
+      </if>
+      <if test="houseAreaCode != null">
+        HOUSE_AREA_CODE,
+      </if>
+      <if test="houseAreaName != null">
+        HOUSE_AREA_NAME,
+      </if>
+      <if test="houseAddressDetail != null">
+        HOUSE_ADDRESS_DETAIL,
+      </if>
+      <if test="houseAddressPhone != null">
+        HOUSE_ADDRESS_PHONE,
+      </if>
+      <if test="companyAddress != null">
+        COMPANY_ADDRESS,
+      </if>
+      <if test="companyProvCode != null">
+        COMPANY_PROV_CODE,
+      </if>
+      <if test="companyProvName != null">
+        COMPANY_PROV_NAME,
+      </if>
+      <if test="companyCityCode != null">
+        COMPANY_CITY_CODE,
+      </if>
+      <if test="companyCityName != null">
+        COMPANY_CITY_NAME,
+      </if>
+      <if test="companyAreaCode != null">
+        COMPANY_AREA_CODE,
+      </if>
+      <if test="companyAreaName != null">
+        COMPANY_AREA_NAME,
+      </if>
+      <if test="companyAddressDetail != null">
+        COMPANY_ADDRESS_DETAIL,
+      </if>
+      <if test="companyPhone != null">
+        COMPANY_PHONE,
+      </if>
+      <if test="legalPersonId != null">
+        LEGAL_PERSON_ID,
+      </if>
+      <if test="legalPersonName != null">
+        LEGAL_PERSON_NAME,
+      </if>
+      <if test="dealopinions != null">
+        DEALOPINIONS,
+      </if>
+      <if test="dealopinionsval != null">
+        DEALOPINIONSVAL,
+      </if>
+      <if test="dealPersonId != null">
+        DEAL_PERSON_ID,
+      </if>
+      <if test="dealPersonName != null">
+        DEAL_PERSON_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="custname != null">
+        #{custname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="sexVal != null">
+        #{sexVal,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null">
+        #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="isblackflag != null">
+        #{isblackflag,jdbcType=VARCHAR},
+      </if>
+      <if test="custstate != null">
+        #{custstate,jdbcType=VARCHAR},
+      </if>
+      <if test="custstateVal != null">
+        #{custstateVal,jdbcType=VARCHAR},
+      </if>
+      <if test="custtype != null">
+        #{custtype,jdbcType=VARCHAR},
+      </if>
+      <if test="custtypeVal != null">
+        #{custtypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="rollinDate != null">
+        #{rollinDate,jdbcType=OTHER},
+      </if>
+      <if test="rollinCause != null">
+        #{rollinCause,jdbcType=VARCHAR},
+      </if>
+      <if test="rolloutDate != null">
+        #{rolloutDate,jdbcType=OTHER},
+      </if>
+      <if test="rolloutCause != null">
+        #{rolloutCause,jdbcType=VARCHAR},
+      </if>
+      <if test="blackRemark != null">
+        #{blackRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyShortName != null">
+        #{companyShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null">
+        #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rollinPerson != null">
+        #{rollinPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="rollinPersonVal != null">
+        #{rollinPersonVal,jdbcType=VARCHAR},
+      </if>
+      <if test="rolloutPerosn != null">
+        #{rolloutPerosn,jdbcType=VARCHAR},
+      </if>
+      <if test="rolloutPerosnVal != null">
+        #{rolloutPerosnVal,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null">
+        #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvCode != null">
+        #{houseProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvName != null">
+        #{houseProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityCode != null">
+        #{houseCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityName != null">
+        #{houseCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaCode != null">
+        #{houseAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaName != null">
+        #{houseAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddressDetail != null">
+        #{houseAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddressPhone != null">
+        #{houseAddressPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyProvCode != null">
+        #{companyProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyProvName != null">
+        #{companyProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCityCode != null">
+        #{companyCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCityName != null">
+        #{companyCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAreaCode != null">
+        #{companyAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAreaName != null">
+        #{companyAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressDetail != null">
+        #{companyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null">
+        #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonId != null">
+        #{legalPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonName != null">
+        #{legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="dealopinions != null">
+        #{dealopinions,jdbcType=VARCHAR},
+      </if>
+      <if test="dealopinionsval != null">
+        #{dealopinionsval,jdbcType=VARCHAR},
+      </if>
+      <if test="dealPersonId != null">
+        #{dealPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="dealPersonName != null">
+        #{dealPersonName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.BlackInfo">
+    update HS_BLACKINFO
+    <set>
+      <if test="custname != null">
+        CUSTNAME = #{custname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="sexVal != null">
+        SEX_VAL = #{sexVal,jdbcType=VARCHAR},
+      </if>
+      <if test="idnumber != null">
+        IDNUMBER = #{idnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        OPERATOR = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="isblackflag != null">
+        ISBLACKFLAG = #{isblackflag,jdbcType=VARCHAR},
+      </if>
+      <if test="custstate != null">
+        CUSTSTATE = #{custstate,jdbcType=VARCHAR},
+      </if>
+      <if test="custstateVal != null">
+        CUSTSTATE_VAL = #{custstateVal,jdbcType=VARCHAR},
+      </if>
+      <if test="custtype != null">
+        CUSTTYPE = #{custtype,jdbcType=VARCHAR},
+      </if>
+      <if test="custtypeVal != null">
+        CUSTTYPE_VAL = #{custtypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="rollinDate != null">
+        ROLLIN_DATE = #{rollinDate,jdbcType=OTHER},
+      </if>
+      <if test="rollinCause != null">
+        ROLLIN_CAUSE = #{rollinCause,jdbcType=VARCHAR},
+      </if>
+      <if test="rolloutDate != null">
+        ROLLOUT_DATE = #{rolloutDate,jdbcType=OTHER},
+      </if>
+      <if test="rolloutCause != null">
+        ROLLOUT_CAUSE = #{rolloutCause,jdbcType=VARCHAR},
+      </if>
+      <if test="blackRemark != null">
+        BLACK_REMARK = #{blackRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyShortName != null">
+        COMPANY_SHORT_NAME = #{companyShortName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgcode != null">
+        ORGCODE = #{orgcode,jdbcType=VARCHAR},
+      </if>
+      <if test="rollinPerson != null">
+        ROLLIN_PERSON = #{rollinPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="rollinPersonVal != null">
+        ROLLIN_PERSON_VAL = #{rollinPersonVal,jdbcType=VARCHAR},
+      </if>
+      <if test="rolloutPerosn != null">
+        ROLLOUT_PEROSN = #{rolloutPerosn,jdbcType=VARCHAR},
+      </if>
+      <if test="rolloutPerosnVal != null">
+        ROLLOUT_PEROSN_VAL = #{rolloutPerosnVal,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null">
+        HOUSE_ADDRESS = #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvCode != null">
+        HOUSE_PROV_CODE = #{houseProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvName != null">
+        HOUSE_PROV_NAME = #{houseProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityCode != null">
+        HOUSE_CITY_CODE = #{houseCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityName != null">
+        HOUSE_CITY_NAME = #{houseCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaCode != null">
+        HOUSE_AREA_CODE = #{houseAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaName != null">
+        HOUSE_AREA_NAME = #{houseAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddressDetail != null">
+        HOUSE_ADDRESS_DETAIL = #{houseAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddressPhone != null">
+        HOUSE_ADDRESS_PHONE = #{houseAddressPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        COMPANY_ADDRESS = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyProvCode != null">
+        COMPANY_PROV_CODE = #{companyProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyProvName != null">
+        COMPANY_PROV_NAME = #{companyProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCityCode != null">
+        COMPANY_CITY_CODE = #{companyCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCityName != null">
+        COMPANY_CITY_NAME = #{companyCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAreaCode != null">
+        COMPANY_AREA_CODE = #{companyAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAreaName != null">
+        COMPANY_AREA_NAME = #{companyAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressDetail != null">
+        COMPANY_ADDRESS_DETAIL = #{companyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPhone != null">
+        COMPANY_PHONE = #{companyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonId != null">
+        LEGAL_PERSON_ID = #{legalPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonName != null">
+        LEGAL_PERSON_NAME = #{legalPersonName,jdbcType=VARCHAR},
+      </if>
+      <if test="dealopinions != null">
+        DEALOPINIONS = #{dealopinions,jdbcType=VARCHAR},
+      </if>
+      <if test="dealopinionsval != null">
+        DEALOPINIONSVAL = #{dealopinionsval,jdbcType=VARCHAR},
+      </if>
+      <if test="dealPersonId != null">
+        DEAL_PERSON_ID = #{dealPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="dealPersonName != null">
+        DEAL_PERSON_NAME = #{dealPersonName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.BlackInfo">
+    update HS_BLACKINFO
+    set CUSTNAME = #{custname,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      SEX_VAL = #{sexVal,jdbcType=VARCHAR},
+      IDNUMBER = #{idnumber,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      ISBLACKFLAG = #{isblackflag,jdbcType=VARCHAR},
+      CUSTSTATE = #{custstate,jdbcType=VARCHAR},
+      CUSTSTATE_VAL = #{custstateVal,jdbcType=VARCHAR},
+      CUSTTYPE = #{custtype,jdbcType=VARCHAR},
+      CUSTTYPE_VAL = #{custtypeVal,jdbcType=VARCHAR},
+      ROLLIN_DATE = #{rollinDate,jdbcType=OTHER},
+      ROLLIN_CAUSE = #{rollinCause,jdbcType=VARCHAR},
+      ROLLOUT_DATE = #{rolloutDate,jdbcType=OTHER},
+      ROLLOUT_CAUSE = #{rolloutCause,jdbcType=VARCHAR},
+      BLACK_REMARK = #{blackRemark,jdbcType=VARCHAR},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      COMPANY_SHORT_NAME = #{companyShortName,jdbcType=VARCHAR},
+      ORGCODE = #{orgcode,jdbcType=VARCHAR},
+      ROLLIN_PERSON = #{rollinPerson,jdbcType=VARCHAR},
+      ROLLIN_PERSON_VAL = #{rollinPersonVal,jdbcType=VARCHAR},
+      ROLLOUT_PEROSN = #{rolloutPerosn,jdbcType=VARCHAR},
+      ROLLOUT_PEROSN_VAL = #{rolloutPerosnVal,jdbcType=VARCHAR},
+      HOUSE_ADDRESS = #{houseAddress,jdbcType=VARCHAR},
+      HOUSE_PROV_CODE = #{houseProvCode,jdbcType=VARCHAR},
+      HOUSE_PROV_NAME = #{houseProvName,jdbcType=VARCHAR},
+      HOUSE_CITY_CODE = #{houseCityCode,jdbcType=VARCHAR},
+      HOUSE_CITY_NAME = #{houseCityName,jdbcType=VARCHAR},
+      HOUSE_AREA_CODE = #{houseAreaCode,jdbcType=VARCHAR},
+      HOUSE_AREA_NAME = #{houseAreaName,jdbcType=VARCHAR},
+      HOUSE_ADDRESS_DETAIL = #{houseAddressDetail,jdbcType=VARCHAR},
+      HOUSE_ADDRESS_PHONE = #{houseAddressPhone,jdbcType=VARCHAR},
+      COMPANY_ADDRESS = #{companyAddress,jdbcType=VARCHAR},
+      COMPANY_PROV_CODE = #{companyProvCode,jdbcType=VARCHAR},
+      COMPANY_PROV_NAME = #{companyProvName,jdbcType=VARCHAR},
+      COMPANY_CITY_CODE = #{companyCityCode,jdbcType=VARCHAR},
+      COMPANY_CITY_NAME = #{companyCityName,jdbcType=VARCHAR},
+      COMPANY_AREA_CODE = #{companyAreaCode,jdbcType=VARCHAR},
+      COMPANY_AREA_NAME = #{companyAreaName,jdbcType=VARCHAR},
+      COMPANY_ADDRESS_DETAIL = #{companyAddressDetail,jdbcType=VARCHAR},
+      COMPANY_PHONE = #{companyPhone,jdbcType=VARCHAR},
+      LEGAL_PERSON_ID = #{legalPersonId,jdbcType=VARCHAR},
+      LEGAL_PERSON_NAME = #{legalPersonName,jdbcType=VARCHAR},
+      DEALOPINIONS = #{dealopinions,jdbcType=VARCHAR},
+      DEALOPINIONSVAL = #{dealopinionsval,jdbcType=VARCHAR},
+      DEAL_PERSON_ID = #{dealPersonId,jdbcType=VARCHAR},
+      DEAL_PERSON_NAME = #{dealPersonName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+    <!-- 分页查询 -->
+  
+  <select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+	
+			SELECT 
+			
+				it.*
+			
+			FROM (
+				SELECT 
+				  it.ID, it.CUSTNAME, it.PHONE, it.SEX, it.SEX_VAL,it.IDNUMBER, it.OPERATOR, it.ISBLACKFLAG, it.CUSTSTATE, it.CUSTSTATE_VAL, 
+				  it.CUSTTYPE, it.CUSTTYPE_VAL, it.ROLLIN_DATE, it.ROLLIN_CAUSE, it.ROLLOUT_DATE, it.ROLLOUT_CAUSE, it.BLACK_REMARK,it.COMPANY_NAME, it.COMPANY_SHORT_NAME, it.ORGCODE,it.ROLLIN_PERSON, it.ROLLIN_PERSON_VAL, it.ROLLOUT_PEROSN, 
+	   			 it.ROLLOUT_PEROSN_VAL,it.DEALOPINIONS,it.DEALOPINIONSVAL,it.DEAL_PERSON_ID,it.DEAL_PERSON_NAME,ROWNUM R	
+				FROM HS_BLACKINFO it
+				<![CDATA[ WHERE  ROWNUM<= #{page}*#{rows}  ]]>
+				
+				 <if test="custname != null and custname != ''"> 
+					AND it.CUSTNAME LIKE #{custname}
+				</if>
+				 <if test="phone != null and phone != ''"> 
+					AND it.PHONE LIKE #{phone}
+				</if>
+				 <if test="idnumber != null and idnumber != ''"> 
+					AND it.IDNUMBER LIKE #{idnumber}
+				</if>
+				<if test="custstate != null and custstate == 1"> 
+					AND it.CUSTSTATE='1' or it.CUSTSTATE='2'
+				</if>
+				<if test="custstate != null and custstate == 2"> 
+					AND it.CUSTSTATE='3'
+				</if>
+			) it
+			
+			WHERE  R > (#{page}-1)*#{rows} 
+	</select>
+  	
+  	
+  	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[
+			
+			SELECT COUNT(it.ID) from HS_BLACKINFO it WHERE 1<>2 
+
+		]]>
+ 		<if test="custname != null and custname != ''"> 
+			AND it.CUSTNAME LIKE #{custname}
+		</if>
+		 <if test="phone != null and phone != ''"> 
+			AND it.PHONE LIKE #{phone}
+		</if>
+		 <if test="idnumber != null and idnumber != ''"> 
+			AND it.IDNUMBER LIKE #{idnumber}
+		</if>
+		<if test="custstate != null and custstate == 1"> 
+			AND it.CUSTSTATE='1' or it.CUSTSTATE='2'
+		</if>
+		<if test="custstate != null and custstate == 2"> 
+			AND it.CUSTSTATE='3'
+		</if>
+	</select>
+	<!-- 根据id查询黑名单  -->
+	<select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+	
+		SELECT
+		 <include refid="Base_Column_List" />
+		  FROM  HS_BLACKINFO 
+		  WHERE ID = #{id,jdbcType=VARCHAR} AND ISBLACKFLAG='1'
+	</select> 
+	
+	<!-- 根据预约信息客户手机号查询是否为黑名单客户  -->
+	<select id="findByPhone" parameterType="java.lang.String" resultType="java.lang.Integer">
+	
+		<![CDATA[
+			
+			SELECT COUNT(it.PHONE) FROM HS_BLACKINFO it WHERE it.PHONE=#{phone} and it.ISBLACKFLAG='1'
+
+		]]>
+	</select> 
+	
+	<!-- 根据预约信息客户身份证查询是否为黑名单客户  -->
+	<select id="findByIdNumber" parameterType="java.lang.String" resultType="java.lang.Integer">
+	
+		<![CDATA[
+			
+			SELECT count(it.IDNUMBER) from HS_BLACKINFO it WHERE it.IDNUMBER=#{idnumber} and it.ISBLACKFLAG='1'
+
+		]]>
+	</select> 
+	
+	<!-- 根据预约信息客户身份证查询是否为黑名单客户  -->
+	<select id="findByCustname" parameterType="java.lang.String" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT count(it.CUSTNAME) from HS_BLACKINFO it WHERE it.CUSTNAME=#{custname} and it.ISBLACKFLAG='1'
+		]]>
+	</select> 
+	
+    
+</mapper>

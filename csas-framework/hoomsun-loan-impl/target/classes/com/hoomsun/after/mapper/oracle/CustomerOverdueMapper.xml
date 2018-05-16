@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.CustomerOverdueMapper">
+	
+	<!-- 查询客户减免列表 -->
+	<select id="queryCustomerOverdue" parameterType="com.hoomsun.after.api.model.param.CustomerOverdueReq" 
+	resultType="com.hoomsun.after.api.model.vo.CustomerOverdueResult">
+	    SELECT * FROM (
+		 <include refid="selectCustomerOverdueSql"/>
+		 <include refid="fromCustomerOverdueSql"/>
+		 <include refid="whereCustomerOverdueSql"/>
+		 <include refid="desc"/>
+		 )
+		  <![CDATA[ WHERE  r > (#{ page }- 1) * #{ pageSize }]]>
+	</select>
+	
+	<!--  查询客户减免总条数 -->
+	<select id="countCustomerOverdue" parameterType="com.hoomsun.after.api.model.param.CustomerOverdueReq"
+	    resultType="java.lang.Integer">
+	     <include refid="queruCountCustomerOverdue"/>
+	     <include refid="fromCustomerOverdueSql"/>
+		 <include refid="whereCustomerOverdueSql"/>
+	</select>
+	
+	<sql id="queruCountCustomerOverdue">
+	    SELECT COUNT(haoa.LOAN_ID)
+	</sql>
+	
+	<sql id="selectCustomerOverdueSql">
+	        SELECT 
+			haoa.ID AS id,
+			haoa.APPLICATION_CAST_ID AS applicationCastId,
+			haoa.APPLICATION_CAST_NAME AS applicationCastName,
+			haoa.APPLICATION_DESC AS applicationDesc,
+			haoa.APPROVE_ID AS approveId,
+			haoa.APPROVE_NAME AS approveName,
+			haoa.APPROVE_DESC AS approveDesc,
+			haoa.APPROVE_OPINION AS approveOpinion,
+			haoa.APPLICATION_DATE AS applicationDate,
+			haoa.APPROVE_DATE AS approveDate,
+			haoa.APPROVE_ID2 AS approveId2,
+			haoa.APPROVE_NAME2 AS approveName2,
+			haoa.APPROVE_DESC2 AS approveDesc2,
+			haoa.APPROVE_OPINION2 AS approveOpinion2,
+			haoa.APPROVE_DATE2 AS approveDate2,
+			haoa.OVERDUE_STATUS AS overdueStatus,
+			haoa.CAST_NAME AS castName,
+			haoa.CARD_NO AS cardNo,
+			haoa.APPLICATION_ID AS applicationId,
+			haoa.APPLY_TYPE AS applyType,
+			haoa.REDUCT_MONEY AS reductMoney,
+			haoa.DISPOSA_DATE AS disposaDate,
+			haoa.CON_NO AS conNo,
+			haoa.LOAN_ID AS loanId,
+			haoa.CREATE_TIME AS createTime,
+			haoa.UPDATE_DATE AS updateDate,
+			bal.TEL as tel,
+			ROWNUM AS r
+	</sql>
+	
+	<sql id="fromCustomerOverdueSql">
+	       FROM HS_AFTER_OVERDUE_APPLY haoa
+           LEFT JOIN HS_AFTER_LOANBAL bal ON haoa.LOAN_ID=bal.LOAN_ID
+	</sql>
+	
+	<sql id="whereCustomerOverdueSql">
+	       <if test="loanId != null and loanId !='' ">
+		      AND haoa.LOAN_ID =#{loanId}
+		  </if>
+	       <if test="conNo != null and conNo !='' ">
+		      AND haoa.CON_NO =#{conNo}
+		  </if>
+	       <if test="castName != null and castName !='' ">
+		      <![CDATA[AND haoa.CAST_NAME  LIKE  '%'||#{castName}||'%' ]]>
+		  </if>
+	       <if test="cardNo != null and cardNo !='' ">
+		      AND haoa.CARD_NO =#{cardNo}
+		  </if>
+	       <if test="tel != null and tel !='' ">
+		      AND bal.TEL =#{tel}
+		  </if>
+	       <if test="overdueStatus != null and overdueStatus !='' ">
+		      AND haoa.OVERDUE_STATUS =#{overdueStatus}
+		  </if>
+	       <if test="managerCastId != null and managerCastId !='' ">
+		      AND bal.MANAGER_CAST_ID =#{managerCastId}
+		  </if>
+	      <if test="customerOrLoan != null and customerOrLoan !='' ">
+		      AND bal.CUSTOMER_OR_LOAN =#{customerOrLoan}
+		  </if>
+		  <if test="page !='-1' ">
+		      <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		  </if>
+	</sql>
+	
+	<sql id="desc">
+	     ORDER BY haoa.APPLICATION_DATE DESC
+	</sql>
+	
+	<!-- 测试 不对外使用 -->
+	<select id="queryTempHoomsun" parameterType="com.hoomsun.after.api.model.param.CustomerOverdueReq"
+	                 resultType="com.hoomsun.after.api.model.vo.CustomerOverdueResult">
+	                 SELECT * FROM HS_AFTER_LOANBAL
+	</select>
+	<update id="up123dateOverdueTest" parameterType="com.hoomsun.after.api.model.param.CustomerOverdueReq">
+	  UPDATE HS_AFTER_LOANBAL SET LOAN_ID=#{loanId} WHERE CON_NO=#{conNo}
+	</update>
+	
+	
+</mapper>

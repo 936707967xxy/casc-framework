@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.ApplyMapper">
+
+	<select id="getCustIdByLoanId" parameterType="java.lang.String"
+		resultType="java.lang.String">
+
+		select CUST_ID custId FROM HS_APPLY WHERE LOAN_ID =
+		#{loanId}
+
+	</select>
+
+	<select id="getLoanIdsByCustId" parameterType="java.lang.String"
+		resultType="java.lang.String">
+		select LOAN_ID loanId FROM HS_APPLY WHERE CUST_ID =
+		#{custId}
+
+	</select>
+
+</mapper>

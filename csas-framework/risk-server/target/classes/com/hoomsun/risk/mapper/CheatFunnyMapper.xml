@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.risk.dao.CheatFunnyMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.risk.model.CheatFunny">
+    <id column="CF_ID" jdbcType="VARCHAR" property="cfId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="MATCH_TYPE" jdbcType="DECIMAL" property="matchType" />
+    <result column="MATCH_TYPE_VAL" jdbcType="VARCHAR" property="matchTypeVal" />
+    <result column="MATCH_LEVEL" jdbcType="DECIMAL" property="matchLevel" />
+    <result column="MATCH_LEVEL_VAL" jdbcType="VARCHAR" property="matchLevelVal" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="ID_CARD" jdbcType="VARCHAR" property="idCard" />
+    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+    <result column="ADD_DATA" jdbcType="TIMESTAMP" property="addData" />
+    <result column="MATCH_ID" jdbcType="VARCHAR" property="matchId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CF_ID, APPLY_ID, LOAN_ID, MATCH_TYPE, MATCH_TYPE_VAL, MATCH_LEVEL, MATCH_LEVEL_VAL, 
+    STATUS, PHONE, ID_CARD, CUST_NAME, ADD_DATA, MATCH_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CHEAT_FUNNY
+    where CF_ID = #{cfId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CHEAT_FUNNY
+    where CF_ID = #{cfId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.risk.model.CheatFunny">
+    insert into HS_CHEAT_FUNNY (CF_ID, APPLY_ID, LOAN_ID, 
+      MATCH_TYPE, MATCH_TYPE_VAL, MATCH_LEVEL, 
+      MATCH_LEVEL_VAL, STATUS, PHONE, 
+      ID_CARD, CUST_NAME, ADD_DATA, 
+      MATCH_ID)
+    values (#{cfId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR}, 
+      #{matchType,jdbcType=DECIMAL}, #{matchTypeVal,jdbcType=VARCHAR}, #{matchLevel,jdbcType=DECIMAL}, 
+      #{matchLevelVal,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{addData,jdbcType=TIMESTAMP}, 
+      #{matchId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.risk.model.CheatFunny">
+    insert into HS_CHEAT_FUNNY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cfId != null">
+        CF_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="matchType != null">
+        MATCH_TYPE,
+      </if>
+      <if test="matchTypeVal != null">
+        MATCH_TYPE_VAL,
+      </if>
+      <if test="matchLevel != null">
+        MATCH_LEVEL,
+      </if>
+      <if test="matchLevelVal != null">
+        MATCH_LEVEL_VAL,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="idCard != null">
+        ID_CARD,
+      </if>
+      <if test="custName != null">
+        CUST_NAME,
+      </if>
+      <if test="addData != null">
+        ADD_DATA,
+      </if>
+      <if test="matchId != null">
+        MATCH_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cfId != null">
+        #{cfId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="matchType != null">
+        #{matchType,jdbcType=DECIMAL},
+      </if>
+      <if test="matchTypeVal != null">
+        #{matchTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="matchLevel != null">
+        #{matchLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="matchLevelVal != null">
+        #{matchLevelVal,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="addData != null">
+        #{addData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="matchId != null">
+        #{matchId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.risk.model.CheatFunny">
+    update HS_CHEAT_FUNNY
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="matchType != null">
+        MATCH_TYPE = #{matchType,jdbcType=DECIMAL},
+      </if>
+      <if test="matchTypeVal != null">
+        MATCH_TYPE_VAL = #{matchTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="matchLevel != null">
+        MATCH_LEVEL = #{matchLevel,jdbcType=DECIMAL},
+      </if>
+      <if test="matchLevelVal != null">
+        MATCH_LEVEL_VAL = #{matchLevelVal,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null">
+        ID_CARD = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="addData != null">
+        ADD_DATA = #{addData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="matchId != null">
+        MATCH_ID = #{matchId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CF_ID = #{cfId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.risk.model.CheatFunny">
+    update HS_CHEAT_FUNNY
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      MATCH_TYPE = #{matchType,jdbcType=DECIMAL},
+      MATCH_TYPE_VAL = #{matchTypeVal,jdbcType=VARCHAR},
+      MATCH_LEVEL = #{matchLevel,jdbcType=DECIMAL},
+      MATCH_LEVEL_VAL = #{matchLevelVal,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      ID_CARD = #{idCard,jdbcType=VARCHAR},
+      CUST_NAME = #{custName,jdbcType=VARCHAR},
+      ADD_DATA = #{addData,jdbcType=TIMESTAMP},
+      MATCH_ID = #{matchId,jdbcType=VARCHAR}
+    where CF_ID = #{cfId,jdbcType=VARCHAR}
+  </update>
+</mapper>

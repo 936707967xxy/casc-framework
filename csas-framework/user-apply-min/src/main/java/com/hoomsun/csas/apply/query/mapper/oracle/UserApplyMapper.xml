@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.apply.query.dao.UserApplyMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.csas.apply.query.model.UserApply">
+		<id column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="SIGNCONFIRM_VAL" jdbcType="VARCHAR" property="signconfirmVal" />
+		<result column="SIGNCONFIRM" jdbcType="DECIMAL" property="signconfirm" />
+		<result column="STORE_NAME" jdbcType="VARCHAR" property="storeName" />
+		<result column="STORE_ID" jdbcType="VARCHAR" property="storeId" />
+		<result column="PARTICLES_BORROW" jdbcType="VARCHAR" property="particlesBorrow" />
+		<result column="CREDIT_SESAME" jdbcType="VARCHAR" property="creditSesame" />
+		<result column="APPLY_DATE" jdbcType="OTHER" property="applyDate" />
+		<result column="UUID" jdbcType="VARCHAR" property="uuid" />
+		<result column="AUDIT_TYPE" jdbcType="DECIMAL" property="auditType" />
+		<result column="SOURCES" jdbcType="DECIMAL" property="sources" />
+		<result column="PRECESS_STATUS_VAL" jdbcType="VARCHAR"
+			property="precessStatusVal" />
+		<result column="PRECESS_STATUS" jdbcType="VARCHAR" property="precessStatus" />
+		<result column="PRECESS_ID" jdbcType="VARCHAR" property="precessId" />
+		<result column="SUGGEST_RATE" jdbcType="FLOAT" property="suggestRate" />
+		<result column="SUGGEST_AMOUNT" jdbcType="FLOAT" property="suggestAmount" />
+		<result column="PRODUCT_PAY_VAL" jdbcType="VARCHAR" property="productPayVal" />
+		<result column="PRODUCT_PAY" jdbcType="DECIMAL" property="productPay" />
+		<result column="PRODUCT_FEE_RATE" jdbcType="FLOAT" property="productFeeRate" />
+		<result column="PRODUCT_RATE" jdbcType="FLOAT" property="productRate" />
+		<result column="APPLY_PERIOD" jdbcType="DECIMAL" property="applyPeriod" />
+		<result column="APPLY_AMOUNT" jdbcType="FLOAT" property="applyAmount" />
+		<result column="AGREED_PRODUCT" jdbcType="VARCHAR" property="agreedProduct" />
+		<result column="AGREED_AMOUNT" jdbcType="FLOAT" property="agreedAmount" />
+		<result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+		<result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+		<result column="ID_ADDR" jdbcType="VARCHAR" property="idAddr" />
+		<result column="COM_TYPE_VAL" jdbcType="VARCHAR" property="comTypeVal" />
+		<result column="COM_TYPE" jdbcType="DECIMAL" property="comType" />
+		<result column="INCOM" jdbcType="FLOAT" property="incom" />
+		<result column="COM_TEL" jdbcType="VARCHAR" property="comTel" />
+		<result column="DETAILED_ADDR" jdbcType="VARCHAR" property="detailedAddr" />
+		<result column="CUST_COM_ADDR" jdbcType="VARCHAR" property="custComAddr" />
+		<result column="CUST_COM" jdbcType="VARCHAR" property="custCom" />
+		<result column="CUST_MOBILE" jdbcType="VARCHAR" property="custMobile" />
+		<result column="CUST_AGE" jdbcType="DECIMAL" property="custAge" />
+		<result column="CUST_SEX" jdbcType="VARCHAR" property="custSex" />
+		<result column="ID_TYPE_VAL" jdbcType="VARCHAR" property="idTypeVal" />
+		<result column="ID_TYPE" jdbcType="DECIMAL" property="idType" />
+		<result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+		<result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+		<result column="CUST_ID" jdbcType="VARCHAR" property="custId" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="INVESCODE" jdbcType="VARCHAR" property="invescode" />
+		<result column="LOAN_USE" jdbcType="DECIMAL" property="loanUse" />
+		<result column="SOURCES_TEXT" jdbcType="VARCHAR" property="sourcesText" />
+		<result column="TEAM_MANAGER_ID" jdbcType="VARCHAR" property="teamManagerId" />
+		<result column="TEAM_MANAGER_NAME" jdbcType="VARCHAR" property="teamManagerName" />
+		<result column="TEAM_MANAGER_DEPT_ID" jdbcType="VARCHAR"
+			property="teamManagerDeptId" />
+		<result column="TEAM_MANAGER_DEPT_NAME" jdbcType="VARCHAR"
+			property="teamManagerDeptName" />
+		<result column="NAME_BEFORE" jdbcType="VARCHAR" property="nameBefore" />
+		<result column="GRADUATE_INSTITUTIONS" jdbcType="VARCHAR"
+			property="graduateInstitutions" />
+		<result column="RAISE_PERSON" jdbcType="VARCHAR" property="raisePerson" />
+		<result column="CHILD_NUMBER" jdbcType="VARCHAR" property="childNumber" />
+		<result column="HOUSE_TEL" jdbcType="VARCHAR" property="houseTel" />
+		<result column="MARITAL_STATUS" jdbcType="DECIMAL" property="maritalStatus" />
+		<result column="MARITAL_STATUS_VAL" jdbcType="VARCHAR"
+			property="maritalStatusVal" />
+		<result column="EMAIL" jdbcType="VARCHAR" property="email" />
+		<result column="START_RESIDENCE_DATE" jdbcType="OTHER"
+			property="startResidenceDate" />
+		<result column="EDU_BACKGROUND" jdbcType="VARCHAR" property="eduBackground" />
+		<result column="EDU_BACKGROUND_VAL" jdbcType="VARCHAR"
+			property="eduBackgroundVal" />
+		<result column="QQ_WECHAT" jdbcType="VARCHAR" property="qqWechat" />
+		<result column="COME_HERE_DATE" jdbcType="OTHER" property="comeHereDate" />
+		<result column="RRESIDENCE_ADDRESS" jdbcType="VARCHAR"
+			property="rresidenceAddress" />
+		<result column="RRESIDENCE_PROV_CODE" jdbcType="VARCHAR"
+			property="rresidenceProvCode" />
+		<result column="RRESIDENCE_PROV_NAME" jdbcType="VARCHAR"
+			property="rresidenceProvName" />
+		<result column="RRESIDENCE_CITY_CODE" jdbcType="VARCHAR"
+			property="rresidenceCityCode" />
+		<result column="RRESIDENCE_CITY_NAME" jdbcType="VARCHAR"
+			property="rresidenceCityName" />
+		<result column="RRESIDENCE_AREA_CODE" jdbcType="VARCHAR"
+			property="rresidenceAreaCode" />
+		<result column="RRESIDENCE_AREA_NAME" jdbcType="VARCHAR"
+			property="rresidenceAreaName" />
+		<result column="RRESIDENCE_ADDRESS_DETAIL" jdbcType="VARCHAR"
+			property="rresidenceAddressDetail" />
+		<result column="RRESIDENCE_ZIP_CODE" jdbcType="VARCHAR"
+			property="rresidenceZipCode" />
+		<result column="HOUSE_ADDRESS" jdbcType="VARCHAR" property="houseAddress" />
+		<result column="HOUSE_PROV_CODE" jdbcType="VARCHAR" property="houseProvCode" />
+		<result column="HOUSE_PROV_NAME" jdbcType="VARCHAR" property="houseProvName" />
+		<result column="HOUSE_CITY_CODE" jdbcType="VARCHAR" property="houseCityCode" />
+		<result column="HOUSE_CITY_NAME" jdbcType="VARCHAR" property="houseCityName" />
+		<result column="HOUSE_AREA_CODE" jdbcType="VARCHAR" property="houseAreaCode" />
+		<result column="HOUSE_AREA_NAME" jdbcType="VARCHAR" property="houseAreaName" />
+		<result column="HOUSE_ADDRESS_DETAIL" jdbcType="VARCHAR"
+			property="houseAddressDetail" />
+		<result column="HOUSE_ZIP_CODE" jdbcType="VARCHAR" property="houseZipCode" />
+		<result column="LIVE_CONDITIONS" jdbcType="DECIMAL" property="liveConditions" />
+		<result column="LIVE_CONDITIONS_VAL" jdbcType="VARCHAR"
+			property="liveConditionsVal" />
+		<result column="RENT_MONTHLY_PAY" jdbcType="VARCHAR" property="rentMonthlyPay" />
+		<result column="VALID_MAIL_ADDR" jdbcType="DECIMAL" property="validMailAddr" />
+		<result column="VALID_MAIL_ADDR_VAL" jdbcType="VARCHAR"
+			property="validMailAddrVal" />
+		<result column="VALID_MAIL_ADDR_TXT" jdbcType="VARCHAR"
+			property="validMailAddrTxt" />
+		<result column="VALID_POST_CODE" jdbcType="VARCHAR" property="validPostCode" />
+		<result column="SOURCES_VALUE" jdbcType="VARCHAR" property="sourcesValue" />
+		<result column="CREATE_EMPLOYEE" jdbcType="VARCHAR" property="createEmployee" />
+		<result column="CREATE_EMPLOYEE_VAL" jdbcType="VARCHAR"
+			property="createEmployeeVal" />
+		<result column="LOAN_USE_VAL" jdbcType="VARCHAR" property="loanUseVal" />
+		<result column="LOAN_USE_TEXT" jdbcType="VARCHAR" property="loanUseText" />
+		<result column="DEL_STATUE" jdbcType="DECIMAL" property="delStatue" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		APPLY_ID, SIGNCONFIRM_VAL, SIGNCONFIRM, STORE_NAME,
+		STORE_ID, PARTICLES_BORROW,
+		CREDIT_SESAME,
+		APPLY_DATE, UUID, AUDIT_TYPE,
+		SOURCES, PRECESS_STATUS_VAL, PRECESS_STATUS,
+		PRECESS_ID,
+		SUGGEST_RATE,
+		SUGGEST_AMOUNT, PRODUCT_PAY_VAL, PRODUCT_PAY, PRODUCT_FEE_RATE,
+		PRODUCT_RATE,
+		APPLY_PERIOD, APPLY_AMOUNT, AGREED_PRODUCT,
+		AGREED_AMOUNT, PRODUCT_NAME,
+		PRODUCT_ID,
+		ID_ADDR, COM_TYPE_VAL,
+		COM_TYPE, INCOM, COM_TEL, DETAILED_ADDR, CUST_COM_ADDR,
+		CUST_COM,
+		CUST_MOBILE, CUST_AGE, CUST_SEX, ID_TYPE_VAL, ID_TYPE, ID_NUMBER,
+		CUST_NAME,
+		CUST_ID,
+		LOAN_ID, INVESCODE, LOAN_USE, SOURCES_TEXT,
+		TEAM_MANAGER_ID,
+		TEAM_MANAGER_NAME, TEAM_MANAGER_DEPT_ID,
+		TEAM_MANAGER_DEPT_NAME, NAME_BEFORE, GRADUATE_INSTITUTIONS,
+		RAISE_PERSON, CHILD_NUMBER,
+		HOUSE_TEL, MARITAL_STATUS,
+		MARITAL_STATUS_VAL, EMAIL,
+		START_RESIDENCE_DATE, EDU_BACKGROUND,
+		EDU_BACKGROUND_VAL, QQ_WECHAT, COME_HERE_DATE, RRESIDENCE_ADDRESS,
+		RRESIDENCE_PROV_CODE,
+		RRESIDENCE_PROV_NAME, RRESIDENCE_CITY_CODE,
+		RRESIDENCE_CITY_NAME,
+		RRESIDENCE_AREA_CODE,
+		RRESIDENCE_AREA_NAME,
+		RRESIDENCE_ADDRESS_DETAIL, RRESIDENCE_ZIP_CODE, HOUSE_ADDRESS,
+		HOUSE_PROV_CODE, HOUSE_PROV_NAME, HOUSE_CITY_CODE, HOUSE_CITY_NAME,
+		HOUSE_AREA_CODE,
+		HOUSE_AREA_NAME, HOUSE_ADDRESS_DETAIL, HOUSE_ZIP_CODE,
+		LIVE_CONDITIONS,
+		LIVE_CONDITIONS_VAL,
+		RENT_MONTHLY_PAY, VALID_MAIL_ADDR,
+		VALID_MAIL_ADDR_VAL, VALID_MAIL_ADDR_TXT,
+		VALID_POST_CODE,
+		SOURCES_VALUE, CREATE_EMPLOYEE, CREATE_EMPLOYEE_VAL, LOAN_USE_VAL,
+		LOAN_USE_TEXT,
+		DEL_STATUE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_APPLY
+		where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+	
+	<resultMap type="com.hoomsun.csas.apply.query.model.UserApply" id="APPLY_DATA_RESULT_MAP" extends="BaseResultMap">
+			<association property="assetInfo"  javaType="com.hoomsun.csas.apply.query.model.AssetInfo" resultMap="com.hoomsun.csas.apply.query.dao.AssetInfoMapper.BaseResultMap"/>
+			<association property="userOccupationalInfo" javaType="com.hoomsun.csas.apply.query.model.OccupationalInfo" resultMap="com.hoomsun.csas.apply.query.dao.OccupationalInfoMapper.BaseResultMap"/>
+			<collection property="contacts"  javaType="java.util.List" ofType="com.hoomsun.csas.apply.query.model.UserContacts" resultMap="com.hoomsun.csas.apply.query.dao.UserContactsMapper.BaseResultMap"/>
+	</resultMap>
+	<select id="findApplyById" parameterType="java.lang.String" resultMap="APPLY_DATA_RESULT_MAP">
+			SELECT * FROM HS_APPLY APY
+			LEFT JOIN HS_ASSET_INFO ASS ON APY.APPLY_ID = ASS.APPLY_ID
+			LEFT JOIN HS_OCCUPATIONAL_INFO OCC ON APY.APPLY_ID = OCC.APPLY_ID
+			WHERE APY.APPLY_ID=#{applyId}
+	</select>
+
+</mapper>

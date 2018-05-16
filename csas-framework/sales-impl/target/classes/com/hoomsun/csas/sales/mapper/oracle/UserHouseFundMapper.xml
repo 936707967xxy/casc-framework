@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserHouseFundMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserHouseFund">
+    <id column="HF_ID" jdbcType="VARCHAR" property="hfId" />
+    <result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+    <result column="SI_COM" jdbcType="VARCHAR" property="siCom" />
+    <result column="SI_COM_TYPE" jdbcType="VARCHAR" property="siComType" />
+    <result column="SI_BALANCE" jdbcType="VARCHAR" property="siBalance" />
+    <result column="SI_BASE" jdbcType="VARCHAR" property="siBase" />
+    <result column="SI_SUM_AMOUNT" jdbcType="VARCHAR" property="siSumAmount" />
+    <result column="HF_SUM_MONTHS" jdbcType="VARCHAR" property="hfSumMonths" />
+    <result column="HF_MONTHS" jdbcType="VARCHAR" property="hfMonths" />
+    <result column="HS_STATUS" jdbcType="VARCHAR" property="hsStatus" />
+    <result column="QUERY_STATUS" jdbcType="VARCHAR" property="queryStatus" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HF_ID, ADD_DATE, SI_COM, SI_COM_TYPE, SI_BALANCE, SI_BASE, SI_SUM_AMOUNT, HF_SUM_MONTHS, 
+    HF_MONTHS, HS_STATUS, QUERY_STATUS, APPLY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_HOUSEFUND
+    where HF_ID = #{hfId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_HOUSEFUND
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_HOUSEFUND
+    where HF_ID = #{hfId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserHouseFund">
+    insert into HS_HOUSEFUND (HF_ID, ADD_DATE, SI_COM, 
+      SI_COM_TYPE, SI_BALANCE, SI_BASE, 
+      SI_SUM_AMOUNT, HF_SUM_MONTHS, HF_MONTHS, 
+      HS_STATUS, QUERY_STATUS, APPLY_ID
+      )
+    values (#{hfId,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}, #{siCom,jdbcType=VARCHAR}, 
+      #{siComType,jdbcType=VARCHAR}, #{siBalance,jdbcType=VARCHAR}, #{siBase,jdbcType=VARCHAR}, 
+      #{siSumAmount,jdbcType=VARCHAR}, #{hfSumMonths,jdbcType=VARCHAR}, #{hfMonths,jdbcType=VARCHAR}, 
+      #{hsStatus,jdbcType=VARCHAR}, #{queryStatus,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserHouseFund">
+    insert into HS_HOUSEFUND
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hfId != null">
+        HF_ID,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="siCom != null">
+        SI_COM,
+      </if>
+      <if test="siComType != null">
+        SI_COM_TYPE,
+      </if>
+      <if test="siBalance != null">
+        SI_BALANCE,
+      </if>
+      <if test="siBase != null">
+        SI_BASE,
+      </if>
+      <if test="siSumAmount != null">
+        SI_SUM_AMOUNT,
+      </if>
+      <if test="hfSumMonths != null">
+        HF_SUM_MONTHS,
+      </if>
+      <if test="hfMonths != null">
+        HF_MONTHS,
+      </if>
+      <if test="hsStatus != null">
+        HS_STATUS,
+      </if>
+      <if test="queryStatus != null">
+        QUERY_STATUS,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hfId != null">
+        #{hfId,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="siCom != null">
+        #{siCom,jdbcType=VARCHAR},
+      </if>
+      <if test="siComType != null">
+        #{siComType,jdbcType=VARCHAR},
+      </if>
+      <if test="siBalance != null">
+        #{siBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="siBase != null">
+        #{siBase,jdbcType=VARCHAR},
+      </if>
+      <if test="siSumAmount != null">
+        #{siSumAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="hfSumMonths != null">
+        #{hfSumMonths,jdbcType=VARCHAR},
+      </if>
+      <if test="hfMonths != null">
+        #{hfMonths,jdbcType=VARCHAR},
+      </if>
+      <if test="hsStatus != null">
+        #{hsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="queryStatus != null">
+        #{queryStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserHouseFund">
+    update HS_HOUSEFUND
+    <set>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="siCom != null">
+        SI_COM = #{siCom,jdbcType=VARCHAR},
+      </if>
+      <if test="siComType != null">
+        SI_COM_TYPE = #{siComType,jdbcType=VARCHAR},
+      </if>
+      <if test="siBalance != null">
+        SI_BALANCE = #{siBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="siBase != null">
+        SI_BASE = #{siBase,jdbcType=VARCHAR},
+      </if>
+      <if test="siSumAmount != null">
+        SI_SUM_AMOUNT = #{siSumAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="hfSumMonths != null">
+        HF_SUM_MONTHS = #{hfSumMonths,jdbcType=VARCHAR},
+      </if>
+      <if test="hfMonths != null">
+        HF_MONTHS = #{hfMonths,jdbcType=VARCHAR},
+      </if>
+      <if test="hsStatus != null">
+        HS_STATUS = #{hsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="queryStatus != null">
+        QUERY_STATUS = #{queryStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HF_ID = #{hfId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserHouseFund">
+    update HS_HOUSEFUND
+    set ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      SI_COM = #{siCom,jdbcType=VARCHAR},
+      SI_COM_TYPE = #{siComType,jdbcType=VARCHAR},
+      SI_BALANCE = #{siBalance,jdbcType=VARCHAR},
+      SI_BASE = #{siBase,jdbcType=VARCHAR},
+      SI_SUM_AMOUNT = #{siSumAmount,jdbcType=VARCHAR},
+      HF_SUM_MONTHS = #{hfSumMonths,jdbcType=VARCHAR},
+      HF_MONTHS = #{hfMonths,jdbcType=VARCHAR},
+      HS_STATUS = #{hsStatus,jdbcType=VARCHAR},
+      QUERY_STATUS = #{queryStatus,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    where HF_ID = #{hfId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 编辑区域 不可修改 替换 -->
+   <insert id="insertMap" parameterType="java.util.Map">
+    insert into HS_HOUSEFUND (HF_ID, ADD_DATE, SI_COM, 
+      SI_COM_TYPE, SI_BALANCE, SI_BASE, 
+      SI_SUM_AMOUNT, HF_SUM_MONTHS, HF_MONTHS, 
+      HS_STATUS, QUERY_STATUS, APPLY_ID
+      )
+    values (#{HF_ID}, #{ADD_DATE}, #{SI_COM}, 
+      #{SI_COM_TYPE}, #{SI_BALANCE}, #{SI_BASE}, 
+      #{SI_SUM_AMOUNT}, #{HF_SUM_MONTHS}, #{HF_MONTHS}, 
+      #{HS_STATUS}, #{QUERY_STATUS}, #{APPLY_ID}
+      )
+  </insert>
+  
+  <select id="checkByApplyId" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(HF_ID) FROM HS_HOUSEFUND WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="checkById" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(HF_ID) FROM HS_HOUSEFUND WHERE HF_ID = #{hfId,jdbcType=VARCHAR}
+  </select>
+</mapper>

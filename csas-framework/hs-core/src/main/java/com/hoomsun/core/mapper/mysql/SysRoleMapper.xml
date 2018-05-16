@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysRoleMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysRole">
+		<id column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+		<result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+		<result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+		<result column="ADD_EMP" jdbcType="VARCHAR" property="addEmp" />
+		<result column="MODIFY_DATE" jdbcType="VARCHAR" property="modifyDate" />
+		<result column="MODIFY_EMP" jdbcType="VARCHAR" property="modifyEmp" />
+		<result column="ROLE_DESC" jdbcType="VARCHAR" property="roleDesc" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ROLE_ID, ROLE_NAME, ADD_DATE, ADD_EMP, MODIFY_DATE, MODIFY_EMP, ROLE_DESC
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_ROLE
+		where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_ROLE
+		where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.core.model.SysRole">
+		insert into HS_ROLE (ROLE_ID, ROLE_NAME, ADD_DATE,
+		ADD_EMP, MODIFY_DATE, MODIFY_EMP,
+		ROLE_DESC)
+		values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR},
+		#{addEmp,jdbcType=VARCHAR}, #{modifyDate,jdbcType=VARCHAR}, #{modifyEmp,jdbcType=VARCHAR},
+		#{roleDesc,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.core.model.SysRole">
+		insert into HS_ROLE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">
+				ROLE_ID,
+			</if>
+			<if test="roleName != null">
+				ROLE_NAME,
+			</if>
+			<if test="addDate != null">
+				ADD_DATE,
+			</if>
+			<if test="addEmp != null">
+				ADD_EMP,
+			</if>
+			<if test="modifyDate != null">
+				MODIFY_DATE,
+			</if>
+			<if test="modifyEmp != null">
+				MODIFY_EMP,
+			</if>
+			<if test="roleDesc != null">
+				ROLE_DESC,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">
+				#{roleId,jdbcType=VARCHAR},
+			</if>
+			<if test="roleName != null">
+				#{roleName,jdbcType=VARCHAR},
+			</if>
+			<if test="addDate != null">
+				#{addDate,jdbcType=VARCHAR},
+			</if>
+			<if test="addEmp != null">
+				#{addEmp,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDate != null">
+				#{modifyDate,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyEmp != null">
+				#{modifyEmp,jdbcType=VARCHAR},
+			</if>
+			<if test="roleDesc != null">
+				#{roleDesc,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysRole">
+		update HS_ROLE
+		<set>
+			<if test="roleName != null">
+				ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+			</if>
+			<if test="addDate != null">
+				ADD_DATE = #{addDate,jdbcType=VARCHAR},
+			</if>
+			<if test="addEmp != null">
+				ADD_EMP = #{addEmp,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyDate != null">
+				MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+			</if>
+			<if test="modifyEmp != null">
+				MODIFY_EMP = #{modifyEmp,jdbcType=VARCHAR},
+			</if>
+			<if test="roleDesc != null">
+				ROLE_DESC = #{roleDesc,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysRole">
+		update HS_ROLE
+		set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+		ADD_DATE = #{addDate,jdbcType=VARCHAR},
+		ADD_EMP = #{addEmp,jdbcType=VARCHAR},
+		MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+		MODIFY_EMP = #{modifyEmp,jdbcType=VARCHAR},
+		ROLE_DESC = #{roleDesc,jdbcType=VARCHAR}
+		where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+	</update>
+
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	<![CDATA[
+  		select ROLE_ID, ADD_DATE, ADD_EMP, MODIFY_DATE, MODIFY_EMP, ROLE_DESC, ROLE_NAME
+  		from HS_ROLE where 1<>2
+  	]]>
+		<if test="roleName != null and roleName != ''">
+			and ROLE_NAME like #{roleName}
+		</if>
+		<if test="pageIndex != null and pageSize != null">
+			limit #{pageIndex},#{pageSize}
+		</if>
+	</select>
+
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	<![CDATA[select count(ROLE_ID) from HS_ROLE where 1<>2]]>
+		<if test="roleName != null and roleName != ''">
+			and ROLE_NAME like #{roleName}
+		</if>
+	</select>
+
+	<select id="findByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<![CDATA[
+  		select ROLE_ID, ADD_DATE, ADD_EMP, MODIFY_DATE, MODIFY_EMP, ROLE_DESC, ROLE_NAME
+  		from HS_ROLE where ROLE_NAME=#{roleName}
+  	]]>
+	</select>
+
+	<select id="findAllData" resultMap="BaseResultMap">
+  	<![CDATA[select ROLE_ID, ADD_DATE, ADD_EMP, MODIFY_DATE, MODIFY_EMP, ROLE_DESC, ROLE_NAME from HS_ROLE]]>
+	</select>
+	
+	<resultMap id="ROLE_RES_RESULT_MAP" type="com.hoomsun.core.model.SysRole" extends="com.hoomsun.core.dao.SysRoleMapper.BaseResultMap">
+		<collection property="resources" javaType="java.util.ArrayList" ofType="com.hoomsun.core.model.SysRoleResources" resultMap="com.hoomsun.core.dao.SysResourcesMapper.BaseResultMap"/>
+	</resultMap>
+	
+	<select id="findRoleResources" parameterType="java.lang.String" resultMap="ROLE_RES_RESULT_MAP">
+	<![CDATA[SELECT DISTINCT role.ROLE_ID,role.ROLE_NAME,
+		res.RES_ID,res.RES_NAME,res.RES_TYPE,res.RES_PARENT,
+		res.RES_VALUE,res.RES_URL,res.RES_LEVEL,res.RES_ICON
+		FROM HS_ROLE as role
+		INNER JOIN HS_ROLE_RESOURCE as rr on role.ROLE_ID = rr.ROLE_ID
+		INNER JOIN HS_RESOURCES as res on rr.RES_ID=res.RES_ID
+		WHERE role.ROLE_ID=#{roleId} order by res.RES_SORT]]>
+	</select>
+	
+</mapper>

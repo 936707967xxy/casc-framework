@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysDepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysDepartment">
+    <id column="DEPT_ID" jdbcType="VARCHAR" property="deptId" />
+    <result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+    <result column="ADD_EMP" jdbcType="VARCHAR" property="addEmp" />
+    <result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+    <result column="DEPT_STATUS" jdbcType="INTEGER" property="deptStatus" />
+    <result column="DEPT_TEL" jdbcType="VARCHAR" property="deptTel" />
+    <result column="DEPT_WORK_ADDR" jdbcType="VARCHAR" property="deptWorkAddr" />
+    <result column="MODIFY_DATE" jdbcType="VARCHAR" property="modifyDate" />
+    <result column="MODIFY_EMP" jdbcType="VARCHAR" property="modifyEmp" />
+    <result column="COM_ID" jdbcType="VARCHAR" property="comId" />
+    <result column="DEPT_PARENT" jdbcType="VARCHAR" property="deptParent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    DEPT_ID, ADD_DATE, ADD_EMP, DEPT_NAME, DEPT_STATUS, DEPT_TEL, DEPT_WORK_ADDR, MODIFY_DATE, 
+    MODIFY_EMP, COM_ID, DEPT_PARENT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_DEPARTMENT
+    where DEPT_ID = #{deptId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_DEPARTMENT
+    where DEPT_ID = #{deptId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysDepartment">
+    insert into HS_DEPARTMENT (DEPT_ID, ADD_DATE, ADD_EMP, 
+      DEPT_NAME, DEPT_STATUS, DEPT_TEL, 
+      DEPT_WORK_ADDR, MODIFY_DATE, MODIFY_EMP, 
+      COM_ID, DEPT_PARENT)
+    values (#{deptId,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}, #{addEmp,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{deptStatus,jdbcType=INTEGER}, #{deptTel,jdbcType=VARCHAR}, 
+      #{deptWorkAddr,jdbcType=VARCHAR}, #{modifyDate,jdbcType=VARCHAR}, #{modifyEmp,jdbcType=VARCHAR}, 
+      #{comId,jdbcType=VARCHAR}, #{deptParent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysDepartment">
+    insert into HS_DEPARTMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deptId != null">
+        DEPT_ID,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="addEmp != null">
+        ADD_EMP,
+      </if>
+      <if test="deptName != null">
+        DEPT_NAME,
+      </if>
+      <if test="deptStatus != null">
+        DEPT_STATUS,
+      </if>
+      <if test="deptTel != null">
+        DEPT_TEL,
+      </if>
+      <if test="deptWorkAddr != null">
+        DEPT_WORK_ADDR,
+      </if>
+      <if test="modifyDate != null">
+        MODIFY_DATE,
+      </if>
+      <if test="modifyEmp != null">
+        MODIFY_EMP,
+      </if>
+      <if test="comId != null">
+        COM_ID,
+      </if>
+      <if test="deptParent != null">
+        DEPT_PARENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deptId != null">
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="addEmp != null">
+        #{addEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptStatus != null">
+        #{deptStatus,jdbcType=INTEGER},
+      </if>
+      <if test="deptTel != null">
+        #{deptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="deptWorkAddr != null">
+        #{deptWorkAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyEmp != null">
+        #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="comId != null">
+        #{comId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptParent != null">
+        #{deptParent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysDepartment">
+    update HS_DEPARTMENT
+    <set>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="addEmp != null">
+        ADD_EMP = #{addEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="deptStatus != null">
+        DEPT_STATUS = #{deptStatus,jdbcType=INTEGER},
+      </if>
+      <if test="deptTel != null">
+        DEPT_TEL = #{deptTel,jdbcType=VARCHAR},
+      </if>
+      <if test="deptWorkAddr != null">
+        DEPT_WORK_ADDR = #{deptWorkAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyEmp != null">
+        MODIFY_EMP = #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="comId != null">
+        COM_ID = #{comId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptParent != null">
+        DEPT_PARENT = #{deptParent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DEPT_ID = #{deptId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysDepartment">
+    update HS_DEPARTMENT
+    set ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      ADD_EMP = #{addEmp,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      DEPT_STATUS = #{deptStatus,jdbcType=INTEGER},
+      DEPT_TEL = #{deptTel,jdbcType=VARCHAR},
+      DEPT_WORK_ADDR = #{deptWorkAddr,jdbcType=VARCHAR},
+      MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+      MODIFY_EMP = #{modifyEmp,jdbcType=VARCHAR},
+      COM_ID = #{comId,jdbcType=VARCHAR},
+      DEPT_PARENT = #{deptParent,jdbcType=VARCHAR}
+    where DEPT_ID = #{deptId,jdbcType=VARCHAR}
+  </update>
+  <select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	<![CDATA[
+  		SELECT  
+  		DEPT.DEPT_ID,
+  		DEPT.DEPT_NAME,
+  		DEPT.DEPT_TEL,
+  		DEPT.DEPT_STATUS,
+  		DEPT.DEPT_WORK_ADDR,
+  		COM.COM_NAME AS COM_ID,
+  		PDEPT.DEPT_NAME AS DEPT_PARENT   
+  		FROM 
+  		HS_DEPARTMENT AS DEPT 
+  		LEFT JOIN HS_COMPANY AS COM  ON DEPT.COM_ID = COM.COM_ID 
+  		LEFT JOIN HS_DEPARTMENT AS PDEPT  ON DEPT.DEPT_PARENT = PDEPT.DEPT_ID 
+  		  where 1<>2
+  	]]>
+		<if test="deptName != null and deptName != ''">
+			and DEPT.DEPT_NAME like #{deptName}
+		</if>
+		<if test="comId != null and comId != ''">
+			and DEPT.COM_ID=#{comId}
+		</if>
+		<if test="pageIndex != null and pageSize != null">
+			limit #{pageIndex},#{pageSize}
+		</if>
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	<![CDATA[select count(DEPT_ID) from HS_DEPARTMENT where 1<>2]]>
+		<if test="deptName != null and deptName != ''">
+			and DEPT_NAME like #{deptName}
+		</if>
+	</select>
+	<select id="findAllData" resultMap="BaseResultMap">
+		SELECT  
+		<include refid="Base_Column_List"/>
+		FROM HS_DEPARTMENT 
+	</select>
+	<!-- 根据公司ID删除公司和部门的关系 -->
+	<delete id="deleteByComId" parameterType="java.lang.String">
+		delete from HS_DEPARTMENT where COM_ID=#{comId}
+	</delete>
+	<!-- 获取某公司和部门的关联关系 -->
+	<select id="findByComId" parameterType="java.lang.String" resultMap="BaseResultMap">
+	 select DEPT_ID, DEPT_NAME,DEPT_PARENT from HS_DEPARTMENT where COM_ID=#{comId}
+	</select>
+</mapper>

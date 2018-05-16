@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.BankinfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.Bankinfo">
+    <id column="PID" jdbcType="VARCHAR" property="pid" />
+    <result column="BANKID" jdbcType="VARCHAR" property="bankid" />
+    <result column="BANKNAME" jdbcType="VARCHAR" property="bankname" />
+    <result column="LIMITAMT" jdbcType="FLOAT" property="limitamt" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="IS_HF" jdbcType="VARCHAR" property="isHf" />
+    <result column="IS_BF" jdbcType="VARCHAR" property="isBf" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PID, BANKID, BANKNAME, LIMITAMT, REMARK, IS_HF, IS_BF
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM HS_BANKINFO
+    WHERE PID = #{pid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    DELETE FROM HS_BANKINFO
+    WHERE PID = #{pid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.Bankinfo">
+    INSERT INTO HS_BANKINFO (PID, BANKID, BANKNAME, 
+      LIMITAMT, REMARK, IS_HF, 
+      IS_BF)
+    VALUES (#{pid,jdbcType=VARCHAR}, #{bankid,jdbcType=VARCHAR}, #{bankname,jdbcType=VARCHAR}, 
+      #{limitamt,jdbcType=FLOAT}, #{remark,jdbcType=VARCHAR}, #{isHf,jdbcType=VARCHAR}, 
+      #{isBf,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.Bankinfo">
+    INSERT INTO HS_BANKINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        PID,
+      </if>
+      <if test="bankid != null">
+        BANKID,
+      </if>
+      <if test="bankname != null">
+        BANKNAME,
+      </if>
+      <if test="limitamt != null">
+        LIMITAMT,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="isHf != null">
+        IS_HF,
+      </if>
+      <if test="isBf != null">
+        IS_BF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null">
+        #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="limitamt != null">
+        #{limitamt,jdbcType=FLOAT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isHf != null">
+        #{isHf,jdbcType=VARCHAR},
+      </if>
+      <if test="isBf != null">
+        #{isBf,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.Bankinfo">
+    UPDATE HS_BANKINFO
+    <set>
+      <if test="bankid != null">
+        BANKID = #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankname != null">
+        BANKNAME = #{bankname,jdbcType=VARCHAR},
+      </if>
+      <if test="limitamt != null">
+        LIMITAMT = #{limitamt,jdbcType=FLOAT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="isHf != null">
+        IS_HF = #{isHf,jdbcType=VARCHAR},
+      </if>
+      <if test="isBf != null">
+        IS_BF = #{isBf,jdbcType=VARCHAR},
+      </if>
+    </set>
+    WHERE PID = #{pid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.Bankinfo">
+    UPDATE HS_BANKINFO
+    SET BANKID = #{bankid,jdbcType=VARCHAR},
+      BANKNAME = #{bankname,jdbcType=VARCHAR},
+      LIMITAMT = #{limitamt,jdbcType=FLOAT},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      IS_HF = #{isHf,jdbcType=VARCHAR},
+      IS_BF = #{isBf,jdbcType=VARCHAR}
+    WHERE PID = #{pid,jdbcType=VARCHAR}
+  </update>
+  
+   
+<!--查询所有下拉银行卡信息  -->
+ <select id="findAllData" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT PID,  BANKNAME  FROM HS_BANKINFO  WHERE  IS_HF='1'
+  </select>
+  
+  <!-- 分页查询数据 liushuai -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">		
+		   <![CDATA[
+		  	SELECT VER.* FROM (
+		  	SELECT 
+			  	ROWNUM R,BANKINFO.*   FROM  HS_BANKINFO   BANKINFO
+		    WHERE 1<>2]]>
+		    <if test="bankname != null and bankname != ''">
+				AND BANKNAME    LIKE   #{bankname,jdbcType=VARCHAR}
+			</if>
+		    <![CDATA[) VER WHERE VER.R <= (#{pageIndex}*#{pageSize}) AND VER.R > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+		    ORDER BY BANKNAME DESC
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+	 	<![CDATA[ SELECT COUNT(PID) FROM HS_BANKINFO WHERE 1<>2]]>
+		<if test="bankname != null and bankname != ''">
+			AND BANKNAME LIKE #{bankname}
+		</if>
+	</select>
+	
+	
+	<select id="selectByBankId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM HS_BANKINFO
+    WHERE BANKID = #{bankid,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByBankName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List" />
+    FROM HS_BANKINFO
+    WHERE BANKNAME = #{bankname,jdbcType=VARCHAR}
+  </select>
+</mapper>

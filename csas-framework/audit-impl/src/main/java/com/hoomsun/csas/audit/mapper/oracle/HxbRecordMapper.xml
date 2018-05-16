@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.audit.dao.HxbRecordMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.audit.model.HxbRecord">
+    <id column="RECORD_ID" jdbcType="VARCHAR" property="recordId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="CHANNEL_AMOUNT" jdbcType="DECIMAL" property="channelAmount" />
+    <result column="CONTRACT_AMOUNT" jdbcType="DECIMAL" property="contractAmount" />
+    <result column="RECORD_TIME" jdbcType="TIMESTAMP" property="recordTime" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+    <result column="PRODUCT_MONTH" jdbcType="INTEGER" property="productMonth" />
+    <result column="PUSH_TYPE" jdbcType="VARCHAR" property="pushType" />
+    <result column="FIAL_RESON" jdbcType="VARCHAR" property="fialReson" />
+    <result column="PUSH_TYPE_VAL" jdbcType="VARCHAR" property="pushTypeVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RECORD_ID, APPLY_ID, CHANNEL_AMOUNT, CONTRACT_AMOUNT, RECORD_TIME, PRODUCT_NAME, 
+    PRODUCT_ID, CUST_NAME, PRODUCT_MONTH, PUSH_TYPE, FIAL_RESON, PUSH_TYPE_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HXB_RECORD
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HXB_RECORD
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.audit.model.HxbRecord">
+    insert into HXB_RECORD (RECORD_ID, APPLY_ID, CHANNEL_AMOUNT, 
+      CONTRACT_AMOUNT, RECORD_TIME, PRODUCT_NAME, 
+      PRODUCT_ID, CUST_NAME, PRODUCT_MONTH, 
+      PUSH_TYPE, FIAL_RESON, PUSH_TYPE_VAL
+      )
+    values (#{recordId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{channelAmount,jdbcType=DECIMAL}, 
+      #{contractAmount,jdbcType=DECIMAL}, #{recordTime,jdbcType=TIMESTAMP}, #{productName,jdbcType=VARCHAR}, 
+      #{productId,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{productMonth,jdbcType=INTEGER}, 
+      #{pushType,jdbcType=VARCHAR}, #{fialReson,jdbcType=VARCHAR}, #{pushTypeVal,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.audit.model.HxbRecord">
+    insert into HXB_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        RECORD_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="channelAmount != null">
+        CHANNEL_AMOUNT,
+      </if>
+      <if test="contractAmount != null">
+        CONTRACT_AMOUNT,
+      </if>
+      <if test="recordTime != null">
+        RECORD_TIME,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="custName != null">
+        CUST_NAME,
+      </if>
+      <if test="productMonth != null">
+        PRODUCT_MONTH,
+      </if>
+      <if test="pushType != null">
+        PUSH_TYPE,
+      </if>
+      <if test="fialReson != null">
+        FIAL_RESON,
+      </if>
+      <if test="pushTypeVal != null">
+        PUSH_TYPE_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="recordId != null">
+        #{recordId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelAmount != null">
+        #{channelAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="contractAmount != null">
+        #{contractAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="recordTime != null">
+        #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="productMonth != null">
+        #{productMonth,jdbcType=INTEGER},
+      </if>
+      <if test="pushType != null">
+        #{pushType,jdbcType=VARCHAR},
+      </if>
+      <if test="fialReson != null">
+        #{fialReson,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTypeVal != null">
+        #{pushTypeVal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.audit.model.HxbRecord">
+    update HXB_RECORD
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="channelAmount != null">
+        CHANNEL_AMOUNT = #{channelAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="contractAmount != null">
+        CONTRACT_AMOUNT = #{contractAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="recordTime != null">
+        RECORD_TIME = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="productMonth != null">
+        PRODUCT_MONTH = #{productMonth,jdbcType=INTEGER},
+      </if>
+      <if test="pushType != null">
+        PUSH_TYPE = #{pushType,jdbcType=VARCHAR},
+      </if>
+      <if test="fialReson != null">
+        FIAL_RESON = #{fialReson,jdbcType=VARCHAR},
+      </if>
+      <if test="pushTypeVal != null">
+        PUSH_TYPE_VAL = #{pushTypeVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.audit.model.HxbRecord">
+    update HXB_RECORD
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      CHANNEL_AMOUNT = #{channelAmount,jdbcType=DECIMAL},
+      CONTRACT_AMOUNT = #{contractAmount,jdbcType=DECIMAL},
+      RECORD_TIME = #{recordTime,jdbcType=TIMESTAMP},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      CUST_NAME = #{custName,jdbcType=VARCHAR},
+      PRODUCT_MONTH = #{productMonth,jdbcType=INTEGER},
+      PUSH_TYPE = #{pushType,jdbcType=VARCHAR},
+      FIAL_RESON = #{fialReson,jdbcType=VARCHAR},
+      PUSH_TYPE_VAL = #{pushTypeVal,jdbcType=VARCHAR}
+    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HXB_RECORD
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <!-- 查询协议审批的操作人员 -->
+  <select id="findEmpId" parameterType="java.lang.String"  resultType="java.util.Map">
+	  
+	  SELECT
+		EMP_ID,
+		EMP_NAME
+	FROM
+		HS_MAKING
+	WHERE
+		MAKING_TIMES = (
+			SELECT
+				MAX (MAKING_TIMES)
+			FROM
+				HS_MAKING
+			WHERE
+				PRECESS_STATUS = 'makeCon'
+			AND APPLY_ID = #{applyId}
+		)
+  </select>
+</mapper>

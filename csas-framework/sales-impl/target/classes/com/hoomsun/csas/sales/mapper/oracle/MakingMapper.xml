@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.MakingMapper">
+	<resultMap id="BeResultMap" type="com.hoomsun.csas.sales.api.model.vo.MakingVo">
+	    <id column="ID" jdbcType="VARCHAR" property="id" />
+	    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+	    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+	    <result column="PID" jdbcType="VARCHAR" property="applyProductId" />
+	    <result column="PNAME" jdbcType="VARCHAR" property="applyProductName" />
+	    <result column="APPLY_AMOUNT" jdbcType="DECIMAL" property="applyAmount" />
+	    <result column="FID" jdbcType="VARCHAR" property="productId" />
+	    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+	    <result column="APPROVED_AMOUNT" jdbcType="DECIMAL" property="approvedAmount" />
+	    <result column="PRODUCT_PERIOD" jdbcType="INTEGER" property="productPeriod" />
+	    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+	    <result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+	    <result column="LOAN_USE" jdbcType="INTEGER" property="loanUse" />
+	    <result column="LOAN_USE_VAL" jdbcType="VARCHAR" property="loanUseVal" />
+	    <result column="PROC_STATUS_VAL" jdbcType="VARCHAR" property="precessStatusVal"/>
+	  	<result column="PROC_STATUS" jdbcType="VARCHAR" property="precessStatus"/>
+	  	<result column="PROC_INST_ID" jdbcType="VARCHAR" property="precessId"/>
+	  	<result column="SALES_EMP_ID" jdbcType="VARCHAR" property="salesEmpId" />
+    	<result column="SALES_EMP_NAME" jdbcType="VARCHAR" property="salesEmpName" />
+    	<result column="CREATE_EMPLOYEE" jdbcType="VARCHAR" property="createEmployee" />
+    	<result column="CREATE_EMPLOYEE_VAL" jdbcType="VARCHAR" property="createEmployeeVal" />
+    	<result column="CUST_MOBILE" jdbcType="VARCHAR" property="custMobile" />
+    	<result column="PROD_ALIAS" jdbcType="VARCHAR" property="prodAlias" />
+    	<result column="IS_ONLINE" jdbcType="VARCHAR" property="isOnline" />
+    	<result column="ASSIGNEE_" property="assignee"/>
+    	<result column="PRODUCT_FEE_RATE" property="realRate"/>
+  	</resultMap>
+  	
+  	
+  	<select id="selectByApplyId" parameterType="java.lang.String" resultMap="BeResultMap">
+    select 
+     a.APPLY_ID,
+     a.CUST_NAME,
+     a.PRODUCT_ID pid,
+     a.PRODUCT_NAME pname,
+     a.APPLY_AMOUNT,
+     a.LOAN_ID,
+     a.ID_NUMBER,
+     a.LOAN_USE,
+     a.LOAN_USE_VAL,
+     b.PRODUCT_ID fid,b.PRODUCT_NAME,b.APPROVED_AMOUNT,b.PRODUCT_PERIOD,b.PRODUCT_FEE_RATE,
+     b.PRODUCT_PAY,b.PRODUCT_PAY_VAL,b.PRODUCT_RATE,b.PROD_ALIAS,b.IS_ONLINE 
+    from HS_APPLY a 
+    RIGHT JOIN (
+    	SELECT FINAL_ID,APPLY_ID,PRODUCT_ID,PRODUCT_NAME,APPROVED_AMOUNT,PRODUCT_PERIOD,IS_ONLINE,PRODUCT_PAY,PRODUCT_PAY_VAL,PRODUCT_RATE,PROD_ALIAS,PRODUCT_FEE_RATE FROM HS_FINAL_AUDIT where APPLY_ID=#{applyId} 
+		AND AUDIT_DATE=(SELECT MAX(AUDIT_DATE) FROM HS_FINAL_AUDIT where APPLY_ID=#{applyId}  GROUP BY APPLY_ID)
+    ) b ON a.APPLY_ID = b.APPLY_ID 
+  </select>
+  
+  	<sql id="Be_Column_List">
+    ID, APPLY_ID, CUST_NAME, PID, PNAME, APPLY_AMOUNT, FID, PRODUCT_NAME, 
+    APPROVED_AMOUNT,PRODUCT_PERIOD,LOAN_ID,ID_NUMBER,LOAN_USE,LOAN_USE_VAL,PRECESS_STATUS_VAL,PRECESS_STATUS,PRECESS_ID
+    ,SALES_EMP_ID,SALES_EMP_NAME,CREATE_EMPLOYEE,CREATE_EMPLOYEE_VAL,CUST_MOBILE,IS_ONLINE,PROD_ALIAS
+  </sql>
+  
+	<select id="findPage" parameterType="java.util.Map" resultMap="BeResultMap">
+	SELECT * FROM (
+				SELECT
+					ROWNUM r,
+					AP.*
+				FROM (
+						SELECT
+							app.APPLY_DATE,app.CUST_MOBILE,app.STORE_ID,app.SALES_EMP_ID,app.SALES_EMP_NAME,
+							app.CREATE_EMPLOYEE,app.CREATE_EMPLOYEE_VAL, app.APPLY_ID,app.DEL_STATUE,app.PROC_STATUS_VAL,
+							app.PROC_STATUS, app.PROC_INST_ID, 
+							app.PRODUCT_NAME PNAME, app.PRODUCT_ID,
+					        app.ID_NUMBER, app.CUST_NAME, app.LOAN_ID,app.APPLY_AMOUNT,
+					        app.PRODUCT_ID PID, AU.APPROVED_AMOUNT,AU.PRODUCT_ID FID,AU.PRODUCT_NAME,AU.PRODUCT_FEE_RATE,
+					        AU.PRODUCT_PERIOD,AU.HANDLE_OPINION,AU.IS_ONLINE,AU.PROD_ALIAS,tbl.ASSIGNEE_  
+						FROM
+							HS_APPLY app 
+						LEFT JOIN HS_FINAL_AUDIT AU ON app.APPLY_ID = AU.APPLY_ID
+						RIGHT JOIN (
+							SELECT
+								 HP.BUSINESS_KEY_,
+								 HT.ASSIGNEE_
+							FROM
+							ACT_HI_PROCINST HP
+							INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+							<choose>
+								<!-- 待签收 -->
+								<when test="nodeStatus == 0">
+									WHERE HT.TASK_DEF_KEY_ = 'makeCon' AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+								</when>
+								
+								<!-- 已经签收，待审核 -->
+								<when test="nodeStatus == 1">
+									<choose>
+										<when test="isMgr == 1">
+											LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+											RIGHT JOIN (
+												SELECT CIL.DEPT_ID
+												FROM HS_DEPARTMENT CIL
+												START WITH CIL.DEPT_ID=#{deptId}
+												CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+											) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+											WHERE HT.TASK_DEF_KEY_ = 'makeCon' AND HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+										</when>
+										<!-- 非部门负责人 -->
+										<otherwise>
+											WHERE HT.TASK_DEF_KEY_ = 'makeCon'
+											AND HT.ASSIGNEE_ =#{empId} AND HT.END_TIME_ IS NULL
+										</otherwise>
+									</choose>
+								</when>
+								
+								<!-- 已经审核 -->
+								<when test="nodeStatus == 2">
+									<choose>
+										<when test="isMgr == 1">
+											LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+											RIGHT JOIN (
+												SELECT CIL.DEPT_ID
+												FROM HS_DEPARTMENT CIL
+												START WITH CIL.DEPT_ID=#{deptId}
+												CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+											) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+											WHERE HT.TASK_DEF_KEY_ = 'makeCon' and HT.END_TIME_ IS NOT NULL
+										</when>
+										<otherwise>
+											WHERE HT.TASK_DEF_KEY_ = 'makeCon'
+											AND HT.ASSIGNEE_ =#{empId} AND HT.END_TIME_ IS NOT NULL
+										</otherwise>
+									</choose>
+								</when>
+								
+								<!-- 全部  已经签收 和 已经审核的任务-->
+								<when test="nodeStatus == 3">
+									<choose>
+										<when test="isMgr == 1">
+											LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+											RIGHT JOIN (
+												SELECT CIL.DEPT_ID
+												FROM HS_DEPARTMENT CIL
+												START WITH CIL.DEPT_ID=#{deptId}
+												CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+											) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+											WHERE HT.TASK_DEF_KEY_ = 'makeCon'
+										</when>
+										<otherwise>
+											WHERE HT.TASK_DEF_KEY_ = 'makeCon'
+											AND HT.ASSIGNEE_ =#{empId}
+										</otherwise>
+									</choose>
+								</when>
+							</choose>
+							GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+						) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+						WHERE app.DEL_STATUE = 0 
+						AND app.STORE_ID = #{storeId} 
+						AND AU.HANDLE_OPINION=4 
+						AND AU.AUDIT_DATE =(SELECT MAX(AUDIT_DATE) FROM HS_FINAL_AUDIT AUU WHERE app.APPLY_ID = AUU.APPLY_ID )
+						<if test="custName != null and custName != ''">
+							and app.CUST_NAME LIKE #{custName} 
+						</if>
+						<if test="custMobile != null and custMobile != ''">
+							and app.CUST_MOBILE = #{custMobile}
+						</if>
+						<if test="idNumber != null and idNumber != ''">
+							and app.ID_NUMBER = #{idNumber}
+						</if>
+						<if test="salesEmpName != null and salesEmpName != ''">
+							and app.SALES_EMP_NAME LIKE #{salesEmpName}
+						</if>
+						<if test="loanId != null and loanId != ''">
+							and app.LOAN_ID = #{loanId} 
+						</if>
+						ORDER BY app.APPLY_DATE DESC
+					) AP
+				WHERE <![CDATA[ROWNUM <=  #{pageIndex} * #{pageSize}]]>
+			) WHERE r > (#{pageIndex} -1) * #{pageSize}
+	</select> 
+	
+	<select id="pageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+			count(app.APPLY_ID)
+		FROM
+			HS_APPLY app 
+		LEFT JOIN HS_FINAL_AUDIT AU ON app.APPLY_ID = AU.APPLY_ID
+		RIGHT JOIN (
+			SELECT
+				 HP.BUSINESS_KEY_,
+				 HT.ASSIGNEE_
+			FROM
+			ACT_HI_PROCINST HP
+			INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+			<choose>
+				<!-- 待签收 -->
+				<when test="nodeStatus == 0">
+					WHERE HT.TASK_DEF_KEY_ = 'makeCon' AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+				</when>
+				
+				<!-- 已经签收，待审核 -->
+				<when test="nodeStatus == 1">
+					<choose>
+						<when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'makeCon' AND HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+						</when>
+						<!-- 非部门负责人 -->
+						<otherwise>
+							WHERE HT.TASK_DEF_KEY_ = 'makeCon'
+							AND HT.ASSIGNEE_ =#{empId} AND HT.END_TIME_ IS NULL
+						</otherwise>
+					</choose>
+				</when>
+				
+				<!-- 已经审核 -->
+				<when test="nodeStatus == 2">
+					<choose>
+						<when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'makeCon' and HT.END_TIME_ IS NOT NULL
+						</when>
+						<otherwise>
+							WHERE HT.TASK_DEF_KEY_ = 'makeCon'
+							AND HT.ASSIGNEE_ =#{empId} AND HT.END_TIME_ IS NOT NULL
+						</otherwise>
+					</choose>
+				</when>
+				
+				<!-- 全部  已经签收 和 已经审核的任务-->
+				<when test="nodeStatus == 3">
+					<choose>
+						<when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'makeCon'
+						</when>
+						<otherwise>
+							WHERE HT.TASK_DEF_KEY_ = 'makeCon'
+							AND HT.ASSIGNEE_ =#{empId}
+						</otherwise>
+					</choose>
+				</when>
+			</choose>
+			GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+		) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+		WHERE app.DEL_STATUE = 0 
+		AND app.STORE_ID = #{storeId} 
+		AND AU.HANDLE_OPINION=4 
+		AND AU.AUDIT_DATE =(SELECT MAX(AUDIT_DATE) FROM HS_FINAL_AUDIT AUU WHERE app.APPLY_ID = AUU.APPLY_ID )
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName} 
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId} 
+		</if>
+	</select>
+	
+</mapper>

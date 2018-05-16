@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.audit.dao.ContractCheckMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.audit.model.ContractCheck">
+    <id column="CHECK_ID" jdbcType="VARCHAR" property="checkId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+    <result column="TASK_ID" jdbcType="VARCHAR" property="taskId" />
+    <result column="CHECK_EMP" jdbcType="VARCHAR" property="checkEmp" />
+    <result column="CHECK_EMP_NAME" jdbcType="VARCHAR" property="checkEmpName" />
+    <result column="HANDLE_OPINION" jdbcType="INTEGER" property="handleOpinion" />
+    <result column="HANDLE_OPINION_VAL" jdbcType="VARCHAR" property="handleOpinionVal" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="handleRemarks" />
+    <result column="CHECK_DATE" jdbcType="TIMESTAMP" property="checkDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CHECK_ID, APPLY_ID, PROC_INST_ID, TASK_ID, CHECK_EMP, CHECK_EMP_NAME, HANDLE_OPINION, 
+    HANDLE_OPINION_VAL, REMARKS, CHECK_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CONTRACT_CHECK
+    where CHECK_ID = #{checkId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CONTRACT_CHECK
+    where CHECK_ID = #{checkId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.audit.model.ContractCheck">
+    insert into HS_CONTRACT_CHECK (CHECK_ID, APPLY_ID, PROC_INST_ID, 
+      TASK_ID, CHECK_EMP, CHECK_EMP_NAME, 
+      HANDLE_OPINION, HANDLE_OPINION_VAL, REMARKS, 
+      CHECK_DATE)
+    values (#{checkId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{procInstId,jdbcType=VARCHAR}, 
+      #{taskId,jdbcType=VARCHAR}, #{checkEmp,jdbcType=VARCHAR}, #{checkEmpName,jdbcType=VARCHAR}, 
+      #{handleOpinion,jdbcType=INTEGER}, #{handleOpinionVal,jdbcType=VARCHAR}, #{handleRemarks,jdbcType=VARCHAR}, 
+      #{checkDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.audit.model.ContractCheck">
+    insert into HS_CONTRACT_CHECK
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="checkId != null">
+        CHECK_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID,
+      </if>
+      <if test="taskId != null">
+        TASK_ID,
+      </if>
+      <if test="checkEmp != null">
+        CHECK_EMP,
+      </if>
+      <if test="checkEmpName != null">
+        CHECK_EMP_NAME,
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION,
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL,
+      </if>
+      <if test="handleRemarks != null">
+        REMARKS,
+      </if>
+      <if test="checkDate != null">
+        CHECK_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="checkId != null">
+        #{checkId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkEmp != null">
+        #{checkEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="checkEmpName != null">
+        #{checkEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinion != null">
+        #{handleOpinion,jdbcType=INTEGER},
+      </if>
+      <if test="handleOpinionVal != null">
+        #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="handleRemarks != null">
+        #{handleRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null">
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.audit.model.ContractCheck">
+    update HS_CONTRACT_CHECK
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        TASK_ID = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="checkEmp != null">
+        CHECK_EMP = #{checkEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="checkEmpName != null">
+        CHECK_EMP_NAME = #{checkEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION = #{handleOpinion,jdbcType=INTEGER},
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="handleRemarks != null">
+        REMARKS = #{handleRemarks,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null">
+        CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CHECK_ID = #{checkId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.audit.model.ContractCheck">
+    update HS_CONTRACT_CHECK
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=VARCHAR},
+      CHECK_EMP = #{checkEmp,jdbcType=VARCHAR},
+      CHECK_EMP_NAME = #{checkEmpName,jdbcType=VARCHAR},
+      HANDLE_OPINION = #{handleOpinion,jdbcType=INTEGER},
+      HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      REMARKS = #{handleRemarks,jdbcType=VARCHAR},
+      CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP}
+    where CHECK_ID = #{checkId,jdbcType=VARCHAR}
+  </update>
+  
+  
+ 
+  <!-- 編輯區域  不能替換或修改 -->
+  <!-- 获取合同审核列表 [{'id':'-1','text':'全部'},{'id':'0','text':'待审核'},{'id':'1','text':'已审核'}] preEvent-->
+  <resultMap type="com.hoomsun.csas.audit.model.vo.UserApplyConVO" id="USER_APPLY_VO_RESULT">
+  	<id column="APPLY_ID" property="applyId"/>
+  	<result column="STORE_NAME" property="storeName"/>
+  	<result column="STORE_ID" property="storeId"/>
+  	<result column="CUST_MOBILE" property="custMobile"/>
+  	<result column="ID_NUMBER" property="idNumber"/>
+  	<result column="CUST_NAME" property="custName"/>
+  	<result column="SOURCES" property="sources"/>
+  	<result column="SOURCES_VALUE" property="sourcesVal"/>
+  	<result column="PROC_STATUS_VAL" property="procStatusVal"/>
+  	<result column="PROC_STATUS" property="procStatus"/>
+  	<result column="PRODUCT_NAME" property="productName"/>
+  	<result column="PRODUCT_ID" property="productId"/>
+  	<result column="LOAN_ID" property="loanId"/>
+  	<result column="APPLY_AMOUNT" property="applyAmount"/>
+  	<result column="CON_ID" property="conId"/>
+  	<result column="CON_NO" property="conNo"/>
+  	<result column="CON_AMOUNT" property="conAmount"/>
+  	<result column="LOAN_AMOUNT" property="loanAmount"/>
+  	<result column="MONTH_MONEY" property="monthMoney"/>
+  	<result column="SIGN_TIME" property="signTime"/>
+  	<result column="CREATE_TIME" property="createTime"/>
+  	<result column="SIGN_PRODUCT_NAME" property="signProductName"/>
+  	<result column="PRODUCT_PERIOD" property="productPeriod"/>
+  	<result column="ASSIGNEE_" property="assignee"/>
+  </resultMap>
+  <select id="findPager" parameterType="java.util.Map" resultMap="USER_APPLY_VO_RESULT">
+	SELECT * FROM (
+					SELECT
+						ROWNUM r,
+						AP.*
+					FROM (
+					SELECT
+						app.LOAN_ID,
+						app.APPLY_ID,
+						app.CUST_NAME,
+						app.SOURCES,
+						app.SOURCES_VALUE,
+						REPLACE ( app.CUST_MOBILE, SUBSTR (app.CUST_MOBILE, 4, 4), '****') AS CUST_MOBILE,
+						REPLACE ( app.ID_NUMBER, SUBSTR (app.ID_NUMBER, 6, 8), '********') AS ID_NUMBER,
+						app.PRODUCT_NAME,
+						app.APPLY_AMOUNT,
+						app.PROC_STATUS_VAL,
+						app.PROC_STATUS,
+						app.SALES_EMP_ID,
+						app.SALES_EMP_NAME,
+						app.CREATE_EMPLOYEE,
+						app.CREATE_EMPLOYEE_VAL,
+						app.APPLY_DATE,
+						CON.CON_ID,
+						CON.CON_NO,
+						CON.CON_AMOUNT,
+						CON.LOAN_AMOUNT,
+						CON.SIGN_TIME,
+						CON.PRODUCT_NAME SIGN_PRODUCT_NAME,
+						CON.PRODUCT_PERIOD,
+						CON.CREATE_TIME,
+						CON.MONTH_MONEY,
+						tbl.ASSIGNEE_
+					FROM
+						HS_APPLY app
+					RIGHT JOIN (
+						SELECT
+							 HP.BUSINESS_KEY_,
+							 HT.ASSIGNEE_
+						FROM
+						ACT_HI_PROCINST HP
+						INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+						<choose>
+						<!-- 待签收 -->
+						<when test="nodeStatus == 0">
+							WHERE HT.TASK_DEF_KEY_ = 'conAudit'
+						    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+						</when>
+						<!-- 已经签收，待审核 -->
+						<when test="nodeStatus == 1">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'conAudit' and HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'conAudit'
+						        		AND (HT.ASSIGNEE_=#{empId} and HT.ASSIGNEE_ IS not NULL AND HT.END_TIME_ IS NULL)
+						        </otherwise>
+							</choose>
+						</when>
+						
+						<!-- 已经审核 -->
+						<when test="nodeStatus == 2">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'conAudit' AND HT.END_TIME_ IS NOT NULL
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'conAudit'
+						        		AND HT.END_TIME_ IS NOT NULL
+						        		AND HT.ASSIGNEE_=#{empId}
+						        </otherwise>
+							</choose>
+						</when>
+						
+						<!-- 全部  已经签收 和 已经审核的任务-->
+						<when test="nodeStatus == 3">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'conAudit'
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'conAudit'
+						        		AND HT.ASSIGNEE_=#{empId}
+						        </otherwise>
+							</choose>
+						</when>
+
+					</choose>
+					
+					GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+					) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+					RIGHT JOIN HS_CONTRACT CON ON app.APPLY_ID = CON.APPLY_ID
+					WHERE app.DEL_STATUE = 0 
+					<if test="custName != null and custName != ''">
+						and app.CUST_NAME LIKE #{custName} 
+					</if>
+					<if test="custMobile != null and custMobile != ''">
+						and app.CUST_MOBILE = #{custMobile}
+					</if>
+					<if test="idNumber != null and idNumber != ''">
+						and app.ID_NUMBER = #{idNumber}
+					</if>
+					<if test="salesEmpName != null and salesEmpName != ''">
+						and app.SALES_EMP_NAME LIKE #{salesEmpName}
+					</if>
+					<if test="loanId != null and loanId != ''">
+						and app.LOAN_ID = #{loanId} 
+					</if>
+					ORDER BY app.APPLY_DATE DESC
+				) AP
+			WHERE
+				<![CDATA[ROWNUM <=  #{pageIndex} * #{pageSize}]]>
+			)
+		WHERE
+			r > (#{pageIndex} -1) * #{pageSize}
+  </select>
+  <select id="findPagerCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT 
+		COUNT(app.APPLY_ID)
+		FROM
+			HS_APPLY app
+		RIGHT JOIN (
+			SELECT
+				 HP.BUSINESS_KEY_,
+				 HT.ASSIGNEE_
+			FROM
+			ACT_HI_PROCINST HP
+			INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+			<choose>
+			<!-- 待签收 -->
+			<when test="nodeStatus == 0">
+				WHERE HT.TASK_DEF_KEY_ = 'conAudit'
+			    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+			</when>
+			<!-- 已经签收，待审核 -->
+			<when test="nodeStatus == 1">
+				<choose>
+					<!-- 部门负责人  -->  
+			        <when test="isMgr == 1">
+						LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+						RIGHT JOIN (
+							SELECT CIL.DEPT_ID
+							FROM HS_DEPARTMENT CIL
+							START WITH CIL.DEPT_ID=#{deptId}
+							CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+						) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+						WHERE HT.TASK_DEF_KEY_ = 'conAudit' and HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+					</when>
+			        <!-- 非部门负责人 -->
+			        <otherwise>
+			        		WHERE HT.TASK_DEF_KEY_ = 'conAudit'
+			        		AND (HT.ASSIGNEE_=#{empId} and HT.ASSIGNEE_ IS not NULL AND HT.END_TIME_ IS NULL)
+			        </otherwise>
+				</choose>
+			</when>
+			
+			<!-- 已经审核 -->
+			<when test="nodeStatus == 2">
+				<choose>
+					<!-- 部门负责人  -->  
+			        <when test="isMgr == 1">
+						LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+						RIGHT JOIN (
+							SELECT CIL.DEPT_ID
+							FROM HS_DEPARTMENT CIL
+							START WITH CIL.DEPT_ID=#{deptId}
+							CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+						) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+						WHERE HT.TASK_DEF_KEY_ = 'conAudit' AND HT.END_TIME_ IS NOT NULL
+					</when>
+			        <!-- 非部门负责人 -->
+			        <otherwise>
+			        		WHERE HT.TASK_DEF_KEY_ = 'conAudit'
+			        		AND HT.END_TIME_ IS NOT NULL
+			        		AND HT.ASSIGNEE_=#{empId}
+			        </otherwise>
+				</choose>
+			</when>
+			
+			<!-- 全部  已经签收 和 已经审核的任务-->
+			<when test="nodeStatus == 3">
+				<choose>
+					<!-- 部门负责人  -->  
+			        <when test="isMgr == 1">
+						LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+						RIGHT JOIN (
+							SELECT CIL.DEPT_ID
+							FROM HS_DEPARTMENT CIL
+							START WITH CIL.DEPT_ID=#{deptId}
+							CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+						) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+						WHERE HT.TASK_DEF_KEY_ = 'conAudit'
+					</when>
+			        <!-- 非部门负责人 -->
+			        <otherwise>
+			        		WHERE HT.TASK_DEF_KEY_ = 'conAudit'
+			        		AND HT.ASSIGNEE_=#{empId}
+			        </otherwise>
+				</choose>
+			</when>
+
+		</choose>
+		
+		GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+		) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+		RIGHT JOIN HS_CONTRACT CON ON app.APPLY_ID = CON.APPLY_ID
+		WHERE app.DEL_STATUE = 0 
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName} 
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId} 
+		</if>
+  </select>
+  
+  <!-- 验证是否存在审核数据 -->
+  <select id="checkAudit" resultType="java.lang.Integer">
+  	SELECT COUNT(CHECK_ID) FROM HS_CONTRACT_CHECK WHERE TASK_ID= #{taskId} AND APPLY_ID=#{applyId}
+  </select>
+  
+  <select id="checkConAudit" resultMap="BaseResultMap">
+  	SELECT 
+	<include refid="Base_Column_List" />
+  	FROM HS_CONTRACT_CHECK WHERE TASK_ID= #{taskId} AND APPLY_ID=#{applyId}
+  </select>
+  
+  <select id="findByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select CHECK_ID, APPLY_ID, PROC_INST_ID, TASK_ID, CHECK_EMP, CHECK_EMP_NAME, HANDLE_OPINION, 
+    HANDLE_OPINION_VAL, REMARKS, CHECK_DATE
+    from HS_CONTRACT_CHECK where APPLY_ID=#{applyId} 
+    AND CHECK_DATE=(
+    		select max(CHECK_DATE) from HS_CONTRACT_CHECK where APPLY_ID=#{applyId} 
+    )
+  </select>
+  <select id="findRollBack" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<!-- select CHECK_ID, APPLY_ID, PROC_INST_ID, TASK_ID, CHECK_EMP, CHECK_EMP_NAME, HANDLE_OPINION, 
+    HANDLE_OPINION_VAL, REMARKS, CHECK_DATE
+    from HS_CONTRACT_CHECK where APPLY_ID=#{applyId} AND HANDLE_OPINION = 2  
+     -->
+    SELECT tbl.* FROM (
+		SELECT con.CHECK_ID,con.CHECK_DATE,con.REMARKS,'合同审核' TASK_ID FROM HS_CONTRACT_CHECK con WHERE con.APPLY_ID=#{applyId} and con.HANDLE_OPINION=2
+		union all
+		SELECT fin.FINAL_ID CHECK_ID,fin.AUDIT_DATE CHECK_DATE,fin.ONE_OPINION REMARKS, '信审' TASK_ID FROM HS_FINAL_AUDIT fin WHERE fin.APPLY_ID=#{applyId} and fin.HANDLE_OPINION=4
+	) tbl order by tbl.CHECK_DATE DESC 
+  </select>
+</mapper>

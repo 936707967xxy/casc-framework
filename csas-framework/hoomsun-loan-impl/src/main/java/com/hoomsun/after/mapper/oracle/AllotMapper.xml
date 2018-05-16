@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.AllotMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.Allot">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ALLOT_TYPE" jdbcType="VARCHAR" property="allotType" />
+    <result column="LAON_ID" jdbcType="VARCHAR" property="laonId" />
+    <result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+    <result column="OLD_MANAGER_CASTID" jdbcType="VARCHAR" property="oldManagerCastid" />
+    <result column="OLD_MANAGER_CAST" jdbcType="VARCHAR" property="oldManagerCast" />
+    <result column="NEW_MANAGER_CASTID" jdbcType="VARCHAR" property="newManagerCastid" />
+    <result column="NEW_MANAGER_CAST" jdbcType="VARCHAR" property="newManagerCast" />
+    <result column="OPERATION_ID" jdbcType="VARCHAR" property="operationId" />
+    <result column="OPERATION_NAME" jdbcType="VARCHAR" property="operationName" />
+    <result column="ALLOT_TIME" jdbcType="TIMESTAMP" property="allotTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ALLOT_TYPE, LAON_ID, CON_NO, OLD_MANAGER_CASTID, OLD_MANAGER_CAST, NEW_MANAGER_CASTID, 
+    NEW_MANAGER_CAST, OPERATION_ID, OPERATION_NAME, ALLOT_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFTER_ALLOT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFTER_ALLOT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.after.api.model.table.Allot">
+    insert into HS_AFTER_ALLOT (ID, ALLOT_TYPE, LAON_ID, 
+      CON_NO, OLD_MANAGER_CASTID, OLD_MANAGER_CAST, 
+      NEW_MANAGER_CASTID, NEW_MANAGER_CAST, OPERATION_ID, 
+      OPERATION_NAME, ALLOT_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{allotType,jdbcType=VARCHAR}, #{laonId,jdbcType=VARCHAR}, 
+      #{conNo,jdbcType=VARCHAR}, #{oldManagerCastid,jdbcType=VARCHAR}, #{oldManagerCast,jdbcType=VARCHAR}, 
+      #{newManagerCastid,jdbcType=VARCHAR}, #{newManagerCast,jdbcType=VARCHAR}, #{operationId,jdbcType=VARCHAR}, 
+      #{operationName,jdbcType=VARCHAR}, #{allotTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.Allot">
+    insert into HS_AFTER_ALLOT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="allotType != null">
+        ALLOT_TYPE,
+      </if>
+      <if test="laonId != null">
+        LAON_ID,
+      </if>
+      <if test="conNo != null">
+        CON_NO,
+      </if>
+      <if test="oldManagerCastid != null">
+        OLD_MANAGER_CASTID,
+      </if>
+      <if test="oldManagerCast != null">
+        OLD_MANAGER_CAST,
+      </if>
+      <if test="newManagerCastid != null">
+        NEW_MANAGER_CASTID,
+      </if>
+      <if test="newManagerCast != null">
+        NEW_MANAGER_CAST,
+      </if>
+      <if test="operationId != null">
+        OPERATION_ID,
+      </if>
+      <if test="operationName != null">
+        OPERATION_NAME,
+      </if>
+      <if test="allotTime != null">
+        ALLOT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="allotType != null">
+        #{allotType,jdbcType=VARCHAR},
+      </if>
+      <if test="laonId != null">
+        #{laonId,jdbcType=VARCHAR},
+      </if>
+      <if test="conNo != null">
+        #{conNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oldManagerCastid != null">
+        #{oldManagerCastid,jdbcType=VARCHAR},
+      </if>
+      <if test="oldManagerCast != null">
+        #{oldManagerCast,jdbcType=VARCHAR},
+      </if>
+      <if test="newManagerCastid != null">
+        #{newManagerCastid,jdbcType=VARCHAR},
+      </if>
+      <if test="newManagerCast != null">
+        #{newManagerCast,jdbcType=VARCHAR},
+      </if>
+      <if test="operationId != null">
+        #{operationId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationName != null">
+        #{operationName,jdbcType=VARCHAR},
+      </if>
+      <if test="allotTime != null">
+        #{allotTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.Allot">
+    update HS_AFTER_ALLOT
+    <set>
+      <if test="allotType != null">
+        ALLOT_TYPE = #{allotType,jdbcType=VARCHAR},
+      </if>
+      <if test="laonId != null">
+        LAON_ID = #{laonId,jdbcType=VARCHAR},
+      </if>
+      <if test="conNo != null">
+        CON_NO = #{conNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oldManagerCastid != null">
+        OLD_MANAGER_CASTID = #{oldManagerCastid,jdbcType=VARCHAR},
+      </if>
+      <if test="oldManagerCast != null">
+        OLD_MANAGER_CAST = #{oldManagerCast,jdbcType=VARCHAR},
+      </if>
+      <if test="newManagerCastid != null">
+        NEW_MANAGER_CASTID = #{newManagerCastid,jdbcType=VARCHAR},
+      </if>
+      <if test="newManagerCast != null">
+        NEW_MANAGER_CAST = #{newManagerCast,jdbcType=VARCHAR},
+      </if>
+      <if test="operationId != null">
+        OPERATION_ID = #{operationId,jdbcType=VARCHAR},
+      </if>
+      <if test="operationName != null">
+        OPERATION_NAME = #{operationName,jdbcType=VARCHAR},
+      </if>
+      <if test="allotTime != null">
+        ALLOT_TIME = #{allotTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.Allot">
+    update HS_AFTER_ALLOT
+    set ALLOT_TYPE = #{allotType,jdbcType=VARCHAR},
+      LAON_ID = #{laonId,jdbcType=VARCHAR},
+      CON_NO = #{conNo,jdbcType=VARCHAR},
+      OLD_MANAGER_CASTID = #{oldManagerCastid,jdbcType=VARCHAR},
+      OLD_MANAGER_CAST = #{oldManagerCast,jdbcType=VARCHAR},
+      NEW_MANAGER_CASTID = #{newManagerCastid,jdbcType=VARCHAR},
+      NEW_MANAGER_CAST = #{newManagerCast,jdbcType=VARCHAR},
+      OPERATION_ID = #{operationId,jdbcType=VARCHAR},
+      OPERATION_NAME = #{operationName,jdbcType=VARCHAR},
+      ALLOT_TIME = #{allotTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

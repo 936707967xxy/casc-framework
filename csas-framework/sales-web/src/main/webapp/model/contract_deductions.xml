@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdf xmlns="http://www.idawn.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.idawn.org pdf.xsd">
+	<styles>
+		<style id="title" textalignment="CENTER" fontsize="16" bold="true" />
+		<style id="table" fontsize="8" />
+		<style id="bold" bold="true" />
+		<style id="margin-top-bottom" margin-top="36" margin-bottom="36" />
+		<style id="margin-bottom" margin-bottom="36" />
+		<style id="margin-top" margin-top="36" />
+		<style id="firstLineIndent"  />
+		<style id="sign-box"  margin-top="20" textalignment="RIGHT"/>
+		<style id="no_border" border="0"/>
+		<style id="center-box" textalignment="CENTER"/>
+	</styles>
+	
+	<body pagesize="A4" fontsize="10" margin-top="36" margin-right="45" margin-bottom="36" margin-left="45">
+		<page>
+			<title value="委托扣款授权书" style="title" />
+			<p><span></span></p>
+			<p first-line-indent="14" fill="true"><span>鉴于授权人与红上至信商务信息咨询（上海）有限公司（被授权人）#{year}年#{month}月#{day}日签署的《信用咨询及管理服务协议》（以下简称“合同”），现授权人郑重声明已仔细阅知、理解下述各项规定并同意遵守：</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>一、授权人同意被授权人在合同约定的限期内，委托银行或第三方支付机构从本授权书指定的账户内以约定的资费标准划付应付的费用。授权人同意并确认，银行或第三方支付机构对根据被授权人据此授权进行的上述资金划扣所产生的后果不承担任何责任。</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>二、授权人在指定账户中必须留有足够余额，否则因账户余额不足或不可归责于被授权人委托方的任何事由，导致无法及时扣款或扣款错误、失败，责任由授权人自行承担。</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>三、合同效力中止或终止后，本授权书效力同时中止或终止，被授权人暂停或终止委托划付款项，待授权人重新与被授权人协商确认继续履行合同后，本授权书效力随即恢复。</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>四、本授权书自授权人签字或盖章之日起生效，至授权人书面通知被授权人中止或终止授权、或授权人与被授权人协商确认授权账户终止、或合同效力终止时终止。</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>五、授权人拟中止、终止授权或变更账户、通讯地址的，需提前３０个工作日前向被授权人递交书面通知，否则自行承担所造成的风险损失。</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>六、授权人保证本授权书的真实性、合法性、有效性，被授权人依据本授权书进行的委托扣款操作引起的一切法律纠纷或风险，由授权人独立承担或解决。</span></p>
+			<p first-line-indent="14"><span>七、授权人资料：</span></p>
+			<p><span></span></p>
+			<table column="2" style="center-box">
+				<th clm="1" row="1">银行卡户名</th>
+				<td clm="1" row="1" fill="true">#{custName}</td>
+				<th clm="1" row="1">银行卡开户银行</th>
+				<td clm="1" row="1" fill="true">#{bank}</td>
+				<th clm="1" row="1">银行卡账号</th>
+				<td clm="1" row="1" fill="true">#{bankNo}</td>
+				<th clm="1" row="1">身份证号码</th>
+				<td clm="1" row="1" fill="true">#{idNumber}</td>
+				<th clm="1" row="1">银行卡预留手机号</th>
+				<td clm="1" row="1" fill="true">#{bankPhoneNo}</td>
+			</table>
+			<table column="1" style="sign-box">
+				<th clm="1" row="1" border="0">授权人亲笔签名：_________________</th>
+				<th clm="1" row="1" border="0">签订日期：______年____月____日</th>
+			</table>
+		</page>
+
+	</body>
+</pdf>

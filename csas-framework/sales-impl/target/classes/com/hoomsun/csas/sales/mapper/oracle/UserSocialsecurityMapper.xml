@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserSocialsecurityMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserSocialsecurity">
+    <id column="SI_ID" jdbcType="VARCHAR" property="siId" />
+    <result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+    <result column="SI_COM" jdbcType="VARCHAR" property="siCom" />
+    <result column="SI_BASE" jdbcType="VARCHAR" property="siBase" />
+    <result column="SI_SUM_AMOUNT" jdbcType="VARCHAR" property="siSumAmount" />
+    <result column="SI_SUM_MONTHS" jdbcType="VARCHAR" property="siSumMonths" />
+    <result column="SI_MONTHS" jdbcType="VARCHAR" property="siMonths" />
+    <result column="SI_STATUS" jdbcType="VARCHAR" property="siStatus" />
+    <result column="QUERY_STATUS" jdbcType="VARCHAR" property="queryStatus" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SI_ID, ADD_DATE, SI_COM, SI_BASE, SI_SUM_AMOUNT, SI_SUM_MONTHS, SI_MONTHS, SI_STATUS, 
+    QUERY_STATUS, APPLY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_SOCIALSECURITY
+    where SI_ID = #{siId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_SOCIALSECURITY
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_SOCIALSECURITY
+    where SI_ID = #{siId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserSocialsecurity">
+    insert into HS_SOCIALSECURITY (SI_ID, ADD_DATE, SI_COM, 
+      SI_BASE, SI_SUM_AMOUNT, SI_SUM_MONTHS, 
+      SI_MONTHS, SI_STATUS, QUERY_STATUS, 
+      APPLY_ID)
+    values (#{siId,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}, #{siCom,jdbcType=VARCHAR}, 
+      #{siBase,jdbcType=VARCHAR}, #{siSumAmount,jdbcType=VARCHAR}, #{siSumMonths,jdbcType=VARCHAR}, 
+      #{siMonths,jdbcType=VARCHAR}, #{siStatus,jdbcType=VARCHAR}, #{queryStatus,jdbcType=VARCHAR}, 
+      #{applyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserSocialsecurity">
+    insert into HS_SOCIALSECURITY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="siId != null">
+        SI_ID,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="siCom != null">
+        SI_COM,
+      </if>
+      <if test="siBase != null">
+        SI_BASE,
+      </if>
+      <if test="siSumAmount != null">
+        SI_SUM_AMOUNT,
+      </if>
+      <if test="siSumMonths != null">
+        SI_SUM_MONTHS,
+      </if>
+      <if test="siMonths != null">
+        SI_MONTHS,
+      </if>
+      <if test="siStatus != null">
+        SI_STATUS,
+      </if>
+      <if test="queryStatus != null">
+        QUERY_STATUS,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="siId != null">
+        #{siId,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="siCom != null">
+        #{siCom,jdbcType=VARCHAR},
+      </if>
+      <if test="siBase != null">
+        #{siBase,jdbcType=VARCHAR},
+      </if>
+      <if test="siSumAmount != null">
+        #{siSumAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="siSumMonths != null">
+        #{siSumMonths,jdbcType=VARCHAR},
+      </if>
+      <if test="siMonths != null">
+        #{siMonths,jdbcType=VARCHAR},
+      </if>
+      <if test="siStatus != null">
+        #{siStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="queryStatus != null">
+        #{queryStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserSocialsecurity">
+    update HS_SOCIALSECURITY
+    <set>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="siCom != null">
+        SI_COM = #{siCom,jdbcType=VARCHAR},
+      </if>
+      <if test="siBase != null">
+        SI_BASE = #{siBase,jdbcType=VARCHAR},
+      </if>
+      <if test="siSumAmount != null">
+        SI_SUM_AMOUNT = #{siSumAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="siSumMonths != null">
+        SI_SUM_MONTHS = #{siSumMonths,jdbcType=VARCHAR},
+      </if>
+      <if test="siMonths != null">
+        SI_MONTHS = #{siMonths,jdbcType=VARCHAR},
+      </if>
+      <if test="siStatus != null">
+        SI_STATUS = #{siStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="queryStatus != null">
+        QUERY_STATUS = #{queryStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SI_ID = #{siId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserSocialsecurity">
+    update HS_SOCIALSECURITY
+    set ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      SI_COM = #{siCom,jdbcType=VARCHAR},
+      SI_BASE = #{siBase,jdbcType=VARCHAR},
+      SI_SUM_AMOUNT = #{siSumAmount,jdbcType=VARCHAR},
+      SI_SUM_MONTHS = #{siSumMonths,jdbcType=VARCHAR},
+      SI_MONTHS = #{siMonths,jdbcType=VARCHAR},
+      SI_STATUS = #{siStatus,jdbcType=VARCHAR},
+      QUERY_STATUS = #{queryStatus,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    where SI_ID = #{siId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 以下为数据的编辑区域 -->
+  <select id="checkByApplyId" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(SI_ID) FROM HS_SOCIALSECURITY WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="checkById" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(SI_ID) FROM HS_SOCIALSECURITY WHERE SI_ID = #{siId,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 数据的存储 -->
+  <insert id="insertMap" parameterType="java.util.Map">
+    insert into HS_SOCIALSECURITY (SI_ID, ADD_DATE, SI_COM, 
+      SI_BASE, SI_SUM_AMOUNT, SI_SUM_MONTHS, 
+      SI_MONTHS, SI_STATUS, QUERY_STATUS, 
+      APPLY_ID)
+    values (#{SI_ID}, #{ADD_DATE}, #{SI_COM}, 
+      #{SI_BASE}, #{SI_SUM_AMOUNT}, #{SI_SUM_MONTHS}, 
+      #{SI_MONTHS}, #{SI_STATUS}, #{QUERY_STATUS}, 
+      #{APPLY_ID})
+  </insert>
+</mapper>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.AfreshContacterInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.AfreshContacterInfo">
+    <id column="CNINFO_PK_ID" jdbcType="VARCHAR" property="cninfoPkId" />
+    <result column="FK_ID" jdbcType="VARCHAR" property="fkId" />
+    <result column="CONTACTER_TIME" jdbcType="OTHER" property="contacterTime" />
+    <result column="PO_CONTACT_NAME" jdbcType="VARCHAR" property="poContactName" />
+    <result column="PO_MOBILE" jdbcType="VARCHAR" property="poMobile" />
+    <result column="PO_RELATIONSHIP" jdbcType="DECIMAL" property="poRelationship" />
+    <result column="PO_RELATIONSHIP_VAL" jdbcType="VARCHAR" property="poRelationshipVal" />
+    <result column="PO_COMPANY" jdbcType="VARCHAR" property="poCompany" />
+    <result column="QSONE_ADDRESS" jdbcType="VARCHAR" property="qsoneAddress" />
+    <result column="IS_KNOW" jdbcType="VARCHAR" property="isKnow" />
+    <result column="IS_KNOW_VAL" jdbcType="VARCHAR" property="isKnowVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CNINFO_PK_ID, FK_ID, CONTACTER_TIME, PO_CONTACT_NAME, PO_MOBILE, PO_RELATIONSHIP, 
+    PO_RELATIONSHIP_VAL, PO_COMPANY, QSONE_ADDRESS, IS_KNOW, IS_KNOW_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFRESH_CONTACTER_INFO
+    where CNINFO_PK_ID = #{cninfoPkId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFRESH_CONTACTER_INFO
+    where CNINFO_PK_ID = #{cninfoPkId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.AfreshContacterInfo">
+    insert into HS_AFRESH_CONTACTER_INFO (CNINFO_PK_ID, FK_ID, CONTACTER_TIME, 
+      PO_CONTACT_NAME, PO_MOBILE, PO_RELATIONSHIP, 
+      PO_RELATIONSHIP_VAL, PO_COMPANY, QSONE_ADDRESS, 
+      IS_KNOW, IS_KNOW_VAL)
+    values (#{cninfoPkId,jdbcType=VARCHAR}, #{fkId,jdbcType=VARCHAR}, #{contacterTime,jdbcType=OTHER}, 
+      #{poContactName,jdbcType=VARCHAR}, #{poMobile,jdbcType=VARCHAR}, #{poRelationship,jdbcType=DECIMAL}, 
+      #{poRelationshipVal,jdbcType=VARCHAR}, #{poCompany,jdbcType=VARCHAR}, #{qsoneAddress,jdbcType=VARCHAR}, 
+      #{isKnow,jdbcType=VARCHAR}, #{isKnowVal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.AfreshContacterInfo">
+    insert into HS_AFRESH_CONTACTER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cninfoPkId != null">
+        CNINFO_PK_ID,
+      </if>
+      <if test="fkId != null">
+        FK_ID,
+      </if>
+      <if test="contacterTime != null">
+        CONTACTER_TIME,
+      </if>
+      <if test="poContactName != null">
+        PO_CONTACT_NAME,
+      </if>
+      <if test="poMobile != null">
+        PO_MOBILE,
+      </if>
+      <if test="poRelationship != null">
+        PO_RELATIONSHIP,
+      </if>
+      <if test="poRelationshipVal != null">
+        PO_RELATIONSHIP_VAL,
+      </if>
+      <if test="poCompany != null">
+        PO_COMPANY,
+      </if>
+      <if test="qsoneAddress != null">
+        QSONE_ADDRESS,
+      </if>
+      <if test="isKnow != null">
+        IS_KNOW,
+      </if>
+      <if test="isKnowVal != null">
+        IS_KNOW_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cninfoPkId != null">
+        #{cninfoPkId,jdbcType=VARCHAR},
+      </if>
+      <if test="fkId != null">
+        #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="contacterTime != null">
+        #{contacterTime,jdbcType=OTHER},
+      </if>
+      <if test="poContactName != null">
+        #{poContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="poMobile != null">
+        #{poMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="poRelationship != null">
+        #{poRelationship,jdbcType=DECIMAL},
+      </if>
+      <if test="poRelationshipVal != null">
+        #{poRelationshipVal,jdbcType=VARCHAR},
+      </if>
+      <if test="poCompany != null">
+        #{poCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="qsoneAddress != null">
+        #{qsoneAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isKnow != null">
+        #{isKnow,jdbcType=VARCHAR},
+      </if>
+      <if test="isKnowVal != null">
+        #{isKnowVal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.AfreshContacterInfo">
+    update HS_AFRESH_CONTACTER_INFO
+    <set>
+      <if test="fkId != null">
+        FK_ID = #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="contacterTime != null">
+        CONTACTER_TIME = #{contacterTime,jdbcType=OTHER},
+      </if>
+      <if test="poContactName != null">
+        PO_CONTACT_NAME = #{poContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="poMobile != null">
+        PO_MOBILE = #{poMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="poRelationship != null">
+        PO_RELATIONSHIP = #{poRelationship,jdbcType=DECIMAL},
+      </if>
+      <if test="poRelationshipVal != null">
+        PO_RELATIONSHIP_VAL = #{poRelationshipVal,jdbcType=VARCHAR},
+      </if>
+      <if test="poCompany != null">
+        PO_COMPANY = #{poCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="qsoneAddress != null">
+        QSONE_ADDRESS = #{qsoneAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isKnow != null">
+        IS_KNOW = #{isKnow,jdbcType=VARCHAR},
+      </if>
+      <if test="isKnowVal != null">
+        IS_KNOW_VAL = #{isKnowVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CNINFO_PK_ID = #{cninfoPkId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.AfreshContacterInfo">
+    update HS_AFRESH_CONTACTER_INFO
+    set FK_ID = #{fkId,jdbcType=VARCHAR},
+      CONTACTER_TIME = #{contacterTime,jdbcType=OTHER},
+      PO_CONTACT_NAME = #{poContactName,jdbcType=VARCHAR},
+      PO_MOBILE = #{poMobile,jdbcType=VARCHAR},
+      PO_RELATIONSHIP = #{poRelationship,jdbcType=DECIMAL},
+      PO_RELATIONSHIP_VAL = #{poRelationshipVal,jdbcType=VARCHAR},
+      PO_COMPANY = #{poCompany,jdbcType=VARCHAR},
+      QSONE_ADDRESS = #{qsoneAddress,jdbcType=VARCHAR},
+      IS_KNOW = #{isKnow,jdbcType=VARCHAR},
+      IS_KNOW_VAL = #{isKnowVal,jdbcType=VARCHAR}
+    where CNINFO_PK_ID = #{cninfoPkId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 查询是否已经添加联系人 -->
+   <select id="selectByFkid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFRESH_CONTACTER_INFO
+    where  FK_ID = #{fkId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByfkId" parameterType="java.lang.String">
+    delete from HS_AFRESH_CONTACTER_INFO
+    where  FK_ID = #{fkId,jdbcType=VARCHAR}
+  </delete>
+</mapper>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.CustomerTaskAllocationMapper">
+	
+	<!-- 客户任务分配列表 -->
+	<select id="queryCustomerTask" parameterType="com.hoomsun.after.api.model.param.CustomerTaskAllocationReq"
+		resultType="com.hoomsun.after.api.model.vo.CustomerTaskAllocationResult">
+		SELECT * FROM (
+		<include refid="selectCustomerTaskSql"/>
+		<include refid="fromCustomerTaskSql"/>
+		<include refid="whereCustomerTaskSql"/>
+		<include refid="descCustomerTaskSql"/>
+		)
+		<![CDATA[ WHERE  r > (#{ page }- 1) * #{ pageSize }]]>
+	</select>
+	
+	<!-- 查询总条数 -->
+	<select id="countCustomerTask" parameterType="com.hoomsun.after.api.model.param.CustomerTaskAllocationReq"
+	 resultType="java.lang.Integer">
+	   <include refid="selectCountCustomerTask"/>
+	   <include refid="fromCustomerTaskSql"/>
+		<include refid="whereCustomerTaskSql"/>
+	</select>
+	
+	<sql id="selectCountCustomerTask">
+	     SELECT COUNT(bal.LOAN_ID) 
+	</sql>
+
+
+
+    <sql id="selectCustomerTaskSql">
+        SELECT 
+		bal.LOAN_ID AS loanId,
+		bal.CON_NO AS conNo,
+		bal.APPLY_ID AS applyId,
+		bal.CAST_NAME AS castName,
+		bal.CARD_NO AS cardNo,
+		bal.TEL AS tel,
+		bal.REPAY_DATE AS repayDate,
+		bal.CURRENT_PERIOD AS currentPeriod,
+		bal.LOAN_PERIOD AS loanPeriod,
+		bal.LOAN_MONEY AS loanMoney,
+		bal.LOAN_DATE AS loanDate,
+		bal.DELAY_FLAG AS dalayFlag,
+		bal.SETTLE_FLAG AS settleFlag,
+		bal.UPDOWN_STATUS AS updownStatus,
+		bal.POS_TYPE AS posType,
+		bal.PRODUCT_NAME AS productName,
+		bal.PRODUCTALIAS AS productAlias,
+		bal.CUSTOMER_OR_LOAN AS customerOrLoan,
+		bal.MANAGER_CAST_ID AS managerCastId,
+		bal.MANAGER_CAST AS managerCast,
+		bal.LOAN_MANAGER_CAST_ID AS loanManagerCastId,
+		bal.LOAN_MANAGER_CAST AS loanManagerCastName,
+		bal.LAON_LEAVE AS loanLeave,
+		bal.HANG_UP AS hangUp,
+		bal.HANG_UP_DATE AS hangUpDate,
+		bal.M_SECTION AS mSection,
+		bal.SALES_DEPTMENT AS salesDeptment,
+		bal.CURRENT_VERSION AS currentVersion,
+		bal.UPDATE_DATE AS updateDate,
+		bal.CREATE_TIME AS createTime,
+		bal.STATEMENT_DATE AS billDays,
+		bal.CON_MONEY AS conMoney,
+		bal.NORMAL_SUB_MONEY AS normalSubMoney,
+		bal.NORMAL_SUB_DATE AS normalSubDate,
+		bal.NORMAL_SUB_STREAM AS normalSubStream,
+		bal.OVERDUE_SUB_MONEY AS overdueSubMoney,
+		bal.OVERDUE_SUB_DATE AS overdueSubDate,
+		bal.OVERDUE_SUB_STREAM AS overdueSubStrean,
+		bal.ADVANCED_SUB_MONEY AS advancedSubMoney,
+		bal.ADVANCED_SUB_DATE AS advancedSubDate,
+		bal.ADVANCED_SUB_STREAM AS advancedSubStream,
+		bal.CAST_ID AS castId,
+        hauc.CAST_SOURCE AS castSource,
+		ROWNUM AS r
+    </sql>
+    
+    <sql id="fromCustomerTaskSql">
+         FROM HS_AFTER_LOANBAL bal
+          LEFT JOIN HS_AFTER_USER_COUNT hauc ON bal.CAST_ID=hauc.CAST_ID
+    </sql>
+    
+    <sql id="whereCustomerTaskSql">
+        <where>
+		  <if test="managerCastId != null and managerCastId !='' ">
+		      AND bal.MANAGER_CAST_ID =#{managerCastId}
+		  </if>
+		  <if test="loanId != null and loanId !='' ">
+		      AND bal.LOAN_ID =#{loanId}
+		  </if>
+		  <if test="conNo != null and conNo !='' ">
+		      AND bal.CON_NO =#{conNo}
+		  </if>
+		  <if test="settleFlag != null and settleFlag !='' ">
+		      AND bal.SETTLE_FLAG =#{settleFlag}
+		  </if>
+		   <if test="castName != null and castName !='' ">
+		      <![CDATA[AND bal.CAST_NAME  LIKE  '%'||#{castName}||'%' ]]>
+		  </if>
+		  <if test="cardNo != null and cardNo !='' ">
+		      AND bal.CARD_NO =#{cardNo}
+		  </if>
+		  <if test="tel != null and tel !='' ">
+		      AND bal.TEL =#{tel}
+		  </if>
+		  <if test="customerOrLoan != null and customerOrLoan !='' ">
+		      AND bal.CUSTOMER_OR_LOAN =#{customerOrLoan}
+		  </if>
+		  <if test="storeId != null and storeId !='' ">
+		      AND bal.SALES_DEPTMENT =#{storeId}
+		  </if>
+		  <if test="istask != null and istask !='' ">
+		      <if test='istask=="1"'>
+			     AND bal.LOAN_MANAGER_CAST_ID IS  NULL AND bal.MANAGER_CAST_ID IS  NULL
+			  </if>
+			  <if test='istask=="0"' >
+		         AND bal.LOAN_MANAGER_CAST_ID IS  NOT NULL OR bal.MANAGER_CAST_ID IS  NOT NULL
+		  </if>
+		  </if>
+		  <if test="page !='-1' ">
+		      <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		  </if>
+		</where>
+    </sql>
+    
+    <sql id="descCustomerTaskSql">
+         ORDER BY bal.CREATE_TIME DESC
+    </sql>
+    
+    
+    <!-- 根据员工id获取所属用户 -->
+     <select id="findDeptEmp" parameterType="com.hoomsun.after.api.model.param.CustomerTaskAllocationReq" 
+	                 resultType="com.hoomsun.after.api.model.vo.CustomerTaskAllocationResult">
+	        SELECT EMP_ID AS empId,  
+	        EMP_WORK_NUM AS empWorkNum, 
+	        EMP_NAME AS empName,
+			(SELECT COUNT(bal.ID)  FROM HS_AFTER_LOANBAL bal WHERE bal.MANAGER_CAST_ID=EMP_WORK_NUM OR bal.LOAN_MANAGER_CAST_ID=EMP_WORK_NUM)AS loanBalNum
+			FROM HS_EMPLOYEE 
+			WHERE DEPT_ID=
+			(SELECT DEPT_ID FROM HS_EMPLOYEE WHERE EMP_ID=#{empId}) and EMP_STATUS =3
+     </select>
+     
+     <!-- 任务分配  更新派件所属客户 -->
+  <select id="updateCustomerTaskInfo" parameterType="com.hoomsun.after.api.model.param.NomalCustomerReq" resultType="java.lang.Integer">
+        UPDATE
+		HS_AFTER_LOANBAL 
+		SET
+		<if test="managerCastId !=null and managerCastId !='' ">
+		         MANAGER_CAST_ID=#{managerCastId},
+		         MANAGER_CAST=#{managerCast},
+		</if>
+		<if test="loanManagerCastId !=null and loanManagerCastId !='' ">
+			    LOAN_MANAGER_CAST_ID=#{loanManagerCastId},
+			    LOAN_MANAGER_CAST=#{loanManagerCast},
+		</if>
+		SALES_DEPTMENT =#{salesDeptment},
+		UPDATE_DATE=sysdate
+		WHERE
+		LOAN_ID=#{loanId}
+  </select>
+  
+  <!-- 查询件所属管理客服信息 -->
+  <select id="queryCustomerLoanBalDetails" parameterType="java.lang.String" 
+                 resultType="com.hoomsun.after.api.model.vo.CustomerTaskAllocationResult">
+				SELECT 
+				bal.CON_NO AS conNo,
+				bal.MANAGER_CAST_ID AS managerCastId,
+				bal.MANAGER_CAST AS managerCast,
+				bal.LOAN_MANAGER_CAST_ID AS loanManagerCastId,
+				bal.LOAN_MANAGER_CAST AS loanManagerCastName
+				FROM HS_AFTER_LOANBAL bal 
+				WHERE bal.LOAN_ID = #{loanId}
+  </select>
+  <!-- 添加给客户分配件记录信息 -->
+  <select id="insertCustomerTaskInfo" parameterType="com.hoomsun.after.api.model.param.DeliveryHistoryReq" 
+       resultType="int">
+        INSERT INTO
+        HS_AFTER_DELIVERY_HISTORY(
+        ID, 
+        APPOINT_PEOPLE_ID, 
+        APPOINT_PEOPLE_NAME,
+		OPERATOR_ID,
+		OPERATOR_NAME,
+		CREATE_TIME,
+		LOAN_ID,
+		DELIVERY_TYPE)
+		VALUES 
+		(
+		#{id},
+		#{appointPeopleId},
+		#{appointPeopleName},
+		#{optionId},
+		#{optionName},
+		sysdate,
+		#{loanId},
+		#{deliveryType}
+		)
+  </select>
+  <!-- 任务分配记录表 -->
+  <insert id="insertCustomerAllot" parameterType="com.hoomsun.after.api.model.table.Allot">
+        INSERT INTO
+        HS_AFTER_ALLOT(
+        ID, 
+        ALLOT_TYPE,
+        LAON_ID,
+        CON_NO,
+        OLD_MANAGER_CASTID,
+        OLD_MANAGER_CAST,
+        NEW_MANAGER_CASTID,
+        NEW_MANAGER_CAST,
+        OPERATION_ID,
+        OPERATION_NAME,
+        ALLOT_TIME
+		)
+		VALUES 
+		(
+		#{id},
+		#{allotType},
+		#{laonId},
+		#{conNo},
+		#{oldManagerCastid},
+		#{oldManagerCast},
+		#{newManagerCastid},
+		#{newManagerCast},
+		#{operationId},
+		#{operationName},
+		 sysdate
+		)
+  </insert>
+  
+  <!-- 根据loanId查询当前件被谁管理 -->
+  <select id="queryAllotDetails" parameterType="java.lang.String" resultType="com.hoomsun.after.api.model.table.Allot">
+        SELECT * FROM(
+		SELECT 
+		haa.NEW_MANAGER_CASTID AS newManagerCastid,
+		haa.NEW_MANAGER_CAST AS newManagerCast
+		FROM HS_AFTER_ALLOT haa
+		WHERE 
+		haa.LAON_ID = #{loanId}
+		ORDER BY ALLOT_TIME DESC
+		)
+		WHERE
+		ROWNUM=1
+  </select>
+</mapper>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.CollectionRecordMapper">
+	
+	<!-- 催收任务列表 -->
+	<select id="queryCollectionRecord" parameterType="com.hoomsun.after.api.model.param.CollectionRecordReq"
+		resultType="com.hoomsun.after.api.model.vo.CollectionRecordResult">
+		SELECT * FROM (
+			  SELECT ROWNUM AS r,A.* FROM 
+			    (
+			     <include refid="selectCollectionRecord"/>
+			     <include refid="fromCollectionRecord"/>
+			     )A
+			      <include refid="whereCollectionRecord"/>
+			      <include refid="descCollectionRecord"/>
+        )
+       <![CDATA[ WHERE  r > (#{ page }- 1) * #{ pageSize }]]>
+	</select>
+	
+	<!-- 查询总条数 -->
+	<select id="countCollectionRecord" parameterType="com.hoomsun.after.api.model.param.CollectionRecordReq" resultType="java.lang.Integer">
+		SELECT COUNT(A.loanId) 
+		FROM 
+		(
+		SELECT 
+		bal.LOAN_ID AS loanId,
+		bal.CON_NO AS conNo,
+		bal.CARD_NO AS cardNo,
+		bal.CAST_NAME AS castName,
+		bal.DELAY_FLAG AS dalayFlag,
+		bal.SETTLE_FLAG AS settleFlag,
+		bal.POS_TYPE AS posType,
+		bal.MANAGER_CAST_ID AS managerCastId,
+		bal.LOAN_MANAGER_CAST_ID AS loanManagerCastId,
+		bal.TEL AS tel,
+		bal.CUSTOMER_OR_LOAN AS customerOrLoan,
+		bal.M_SECTION AS mSection,
+		bal.CAST_ID AS castId,
+		haor.OVERDUE_NUM AS overdueNum,
+		bal.SALES_DEPTMENT AS salesDeptment
+		FROM HS_AFTER_LOANBAL bal
+		LEFT JOIN HS_AFTER_OVERDUE_RECORD haor ON bal.LOAN_ID=haor.LOAN_ID
+		LEFT JOIN HS_AFTER_USER_COUNT hauc ON bal.CAST_ID=hauc.CAST_ID
+		)A
+		<include refid="whereCollectionRecord"/>
+	</select>
+	
+	
+	<sql id="selectCollectionRecord">
+	    SELECT 
+		bal.LOAN_ID AS loanId,
+		bal.CON_NO AS conNo,
+		bal.APPLY_ID AS applyId,
+		bal.CAST_NAME AS castName,
+		bal.CARD_NO AS cardNo,
+		bal.TEL AS tel,
+		bal.CURRENT_PERIOD AS currentPeriod,
+		bal.LOAN_MONEY AS loanMoney,
+		bal.LOAN_DATE AS loanDate,
+		bal.POS_TYPE AS posType,
+		nvl(bal.OVERDUE_SUB_MONEY,0) AS overdueSubMoney,
+		bal.CAST_ID AS castId,
+		bal.REPAY_DATE AS repayDate,
+		bal.LOAN_PERIOD AS loanPeriod,
+		hauc.BANK_ACCOUNT AS bankAcount,
+		hauc.CAST_SOURCE AS castSource,
+		hauc.SEX AS sex,
+		bal.PRODUCT_NAME AS productName,
+		bal.PRODUCTALIAS AS productAlias,
+		bal.HANG_UP AS hangUp,
+		bal.HANG_UP_DATE AS hangUpDate,
+		bal.STATEMENT_DATE AS statementDate,
+		bal.M_SECTION AS mSection,
+		bal.CON_MONEY AS conMoney,
+		haor.OVERDUE_DAYS AS overdueDays,
+		haor.RECEIVE_PENALTY AS receivePenalTy,
+		haor.RECEIVE_INTEREST AS receiveInterst,
+		haor.RECEIVE_PENALTY_INTEREST AS receivePenaltyInt,
+		haor.RECEIVE_CORPUS AS receiveCorpus,
+		haor.RECEIVE_SHOULDINTE AS receiveShouldinte,
+		haor.AMT AS amt,
+		haor.RECEIVE_MONEY AS receiveMoney,
+		haor.OVERDUE_NUM AS overdueNum,
+		haor.SETTLE_FLAG AS settleFlag,
+		haor.CREATE_TIME AS ceateTime,
+		bal.CUSTOMER_OR_LOAN AS customerOrLoan,
+		bal.DELAY_FLAG AS dalayFlag,
+		bal.MANAGER_CAST_ID AS managerCastId,
+		bal.MANAGER_CAST AS managerCast,
+		bal.LOAN_MANAGER_CAST AS loanManagerCastName,
+		bal.LOAN_MANAGER_CAST_ID AS loanManagerCastId,
+		bal.SALES_DEPTMENT AS salesDeptment
+	</sql>
+	
+	<sql id="fromCollectionRecord">
+	    FROM HS_AFTER_LOANBAL bal
+		LEFT JOIN HS_AFTER_OVERDUE_RECORD haor ON bal.LOAN_ID=haor.LOAN_ID
+		LEFT JOIN HS_AFTER_USER_COUNT hauc ON bal.CAST_ID=hauc.CAST_ID
+	</sql>
+	
+	<sql id="whereCollectionRecord">
+	   <where>
+			A.overdueNum=(SELECT min(OVERDUE_NUM) as num 
+			FROM  HS_AFTER_OVERDUE_RECORD 
+			WHERE LOAN_ID=loanId AND SETTLE_FLAG=0
+			GROUP BY LOAN_ID)
+		  <if test="loanId != null and loanId !='' ">
+		      AND A.loanId =#{loanId}
+		  </if>
+		  <if test="conNo != null and conNo !='' ">
+		      AND A.conNo =#{conNo}
+		  </if>
+		  <if test="cardNo != null and cardNo !='' ">
+		      AND A.cardNo =#{cardNo}
+		  </if>
+		  <if test="tel != null and tel !='' ">
+		      AND A.tel =#{tel}
+		  </if>
+		   <if test="posType != null and posType !='' ">
+		       AND A.posType =#{posType}
+		   </if>
+		  <if test="castName != null and castName !='' ">
+		       <![CDATA[AND A.castName  LIKE  '%'||#{castName}||'%' ]]>
+		  </if>
+		  <if test="dalayFlag != null and dalayFlag !='' ">
+		      AND A.dalayFlag =#{dalayFlag}
+		  </if>
+		  <if test="settleFlag != null and settleFlag !='' ">
+		      AND A.settleFlag =#{settleFlag}
+		  </if>
+		  <if test="managerCastId != null and managerCastId !='' ">
+		      AND A.managerCastId =#{managerCastId}
+		  </if>
+		  <if test="loanManagerCastId != null and loanManagerCastId !='' ">
+		      AND A.loanManagerCastId =#{loanManagerCastId}
+		  </if>
+		  <if test="mSection != null and mSection !='' ">
+		      AND A.mSection =#{mSection}
+		  </if>
+		  <if test="customerOrLoan != null and customerOrLoan !='' ">
+		      AND A.customerOrLoan =#{customerOrLoan}
+		  </if>
+		  <if test="salesDeptment != null and salesDeptment !='' ">
+		      AND A.salesDeptment =#{salesDeptment}
+		  </if>
+		  <if test="page !='-1' ">
+		      <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		  </if>
+		</where>
+	</sql>
+	
+	<sql id="descCollectionRecord">
+	   ORDER BY A.ceateTime DESC
+	</sql>
+
+ <!-- 催收任务列表 逾期月还详细信息 -->
+ <select id="queryOverdueRecordDetails" parameterType="com.hoomsun.after.api.model.param.NomalCustomerReq" 
+                    resultType="com.hoomsun.after.api.model.vo.NomalCustomerResult">
+		    SELECT
+			A.*
+		    FROM
+			(	
+			SELECT
+			bal.CAST_NAME AS castName,
+			bal.LOAN_ID AS loanId,
+			bal.CARD_NO AS cardNo,
+			bal.TEL AS tel,
+			hauc.BANK_ACCOUNT AS bankAcount,
+			hauc.BANK AS bankName,
+			bal.LOAN_PERIOD AS loanPeriod,
+			bal.CURRENT_PERIOD AS currentPeriod,
+			haor.OVERDUE_NUM AS overdueNum,
+			haor.OVERDUE_DAYS AS overdueDays,
+			bal.LOAN_MONEY AS loanMoney,
+			bal.CON_MONEY AS conMoney,
+			bal.OVERDUE_SUB_MONEY AS overdueSubMoney,
+			bal.OVERDUE_SUB_DATE AS overdueSubDate,
+			bal.OVERDUE_SUB_STREAM AS overdueSubStrean,
+			hauc.bal AS balAmt,
+			haor.RECEIVE_SHOULDINTE AS shouldInte,
+			haor.RECEIVE_CORPUS AS shouldCapi,
+			haor.AMT AS shouldAmt,
+			haor.RECEIVE_PENALTY_INTEREST AS receivePenaltyInterest,
+			haor.RECEIVE_INTEREST AS receiveInterest,
+			haor.RECEIVE_MONEY AS receiveMoney
+		    FROM
+			HS_AFTER_LOANBAL bal 
+			LEFT JOIN HS_AFTER_OVERDUE_RECORD haor ON bal.LOAN_ID=haor.LOAN_ID 
+			LEFT JOIN HS_AFTER_USER_COUNT hauc ON bal.CAST_ID=hauc.CAST_ID )A
+			WHERE
+			A.overdueNum=(SELECT min(OVERDUE_NUM) as num 
+			FROM  HS_AFTER_OVERDUE_RECORD 
+			WHERE LOAN_ID=loanId AND SETTLE_FLAG=0
+			GROUP BY LOAN_ID)
+			<if test="loanId != null and loanId !='' ">
+		       AND A.loanId =#{loanId}
+		  </if>
+		  <if test="currentPeriod != null and currentPeriod !='' ">
+		      AND A.currentPeriod =#{currentPeriod}
+		  </if>
+ </select>
+ 
+ <!-- 催收提醒 查询客户案件详情 -->
+ <select id="queryCustomerCastInfo" parameterType="com.hoomsun.after.api.model.param.CollectionRecordReq"
+                  resultType="com.hoomsun.after.api.model.vo.CustomerCollectionRemindingResult">
+		        SELECT  *
+				FROM(
+				SELECT
+				bal.LOAN_ID AS loanId,
+				bal.CAST_NAME AS castName,
+				hauc.SEX AS sex,
+				bal.CARD_NO AS cardNo,
+				bal.LOAN_MANAGER_CAST_ID AS loanManagerCastId,
+				bal.LOAN_MANAGER_CAST AS loanManagerCast,
+				bal.CURRENT_PERIOD AS currentPeriod,
+				hauc.TEL AS tel,
+				hauc.BANK AS bankName,
+				hauc.BANK_ACCOUNT AS bankAcount,
+				app.HOUSE_ADDRESS AS homeAddress,
+				bal.PRODUCT_NAME AS productName,
+				bal.LOAN_PERIOD AS loanPeriod,
+				(NVL(bal.LOAN_PERIOD,0)-NVL(haor.OVERDUE_NUM,0))AS remainderPeriod,
+				haor.OVERDUE_NUM AS overdueNum,
+				bal.LOAN_MONEY AS loanMoney,
+				bal.LOAN_DATE AS loanDate,
+				bal.STATEMENT_DATE AS statementDate,
+				NVL(hrp.SHOULD_AMT,0) AS shouldAmt,
+				hrp.BILLS_DATE AS replaymentDate
+				FROM HS_AFTER_LOANBAL bal
+				LEFT JOIN HS_AFTER_OVERDUE_RECORD haor ON bal.LOAN_ID=haor.LOAN_ID
+				LEFT JOIN HS_AFTER_USER_COUNT hauc ON bal.CAST_ID=hauc.CAST_ID
+				LEFT JOIN HS_APPLY app ON bal.LOAN_ID=app.LOAN_ID
+				LEFT JOIN HS_REPAYMENT_PLAN hrp ON bal.LOAN_ID=hrp.LOAN_ID
+				WHERE
+				bal.CURRENT_PERIOD=hrp.SHOULD_TERM
+				AND
+				bal.LOAN_ID=#{loanId}
+				)A
+				 WHERE A.overdueNum=(SELECT min(OVERDUE_NUM) as num 
+				FROM  HS_AFTER_OVERDUE_RECORD 
+				WHERE LOAN_ID=loanId AND SETTLE_FLAG=0
+				GROUP BY LOAN_ID)
+ </select>
+ 
+ <!-- 催收提醒 逾期合计信息 -->
+ <select id="queryCustomerOverdueInfo" parameterType="com.hoomsun.after.api.model.param.CollectionRecordReq"
+                resultType="com.hoomsun.after.api.model.vo.CollectionRecordResult">
+                SELECT
+				NVL(haor.OVERDUE_NUM,0) AS overdueNum,
+				haor.OVERDUE_DAYS AS overdueDays,
+				haor.RECEIVE_PENALTY AS receivePenaltyInterest,
+				haor.RECEIVE_INTEREST AS receiveInterest,
+				haor.RECEIVE_PENALTY_INTEREST AS receivePenaltyInt,
+				NVL(haor.RECEIVE_MONEY,0) AS receiveMoney
+				FROM
+				HS_AFTER_OVERDUE_RECORD haor
+				WHERE
+				haor.LOAN_ID=#{loanId}
+				AND
+				haor.SETTLE_FLAG='0'
+</select>
+
+<!-- 催收提醒 催收记录信息 -->
+<select id="queryCustomerCallHistory" parameterType="com.hoomsun.after.api.model.param.CollectionRecordReq"
+               resultType="com.hoomsun.after.api.model.vo.CollectingReceivingCallResult">
+                SELECT 
+				hacr.CREATE_TIME AS collectingDate,
+				hacr.COLL_CAST_NAME AS collectingName,
+				hacr.COLL_CUS_RELATIONSHIP AS relationship,
+				hacr.COLL_RECEIVING_STATE AS receivingState,
+				hacr.COLL_REMINDING_NUM AS noMndingNum,
+				hacr.COLL_REMINDING_STATE AS remindingState,
+				he.EMP_NAME AS noteTaker,
+				hacr.NEXT_REMINDING AS nextRemindingTime,
+				hacr.NOTE AS remarks
+				FROM HS_AFTER_COLLECTION_RECORD hacr
+				LEFT JOIN HS_EMPLOYEE he ON hacr.NOTE_TAKER_ID=he.EMP_WORK_NUM
+				WHERE
+				hacr.LOAN_ID=#{loanId}
+				ORDER BY hacr.CREATE_TIME DESC
+</select>
+
+<!-- 添加催收客户记录信息 -->
+<insert id="addCustomerCollectionInfo" parameterType="com.hoomsun.after.api.model.vo.CollectingReceivingCallResult">
+        INSERT INTO
+        HS_AFTER_COLLECTION_RECORD(
+        ID, 
+        CREATE_TIME, 
+        UPDATE_TIME,
+		COLL_CAST_NAME,
+		COLL_CUS_RELATIONSHIP,
+		COLL_CUS_TEL,
+		COLL_RECEIVING_STATE,
+		COLL_REMINDING_STATE,
+		COLL_REMINDING_NUM,
+		NOTE_TAKER_ID,
+		NEXT_REMINDING,
+		NOTE,
+		LOAN_ID)
+		VALUES 
+		(
+		#{id},
+		#{createTimeDate},
+		#{updateTime},
+		#{collectingName},
+		#{relationship},
+		#{collectingTel},
+		#{receivingState},
+		#{remindingState},
+		#{mindingNum},
+		#{noteTaker},
+		#{nextRemindingTimeDate},
+		#{remarks},
+		#{loanId}
+		)
+</insert>
+
+<!-- 催收任务  点评信息 -->
+<insert id="addCommentCollectionRecordInfo" parameterType="com.hoomsun.after.api.model.table.Review">
+        INSERT INTO
+        HS_AFTER_REVIEW(
+        ID, 
+        LOAN_ID, 
+        CON_NO, 
+        STREAM, 
+        COMMENT_DESC, 
+        CREATE_TIME,
+        APPLICATION_CAST_ID,
+        APPLICATION_CAST_NAME
+        )
+		VALUES 
+		(
+		#{id},
+		#{loanId},
+		#{conNo},
+		#{stream},
+		#{commentDesc},
+		 sysdate,
+		#{applicationCastId},
+		#{applicationCastName}
+		)
+</insert>
+
+<!-- 更新逾期表 标红-->
+<update id="updateOverdueRocordFlag" parameterType="com.hoomsun.after.api.model.param.CollectionRecordReq">
+   UPDATE 
+   HS_AFTER_OVERDUE_RECORD 
+   SET TO_RED='1' ,
+   UPDATE_DATE=sysdate
+   WHERE 
+   OVERDUE_NUM=#{overdueNum}
+   AND LOAN_ID=#{loanId}
+</update>
+</mapper>

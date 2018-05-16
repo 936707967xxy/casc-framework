@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysEmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysEmployee">
+    <id column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+    <result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+    <result column="EMP_WORK_NUM" jdbcType="VARCHAR" property="empWorkNum" />
+    <result column="EMP_PWD" jdbcType="VARCHAR" property="empPwd" />
+    <result column="EMP_SEX" jdbcType="VARCHAR" property="empSex" />
+    <result column="EMP_AGE" jdbcType="DECIMAL" property="empAge" />
+    <result column="EMP_CERT" jdbcType="VARCHAR" property="empCert" />
+    <result column="EMP_EMAIL" jdbcType="VARCHAR" property="empEmail" />
+    <result column="EMP_MOBILE" jdbcType="VARCHAR" property="empMobile" />
+    <result column="EMP_ADDRESS" jdbcType="VARCHAR" property="empAddress" />
+    <result column="EMP_STATUS" jdbcType="DECIMAL" property="empStatus" />
+    <result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+    <result column="ADD_EMP" jdbcType="VARCHAR" property="addEmp" />
+    <result column="MODIFY_DATE" jdbcType="VARCHAR" property="modifyDate" />
+    <result column="MODIFY_EMP" jdbcType="VARCHAR" property="modifyEmp" />
+    <result column="DEPT_ID" jdbcType="VARCHAR" property="deptId" />
+    <result column="COM_ID" jdbcType="VARCHAR" property="comId" />
+    <result column="JOB_ID" jdbcType="VARCHAR" property="jobId" />
+    <result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+    <result column="COM_NAME" jdbcType="VARCHAR" property="comName" />
+    <result column="JOB_NAME" jdbcType="VARCHAR" property="jobName" />
+    <result column="EMP_STATUS_VAL" jdbcType="VARCHAR" property="empStatusVal" />
+    <result column="OA_ID" jdbcType="VARCHAR" property="oaId" />
+    <result column="LEAVE_DATE" jdbcType="TIMESTAMP" property="leaveDate" />
+    <result column="ENTRY_DATE" jdbcType="TIMESTAMP" property="entryDate" />
+    <result column="LOCK_DATE" jdbcType="TIMESTAMP" property="lockDate" />
+    <result column="EMP_SCOPE" jdbcType="VARCHAR" property="empScope" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EMP_ID, EMP_NAME, EMP_WORK_NUM, EMP_PWD, EMP_SEX, EMP_AGE, EMP_CERT, EMP_EMAIL, EMP_MOBILE, 
+    EMP_ADDRESS, EMP_STATUS, ADD_DATE, ADD_EMP, MODIFY_DATE, MODIFY_EMP, DEPT_ID, COM_ID, 
+    JOB_ID, DEPT_NAME, COM_NAME, JOB_NAME, EMP_STATUS_VAL, OA_ID, LEAVE_DATE, ENTRY_DATE, 
+    LOCK_DATE, EMP_SCOPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_EMPLOYEE
+    where EMP_ID = #{empId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_EMPLOYEE
+    where EMP_ID = #{empId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysEmployee">
+    insert into HS_EMPLOYEE (EMP_ID, EMP_NAME, EMP_WORK_NUM, 
+      EMP_PWD, EMP_SEX, EMP_AGE, 
+      EMP_CERT, EMP_EMAIL, EMP_MOBILE, 
+      EMP_ADDRESS, EMP_STATUS, ADD_DATE, 
+      ADD_EMP, MODIFY_DATE, MODIFY_EMP, 
+      DEPT_ID, COM_ID, JOB_ID, 
+      DEPT_NAME, COM_NAME, JOB_NAME, 
+      EMP_STATUS_VAL, OA_ID, LEAVE_DATE, 
+      ENTRY_DATE, LOCK_DATE, EMP_SCOPE
+      )
+    values (#{empId,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, #{empWorkNum,jdbcType=VARCHAR}, 
+      #{empPwd,jdbcType=VARCHAR}, #{empSex,jdbcType=VARCHAR}, #{empAge,jdbcType=DECIMAL}, 
+      #{empCert,jdbcType=VARCHAR}, #{empEmail,jdbcType=VARCHAR}, #{empMobile,jdbcType=VARCHAR}, 
+      #{empAddress,jdbcType=VARCHAR}, #{empStatus,jdbcType=DECIMAL}, #{addDate,jdbcType=VARCHAR}, 
+      #{addEmp,jdbcType=VARCHAR}, #{modifyDate,jdbcType=VARCHAR}, #{modifyEmp,jdbcType=VARCHAR}, 
+      #{deptId,jdbcType=VARCHAR}, #{comId,jdbcType=VARCHAR}, #{jobId,jdbcType=VARCHAR}, 
+      #{deptName,jdbcType=VARCHAR}, #{comName,jdbcType=VARCHAR}, #{jobName,jdbcType=VARCHAR}, 
+      #{empStatusVal,jdbcType=VARCHAR}, #{oaId,jdbcType=VARCHAR}, #{leaveDate,jdbcType=TIMESTAMP}, 
+      #{entryDate,jdbcType=TIMESTAMP}, #{lockDate,jdbcType=TIMESTAMP}, #{empScope,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysEmployee">
+    insert into HS_EMPLOYEE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        EMP_ID,
+      </if>
+      <if test="empName != null">
+        EMP_NAME,
+      </if>
+      <if test="empWorkNum != null">
+        EMP_WORK_NUM,
+      </if>
+      <if test="empPwd != null">
+        EMP_PWD,
+      </if>
+      <if test="empSex != null">
+        EMP_SEX,
+      </if>
+      <if test="empAge != null">
+        EMP_AGE,
+      </if>
+      <if test="empCert != null">
+        EMP_CERT,
+      </if>
+      <if test="empEmail != null">
+        EMP_EMAIL,
+      </if>
+      <if test="empMobile != null">
+        EMP_MOBILE,
+      </if>
+      <if test="empAddress != null">
+        EMP_ADDRESS,
+      </if>
+      <if test="empStatus != null">
+        EMP_STATUS,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="addEmp != null">
+        ADD_EMP,
+      </if>
+      <if test="modifyDate != null">
+        MODIFY_DATE,
+      </if>
+      <if test="modifyEmp != null">
+        MODIFY_EMP,
+      </if>
+      <if test="deptId != null">
+        DEPT_ID,
+      </if>
+      <if test="comId != null">
+        COM_ID,
+      </if>
+      <if test="jobId != null">
+        JOB_ID,
+      </if>
+      <if test="deptName != null">
+        DEPT_NAME,
+      </if>
+      <if test="comName != null">
+        COM_NAME,
+      </if>
+      <if test="jobName != null">
+        JOB_NAME,
+      </if>
+      <if test="empStatusVal != null">
+        EMP_STATUS_VAL,
+      </if>
+      <if test="oaId != null">
+        OA_ID,
+      </if>
+      <if test="leaveDate != null">
+        LEAVE_DATE,
+      </if>
+      <if test="entryDate != null">
+        ENTRY_DATE,
+      </if>
+      <if test="lockDate != null">
+        LOCK_DATE,
+      </if>
+      <if test="empScope != null">
+        EMP_SCOPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empWorkNum != null">
+        #{empWorkNum,jdbcType=VARCHAR},
+      </if>
+      <if test="empPwd != null">
+        #{empPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="empSex != null">
+        #{empSex,jdbcType=VARCHAR},
+      </if>
+      <if test="empAge != null">
+        #{empAge,jdbcType=DECIMAL},
+      </if>
+      <if test="empCert != null">
+        #{empCert,jdbcType=VARCHAR},
+      </if>
+      <if test="empEmail != null">
+        #{empEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="empMobile != null">
+        #{empMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="empAddress != null">
+        #{empAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatus != null">
+        #{empStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="addEmp != null">
+        #{addEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        #{modifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyEmp != null">
+        #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="comId != null">
+        #{comId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null">
+        #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="comName != null">
+        #{comName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null">
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatusVal != null">
+        #{empStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="oaId != null">
+        #{oaId,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveDate != null">
+        #{leaveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryDate != null">
+        #{entryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockDate != null">
+        #{lockDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empScope != null">
+        #{empScope,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysEmployee">
+    update HS_EMPLOYEE
+    <set>
+      <if test="empName != null">
+        EMP_NAME = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empWorkNum != null">
+        EMP_WORK_NUM = #{empWorkNum,jdbcType=VARCHAR},
+      </if>
+      <if test="empPwd != null">
+        EMP_PWD = #{empPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="empSex != null">
+        EMP_SEX = #{empSex,jdbcType=VARCHAR},
+      </if>
+      <if test="empAge != null">
+        EMP_AGE = #{empAge,jdbcType=DECIMAL},
+      </if>
+      <if test="empCert != null">
+        EMP_CERT = #{empCert,jdbcType=VARCHAR},
+      </if>
+      <if test="empEmail != null">
+        EMP_EMAIL = #{empEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="empMobile != null">
+        EMP_MOBILE = #{empMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="empAddress != null">
+        EMP_ADDRESS = #{empAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatus != null">
+        EMP_STATUS = #{empStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="addEmp != null">
+        ADD_EMP = #{addEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyDate != null">
+        MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyEmp != null">
+        MODIFY_EMP = #{modifyEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="deptId != null">
+        DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      </if>
+      <if test="comId != null">
+        COM_ID = #{comId,jdbcType=VARCHAR},
+      </if>
+      <if test="jobId != null">
+        JOB_ID = #{jobId,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null">
+        DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="comName != null">
+        COM_NAME = #{comName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null">
+        JOB_NAME = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatusVal != null">
+        EMP_STATUS_VAL = #{empStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="oaId != null">
+        OA_ID = #{oaId,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveDate != null">
+        LEAVE_DATE = #{leaveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryDate != null">
+        ENTRY_DATE = #{entryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lockDate != null">
+        LOCK_DATE = #{lockDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empScope != null">
+        EMP_SCOPE = #{empScope,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EMP_ID = #{empId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysEmployee">
+    update HS_EMPLOYEE
+    set EMP_NAME = #{empName,jdbcType=VARCHAR},
+      EMP_WORK_NUM = #{empWorkNum,jdbcType=VARCHAR},
+      EMP_PWD = #{empPwd,jdbcType=VARCHAR},
+      EMP_SEX = #{empSex,jdbcType=VARCHAR},
+      EMP_AGE = #{empAge,jdbcType=DECIMAL},
+      EMP_CERT = #{empCert,jdbcType=VARCHAR},
+      EMP_EMAIL = #{empEmail,jdbcType=VARCHAR},
+      EMP_MOBILE = #{empMobile,jdbcType=VARCHAR},
+      EMP_ADDRESS = #{empAddress,jdbcType=VARCHAR},
+      EMP_STATUS = #{empStatus,jdbcType=DECIMAL},
+      ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      ADD_EMP = #{addEmp,jdbcType=VARCHAR},
+      MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+      MODIFY_EMP = #{modifyEmp,jdbcType=VARCHAR},
+      DEPT_ID = #{deptId,jdbcType=VARCHAR},
+      COM_ID = #{comId,jdbcType=VARCHAR},
+      JOB_ID = #{jobId,jdbcType=VARCHAR},
+      DEPT_NAME = #{deptName,jdbcType=VARCHAR},
+      COM_NAME = #{comName,jdbcType=VARCHAR},
+      JOB_NAME = #{jobName,jdbcType=VARCHAR},
+      EMP_STATUS_VAL = #{empStatusVal,jdbcType=VARCHAR},
+      OA_ID = #{oaId,jdbcType=VARCHAR},
+      LEAVE_DATE = #{leaveDate,jdbcType=TIMESTAMP},
+      ENTRY_DATE = #{entryDate,jdbcType=TIMESTAMP},
+      LOCK_DATE = #{lockDate,jdbcType=TIMESTAMP},
+      EMP_SCOPE = #{empScope,jdbcType=VARCHAR}
+    where EMP_ID = #{empId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 登陆的信息返回 -->
+	<resultMap id="LOGIN_RESULT" type="com.hoomsun.core.model.Session">
+		<id column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+		<result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+		<result column="EMP_STATUS" jdbcType="INTEGER" property="empStatus" />
+		<result column="DEPT_ID" jdbcType="VARCHAR" property="deptId" />
+		<result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+		<result column="DEPT_STATUS" jdbcType="INTEGER" property="deptStatus" />
+		<result column="COM_ID" jdbcType="VARCHAR" property="comId" />
+		<result column="COM_NAME" jdbcType="VARCHAR" property="comName" />
+		<result column="COM_STATUS" jdbcType="VARCHAR" property="comStatus" />
+		<collection property="roles" javaType="java.util.List" ofType="com.hoomsun.core.model.SysRole" resultMap="com.hoomsun.core.dao.SysRoleMapper.BaseResultMap" />
+	</resultMap>
+	
+	<!-- 登陆 -->
+	<select id="login" parameterType="java.util.Map" resultMap="LOGIN_RESULT">
+		select
+		emp.EMP_ID,emp.EMP_NAME,emp.EMP_STATUS,dept.DEPT_ID,dept.DEPT_NAME,dept.DEPT_STATUS,
+		com.COM_ID,com.COM_NAME,com.COM_STATUS
+		from HS_EMPLOYEE
+		emp
+		LEFT JOIN HS_EMP_ROLE er on emp.EMP_ID=er.EMP_ID
+		LEFT JOIN HS_DEPARTMENT dept on emp.DEPT_ID=dept.DEPT_ID
+		LEFT JOIN HS_COMPANY com on
+		dept.COM_ID=com.COM_ID
+		WHERE (emp.EMP_WORK_NUM=#{loginName} or emp.EMP_MOBILE=#{loginName}) AND
+		emp.EMP_PWD=#{pwd} <![CDATA[AND emp.EMP_STATUS=3]]>
+	</select>
+	
+	<select id="simplLogin" resultMap="BaseResultMap">
+		SELECT
+		emp.EMP_ID,emp.EMP_NAME,emp.EMP_STATUS
+		FROM HS_EMPLOYEE emp
+		WHERE (emp.EMP_WORK_NUM=#{loginName} or emp.EMP_MOBILE=#{loginName}) AND
+		emp.EMP_PWD=#{passWord} <![CDATA[AND emp.EMP_STATUS=3]]>
+	</select>
+
+	<!-- 某员工的角色和系统资源信息 -->
+	<select id="findEmpResources" parameterType="java.lang.String" resultMap="com.hoomsun.core.dao.SysRoleMapper.ROLE_RES_RESULT_MAP">
+	     <![CDATA[SELECT  role.ROLE_ID,role.ROLE_NAME,
+		res.RES_ID,res.RES_NAME,res.RES_TYPE,res.RES_PARENT,
+		res.RES_VALUE,res.RES_URL,res.RES_LEVEL,res.RES_ICON
+		FROM HS_EMP_ROLE er
+		INNER JOIN HS_ROLE role on er.ROLE_ID=role.ROLE_ID
+		INNER JOIN HS_ROLE_RESOURCE rr on role.ROLE_ID = rr.ROLE_ID
+		INNER JOIN HS_RESOURCES res on rr.RES_ID=res.RES_ID
+		WHERE er.EMP_ID=#{empId} AND er.EMP_STATUS<>0  ORDER BY res.RES_SORT]]>
+	</select>
+
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+		<![CDATA[SELECT 
+		    emp.EMP_ID,
+		    emp.EMP_NAME,
+		    emp.EMP_WORK_NUM,
+		    emp.EMP_STATUS,
+		    emp.EMP_MOBILE,
+		    emp.EMP_EMAIL,
+		    dept.DEPT_NAME,
+		    com.COM_NAME,
+		    job.JOB_NAME 
+		  FROM 
+		  ( SELECT emp.*, ROWNUM r
+				FROM ( SELECT *
+						FROM 
+							HS_EMPLOYEE 
+						ORDER BY
+							HS_EMPLOYEE.ADD_DATE 
+					) emp
+				WHERE emp.EMP_STATUS<>0]]>
+				<if test="comId != null and comId !=''"> and emp.COM_ID=#{comId}</if>
+				<if test="deptId != null and deptId !=''"> and emp.DEPT_ID=#{deptId}</if>
+				<if test="jobId != null and jobId !=''"> and emp.JOB_ID=#{jobId}</if>
+				<if test="empName != null and empName !=''"> and emp.EMP_NAME like #{empName}</if>
+				<if test="empWorkNum != null and empWorkNum !=''"> and emp.EMP_WORK_NUM= #{empWorkNum}</if>
+				<if test="pageIndex != null and pageSize != null">
+					<![CDATA[ AND ROWNUM <= (#{pageSize}*#{pageIndex}) ]]>
+			) emp 
+		    LEFT JOIN HS_DEPARTMENT dept ON emp.DEPT_ID = dept.DEPT_ID 
+		    LEFT JOIN HS_COMPANY com  ON emp.COM_ID = com.COM_ID 
+		    LEFT JOIN HS_JOB job  ON emp.JOB_ID = job.JOB_ID 
+		  WHERE  r > (#{pageSize}*(#{pageIndex} - 1)) 
+		</if>
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[select count(EMP_ID) from HS_EMPLOYEE where  EMP_STATUS<>0]]>
+		<if test="comId != null and comId !=''"> and COM_ID=#{comId}</if>
+		<if test="deptId != null and deptId !=''"> and DEPT_ID=#{deptId}</if>
+		<if test="jobId != null and jobId !=''"> and JOB_ID=#{jobId}</if>
+		<if test="empName != null and empName !=''"> and EMP_NAME like #{empName}</if>
+		<if test="empWorkNum != null and empWorkNum !=''"> and EMP_WORK_NUM= #{empWorkNum}</if>
+	</select>
+
+	<resultMap type="com.hoomsun.core.model.SysEmployee" id="EMP_ROLE_RESULT_MAP" extends="BaseResultMap">
+		<collection property="roles" javaType="java.util.List" ofType="com.hoomsun.core.model.SysRole" resultMap="com.hoomsun.core.dao.SysRoleMapper.BaseResultMap"></collection>
+	</resultMap>
+	<select id="findEmpRoles" parameterType="java.lang.String" resultMap="EMP_ROLE_RESULT_MAP">
+		<![CDATA[
+			select emp.EMP_ID, emp.EMP_NAME,role.ROLE_ID, role.ROLE_NAME,role.ROLE_DESC
+			from HS_EMPLOYEE emp
+			LEFT JOIN HS_EMP_ROLE er ON emp.EMP_ID=er.EMP_ID
+			LEFT JOIN HS_ROLE role ON er.ROLE_ID=role.ROLE_ID
+			WHERE emp.EMP_ID=#{empId} AND  emp.EMP_STATUS<>0
+		]]>
+	</select>
+	
+	<select id="findEmpRoleId" parameterType="java.lang.String" resultType="java.lang.String">
+		<![CDATA[
+			select role.ROLE_ID
+			from HS_EMP_ROLE er
+			LEFT JOIN HS_ROLE role ON er.ROLE_ID=role.ROLE_ID
+			WHERE er.EMP_ID=#{empId}
+		]]>
+	</select>
+
+	<update id="updateStatus">
+		UPDATE HS_EMPLOYEE SET EMP_STATUS=#{empStatus} where EMP_ID=#{empId}
+	</update>
+
+	<update id="updatePassWord">
+		UPDATE HS_EMPLOYEE SET EMP_PWD=#{passWord} where EMP_ID=#{empId}
+	</update>
+
+	<select id="findResourcesByEmpId" parameterType="java.lang.String" resultMap="com.hoomsun.core.dao.SysResourcesMapper.BaseResultMap">
+		SELECT
+		res.RES_ID,res.RES_NAME,res.RES_TYPE,res.RES_PARENT,
+		res.RES_VALUE,res.RES_URL,res.RES_LEVEL,res.RES_ICON
+		FROM HS_EMP_ROLE er
+		INNER JOIN
+		HS_ROLE role on er.ROLE_ID=role.ROLE_ID
+		INNER JOIN HS_ROLE_RESOURCE rr on role.ROLE_ID = rr.ROLE_ID
+		INNER JOIN HS_RESOURCES res on
+		rr.RES_ID=res.RES_ID
+		WHERE er.EMP_ID=#{empId} <![CDATA[AND er.EMP_STATUS<>0]]> order by res.RES_SORT
+	</select>
+
+	<select id="findByDept" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT EMP_ID,EMP_NAME FROM HS_EMPLOYEE WHERE DEPT_ID=#{deptId} AND EMP_STATUS=3
+	</select>
+	
+	<!-- 员工的组件 -->
+	<resultMap id="EMP_CPT_RESULT_MAP" type="com.hoomsun.core.model.SysEmployee">
+		<id column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+		<result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+		<result column="EMP_WORK_NUM" jdbcType="VARCHAR" property="empWorkNum" />
+		<result column="COM_ID" jdbcType="VARCHAR" property="comId" />
+		<result column="COM_NAME" jdbcType="VARCHAR" property="comName" />
+		<result column="DEPT_ID" jdbcType="VARCHAR" property="deptId" />
+		<result column="DEPT_NAME" jdbcType="VARCHAR" property="deptName" />
+		<result column="DEPT_NO" jdbcType="VARCHAR" property="deptNo" />
+		<result column="JOB_ID" jdbcType="VARCHAR" property="jobId" />
+		<result column="JOB_NAME" jdbcType="VARCHAR" property="jobName" />
+		<collection property="roles" javaType="java.util.List" ofType="com.hoomsun.core.model.SysRole" resultMap="com.hoomsun.core.dao.SysRoleMapper.ROLE_CPT_RESULT_MAP" />
+	</resultMap>
+	<select id="findEmpComponents" resultMap="EMP_CPT_RESULT_MAP">
+		SELECT 
+		CPT.CPT_ID, CPT.PATH, CPT.COMPONENT, CPT.NAME, CPT.ICONCLS, CPT.HIDDEN, CPT.PARENT_ID, 
+		CPT.ASCRIPTION,CPT.REDIRECT, CPT.DROPDOWN, CPT.CPT_TYPE,CPT.CPT_VALUE,
+		R.ROLE_ID,R.ROLE_NAME,
+		EMP.EMP_ID,EMP.EMP_NAME,EMP.EMP_WORK_NUM,EMP.DEPT_ID,EMP.COM_ID,EMP.JOB_ID,EMP.EMP_STATUS,
+		COM.COM_NAME, DEPT.DEPT_NAME,DEPT.DEPT_NO, JOB.JOB_NAME
+		FROM HS_COMPONENTS CPT
+		LEFT JOIN HS_ROLE_CPT RC ON CPT.CPT_ID = RC.CPT_ID
+		LEFT JOIN HS_ROLE R ON RC.ROLE_ID = R.ROLE_ID
+		LEFT JOIN HS_EMP_ROLE ER ON R.ROLE_ID = ER.ROLE_ID
+		LEFT JOIN HS_EMPLOYEE EMP ON ER.EMP_ID = EMP.EMP_ID
+		LEFT JOIN HS_COMPANY COM ON EMP.COM_ID = COM.COM_ID
+		LEFT JOIN HS_DEPARTMENT DEPT ON EMP.DEPT_ID = DEPT.DEPT_ID
+		LEFT JOIN HS_JOB JOB ON EMP.JOB_ID = JOB.JOB_ID
+		WHERE EMP.EMP_ID=#{empId} <![CDATA[AND EMP.EMP_STATUS<>0]]>
+		<if test="systemName != null and systemName != ''">
+			AND CPT.ASCRIPTION=#{systemName}
+		</if>
+	</select>
+	
+	<update id="updateDelFlagByPrimaryKey" parameterType="java.lang.String">
+		UPDATE HS_EMPLOYEE SET EMP_STATUS=0 WHERE EMP_ID=#{empId} 
+	</update>
+	
+	<resultMap type="com.hoomsun.core.model.SysEmployee" id="BaseResultMapEmp">
+		<result column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+		<result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+		<result column="EMP_WORK_NUM" jdbcType="VARCHAR" property="empWorkNum" />
+		<result column="EMP_MOBILE" jdbcType="VARCHAR" property="empMobile" />
+		<result column="EMP_STATUS" jdbcType="INTEGER" property="empStatus" />
+	</resultMap>
+	
+	<!-- 审批组查询用户 -->
+	<select id="findUserInfoByUserCode" parameterType="java.lang.String" resultMap="BaseResultMapEmp">
+		SELECT
+		emp.EMP_ID, emp.EMP_WORK_NUM, emp.EMP_NAME
+		FROM HS_EMPLOYEE emp
+		WHERE emp.EMP_WORK_NUM=#{empWorkNum} 
+	</select>
+	
+	<!-- 审批组查询用户 -->
+	<select id="findUserInfoByempWorkNum" parameterType="java.lang.String" resultMap="BaseResultMapEmp">
+		SELECT
+		emp.EMP_ID, emp.EMP_WORK_NUM, emp.EMP_NAME
+		FROM HS_EMPLOYEE emp
+		WHERE emp.EMP_WORK_NUM=#{empWorkNum} 
+	</select>
+	
+	<!-- 某员工所在部门的所有员工数据 -->
+	<select id="findDeptEmp" parameterType="java.lang.String" resultMap="BaseResultMapEmp">
+		SELECT EMP_ID, EMP_WORK_NUM, EMP_NAME
+		FROM HS_EMPLOYEE WHERE DEPT_ID=(SELECT DEPT_ID FROM HS_EMPLOYEE WHERE EMP_ID=#{empId}) and EMP_STATUS =3
+	</select>
+	
+	<!-- 某员工所在部门员工以及其下部门所有员工 -->
+	<select id="selectEmpsByManager"  parameterType="java.lang.String" resultMap="BaseResultMapEmp">
+		SELECT emp.EMP_ID, emp.EMP_WORK_NUM, emp.EMP_NAME
+		FROM HS_EMPLOYEE emp
+		RIGHT JOIN (
+					SELECT
+				        CIL.DEPT_ID,
+				        CIL.DEPT_NAME,
+				        CIL.MANAGER
+				      FROM
+				        HS_DEPARTMENT CIL
+				      START WITH CIL.DEPT_ID =(
+				      	SELECT DEPT_ID FROM HS_EMPLOYEE WHERE EMP_ID=#{empId}
+				      	) CONNECT BY PRIOR CIL.DEPT_ID = CIL.DEPT_PARENT			
+				) depts ON emp.DEPT_ID = depts.DEPT_ID
+		WHERE  emp.EMP_STATUS =3
+	</select>
+	
+	<select id="findEmpByDeptDescendants"  parameterType="java.lang.String" resultMap="BaseResultMapEmp">
+		SELECT emp.EMP_ID, emp.EMP_WORK_NUM, emp.EMP_NAME
+		FROM HS_EMPLOYEE emp
+		RIGHT JOIN (
+					SELECT
+				        CIL.DEPT_ID,
+				        CIL.DEPT_NAME,
+				        CIL.MANAGER
+				      FROM
+				        HS_DEPARTMENT CIL
+				      START WITH CIL.DEPT_ID = #{deptId}
+				      CONNECT BY PRIOR CIL.DEPT_ID = CIL.DEPT_PARENT			
+				) depts ON emp.DEPT_ID = depts.DEPT_ID
+		WHERE  emp.EMP_STATUS =3
+	</select>
+	
+	
+	<resultMap type="com.hoomsun.core.model.vo.OAStore" id="OA_STORE_MAP">
+		<id column="DEPT_ID" property="storeId"/>
+		<result column="DEPT_NAME" property="storeName"/>
+		<result column="DEPT_NO" property="deptNo"/>
+		<result column="CITY_NAME" property="storeCityName"/>
+	</resultMap>
+	
+	<!-- 根据部门ID获取员工所在的营业部的数据 -->
+	<select id="findStoreByDeptId" resultMap="OA_STORE_MAP">
+		SELECT DEPT_ID,DEPT_NAME,DEPT_NO,CITY_NAME FROM HS_DEPARTMENT CIL WHERE CIL.STORE_FLAG=3 START WITH cil.DEPT_ID=#{deptId} CONNECT BY PRIOR CIL.DEPT_PARENT=CIL.DEPT_ID
+	</select>
+	
+	<!-- 获取门店下的直属部门  -->
+	<select id="findSubDeptByStoreId" resultMap="OA_STORE_MAP">
+		SELECT CLD.DEPT_ID,CLD.DEPT_NAME FROM HS_DEPARTMENT PAR
+		LEFT JOIN HS_DEPARTMENT CLD ON PAR.DEPT_ID = CLD.DEPT_PARENT
+		WHERE PAR.DEPT_ID=#{storeId}
+	</select>
+	
+	<select id="findEmpInDept" resultMap="BaseResultMapEmp">
+		<![CDATA[SELECT
+		emp.EMP_ID, emp.EMP_WORK_NUM, emp.EMP_NAME, emp.EMP_STATUS, emp.EMP_MOBILE
+		FROM HS_EMPLOYEE emp
+		WHERE emp.DEPT_ID=#{deptId} AND emp.EMP_STATUS =3]]>
+	</select>
+	
+    <!-- 获取某部门的负责人 -->
+    <select id="findDeptManager" parameterType="java.lang.String" resultType="java.lang.String">
+    	SELECT MANAGER FROM HS_DEPARTMENT WHERE DEPT_ID=#{deptId}
+    </select>
+        
+    <resultMap id="AddScope" type="com.hoomsun.core.model.SysEmployee"  extends="BaseResultMap">
+    	<result column="EMP_SCOPE_NAME" jdbcType="VARCHAR" property="empScopeName" />
+    </resultMap>
+	<select id="selectByPrimaryKeyAddScope" parameterType="java.lang.String" resultMap="AddScope">
+	    select 
+	    emp.EMP_ID, emp.EMP_NAME, emp.EMP_WORK_NUM, emp.EMP_PWD, 
+	    emp.EMP_SEX, emp.EMP_AGE, emp.EMP_CERT, emp.EMP_EMAIL, 
+	    emp.EMP_MOBILE, emp.EMP_ADDRESS, emp.EMP_STATUS, 
+	   	emp.DEPT_ID, emp.COM_ID,  emp.JOB_ID, emp.DEPT_NAME, 
+	   	emp.COM_NAME, emp.JOB_NAME, emp.EMP_STATUS_VAL, emp.OA_ID, emp.LEAVE_DATE, 
+	   	emp.EMP_SCOPE, dept.DEPT_NAME EMP_SCOPE_NAME
+	    from HS_EMPLOYEE emp
+	    LEFT JOIN HS_DEPARTMENT dept ON emp.EMP_SCOPE=dept.DEPT_ID
+	    where emp.EMP_ID = #{empId,jdbcType=VARCHAR}
+	</select>
+    
+    <update id="updatePwdByID" parameterType="java.lang.String">
+    	UPDATE HS_EMPLOYEE SET EMP_PWD=#{newpwd} WHERE EMP_CERT=#{cardNumber} AND EMP_PWD=#{oldpwd}
+    </update>    
+        
+    <update id="resetPwdByID" parameterType="java.lang.String">
+    	UPDATE HS_EMPLOYEE SET EMP_PWD=#{newpwd} WHERE EMP_CERT=#{cardNumber}
+    </update>  
+    
+    <update id="updateEmpStatus" parameterType="java.lang.String">
+    	UPDATE HS_EMPLOYEE SET EMP_STATUS=#{empStatus} WHERE EMP_CERT=#{cardNumber}
+    </update> 
+	
+	<!--app   邀请码信息查询  获取个人信息和归属部门信息  -->
+    <select id="findAppUserInfo" parameterType="java.lang.String" resultType="java.util.Map">
+		SELECT
+		 emp.EMP_ID, emp.EMP_WORK_NUM,emp.EMP_NAME,emp.EMP_STATUS,emp.EMP_STATUS_VAL,
+         dept.DEPT_ID,dept.DEPT_NAME
+		FROM HS_EMPLOYEE emp
+		LEFT JOIN HS_DEPARTMENT dept ON emp.DEPT_ID = dept.DEPT_ID 
+		WHERE emp.EMP_WORK_NUM=#{empWorkNum}
+	</select>
+	
+<!--app   由部门信息查询门店   -->
+    <select id="findAppUserStorInfo" parameterType="java.lang.String" resultType="java.util.Map">
+		SELECT   *  FROM HS_DEPARTMENT CIL 
+		WHERE CIL.STORE_FLAG=3 START WITH CIL.DEPT_ID=#{deptId}
+		CONNECT BY PRIOR CIL.DEPT_PARENT=CIL.DEPT_ID
+	</select>
+	
+<!-- app获取所以门店 经纬度定位 -->
+	<select id="findAllStoreData" parameterType="java.lang.String" resultType="java.util.Map">
+		SELECT * FROM   HS_DEPARTMENT  CIL  WHERE CIL.STORE_FLAG=3    
+	</select>
+	
+<!-- app获取所有门店信息签约时  -->
+    <select id="findStorebyId" parameterType="java.lang.String" resultType="java.util.Map">
+      SELECT DEPT_ID,DEPT_LATITUDE,DEPT_LONGITUDE,DEPT_WORK_ADDR,DEPT_NAME FROM   HS_DEPARTMENT 
+      WHERE DEPT_ID=#{deptId}
+    </select>
+    
+    
+    
+</mapper>

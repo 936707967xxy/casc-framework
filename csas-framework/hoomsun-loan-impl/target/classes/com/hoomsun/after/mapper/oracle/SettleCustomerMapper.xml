@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.SettleCustomerMapper">
+	
+	<!-- 结清客户信心查询 -->
+	<select id="querySettleCustomer" parameterType="com.hoomsun.after.api.model.param.SettleCustomerReq" 
+	                 resultType="com.hoomsun.after.api.model.vo.SettleCustomerResult">
+					 SELECT * FROM(
+					  <include refid="selectSettletCustomerSql"/>
+					  <include refid="fromSettletCustomerSql"/>
+					  <include refid="whereSettletCustomerSql"/>
+					  <include refid="desc"/>
+					    )
+					   <![CDATA[ WHERE  r > (#{ page }- 1) * #{ pageSize }]]>
+	</select>
+	
+	<!-- 查询结清客户总条数 -->
+	<select id="countSettleCustomer" parameterType="com.hoomsun.after.api.model.param.SettleCustomerReq" 
+	                resultType="java.lang.Integer">
+				   <include refid="countSettletCustomerSql"/>
+				   <include refid="fromSettletCustomerSql"/>
+				  <include refid="whereSettletCustomerSql"/>
+	</select>
+	
+	<sql id="countSettletCustomerSql">
+	         SELECT  COUNT(bal.LOAN_ID) 
+	</sql>
+	
+	<sql id="selectSettletCustomerSql">
+	        SELECT
+			bal.LOAN_ID AS loanId,
+			bal.CON_NO AS conNo,
+			bal.CAST_NAME AS castName,
+			bal.CARD_NO AS cardNo,
+			bal.TEL AS tel,
+			bal.CURRENT_PERIOD AS currentPeriod,
+			bal.REPAY_DATE AS repayDate,
+			bal.LOAN_PERIOD AS loanPeriod,
+			bal.LOAN_MONEY AS loanMoney,
+			bal.LOAN_DATE AS loanDate,
+			bal.CAST_ID AS castId,
+			NVL(bal.CON_MONEY,0 ) AS conMoney,
+			hauc.BANK AS bank,
+			hauc.BANK_ACCOUNT AS bankAccount,
+			hauc.BAL AS bal,
+			hrp.SHOULD_TERM AS shouldTerm,
+			NVL(hrp.SHOULD_AMT,0) AS shouldAmt,
+			hrp.SHOULD_CAPI AS shouldCapi,
+			hrp.SHOULD_INTE AS shouldInte,
+			hrp.BILLS_DATE AS billsDate,
+			hrp.REPAY_STATUS AS repayStatus,
+			hrp.ADVANCE_SHOULD AS advanceShould,
+			NVL(hrp.ADVANCE_MONEY,0) AS advanceMoney,
+			hrp.ADVANCE_REDUCE AS advanceReduce,
+			ROWNUM AS r
+	</sql>
+	
+	<sql id="fromSettletCustomerSql">
+			FROM HS_AFTER_LOANBAL bal
+			LEFT JOIN HS_AFTER_USER_COUNT hauc ON bal.CAST_ID=hauc.CAST_ID
+			LEFT JOIN HS_REPAYMENT_PLAN hrp ON bal.LOAN_ID=hrp.LOAN_ID
+	</sql>
+	
+	<sql id="whereSettletCustomerSql">
+	    <where>
+	             bal.CURRENT_PERIOD=hrp.SHOULD_TERM
+		       <if test="loanId != null and loanId !='' ">
+			       AND bal.LOAN_ID =#{loanId}
+			  </if>
+			  <if test="conNo != null and conNo !='' ">
+			      AND bal.CON_NO =#{conNo}
+			  </if>
+			  <if test="cardNo != null and cardNo !='' ">
+			      AND bal.CARD_NO =#{cardNo}
+			  </if>
+			  <if test="tel != null and tel !='' ">
+			      AND bal.TEL =#{tel}
+			  </if>
+			   <if test="settleFlag != null and settleFlag !='' ">
+			      AND bal.SETTLE_FLAG =#{settleFlag}
+			  </if>
+			   <if test="dalayFlag != null and dalayFlag !='' ">
+			      AND bal.DELAY_FLAG =#{dalayFlag}
+			  </if>
+			  <if test="repayStatus != null and repayStatus !='' ">
+			      AND hrp.REPAY_STATUS =#{repayStatus}
+			  </if>
+			  <if test="castName != null and castName !='' ">
+			      <![CDATA[ AND bal.CAST_NAME  LIKE  '%'||#{castName}||'%' ]]>
+			  </if>
+			  <if test="page !='-1' ">
+		            <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		      </if>
+	    </where>
+	</sql>
+	
+	<sql id="desc">
+	     ORDER BY hrp.SHOULD_DATE DESC
+	</sql>
+	
+	<!-- 客户还款记录明细 -->
+	<select id="queryLoanBookCustomerDetail" parameterType="com.hoomsun.after.api.model.param.SettleCustomerReq"
+	                resultType="com.hoomsun.after.api.model.vo.LoanBookCustomerResult">
+	               <include refid="selectLoanBookCustomerDetailSql"/>
+	               <include refid="fromLoanBookCustomerDetailSql"/>
+	               <include refid="whereLoanBookCustomerDetailSql"/>
+	</select>
+	
+	<sql id="selectLoanBookCustomerDetailSql">
+	           SELECT 
+	            hal.LOAN_ID AS loanId,
+			    hal.CAST_NAME AS castName,
+				hal.REPAY_DATE AS repayDate,
+				hal.STREAM AS stream,
+				hal.RECEIVE_CORPUS AS receiveCorpus,
+				hal.RECEIVE_SHOULDINTE AS receiveShouldinte,
+				hal.AMT AS amt,
+				hal.RECEIVE_PENALTY AS receivePenalty,
+				hal.RECEIVE_INTEREST AS receiveInterest,
+				hal.RECEIVE_PENALTY_INTEREST AS receivePenaltyInterest,
+				hal.RECEIVE_MONEY AS receiveMoney,
+				hal.RECEIVE_ADVANCE AS receiveAdvance,
+				hal.CHANNEL_SERVICE_FEE AS channelServiceFee,
+				hal.OVERDUE_DAYS AS overdueDays,
+				hal.SUB_MONEY AS subMoney,
+				hal.ACTUAL_MONEY AS actualMoney,
+				hal.LOANBOOK_TYPE AS loanBookType,
+				hal.LOANBOOK_TYPE_VAL AS loanBookTypeVal
+	</sql>
+	
+	<sql id="fromLoanBookCustomerDetailSql">
+	          FROM HS_AFTER_LOANBOOK hal
+	</sql>
+	
+	
+	<sql id="whereLoanBookCustomerDetailSql">
+	    <where>
+	       hal.LOAN_ID=#{loanId}
+	    </where>
+	</sql>
+</mapper>

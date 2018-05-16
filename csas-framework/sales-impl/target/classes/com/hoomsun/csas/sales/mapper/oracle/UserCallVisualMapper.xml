@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserCallVisualMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserCallVisual">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="ADD_DATA" jdbcType="OTHER" property="addData" />
+    <result column="ONE_GRAPHIC_DATA" jdbcType="VARCHAR" property="oneGraphicData" />
+    <result column="TWO_GRAPHIC_DATA" jdbcType="VARCHAR" property="twoGraphicData" />
+    <result column="THREE_GRAPHIC_DATA" jdbcType="VARCHAR" property="threeGraphicData" />
+    <result column="FOUR_GRAPHIC_DATA" jdbcType="VARCHAR" property="fourGraphicData" />
+    <result column="FIVE_GRAPHIC_DATA" jdbcType="VARCHAR" property="fiveGraphicData" />
+    <result column="SIX_GRAPHIC_DATA" jdbcType="VARCHAR" property="sixGraphicData" />
+    <result column="SEVEN_GRAPHIC_DATA" jdbcType="VARCHAR" property="sevenGraphicData" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, APPLY_ID, ADD_DATA, ONE_GRAPHIC_DATA, TWO_GRAPHIC_DATA, THREE_GRAPHIC_DATA, FOUR_GRAPHIC_DATA, 
+    FIVE_GRAPHIC_DATA, SIX_GRAPHIC_DATA, SEVEN_GRAPHIC_DATA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CALL_VISUAL
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CALL_VISUAL
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserCallVisual">
+    insert into HS_CALL_VISUAL (ID, APPLY_ID, ADD_DATA, 
+      ONE_GRAPHIC_DATA, TWO_GRAPHIC_DATA, THREE_GRAPHIC_DATA, 
+      FOUR_GRAPHIC_DATA, FIVE_GRAPHIC_DATA, SIX_GRAPHIC_DATA, 
+      SEVEN_GRAPHIC_DATA)
+    values (#{id,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{addData,jdbcType=OTHER}, 
+      #{oneGraphicData,jdbcType=VARCHAR}, #{twoGraphicData,jdbcType=VARCHAR}, #{threeGraphicData,jdbcType=VARCHAR}, 
+      #{fourGraphicData,jdbcType=VARCHAR}, #{fiveGraphicData,jdbcType=VARCHAR}, #{sixGraphicData,jdbcType=VARCHAR}, 
+      #{sevenGraphicData,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserCallVisual">
+    insert into HS_CALL_VISUAL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="addData != null">
+        ADD_DATA,
+      </if>
+      <if test="oneGraphicData != null">
+        ONE_GRAPHIC_DATA,
+      </if>
+      <if test="twoGraphicData != null">
+        TWO_GRAPHIC_DATA,
+      </if>
+      <if test="threeGraphicData != null">
+        THREE_GRAPHIC_DATA,
+      </if>
+      <if test="fourGraphicData != null">
+        FOUR_GRAPHIC_DATA,
+      </if>
+      <if test="fiveGraphicData != null">
+        FIVE_GRAPHIC_DATA,
+      </if>
+      <if test="sixGraphicData != null">
+        SIX_GRAPHIC_DATA,
+      </if>
+      <if test="sevenGraphicData != null">
+        SEVEN_GRAPHIC_DATA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="addData != null">
+        #{addData,jdbcType=OTHER},
+      </if>
+      <if test="oneGraphicData != null">
+        #{oneGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="twoGraphicData != null">
+        #{twoGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="threeGraphicData != null">
+        #{threeGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="fourGraphicData != null">
+        #{fourGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="fiveGraphicData != null">
+        #{fiveGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="sixGraphicData != null">
+        #{sixGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="sevenGraphicData != null">
+        #{sevenGraphicData,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserCallVisual">
+    update HS_CALL_VISUAL
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="addData != null">
+        ADD_DATA = #{addData,jdbcType=OTHER},
+      </if>
+      <if test="oneGraphicData != null">
+        ONE_GRAPHIC_DATA = #{oneGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="twoGraphicData != null">
+        TWO_GRAPHIC_DATA = #{twoGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="threeGraphicData != null">
+        THREE_GRAPHIC_DATA = #{threeGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="fourGraphicData != null">
+        FOUR_GRAPHIC_DATA = #{fourGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="fiveGraphicData != null">
+        FIVE_GRAPHIC_DATA = #{fiveGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="sixGraphicData != null">
+        SIX_GRAPHIC_DATA = #{sixGraphicData,jdbcType=VARCHAR},
+      </if>
+      <if test="sevenGraphicData != null">
+        SEVEN_GRAPHIC_DATA = #{sevenGraphicData,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserCallVisual">
+    update HS_CALL_VISUAL
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      ADD_DATA = #{addData,jdbcType=OTHER},
+      ONE_GRAPHIC_DATA = #{oneGraphicData,jdbcType=VARCHAR},
+      TWO_GRAPHIC_DATA = #{twoGraphicData,jdbcType=VARCHAR},
+      THREE_GRAPHIC_DATA = #{threeGraphicData,jdbcType=VARCHAR},
+      FOUR_GRAPHIC_DATA = #{fourGraphicData,jdbcType=VARCHAR},
+      FIVE_GRAPHIC_DATA = #{fiveGraphicData,jdbcType=VARCHAR},
+      SIX_GRAPHIC_DATA = #{sixGraphicData,jdbcType=VARCHAR},
+      SEVEN_GRAPHIC_DATA = #{sevenGraphicData,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+   <select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CALL_VISUAL
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+</mapper>

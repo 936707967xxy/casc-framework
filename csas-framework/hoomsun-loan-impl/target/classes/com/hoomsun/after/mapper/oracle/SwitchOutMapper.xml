@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.SwitchOutMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.SwitchOut">
+    <id column="SWITCH_OUT" jdbcType="VARCHAR" property="switchOut" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SWITCH_OUT, STATUS, CREATE_TIME, UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFTER_SWITCH_OUT
+    where SWITCH_OUT = #{switchOut,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFTER_SWITCH_OUT
+    where SWITCH_OUT = #{switchOut,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.after.api.model.table.SwitchOut">
+    insert into HS_AFTER_SWITCH_OUT (SWITCH_OUT, STATUS, CREATE_TIME, 
+      UPDATE_DATE)
+    values (#{switchOut,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.SwitchOut">
+    insert into HS_AFTER_SWITCH_OUT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="switchOut != null">
+        SWITCH_OUT,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="switchOut != null">
+        #{switchOut,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.SwitchOut">
+    update HS_AFTER_SWITCH_OUT
+    <set>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where SWITCH_OUT = #{switchOut,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.SwitchOut">
+    update HS_AFTER_SWITCH_OUT
+    set STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where SWITCH_OUT = #{switchOut,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.DeductMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.Deduct">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+		<result column="BANK" jdbcType="VARCHAR" property="bank" />
+		<result column="BANK_PHONE" jdbcType="VARCHAR" property="bankPhone" />
+		<result column="BANK_ACCOUNT" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+		<result column="DEDUCT_CHANNEL" jdbcType="VARCHAR" property="deductChannel" />
+		<result column="DEDUCT_MONEY" jdbcType="DECIMAL" property="deductMoney" />
+		<result column="DEDUCT_STATE" jdbcType="VARCHAR" property="deductState" />
+		<result column="DEDUCT_STATE_VAL" jdbcType="VARCHAR" property="deductStateVal" />
+		<result column="DEDUCT_STATE_CODE" jdbcType="VARCHAR" property="deductStateCode" />
+		<result column="DEDUCT_STATE_CZ_CODE" jdbcType="VARCHAR"
+			property="deductStateCzCode" />
+		<result column="DEDUCT_SERVER_MONEY" jdbcType="DECIMAL"
+			property="deductServerMoney" />
+		<result column="DEDUT_STREAM" jdbcType="DECIMAL" property="dedutStream" />
+		<result column="DEDUT_TYPE" jdbcType="VARCHAR" property="dedutType" />
+		<result column="DEDUT_TYPE_VAL" jdbcType="VARCHAR" property="dedutTypeVal" />
+		<result column="DEDUT_DATE" jdbcType="TIMESTAMP" property="dedutDate" />
+		<result column="CHECK_DATE" jdbcType="TIMESTAMP" property="checkDate" />
+		<result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+		<result column="APPLICATION_CAST_ID" jdbcType="VARCHAR"
+			property="applicationCastId" />
+		<result column="APPLICATION_CAST_NAME" jdbcType="VARCHAR"
+			property="applicationCastName" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="DEDUCT_BAL" jdbcType="DECIMAL" property="deductBal" />
+		<result column="UPDOWN_STATUS" jdbcType="VARCHAR" property="updownStatus" />
+		<result column="CAST_ID" jdbcType="VARCHAR" property="castId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, LOAN_ID, CON_NO, CAST_NAME, CARD_NO, BANK, BANK_PHONE,
+		BANK_ACCOUNT,
+		BANK_CODE,
+		DEDUCT_CHANNEL, DEDUCT_MONEY, DEDUCT_STATE,
+		DEDUCT_STATE_VAL, DEDUCT_STATE_CODE,
+		DEDUCT_SERVER_MONEY, DEDUT_STREAM,
+		DEDUT_TYPE, DEDUT_TYPE_VAL,
+		DEDUT_DATE, CHECK_DATE,
+		ORDER_NO,
+		APPLICATION_CAST_ID, APPLICATION_CAST_NAME, CREATE_TIME, UPDATE_DATE,
+		DEDUCT_BAL,
+		UPDOWN_STATUS,CAST_ID,DEDUCT_STATE_CZ_CODE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_DEDUCT
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_DEDUCT
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.Deduct">
+		insert into HS_AFTER_DEDUCT
+		(ID, LOAN_ID, CON_NO,
+		CAST_NAME, CARD_NO, BANK,
+		BANK_PHONE,
+		BANK_ACCOUNT, BANK_CODE,
+		DEDUCT_CHANNEL, DEDUCT_MONEY, DEDUCT_STATE,
+		DEDUCT_STATE_VAL, DEDUCT_STATE_CODE, DEDUCT_SERVER_MONEY,
+		DEDUT_STREAM, DEDUT_TYPE, DEDUT_TYPE_VAL,
+		DEDUT_DATE, CHECK_DATE,
+		ORDER_NO,
+		APPLICATION_CAST_ID, APPLICATION_CAST_NAME,
+		CREATE_TIME,
+		UPDATE_DATE, DEDUCT_BAL,
+		UPDOWN_STATUS,CAST_ID,DEDUCT_STATE_CZ_CODE)
+		values
+		(#{id,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR},
+		#{conNo,jdbcType=VARCHAR},
+		#{castName,jdbcType=VARCHAR},
+		#{cardNo,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR},
+		#{bankPhone,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR},
+		#{bankCode,jdbcType=VARCHAR},
+		#{deductChannel,jdbcType=VARCHAR},
+		#{deductMoney,jdbcType=DECIMAL}, #{deductState,jdbcType=VARCHAR},
+		#{deductStateVal,jdbcType=VARCHAR},
+		#{deductStateCode,jdbcType=VARCHAR},
+		#{deductServerMoney,jdbcType=DECIMAL},
+		#{dedutStream,jdbcType=DECIMAL}, #{dedutType,jdbcType=VARCHAR},
+		#{dedutTypeVal,jdbcType=VARCHAR},
+		#{dedutDate,jdbcType=TIMESTAMP},
+		#{checkDate,jdbcType=TIMESTAMP}, #{orderNo,jdbcType=VARCHAR},
+		#{applicationCastId,jdbcType=VARCHAR},
+		#{applicationCastName,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP},
+		#{deductBal,jdbcType=DECIMAL},
+		#{updownStatus,jdbcType=VARCHAR},
+		#{castId,jdbcType=VARCHAR},#{deductStateCzCode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.Deduct">
+		insert into HS_AFTER_DEDUCT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="conNo != null">
+				CON_NO,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="cardNo != null">
+				CARD_NO,
+			</if>
+			<if test="bank != null">
+				BANK,
+			</if>
+			<if test="bankPhone != null">
+				BANK_PHONE,
+			</if>
+			<if test="bankAccount != null">
+				BANK_ACCOUNT,
+			</if>
+			<if test="bankCode != null">
+				BANK_CODE,
+			</if>
+			<if test="deductChannel != null">
+				DEDUCT_CHANNEL,
+			</if>
+			<if test="deductMoney != null">
+				DEDUCT_MONEY,
+			</if>
+			<if test="deductState != null">
+				DEDUCT_STATE,
+			</if>
+			<if test="deductStateVal != null">
+				DEDUCT_STATE_VAL,
+			</if>
+			<if test="deductStateCode != null">
+				DEDUCT_STATE_CODE,
+			</if>
+			<if test="deductServerMoney != null">
+				DEDUCT_SERVER_MONEY,
+			</if>
+			<if test="dedutStream != null">
+				DEDUT_STREAM,
+			</if>
+			<if test="dedutType != null">
+				DEDUT_TYPE,
+			</if>
+			<if test="dedutTypeVal != null">
+				DEDUT_TYPE_VAL,
+			</if>
+			<if test="dedutDate != null">
+				DEDUT_DATE,
+			</if>
+			<if test="checkDate != null">
+				CHECK_DATE,
+			</if>
+			<if test="orderNo != null">
+				ORDER_NO,
+			</if>
+			<if test="applicationCastId != null">
+				APPLICATION_CAST_ID,
+			</if>
+			<if test="applicationCastName != null">
+				APPLICATION_CAST_NAME,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE,
+			</if>
+			<if test="deductBal != null">
+				DEDUCT_BAL,
+			</if>
+			<if test="updownStatus != null">
+				UPDOWN_STATUS,
+			</if>
+			<if test="castId != null">
+				CAST_ID,
+			</if>
+			<if test="deductStateCzCode != null">
+				DEDUCT_STATE_CZ_CODE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				#{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				#{bank,jdbcType=VARCHAR},
+			</if>
+			<if test="bankPhone != null">
+				#{bankPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				#{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode != null">
+				#{bankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="deductChannel != null">
+				#{deductChannel,jdbcType=VARCHAR},
+			</if>
+			<if test="deductMoney != null">
+				#{deductMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="deductState != null">
+				#{deductState,jdbcType=VARCHAR},
+			</if>
+			<if test="deductStateVal != null">
+				#{deductStateVal,jdbcType=VARCHAR},
+			</if>
+			<if test="deductStateCode != null">
+				#{deductStateCode,jdbcType=VARCHAR},
+			</if>
+			<if test="deductServerMoney != null">
+				#{deductServerMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="dedutStream != null">
+				#{dedutStream,jdbcType=DECIMAL},
+			</if>
+			<if test="dedutType != null">
+				#{dedutType,jdbcType=VARCHAR},
+			</if>
+			<if test="dedutTypeVal != null">
+				#{dedutTypeVal,jdbcType=VARCHAR},
+			</if>
+			<if test="dedutDate != null">
+				#{dedutDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="checkDate != null">
+				#{checkDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orderNo != null">
+				#{orderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationCastId != null">
+				#{applicationCastId,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationCastName != null">
+				#{applicationCastName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deductBal != null">
+				#{deductBal,jdbcType=DECIMAL},
+			</if>
+			<if test="updownStatus != null">
+				#{updownStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="castId != null">
+				#{castId,jdbcType=VARCHAR},
+			</if>
+			<if test="deductStateCzCode != null">
+				#{deductStateCzCode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.Deduct">
+		update HS_AFTER_DEDUCT
+		<set>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				CON_NO = #{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bank != null">
+				BANK = #{bank,jdbcType=VARCHAR},
+			</if>
+			<if test="bankPhone != null">
+				BANK_PHONE = #{bankPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				BANK_ACCOUNT = #{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode != null">
+				BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="deductChannel != null">
+				DEDUCT_CHANNEL = #{deductChannel,jdbcType=VARCHAR},
+			</if>
+			<if test="deductMoney != null">
+				DEDUCT_MONEY = #{deductMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="deductState != null">
+				DEDUCT_STATE = #{deductState,jdbcType=VARCHAR},
+			</if>
+			<if test="deductStateVal != null">
+				DEDUCT_STATE_VAL = #{deductStateVal,jdbcType=VARCHAR},
+			</if>
+			<if test="deductStateCode != null">
+				DEDUCT_STATE_CODE = #{deductStateCode,jdbcType=VARCHAR},
+			</if>
+			<if test="deductServerMoney != null">
+				DEDUCT_SERVER_MONEY =
+				#{deductServerMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="dedutStream != null">
+				DEDUT_STREAM = #{dedutStream,jdbcType=DECIMAL},
+			</if>
+			<if test="dedutType != null">
+				DEDUT_TYPE = #{dedutType,jdbcType=VARCHAR},
+			</if>
+			<if test="dedutTypeVal != null">
+				DEDUT_TYPE_VAL = #{dedutTypeVal,jdbcType=VARCHAR},
+			</if>
+			<if test="dedutDate != null">
+				DEDUT_DATE = #{dedutDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="checkDate != null">
+				CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orderNo != null">
+				ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationCastId != null">
+				APPLICATION_CAST_ID =
+				#{applicationCastId,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationCastName != null">
+				APPLICATION_CAST_NAME =
+				#{applicationCastName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="deductBal != null">
+				DEDUCT_BAL = #{deductBal,jdbcType=DECIMAL},
+			</if>
+			<if test="updownStatus != null">
+				UPDOWN_STATUS = #{updownStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="castId != null">
+				CAST_ID = #{castId,jdbcType=VARCHAR},
+			</if>
+			<if test="deductStateCzCode != null">
+				DEDUCT_STATE_CZ_CODE = #{deductStateCzCode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.Deduct">
+		update
+		HS_AFTER_DEDUCT
+		set LOAN_ID = #{loanId,jdbcType=VARCHAR},
+		CON_NO =
+		#{conNo,jdbcType=VARCHAR},
+		CAST_NAME = #{castName,jdbcType=VARCHAR},
+		CARD_NO = #{cardNo,jdbcType=VARCHAR},
+		BANK = #{bank,jdbcType=VARCHAR},
+		BANK_PHONE = #{bankPhone,jdbcType=VARCHAR},
+		BANK_ACCOUNT =
+		#{bankAccount,jdbcType=VARCHAR},
+		BANK_CODE =
+		#{bankCode,jdbcType=VARCHAR},
+		DEDUCT_CHANNEL =
+		#{deductChannel,jdbcType=VARCHAR},
+		DEDUCT_MONEY =
+		#{deductMoney,jdbcType=DECIMAL},
+		DEDUCT_STATE =
+		#{deductState,jdbcType=VARCHAR},
+		DEDUCT_STATE_VAL =
+		#{deductStateVal,jdbcType=VARCHAR},
+		DEDUCT_STATE_CODE =
+		#{deductStateCode,jdbcType=VARCHAR},
+		DEDUCT_SERVER_MONEY =
+		#{deductServerMoney,jdbcType=DECIMAL},
+		DEDUT_STREAM =
+		#{dedutStream,jdbcType=DECIMAL},
+		DEDUT_TYPE =
+		#{dedutType,jdbcType=VARCHAR},
+		DEDUT_TYPE_VAL =
+		#{dedutTypeVal,jdbcType=VARCHAR},
+		DEDUT_DATE =
+		#{dedutDate,jdbcType=TIMESTAMP},
+		CHECK_DATE =
+		#{checkDate,jdbcType=TIMESTAMP},
+		ORDER_NO =
+		#{orderNo,jdbcType=VARCHAR},
+		APPLICATION_CAST_ID =
+		#{applicationCastId,jdbcType=VARCHAR},
+		APPLICATION_CAST_NAME =
+		#{applicationCastName,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		UPDATE_DATE =
+		#{updateDate,jdbcType=TIMESTAMP},
+		DEDUCT_BAL =
+		#{deductBal,jdbcType=DECIMAL},
+		UPDOWN_STATUS =
+		#{updownStatus,jdbcType=VARCHAR},
+		CAST_ID=#{castId,jdbcType=VARCHAR},
+		DEDUCT_STATE_CZ_CODE=#{deductStateCzCode,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+
+	<!-- -->
+
+	<select id="selectByCustId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from
+		HS_AFTER_DEDUCT
+		where CAST_ID = #{custId ,jdbcType=VARCHAR}
+
+		order by
+		CREATE_TIME DESC
+	</select>
+
+	<select id="selectByLoanId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from
+		HS_AFTER_DEDUCT
+		where LOAN_ID = #{loanId ,jdbcType=VARCHAR}
+
+		order by
+		CREATE_TIME DESC
+	</select>
+
+
+</mapper>

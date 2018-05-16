@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.LoanInfoMapper">
+	<resultMap id="BeResultMap" type="com.hoomsun.csas.sales.api.model.vo.LoanInfoVo">
+	    <id column="ID" jdbcType="VARCHAR" property="id" />
+	    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+	    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+	    <result column="PID" jdbcType="VARCHAR" property="applyProductId" />
+	    <result column="PNAME" jdbcType="VARCHAR" property="applyProductName" />
+	    <result column="APPLY_AMOUNT" jdbcType="DECIMAL" property="applyAmount" />
+	    <result column="FID" jdbcType="VARCHAR" property="productId" />
+	    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+	    <result column="APPROVED_AMOUNT" jdbcType="DECIMAL" property="approvedAmount" />
+	    <result column="PRODUCT_PERIOD" jdbcType="INTEGER" property="productPeriod" />
+	    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+	    <result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+	    <result column="LOAN_USE" jdbcType="INTEGER" property="loanUse" />
+	    <result column="LOAN_USE_VAL" jdbcType="VARCHAR" property="loanUseVal" />
+	    <result column="PRECESS_STATUS_VAL" jdbcType="VARCHAR" property="precessStatusVal"/>
+	  	<result column="PRECESS_STATUS" jdbcType="VARCHAR" property="precessStatus"/>
+	  	<result column="PRECESS_ID" jdbcType="VARCHAR" property="precessId"/>
+	  	<result column="SALES_EMP_ID" jdbcType="VARCHAR" property="salesEmpId" />
+    	<result column="SALES_EMP_NAME" jdbcType="VARCHAR" property="salesEmpName" />
+    	<result column="CREATE_EMPLOYEE" jdbcType="VARCHAR" property="createEmployee" />
+    	<result column="CREATE_EMPLOYEE_VAL" jdbcType="VARCHAR" property="createEmployeeVal" />
+    	<result column="CUST_MOBILE" jdbcType="VARCHAR" property="custMobile" />
+  	</resultMap>
+  	
+  	
+  	<select id="selectByApplyId" parameterType="java.lang.String" resultMap="BeResultMap">
+    select 
+     a.APPLY_ID,
+     a.CUST_NAME,
+     a.PRODUCT_ID pid,
+     a.PRODUCT_NAME pname,
+     a.APPLY_AMOUNT,
+     b.PRODUCT_ID fid,
+     b.PRODUCT_NAME,
+     b.APPROVED_AMOUNT,
+     b.PRODUCT_PERIOD,
+     a.LOAN_ID,
+     a.ID_NUMBER,
+     a.LOAN_USE,
+     a.LOAN_USE_VAL  
+    from HS_APPLY a 
+    left join HS_FINAL_AUDIT b ON a.APPLY_ID = b.APPLY_ID 
+    WHERE a.APPLY_ID=#{applyId} 
+  </select>
+  	<sql id="Be_Column_List">
+    ID, APPLY_ID, CUST_NAME, PID, PNAME, APPLY_AMOUNT, FID, PRODUCT_NAME, 
+    APPROVED_AMOUNT,PRODUCT_PERIOD,LOAN_ID,ID_NUMBER,LOAN_USE,LOAN_USE_VAL,PRECESS_STATUS_VAL,PRECESS_STATUS,PRECESS_ID
+    ,SALES_EMP_ID,SALES_EMP_NAME,CREATE_EMPLOYEE,CREATE_EMPLOYEE_VAL,CUST_MOBILE
+    </sql>
+	<select id="findAllData" parameterType="java.util.Map" resultMap="BeResultMap">
+		SELECT APP.*
+			FROM (
+			SELECT  ROWNUM r,APPLY.APPLY_DATE,APPLY.CUST_MOBILE,APPLY.STORE_ID,APPLY.SALES_EMP_ID,APPLY.SALES_EMP_NAME,
+			APPLY.CREATE_EMPLOYEE,APPLY.CREATE_EMPLOYEE_VAL, APPLY.APPLY_ID,APPLY.DEL_STATUE,APPLY.PRECESS_STATUS_VAL, APPLY.PRECESS_STATUS, 
+	          APPLY.PRECESS_ID, APPLY.PRODUCT_NAME PNAME, APPLY.PRODUCT_ID,
+	          APPLY.ID_NUMBER, APPLY.CUST_NAME, APPLY.LOAN_ID,APPLY.APPLY_AMOUNT,
+	          APPLY.PRODUCT_ID PID, AU.APPROVED_AMOUNT,AU.PRODUCT_ID FID,AU.PRODUCT_NAME,
+	          AU.PRODUCT_PERIOD 
+		      FROM  HS_APPLY  APPLY  
+		      LEFT JOIN HS_FINAL_AUDIT AU ON APPLY.APPLY_ID = AU.APPLY_ID 
+				RIGHT JOIN 
+				(
+					SELECT DISTINCT BUSINESS_KEY_ FROM ACT_HI_PROCINST hp
+					LEFT JOIN ACT_HI_TASKINST ht ON hp.PROC_INST_ID_ = ht.PROC_INST_ID_
+					WHERE ht.TASK_DEF_KEY_='loanAudit' 
+					<choose>
+						<when test="nodeStatus == 0">AND ht.END_TIME_ IS NULL</when><!-- 未审核 -->
+						<when test="nodeStatus == 1">AND ht.END_TIME_ IS NOT NULL AND HT.ASSIGNEE_=#{empId}</when><!-- 已经审核 -->
+						<when test="nodeStatus == -1">AND ((ht.END_TIME_ IS NULL OR ht.ASSIGNEE_ IS NULL) OR HT.ASSIGNEE_=#{empId})</when><!-- 全部 -->
+					</choose>
+				) act on APPLY.APPLY_ID = act.BUSINESS_KEY_
+				<![CDATA[WHERE APPLY.STORE_ID = #{storeId} AND APPLY.DEL_STATUE=0]]>
+				<if test="custName != null and custName != ''">
+					and APPLY.CUST_NAME like #{custName} 
+				</if>
+				<if test="custMobile != null and custMobile != ''">
+					and APPLY.CUST_MOBILE LIKE #{custMobile}
+				</if>
+				<if test="loanId != null and loanId != ''">
+					and APPLY.LOAN_ID LIKE #{loanId}
+				</if>
+				<![CDATA[AND ROWNUM <=  #{pageIndex} * #{pageSize}]]>
+				ORDER BY APPLY.APPLY_DATE DESC 
+				) APP 
+			WHERE  r > (#{pageIndex} -1) * #{pageSize} 
+			 
+			 
+	</select> 
+	<select id="selectCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT COUNT(apply.APPLY_ID) FROM HS_APPLY apply
+	  	RIGHT JOIN (
+	  		SELECT DISTINCT HP.BUSINESS_KEY_ FROM ACT_HI_PROCINST HP
+			LEFT JOIN ACT_HI_TASKINST HT ON hp.PROC_INST_ID_ = HT.PROC_INST_ID_
+			WHERE HT.TASK_DEF_KEY_='loanAudit' 
+			<choose>
+				<when test="nodeStatus == 0">AND HT.END_TIME_ IS NULL</when><!-- 未审核 -->
+				<when test="nodeStatus == 1">AND HT.END_TIME_ IS NOT NULL AND HT.ASSIGNEE_=#{empId}</when><!-- 已经审核 -->
+				<when test="nodeStatus == -1">AND ((HT.END_TIME_ IS NULL OR HT.ASSIGNEE_ IS NULL) OR HT.ASSIGNEE_=#{empId})</when><!-- 全部 -->
+			</choose>
+	  	) TBL ON apply.APPLY_ID = TBL.BUSINESS_KEY_
+	  	<![CDATA[ WHERE apply.DEL_STATUE=0 ]]>
+	  	<if test="custName != null and custName != ''">
+			AND apply.CUST_NAME like #{custName}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and apply.ID_NUMBER = #{idNumber,jdbcType=VARCHAR} 
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and apply.LOAN_ID LIKE #{loanId,jdbcType=VARCHAR}
+		</if>
+	</select>
+</mapper>

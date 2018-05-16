@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.settle.dao.RepayReportMapper">
+	<resultMap type="com.hoomsun.csas.settle.model.vo.RepayReport" id="REPAY_REPORT_RESULT_MAP">
+		<result column="START_TIME" property="startTime" />
+		<result column="CON_NO" property="conNo" />
+		<result column="CAST_NAME" property="castName" />	
+		<result column="CARD_NO" property="cardNo" />
+	    <result column="STORE_NAME" property="department" />    
+		<result column="PRODUCT_ID" property="productId" />
+	    <result column="PRODUCT_NAME" property="productName"/>
+	    <result column="UPDOWN_STATUS" property="updownStatus"/>
+		<result column="LOAN_PERIOD" property="loanPeriod" />
+	    <result column="END_TIME" property="endTime" />
+		<result column="PRODUCT_RATE" property="monthRate" />
+	    <result column="CURRENT_PERIOD" property="currentPeriod" />
+	    <result column="REPAY_DATE" property="repayDate" />
+	    <result column="RECEIVE_CORPUS" property="receiveCorpus" />
+	    <result column="RECEIVE_INTEREST" property="receiveInterest" />
+		<result column="OVERDUE_PENALTY" property="overduePenalty" />
+	    <result column="OVERDUE_INTEREST" property="overdueInterest" />
+		<result column="ACTUAL_MONEY" property="actualMoney" />
+	    <result column="REPAY_TYPE" property="repayType" />
+	    	
+	</resultMap>
+	
+    <select id="findPager" parameterType="java.util.Map" resultMap="REPAY_REPORT_RESULT_MAP">
+ 
+    	
+ 		SELECT tab.* FROM (
+	  	SELECT ROWNUM r,BAL.START_TIME,BAL.CAST_NAME,BAL.CON_NO,BAL.CARD_NO,BAL.DEPARTMENT,BAL.PRODUCT_ID,BAL.PRODUCT_NAME,
+	  	BAL.UPDOWN_STATUS,BAL.LOAN_PERIOD,BAL.END_TIME,APP.PRODUCT_RATE,APP.STORE_NAME,BAL.CURRENT_PERIOD,BOOK.REPAY_DATE,
+	  	BOOK.RECEIVE_CORPUS,BOOK.RECEIVE_INTEREST,BOOK.OVERDUE_PENALTY,
+	  	BOOK.OVERDUE_INTEREST,BOOK.ACTUAL_MONEY,BOOK.REPAY_TYPE
+	    FROM HS_AFTER_LOANBAL  BAL
+        LEFT JOIN HS_AFTER_LOAN_BOOK BOOK ON BAL.LOAN_ID=BOOK.LOAN_ID
+        LEFT JOIN HS_APPLY APP ON  BAL.LOAN_ID=APP.APPLY_ID
+       <![CDATA[ WHERE ROWNUM <=  #{pageIndex} * #{pageSize} ]]> 
+       
+        <if test="startDate != null and startDate != ''">
+		    <![CDATA[ AND to_char(BAL.START_TIME,'yyyy-mm-dd')>=#{startDate}]]>
+		</if>
+		<if test="endDate != null and endDate != ''">
+		   <![CDATA[ AND to_char(BAL.START_TIME,'yyyy-mm-dd')<=#{endDate}]]>
+		</if>
+       <if test="repayType != null and repayType != ''">
+			AND BOOK.REPAY_TYPE = #{repayType} 
+		</if>
+    	<if test="castName != null and castName != ''">
+			AND BAL.CAST_NAME like #{castName} 
+		</if>	
+    	<if test="cardNo != null and cardNo != ''">
+			AND BAL.CARD_NO like #{cardNo} 
+		</if>
+		<if test="conNo != null and conNo != ''">
+			AND BAL.CON_NO like #{conNo} 
+		</if>
+       
+        ORDER BY BAL.START_TIME DESC
+	     ) 
+    	tab  WHERE r > (#{pageIndex} -1) * #{pageSize}
+    	
+	</select>
+	
+	<select id="findPagerCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		 <![CDATA[
+			SELECT
+			 COUNT(BAL.LOAN_ID)
+			  FROM HS_AFTER_LOANBAL  BAL
+ 			LEFT JOIN HS_AFTER_LOAN_BOOK BOOK ON BAL.LOAN_ID=BOOK.LOAN_ID
+ 		    LEFT JOIN HS_APPLY APP ON  BAL.LOAN_ID=APP.APPLY_ID
+ 			
+ 			WHERE 1<>2 
+ 		   ]]>
+	 		<if test="startDate != null and startDate != ''">
+			    <![CDATA[ AND to_char(BAL.START_TIME,'yyyy-mm-dd')>=#{startDate}]]>
+			</if>
+			<if test="endDate != null and endDate != ''">
+			   <![CDATA[ AND to_char(BAL.START_TIME,'yyyy-mm-dd')<=#{endDate}]]>
+			</if>
+			<if test="cardNo != null and cardNo != ''">
+			    AND BAL.CARD_NO like #{cardNo}
+			</if>
+			<if test="castName != null and castName != ''">
+			  	 AND BAL.CAST_NAME like #{castName} 
+			</if>
+			<if test="conNo != null and conNo != ''">
+			   	 AND BAL.CON_NO like #{conNo} 
+			</if>
+			<if test="repayType != null and repayType != ''">
+				 AND BOOK.REPAY_TYPE = #{repayType} 
+			</if>
+	</select>
+	
+	 <select id="findRepayList" parameterType="java.util.Map" resultMap="REPAY_REPORT_RESULT_MAP">
+		 <![CDATA[			SELECT
+			BAL.START_TIME,
+			BAL.CAST_NAME,
+			BAL.CON_NO,
+			BAL.CARD_NO,
+			BAL.DEPARTMENT,
+			BAL.PRODUCT_ID,
+			BAL.PRODUCT_NAME,
+			BAL.UPDOWN_STATUS,
+			BAL.LOAN_PERIOD,
+			BAL.END_TIME,
+			APP.PRODUCT_RATE,
+			APP.STORE_NAME,
+			BAL.CURRENT_PERIOD,
+			BOOK.REPAY_DATE,
+			BOOK.RECEIVE_CORPUS,
+			BOOK.RECEIVE_INTEREST,
+			BOOK.OVERDUE_PENALTY,
+			BOOK.OVERDUE_INTEREST,
+			BOOK.ACTUAL_MONEY,
+			BOOK.REPAY_TYPE
+		FROM
+			HS_AFTER_LOANBAL BAL
+		LEFT JOIN HS_AFTER_LOAN_BOOK BOOK ON BAL.LOAN_ID = BOOK.LOAN_ID
+		LEFT JOIN HS_APPLY APP ON BAL.LOAN_ID = APP.APPLY_ID
+		WHERE
+			1 <> 2]]>
+   <if test="startDate != null and startDate != ''">
+	    <![CDATA[ AND to_char(BAL.START_TIME,'yyyy-mm-dd')>=#{startDate}]]>
+	</if>
+	<if test="endDate != null and endDate != ''">
+	   <![CDATA[ AND to_char(BAL.START_TIME,'yyyy-mm-dd')<=#{endDate}]]>
+	</if>
+	 </select>
+	 
+</mapper>

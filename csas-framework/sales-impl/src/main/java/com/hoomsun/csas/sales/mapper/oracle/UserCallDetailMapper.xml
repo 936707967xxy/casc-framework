@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserCallDetailMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserCallDetail">
+		<id column="PDID" jdbcType="VARCHAR" property="pdid" />
+		<result column="CONT_ID" jdbcType="VARCHAR" property="contId" />
+		<result column="CALLMONEY" jdbcType="VARCHAR" property="callmoney" />
+		<result column="CALLADDRESS" jdbcType="VARCHAR" property="calladdress" />
+		<result column="CALLTYPE" jdbcType="VARCHAR" property="calltype" />
+		<result column="CALLTIME" jdbcType="VARCHAR" property="calltime" />
+		<result column="CALLDURATION" jdbcType="VARCHAR" property="callduration" />
+		<result column="CALLWAY" jdbcType="VARCHAR" property="callway" />
+		<result column="CALLNUMBER" jdbcType="VARCHAR" property="callnumber" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		PDID, CONT_ID, CALLMONEY, CALLADDRESS, CALLTYPE, CALLTIME, CALLDURATION,
+		CALLWAY,
+		CALLNUMBER
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_CALL_DETAIL
+		where PDID = #{pdid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_CALL_DETAIL
+		where PDID = #{pdid,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserCallDetail">
+		insert into HS_CALL_DETAIL (PDID, CONT_ID, CALLMONEY,
+		CALLADDRESS, CALLTYPE, CALLTIME,
+		CALLDURATION, CALLWAY, CALLNUMBER
+		)
+		values (#{pdid,jdbcType=VARCHAR}, #{contId,jdbcType=VARCHAR},
+		#{callmoney,jdbcType=VARCHAR},
+		#{calladdress,jdbcType=VARCHAR}, #{calltype,jdbcType=VARCHAR}, #{calltime,jdbcType=VARCHAR},
+		#{callduration,jdbcType=VARCHAR}, #{callway,jdbcType=VARCHAR},
+		#{callnumber,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserCallDetail">
+		insert into HS_CALL_DETAIL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="pdid != null">
+				PDID,
+			</if>
+			<if test="contId != null">
+				CONT_ID,
+			</if>
+			<if test="callmoney != null">
+				CALLMONEY,
+			</if>
+			<if test="calladdress != null">
+				CALLADDRESS,
+			</if>
+			<if test="calltype != null">
+				CALLTYPE,
+			</if>
+			<if test="calltime != null">
+				CALLTIME,
+			</if>
+			<if test="callduration != null">
+				CALLDURATION,
+			</if>
+			<if test="callway != null">
+				CALLWAY,
+			</if>
+			<if test="callnumber != null">
+				CALLNUMBER,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="pdid != null">
+				#{pdid,jdbcType=VARCHAR},
+			</if>
+			<if test="contId != null">
+				#{contId,jdbcType=VARCHAR},
+			</if>
+			<if test="callmoney != null">
+				#{callmoney,jdbcType=VARCHAR},
+			</if>
+			<if test="calladdress != null">
+				#{calladdress,jdbcType=VARCHAR},
+			</if>
+			<if test="calltype != null">
+				#{calltype,jdbcType=VARCHAR},
+			</if>
+			<if test="calltime != null">
+				#{calltime,jdbcType=VARCHAR},
+			</if>
+			<if test="callduration != null">
+				#{callduration,jdbcType=VARCHAR},
+			</if>
+			<if test="callway != null">
+				#{callway,jdbcType=VARCHAR},
+			</if>
+			<if test="callnumber != null">
+				#{callnumber,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserCallDetail">
+		update HS_CALL_DETAIL
+		<set>
+			<if test="contId != null">
+				CONT_ID = #{contId,jdbcType=VARCHAR},
+			</if>
+			<if test="callmoney != null">
+				CALLMONEY = #{callmoney,jdbcType=VARCHAR},
+			</if>
+			<if test="calladdress != null">
+				CALLADDRESS = #{calladdress,jdbcType=VARCHAR},
+			</if>
+			<if test="calltype != null">
+				CALLTYPE = #{calltype,jdbcType=VARCHAR},
+			</if>
+			<if test="calltime != null">
+				CALLTIME = #{calltime,jdbcType=VARCHAR},
+			</if>
+			<if test="callduration != null">
+				CALLDURATION = #{callduration,jdbcType=VARCHAR},
+			</if>
+			<if test="callway != null">
+				CALLWAY = #{callway,jdbcType=VARCHAR},
+			</if>
+			<if test="callnumber != null">
+				CALLNUMBER = #{callnumber,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where PDID = #{pdid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserCallDetail">
+		update HS_CALL_DETAIL
+		set CONT_ID = #{contId,jdbcType=VARCHAR},
+		CALLMONEY = #{callmoney,jdbcType=VARCHAR},
+		CALLADDRESS = #{calladdress,jdbcType=VARCHAR},
+		CALLTYPE = #{calltype,jdbcType=VARCHAR},
+		CALLTIME = #{calltime,jdbcType=VARCHAR},
+		CALLDURATION = #{callduration,jdbcType=VARCHAR},
+		CALLWAY = #{callway,jdbcType=VARCHAR},
+		CALLNUMBER = #{callnumber,jdbcType=VARCHAR}
+		where PDID = #{pdid,jdbcType=VARCHAR}
+	</update>
+
+	<insert id="batchCreate" parameterType="java.util.List">
+		insert into HS_CALL_DETAIL (PDID, CONT_ID, CALLMONEY,
+		CALLADDRESS, CALLTYPE, CALLTIME,
+		CALLDURATION, CALLWAY, CALLNUMBER
+		) values
+		<foreach collection="callDetails" item="item" separator=",">
+			(#{item.pdid,jdbcType=VARCHAR}, #{item.contId,jdbcType=VARCHAR},
+			#{item.callmoney,jdbcType=VARCHAR},
+			#{item.calladdress,jdbcType=VARCHAR},
+			#{item.calltype,jdbcType=VARCHAR}, #{item.calltime,jdbcType=VARCHAR},
+			#{item.callduration,jdbcType=VARCHAR},
+			#{item.callway,jdbcType=VARCHAR}, #{item.callnumber,jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+</mapper>

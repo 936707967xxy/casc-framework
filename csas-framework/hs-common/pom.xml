@@ -1,0 +1,97 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.hoomsun</groupId>
+		<artifactId>csas-framework</artifactId>
+		<version>2.0.0</version>
+	</parent>
+	
+	<artifactId>hs-common</artifactId>
+	<version>5.0.0</version>
+	<name>hs-common</name>
+	<description>hs-common</description>
+
+	<distributionManagement>
+		<repository>
+			<id>hs-deploy-release</id>
+			<url>http://192.168.1.178:9088/nexus/content/repositories/releases/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>hs-deploy-snapshot</id>
+			<url>http://192.168.1.178:9088/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<dependencies>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-json-converter</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		
+		 <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-explorer</artifactId>
+            <version>${activiti.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>vaadin</artifactId>
+                    <groupId>com.vaadin</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>dcharts-widget</artifactId>
+                    <groupId>org.vaadin.addons</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>activiti-simple-workflow</artifactId>
+                    <groupId>org.activiti</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+		
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-diagram-rest</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-modeler</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-rest</artifactId>
+			<version>${activiti.version}</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.26-incubating</version>
+		</dependency>
+	</dependencies>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	<build>
+		<finalName>hs-common</finalName>
+	</build>
+</project>

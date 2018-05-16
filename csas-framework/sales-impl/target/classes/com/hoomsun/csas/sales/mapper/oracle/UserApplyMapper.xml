@@ -1,0 +1,2388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserApplyMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserApply">
+    <id column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+    <result column="CUST_ID" jdbcType="VARCHAR" property="custId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="PROC_STATUS_VAL" jdbcType="VARCHAR" property="procStatusVal" />
+    <result column="PROC_STATUS" jdbcType="VARCHAR" property="procStatus" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+    <result column="SIGNCONFIRM_VAL" jdbcType="VARCHAR" property="signconfirmVal" />
+    <result column="SIGNCONFIRM" jdbcType="DECIMAL" property="signconfirm" />
+    <result column="STORE_NAME" jdbcType="VARCHAR" property="storeName" />
+    <result column="STORE_ID" jdbcType="VARCHAR" property="storeId" />
+    <result column="CREATE_EMPLOYEE" jdbcType="VARCHAR" property="createEmployee" />
+    <result column="CREATE_EMPLOYEE_VAL" jdbcType="VARCHAR" property="createEmployeeVal" />
+    <result column="SALES_EMP_ID" jdbcType="VARCHAR" property="salesEmpId" />
+    <result column="SALES_EMP_NAME" jdbcType="VARCHAR" property="salesEmpName" />
+    <result column="SALES_EMP_DEPT_ID" jdbcType="VARCHAR" property="salesEmpDeptId" />
+    <result column="SALES_EMP_DEPT_NAME" jdbcType="VARCHAR" property="salesEmpDeptName" />
+    <result column="PARTICLES_BORROW" jdbcType="VARCHAR" property="particlesBorrow" />
+    <result column="CREDIT_SESAME" jdbcType="VARCHAR" property="creditSesame" />
+    <result column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="AUDIT_TYPE" jdbcType="DECIMAL" property="auditType" />
+    <result column="SOURCES" jdbcType="DECIMAL" property="sources" />
+    <result column="SOURCES_TEXT" jdbcType="VARCHAR" property="sourcesText" />
+    <result column="SOURCES_VALUE" jdbcType="VARCHAR" property="sourcesValue" />
+    <result column="SUGGEST_RATE" jdbcType="DECIMAL" property="suggestRate" />
+    <result column="SUGGEST_AMOUNT" jdbcType="DECIMAL" property="suggestAmount" />
+    <result column="PRODUCT_PAY_VAL" jdbcType="VARCHAR" property="productPayVal" />
+    <result column="PRODUCT_PAY" jdbcType="DECIMAL" property="productPay" />
+    <result column="PRODUCT_FEE_RATE" jdbcType="DECIMAL" property="productFeeRate" />
+    <result column="PRODUCT_RATE" jdbcType="DECIMAL" property="productRate" />
+    <result column="APPLY_PERIOD" jdbcType="DECIMAL" property="applyPeriod" />
+    <result column="APPLY_AMOUNT" jdbcType="DECIMAL" property="applyAmount" />
+    <result column="AGREED_PRODUCT" jdbcType="VARCHAR" property="agreedProduct" />
+    <result column="AGREED_AMOUNT" jdbcType="DECIMAL" property="agreedAmount" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="ID_ADDR" jdbcType="VARCHAR" property="idAddr" />
+    <result column="CUST_MOBILE" jdbcType="VARCHAR" property="custMobile" />
+    <result column="CUST_AGE" jdbcType="DECIMAL" property="custAge" />
+    <result column="CUST_SEX" jdbcType="VARCHAR" property="custSex" />
+    <result column="ID_TYPE_VAL" jdbcType="VARCHAR" property="idTypeVal" />
+    <result column="ID_TYPE" jdbcType="DECIMAL" property="idType" />
+    <result column="INVESCODE" jdbcType="VARCHAR" property="invescode" />
+    <result column="LOAN_USE" jdbcType="DECIMAL" property="loanUse" />
+    <result column="LOAN_USE_VAL" jdbcType="VARCHAR" property="loanUseVal" />
+    <result column="LOAN_USE_TEXT" jdbcType="VARCHAR" property="loanUseText" />
+    <result column="NAME_BEFORE" jdbcType="VARCHAR" property="nameBefore" />
+    <result column="GRADUATE_INSTITUTIONS" jdbcType="VARCHAR" property="graduateInstitutions" />
+    <result column="RAISE_PERSON" jdbcType="VARCHAR" property="raisePerson" />
+    <result column="CHILD_NUMBER" jdbcType="VARCHAR" property="childNumber" />
+    <result column="HOUSE_TEL" jdbcType="VARCHAR" property="houseTel" />
+    <result column="MARITAL_STATUS" jdbcType="DECIMAL" property="maritalStatus" />
+    <result column="MARITAL_STATUS_VAL" jdbcType="VARCHAR" property="maritalStatusVal" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="START_RESIDENCE_DATE" jdbcType="TIMESTAMP" property="startResidenceDate" />
+    <result column="EDU_BACKGROUND" jdbcType="VARCHAR" property="eduBackground" />
+    <result column="EDU_BACKGROUND_VAL" jdbcType="VARCHAR" property="eduBackgroundVal" />
+    <result column="QQ_WECHAT" jdbcType="VARCHAR" property="qqWechat" />
+    <result column="COME_HERE_DATE" jdbcType="TIMESTAMP" property="comeHereDate" />
+    <result column="RRESIDENCE_ADDRESS" jdbcType="VARCHAR" property="rresidenceAddress" />
+    <result column="RRESIDENCE_PROV_CODE" jdbcType="VARCHAR" property="rresidenceProvCode" />
+    <result column="RRESIDENCE_PROV_NAME" jdbcType="VARCHAR" property="rresidenceProvName" />
+    <result column="RRESIDENCE_CITY_CODE" jdbcType="VARCHAR" property="rresidenceCityCode" />
+    <result column="RRESIDENCE_CITY_NAME" jdbcType="VARCHAR" property="rresidenceCityName" />
+    <result column="RRESIDENCE_AREA_CODE" jdbcType="VARCHAR" property="rresidenceAreaCode" />
+    <result column="RRESIDENCE_AREA_NAME" jdbcType="VARCHAR" property="rresidenceAreaName" />
+    <result column="RRESIDENCE_ADDRESS_DETAIL" jdbcType="VARCHAR" property="rresidenceAddressDetail" />
+    <result column="RRESIDENCE_ZIP_CODE" jdbcType="VARCHAR" property="rresidenceZipCode" />
+    <result column="HOUSE_ADDRESS" jdbcType="VARCHAR" property="houseAddress" />
+    <result column="HOUSE_PROV_CODE" jdbcType="VARCHAR" property="houseProvCode" />
+    <result column="HOUSE_PROV_NAME" jdbcType="VARCHAR" property="houseProvName" />
+    <result column="HOUSE_CITY_CODE" jdbcType="VARCHAR" property="houseCityCode" />
+    <result column="HOUSE_CITY_NAME" jdbcType="VARCHAR" property="houseCityName" />
+    <result column="HOUSE_AREA_CODE" jdbcType="VARCHAR" property="houseAreaCode" />
+    <result column="HOUSE_AREA_NAME" jdbcType="VARCHAR" property="houseAreaName" />
+    <result column="HOUSE_ADDRESS_DETAIL" jdbcType="VARCHAR" property="houseAddressDetail" />
+    <result column="HOUSE_ZIP_CODE" jdbcType="VARCHAR" property="houseZipCode" />
+    <result column="LIVE_CONDITIONS" jdbcType="DECIMAL" property="liveConditions" />
+    <result column="LIVE_CONDITIONS_VAL" jdbcType="VARCHAR" property="liveConditionsVal" />
+    <result column="RENT_MONTHLY_PAY" jdbcType="VARCHAR" property="rentMonthlyPay" />
+    <result column="VALID_MAIL_ADDR" jdbcType="DECIMAL" property="validMailAddr" />
+    <result column="VALID_MAIL_ADDR_VAL" jdbcType="VARCHAR" property="validMailAddrVal" />
+    <result column="VALID_MAIL_ADDR_TXT" jdbcType="VARCHAR" property="validMailAddrTxt" />
+    <result column="VALID_POST_CODE" jdbcType="VARCHAR" property="validPostCode" />
+    <result column="DEL_STATUE" jdbcType="DECIMAL" property="delStatue" />
+    <result column="PRODUCT_TYPE_ID" jdbcType="VARCHAR" property="productTypeId" />
+    <result column="PRODUCT_TYPE_NAME" jdbcType="VARCHAR" property="productTypeName" />
+    <result column="LAST_UPDATE_EMP_ID" jdbcType="VARCHAR" property="lastUpdateEmpId" />
+    <result column="LAST_UPDATE_EMP_NAME" jdbcType="VARCHAR" property="lastUpdateEmpName" />
+    <result column="LAST_UPDATE_TIME" jdbcType="TIMESTAMP" property="lastUpdateTime" />
+    <result column="SUBMIT_TYPE_TEXT" jdbcType="VARCHAR" property="submitTypeText" />
+    <result column="SUBMIT_EMP_ID" jdbcType="VARCHAR" property="submitEmpId" />
+    <result column="SUBMIT_EMP_NAME" jdbcType="VARCHAR" property="submitEmpName" />
+    <result column="SUBMIT_DATE" jdbcType="TIMESTAMP" property="submitDate" />
+    <result column="AGREE_PERIOD" jdbcType="DECIMAL" property="agreePeriod" />
+    <result column="AGREE_PRODUCT_ID" jdbcType="VARCHAR" property="agreeProductId" />
+    <result column="IS_TEMP" jdbcType="DECIMAL" property="isTemp" />
+    <result column="IS_TEMP_VAL" jdbcType="VARCHAR" property="isTempVal" />
+    <result column="IS_APP" jdbcType="DECIMAL" property="isApp" />
+    <result column="IS_APP_VAL" jdbcType="VARCHAR" property="isAppVal" />
+    <result column="MARITAL_STATUS_TEXT" jdbcType="VARCHAR" property="maritalStatusText" />
+    <result column="AGREED_PRODUCT_ALIAS" jdbcType="VARCHAR" property="agreedProductAlias" />
+    <result column="PRODUCT_NAME_ALIAS" jdbcType="VARCHAR" property="productNameAlias" />
+    <result column="PRODUCT_TYPE_NAME_ALIAS" jdbcType="VARCHAR" property="productTypeNameAlias" />
+    <result column="SUGGEST_RESULT_ID" jdbcType="DECIMAL" property="suggestResultId" />
+    <result column="SUGGEST_RESULT_VAL" jdbcType="VARCHAR" property="suggestResultVal" />
+    <result column="SUGGEST_RESULT_CAUSE" jdbcType="VARCHAR" property="suggestResultCause" />
+    <result column="CONTRACTS_TIME" jdbcType="VARCHAR" property="contractsTime" />
+    <result column="APPLY_ADDRESS" jdbcType="VARCHAR" property="applyAddress" />
+    <result column="IP_ADDRESS" jdbcType="VARCHAR" property="ipAddress" />
+    <result column="CUST_TYPE_ID" jdbcType="DECIMAL" property="custTypeId" />
+    <result column="CUST_TYPE_VAL" jdbcType="VARCHAR" property="custTypeVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    APPLY_ID, CUST_NAME, CUST_ID, LOAN_ID, ID_NUMBER, APPLY_DATE, PROC_STATUS_VAL, PROC_STATUS, 
+    PROC_INST_ID, SIGNCONFIRM_VAL, SIGNCONFIRM, STORE_NAME, STORE_ID, CREATE_EMPLOYEE, 
+    CREATE_EMPLOYEE_VAL, SALES_EMP_ID, SALES_EMP_NAME, SALES_EMP_DEPT_ID, SALES_EMP_DEPT_NAME, 
+    PARTICLES_BORROW, CREDIT_SESAME, UUID, AUDIT_TYPE, SOURCES, SOURCES_TEXT, SOURCES_VALUE, 
+    SUGGEST_RATE, SUGGEST_AMOUNT, PRODUCT_PAY_VAL, PRODUCT_PAY, PRODUCT_FEE_RATE, PRODUCT_RATE, 
+    APPLY_PERIOD, APPLY_AMOUNT, AGREED_PRODUCT, AGREED_AMOUNT, PRODUCT_NAME, PRODUCT_ID, 
+    ID_ADDR, CUST_MOBILE, CUST_AGE, CUST_SEX, ID_TYPE_VAL, ID_TYPE, INVESCODE, LOAN_USE, 
+    LOAN_USE_VAL, LOAN_USE_TEXT, NAME_BEFORE, GRADUATE_INSTITUTIONS, RAISE_PERSON, CHILD_NUMBER, 
+    HOUSE_TEL, MARITAL_STATUS, MARITAL_STATUS_VAL, EMAIL, START_RESIDENCE_DATE, EDU_BACKGROUND, 
+    EDU_BACKGROUND_VAL, QQ_WECHAT, COME_HERE_DATE, RRESIDENCE_ADDRESS, RRESIDENCE_PROV_CODE, 
+    RRESIDENCE_PROV_NAME, RRESIDENCE_CITY_CODE, RRESIDENCE_CITY_NAME, RRESIDENCE_AREA_CODE, 
+    RRESIDENCE_AREA_NAME, RRESIDENCE_ADDRESS_DETAIL, RRESIDENCE_ZIP_CODE, HOUSE_ADDRESS, 
+    HOUSE_PROV_CODE, HOUSE_PROV_NAME, HOUSE_CITY_CODE, HOUSE_CITY_NAME, HOUSE_AREA_CODE, 
+    HOUSE_AREA_NAME, HOUSE_ADDRESS_DETAIL, HOUSE_ZIP_CODE, LIVE_CONDITIONS, LIVE_CONDITIONS_VAL, 
+    RENT_MONTHLY_PAY, VALID_MAIL_ADDR, VALID_MAIL_ADDR_VAL, VALID_MAIL_ADDR_TXT, VALID_POST_CODE, 
+    DEL_STATUE, PRODUCT_TYPE_ID, PRODUCT_TYPE_NAME, LAST_UPDATE_EMP_ID, LAST_UPDATE_EMP_NAME, 
+    LAST_UPDATE_TIME, SUBMIT_TYPE_TEXT, SUBMIT_EMP_ID, SUBMIT_EMP_NAME, SUBMIT_DATE, 
+    AGREE_PERIOD, AGREE_PRODUCT_ID, IS_TEMP, IS_TEMP_VAL, IS_APP, IS_APP_VAL, MARITAL_STATUS_TEXT, 
+    AGREED_PRODUCT_ALIAS, PRODUCT_NAME_ALIAS, PRODUCT_TYPE_NAME_ALIAS, SUGGEST_RESULT_ID, 
+    SUGGEST_RESULT_VAL, SUGGEST_RESULT_CAUSE, CONTRACTS_TIME, APPLY_ADDRESS, IP_ADDRESS, 
+    CUST_TYPE_ID, CUST_TYPE_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_APPLY
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_APPLY
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserApply">
+    insert into HS_APPLY (APPLY_ID, CUST_NAME, CUST_ID, 
+      LOAN_ID, ID_NUMBER, APPLY_DATE, 
+      PROC_STATUS_VAL, PROC_STATUS, PROC_INST_ID, 
+      SIGNCONFIRM_VAL, SIGNCONFIRM, STORE_NAME, 
+      STORE_ID, CREATE_EMPLOYEE, CREATE_EMPLOYEE_VAL, 
+      SALES_EMP_ID, SALES_EMP_NAME, SALES_EMP_DEPT_ID, 
+      SALES_EMP_DEPT_NAME, PARTICLES_BORROW, CREDIT_SESAME, 
+      UUID, AUDIT_TYPE, SOURCES, 
+      SOURCES_TEXT, SOURCES_VALUE, SUGGEST_RATE, 
+      SUGGEST_AMOUNT, PRODUCT_PAY_VAL, PRODUCT_PAY, 
+      PRODUCT_FEE_RATE, PRODUCT_RATE, APPLY_PERIOD, 
+      APPLY_AMOUNT, AGREED_PRODUCT, AGREED_AMOUNT, 
+      PRODUCT_NAME, PRODUCT_ID, ID_ADDR, 
+      CUST_MOBILE, CUST_AGE, CUST_SEX, 
+      ID_TYPE_VAL, ID_TYPE, INVESCODE, 
+      LOAN_USE, LOAN_USE_VAL, LOAN_USE_TEXT, 
+      NAME_BEFORE, GRADUATE_INSTITUTIONS, RAISE_PERSON, 
+      CHILD_NUMBER, HOUSE_TEL, MARITAL_STATUS, 
+      MARITAL_STATUS_VAL, EMAIL, START_RESIDENCE_DATE, 
+      EDU_BACKGROUND, EDU_BACKGROUND_VAL, QQ_WECHAT, 
+      COME_HERE_DATE, RRESIDENCE_ADDRESS, RRESIDENCE_PROV_CODE, 
+      RRESIDENCE_PROV_NAME, RRESIDENCE_CITY_CODE, 
+      RRESIDENCE_CITY_NAME, RRESIDENCE_AREA_CODE, 
+      RRESIDENCE_AREA_NAME, RRESIDENCE_ADDRESS_DETAIL, 
+      RRESIDENCE_ZIP_CODE, HOUSE_ADDRESS, HOUSE_PROV_CODE, 
+      HOUSE_PROV_NAME, HOUSE_CITY_CODE, HOUSE_CITY_NAME, 
+      HOUSE_AREA_CODE, HOUSE_AREA_NAME, HOUSE_ADDRESS_DETAIL, 
+      HOUSE_ZIP_CODE, LIVE_CONDITIONS, LIVE_CONDITIONS_VAL, 
+      RENT_MONTHLY_PAY, VALID_MAIL_ADDR, VALID_MAIL_ADDR_VAL, 
+      VALID_MAIL_ADDR_TXT, VALID_POST_CODE, DEL_STATUE, 
+      PRODUCT_TYPE_ID, PRODUCT_TYPE_NAME, LAST_UPDATE_EMP_ID, 
+      LAST_UPDATE_EMP_NAME, LAST_UPDATE_TIME, SUBMIT_TYPE_TEXT, 
+      SUBMIT_EMP_ID, SUBMIT_EMP_NAME, SUBMIT_DATE, 
+      AGREE_PERIOD, AGREE_PRODUCT_ID, IS_TEMP, 
+      IS_TEMP_VAL, IS_APP, IS_APP_VAL, 
+      MARITAL_STATUS_TEXT, AGREED_PRODUCT_ALIAS, 
+      PRODUCT_NAME_ALIAS, PRODUCT_TYPE_NAME_ALIAS, 
+      SUGGEST_RESULT_ID, SUGGEST_RESULT_VAL, SUGGEST_RESULT_CAUSE, 
+      CONTRACTS_TIME, APPLY_ADDRESS, IP_ADDRESS, 
+      CUST_TYPE_ID, CUST_TYPE_VAL)
+    values (#{applyId,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, 
+      #{loanId,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, 
+      #{procStatusVal,jdbcType=VARCHAR}, #{procStatus,jdbcType=VARCHAR}, #{procInstId,jdbcType=VARCHAR}, 
+      #{signconfirmVal,jdbcType=VARCHAR}, #{signconfirm,jdbcType=DECIMAL}, #{storeName,jdbcType=VARCHAR}, 
+      #{storeId,jdbcType=VARCHAR}, #{createEmployee,jdbcType=VARCHAR}, #{createEmployeeVal,jdbcType=VARCHAR}, 
+      #{salesEmpId,jdbcType=VARCHAR}, #{salesEmpName,jdbcType=VARCHAR}, #{salesEmpDeptId,jdbcType=VARCHAR}, 
+      #{salesEmpDeptName,jdbcType=VARCHAR}, #{particlesBorrow,jdbcType=VARCHAR}, #{creditSesame,jdbcType=VARCHAR}, 
+      #{uuid,jdbcType=VARCHAR}, #{auditType,jdbcType=DECIMAL}, #{sources,jdbcType=DECIMAL}, 
+      #{sourcesText,jdbcType=VARCHAR}, #{sourcesValue,jdbcType=VARCHAR}, #{suggestRate,jdbcType=DECIMAL}, 
+      #{suggestAmount,jdbcType=DECIMAL}, #{productPayVal,jdbcType=VARCHAR}, #{productPay,jdbcType=DECIMAL}, 
+      #{productFeeRate,jdbcType=DECIMAL}, #{productRate,jdbcType=DECIMAL}, #{applyPeriod,jdbcType=DECIMAL}, 
+      #{applyAmount,jdbcType=DECIMAL}, #{agreedProduct,jdbcType=VARCHAR}, #{agreedAmount,jdbcType=DECIMAL}, 
+      #{productName,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{idAddr,jdbcType=VARCHAR}, 
+      #{custMobile,jdbcType=VARCHAR}, #{custAge,jdbcType=DECIMAL}, #{custSex,jdbcType=VARCHAR}, 
+      #{idTypeVal,jdbcType=VARCHAR}, #{idType,jdbcType=DECIMAL}, #{invescode,jdbcType=VARCHAR}, 
+      #{loanUse,jdbcType=DECIMAL}, #{loanUseVal,jdbcType=VARCHAR}, #{loanUseText,jdbcType=VARCHAR}, 
+      #{nameBefore,jdbcType=VARCHAR}, #{graduateInstitutions,jdbcType=VARCHAR}, #{raisePerson,jdbcType=VARCHAR}, 
+      #{childNumber,jdbcType=VARCHAR}, #{houseTel,jdbcType=VARCHAR}, #{maritalStatus,jdbcType=DECIMAL}, 
+      #{maritalStatusVal,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{startResidenceDate,jdbcType=TIMESTAMP}, 
+      #{eduBackground,jdbcType=VARCHAR}, #{eduBackgroundVal,jdbcType=VARCHAR}, #{qqWechat,jdbcType=VARCHAR}, 
+      #{comeHereDate,jdbcType=TIMESTAMP}, #{rresidenceAddress,jdbcType=VARCHAR}, #{rresidenceProvCode,jdbcType=VARCHAR}, 
+      #{rresidenceProvName,jdbcType=VARCHAR}, #{rresidenceCityCode,jdbcType=VARCHAR}, 
+      #{rresidenceCityName,jdbcType=VARCHAR}, #{rresidenceAreaCode,jdbcType=VARCHAR}, 
+      #{rresidenceAreaName,jdbcType=VARCHAR}, #{rresidenceAddressDetail,jdbcType=VARCHAR}, 
+      #{rresidenceZipCode,jdbcType=VARCHAR}, #{houseAddress,jdbcType=VARCHAR}, #{houseProvCode,jdbcType=VARCHAR}, 
+      #{houseProvName,jdbcType=VARCHAR}, #{houseCityCode,jdbcType=VARCHAR}, #{houseCityName,jdbcType=VARCHAR}, 
+      #{houseAreaCode,jdbcType=VARCHAR}, #{houseAreaName,jdbcType=VARCHAR}, #{houseAddressDetail,jdbcType=VARCHAR}, 
+      #{houseZipCode,jdbcType=VARCHAR}, #{liveConditions,jdbcType=DECIMAL}, #{liveConditionsVal,jdbcType=VARCHAR}, 
+      #{rentMonthlyPay,jdbcType=VARCHAR}, #{validMailAddr,jdbcType=DECIMAL}, #{validMailAddrVal,jdbcType=VARCHAR}, 
+      #{validMailAddrTxt,jdbcType=VARCHAR}, #{validPostCode,jdbcType=VARCHAR}, #{delStatue,jdbcType=DECIMAL}, 
+      #{productTypeId,jdbcType=VARCHAR}, #{productTypeName,jdbcType=VARCHAR}, #{lastUpdateEmpId,jdbcType=VARCHAR}, 
+      #{lastUpdateEmpName,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{submitTypeText,jdbcType=VARCHAR}, 
+      #{submitEmpId,jdbcType=VARCHAR}, #{submitEmpName,jdbcType=VARCHAR}, #{submitDate,jdbcType=TIMESTAMP}, 
+      #{agreePeriod,jdbcType=DECIMAL}, #{agreeProductId,jdbcType=VARCHAR}, #{isTemp,jdbcType=DECIMAL}, 
+      #{isTempVal,jdbcType=VARCHAR}, #{isApp,jdbcType=DECIMAL}, #{isAppVal,jdbcType=VARCHAR}, 
+      #{maritalStatusText,jdbcType=VARCHAR}, #{agreedProductAlias,jdbcType=VARCHAR}, 
+      #{productNameAlias,jdbcType=VARCHAR}, #{productTypeNameAlias,jdbcType=VARCHAR}, 
+      #{suggestResultId,jdbcType=DECIMAL}, #{suggestResultVal,jdbcType=VARCHAR}, #{suggestResultCause,jdbcType=VARCHAR}, 
+      #{contractsTime,jdbcType=VARCHAR}, #{applyAddress,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR}, 
+      #{custTypeId,jdbcType=DECIMAL}, #{custTypeVal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserApply">
+    insert into HS_APPLY
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="custName != null">
+        CUST_NAME,
+      </if>
+      <if test="custId != null">
+        CUST_ID,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="idNumber != null">
+        ID_NUMBER,
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE,
+      </if>
+      <if test="procStatusVal != null">
+        PROC_STATUS_VAL,
+      </if>
+      <if test="procStatus != null">
+        PROC_STATUS,
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID,
+      </if>
+      <if test="signconfirmVal != null">
+        SIGNCONFIRM_VAL,
+      </if>
+      <if test="signconfirm != null">
+        SIGNCONFIRM,
+      </if>
+      <if test="storeName != null">
+        STORE_NAME,
+      </if>
+      <if test="storeId != null">
+        STORE_ID,
+      </if>
+      <if test="createEmployee != null">
+        CREATE_EMPLOYEE,
+      </if>
+      <if test="createEmployeeVal != null">
+        CREATE_EMPLOYEE_VAL,
+      </if>
+      <if test="salesEmpId != null">
+        SALES_EMP_ID,
+      </if>
+      <if test="salesEmpName != null">
+        SALES_EMP_NAME,
+      </if>
+      <if test="salesEmpDeptId != null">
+        SALES_EMP_DEPT_ID,
+      </if>
+      <if test="salesEmpDeptName != null">
+        SALES_EMP_DEPT_NAME,
+      </if>
+      <if test="particlesBorrow != null">
+        PARTICLES_BORROW,
+      </if>
+      <if test="creditSesame != null">
+        CREDIT_SESAME,
+      </if>
+      <if test="uuid != null">
+        UUID,
+      </if>
+      <if test="auditType != null">
+        AUDIT_TYPE,
+      </if>
+      <if test="sources != null">
+        SOURCES,
+      </if>
+      <if test="sourcesText != null">
+        SOURCES_TEXT,
+      </if>
+      <if test="sourcesValue != null">
+        SOURCES_VALUE,
+      </if>
+      <if test="suggestRate != null">
+        SUGGEST_RATE,
+      </if>
+      <if test="suggestAmount != null">
+        SUGGEST_AMOUNT,
+      </if>
+      <if test="productPayVal != null">
+        PRODUCT_PAY_VAL,
+      </if>
+      <if test="productPay != null">
+        PRODUCT_PAY,
+      </if>
+      <if test="productFeeRate != null">
+        PRODUCT_FEE_RATE,
+      </if>
+      <if test="productRate != null">
+        PRODUCT_RATE,
+      </if>
+      <if test="applyPeriod != null">
+        APPLY_PERIOD,
+      </if>
+      <if test="applyAmount != null">
+        APPLY_AMOUNT,
+      </if>
+      <if test="agreedProduct != null">
+        AGREED_PRODUCT,
+      </if>
+      <if test="agreedAmount != null">
+        AGREED_AMOUNT,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="idAddr != null">
+        ID_ADDR,
+      </if>
+      <if test="custMobile != null">
+        CUST_MOBILE,
+      </if>
+      <if test="custAge != null">
+        CUST_AGE,
+      </if>
+      <if test="custSex != null">
+        CUST_SEX,
+      </if>
+      <if test="idTypeVal != null">
+        ID_TYPE_VAL,
+      </if>
+      <if test="idType != null">
+        ID_TYPE,
+      </if>
+      <if test="invescode != null">
+        INVESCODE,
+      </if>
+      <if test="loanUse != null">
+        LOAN_USE,
+      </if>
+      <if test="loanUseVal != null">
+        LOAN_USE_VAL,
+      </if>
+      <if test="loanUseText != null">
+        LOAN_USE_TEXT,
+      </if>
+      <if test="nameBefore != null">
+        NAME_BEFORE,
+      </if>
+      <if test="graduateInstitutions != null">
+        GRADUATE_INSTITUTIONS,
+      </if>
+      <if test="raisePerson != null">
+        RAISE_PERSON,
+      </if>
+      <if test="childNumber != null">
+        CHILD_NUMBER,
+      </if>
+      <if test="houseTel != null">
+        HOUSE_TEL,
+      </if>
+      <if test="maritalStatus != null">
+        MARITAL_STATUS,
+      </if>
+      <if test="maritalStatusVal != null">
+        MARITAL_STATUS_VAL,
+      </if>
+      <if test="email != null">
+        EMAIL,
+      </if>
+      <if test="startResidenceDate != null">
+        START_RESIDENCE_DATE,
+      </if>
+      <if test="eduBackground != null">
+        EDU_BACKGROUND,
+      </if>
+      <if test="eduBackgroundVal != null">
+        EDU_BACKGROUND_VAL,
+      </if>
+      <if test="qqWechat != null">
+        QQ_WECHAT,
+      </if>
+      <if test="comeHereDate != null">
+        COME_HERE_DATE,
+      </if>
+      <if test="rresidenceAddress != null">
+        RRESIDENCE_ADDRESS,
+      </if>
+      <if test="rresidenceProvCode != null">
+        RRESIDENCE_PROV_CODE,
+      </if>
+      <if test="rresidenceProvName != null">
+        RRESIDENCE_PROV_NAME,
+      </if>
+      <if test="rresidenceCityCode != null">
+        RRESIDENCE_CITY_CODE,
+      </if>
+      <if test="rresidenceCityName != null">
+        RRESIDENCE_CITY_NAME,
+      </if>
+      <if test="rresidenceAreaCode != null">
+        RRESIDENCE_AREA_CODE,
+      </if>
+      <if test="rresidenceAreaName != null">
+        RRESIDENCE_AREA_NAME,
+      </if>
+      <if test="rresidenceAddressDetail != null">
+        RRESIDENCE_ADDRESS_DETAIL,
+      </if>
+      <if test="rresidenceZipCode != null">
+        RRESIDENCE_ZIP_CODE,
+      </if>
+      <if test="houseAddress != null">
+        HOUSE_ADDRESS,
+      </if>
+      <if test="houseProvCode != null">
+        HOUSE_PROV_CODE,
+      </if>
+      <if test="houseProvName != null">
+        HOUSE_PROV_NAME,
+      </if>
+      <if test="houseCityCode != null">
+        HOUSE_CITY_CODE,
+      </if>
+      <if test="houseCityName != null">
+        HOUSE_CITY_NAME,
+      </if>
+      <if test="houseAreaCode != null">
+        HOUSE_AREA_CODE,
+      </if>
+      <if test="houseAreaName != null">
+        HOUSE_AREA_NAME,
+      </if>
+      <if test="houseAddressDetail != null">
+        HOUSE_ADDRESS_DETAIL,
+      </if>
+      <if test="houseZipCode != null">
+        HOUSE_ZIP_CODE,
+      </if>
+      <if test="liveConditions != null">
+        LIVE_CONDITIONS,
+      </if>
+      <if test="liveConditionsVal != null">
+        LIVE_CONDITIONS_VAL,
+      </if>
+      <if test="rentMonthlyPay != null">
+        RENT_MONTHLY_PAY,
+      </if>
+      <if test="validMailAddr != null">
+        VALID_MAIL_ADDR,
+      </if>
+      <if test="validMailAddrVal != null">
+        VALID_MAIL_ADDR_VAL,
+      </if>
+      <if test="validMailAddrTxt != null">
+        VALID_MAIL_ADDR_TXT,
+      </if>
+      <if test="validPostCode != null">
+        VALID_POST_CODE,
+      </if>
+      <if test="delStatue != null">
+        DEL_STATUE,
+      </if>
+      <if test="productTypeId != null">
+        PRODUCT_TYPE_ID,
+      </if>
+      <if test="productTypeName != null">
+        PRODUCT_TYPE_NAME,
+      </if>
+      <if test="lastUpdateEmpId != null">
+        LAST_UPDATE_EMP_ID,
+      </if>
+      <if test="lastUpdateEmpName != null">
+        LAST_UPDATE_EMP_NAME,
+      </if>
+      <if test="lastUpdateTime != null">
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="submitTypeText != null">
+        SUBMIT_TYPE_TEXT,
+      </if>
+      <if test="submitEmpId != null">
+        SUBMIT_EMP_ID,
+      </if>
+      <if test="submitEmpName != null">
+        SUBMIT_EMP_NAME,
+      </if>
+      <if test="submitDate != null">
+        SUBMIT_DATE,
+      </if>
+      <if test="agreePeriod != null">
+        AGREE_PERIOD,
+      </if>
+      <if test="agreeProductId != null">
+        AGREE_PRODUCT_ID,
+      </if>
+      <if test="isTemp != null">
+        IS_TEMP,
+      </if>
+      <if test="isTempVal != null">
+        IS_TEMP_VAL,
+      </if>
+      <if test="isApp != null">
+        IS_APP,
+      </if>
+      <if test="isAppVal != null">
+        IS_APP_VAL,
+      </if>
+      <if test="maritalStatusText != null">
+        MARITAL_STATUS_TEXT,
+      </if>
+      <if test="agreedProductAlias != null">
+        AGREED_PRODUCT_ALIAS,
+      </if>
+      <if test="productNameAlias != null">
+        PRODUCT_NAME_ALIAS,
+      </if>
+      <if test="productTypeNameAlias != null">
+        PRODUCT_TYPE_NAME_ALIAS,
+      </if>
+      <if test="suggestResultId != null">
+        SUGGEST_RESULT_ID,
+      </if>
+      <if test="suggestResultVal != null">
+        SUGGEST_RESULT_VAL,
+      </if>
+      <if test="suggestResultCause != null">
+        SUGGEST_RESULT_CAUSE,
+      </if>
+      <if test="contractsTime != null">
+        CONTRACTS_TIME,
+      </if>
+      <if test="applyAddress != null">
+        APPLY_ADDRESS,
+      </if>
+      <if test="ipAddress != null">
+        IP_ADDRESS,
+      </if>
+      <if test="custTypeId != null">
+        CUST_TYPE_ID,
+      </if>
+      <if test="custTypeVal != null">
+        CUST_TYPE_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="procStatusVal != null">
+        #{procStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="procStatus != null">
+        #{procStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="signconfirmVal != null">
+        #{signconfirmVal,jdbcType=VARCHAR},
+      </if>
+      <if test="signconfirm != null">
+        #{signconfirm,jdbcType=DECIMAL},
+      </if>
+      <if test="storeName != null">
+        #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="createEmployee != null">
+        #{createEmployee,jdbcType=VARCHAR},
+      </if>
+      <if test="createEmployeeVal != null">
+        #{createEmployeeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="salesEmpId != null">
+        #{salesEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="salesEmpName != null">
+        #{salesEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="salesEmpDeptId != null">
+        #{salesEmpDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="salesEmpDeptName != null">
+        #{salesEmpDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="particlesBorrow != null">
+        #{particlesBorrow,jdbcType=VARCHAR},
+      </if>
+      <if test="creditSesame != null">
+        #{creditSesame,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="auditType != null">
+        #{auditType,jdbcType=DECIMAL},
+      </if>
+      <if test="sources != null">
+        #{sources,jdbcType=DECIMAL},
+      </if>
+      <if test="sourcesText != null">
+        #{sourcesText,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcesValue != null">
+        #{sourcesValue,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestRate != null">
+        #{suggestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="suggestAmount != null">
+        #{suggestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productPayVal != null">
+        #{productPayVal,jdbcType=VARCHAR},
+      </if>
+      <if test="productPay != null">
+        #{productPay,jdbcType=DECIMAL},
+      </if>
+      <if test="productFeeRate != null">
+        #{productFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="productRate != null">
+        #{productRate,jdbcType=DECIMAL},
+      </if>
+      <if test="applyPeriod != null">
+        #{applyPeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="applyAmount != null">
+        #{applyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="agreedProduct != null">
+        #{agreedProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="agreedAmount != null">
+        #{agreedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="idAddr != null">
+        #{idAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="custMobile != null">
+        #{custMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="custAge != null">
+        #{custAge,jdbcType=DECIMAL},
+      </if>
+      <if test="custSex != null">
+        #{custSex,jdbcType=VARCHAR},
+      </if>
+      <if test="idTypeVal != null">
+        #{idTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null">
+        #{idType,jdbcType=DECIMAL},
+      </if>
+      <if test="invescode != null">
+        #{invescode,jdbcType=VARCHAR},
+      </if>
+      <if test="loanUse != null">
+        #{loanUse,jdbcType=DECIMAL},
+      </if>
+      <if test="loanUseVal != null">
+        #{loanUseVal,jdbcType=VARCHAR},
+      </if>
+      <if test="loanUseText != null">
+        #{loanUseText,jdbcType=VARCHAR},
+      </if>
+      <if test="nameBefore != null">
+        #{nameBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateInstitutions != null">
+        #{graduateInstitutions,jdbcType=VARCHAR},
+      </if>
+      <if test="raisePerson != null">
+        #{raisePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="childNumber != null">
+        #{childNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="houseTel != null">
+        #{houseTel,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        #{maritalStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="maritalStatusVal != null">
+        #{maritalStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="startResidenceDate != null">
+        #{startResidenceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eduBackground != null">
+        #{eduBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="eduBackgroundVal != null">
+        #{eduBackgroundVal,jdbcType=VARCHAR},
+      </if>
+      <if test="qqWechat != null">
+        #{qqWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="comeHereDate != null">
+        #{comeHereDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rresidenceAddress != null">
+        #{rresidenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceProvCode != null">
+        #{rresidenceProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceProvName != null">
+        #{rresidenceProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceCityCode != null">
+        #{rresidenceCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceCityName != null">
+        #{rresidenceCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAreaCode != null">
+        #{rresidenceAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAreaName != null">
+        #{rresidenceAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAddressDetail != null">
+        #{rresidenceAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceZipCode != null">
+        #{rresidenceZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null">
+        #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvCode != null">
+        #{houseProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvName != null">
+        #{houseProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityCode != null">
+        #{houseCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityName != null">
+        #{houseCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaCode != null">
+        #{houseAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaName != null">
+        #{houseAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddressDetail != null">
+        #{houseAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="houseZipCode != null">
+        #{houseZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="liveConditions != null">
+        #{liveConditions,jdbcType=DECIMAL},
+      </if>
+      <if test="liveConditionsVal != null">
+        #{liveConditionsVal,jdbcType=VARCHAR},
+      </if>
+      <if test="rentMonthlyPay != null">
+        #{rentMonthlyPay,jdbcType=VARCHAR},
+      </if>
+      <if test="validMailAddr != null">
+        #{validMailAddr,jdbcType=DECIMAL},
+      </if>
+      <if test="validMailAddrVal != null">
+        #{validMailAddrVal,jdbcType=VARCHAR},
+      </if>
+      <if test="validMailAddrTxt != null">
+        #{validMailAddrTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="validPostCode != null">
+        #{validPostCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatue != null">
+        #{delStatue,jdbcType=DECIMAL},
+      </if>
+      <if test="productTypeId != null">
+        #{productTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="productTypeName != null">
+        #{productTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateEmpId != null">
+        #{lastUpdateEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateEmpName != null">
+        #{lastUpdateEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitTypeText != null">
+        #{submitTypeText,jdbcType=VARCHAR},
+      </if>
+      <if test="submitEmpId != null">
+        #{submitEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="submitEmpName != null">
+        #{submitEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="submitDate != null">
+        #{submitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agreePeriod != null">
+        #{agreePeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="agreeProductId != null">
+        #{agreeProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="isTemp != null">
+        #{isTemp,jdbcType=DECIMAL},
+      </if>
+      <if test="isTempVal != null">
+        #{isTempVal,jdbcType=VARCHAR},
+      </if>
+      <if test="isApp != null">
+        #{isApp,jdbcType=DECIMAL},
+      </if>
+      <if test="isAppVal != null">
+        #{isAppVal,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusText != null">
+        #{maritalStatusText,jdbcType=VARCHAR},
+      </if>
+      <if test="agreedProductAlias != null">
+        #{agreedProductAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="productNameAlias != null">
+        #{productNameAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="productTypeNameAlias != null">
+        #{productTypeNameAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestResultId != null">
+        #{suggestResultId,jdbcType=DECIMAL},
+      </if>
+      <if test="suggestResultVal != null">
+        #{suggestResultVal,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestResultCause != null">
+        #{suggestResultCause,jdbcType=VARCHAR},
+      </if>
+      <if test="contractsTime != null">
+        #{contractsTime,jdbcType=VARCHAR},
+      </if>
+      <if test="applyAddress != null">
+        #{applyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="custTypeId != null">
+        #{custTypeId,jdbcType=DECIMAL},
+      </if>
+      <if test="custTypeVal != null">
+        #{custTypeVal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserApply">
+    update HS_APPLY
+    <set>
+      <if test="custName != null">
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null">
+        CUST_ID = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="applyDate != null">
+        APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="procStatusVal != null">
+        PROC_STATUS_VAL = #{procStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="procStatus != null">
+        PROC_STATUS = #{procStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="signconfirmVal != null">
+        SIGNCONFIRM_VAL = #{signconfirmVal,jdbcType=VARCHAR},
+      </if>
+      <if test="signconfirm != null">
+        SIGNCONFIRM = #{signconfirm,jdbcType=DECIMAL},
+      </if>
+      <if test="storeName != null">
+        STORE_NAME = #{storeName,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        STORE_ID = #{storeId,jdbcType=VARCHAR},
+      </if>
+      <if test="createEmployee != null">
+        CREATE_EMPLOYEE = #{createEmployee,jdbcType=VARCHAR},
+      </if>
+      <if test="createEmployeeVal != null">
+        CREATE_EMPLOYEE_VAL = #{createEmployeeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="salesEmpId != null">
+        SALES_EMP_ID = #{salesEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="salesEmpName != null">
+        SALES_EMP_NAME = #{salesEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="salesEmpDeptId != null">
+        SALES_EMP_DEPT_ID = #{salesEmpDeptId,jdbcType=VARCHAR},
+      </if>
+      <if test="salesEmpDeptName != null">
+        SALES_EMP_DEPT_NAME = #{salesEmpDeptName,jdbcType=VARCHAR},
+      </if>
+      <if test="particlesBorrow != null">
+        PARTICLES_BORROW = #{particlesBorrow,jdbcType=VARCHAR},
+      </if>
+      <if test="creditSesame != null">
+        CREDIT_SESAME = #{creditSesame,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        UUID = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="auditType != null">
+        AUDIT_TYPE = #{auditType,jdbcType=DECIMAL},
+      </if>
+      <if test="sources != null">
+        SOURCES = #{sources,jdbcType=DECIMAL},
+      </if>
+      <if test="sourcesText != null">
+        SOURCES_TEXT = #{sourcesText,jdbcType=VARCHAR},
+      </if>
+      <if test="sourcesValue != null">
+        SOURCES_VALUE = #{sourcesValue,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestRate != null">
+        SUGGEST_RATE = #{suggestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="suggestAmount != null">
+        SUGGEST_AMOUNT = #{suggestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productPayVal != null">
+        PRODUCT_PAY_VAL = #{productPayVal,jdbcType=VARCHAR},
+      </if>
+      <if test="productPay != null">
+        PRODUCT_PAY = #{productPay,jdbcType=DECIMAL},
+      </if>
+      <if test="productFeeRate != null">
+        PRODUCT_FEE_RATE = #{productFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="productRate != null">
+        PRODUCT_RATE = #{productRate,jdbcType=DECIMAL},
+      </if>
+      <if test="applyPeriod != null">
+        APPLY_PERIOD = #{applyPeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="applyAmount != null">
+        APPLY_AMOUNT = #{applyAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="agreedProduct != null">
+        AGREED_PRODUCT = #{agreedProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="agreedAmount != null">
+        AGREED_AMOUNT = #{agreedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="idAddr != null">
+        ID_ADDR = #{idAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="custMobile != null">
+        CUST_MOBILE = #{custMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="custAge != null">
+        CUST_AGE = #{custAge,jdbcType=DECIMAL},
+      </if>
+      <if test="custSex != null">
+        CUST_SEX = #{custSex,jdbcType=VARCHAR},
+      </if>
+      <if test="idTypeVal != null">
+        ID_TYPE_VAL = #{idTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null">
+        ID_TYPE = #{idType,jdbcType=DECIMAL},
+      </if>
+      <if test="invescode != null">
+        INVESCODE = #{invescode,jdbcType=VARCHAR},
+      </if>
+      <if test="loanUse != null">
+        LOAN_USE = #{loanUse,jdbcType=DECIMAL},
+      </if>
+      <if test="loanUseVal != null">
+        LOAN_USE_VAL = #{loanUseVal,jdbcType=VARCHAR},
+      </if>
+      <if test="loanUseText != null">
+        LOAN_USE_TEXT = #{loanUseText,jdbcType=VARCHAR},
+      </if>
+      <if test="nameBefore != null">
+        NAME_BEFORE = #{nameBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="graduateInstitutions != null">
+        GRADUATE_INSTITUTIONS = #{graduateInstitutions,jdbcType=VARCHAR},
+      </if>
+      <if test="raisePerson != null">
+        RAISE_PERSON = #{raisePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="childNumber != null">
+        CHILD_NUMBER = #{childNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="houseTel != null">
+        HOUSE_TEL = #{houseTel,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null">
+        MARITAL_STATUS = #{maritalStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="maritalStatusVal != null">
+        MARITAL_STATUS_VAL = #{maritalStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="startResidenceDate != null">
+        START_RESIDENCE_DATE = #{startResidenceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eduBackground != null">
+        EDU_BACKGROUND = #{eduBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="eduBackgroundVal != null">
+        EDU_BACKGROUND_VAL = #{eduBackgroundVal,jdbcType=VARCHAR},
+      </if>
+      <if test="qqWechat != null">
+        QQ_WECHAT = #{qqWechat,jdbcType=VARCHAR},
+      </if>
+      <if test="comeHereDate != null">
+        COME_HERE_DATE = #{comeHereDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rresidenceAddress != null">
+        RRESIDENCE_ADDRESS = #{rresidenceAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceProvCode != null">
+        RRESIDENCE_PROV_CODE = #{rresidenceProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceProvName != null">
+        RRESIDENCE_PROV_NAME = #{rresidenceProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceCityCode != null">
+        RRESIDENCE_CITY_CODE = #{rresidenceCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceCityName != null">
+        RRESIDENCE_CITY_NAME = #{rresidenceCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAreaCode != null">
+        RRESIDENCE_AREA_CODE = #{rresidenceAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAreaName != null">
+        RRESIDENCE_AREA_NAME = #{rresidenceAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceAddressDetail != null">
+        RRESIDENCE_ADDRESS_DETAIL = #{rresidenceAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="rresidenceZipCode != null">
+        RRESIDENCE_ZIP_CODE = #{rresidenceZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddress != null">
+        HOUSE_ADDRESS = #{houseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvCode != null">
+        HOUSE_PROV_CODE = #{houseProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseProvName != null">
+        HOUSE_PROV_NAME = #{houseProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityCode != null">
+        HOUSE_CITY_CODE = #{houseCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseCityName != null">
+        HOUSE_CITY_NAME = #{houseCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaCode != null">
+        HOUSE_AREA_CODE = #{houseAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAreaName != null">
+        HOUSE_AREA_NAME = #{houseAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseAddressDetail != null">
+        HOUSE_ADDRESS_DETAIL = #{houseAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="houseZipCode != null">
+        HOUSE_ZIP_CODE = #{houseZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="liveConditions != null">
+        LIVE_CONDITIONS = #{liveConditions,jdbcType=DECIMAL},
+      </if>
+      <if test="liveConditionsVal != null">
+        LIVE_CONDITIONS_VAL = #{liveConditionsVal,jdbcType=VARCHAR},
+      </if>
+      <if test="rentMonthlyPay != null">
+        RENT_MONTHLY_PAY = #{rentMonthlyPay,jdbcType=VARCHAR},
+      </if>
+      <if test="validMailAddr != null">
+        VALID_MAIL_ADDR = #{validMailAddr,jdbcType=DECIMAL},
+      </if>
+      <if test="validMailAddrVal != null">
+        VALID_MAIL_ADDR_VAL = #{validMailAddrVal,jdbcType=VARCHAR},
+      </if>
+      <if test="validMailAddrTxt != null">
+        VALID_MAIL_ADDR_TXT = #{validMailAddrTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="validPostCode != null">
+        VALID_POST_CODE = #{validPostCode,jdbcType=VARCHAR},
+      </if>
+      <if test="delStatue != null">
+        DEL_STATUE = #{delStatue,jdbcType=DECIMAL},
+      </if>
+      <if test="productTypeId != null">
+        PRODUCT_TYPE_ID = #{productTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="productTypeName != null">
+        PRODUCT_TYPE_NAME = #{productTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateEmpId != null">
+        LAST_UPDATE_EMP_ID = #{lastUpdateEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateEmpName != null">
+        LAST_UPDATE_EMP_NAME = #{lastUpdateEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTime != null">
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="submitTypeText != null">
+        SUBMIT_TYPE_TEXT = #{submitTypeText,jdbcType=VARCHAR},
+      </if>
+      <if test="submitEmpId != null">
+        SUBMIT_EMP_ID = #{submitEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="submitEmpName != null">
+        SUBMIT_EMP_NAME = #{submitEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="submitDate != null">
+        SUBMIT_DATE = #{submitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agreePeriod != null">
+        AGREE_PERIOD = #{agreePeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="agreeProductId != null">
+        AGREE_PRODUCT_ID = #{agreeProductId,jdbcType=VARCHAR},
+      </if>
+      <if test="isTemp != null">
+        IS_TEMP = #{isTemp,jdbcType=DECIMAL},
+      </if>
+      <if test="isTempVal != null">
+        IS_TEMP_VAL = #{isTempVal,jdbcType=VARCHAR},
+      </if>
+      <if test="isApp != null">
+        IS_APP = #{isApp,jdbcType=DECIMAL},
+      </if>
+      <if test="isAppVal != null">
+        IS_APP_VAL = #{isAppVal,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusText != null">
+        MARITAL_STATUS_TEXT = #{maritalStatusText,jdbcType=VARCHAR},
+      </if>
+      <if test="agreedProductAlias != null">
+        AGREED_PRODUCT_ALIAS = #{agreedProductAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="productNameAlias != null">
+        PRODUCT_NAME_ALIAS = #{productNameAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="productTypeNameAlias != null">
+        PRODUCT_TYPE_NAME_ALIAS = #{productTypeNameAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestResultId != null">
+        SUGGEST_RESULT_ID = #{suggestResultId,jdbcType=DECIMAL},
+      </if>
+      <if test="suggestResultVal != null">
+        SUGGEST_RESULT_VAL = #{suggestResultVal,jdbcType=VARCHAR},
+      </if>
+      <if test="suggestResultCause != null">
+        SUGGEST_RESULT_CAUSE = #{suggestResultCause,jdbcType=VARCHAR},
+      </if>
+      <if test="contractsTime != null">
+        CONTRACTS_TIME = #{contractsTime,jdbcType=VARCHAR},
+      </if>
+      <if test="applyAddress != null">
+        APPLY_ADDRESS = #{applyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null">
+        IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="custTypeId != null">
+        CUST_TYPE_ID = #{custTypeId,jdbcType=DECIMAL},
+      </if>
+      <if test="custTypeVal != null">
+        CUST_TYPE_VAL = #{custTypeVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserApply">
+    update HS_APPLY
+    set CUST_NAME = #{custName,jdbcType=VARCHAR},
+      CUST_ID = #{custId,jdbcType=VARCHAR},
+      LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      APPLY_DATE = #{applyDate,jdbcType=TIMESTAMP},
+      PROC_STATUS_VAL = #{procStatusVal,jdbcType=VARCHAR},
+      PROC_STATUS = #{procStatus,jdbcType=VARCHAR},
+      PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      SIGNCONFIRM_VAL = #{signconfirmVal,jdbcType=VARCHAR},
+      SIGNCONFIRM = #{signconfirm,jdbcType=DECIMAL},
+      STORE_NAME = #{storeName,jdbcType=VARCHAR},
+      STORE_ID = #{storeId,jdbcType=VARCHAR},
+      CREATE_EMPLOYEE = #{createEmployee,jdbcType=VARCHAR},
+      CREATE_EMPLOYEE_VAL = #{createEmployeeVal,jdbcType=VARCHAR},
+      SALES_EMP_ID = #{salesEmpId,jdbcType=VARCHAR},
+      SALES_EMP_NAME = #{salesEmpName,jdbcType=VARCHAR},
+      SALES_EMP_DEPT_ID = #{salesEmpDeptId,jdbcType=VARCHAR},
+      SALES_EMP_DEPT_NAME = #{salesEmpDeptName,jdbcType=VARCHAR},
+      PARTICLES_BORROW = #{particlesBorrow,jdbcType=VARCHAR},
+      CREDIT_SESAME = #{creditSesame,jdbcType=VARCHAR},
+      UUID = #{uuid,jdbcType=VARCHAR},
+      AUDIT_TYPE = #{auditType,jdbcType=DECIMAL},
+      SOURCES = #{sources,jdbcType=DECIMAL},
+      SOURCES_TEXT = #{sourcesText,jdbcType=VARCHAR},
+      SOURCES_VALUE = #{sourcesValue,jdbcType=VARCHAR},
+      SUGGEST_RATE = #{suggestRate,jdbcType=DECIMAL},
+      SUGGEST_AMOUNT = #{suggestAmount,jdbcType=DECIMAL},
+      PRODUCT_PAY_VAL = #{productPayVal,jdbcType=VARCHAR},
+      PRODUCT_PAY = #{productPay,jdbcType=DECIMAL},
+      PRODUCT_FEE_RATE = #{productFeeRate,jdbcType=DECIMAL},
+      PRODUCT_RATE = #{productRate,jdbcType=DECIMAL},
+      APPLY_PERIOD = #{applyPeriod,jdbcType=DECIMAL},
+      APPLY_AMOUNT = #{applyAmount,jdbcType=DECIMAL},
+      AGREED_PRODUCT = #{agreedProduct,jdbcType=VARCHAR},
+      AGREED_AMOUNT = #{agreedAmount,jdbcType=DECIMAL},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      ID_ADDR = #{idAddr,jdbcType=VARCHAR},
+      CUST_MOBILE = #{custMobile,jdbcType=VARCHAR},
+      CUST_AGE = #{custAge,jdbcType=DECIMAL},
+      CUST_SEX = #{custSex,jdbcType=VARCHAR},
+      ID_TYPE_VAL = #{idTypeVal,jdbcType=VARCHAR},
+      ID_TYPE = #{idType,jdbcType=DECIMAL},
+      INVESCODE = #{invescode,jdbcType=VARCHAR},
+      LOAN_USE = #{loanUse,jdbcType=DECIMAL},
+      LOAN_USE_VAL = #{loanUseVal,jdbcType=VARCHAR},
+      LOAN_USE_TEXT = #{loanUseText,jdbcType=VARCHAR},
+      NAME_BEFORE = #{nameBefore,jdbcType=VARCHAR},
+      GRADUATE_INSTITUTIONS = #{graduateInstitutions,jdbcType=VARCHAR},
+      RAISE_PERSON = #{raisePerson,jdbcType=VARCHAR},
+      CHILD_NUMBER = #{childNumber,jdbcType=VARCHAR},
+      HOUSE_TEL = #{houseTel,jdbcType=VARCHAR},
+      MARITAL_STATUS = #{maritalStatus,jdbcType=DECIMAL},
+      MARITAL_STATUS_VAL = #{maritalStatusVal,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      START_RESIDENCE_DATE = #{startResidenceDate,jdbcType=TIMESTAMP},
+      EDU_BACKGROUND = #{eduBackground,jdbcType=VARCHAR},
+      EDU_BACKGROUND_VAL = #{eduBackgroundVal,jdbcType=VARCHAR},
+      QQ_WECHAT = #{qqWechat,jdbcType=VARCHAR},
+      COME_HERE_DATE = #{comeHereDate,jdbcType=TIMESTAMP},
+      RRESIDENCE_ADDRESS = #{rresidenceAddress,jdbcType=VARCHAR},
+      RRESIDENCE_PROV_CODE = #{rresidenceProvCode,jdbcType=VARCHAR},
+      RRESIDENCE_PROV_NAME = #{rresidenceProvName,jdbcType=VARCHAR},
+      RRESIDENCE_CITY_CODE = #{rresidenceCityCode,jdbcType=VARCHAR},
+      RRESIDENCE_CITY_NAME = #{rresidenceCityName,jdbcType=VARCHAR},
+      RRESIDENCE_AREA_CODE = #{rresidenceAreaCode,jdbcType=VARCHAR},
+      RRESIDENCE_AREA_NAME = #{rresidenceAreaName,jdbcType=VARCHAR},
+      RRESIDENCE_ADDRESS_DETAIL = #{rresidenceAddressDetail,jdbcType=VARCHAR},
+      RRESIDENCE_ZIP_CODE = #{rresidenceZipCode,jdbcType=VARCHAR},
+      HOUSE_ADDRESS = #{houseAddress,jdbcType=VARCHAR},
+      HOUSE_PROV_CODE = #{houseProvCode,jdbcType=VARCHAR},
+      HOUSE_PROV_NAME = #{houseProvName,jdbcType=VARCHAR},
+      HOUSE_CITY_CODE = #{houseCityCode,jdbcType=VARCHAR},
+      HOUSE_CITY_NAME = #{houseCityName,jdbcType=VARCHAR},
+      HOUSE_AREA_CODE = #{houseAreaCode,jdbcType=VARCHAR},
+      HOUSE_AREA_NAME = #{houseAreaName,jdbcType=VARCHAR},
+      HOUSE_ADDRESS_DETAIL = #{houseAddressDetail,jdbcType=VARCHAR},
+      HOUSE_ZIP_CODE = #{houseZipCode,jdbcType=VARCHAR},
+      LIVE_CONDITIONS = #{liveConditions,jdbcType=DECIMAL},
+      LIVE_CONDITIONS_VAL = #{liveConditionsVal,jdbcType=VARCHAR},
+      RENT_MONTHLY_PAY = #{rentMonthlyPay,jdbcType=VARCHAR},
+      VALID_MAIL_ADDR = #{validMailAddr,jdbcType=DECIMAL},
+      VALID_MAIL_ADDR_VAL = #{validMailAddrVal,jdbcType=VARCHAR},
+      VALID_MAIL_ADDR_TXT = #{validMailAddrTxt,jdbcType=VARCHAR},
+      VALID_POST_CODE = #{validPostCode,jdbcType=VARCHAR},
+      DEL_STATUE = #{delStatue,jdbcType=DECIMAL},
+      PRODUCT_TYPE_ID = #{productTypeId,jdbcType=VARCHAR},
+      PRODUCT_TYPE_NAME = #{productTypeName,jdbcType=VARCHAR},
+      LAST_UPDATE_EMP_ID = #{lastUpdateEmpId,jdbcType=VARCHAR},
+      LAST_UPDATE_EMP_NAME = #{lastUpdateEmpName,jdbcType=VARCHAR},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      SUBMIT_TYPE_TEXT = #{submitTypeText,jdbcType=VARCHAR},
+      SUBMIT_EMP_ID = #{submitEmpId,jdbcType=VARCHAR},
+      SUBMIT_EMP_NAME = #{submitEmpName,jdbcType=VARCHAR},
+      SUBMIT_DATE = #{submitDate,jdbcType=TIMESTAMP},
+      AGREE_PERIOD = #{agreePeriod,jdbcType=DECIMAL},
+      AGREE_PRODUCT_ID = #{agreeProductId,jdbcType=VARCHAR},
+      IS_TEMP = #{isTemp,jdbcType=DECIMAL},
+      IS_TEMP_VAL = #{isTempVal,jdbcType=VARCHAR},
+      IS_APP = #{isApp,jdbcType=DECIMAL},
+      IS_APP_VAL = #{isAppVal,jdbcType=VARCHAR},
+      MARITAL_STATUS_TEXT = #{maritalStatusText,jdbcType=VARCHAR},
+      AGREED_PRODUCT_ALIAS = #{agreedProductAlias,jdbcType=VARCHAR},
+      PRODUCT_NAME_ALIAS = #{productNameAlias,jdbcType=VARCHAR},
+      PRODUCT_TYPE_NAME_ALIAS = #{productTypeNameAlias,jdbcType=VARCHAR},
+      SUGGEST_RESULT_ID = #{suggestResultId,jdbcType=DECIMAL},
+      SUGGEST_RESULT_VAL = #{suggestResultVal,jdbcType=VARCHAR},
+      SUGGEST_RESULT_CAUSE = #{suggestResultCause,jdbcType=VARCHAR},
+      CONTRACTS_TIME = #{contractsTime,jdbcType=VARCHAR},
+      APPLY_ADDRESS = #{applyAddress,jdbcType=VARCHAR},
+      IP_ADDRESS = #{ipAddress,jdbcType=VARCHAR},
+      CUST_TYPE_ID = #{custTypeId,jdbcType=DECIMAL},
+      CUST_TYPE_VAL = #{custTypeVal,jdbcType=VARCHAR}
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </update>
+ 
+
+   
+  <!-- 以下为编码区域 -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	<![CDATA[
+		SELECT
+			AP.APPLY_ID,
+			AP.CREDIT_SESAME,
+			AP.PARTICLES_BORROW,
+			AP.APPLY_DATE,
+			AP.AUDIT_TYPE,
+			AP.SOURCES,
+			AP.PROC_STATUS_VAL,
+			AP.PROC_STATUS,
+			AP.PROC_INST_ID,
+			AP.SUGGEST_RATE,
+			AP.SUGGEST_AMOUNT,
+			AP.PRODUCT_PAY_VAL,
+			AP.PRODUCT_PAY,
+			AP.PRODUCT_FEE_RATE,
+			AP.PRODUCT_RATE,
+			AP.APPLY_PERIOD,
+			AP.APPLY_AMOUNT,
+			AP.PRODUCT_NAME,
+			AP.PRODUCT_ID,
+			AP.ID_ADDR,
+			AP.CUST_MOBILE,
+			AP.CUST_AGE,
+			AP.CUST_SEX,
+			AP.ID_TYPE_VAL,
+			AP.ID_TYPE,
+			AP.ID_NUMBER,
+			AP.CUST_NAME,
+			AP.LOAN_ID
+		FROM
+			(
+				SELECT
+					AP.*, ROWNUM r
+				FROM
+					HS_APPLY AP
+				WHERE
+					ROWNUM <=  (#{pageIndex}/#{pageSize}+1)*#{pageSize}
+			) AP
+		WHERE
+			1 <> 2
+  	]]>
+		<if test="custName != null and custName != ''">
+			and CUST_NAME like #{custName} 
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and LOAN_ID = #{loanId}
+		</if>
+		AND r > 0
+	</select>
+
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	<![CDATA[select count(APPLY_ID) from HS_APPLY where 1<>2]]>
+		<if test="custName != null and custName != ''">
+			and CUST_NAME like #{custName}  
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and LOAN_ID = #{loanId}
+		</if>
+	</select>
+
+	<select id="findAllData" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM HS_APPLY
+	</select>
+
+	<update id="updateProcessInstance">
+		update HS_APPLY set
+		<if test="processId != null and processId != ''">PROC_INST_ID=#{processId},</if>
+		PROC_STATUS_VAL=#{precessStatusVal},PROC_STATUS=#{precessStatus}
+		where APPLY_ID=#{applyId}
+	</update>
+	
+	
+	 <resultMap type="com.hoomsun.csas.sales.api.model.UserApply" id="APPLY_MAP" extends="BaseResultMap">
+        <association property="con" javaType="com.hoomsun.core.model.SysContract"> 
+		    <result column="CON_STATUS" jdbcType="DECIMAL" property="conStatus" />
+        </association> 
+    </resultMap>
+  
+	
+	<select id="selectAppAllData" parameterType="java.lang.String" resultMap="APPLY_MAP">
+		select HS.APPLY_DATE,HS.PRODUCT_ID, HS.PRODUCT_RATE, HS.APPLY_PERIOD, HS.APPLY_AMOUNT,HS.AGREED_AMOUNT,HS.AGREED_PRODUCT, HS.PRODUCT_NAME,HS.PROC_STATUS_VAL,
+		 HS.PROC_STATUS,HS.PROC_INST_ID,HS.LOAN_ID,HS.APPLY_ID,HS.AUDIT_TYPE,HS.SOURCES,HS.SOURCES_VALUE,HS.SIGNCONFIRM,HS.SIGNCONFIRM_VAL,
+		 HS.PRODUCT_TYPE_ID, HS.PRODUCT_TYPE_NAME,HS.AGREE_PERIOD, HS.AGREE_PRODUCT_ID,
+		 HS.PRODUCT_NAME_ALIAS,HS.AGREED_PRODUCT_ALIAS,HS.PRODUCT_TYPE_NAME_ALIAS,
+		 CON.CON_STATUS
+		from HS_APPLY HS LEFT JOIN HS_CONTRACT CON  ON
+		HS.APPLY_ID=CON.APPLY_ID
+		where HS.CUST_ID = #{custId,jdbcType=VARCHAR}  AND HS.IS_APP=1  order by APPLY_DATE
+	</select>
+
+    <select id="selectAppAllCreData" parameterType="java.lang.String" resultMap="APPLY_MAP">
+		select HS.APPLY_DATE,HS.PRODUCT_ID, HS.PRODUCT_RATE, HS.APPLY_PERIOD, HS.APPLY_AMOUNT,HS.AGREED_AMOUNT,HS.AGREED_PRODUCT, HS.PRODUCT_NAME,HS.PROC_STATUS_VAL,
+		 HS.PROC_STATUS,HS.PROC_INST_ID,HS.LOAN_ID,HS.APPLY_ID,HS.AUDIT_TYPE,HS.SOURCES,HS.SOURCES_VALUE,HS.SIGNCONFIRM,HS.SIGNCONFIRM_VAL,
+		 HS.PRODUCT_TYPE_ID, HS.PRODUCT_TYPE_NAME,HS.AGREE_PERIOD, HS.AGREE_PRODUCT_ID,
+		 HS.PRODUCT_NAME_ALIAS,HS.AGREED_PRODUCT_ALIAS,HS.PRODUCT_TYPE_NAME_ALIAS,
+		 CON.CON_STATUS
+		from HS_APPLY HS LEFT JOIN HS_CONTRACT CON  ON
+		HS.APPLY_ID=CON.APPLY_ID
+		where HS.CUST_ID = #{custId,jdbcType=VARCHAR}  AND HS.IS_APP!=1  order by APPLY_DATE
+	</select>
+	
+	<!-- 查询客户还款计划的列表   放款成功的数据   -->
+	 <resultMap type="com.hoomsun.csas.sales.api.model.UserApply" id="APPLY_CON_MAP" extends="BaseResultMap">
+        <association property="con" javaType="com.hoomsun.core.model.SysContract"> 
+		    <result column="CON_STATUS" jdbcType="DECIMAL" property="conStatus" />
+		    <result column="BACK_BRANCH" jdbcType="VARCHAR" property="backBranch" />
+            <result column="BANK_NO" jdbcType="VARCHAR" property="bankNo" />
+            <result column="INTEREST" jdbcType="DECIMAL" property="interest" />	 
+            <result column="CON_AMOUNT" jdbcType="DECIMAL" property="conAmount" /> 
+            <result column="PAY_DATE" jdbcType="VARCHAR" property="payDate" />  
+            <result column="BANK" jdbcType="VARCHAR" property="bank" /> 
+        </association> 
+    </resultMap>
+	<select id="selectAppLoanData" parameterType="java.lang.String" resultMap="APPLY_CON_MAP">
+		select HS.APPLY_DATE,HS.PRODUCT_ID,  HS.PRODUCT_RATE, HS.APPLY_PERIOD, HS.APPLY_AMOUNT,HS.AGREED_AMOUNT,HS.AGREED_PRODUCT, HS.PRODUCT_NAME,HS.PROC_STATUS_VAL,
+		 HS.PROC_STATUS,HS.PROC_INST_ID,HS.LOAN_ID,HS.APPLY_ID,HS.AUDIT_TYPE,HS.SOURCES,HS.SOURCES_VALUE,HS.SIGNCONFIRM,HS.SIGNCONFIRM_VAL,
+		 HS.PRODUCT_TYPE_ID, HS.PRODUCT_TYPE_NAME,HS.AGREE_PERIOD, HS.AGREE_PRODUCT_ID,
+		 HS.PRODUCT_NAME_ALIAS,HS.AGREED_PRODUCT_ALIAS,HS.PRODUCT_TYPE_NAME_ALIAS,
+		 CON.CON_STATUS,CON.BACK_BRANCH,CON.BANK_NO,CON.INTEREST,CON.CON_AMOUNT,CON.PAY_DATE,CON.BANK
+		from HS_APPLY HS LEFT JOIN HS_CONTRACT CON  ON
+		HS.APPLY_ID=CON.APPLY_ID
+		where HS.CUST_ID = #{custId,jdbcType=VARCHAR}  AND  HS.PROC_STATUS='success'    order by APPLY_DATE
+	</select>
+	
+	<!-- 审批历史任务 -->
+	<resultMap type="com.hoomsun.csas.sales.api.model.vo.HistoricTaskVo" id="HISTORICTASKVO_RESULTMAP">
+		<id column="ID_" jdbcType="VARCHAR" property="id" />
+		<result column="PROC_DEF_ID_" jdbcType="VARCHAR" property="procDefId" />
+		<result column="TASK_DEF_KEY_" jdbcType="VARCHAR" property="taskDefKey" />
+		<result column="PROC_INST_ID_" jdbcType="VARCHAR" property="procInstId" />
+		<result column="EXECUTION_ID_" jdbcType="VARCHAR" property="executionId" />
+		<result column="NAME_" jdbcType="VARCHAR" property="name" />
+		<result column="PARENT_TASK_ID_" jdbcType="VARCHAR" property="parentId" />
+		<result column="ASSIGNEE_" jdbcType="VARCHAR" property="assignee" />
+		<result column="START_TIME_" jdbcType="VARCHAR" property="startTime" />
+		<result column="CLAIM_TIME_" jdbcType="VARCHAR" property="claitmTime" />
+		<result column="END_TIME_" jdbcType="VARCHAR" property="endTime" />
+		<result column="DURATION_" jdbcType="VARCHAR" property="duration" />
+		<result column="DELETE_REASON_" jdbcType="VARCHAR" property="deleteReason" />
+		<result column="BUSINESS_KEY_" jdbcType="VARCHAR" property="businessKey" />
+	</resultMap>
+	<select id="findHistoricTasks" parameterType="java.lang.String" resultMap="HISTORICTASKVO_RESULTMAP">
+		SELECT HP.BUSINESS_KEY_,HT.ID_,HT.PROC_DEF_ID_,HT.TASK_DEF_KEY_,HT.PROC_INST_ID_,
+		HT.EXECUTION_ID_,HT.NAME_,HT.PARENT_TASK_ID_,EMP.EMP_NAME ASSIGNEE_,HT.START_TIME_,HT.CLAIM_TIME_,
+		HT.END_TIME_, HT.DURATION_,TBL.IN_HANDLE_OPINION DELETE_REASON_
+		FROM ACT_HI_PROCINST HP
+		INNER JOIN ACT_HI_TASKINST HT ON HP.ID_=HT.PROC_INST_ID_ AND HP.ID_=#{procInstId}
+		LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+		LEFT JOIN (
+			SELECT TASK_ID,HANDLE_OPINION_VAL,IN_HANDLE_OPINION FROM HS_PRE_AUDIT
+			UNION
+			SELECT TASK_ID,HANDLE_OPINION_VAL,IN_HANDLE_OPINION FROM HS_FINAL_AUDIT
+		) TBL ON HT.ID_=TBL.TASK_ID
+		WHERE HP.BUSINESS_KEY_=#{applyId}
+		ORDER BY HT.START_TIME_ desc
+	</select>
+	
+	
+	
+	<!-- 查询申请的审批类型 -->
+	<select id="selectAuditType" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT AUDIT_TYPE FROM HS_APPLY WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+	
+	
+	<!-- 查询客户要签约的列表 -->
+	<select id="selectAppSignData" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT   HS.APPLY_DATE,HS.PRODUCT_ID, HS.PRODUCT_RATE, HS.APPLY_PERIOD, HS.APPLY_AMOUNT,HS.AGREED_AMOUNT,HS.AGREED_PRODUCT, HS.PRODUCT_NAME,HS.PROC_STATUS_VAL,
+		 HS.PROC_STATUS,HS.PROC_INST_ID,HS.LOAN_ID,HS.APPLY_ID,HS.AUDIT_TYPE,HS.SOURCES,HS.SOURCES_VALUE,HS.SIGNCONFIRM,HS.SIGNCONFIRM_VAL,
+		 HS.PRODUCT_TYPE_ID, HS.PRODUCT_TYPE_NAME,HS.AGREE_PERIOD, HS.AGREE_PRODUCT_ID,HS.STORE_NAME, HS.STORE_ID,
+		 HS.PRODUCT_NAME_ALIAS,HS.AGREED_PRODUCT_ALIAS,HS.PRODUCT_TYPE_NAME_ALIAS
+	    FROM HS_APPLY HS
+	    WHERE CUST_ID = #{custId,jdbcType=VARCHAR} and PROC_STATUS='makeCon'    order by APPLY_DATE
+	</select>
+	
+	<!-- 查询总额度 -->
+	<select id="selectUserHasused" parameterType="java.lang.String" resultType="java.util.Map">
+		SELECT SUM(APPLY_AMOUNT)  amt  FROM hs_apply where CUST_ID= #{custId,jdbcType=VARCHAR}  and  IS_APP=1
+	</select>
+	
+	<select id="selectUserHasusedList" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT APPLY_AMOUNT,PRODUCT_NAME,AGREED_AMOUNT,AGREED_PRODUCT  FROM hs_apply 
+		where CUST_ID= #{custId,jdbcType=VARCHAR}   and  IS_APP=1
+	</select>
+	
+	
+	
+	<!-- 客户已在还款中的单子   所有单子,没去处还清   和上面一样,后续添加 -->
+	<select id="selectAppPayLoanData" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT  HS.AGREED_AMOUNT,HS.AGREED_PRODUCT,HS.APPLY_PERIOD,HS.APPLY_DATE,HS.PRODUCT_RATE, HS.APPLY_PERIOD, HS.APPLY_AMOUNT, HS.PRODUCT_NAME,HS.PROC_STATUS_VAL, 
+		HS.PROC_STATUS,HS.PROC_INST_ID,HS.LOAN_ID,HS.APPLY_ID,HS.CUST_ID,HS.AUDIT_TYPE,HS.SIGNCONFIRM,HS.SIGNCONFIRM_VAL,HS.STORE_ID,HS.STORE_NAME
+		WHERE CUST_ID = #{custId,jdbcType=VARCHAR} and PROC_STATUS='loan'   order by APPLY_DATE
+	</select>
+	
+	<!-- 更具借款编号查询出申请ID -->
+	<select id="findApplyIdByLoanId" parameterType="java.lang.String"  resultType="java.lang.String">
+		select APPLY_ID from HS_APPLY where LOAN_ID=#{loanId}
+	</select>
+	
+	<!-- 某一时间段内的申请走势 -->
+	<select id="findApplyTrend" resultType="java.util.Map">
+		<![CDATA[
+		SELECT COUNT(APP.APPLY_ID) CUT,TO_CHAR(APPLY_DATE,'yyyy-mm-dd') DT FROM HS_APPLY APP
+		WHERE TO_CHAR(APP.APPLY_DATE,'yyyy-mm-dd')>=TO_CHAR(#{startDate}, 'yyyy-mm-dd') AND TO_CHAR(APP.APPLY_DATE,'yyyy-mm-dd')<=TO_CHAR(#{endDate}, 'yyyy-mm-dd')
+		GROUP BY
+		TO_CHAR(APPLY_DATE,'yyyy-mm-dd')
+		ORDER BY
+		TO_CHAR(APPLY_DATE,'yyyy-mm-dd') ASC		
+		]]>
+	</select>
+	
+	<!-- 更具申请id修改申请状态 -->
+	<update id="updateStatusByApply">
+		update HS_APPLY set PROC_STATUS_VAL=#{precessStatusVal},PROC_STATUS=#{precessStatus} where APPLY_ID=#{applyId}
+	</update>
+	
+	<!-- 更具申请ID获取申请状态 -->
+	<select id="findApplyStatusById" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT PROC_STATUS,PROC_STATUS_VAL FROM HS_APPLY WHERE APPLY_ID=#{applyId}
+	</select>
+	
+	<!-- 人脸识别修改签约到-->
+	<update id="updateAppSignconfirm"  parameterType="com.hoomsun.csas.sales.api.model.UserApply">
+		update HS_APPLY set
+		SIGNCONFIRM_VAL = #{signconfirmVal,jdbcType=VARCHAR},SIGNCONFIRM = #{signconfirm,jdbcType=INTEGER}
+		where APPLY_ID=#{applyId}
+	</update>
+	
+	<!-- 终审批合金额修改-->
+	<update id="updateAgreedAmount"  parameterType="com.hoomsun.csas.sales.api.model.UserApply">
+		update HS_APPLY set
+		AGREE_PERIOD = #{agreePeriod,jdbcType=INTEGER},
+		AGREE_PRODUCT_ID = #{agreeProductId,jdbcType=VARCHAR},
+		AGREED_AMOUNT= #{agreedAmount,jdbcType=DECIMAL} ,
+		AGREED_PRODUCT = #{agreedProduct,jdbcType=VARCHAR},
+		AGREED_PRODUCT_ALIAS = #{agreedProductAlias,jdbcType=VARCHAR}
+		where APPLY_ID=#{applyId}
+	</update>
+	
+	
+	
+	<!-- 查找数据给线下推送 -->
+	<select id="findApplyToCredit" resultType="java.util.Map" parameterType="java.lang.String">
+		select CUST_ID,STORE_ID,STORE_NAME,INVESCODE,PRODUCT_ID,PRODUCT_NAME,CUST_MOBILE,ID_NUMBER,CUST_NAME,LOAN_USE LOAN_USE_VAL ,APPLY_ID  FROM hs_apply 
+		where   APPLY_ID=#{applyId}
+	</select>
+	
+	<!-- 查询申请的审批类型 -->
+	<select id="selectCustIdByloanId" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT CUST_ID FROM HS_APPLY WHERE  LOAN_ID = #{loanId,jdbcType=VARCHAR}
+	</select>	  
+	
+  	
+	
+	<!-- 门店申请所需字段  申请列表 -->
+	<select id="selectAllPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT
+			*
+		FROM
+			(
+				SELECT
+					hsa.APPLY_ID,
+					hsa.PROC_STATUS_VAL,
+					hsa.LOAN_ID,
+					hsa.SALES_EMP_NAME,
+					hsa.CREATE_EMPLOYEE_VAL,
+					hsa.PRODUCT_FEE_RATE,
+					hsa.APPLY_PERIOD,
+					hsa.CUST_NAME,
+					REPLACE (
+						hsa.ID_NUMBER,
+						SUBSTR (hsa.ID_NUMBER, 7, 8),
+						'********'
+					) ID_NUMBER,
+					REPLACE (
+						hsa.CUST_MOBILE,
+						SUBSTR (hsa.CUST_MOBILE, 4, 4),
+						'****'
+					) CUST_MOBILE,
+					hsa.PRODUCT_NAME,
+					hsa.APPLY_DATE,
+					hsa.APPLY_AMOUNT,
+					hsa.SUGGEST_AMOUNT,
+					hsa.CUST_SEX,
+					hsa.SOURCES_VALUE,
+					ROWNUM AS r
+				FROM
+					(
+						SELECT
+							ap.APPLY_ID,
+							ap.PROC_STATUS_VAL,
+							ap.PROC_INST_ID,
+							ap.LOAN_ID,
+							ap.SALES_EMP_NAME,
+							ap.CREATE_EMPLOYEE_VAL,
+							ap.PRODUCT_FEE_RATE,
+							ap.APPLY_PERIOD,
+							ap.CUST_NAME,
+							ap.ID_NUMBER,
+							ap.CUST_MOBILE,
+							ap.PRODUCT_NAME,
+							ap.APPLY_DATE,
+							ap.APPLY_AMOUNT,
+							ap.SUGGEST_AMOUNT,
+							ap.CUST_SEX,
+							ap.SOURCES_VALUE,
+							ap.DEL_STATUE,
+							ap.CREATE_EMPLOYEE,
+							ap.STORE_ID
+						FROM
+							HS_APPLY ap
+						WHERE
+						ap.DEL_STATUE = 0  
+						AND ap.STORE_ID=#{storeId} 
+						<if test="isMgr != 1"><!-- 1:部门负责人  0不是  -->
+							AND (ap.CREATE_EMPLOYEE IS NULL OR ap.CREATE_EMPLOYEE=#{empId}) 
+						</if>
+						<if test="idNumber != null and idNumber !=''">
+							AND ap.ID_NUMBER=#{idNumber}
+						</if>
+						<if test="loanId != null and loanId !=''">
+							AND ap.LOAN_ID=#{loanId}
+						</if>
+						<if test="custName !=null and custName !=''">
+							AND ap.CUST_NAME LIKE #{custName}
+						</if>
+						<if test="custMobile !=null and custMobile !=''">
+							AND ap.CUST_MOBILE=#{custMobile}
+						</if>
+						<if test="product !=null and product !=''">
+							AND ap.PRODUCT_ID LIKE #{product}
+						</if>
+						<if test="source !=null and source !=''">
+							AND ap.SOURCES = #{source}
+						</if>
+						<if test="salesEmpName !=null and salesEmpName !=''">
+							AND ap.SALES_EMP_NAME LIKE #{salesEmpName}
+						</if>
+						<choose>
+							<!-- 待提交 -->
+							<when test="nodeStatus==0">
+								AND ap.PROC_INST_ID IS NULL
+								AND PROC_STATUS IS NULL
+							</when>
+							<!-- 已提交 -->
+							<when test="nodeStatus==1">
+								AND (ap.PROC_INST_ID IS NOT NULL OR PROC_STATUS IS NOT NULL)
+							</when>
+						</choose>
+						
+						ORDER BY
+							ap.APPLY_DATE DESC
+					) hsa
+				WHERE
+					<![CDATA[ROWNUM <= #{pageIndex}*#{pageSize}]]>
+			)
+		WHERE
+			r > (#{pageIndex}-1)*#{pageSize}
+	</select>
+	<!-- 查询记录数 -->
+	<select id="selectApplyCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[
+			select count(hsa.APPLY_ID) from HS_APPLY hsa 
+			WHERE HSA.CREATE_EMPLOYEE IS NOT NULL AND HSA.DEL_STATUE=0 AND hsa.STORE_ID=#{storeId}
+		]]>
+		<if test="isMgr != 1"><!-- 1:部门负责人  0不是  -->
+				AND hsa.CREATE_EMPLOYEE=#{empId}
+		</if>
+		<if test="idNumber != null and idNumber !=''">
+			AND hsa.ID_NUMBER=#{idNumber}
+		</if>
+		<if test="loanId != null and loanId !=''">
+			AND hsa.LOAN_ID=#{loanId}
+		</if>
+		<if test="custName !=null and custName !=''">
+			AND hsa.CUST_NAME LIKE #{custName}
+		</if>
+		<if test="custMobile !=null and custMobile !=''">
+			AND hsa.CUST_MOBILE=#{custMobile}
+		</if>
+		<if test="salesEmpName !=null and salesEmpName !=''">
+			AND hsa.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<choose>
+			<!-- 待提交 -->
+			<when test="nodeStatus==0">
+				AND hsa.PROC_INST_ID IS NULL
+			</when>
+			<!-- 已提交 -->
+			<when test="nodeStatus==1">
+				AND hsa.PROC_INST_ID IS NOT NULL
+			</when>
+		</choose>
+	</select>
+	
+	
+	<!-- 申请单修改会显 -->
+	<select id="selectApplyTableByAppId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List"></include>	
+		FROM HS_APPLY appl
+		WHERE appl.APPLY_ID=#{applyId} AND appl.DEL_STATUE=0
+	</select>
+	
+	<!-- 伪删除申请单 -->
+	<update id="deleteApplyTableByAppId" parameterType="java.lang.String">
+		UPDATE HS_APPLY SET DEL_STATUE=1,LAST_UPDATE_EMP_ID=#{empId},LAST_UPDATE_EMP_NAME=#{empName} WHERE APPLY_ID = #{applyId}
+	</update>
+	<resultMap type="com.hoomsun.csas.sales.api.model.UserApply" id="APPLY_DATA_RESULT_MAP" extends="BaseResultMap">
+			<association property="assetInfo"  javaType="com.hoomsun.csas.sales.api.model.AssetInfo" resultMap="com.hoomsun.csas.sales.dao.AssetInfoMapper.BaseResultMap"/>
+			<association property="userOccupationalInfo" javaType="com.hoomsun.csas.sales.api.model.OccupationalInfo" resultMap="com.hoomsun.csas.sales.dao.OccupationalInfoMapper.BaseResultMap"/>
+			<collection property="userContacts"  javaType="java.util.List" ofType="com.hoomsun.csas.sales.api.model.UserContacts" resultMap="com.hoomsun.csas.sales.dao.UserContactsMapper.BaseResultMap"/>
+	</resultMap>
+	<select id="findApplyById" parameterType="java.lang.String" resultMap="APPLY_DATA_RESULT_MAP">
+		SELECT * FROM HS_APPLY APY
+		LEFT JOIN HS_ASSET_INFO ASS ON APY.APPLY_ID = ASS.APPLY_ID
+		LEFT JOIN HS_OCCUPATIONAL_INFO OCC ON APY.APPLY_ID = OCC.APPLY_ID
+		LEFT JOIN HS_CONTACTS CNS ON APY.APPLY_ID = CNS.APPLY_ID
+		WHERE APY.APPLY_ID=#{applyId} AND APY.DEL_STATUE=0 and (CNS.IS_FILL_IN=1 or CNS.IS_FILL_IN is null)
+	</select>
+	
+	
+	<!-- 补充资料列表页 -->
+	<select id="selectSupplementApply" parameterType="java.util.Map" resultMap="BaseResultMap">
+					SELECT AP.* FROM (
+						SELECT 
+							ROWNUM r,
+							app.LOAN_ID, app.APPLY_ID, app.CUST_NAME, app.SOURCES, app.SOURCES_VALUE, 
+							REPLACE (app.CUST_MOBILE, SUBSTR (app.CUST_MOBILE, 4, 4), '****') AS CUST_MOBILE,
+							REPLACE (app.ID_NUMBER, SUBSTR (app.ID_NUMBER, 6, 8),'********') AS ID_NUMBER,
+							app.PRODUCT_ID,app.PRODUCT_NAME,app.APPLY_AMOUNT,app.PROC_STATUS_VAL,
+							app.PROC_STATUS,app.PROC_INST_ID,app.STORE_ID,app.SALES_EMP_ID,
+							app.SALES_EMP_NAME,app.CREATE_EMPLOYEE,app.CREATE_EMPLOYEE_VAL,app.APPLY_DATE,
+							tbl.ASSIGNEE_
+						FROM
+							HS_APPLY app
+						RIGHT JOIN (
+							SELECT
+								 HP.BUSINESS_KEY_,
+								 HT.ASSIGNEE_
+							FROM
+							ACT_HI_PROCINST HP
+							INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+							<choose>
+								<!-- 待签收 -->
+								<when test="nodeStatus == 0">
+									WHERE HT.TASK_DEF_KEY_ = 'addData'
+								    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+								</when>
+								<!-- 已经签收，待审核 -->
+								<when test="nodeStatus == 1">
+									<choose>
+										<!-- 部门负责人  -->  
+								        <when test="isMgr == 1">
+											LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+											RIGHT JOIN (
+												SELECT CIL.DEPT_ID
+												FROM HS_DEPARTMENT CIL
+												START WITH CIL.DEPT_ID=#{deptId}
+												CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+											) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+											WHERE HT.TASK_DEF_KEY_ = 'addData' and HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+										</when>
+								        <!-- 非部门负责人 -->
+								        <otherwise>
+								        		WHERE HT.TASK_DEF_KEY_ = 'addData'
+								        		AND (HT.ASSIGNEE_=#{empId} and HT.ASSIGNEE_ IS not NULL AND HT.END_TIME_ IS NULL)
+								        </otherwise>
+									</choose>
+								</when>
+								
+								<!-- 已经审核 -->
+								<when test="nodeStatus == 2">
+									<choose>
+										<!-- 部门负责人  -->  
+								        <when test="isMgr == 1">
+											LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+											RIGHT JOIN (
+												SELECT CIL.DEPT_ID
+												FROM HS_DEPARTMENT CIL
+												START WITH CIL.DEPT_ID=#{deptId}
+												CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+											) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+											WHERE HT.TASK_DEF_KEY_ = 'addData' AND HT.END_TIME_ IS NOT NULL
+										</when>
+								        <!-- 非部门负责人 -->
+								        <otherwise>
+								        		WHERE HT.TASK_DEF_KEY_ = 'addData'
+								        		AND HT.END_TIME_ IS NOT NULL
+								        		AND HT.ASSIGNEE_=#{empId}
+								        </otherwise>
+									</choose>
+								</when>
+								
+								<!-- 全部  已经签收 和 已经审核的任务-->
+								<when test="nodeStatus == 3">
+									<choose>
+										<!-- 部门负责人  -->  
+								        <when test="isMgr == 1">
+											LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+											RIGHT JOIN (
+												SELECT CIL.DEPT_ID
+												FROM HS_DEPARTMENT CIL
+												START WITH CIL.DEPT_ID=#{deptId}
+												CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+											) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+											WHERE HT.TASK_DEF_KEY_ = 'addData'
+										</when>
+								        <!-- 非部门负责人 -->
+								        <otherwise>
+								        		WHERE HT.TASK_DEF_KEY_ = 'addData'
+								        		AND HT.ASSIGNEE_=#{empId}
+								        </otherwise>
+									</choose>
+								</when>
+		
+							</choose>
+							GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+						) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+						WHERE app.DEL_STATUE = 0 AND app.STORE_ID = #{storeId} 
+						 <![CDATA[AND ROWNUM <=  #{pageIndex} * #{pageSize}]]> 
+						<if test="custName != null and custName != ''">
+							and app.CUST_NAME LIKE #{custName} 
+						</if>
+						<if test="custMobile != null and custMobile != ''">
+							and app.CUST_MOBILE = #{custMobile}
+						</if>
+						<if test="idNumber != null and idNumber != ''">
+							and app.ID_NUMBER = #{idNumber}
+						</if>
+						<if test="salesEmpName != null and salesEmpName != ''">
+							and app.SALES_EMP_NAME LIKE #{salesEmpName}
+						</if>
+						<if test="loanId != null and loanId != ''">
+							and app.LOAN_ID = #{loanId} 
+						</if>
+						ORDER BY app.APPLY_DATE DESC
+					) AP
+			WHERE r > (#{pageIndex} -1) * #{pageSize}
+	</select> 
+	<select id="selectSupplementCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT 
+		COUNT(app.APPLY_ID)
+		FROM
+			HS_APPLY app
+		RIGHT JOIN (
+			SELECT
+			    HP.BUSINESS_KEY_,
+			    HT.ASSIGNEE_
+			FROM
+			ACT_HI_PROCINST HP
+			INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+			<choose>
+				<!-- 待签收 -->
+				<when test="nodeStatus == 0">
+					WHERE HT.TASK_DEF_KEY_ = 'addData' AND HT.END_TIME_ IS NULL
+				    AND HT.ASSIGNEE_ IS NULL
+				</when>
+				<!-- 已经签收，待审核 -->
+				<when test="nodeStatus == 1">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'addData' AND HT.END_TIME_ IS NULL
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'addData'
+				        		AND (HT.ASSIGNEE_=#{empId} OR HT.ASSIGNEE_ IS NULL)
+				        </otherwise>
+					</choose>
+				</when>
+				
+				<!-- 已经审核 -->
+				<when test="nodeStatus == 2">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'addData' AND HT.END_TIME_ IS NOT NULL
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'addData'
+				        		AND HT.END_TIME_ IS NOT NULL
+				        		AND HT.ASSIGNEE_=#{empId}
+				        </otherwise>
+					</choose>
+				</when>
+				
+				<!-- 全部  已经签收 和 已经审核的任务-->
+				<when test="nodeStatus == 3">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'addData'
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'addData'
+				        		AND HT.ASSIGNEE_=#{empId}
+				        </otherwise>
+					</choose>
+				</when>
+	
+			</choose>
+			GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+		) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+		WHERE app.DEL_STATUE = 0 AND app.STORE_ID = #{storeId} 
+		
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName} 
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId} 
+		</if>
+	</select>
+	
+	<!-- 查询放款记录 -->
+	<resultMap type="com.hoomsun.csas.sales.api.model.UserApply" id="CONTRACT_DATA_RESULT_MAP" extends="BaseResultMap">
+		<collection property="contract"  javaType="java.util.List" ofType="com.hoomsun.core.model.SysContract" resultMap="com.hoomsun.core.dao.SysContractMapper.BaseResultMap"/>
+	</resultMap>
+	<select  id="findUContractById" resultMap="CONTRACT_DATA_RESULT_MAP">
+		SELECT * FROM 
+		HS_APPLY a LEFT JOIN HS_CONTRACT  c ON a.APPLY_ID=c.APPLY_ID
+		WHERE a.APPLY_ID=#{applyId}
+	</select>
+	
+	<!--上传附件回显 -->
+	<select id="upSelectApplyById"  resultMap="BaseResultMap">
+		SELECT ap.APPLY_ID,ap.ID_NUMBER,ap.CUST_NAME FROM HS_APPLY ap WHERE APPLY_ID = #{applyId} AND AP.DEL_STATUE=0
+	</select>
+	
+	<!--门店申请单提交回显 -->
+	<select id="submitFindById"  resultMap="BaseResultMap">
+		SELECT ap.APPLY_ID,ap.CUST_NAME,ap.ID_NUMBER,ap.SUBMIT_TYPE_TEXT,ap.LOAN_ID FROM HS_APPLY ap WHERE APPLY_ID = #{applyId} AND ap.DEL_STATUE=0
+	</select>
+	
+	<!-- 判断登录人与录单人是否一致 -->
+	<select id="loginCompareCreate"  resultMap="BaseResultMap">
+		SELECT ap.APPLY_ID,ap.CREATE_EMPLOYEE,ap.CREATE_EMPLOYEE_VAL FROM HS_APPLY ap WHERE APPLY_ID = #{applyId} AND ap.DEL_STATUE=0
+	</select>
+	
+	<!-- 查询流程节点  -->
+   <select id="selectActrivity" parameterType="java.util.Map" resultType="java.util.Map"> 
+    SELECT TASK_DEF_KEY_,NAME_,START_TIME_,END_TIME_ FROM 	act_hi_taskinst 
+	WHERE  PROC_INST_ID_=#{precessId}
+	ORDER BY START_TIME_  DESC
+  </select>
+  <!-- 判断是否为草稿 -->
+  <select id="selectIsTempByApplyId" resultType="java.lang.Integer">
+  		SELECT AP.IS_TEMP FROM HS_APPLY ap WHERE AP.APPLY_ID=#{applyId}
+  </select>
+  
+  
+  
+  	<!-- 咨询  申请列表 -->
+  	<!-- app admin 所需字段  申请列表  进件申请  -->
+	<select id="selectApplyPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT * FROM (
+		    SELECT * FROM (
+		        SELECT 
+		            ROWNUM rr,
+					hsapp.*
+				FROM (
+					SELECT 
+					hsa.APPLY_ID,
+					hsa.LOAN_ID,
+					hsa.CUST_NAME,
+					hsa.APPLY_AMOUNT,
+					hsa.PRODUCT_NAME,
+					REPLACE (hsa.CUST_MOBILE, SUBSTR (hsa.CUST_MOBILE, 4, 4), '****') AS CUST_MOBILE,
+					REPLACE (hsa.ID_NUMBER, SUBSTR (hsa.ID_NUMBER, 6, 8),'********') AS ID_NUMBER,
+					hsa.PROC_STATUS_VAL,
+					hsa.SOURCES_VALUE,
+					hsa.STORE_ID,
+					hsa.STORE_NAME,
+					hsa.SALES_EMP_DEPT_ID,
+					hsa.SALES_EMP_DEPT_NAME,
+					hsa.SALES_EMP_ID,
+					hsa.SALES_EMP_NAME,
+					hsa.CREATE_EMPLOYEE_VAL,
+					hsa.APPLY_PERIOD,
+					hsa.APPLY_DATE
+					FROM HS_APPLY hsa
+					WHERE HSA.CREATE_EMPLOYEE IS NOT NULL AND HSA.DEL_STATUE=0
+				 	<if test="salesEmpName != null and salesEmpName !=''">
+						AND hsa.SALES_EMP_NAME LIKE #{salesEmpName}   
+					</if>
+					<if test="idNumber != null and idNumber !=''">
+						AND hsa.ID_NUMBER=#{idNumber}
+					</if>
+					<if test="custName !=null and custName !=''">
+						AND hsa.CUST_NAME LIKE #{custName}
+					</if>
+					<if test="custMobile !=null and custMobile !=''">
+						AND hsa.CUST_MOBILE=#{custMobile}
+					</if>
+					<if test="orgId !=null and orgId !=''">
+						AND hsa.STORE_ID=#{orgId}
+					</if>
+					<if test="loanId !=null and loanId !=''">
+						AND hsa.LOAN_ID=#{loanId}
+					</if>
+					<choose>
+						<!-- 销售 -->
+						<when test="permissions == 1">
+							AND hsa.SALES_EMP_ID=#{empId}
+						</when>
+						<!-- 团队经理 -->
+						<when test="permissions == 2">
+							AND hsa.SALES_EMP_DEPT_ID=#{deptId}
+						</when>
+						<!-- 门店经理 -->
+						<when test="permissions == 3">
+							AND hsa.STORE_ID=#{storeId}
+						</when>
+						<!-- 门店以上 -->
+						<when test="permissions == 4">
+							LEFT JOIN (
+							SELECT CIL.DEPT_ID
+							FROM HS_DEPARTMENT CIL
+							WHERE CIL.STORE_FLAG=3 
+							START WITH CIL.DEPT_ID=#{deptId}
+							CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TBL ON hsa.STORE_ID=TBL.DEPT_ID
+						</when>
+					</choose>
+		             ORDER BY hsa.APPLY_DATE desc
+		        ) hsapp
+		    ) 
+		    <![CDATA[WHERE rr <= #{pageIndex} * #{pageSize}]]>
+		)  
+ 		<![CDATA[WHERE ROWNUM > (#{pageIndex}-1)*#{pageSize}]]>
+	</select>
+	
+	<!--app admin 查询记录数 -->
+	<select id="selectApplyinfoCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT 
+			count(hsa.APPLY_ID)
+			FROM HS_APPLY hsa
+			WHERE HSA.CREATE_EMPLOYEE IS NOT NULL AND HSA.DEL_STATUE=0
+			<if test="salesEmpName != null and salesEmpName !=''">
+				AND hsa.SALES_EMP_NAME LIKE #{salesEmpName}   
+			</if>
+			<if test="idNumber != null and idNumber !=''">
+				AND hsa.ID_NUMBER=#{idNumber}
+			</if>
+			<if test="custName !=null and custName !=''">
+				AND hsa.CUST_NAME LIKE #{custName}
+			</if>
+			<if test="custMobile !=null and custMobile !=''">
+				AND hsa.CUST_MOBILE=#{custMobile}
+			</if>
+			<if test="orgId !=null and orgId !=''">
+				AND hsa.STORE_ID=#{orgId}
+			</if>
+			<if test="loanId !=null and loanId !=''">
+				AND hsa.LOAN_ID=#{loanId}
+			</if>
+			<choose>
+				<!-- 销售 -->
+				<when test="permissions == 1">
+					AND hsa.SALES_EMP_ID=#{empId}
+				</when>
+				<!-- 团队经理 -->
+				<when test="permissions == 2">
+					AND hsa.SALES_EMP_DEPT_ID=#{deptId}
+				</when>
+				<!-- 门店经理 -->
+				<when test="permissions == 3">
+					AND hsa.STORE_ID=#{storeId}
+				</when>
+				<!-- 门店以上 -->
+				<when test="permissions == 4">
+					LEFT JOIN (
+					SELECT CIL.DEPT_ID
+					FROM HS_DEPARTMENT CIL
+					WHERE CIL.STORE_FLAG=3 
+					START WITH CIL.DEPT_ID=#{deptId}
+					CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+					) TBL ON hsa.STORE_ID=TBL.DEPT_ID
+				</when>
+			</choose>
+			
+	</select>
+	
+	
+  <!-- 判断是否提交过申请信息 -->
+  <select id="isAlreadySubmit" resultType="java.lang.Integer">
+  	 SELECT COUNT(PROC_INST_ID_) FROM ACT_HI_PROCINST WHERE BUSINESS_KEY_=#{applyId}
+  </select>
+  
+    <!-- 已启动流程的申请单-->
+  <select id="isNotNullProcess" resultType="java.lang.Integer">
+  	 SELECT COUNT(APPLY_ID) FROM HS_APPLY WHERE APPLY_ID=#{applyId} AND PROC_STATUS IS NOT NULL
+  </select>
+  
+  <resultMap id="noticeMsgResultMap" type="com.hoomsun.csas.sales.api.model.vo.NoticeMsg" >
+    <result column="PRODUCT_NAME_ALIAS" jdbcType="VARCHAR" property="proAlias" />
+    <result column="AGREED_PRODUCT_ALIAS" jdbcType="VARCHAR" property="agreeProAlias" />
+    <result column="AGREED_AMOUNT" jdbcType="VARCHAR" property="agreeMount" />
+    <!-- <result column="remark" jdbcType="VARCHAR" property="remark" /> -->
+  </resultMap>
+  
+  <!-- liushuai add 获取所申请的产品-->
+  <select id="selectProNameByApplyId" resultType="java.lang.String">
+  		SELECT PRODUCT_NAME_ALIAS FROM HS_APPLY WHERE APPLY_ID=#{applyId}
+  </select>
+  
+  <select id="selectProAndAmountByApplyId" resultMap="noticeMsgResultMap">
+  		SELECT PRODUCT_NAME_ALIAS, AGREED_PRODUCT_ALIAS, AGREED_AMOUNT FROM HS_APPLY WHERE APPLY_ID=#{applyId}
+  </select>
+  
+    
+     
+  
+  <!-- 判断是否单子在审批流程 -->
+  <select id="selectIsCredit" parameterType="java.lang.String" resultMap="BaseResultMap" >
+      SELECT * FROM HS_APPLY WHERE ID_NUMBER=#{idCard}   AND  (  
+      (PROC_STATUS!='success' AND  PROC_STATUS!='waiver' AND  PROC_STATUS!='reject'  AND  PROC_STATUS!='rejectPool' )   
+      OR  PROC_STATUS  IS NULL  OR PROC_STATUS='' ) AND DEL_STATUE=0
+  </select>
+  
+  <!-- 判断门店单子未结清 -->
+  <select id="selectStoreCreditIsFinish" parameterType="java.lang.String" resultMap="APPLY_CON_MAP" > 
+        select HS.*,CON.CON_STATUS,CON.BACK_BRANCH,CON.BANK_NO,CON.INTEREST,CON.CON_AMOUNT,CON.PAY_DATE
+    from HS_APPLY HS LEFT JOIN HS_CONTRACT CON  ON
+    HS.APPLY_ID=CON.APPLY_ID
+    where  HS.PROC_STATUS='success'   AND  HS.ID_NUMBER=#{idCard}   AND   IS_APP!=1 
+  </select>
+  
+  
+   <!-- 判断线上单子未结清 -->
+  <select id="selectAppCreditIsFinish" parameterType="java.lang.String" resultMap="APPLY_CON_MAP" > 
+        select HS.*,CON.CON_STATUS,CON.BACK_BRANCH,CON.BANK_NO,CON.INTEREST,CON.CON_AMOUNT,CON.PAY_DATE
+    from HS_APPLY HS LEFT JOIN HS_CONTRACT CON  ON
+    HS.APPLY_ID=CON.APPLY_ID 
+    where  HS.PROC_STATUS='success'   AND  HS.ID_NUMBER=#{idCard}   AND   IS_APP=1  
+  </select>
+  
+   <!-- 判断是否app单子排除拒贷/结清-->
+  <select id="selectAppIsExist" parameterType="java.lang.String" resultMap="BaseResultMap" > 
+       SELECT HS_APPLY.* FROM   HS_APPLY
+      LEFT JOIN HS_CONTRACT  ON HS_APPLY.APPLY_ID=HS_CONTRACT.APPLY_ID    
+      WHERE HS_APPLY.ID_NUMBER=#{idCard}    AND  (  
+      (  HS_APPLY.PROC_STATUS!='waiver' AND   HS_APPLY.PROC_STATUS!='reject'  AND   HS_APPLY.PROC_STATUS!='rejectPool' )   
+      OR   HS_APPLY.PROC_STATUS  IS NULL  OR  HS_APPLY.PROC_STATUS='' )    AND    HS_APPLY.IS_APP=1  
+      AND HS_CONTRACT.CON_STATUS !='2'   AND HS_CONTRACT.CON_STATUS !='4'  
+  </select>
+  
+   <!-- 判断是否单子有据贷-->
+  <select id="selectStoreCreditIsReject" parameterType="java.lang.String" resultMap="BaseResultMap" >
+      SELECT * FROM HS_APPLY WHERE ID_NUMBER=#{idCard}   AND  (PROC_STATUS='reject'  or PROC_STATUS='rejectPool' ) 
+  </select>
+  
+<!-- 银行卡信息变更修改所有未结清的单子-->  
+  <select id="selectChangeAcc" parameterType="java.lang.String"  resultMap="BaseResultMap">
+		select HS.APPLY_ID,CON.CON_STATUS
+		from HS_APPLY HS LEFT JOIN HS_CONTRACT CON  ON
+		HS.APPLY_ID=CON.APPLY_ID
+		where HS.CUST_ID = #{custId,jdbcType=VARCHAR}  
+		AND CON.CON_STATUS !='2'  AND CON.CON_STATUS !='4'  AND  CON.CON_STATUS !='0'
+	    order by APPLY_DATE
+	</select>
+	
+	
+	
+  <select id="selectByAply" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    APPLY_ID, CUST_NAME,  LOAN_ID, ID_NUMBER,  
+     APPLY_AMOUNT,  PRODUCT_NAME, PRODUCT_ID, 
+     CUST_MOBILE,CREATE_EMPLOYEE,CREATE_EMPLOYEE_VAL    
+    from HS_APPLY 
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <!--门店提件  -->
+	<update id="selectInfoAdd"  parameterType="com.hoomsun.csas.sales.api.model.UserApply">
+		update HS_APPLY set   CUST_ID = #{custId,jdbcType=VARCHAR}, SIGNCONFIRM_VAL='未人脸识别', SIGNCONFIRM='0' 
+		where  ID_NUMBER = #{idNumber,jdbcType=VARCHAR}  AND IS_APP!=-1 
+	</update>
+  
+  <!-- 根据身份证号查询拒贷天数 -->
+    <select id="checkDeclineDate" resultType="java.lang.Integer">
+	    SELECT
+	    	SYSDATE - MAX(FIN.AUDIT_DATE)
+	    FROM 
+	    	HS_FINAL_AUDIT FIN
+	    WHERE FIN.HANDLE_OPINION='0' and FIN.APPLY_ID=(
+	    	select APPLY_ID from HS_APPLY WHERE ID_NUMBER=#{idNumber} and APPLY_DATE=(
+				select max(APPLY_DATE) FROM HS_APPLY WHERE ID_NUMBER=#{idNumber}   AND    IS_APP!='1' 
+			)
+	    )
+    </select>
+    
+    <!-- 根据applyId查询终审提交表 -->
+    <select id="selectFinalSubmit" resultType="java.util.Map">
+		SELECT
+			FAU.APPLY_ID,
+			FAU.HANDLE_OPINION,
+			FAU.HANDLE_OPINION_VAL,
+			FAU.REJECT_TYPE,
+			FAU.REJECT_TYPE_VAL
+		FROM
+			(
+				SELECT
+					FAU.APPLY_ID,
+					FAU.HANDLE_OPINION,
+					FAU.HANDLE_OPINION_VAL,
+					FAU.REJECT_TYPE,
+					FAU.REJECT_TYPE_VAL
+				FROM
+					HS_FINAL_AUDIT FAU 
+				WHERE
+				fau.HANDLE_OPINION = 0
+				AND 
+				fau.APPLY_ID = (
+					SELECT
+						ap.APPLY_ID
+					FROM
+						HS_APPLY ap
+					WHERE
+						ap.APPLY_DATE = (
+							SELECT
+								MAX (app.APPLY_DATE)
+							FROM
+								HS_APPLY app
+							WHERE
+								app.ID_NUMBER = #{idNumber}    AND    app.IS_APP!='1' 
+							AND PROC_INST_ID IS NOT NULL 
+						)
+				)
+				ORDER BY
+					FAU.AUDIT_DATE DESC
+			) fau
+		WHERE
+			ROWNUM = 1
+    </select>
+    
+    <select id="findCreateEmp" parameterType="java.lang.String" resultType="java.lang.String">
+    	SELECT CREATE_EMPLOYEE FROM HS_APPLY WHERE APPLY_ID=#{applyId}
+    </select>
+    
+    <select id="findIdNumberByApplyId" parameterType="java.lang.String" resultType="java.lang.String">
+    	SELECT ID_NUMBER FROM HS_APPLY WHERE APPLY_ID=#{applyId}
+    </select>
+    
+    
+	<!--判断是否有单子没有通讯录  -->    
+    <select id="findIdIsContract"  resultMap="BaseResultMap">
+    	SELECT ID_NUMBER,APPLY_ID FROM HS_APPLY 
+    	WHERE  APPLY_DATE>TO_DATE('2018-01-20', 'yyyy-mm-dd')   AND  DEL_STATUE='0'     AND IS_APP!=0 
+    </select>
+    
+    <select id="findIsApp" parameterType="java.lang.String" resultType="java.lang.Integer">
+    	SELECT IS_APP from HS_APPLY WHERE APPLY_ID=#{applyId}
+    </select>
+    
+    <!--根据身份证号查询申请单  -->  
+    <select id="findByIdnumber" parameterType="java.lang.String" resultType="java.lang.String">
+    	SELECT PROC_STATUS FROM HS_APPLY WHERE ID_NUMBER=#{idNumber} AND  DEL_STATUE='0'
+    </select>
+</mapper>

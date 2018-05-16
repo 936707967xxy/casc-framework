@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.AppBkMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.AppBk">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="CUST_ID" jdbcType="VARCHAR" property="custId" />
+		<result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+		<result column="ID_CARD" jdbcType="VARCHAR" property="idCard" />
+		<result column="PHONE_NUMBER" jdbcType="VARCHAR" property="phoneNumber" />
+		<result column="BANK_NAME" jdbcType="VARCHAR" property="bankName" />
+		<result column="BANK_ACCOUNT" jdbcType="VARCHAR" property="bankAccount" />
+		<result column="BANK_CODE" jdbcType="VARCHAR" property="bankCode" />
+		<result column="STATUS" jdbcType="VARCHAR" property="status" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+		<result column="BIND_ID" jdbcType="VARCHAR" property="bindId" />
+		<result column="STATUS_VAL" jdbcType="VARCHAR" property="statusVal" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, CUST_ID, CUST_NAME, ID_CARD, PHONE_NUMBER, BANK_NAME,
+		BANK_ACCOUNT,
+		BANK_CODE,
+		STATUS, CREATE_TIME, ORDER_NO, BIND_ID,
+		STATUS_VAL
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_BFBK
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_BFBK
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.AppBk">
+		insert into HS_AFTER_BFBK
+		(ID, CUST_ID, CUST_NAME,
+		ID_CARD, PHONE_NUMBER, BANK_NAME,
+		BANK_ACCOUNT,
+		BANK_CODE, STATUS,
+		CREATE_TIME, ORDER_NO, BIND_ID,
+		STATUS_VAL)
+		values
+		(#{id,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR},
+		#{custName,jdbcType=VARCHAR},
+		#{idCard,jdbcType=VARCHAR},
+		#{phoneNumber,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR},
+		#{bankAccount,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{orderNo,jdbcType=VARCHAR}, #{bindId,jdbcType=VARCHAR},
+		#{statusVal,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.AppBk">
+		insert into HS_AFTER_BFBK
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="custName != null">
+				CUST_NAME,
+			</if>
+			<if test="idCard != null">
+				ID_CARD,
+			</if>
+			<if test="phoneNumber != null">
+				PHONE_NUMBER,
+			</if>
+			<if test="bankName != null">
+				BANK_NAME,
+			</if>
+			<if test="bankAccount != null">
+				BANK_ACCOUNT,
+			</if>
+			<if test="bankCode != null">
+				BANK_CODE,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="orderNo != null">
+				ORDER_NO,
+			</if>
+			<if test="bindId != null">
+				BIND_ID,
+			</if>
+			<if test="statusVal != null">
+				STATUS_VAL,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				#{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="idCard != null">
+				#{idCard,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneNumber != null">
+				#{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				#{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode != null">
+				#{bankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orderNo != null">
+				#{orderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bindId != null">
+				#{bindId,jdbcType=VARCHAR},
+			</if>
+			<if test="statusVal != null">
+				#{statusVal,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.AppBk">
+		update HS_AFTER_BFBK
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="custName != null">
+				CUST_NAME = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="idCard != null">
+				ID_CARD = #{idCard,jdbcType=VARCHAR},
+			</if>
+			<if test="phoneNumber != null">
+				PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="bankName != null">
+				BANK_NAME = #{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankAccount != null">
+				BANK_ACCOUNT = #{bankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="bankCode != null">
+				BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="orderNo != null">
+				ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bindId != null">
+				BIND_ID = #{bindId,jdbcType=VARCHAR},
+			</if>
+			<if test="statusVal != null">
+				STATUS_VAL = #{statusVal,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.AppBk">
+		update
+		HS_AFTER_BFBK
+		set CUST_ID = #{custId,jdbcType=VARCHAR},
+		CUST_NAME =
+		#{custName,jdbcType=VARCHAR},
+		ID_CARD = #{idCard,jdbcType=VARCHAR},
+		PHONE_NUMBER = #{phoneNumber,jdbcType=VARCHAR},
+		BANK_NAME =
+		#{bankName,jdbcType=VARCHAR},
+		BANK_ACCOUNT =
+		#{bankAccount,jdbcType=VARCHAR},
+		BANK_CODE =
+		#{bankCode,jdbcType=VARCHAR},
+		STATUS = #{status,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		ORDER_NO =
+		#{orderNo,jdbcType=VARCHAR},
+		BIND_ID = #{bindId,jdbcType=VARCHAR},
+		STATUS_VAL = #{statusVal,jdbcType=VARCHAR}
+		where ID =
+		#{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="selectByCustIdAndBankAccount" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_APPBK
+		where CUST_ID = #{custId,jdbcType=VARCHAR} AND
+		BANK_ACCOUNT = #{bankAccoun,jdbcType=VARCHAR}
+
+		AND
+		STATUS='0'
+
+
+	</select>
+
+</mapper>

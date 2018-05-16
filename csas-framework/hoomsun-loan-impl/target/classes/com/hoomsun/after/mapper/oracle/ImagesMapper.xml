@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.ImagesMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.Images">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="APPLICATION_ID" jdbcType="VARCHAR" property="applicationId" />
+    <result column="APPLY_TYPE" jdbcType="VARCHAR" property="applyType" />
+    <result column="IMAGE_TYPE" jdbcType="VARCHAR" property="imageType" />
+    <result column="IMAGE_NAME" jdbcType="VARCHAR" property="imageName" />
+    <result column="IMAGE_URL" jdbcType="VARCHAR" property="imageUrl" />
+    <result column="DISK_URL" jdbcType="VARCHAR" property="diskUrl" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, APPLICATION_ID, APPLY_TYPE, IMAGE_TYPE, IMAGE_NAME, IMAGE_URL, DISK_URL, CREATE_TIME, 
+    UPDATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFTER_IMAGES
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFTER_IMAGES
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.after.api.model.table.Images">
+    insert into HS_AFTER_IMAGES (ID, APPLICATION_ID, APPLY_TYPE, 
+      IMAGE_TYPE, IMAGE_NAME, IMAGE_URL, 
+      DISK_URL, CREATE_TIME, UPDATE_DATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{applicationId,jdbcType=VARCHAR}, #{applyType,jdbcType=VARCHAR}, 
+      #{imageType,jdbcType=VARCHAR}, #{imageName,jdbcType=VARCHAR}, #{imageUrl,jdbcType=VARCHAR}, 
+      #{diskUrl,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.Images">
+    insert into HS_AFTER_IMAGES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="applicationId != null">
+        APPLICATION_ID,
+      </if>
+      <if test="applyType != null">
+        APPLY_TYPE,
+      </if>
+      <if test="imageType != null">
+        IMAGE_TYPE,
+      </if>
+      <if test="imageName != null">
+        IMAGE_NAME,
+      </if>
+      <if test="imageUrl != null">
+        IMAGE_URL,
+      </if>
+      <if test="diskUrl != null">
+        DISK_URL,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="applicationId != null">
+        #{applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null">
+        #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="imageType != null">
+        #{imageType,jdbcType=VARCHAR},
+      </if>
+      <if test="imageName != null">
+        #{imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="diskUrl != null">
+        #{diskUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.Images">
+    update HS_AFTER_IMAGES
+    <set>
+      <if test="applicationId != null">
+        APPLICATION_ID = #{applicationId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyType != null">
+        APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+      </if>
+      <if test="imageType != null">
+        IMAGE_TYPE = #{imageType,jdbcType=VARCHAR},
+      </if>
+      <if test="imageName != null">
+        IMAGE_NAME = #{imageName,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null">
+        IMAGE_URL = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="diskUrl != null">
+        DISK_URL = #{diskUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.Images">
+    update HS_AFTER_IMAGES
+    set APPLICATION_ID = #{applicationId,jdbcType=VARCHAR},
+      APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+      IMAGE_TYPE = #{imageType,jdbcType=VARCHAR},
+      IMAGE_NAME = #{imageName,jdbcType=VARCHAR},
+      IMAGE_URL = #{imageUrl,jdbcType=VARCHAR},
+      DISK_URL = #{diskUrl,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据申请单号查询 -->
+  <select id="selectByApplicationId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFTER_IMAGES
+    where APPLICATION_ID = #{applicationId,jdbcType=VARCHAR}
+  </select>  
+</mapper>

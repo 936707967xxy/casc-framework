@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.audit.dao.FinalAuditMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.audit.model.FinalAudit">
+    <id column="FINAL_ID" jdbcType="VARCHAR" property="finalId" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+    <result column="TASK_ID" jdbcType="VARCHAR" property="taskId" />
+    <result column="FINAL_STATUS" jdbcType="DECIMAL" property="finalStatus" />
+    <result column="AUDIT_DATE" jdbcType="TIMESTAMP" property="auditDate" />
+    <result column="AUDIT_EMP_NAME" jdbcType="VARCHAR" property="auditEmpName" />
+    <result column="AUDIT_EMP" jdbcType="VARCHAR" property="auditEmp" />
+    <result column="IN_HANDLE_OPINION" jdbcType="VARCHAR" property="inHandleOpinion" />
+    <result column="HANDLE_OPINION_VAL" jdbcType="VARCHAR" property="handleOpinionVal" />
+    <result column="HANDLE_OPINION" jdbcType="DECIMAL" property="handleOpinion" />
+    <result column="MONTH_PAY" jdbcType="DECIMAL" property="monthPay" />
+    <result column="APPROVED_AMOUNT" jdbcType="DECIMAL" property="approvedAmount" />
+    <result column="PRODUCT_PAY_VAL" jdbcType="VARCHAR" property="productPayVal" />
+    <result column="PRODUCT_PAY" jdbcType="DECIMAL" property="productPay" />
+    <result column="PRODUCT_RATE" jdbcType="DECIMAL" property="productRate" />
+    <result column="PRODUCT_PERIOD" jdbcType="DECIMAL" property="productPeriod" />
+    <result column="PRODUCT_FEE_RATE" jdbcType="DECIMAL" property="productFeeRate" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="PROD_ALIAS" jdbcType="VARCHAR" property="prodAlias" />
+    <result column="IS_ONLINE" jdbcType="INTEGER" property="isOnline" />
+    <result column="REJECT_TYPE" jdbcType="INTEGER" property="rejectType" />
+    <result column="REJECT_TYPE_VAL" jdbcType="VARCHAR" property="rejectTypeVal" />
+    <result column="CUST_TYPE" jdbcType="INTEGER" property="custType" />
+    <result column="CUST_TYPE_VAL" jdbcType="VARCHAR" property="custTypeVal" />
+    <result column="ONE_OPINION" jdbcType="VARCHAR" property="oneOpinion" />
+    <result column="IRR_VAL" jdbcType="DECIMAL" property="irrVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    FINAL_ID, PROC_INST_ID, TASK_ID, FINAL_STATUS, AUDIT_DATE, AUDIT_EMP_NAME, AUDIT_EMP, 
+    IN_HANDLE_OPINION, HANDLE_OPINION_VAL, HANDLE_OPINION, MONTH_PAY, APPROVED_AMOUNT, 
+    PRODUCT_PAY_VAL, PRODUCT_PAY, PRODUCT_RATE, PRODUCT_PERIOD, PRODUCT_FEE_RATE, PRODUCT_NAME, 
+    PRODUCT_ID, APPLY_ID, PROD_ALIAS,IS_ONLINE, REJECT_TYPE, REJECT_TYPE_VAL, CUST_TYPE, 
+    CUST_TYPE_VAL, ONE_OPINION, IRR_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_FINAL_AUDIT
+    where FINAL_ID = #{finalId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_FINAL_AUDIT
+    where FINAL_ID = #{finalId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.audit.model.FinalAudit">
+    insert into HS_FINAL_AUDIT (FINAL_ID, PROC_INST_ID, TASK_ID, 
+      FINAL_STATUS, AUDIT_DATE, AUDIT_EMP_NAME, 
+      AUDIT_EMP, IN_HANDLE_OPINION, HANDLE_OPINION_VAL, 
+      HANDLE_OPINION, MONTH_PAY, APPROVED_AMOUNT, 
+      PRODUCT_PAY_VAL, PRODUCT_PAY, PRODUCT_RATE, 
+      PRODUCT_PERIOD, PRODUCT_FEE_RATE, PRODUCT_NAME, 
+      PRODUCT_ID, APPLY_ID, PROD_ALIAS,IS_ONLINE, REJECT_TYPE, REJECT_TYPE_VAL, 
+      CUST_TYPE, CUST_TYPE_VAL, ONE_OPINION,
+      IRR_VAL)
+    values (#{finalId,jdbcType=VARCHAR}, #{procInstId,jdbcType=VARCHAR}, #{taskId,jdbcType=VARCHAR}, 
+      #{finalStatus,jdbcType=DECIMAL}, #{auditDate,jdbcType=TIMESTAMP}, #{auditEmpName,jdbcType=VARCHAR}, 
+      #{auditEmp,jdbcType=VARCHAR}, #{inHandleOpinion,jdbcType=VARCHAR}, #{handleOpinionVal,jdbcType=VARCHAR}, 
+      #{handleOpinion,jdbcType=DECIMAL}, #{monthPay,jdbcType=DECIMAL}, #{approvedAmount,jdbcType=DECIMAL}, 
+      #{productPayVal,jdbcType=VARCHAR}, #{productPay,jdbcType=DECIMAL}, #{productRate,jdbcType=DECIMAL}, 
+      #{productPeriod,jdbcType=DECIMAL}, #{productFeeRate,jdbcType=DECIMAL}, #{productName,jdbcType=VARCHAR}, 
+      #{productId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{prodAlias,jdbcType=VARCHAR}, #{isOnline,jdbcType=INTEGER}, 
+      #{rejectType,jdbcType=INTEGER}, #{rejectTypeVal,jdbcType=VARCHAR}, 
+      #{custType,jdbcType=INTEGER}, #{custTypeVal,jdbcType=VARCHAR}, #{oneOpinion,jdbcType=VARCHAR},
+      #{irrVal,jdbcType=DECIMAL})
+      
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.audit.model.FinalAudit">
+    insert into HS_FINAL_AUDIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="finalId != null">
+        FINAL_ID,
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID,
+      </if>
+      <if test="taskId != null">
+        TASK_ID,
+      </if>
+      <if test="finalStatus != null">
+        FINAL_STATUS,
+      </if>
+      <if test="auditDate != null">
+        AUDIT_DATE,
+      </if>
+      <if test="auditEmpName != null">
+        AUDIT_EMP_NAME,
+      </if>
+      <if test="auditEmp != null">
+        AUDIT_EMP,
+      </if>
+      <if test="inHandleOpinion != null">
+        IN_HANDLE_OPINION,
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL,
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION,
+      </if>
+      <if test="monthPay != null">
+        MONTH_PAY,
+      </if>
+      <if test="approvedAmount != null">
+        APPROVED_AMOUNT,
+      </if>
+      <if test="productPayVal != null">
+        PRODUCT_PAY_VAL,
+      </if>
+      <if test="productPay != null">
+        PRODUCT_PAY,
+      </if>
+      <if test="productRate != null">
+        PRODUCT_RATE,
+      </if>
+      <if test="productPeriod != null">
+        PRODUCT_PERIOD,
+      </if>
+      <if test="productFeeRate != null">
+        PRODUCT_FEE_RATE,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="prodAlias != null">
+        PROD_ALIAS,
+      </if>
+      <if test="isOnline != null">
+        IS_ONLINE,
+      </if>
+      <if test="rejectType != null">
+        REJECT_TYPE,
+      </if>
+      <if test="rejectTypeVal != null">
+        REJECT_TYPE_VAL,
+      </if>
+      <if test="custType != null">
+        CUST_TYPE,
+      </if>
+      <if test="custTypeVal != null">
+        CUST_TYPE_VAL,
+      </if>
+      <if test="oneOpinion != null">
+        ONE_OPINION,
+      </if>
+      <if test="irrVal != null">
+        IRR_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="finalId != null">
+        #{finalId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="finalStatus != null">
+        #{finalStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="auditDate != null">
+        #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditEmpName != null">
+        #{auditEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEmp != null">
+        #{auditEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="inHandleOpinion != null">
+        #{inHandleOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinionVal != null">
+        #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinion != null">
+        #{handleOpinion,jdbcType=DECIMAL},
+      </if>
+      <if test="monthPay != null">
+        #{monthPay,jdbcType=DECIMAL},
+      </if>
+      <if test="approvedAmount != null">
+        #{approvedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productPayVal != null">
+        #{productPayVal,jdbcType=VARCHAR},
+      </if>
+      <if test="productPay != null">
+        #{productPay,jdbcType=DECIMAL},
+      </if>
+      <if test="productRate != null">
+        #{productRate,jdbcType=DECIMAL},
+      </if>
+      <if test="productPeriod != null">
+        #{productPeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="productFeeRate != null">
+        #{productFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodAlias != null">
+        #{prodAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="isOnline != null">
+        #{isOnline,jdbcType=INTEGER},
+      </if>
+      <if test="rejectType != null">
+        #{rejectType,jdbcType=INTEGER},
+      </if>
+      <if test="rejectTypeVal != null">
+        #{rejectTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null">
+        #{custType,jdbcType=INTEGER},
+      </if>
+      <if test="custTypeVal != null">
+        #{custTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="oneOpinion != null">
+        #{oneOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="irrVal != null">
+        #{irrVal,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.audit.model.FinalAudit">
+    update HS_FINAL_AUDIT
+    <set>
+      <if test="procInstId != null">
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        TASK_ID = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="finalStatus != null">
+        FINAL_STATUS = #{finalStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="auditDate != null">
+        AUDIT_DATE = #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditEmpName != null">
+        AUDIT_EMP_NAME = #{auditEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEmp != null">
+        AUDIT_EMP = #{auditEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="inHandleOpinion != null">
+        IN_HANDLE_OPINION = #{inHandleOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION = #{handleOpinion,jdbcType=DECIMAL},
+      </if>
+      <if test="monthPay != null">
+        MONTH_PAY = #{monthPay,jdbcType=DECIMAL},
+      </if>
+      <if test="approvedAmount != null">
+        APPROVED_AMOUNT = #{approvedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productPayVal != null">
+        PRODUCT_PAY_VAL = #{productPayVal,jdbcType=VARCHAR},
+      </if>
+      <if test="productPay != null">
+        PRODUCT_PAY = #{productPay,jdbcType=DECIMAL},
+      </if>
+      <if test="productRate != null">
+        PRODUCT_RATE = #{productRate,jdbcType=DECIMAL},
+      </if>
+      <if test="productPeriod != null">
+        PRODUCT_PERIOD = #{productPeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="productFeeRate != null">
+        PRODUCT_FEE_RATE = #{productFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodAlias != null">
+        PROD_ALIAS = #{prodAlias,jdbcType=VARCHAR},
+      </if>
+      <if test="isOnline != null">
+       IS_ONLINE =  #{isOnline,jdbcType=INTEGER},
+      </if>
+      <if test="rejectType != null">
+        REJECT_TYPE = #{rejectType,jdbcType=INTEGER},
+      </if>
+      <if test="rejectTypeVal != null">
+        REJECT_TYPE_VAL = #{rejectTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null">
+        CUST_TYPE = #{custType,jdbcType=INTEGER},
+      </if>
+      <if test="custTypeVal != null">
+        CUST_TYPE_VAL = #{custTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="oneOpinion != null">
+        ONE_OPINION = #{oneOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="irrVal != null">
+        IRR_VAL = #{irrVal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where FINAL_ID = #{finalId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.audit.model.FinalAudit">
+    update HS_FINAL_AUDIT
+    set PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=VARCHAR},
+      FINAL_STATUS = #{finalStatus,jdbcType=DECIMAL},
+      AUDIT_DATE = #{auditDate,jdbcType=TIMESTAMP},
+      AUDIT_EMP_NAME = #{auditEmpName,jdbcType=VARCHAR},
+      AUDIT_EMP = #{auditEmp,jdbcType=VARCHAR},
+      IN_HANDLE_OPINION = #{inHandleOpinion,jdbcType=VARCHAR},
+      HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      HANDLE_OPINION = #{handleOpinion,jdbcType=DECIMAL},
+      MONTH_PAY = #{monthPay,jdbcType=DECIMAL},
+      APPROVED_AMOUNT = #{approvedAmount,jdbcType=DECIMAL},
+      PRODUCT_PAY_VAL = #{productPayVal,jdbcType=VARCHAR},
+      PRODUCT_PAY = #{productPay,jdbcType=DECIMAL},
+      PRODUCT_RATE = #{productRate,jdbcType=DECIMAL},
+      PRODUCT_PERIOD = #{productPeriod,jdbcType=DECIMAL},
+      PRODUCT_FEE_RATE = #{productFeeRate,jdbcType=DECIMAL},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      PROD_ALIAS = #{prodAlias,jdbcType=VARCHAR},
+      IS_ONLINE =  #{isOnline,jdbcType=INTEGER},
+      REJECT_TYPE = #{rejectType,jdbcType=INTEGER},
+      REJECT_TYPE_VAL = #{rejectTypeVal,jdbcType=VARCHAR},
+      CUST_TYPE = #{custType,jdbcType=INTEGER},
+      CUST_TYPE_VAL = #{custTypeVal,jdbcType=VARCHAR},
+      ONE_OPINION = #{oneOpinion,jdbcType=VARCHAR},
+      IRR_VAL = #{irrVal,jdbcType=DECIMAL}
+    where FINAL_ID = #{finalId,jdbcType=VARCHAR}
+  </update>
+  <!-- AND FINAL_STATUS=1 -->
+	<select id="findByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		FINAL_ID, IS_ONLINE,PROC_INST_ID, TASK_ID, FINAL_STATUS, AUDIT_DATE, AUDIT_EMP_NAME, AUDIT_EMP,
+		IN_HANDLE_OPINION, HANDLE_OPINION_VAL, HANDLE_OPINION, MONTH_PAY, APPROVED_AMOUNT,
+		PRODUCT_PAY_VAL, PRODUCT_PAY, PRODUCT_RATE, PRODUCT_PERIOD, PRODUCT_FEE_RATE, PRODUCT_NAME,
+		PRODUCT_ID, APPLY_ID,REJECT_TYPE,REJECT_TYPE_VAL,CUST_TYPE,CUST_TYPE_VAL,ONE_OPINION,IRR_VAL  
+		FROM HS_FINAL_AUDIT
+		WHERE APPLY_ID=#{applyId} AND AUDIT_DATE IN (
+		SELECT MAX(AUDIT_DATE) FROM HS_FINAL_AUDIT WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+		)
+	</select>
+
+	<!-- 获取终审列表 FINAL_AUDIT_GROUP -->
+	<resultMap type="com.hoomsun.csas.audit.model.vo.UserApplyVO" id="USER_APPLY_VO_RESULT">
+		<id column="APPLY_ID" property="applyId" />
+		<result column="STORE_NAME" property="storeName" />
+		<result column="STORE_ID" property="storeId" />
+		<result column="CUST_MOBILE" property="custMobile" />
+		<result column="ID_NUMBER" property="idNumber" />
+		<result column="CUST_NAME" property="custName" />
+		<result column="SOURCES" property="sources" />
+		<result column="PROC_STATUS_VAL" property="procStatusVal" />
+		<result column="PROC_STATUS" property="procStatus" />
+		<result column="PROC_INST_ID" property="procInstId" />
+		<result column="PRODUCT_NAME" property="productName" />
+		<result column="PRODUCT_ID" property="productId" />
+		<result column="LOAN_ID" property="loanId" />
+		<result column="APPLY_AMOUNT" property="applyAmount" />
+		<result column="APPLY_DATE" property="applyDate"/>
+	  	<result column="START_TIME_" property="startTime"/>
+	  	<result column="CLAIM_TIME_" property="claimTime"/>
+	  	<result column="END_TIME_" property="endTime"/>
+	  	<result column="ASSIGNEE_" property="assignee"/>
+	</resultMap>
+
+	<select id="findPager" parameterType="java.util.Map" resultMap="USER_APPLY_VO_RESULT">
+		 		SELECT * FROM (
+			SELECT ROWNUM r, AP.* FROM (
+				SELECT 
+					app.LOAN_ID, app.APPLY_ID, app.CUST_NAME, app.SOURCES, app.SOURCES_VALUE, 
+					REPLACE (app.CUST_MOBILE, SUBSTR (app.CUST_MOBILE, 4, 4), '****') AS CUST_MOBILE,
+					REPLACE (app.ID_NUMBER, SUBSTR (app.ID_NUMBER, 6, 8),'********') AS ID_NUMBER,
+					app.PRODUCT_ID,app.PRODUCT_NAME,app.APPLY_AMOUNT,app.PROC_STATUS_VAL,
+					app.PROC_STATUS,app.PROC_INST_ID,app.STORE_ID,app.SALES_EMP_ID,
+					app.SALES_EMP_NAME,app.CREATE_EMPLOYEE,app.CREATE_EMPLOYEE_VAL,app.APPLY_DATE,
+					tbl.ASSIGNEE_
+				FROM
+					HS_APPLY app
+				INNER JOIN (
+					SELECT
+						 HP.BUSINESS_KEY_,
+						 HT.ASSIGNEE_
+					FROM
+					ACT_HI_PROCINST HP
+					INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+					<choose>
+						<!-- 待签收 -->
+						<when test="nodeStatus == 0">
+							WHERE HT.TASK_DEF_KEY_ = 'finalAudit'
+						    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+						</when>
+						<!-- 已经签收，待审核 -->
+						<when test="nodeStatus == 1">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'finalAudit' and HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'finalAudit'
+						        		AND (HT.ASSIGNEE_=#{empId} and HT.ASSIGNEE_ IS not NULL AND HT.END_TIME_ IS NULL)
+						        </otherwise>
+							</choose>
+						</when>
+						
+						<!-- 已经审核 -->
+						<when test="nodeStatus == 2">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'finalAudit' AND HT.END_TIME_ IS NOT NULL
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'finalAudit'
+						        		AND HT.END_TIME_ IS NOT NULL
+						        		AND HT.ASSIGNEE_=#{empId}
+						        </otherwise>
+							</choose>
+						</when>
+						
+						<!-- 全部  已经签收 和 已经审核的任务-->
+						<when test="nodeStatus == 3">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'finalAudit'
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'finalAudit'
+						        		AND HT.ASSIGNEE_=#{empId}
+						        </otherwise>
+							</choose>
+						</when>
+
+					</choose>
+					GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+				) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+				WHERE app.DEL_STATUE = 0 
+				
+				<if test="custName != null and custName != ''">
+					and app.CUST_NAME LIKE #{custName} 
+				</if>
+				<if test="custMobile != null and custMobile != ''">
+					and app.CUST_MOBILE = #{custMobile}
+				</if>
+				<if test="idNumber != null and idNumber != ''">
+					and app.ID_NUMBER = #{idNumber}
+				</if>
+				<if test="salesEmpName != null and salesEmpName != ''">
+					and app.SALES_EMP_NAME LIKE #{salesEmpName}
+				</if>
+				<if test="loanId != null and loanId != ''">
+					and app.LOAN_ID = #{loanId} 
+				</if>
+				ORDER BY app.APPLY_DATE DESC
+			) AP
+			WHERE <![CDATA[ROWNUM <=  #{pageIndex} * #{pageSize}]]>
+		)
+	WHERE r > (#{pageIndex} -1) * #{pageSize}
+	</select>
+	<select id="findFinalAuditCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT 
+		COUNT(app.APPLY_ID)
+		FROM
+			HS_APPLY app
+				INNER JOIN (
+			SELECT
+				 HP.BUSINESS_KEY_,
+				 HT.ASSIGNEE_
+			FROM
+			ACT_HI_PROCINST HP
+			INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+			<choose>
+				<!-- 待签收 -->
+				<when test="nodeStatus == 0">
+					WHERE HT.TASK_DEF_KEY_ = 'finalAudit'
+				    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+				</when>
+				<!-- 已经签收，待审核 -->
+				<when test="nodeStatus == 1">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'finalAudit' and HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'finalAudit'
+				        		AND (HT.ASSIGNEE_=#{empId} and HT.ASSIGNEE_ IS not NULL AND HT.END_TIME_ IS NULL)
+				        </otherwise>
+					</choose>
+				</when>
+				
+				<!-- 已经审核 -->
+				<when test="nodeStatus == 2">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'finalAudit' AND HT.END_TIME_ IS NOT NULL
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'finalAudit'
+				        		AND HT.END_TIME_ IS NOT NULL
+				        		AND HT.ASSIGNEE_=#{empId}
+				        </otherwise>
+					</choose>
+				</when>
+				
+				<!-- 全部  已经签收 和 已经审核的任务-->
+				<when test="nodeStatus == 3">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'finalAudit'
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'finalAudit'
+				        		AND HT.ASSIGNEE_=#{empId}
+				        </otherwise>
+					</choose>
+				</when>
+
+			</choose>
+			GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+		) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+		WHERE app.DEL_STATUE = 0 
+		
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName} 
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId} 
+		</if>
+	</select>
+
+
+	<!-- 根据流程信息和申请信息获取某一状态的数据的id -->
+	<select id="selectIdByProcess" resultType="java.lang.String" resultMap="BaseResultMap">
+		SELECT AUDIT_DATE ,FINAL_ID FROM 
+	      HS_FINAL_AUDIT 
+	      WHERE APPLY_ID=#{applyId} AND TASK_ID=#{taskId}  AND AUDIT_DATE = (
+	     SELECT MAX(AUDIT_DATE) FROM HS_FINAL_AUDIT WHERE 
+	     APPLY_ID=#{applyId} AND TASK_ID=#{taskId} 
+	    )
+	</select>
+
+	<!-- 修改审核数据的状态 -->
+	<update id="updatePreStatus">
+		UPDATE HS_FINAL_AUDIT SET FINAL_STATUS=#{preStatus} WHERE APPLY_ID=#{applyId} AND PROC_INST_ID=#{processInstanceId} AND TASK_ID=#{taskId}
+	</update>
+
+	<!-- <select id="findByApplyIdShow" parameterType="java.lang.String" resultMap="BaseResultMap"> SELECT FINAL_ID, PROC_INST_ID, TASK_ID, FINAL_STATUS, AUDIT_DATE, 
+		AUDIT_EMP_NAME, AUDIT_EMP, IN_HANDLE_OPINION, HANDLE_OPINION_VAL, HANDLE_OPINION, MONTH_PAY, APPROVED_AMOUNT, PRODUCT_PAY_VAL, PRODUCT_PAY, PRODUCT_RATE, PRODUCT_PERIOD, 
+		PRODUCT_FEE_RATE, PRODUCT_NAME, PRODUCT_ID, APPLY_ID FROM HS_FINAL_AUDIT WHERE AUDIT_DATE IN ( SELECT MAX(AUDIT_DATE) FROM HS_FINAL_AUDIT WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR} 
+		) </select> -->
+
+	<!-- 撤回只撤回上一次审核的数据 -->
+	<delete id="deleteWhenWithDrow" parameterType="java.lang.String">
+		DELETE FROM HS_FINAL_AUDIT WHERE APPLY_ID = #{applyId} AND PROC_INST_ID = #{processId} AND AUDIT_DATE IN (
+		SELECT MAX(AUDIT_DATE) FROM HS_FINAL_AUDIT WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+		)
+	</delete>
+
+	<!--获取终审审批退回信息数据 -->
+	<select id="findRollBackByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT FINAL_ID, PROC_INST_ID, TASK_ID, AUDIT_DATE, AUDIT_EMP_NAME, AUDIT_EMP,
+		IN_HANDLE_OPINION, HANDLE_OPINION_VAL, APPLY_ID 
+		FROM HS_FINAL_AUDIT 
+		WHERE HANDLE_OPINION='2' AND APPLY_ID=#{applyId}
+		ORDER BY AUDIT_DATE
+	</select>
+	  	
+  
+  <select id="selectCountByApplyAndTaskId" parameterType="java.lang.String" resultType="java.lang.String">
+  	SELECT COUNT(FINAL_ID) FROM HS_FINAL_AUDIT WHERE APPLY_ID=#{applyId} AND TASK_ID=#{taskId} 
+  </select>
+  
+  
+</mapper>

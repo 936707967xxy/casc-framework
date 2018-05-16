@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdf xmlns="http://www.idawn.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.idawn.org pdf.xsd">
+	<styles>
+		<style id="title" textalignment="CENTER" fontsize="16" bold="true" />
+		<style id="table" fontsize="8" />
+		<style id="bold" bold="true" />
+		<style id="margin-top-bottom" margin-top="36" margin-bottom="36" />
+		<style id="margin-bottom" margin-bottom="36" />
+		<style id="margin-top" margin-top="36" />
+		<style id="firstLineIndent"  />
+		<style id="sign-box"  margin-top="20" textalignment="RIGHT"/>
+		<style id="no_border" border="0"/>
+	</styles>
+	
+	<body pagesize="A4" fontsize="10" margin-top="36" margin-right="45" margin-bottom="36" margin-left="45">
+		<page>
+			<title value="还款管理计划书" style="title" />
+			<p fill="true"><span>#{custName}先生/女士，您好!</span></p>
+			<p first-line-indent="14"><span>为了您更加方便、快捷的进行还款，同时积累良好的信用记录，在此，请您特别注意如下事项:</span></p>
+			<p><span>1. 还款账户：</span></p>
+			<p first-line-indent="14"><span>在借款协议里列示的专用账户是您每次用于还款的账户，请您妥善保管好该银行卡。如发生此银行卡丢失、损坏的情况，请您在第一时间联系我们，我们将根据具体情况，协助您安排按时还款事宜，以避免不必要的逾期违约金和罚息的产生，如您需要变更还款账户，请向我们提出申请（还款日当天不受理），我们相关的工作人员将协助您，进行变更借款协议中专用账号的事项办理。</span></p>
+			<p><span>2. 还款账户最低余额为15元：</span></p>
+			<p first-line-indent="14"><span>为了保证您的还款成功扣款，请确保您的还款账户余额在划扣当月还款额以后，还有至少15元的余额存在您的还款账户里，此金额有可能用于支付还款银行的“年费”和其他相关费用。关于此“年费”和其他费用收费标准，请致电您的还款银行查询，同时为了保证扣款日能够成功划扣，请您保持专用账号中有充足的资金，避免因其他未知或遗忘的代扣等业务造成违约。</span></p>
+			<p><span>3. 还款金额：</span></p>
+			<p first-line-indent="14" fill="true"><span>您的每月还款额为RMB #{payMonth}元,请您务必牢记此数字。（包含月账户管理费RMB0.00元，本息RMB #{amt}元）。</span></p>
+			<p><span>4. 还款时间：</span></p>
+			<p first-line-indent="14"><span>请您在每月还款日16点以前，将每月还款额足额存到您的借记卡里、逾期将产生不必要的罚息和逾期违约金，并会影响您的个人信用记录。</span></p>
+			<p first-line-indent="14"><span>请您务必牢记还款日，此还款日期不因节假日顺延。我们将以成功划扣还款账户的还款金额时间为准，记录还款时间。</span></p>
+			<p><span>5.如果您因特殊原因暂时无法按时足额还款时，请在第一时间（当月还款日期之前）与我们联系，(电话：400-602-7111)。我们将协助您安排预约还款并准确告知您还款金额（本息、逾期违约金，罚息，协议约定的相关费用等）。特别需要您值得注意的是：针对违约时长超过15天，根据借款协议，出借人有权提前终止借款协议，您须在出借人提出终止借款协议要求的三日内一次性支付余下的所有本金、利息，罚息和逾期违约金。</span></p>
+			<p><span>6. 逾期违约金及罚息计算方法如下：</span></p>
+			<p first-line-indent="14"><span>1)逾期违约金：如未按本协议第一条约定的还款时间足额还款，则按照当月应还本息的10%计算，不低于100元，每月单独计算。</span></p>
+			<p first-line-indent="14"><span>2)罚息：每日按合同金额的0.05%收取罚息，每月单独计算。</span></p>
+			<p><span>7. 联系方式变更：</span></p>
+			<p first-line-indent="14"><span>为了方便我们更好的服务于您，如果您需要变更还款账号，或者您（或是您共同借款人）的联系方式、工作单位、居住或工作地址等与借款有关的信息发生变化，请在第一时间拨打400-602-7111通知我们。注：在还款日当天不予变更还款账号，变更还款账号需提前。</span></p>
+			<p><span>8. 循环贷情形：</span></p>
+			<p first-line-indent="14"><span>在您积累了一定的良好信用记录后，比如您已经按时还满一定期限后，如果您有新的借款需求，我们将接受您的再次申请，我们会根据您的信用级别，还款情况和还款额提供循环贷的帮助，循环贷咨询电话：400-602-7111。</span></p>
+			<p><span>9. 提前还款（即一次性还款）：</span></p>
+			<p first-line-indent="14"><span>为了方便我们更好的服务于您，如果您决定一次性将全部款项结清，请您务必提前三个工作日与我们进行沟通（还款日及节假日期间不办理），我们将帮助您安排预约一次性还款的相关事宜（提前还款具体金额详见此还款管理计划书第10项）。提前还款电话：400-602-7111。</span></p>
+			<p><span>10. 如您无法通过电话联系我们，请您到我们公司办理各种服务事项，我们将真诚为您服务。</span></p>
+		</page>
+		<page>
+			<p><span>您的还款明细表如下（应还款项按照四舍五入计算）：</span></p>
+			<table column="5" foreach="true" var="#{repaymentPlans}" item="plan">
+				<th clm="1" row="1">期数</th>
+				<th clm="1" row="1">计划还款日</th>
+				<th clm="1" row="1">月还款额</th>
+				<th clm="1" row="1">尚欠本金</th>
+				<th clm="1" row="1">当期一次性还款金额</th>
+				<td clm="1" row="1" fill="true">#{plan.shouldTerm}</td>
+				<td clm="1" row="1" fill="true">#{plan.shouldDate}</td>
+				<td clm="1" row="1" fill="true">#{plan.shouldAmt}</td>
+				<td clm="1" row="1" fill="true">#{plan.bal}</td>
+				<td clm="1" row="1" fill="true">#{plan.advanceMoney}</td>
+			</table>
+			<table column="1" style="sign-box">
+				<th clm="1" row="1" border="0">借款人签字：_________________</th>
+				<th clm="1" row="1" border="0">讲解人签字：_________________</th>
+				<th clm="1" row="1" border="0">签订日期：______年____月____日</th>
+			</table>
+		</page>
+
+	</body>
+</pdf>

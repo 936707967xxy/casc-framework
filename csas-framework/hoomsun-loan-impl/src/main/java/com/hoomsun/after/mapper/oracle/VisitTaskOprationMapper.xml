@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.VisitTaskOprationMapper">
+	
+	<!-- 外访申请任务分配列表 -->
+	<select id="queryVisitTaskList" parameterType="com.hoomsun.after.api.model.param.VistTaskReq"
+		resultType="com.hoomsun.after.api.model.vo.VistTaskResult">
+		SELECT * FROM (
+		<include refid="selectVisitTaskSql"/>
+		<include refid="fromVisitTaskSql"/>
+		<include refid="whereVisitTaskSql"/>
+		<include refid="descVisitTaskSql"/>
+		)
+		<![CDATA[ WHERE  r > (#{ page }- 1) * #{ pageSize }]]>
+	</select>
+	
+	<!-- 查询总条数 -->
+	<select id="countVisitTask" parameterType="com.hoomsun.after.api.model.param.VistTaskReq"
+	 resultType="java.lang.Integer">
+	   <include refid="selectCountVisitTask"/>
+	   <include refid="fromVisitTaskSql"/>
+		<include refid="whereVisitTaskSql"/>
+	</select>
+	
+	<sql id="selectCountVisitTask">
+	     SELECT COUNT(bal.LOAN_ID) 
+	</sql>
+
+    <sql id="selectVisitTaskSql">
+		SELECT 
+		bal.LOAN_ID AS loanId,
+		bal.CON_NO AS conNo,
+		bal.CARD_NO AS cardNo,
+		bal.TEL AS tel,
+		hao.APPLY_ID AS applyId,
+		bal.CAST_NAME AS castName,
+		bal.LOAN_PERIOD AS loanPeriod,
+		bal.CURRENT_PERIOD AS currentPeriod,
+		bal.LOAN_MONEY AS loanMoney,
+		bal.DELAY_FLAG AS dalayFlag,
+		bal.MANAGER_CAST AS managerCast,
+		bal.LOAN_MANAGER_CAST AS loanManagerCast,
+		bal.M_SECTION AS mSection,
+		bal.STATEMENT_DATE AS statementDate,
+		bal.CON_MONEY AS conMoney,
+		hao.OUTBOUND_ADDRESS AS outboundAddress,
+		hao.OVERDUE_STATUS AS overdueStatus,
+		hao.OUTBOUND_DATE AS outboundDate,
+		hao.OVERDUE_DESC AS overdueDesc,
+		hao.APPLY_DESC AS applyDesc,
+		hao.OUTBOUND_STATUS AS outboundStatus,
+		hao.OUTBOUND_ID AS outboundId,
+		hao.OUTBOUND_NAME AS outboundName,
+		hao.OUTBOUND_DESC AS outboundDesc,
+		hao.CREATE_TIME AS createTime,
+		hao.UPDATE_DATE AS updateTime,
+		ROWNUM AS r
+    </sql>
+    
+    <sql id="fromVisitTaskSql">
+         FROM HS_AFTER_OUTBOUND hao 
+         LEFT JOIN HS_AFTER_LOANBAL bal ON hao.LOAN_ID=bal.LOAN_ID
+    </sql>
+    
+    <sql id="whereVisitTaskSql">
+        <where>
+		  <if test="outboundStatus != null and outboundStatus !='' ">
+		     hao.OUTBOUND_STATUS = #{outboundStatus}
+		  </if>
+		  <if test="loanId != null and loanId !='' ">
+		      AND bal.LOAN_ID =#{loanId}
+		  </if>
+		  <if test="conNo != null and conNo !='' ">
+		      AND bal.CON_NO =#{conNo}
+		  </if>
+		  <if test="applyId != null and applyId !='' ">
+		      AND hao.APPLY_ID =#{applyId}
+		  </if>
+		   <if test="outboundId != null and outboundId !='' ">
+		      AND hao.OUTBOUND_ID =#{outboundId}
+		  </if>
+		   <if test="castName != null and castName !='' ">
+		      <![CDATA[AND bal.CAST_NAME  LIKE  '%'||#{castName}||'%' ]]>
+		  </if>
+		  <if test="cardNo != null and cardNo !='' ">
+		      AND bal.CARD_NO =#{cardNo}
+		  </if>
+		  <if test="tel != null and tel !='' ">
+		      AND bal.TEL =#{tel}
+		  </if>
+		  <if test="isTask != null and isTask !='' ">
+		      <if test='isTask =="1"'>
+			     AND hao.OUTBOUND_ID IS  NULL AND hao.OUTBOUND_NAME IS  NULL
+			  </if>
+			  <if test='isTask=="0"' >
+		         AND hao.OUTBOUND_ID IS  NOT NULL OR hao.OUTBOUND_NAME IS  NOT NULL
+		  </if>
+		  </if>
+		  <if test="page !='-1' ">
+		      <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		  </if>
+		</where>
+    </sql>
+    
+    <sql id="descVisitTaskSql">
+         ORDER BY hao.CREATE_TIME DESC
+    </sql>
+    
+    <!-- 外访申请分配 -->
+    <update id="updateVisiTask" parameterType="com.hoomsun.after.api.model.param.VistTaskReq" >
+      UPDATE HS_AFTER_OUTBOUND
+      SET OUTBOUND_ID = #{outboundId},
+      OUTBOUND_NAME = #{outboundName},
+      UPDATE_DATE = sysdate
+      WHERE
+      LOAN_ID = #{loanId}
+    </update>
+    
+    <!-- 查询外访记录日志列表 -->
+    <select id="queryOutBoundLog"  parameterType="com.hoomsun.after.api.model.param.VistTaskReq" 
+                    resultType="com.hoomsun.after.api.model.vo.VisitRecordResult">
+        SELECT 
+		haol.CREAT_TIME AS visitCreateTime,
+		haol.CAST_NAME AS castName,
+		haol.VISIT_CAST_ADDRESS AS visitCastAddress,
+		haol.NOTE AS visitNote,
+		haol.APPLICATION_ID AS applyId,
+		haol.COLLECTION_CAST_NAME AS collectionCastName,
+		haol.VISIT_CAST_NAME AS visitCastName
+		FROM HS_AFTER_OUTBOUND_LOG haol
+		WHERE
+		haol.LOAN_ID = #{loanId}
+    </select>
+    
+    <!-- 手动添加外访记录日志 -->
+    <insert id="addOutBoundLog" parameterType="com.hoomsun.after.api.model.vo.VisitRecordResult">
+	      INSERT INTO  HS_AFTER_OUTBOUND_LOG(
+	      ID,
+	      CREAT_TIME,
+	      LOAN_ID,
+	      CAST_NAME,
+	      VISIT_CAST_ADDRESS,
+	      NOTE,
+	      APPLICATION_ID,
+	      OPRATION_ID,
+	      OPRATION_NAME,
+	      HOST_IP,
+	      COLLECTION_CAST_NAME,
+	      VISIT_CAST_NAME,
+	      VISIT_CAST_ID,
+	      COLLECTION_CAST_ID
+	      )
+	      VALUES(
+	      #{id},
+	      sysdate,
+	      #{loanId},
+	      #{castName},
+	      #{visitCastAddress},
+	      #{visitNote},
+	      #{applyId},
+	      #{oprationId},
+	      #{oprationName},
+	      #{hostIp},
+	      #{collectionCastName},
+	      #{visitCastName},
+	      #{visitCastId},
+	      #{collectionCastId}
+	      )
+    </insert>
+</mapper>

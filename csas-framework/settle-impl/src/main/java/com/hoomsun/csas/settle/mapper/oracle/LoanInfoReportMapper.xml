@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.settle.dao.LoanInfoReportMapper">
+	<resultMap type="com.hoomsun.csas.settle.model.vo.LoanInfoReport" id="REPAY_REPORT_RESULT_MAP">
+	<id column="CON_ID" jdbcType="VARCHAR" property="conId" />
+    <result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="CON_AMOUNT" jdbcType="DECIMAL" property="conAmount" />
+    <result column="LOAN_AMOUNT" jdbcType="DECIMAL" property="loanAmount" />
+    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+    <result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="PRODUCT_RATE" jdbcType="DECIMAL" property="productRate" />
+    <result column="PRODUCT_PERIOD" jdbcType="DECIMAL" property="productPeriod" />
+    <result column="PRODUCT_FEE_RATE" jdbcType="VARCHAR" property="productFeeRate" />
+    <result column="PRODUCT_PAY" jdbcType="VARCHAR" property="productPay" />
+    <result column="PRODUCT_PAY_VAL" jdbcType="VARCHAR" property="productPayVal" />
+    <result column="BILL_DATE" jdbcType="VARCHAR" property="billDate" />
+    <result column="PAY_DATE" jdbcType="VARCHAR" property="payDate" />
+    <result column="SIGN_TYPE" jdbcType="DECIMAL" property="signType" />
+    <result column="LOAN_DATE" jdbcType="TIMESTAMP" property="loanDate" />
+    <result column="SIGN_TIME" jdbcType="TIMESTAMP" property="signTime" />
+    <result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="CON_STATUS" jdbcType="DECIMAL" property="conStatus" />
+    <result column="BANK_ID" jdbcType="VARCHAR" property="bankId" />
+    <result column="BANK" jdbcType="VARCHAR" property="bank" />
+    <result column="SIGN_ADDR" jdbcType="VARCHAR" property="signAddr" />
+    <result column="SIGN_STORE" jdbcType="VARCHAR" property="signStore" />
+    <result column="BANK_NO" jdbcType="VARCHAR" property="bankNo" />
+    <result column="SERVICE_FEE" jdbcType="VARCHAR" property="serviceFee" />
+    <result column="BACK_BRANCH" jdbcType="VARCHAR" property="backBranch" />
+    <result column="BACK_BRANCH_ADDR" jdbcType="VARCHAR" property="backBranchAddr" />
+    <result column="BANK_PHONE_NO" jdbcType="VARCHAR" property="bankPhoneNo" />
+    <result column="BANK_MANAGER_FEE" jdbcType="DECIMAL" property="bankManagerFee" />
+    <result column="APPLY_MONEY" jdbcType="DECIMAL" property="applyMoney" />
+    <result column="INTEREST" jdbcType="DECIMAL" property="interest" />
+    <result column="MONTH_MONEY" jdbcType="DECIMAL" property="monthMoney" />
+    <result column="PROD_ALIAS" jdbcType="VARCHAR" property="prodAlias" />
+    <result column="SUM_FEE" jdbcType="DECIMAL" property="sumFee" />
+    <result column="IS_ONLINE" jdbcType="INTEGER" property="isOnline" />
+    <result column="HANDLE_EMP" jdbcType="VARCHAR" property="handleEmp" />
+    <result column="HANDLE_EMP_NAME" jdbcType="VARCHAR" property="handleEmpName" />
+    <result column="HANDLE_OPTION" jdbcType="VARCHAR" property="handleOption" />
+    <result column="HANDLE_OPTION_VAL" jdbcType="VARCHAR" property="handleOptionVal" />
+	    	
+	</resultMap>
+	
+    <select id="findPager" parameterType="java.util.Map" resultMap="REPAY_REPORT_RESULT_MAP">
+ 
+    	
+ 		SELECT tab.* FROM (
+	  
+			        
+		 SELECT 
+				 ROWNUM r,con.CON_ID,con.CON_NO,con.LOAN_ID,con.APPLY_ID,con.CON_AMOUNT,con.LOAN_AMOUNT,con.CUST_NAME,con.ID_NUMBER,
+				 con.PRODUCT_ID,con.PRODUCT_NAME,con.PRODUCT_RATE,con.PRODUCT_PERIOD,con.PRODUCT_FEE_RATE,con.PRODUCT_PAY,
+				 con.PRODUCT_PAY_VAL,con.BILL_DATE,con.PAY_DATE,con.SIGN_TYPE,con.SIGN_TIME,loan.LOAN_DATE,con.START_TIME,con.END_TIME,con.CON_STATUS,
+				 con.BANK_ID,con.BANK,con.SIGN_ADDR,con.SIGN_STORE,con.BANK_NO,con.SERVICE_FEE,con.BACK_BRANCH,con.BACK_BRANCH_ADDR,con.BANK_PHONE_NO,
+				 con.BANK_MANAGER_FEE,con.APPLY_MONEY,con.INTEREST,con.MONTH_MONEY,con.PROD_ALIAS,con.SUM_FEE,con.IS_ONLINE,
+				 loan.HANDLE_EMP,loan.HANDLE_EMP_NAME,loan.HANDLE_OPTION,loan.HANDLE_OPTION_VAL
+		  FROM HS_LOAN_RECORD loan 
+			LEFT JOIN HS_CONTRACT con ON loan.CON_ID=con.CON_ID
+		<![CDATA[ WHERE ROWNUM <=  #{pageIndex} * #{pageSize} ]]> and loan.HANDLE_OPTION='4' and con.IS_ONLINE='0'
+		 <if test="startDate != null and startDate != ''">
+		    <![CDATA[ AND to_char(loan.LOAN_DATE,'yyyy-mm-dd')>=#{startDate}]]>
+		</if>
+		<if test="endDate != null and endDate != ''">
+		   <![CDATA[ AND to_char(loan.LOAN_DATE,'yyyy-mm-dd')<=#{endDate}]]>
+		</if>	
+    	<if test="custName != null and custName != ''">
+			and con.CUST_NAME like #{custName}
+		</if>
+		<if test="bankPhoneNo != null and bankPhoneNo != ''">
+			and con.BANK_PHONE_NO LIKE #{bankPhoneNo}
+		</if>
+		<if test="conNo != null and conNo != ''">
+			and con.CON_NO LIKE #{conNo}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and con.ID_NUMBER LIKE #{idNumber}
+		</if>
+      	 ORDER BY con.SIGN_TIME DESC
+	     ) 
+    	tab  WHERE r > (#{pageIndex} -1) * #{pageSize}
+    	
+	</select>
+	
+	<select id="findPagerCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+	
+			 SELECT 
+				count(con.CON_ID)
+		  	FROM HS_CONTRACT con 
+			LEFT JOIN HS_LOAN_RECORD loan ON loan.CON_ID=con.CON_ID
+		    <![CDATA[WHERE loan.HANDLE_OPTION='4' and con.IS_ONLINE='0' ]]>
+		<if test="startDate != null and startDate != ''">
+		    <![CDATA[ AND to_char(loan.LOAN_DATE,'yyyy-mm-dd')>=#{startDate}]]>
+		</if>
+		<if test="endDate != null and endDate != ''">
+		   <![CDATA[ AND to_char(loan.LOAN_DATE,'yyyy-mm-dd')<=#{endDate}]]>
+		</if>	
+	  	<if test="custName != null and custName != ''">
+			and con.CUST_NAME like #{custName}
+		</if>
+		<if test="bankPhoneNo != null and bankPhoneNo != ''">
+			and con.BANK_PHONE_NO LIKE #{bankPhoneNo}
+		</if>
+		<if test="conNo != null and conNo != ''">
+			and con.CON_NO LIKE #{conNo}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and con.ID_NUMBER LIKE #{idNumber}
+		</if>
+	</select>
+	
+	<!-- 导出报表 -->
+	<select id="findLoanInfoList"  resultMap="REPAY_REPORT_RESULT_MAP">
+	
+		 SELECT 
+				 con.CON_ID,con.CON_NO,con.LOAN_ID,con.APPLY_ID,con.CON_AMOUNT,con.LOAN_AMOUNT,con.CUST_NAME,con.ID_NUMBER,
+				 con.PRODUCT_ID,con.PRODUCT_NAME,con.PRODUCT_RATE,con.PRODUCT_PERIOD,con.PRODUCT_FEE_RATE,con.PRODUCT_PAY,
+				 con.PRODUCT_PAY_VAL,con.BILL_DATE,con.PAY_DATE,con.SIGN_TYPE,loan.LOAN_DATE,con.SIGN_TIME,con.START_TIME,con.END_TIME,con.CON_STATUS,
+				 con.BANK_ID,con.BANK,con.SIGN_ADDR,con.SIGN_STORE,con.BANK_NO,con.SERVICE_FEE,con.BACK_BRANCH,con.BACK_BRANCH_ADDR,con.BANK_PHONE_NO,
+				 con.BANK_MANAGER_FEE,con.APPLY_MONEY,con.INTEREST,con.MONTH_MONEY,con.PROD_ALIAS,con.SUM_FEE,con.IS_ONLINE,
+				 loan.HANDLE_EMP,loan.HANDLE_EMP_NAME,loan.HANDLE_OPTION,loan.HANDLE_OPTION_VAL
+		  FROM HS_CONTRACT con 
+			LEFT JOIN HS_LOAN_RECORD loan ON loan.CON_ID=con.CON_ID
+			
+			WHERE loan.HANDLE_OPTION='4' and con.IS_ONLINE='0'
+			
+		<if test="startDate != null and startDate != ''">
+		    <![CDATA[ AND to_char(loan.LOAN_DATE,'yyyy-mm-dd')>=#{startDate}]]>
+		</if>
+		<if test="endDate != null and endDate != ''">
+		   <![CDATA[ AND to_char(loan.LOAN_DATE,'yyyy-mm-dd')<=#{endDate}]]>
+		</if>	
+	</select>
+
+</mapper>

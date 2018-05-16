@@ -1,0 +1,9 @@
+mvn install:install-file -Dfile=zmxy-sdk-java-20170321135316.jar -DgroupId=com.alibaba -DartifactId=zmxy-sdk-java-20170321135316 -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=zmxy-sdk-java-20170321135316-source.jar -DgroupId=com.alibaba -DartifactId=zmxy-sdk-java-20170321135316-source -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=digest-1.0-SNAPSHOT.jar -DgroupId=com.hoomsun -DartifactId=digest -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=hfbank-4.0.jar -DgroupId=com.ynet.payment.hfbank -DartifactId=hfbank -Dversion=4.0 -Dpackaging=jar
+mvn install:install-file -Dfile=CKFinder-2.6.2.1.jar -DgroupId=com.ckfinder.hoomsun -DartifactId=CKFinder -Dversion=2.6.2.1 -Dpackaging=jar
+mvn install:install-file -Dfile=jiguang-common-1.0.2.jar -DgroupId=cn.jpush.api -DartifactId=jiguang-common -Dversion=1.0.2 -Dpackaging=jar
+mvn install:install-file -Dfile=jpush-client-3.2.16.jar -DgroupId=cn.jpush.api -DartifactId=jpush-client -Dversion=3.2.16 -Dpackaging=jar
+mvn install:install-file -Dfile=ojdbc6.jar -DgroupId=com.hoomsun.oracle -DartifactId=ojdbc6 -Dversion=1.0 -Dpackaging=jar
+mvn install:install-file -Dfile=ojdbc14.jar -DgroupId=com.hoomsun.oracle -DartifactId=ojdbc14 -Dversion=1.0 -Dpackaging=jar

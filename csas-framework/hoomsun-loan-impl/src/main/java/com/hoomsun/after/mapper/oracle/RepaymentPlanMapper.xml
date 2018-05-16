@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.RepaymentPlanMapper">
+	<resultMap id="BaseResultMap"
+		type="com.hoomsun.after.api.model.table.RepaymentPlan">
+		<id column="PLAN_ID" jdbcType="VARCHAR" property="planId" />
+		<result column="CON_ID" jdbcType="VARCHAR" property="conId" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="SHOULD_TERM" jdbcType="DECIMAL" property="shouldTerm" />
+		<result column="SHOULD_AMT" jdbcType="DECIMAL" property="shouldAmt" />
+		<result column="SHOULD_CAPI" jdbcType="DECIMAL" property="shouldCapi" />
+		<result column="SHOULD_INTE" jdbcType="DECIMAL" property="shouldInte" />
+		<result column="BILLS_DATE" jdbcType="TIMESTAMP" property="billsDate" />
+		<result column="SHOULD_DATE" jdbcType="TIMESTAMP" property="shouldDate" />
+		<result column="REPAY_STATUS" jdbcType="DECIMAL" property="repayStatus" />
+		<result column="PRERETUAMT_HXB" jdbcType="DECIMAL" property="preretuamtHxb" />
+		<result column="PRERETUAMT_CHANNEL" jdbcType="DECIMAL"
+			property="preretuamtChannel" />
+		<result column="BAL" jdbcType="DECIMAL" property="bal" />
+		<result column="ADVANCE_SHOULD" jdbcType="DECIMAL" property="advanceShould" />
+		<result column="ADVANCE_MONEY" jdbcType="DECIMAL" property="advanceMoney" />
+		<result column="ADVANCE_REDUCE" jdbcType="DECIMAL" property="advanceReduce" />
+		<result column="END_BAL" jdbcType="DECIMAL" property="endBal" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		PLAN_ID, CON_ID, LOAN_ID, APPLY_ID, SHOULD_TERM,
+		SHOULD_AMT, SHOULD_CAPI,
+		SHOULD_INTE,
+		BILLS_DATE, SHOULD_DATE,
+		REPAY_STATUS, PRERETUAMT_HXB, PRERETUAMT_CHANNEL,
+		BAL, ADVANCE_SHOULD,
+		ADVANCE_MONEY, ADVANCE_REDUCE,END_BAL
+	</sql>
+
+	<select id="selByLoanIdTerm" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_REPAYMENT_PLAN
+		where LOAN_ID = #{loanId,jdbcType=VARCHAR} AND
+		SHOULD_TERM= #{shouldTerm,jdbcType=VARCHAR}
+		ORDER BY SHOULD_TERM ASC
+	</select>
+	
+	<select id="queryByLoanIdTerm" parameterType="com.hoomsun.after.api.model.param.NomalCustomerReq"
+	 resultType="com.hoomsun.after.api.model.table.RepaymentPlan">
+	 SELECT
+	 hrp.LOAN_ID AS loanId,
+	 hrp.BAL AS bal
+	 FROM HS_REPAYMENT_PLAN hrp
+	 WHERE
+	 hrp.LOAN_ID=#{loanId}
+	 AND 
+	 hrp.SHOULD_TERM=#{shouldTerm}
+	</select>
+
+
+</mapper>

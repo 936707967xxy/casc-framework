@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysRoleCptMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysRoleCpt">
+    <result column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+    <result column="CPT_ID" jdbcType="VARCHAR" property="cptId" />
+  </resultMap>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysRoleCpt">
+    insert into HS_ROLE_CPT (ROLE_ID, CPT_ID)
+    values (#{roleId,jdbcType=VARCHAR}, #{cptId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysRoleCpt">
+    insert into HS_ROLE_CPT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="cptId != null">
+        CPT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="cptId != null">
+        #{cptId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <delete id="deleteByCptId" parameterType="java.lang.String">
+  	DELETE FROM HS_ROLE_CPT where CPT_ID=#{cptId}
+  </delete>
+  
+  <delete id="deleteByRoleId" parameterType="java.lang.String">
+  	DELETE FROM HS_ROLE_CPT where ROLE_ID=#{roleId}
+  </delete>
+  
+  <select id="findByRoleId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select ROLE_ID, CPT_ID from HS_ROLE_CPT where ROLE_ID=#{roleId}
+  </select>
+  
+  	<!-- 根据资源ID批量删除 -->
+	<delete id="batchDeleteByCptIds" parameterType="java.util.List">
+		DELETE from HS_ROLE_CPT where CPT_ID in
+		<foreach collection="removeCptIds" item="item" index="index" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 批量添加 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		INSERT INTO HS_ROLE_CPT(ROLE_ID, CPT_ID) 
+		<foreach collection="addRoleCpts" item="item" separator="union all">
+			SELECT 
+				#{item.roleId,jdbcType=VARCHAR}, #{item.cptId,jdbcType=VARCHAR}
+			FROM DUAL 
+		</foreach>
+	</insert>
+  
+</mapper>

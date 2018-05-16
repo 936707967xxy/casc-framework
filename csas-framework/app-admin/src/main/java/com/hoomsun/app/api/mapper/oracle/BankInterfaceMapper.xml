@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.BankInterfaceMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.BankInterface">
+    <id column="BANKINTER_ID" jdbcType="VARCHAR" property="bankinterId" />
+    <result column="BANK_NUM" jdbcType="VARCHAR" property="bankNum" />
+    <result column="BANK_NAME" jdbcType="VARCHAR" property="bankName" />
+    <result column="BANK_URL" jdbcType="VARCHAR" property="bankUrl" />
+    <result column="OPEN_VAL" jdbcType="VARCHAR" property="openVal" />
+    <result column="CREDITCARD_ITF" jdbcType="VARCHAR" property="creditcardItf" />
+    <result column="CREDITCARD_ITF_OPEN" jdbcType="VARCHAR" property="creditcardItfOpen" />
+    <result column="DEPOSITCARD_ITF" jdbcType="VARCHAR" property="depositcardItf" />
+    <result column="DEPOSITCARD_ITF_OPEN" jdbcType="VARCHAR" property="depositcardItfOpen" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    BANKINTER_ID, BANK_NUM, BANK_NAME, BANK_URL, OPEN_VAL, CREDITCARD_ITF, CREDITCARD_ITF_OPEN, 
+    DEPOSITCARD_ITF, DEPOSITCARD_ITF_OPEN
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_BANK_APPINTERFACE
+    where BANKINTER_ID = #{bankinterId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_BANK_APPINTERFACE
+    where BANKINTER_ID = #{bankinterId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.BankInterface">
+    insert into HS_BANK_APPINTERFACE (BANKINTER_ID, BANK_NUM, BANK_NAME, 
+      BANK_URL, OPEN_VAL, CREDITCARD_ITF, 
+      CREDITCARD_ITF_OPEN, DEPOSITCARD_ITF, DEPOSITCARD_ITF_OPEN
+      )
+    values (#{bankinterId,jdbcType=VARCHAR}, #{bankNum,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{bankUrl,jdbcType=VARCHAR}, #{openVal,jdbcType=VARCHAR}, #{creditcardItf,jdbcType=VARCHAR}, 
+      #{creditcardItfOpen,jdbcType=VARCHAR}, #{depositcardItf,jdbcType=VARCHAR}, #{depositcardItfOpen,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.BankInterface">
+    insert into HS_BANK_APPINTERFACE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bankinterId != null">
+        BANKINTER_ID,
+      </if>
+      <if test="bankNum != null">
+        BANK_NUM,
+      </if>
+      <if test="bankName != null">
+        BANK_NAME,
+      </if>
+      <if test="bankUrl != null">
+        BANK_URL,
+      </if>
+      <if test="openVal != null">
+        OPEN_VAL,
+      </if>
+      <if test="creditcardItf != null">
+        CREDITCARD_ITF,
+      </if>
+      <if test="creditcardItfOpen != null">
+        CREDITCARD_ITF_OPEN,
+      </if>
+      <if test="depositcardItf != null">
+        DEPOSITCARD_ITF,
+      </if>
+      <if test="depositcardItfOpen != null">
+        DEPOSITCARD_ITF_OPEN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bankinterId != null">
+        #{bankinterId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNum != null">
+        #{bankNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUrl != null">
+        #{bankUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="openVal != null">
+        #{openVal,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcardItf != null">
+        #{creditcardItf,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcardItfOpen != null">
+        #{creditcardItfOpen,jdbcType=VARCHAR},
+      </if>
+      <if test="depositcardItf != null">
+        #{depositcardItf,jdbcType=VARCHAR},
+      </if>
+      <if test="depositcardItfOpen != null">
+        #{depositcardItfOpen,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.BankInterface">
+    update HS_BANK_APPINTERFACE
+    <set>
+      <if test="bankNum != null">
+        BANK_NUM = #{bankNum,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankUrl != null">
+        BANK_URL = #{bankUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="openVal != null">
+        OPEN_VAL = #{openVal,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcardItf != null">
+        CREDITCARD_ITF = #{creditcardItf,jdbcType=VARCHAR},
+      </if>
+      <if test="creditcardItfOpen != null">
+        CREDITCARD_ITF_OPEN = #{creditcardItfOpen,jdbcType=VARCHAR},
+      </if>
+      <if test="depositcardItf != null">
+        DEPOSITCARD_ITF = #{depositcardItf,jdbcType=VARCHAR},
+      </if>
+      <if test="depositcardItfOpen != null">
+        DEPOSITCARD_ITF_OPEN = #{depositcardItfOpen,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BANKINTER_ID = #{bankinterId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.BankInterface">
+    update HS_BANK_APPINTERFACE
+    set BANK_NUM = #{bankNum,jdbcType=VARCHAR},
+      BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      BANK_URL = #{bankUrl,jdbcType=VARCHAR},
+      OPEN_VAL = #{openVal,jdbcType=VARCHAR},
+      CREDITCARD_ITF = #{creditcardItf,jdbcType=VARCHAR},
+      CREDITCARD_ITF_OPEN = #{creditcardItfOpen,jdbcType=VARCHAR},
+      DEPOSITCARD_ITF = #{depositcardItf,jdbcType=VARCHAR},
+      DEPOSITCARD_ITF_OPEN = #{depositcardItfOpen,jdbcType=VARCHAR}
+    where BANKINTER_ID = #{bankinterId,jdbcType=VARCHAR}
+  </update>
+  <!-- 分页查询数据 liushuai -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">	
+	<![CDATA[
+  	SELECT 
+  	        ver.BANKINTER_ID, ver.BANK_NUM, ver.BANK_NAME, ver.BANK_URL, 
+  	        ver.OPEN_VAL, ver.CREDITCARD_ITF, ver.CREDITCARD_ITF_OPEN, 
+    		ver.DEPOSITCARD_ITF, ver.DEPOSITCARD_ITF_OPEN
+  	FROM (
+  	SELECT 
+	  	ROWNUM R,BANKINTER_ID, BANK_NUM, BANK_NAME, BANK_URL, 
+	  	OPEN_VAL, CREDITCARD_ITF, CREDITCARD_ITF_OPEN, 
+	    DEPOSITCARD_ITF, DEPOSITCARD_ITF_OPEN   FROM HS_BANK_APPINTERFACE 
+    WHERE 1<>2]]>
+    <if test="bankName != null and bankName != ''">and BANK_NAME  like   #{bankName,jdbcType=VARCHAR}</if>
+    <![CDATA[) ver WHERE ver.R <= (#{pageIndex}*#{pageSize}) AND ver.R > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+    ORDER BY BANK_NUM DESC
+    
+	
+		<!-- <![CDATA[ 
+	 	select 
+		  	ver.BANKINTER_ID, ver.BANK_NUM, ver.BANK_NAME, ver.BANK_URL, ver.OPEN_VAL, ver.CREDITCARD_ITF, ver.CREDITCARD_ITF_OPEN, 
+    		ver.DEPOSITCARD_ITF, ver.DEPOSITCARD_ITF_OPEN
+		  	from
+		  		(
+						SELECT
+							ver.*, ROWNUM r 
+						FROM
+							(
+								SELECT
+									*
+								FROM 
+									HS_BANK_APPINTERFACE 
+							) ver
+						WHERE
+							 ROWNUM <= (#{pageIndex}*#{pageSize}) 
+					) ver   
+		  	 where 1<>2]]>
+		<if test="bankName != null and bankName != ''">
+			and BANK_NAME    like   #{bankName,jdbcType=VARCHAR}
+		</if>
+		<if test="pageIndex != null and pageSize != null">
+			and  r > (#{pageIndex}*#{pageSize}-#{pageSize})
+		</if> 
+		ORDER BY BANK_NUM DESC -->
+		<!-- TODO 增加 版本号排序  -->
+		
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+	 	<![CDATA[ select count(BANKINTER_ID) from HS_BANK_APPINTERFACE where 1<>2]]>
+		<if test="bankName != null and bankName != ''">
+			and BANK_NAME like #{bankName}
+		</if>
+	</select>
+
+	<!-- 查询出所有的数据 -->
+	<select id="findAllData" resultMap="BaseResultMap">
+	  	select 
+	    <include refid="Base_Column_List" />
+	    from HS_BANK_APPINTERFACE
+	</select>
+	
+	<!-- 查询相应银行名称的数据 -->
+	<select id="findByBankName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    	select 
+    	<include refid="Base_Column_List" />
+    	from HS_BANK_APPINTERFACE
+   	 	where BANK_NAME = #{bankName,jdbcType=VARCHAR}
+  	</select>
+	
+	<!-- 查询打开的数据 0 代表打开 1代表关闭-->
+  	<select id="findAppAllData" resultMap="BaseResultMap">
+  		select    
+  		<include refid="Base_Column_List" />
+	    from HS_BANK_APPINTERFACE
+	    WHERE OPEN_VAL = '0'  
+	</select>
+	
+	<!-- 查询打开的数据 0 代表打开 1代表关闭     信用卡列表查询 -->
+  	<select id="findAppCreAllData" resultMap="BaseResultMap">
+  		select    
+  		BANKINTER_ID, BANK_NUM, BANK_NAME, BANK_URL, OPEN_VAL, CREDITCARD_ITF, CREDITCARD_ITF_OPEN
+	    from HS_BANK_APPINTERFACE
+	    WHERE OPEN_VAL = '0'  and   CREDITCARD_ITF_OPEN='0'
+	</select>
+	<!-- 查询打开的数据 0 代表打开 1代表关闭     信用卡列表查询 -->
+  	<select id="findAppDepAllData" resultMap="BaseResultMap">
+  		select    
+  		BANKINTER_ID, BANK_NUM, BANK_NAME, BANK_URL, OPEN_VAL,DEPOSITCARD_ITF, DEPOSITCARD_ITF_OPEN
+	    from HS_BANK_APPINTERFACE
+	    WHERE OPEN_VAL = '0'  and   DEPOSITCARD_ITF_OPEN='0'
+	</select>
+	<!-- 查询打开的数据 0 代表打开 1代表关闭 -->
+  	<select id="findAppDataDetail" parameterType="java.lang.String" resultMap="BaseResultMap">
+  		select 
+  		<include refid="Base_Column_List" />
+	    from HS_BANK_APPINTERFACE
+	    WHERE OPEN_VAL = '0'
+	    AND BANKINTER_ID = #{bankinterId,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

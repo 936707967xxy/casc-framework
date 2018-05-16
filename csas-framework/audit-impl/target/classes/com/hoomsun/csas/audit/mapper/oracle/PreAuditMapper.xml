@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.audit.dao.PreAuditMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.csas.audit.model.PreAudit">
+    <id column="PRE_ID" jdbcType="VARCHAR" property="preId" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="HANDLE_OPTION" jdbcType="DECIMAL" property="handleOption" />
+    <result column="HANDLE_OPTIONVAL" jdbcType="VARCHAR" property="handleOptionval" />
+    <result column="CREDIT_REMARK" jdbcType="VARCHAR" property="creditRemark" />
+    <result column="FINANCE_REMARK" jdbcType="VARCHAR" property="financeRemark" />
+    <result column="OTHER_REMARK" jdbcType="VARCHAR" property="otherRemark" />
+    <result column="HANDLE_TIME" jdbcType="TIMESTAMP" property="handleTime" />
+    <result column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+    <result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+    <result column="TASK_ID" jdbcType="VARCHAR" property="taskId" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="PRE_STATUS" jdbcType="DECIMAL" property="preStatus" />
+    <result column="HANDLE_MONEY" jdbcType="DECIMAL" property="handleMoney" />
+    <result column="INNER_REMARK" jdbcType="VARCHAR" property="innerRemark" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PRE_ID, PRODUCT_ID, PRODUCT_NAME, HANDLE_OPTION, HANDLE_OPTIONVAL, CREDIT_REMARK, 
+    FINANCE_REMARK, OTHER_REMARK, HANDLE_TIME, EMP_ID, EMP_NAME, TASK_ID, PROC_INST_ID, 
+    APPLY_ID, PRE_STATUS, HANDLE_MONEY, INNER_REMARK,REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PRE_AUDIT
+    where PRE_ID = #{preId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PRE_AUDIT
+    where PRE_ID = #{preId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.audit.model.PreAudit">
+    insert into HS_PRE_AUDIT (PRE_ID, PRODUCT_ID, PRODUCT_NAME, 
+      HANDLE_OPTION, HANDLE_OPTIONVAL, CREDIT_REMARK, 
+      FINANCE_REMARK, OTHER_REMARK, HANDLE_TIME, 
+      EMP_ID, EMP_NAME, TASK_ID, 
+      PROC_INST_ID, APPLY_ID, PRE_STATUS, 
+      HANDLE_MONEY, INNER_REMARK,REMARK)
+    values (#{preId,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{handleOption,jdbcType=DECIMAL}, #{handleOptionval,jdbcType=VARCHAR}, #{creditRemark,jdbcType=VARCHAR}, 
+      #{financeRemark,jdbcType=VARCHAR}, #{otherRemark,jdbcType=VARCHAR}, #{handleTime,jdbcType=TIMESTAMP}, 
+      #{empId,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, #{taskId,jdbcType=VARCHAR}, 
+      #{procInstId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{preStatus,jdbcType=DECIMAL}, 
+      #{handleMoney,jdbcType=DECIMAL}, #{innerRemark,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.audit.model.PreAudit">
+    insert into HS_PRE_AUDIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="preId != null">
+        PRE_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="handleOption != null">
+        HANDLE_OPTION,
+      </if>
+      <if test="handleOptionval != null">
+        HANDLE_OPTIONVAL,
+      </if>
+      <if test="creditRemark != null">
+        CREDIT_REMARK,
+      </if>
+      <if test="financeRemark != null">
+        FINANCE_REMARK,
+      </if>
+      <if test="otherRemark != null">
+        OTHER_REMARK,
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME,
+      </if>
+      <if test="empId != null">
+        EMP_ID,
+      </if>
+      <if test="empName != null">
+        EMP_NAME,
+      </if>
+      <if test="taskId != null">
+        TASK_ID,
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="preStatus != null">
+        PRE_STATUS,
+      </if>
+      <if test="handleMoney != null">
+        HANDLE_MONEY,
+      </if>
+      <if test="innerRemark != null">
+        INNER_REMARK,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="preId != null">
+        #{preId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOption != null">
+        #{handleOption,jdbcType=DECIMAL},
+      </if>
+      <if test="handleOptionval != null">
+        #{handleOptionval,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRemark != null">
+        #{creditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="financeRemark != null">
+        #{financeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRemark != null">
+        #{otherRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="preStatus != null">
+        #{preStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="handleMoney != null">
+        #{handleMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="innerRemark != null">
+        #{innerRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+      	#{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.audit.model.PreAudit">
+    update HS_PRE_AUDIT
+    <set>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOption != null">
+        HANDLE_OPTION = #{handleOption,jdbcType=DECIMAL},
+      </if>
+      <if test="handleOptionval != null">
+        HANDLE_OPTIONVAL = #{handleOptionval,jdbcType=VARCHAR},
+      </if>
+      <if test="creditRemark != null">
+        CREDIT_REMARK = #{creditRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="financeRemark != null">
+        FINANCE_REMARK = #{financeRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="otherRemark != null">
+        OTHER_REMARK = #{otherRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="handleTime != null">
+        HANDLE_TIME = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="empId != null">
+        EMP_ID = #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        EMP_NAME = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        TASK_ID = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="preStatus != null">
+        PRE_STATUS = #{preStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="handleMoney != null">
+        HANDLE_MONEY = #{handleMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="innerRemark != null">
+        INNER_REMARK = #{innerRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+      	REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PRE_ID = #{preId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.audit.model.PreAudit">
+    update HS_PRE_AUDIT
+    set PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      HANDLE_OPTION = #{handleOption,jdbcType=DECIMAL},
+      HANDLE_OPTIONVAL = #{handleOptionval,jdbcType=VARCHAR},
+      CREDIT_REMARK = #{creditRemark,jdbcType=VARCHAR},
+      FINANCE_REMARK = #{financeRemark,jdbcType=VARCHAR},
+      OTHER_REMARK = #{otherRemark,jdbcType=VARCHAR},
+      HANDLE_TIME = #{handleTime,jdbcType=TIMESTAMP},
+      EMP_ID = #{empId,jdbcType=VARCHAR},
+      EMP_NAME = #{empName,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=VARCHAR},
+      PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      PRE_STATUS = #{preStatus,jdbcType=DECIMAL},
+      HANDLE_MONEY = #{handleMoney,jdbcType=DECIMAL},
+      INNER_REMARK = #{innerRemark,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where PRE_ID = #{preId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 获取初审列表 [{'id':'-1','text':'全部'},{'id':'0','text':'待审核'},{'id':'1','text':'已审核'}] preEvent-->
+  <resultMap type="com.hoomsun.csas.audit.model.vo.UserApplyVO" id="USER_APPLY_VO_RESULT">
+  	<id column="APPLY_ID" property="applyId"/>
+  	<result column="STORE_NAME" property="storeName"/>
+  	<result column="STORE_ID" property="storeId"/>
+  	<result column="CUST_MOBILE" property="custMobile"/>
+  	<result column="ID_NUMBER" property="idNumber"/>
+  	<result column="CUST_NAME" property="custName"/>
+  	<result column="SOURCES" property="sources"/>
+  	<result column="PROC_STATUS_VAL" property="procStatusVal"/>
+  	<result column="PROC_STATUS" property="procStatus"/>
+  	<result column="PROC_INST_ID" property="procInstId"/>
+  	<result column="PRODUCT_NAME" property="productName"/>
+  	<result column="PRODUCT_ID" property="productId"/>
+  	<result column="LOAN_ID" property="loanId"/>
+  	<result column="APPLY_AMOUNT" property="applyAmount"/>
+  	<result column="APPLY_DATE" property="applyDate"/>
+  	<result column="START_TIME_" property="startTime"/>
+  	<result column="CLAIM_TIME_" property="claimTime"/>
+  	<result column="END_TIME_" property="endTime"/>
+  	<result column="ASSIGNEE_" property="assignee"/>
+  </resultMap>
+  <select id="findPager" parameterType="java.util.Map" resultMap="USER_APPLY_VO_RESULT">
+ 		SELECT * FROM (
+			SELECT ROWNUM r, AP.* FROM (
+				SELECT 
+					app.LOAN_ID, app.APPLY_ID, app.CUST_NAME, app.SOURCES, app.SOURCES_VALUE, 
+					REPLACE (app.CUST_MOBILE, SUBSTR (app.CUST_MOBILE, 4, 4), '****') AS CUST_MOBILE,
+					REPLACE (app.ID_NUMBER, SUBSTR (app.ID_NUMBER, 6, 8),'********') AS ID_NUMBER,
+					app.PRODUCT_ID,app.PRODUCT_NAME,app.APPLY_AMOUNT,app.PROC_STATUS_VAL,
+					app.PROC_STATUS,app.PROC_INST_ID,app.STORE_ID,app.SALES_EMP_ID,
+					app.SALES_EMP_NAME,app.CREATE_EMPLOYEE,app.CREATE_EMPLOYEE_VAL,app.APPLY_DATE,
+					tbl.ASSIGNEE_
+				FROM
+					HS_APPLY app
+				RIGHT JOIN (
+					SELECT
+						 HP.BUSINESS_KEY_,
+						 HT.ASSIGNEE_
+					FROM
+					ACT_HI_PROCINST HP
+					INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+					<choose>
+						<!-- 待签收 -->
+						<when test="nodeStatus == 0">
+							WHERE HT.TASK_DEF_KEY_ = 'preAudit'
+						    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+						</when>
+						<!-- 已经签收，待审核 -->
+						<when test="nodeStatus == 1">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'preAudit' and HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'preAudit'
+						        		AND (HT.ASSIGNEE_=#{empId} and HT.ASSIGNEE_ IS not NULL AND HT.END_TIME_ IS NULL)
+						        </otherwise>
+							</choose>
+						</when>
+						
+						<!-- 已经审核 -->
+						<when test="nodeStatus == 2">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'preAudit' AND HT.END_TIME_ IS NOT NULL
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'preAudit'
+						        		AND HT.END_TIME_ IS NOT NULL
+						        		AND HT.ASSIGNEE_=#{empId}
+						        </otherwise>
+							</choose>
+						</when>
+						
+						<!-- 全部  已经签收 和 已经审核的任务-->
+						<when test="nodeStatus == 3">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'preAudit'
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'preAudit'
+						        		AND HT.ASSIGNEE_=#{empId}
+						        </otherwise>
+							</choose>
+						</when>
+
+					</choose>
+					GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+				) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+				WHERE app.DEL_STATUE = 0 
+				
+				<if test="custName != null and custName != ''">
+					and app.CUST_NAME LIKE #{custName} 
+				</if>
+				<if test="custMobile != null and custMobile != ''">
+					and app.CUST_MOBILE = #{custMobile}
+				</if>
+				<if test="idNumber != null and idNumber != ''">
+					and app.ID_NUMBER = #{idNumber}
+				</if>
+				<if test="salesEmpName != null and salesEmpName != ''">
+					and app.SALES_EMP_NAME LIKE #{salesEmpName}
+				</if>
+				<if test="loanId != null and loanId != ''">
+					and app.LOAN_ID = #{loanId} 
+				</if>
+				ORDER BY app.APPLY_DATE DESC
+			) AP
+			WHERE <![CDATA[ROWNUM <=  #{pageIndex} * #{pageSize}]]>
+		)
+	WHERE r > (#{pageIndex} -1) * #{pageSize}
+  </select>
+  <select id="findPreAuditCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT 
+		COUNT(app.APPLY_ID)
+		FROM
+			HS_APPLY app
+		RIGHT JOIN (
+			SELECT
+				 HP.BUSINESS_KEY_,
+				 HT.ASSIGNEE_
+			FROM
+			ACT_HI_PROCINST HP
+			INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+			<choose>
+				<!-- 待签收 -->
+				<when test="nodeStatus == 0">
+					WHERE HT.TASK_DEF_KEY_ = 'preAudit'
+				    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+				</when>
+				<!-- 已经签收，待审核 -->
+				<when test="nodeStatus == 1">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'preAudit' and HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'preAudit'
+				        		AND (HT.ASSIGNEE_=#{empId} and HT.ASSIGNEE_ IS not NULL AND HT.END_TIME_ IS NULL)
+				        </otherwise>
+					</choose>
+				</when>
+				
+				<!-- 已经审核 -->
+				<when test="nodeStatus == 2">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'preAudit' AND HT.END_TIME_ IS NOT NULL
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'preAudit'
+				        		AND HT.END_TIME_ IS NOT NULL
+				        		AND HT.ASSIGNEE_=#{empId}
+				        </otherwise>
+					</choose>
+				</when>
+				
+				<!-- 全部  已经签收 和 已经审核的任务-->
+				<when test="nodeStatus == 3">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'preAudit'
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'preAudit'
+				        		AND HT.ASSIGNEE_=#{empId}
+				        </otherwise>
+					</choose>
+				</when>
+
+			</choose>
+			GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+		) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+		WHERE app.DEL_STATUE = 0 
+		
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName} 
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId} 
+		</if>
+  </select>
+  
+  <!-- 时间最近的一次审核数据 -->
+  <select id="findByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT 
+	PRE_ID, PRODUCT_ID, PRODUCT_NAME, HANDLE_OPTION, HANDLE_OPTIONVAL, CREDIT_REMARK, 
+    FINANCE_REMARK, OTHER_REMARK, HANDLE_TIME, EMP_ID, EMP_NAME, TASK_ID, PROC_INST_ID, 
+    APPLY_ID, PRE_STATUS, HANDLE_MONEY, INNER_REMARK,REMARK 
+	FROM HS_PRE_AUDIT
+	WHERE APPLY_ID =#{applyId} AND HANDLE_TIME = (
+	 SELECT MAX(HANDLE_TIME) FROM HS_PRE_AUDIT WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}<!--  AND PRE_STATUS=1 -->
+	)
+  </select>
+  
+  <!-- 根据流程信息和申请信息获取某一状态的数据的id -->
+  <select id="selectIdByProcess" resultType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT HANDLE_TIME ,PRE_ID FROM 
+      HS_PRE_AUDIT 
+      WHERE APPLY_ID=#{applyId} AND TASK_ID=#{taskId}  AND HANDLE_TIME = (
+     SELECT MAX(HANDLE_TIME) FROM HS_PRE_AUDIT WHERE 
+     APPLY_ID=#{applyId} AND TASK_ID=#{taskId} 
+    )
+  </select>
+  
+  <!-- 修改审核数据的状态 -->
+  <update id="updatePreStatus">
+  		UPDATE HS_PRE_AUDIT SET PRE_STATUS=#{preStatus} WHERE APPLY_ID=#{applyId} AND PROC_INST_ID=#{processInstanceId} AND TASK_ID=#{taskId}
+  </update>
+  
+  <!-- 验证数据是否存在 -->
+  <select id="checkPreAudit" resultType="java.lang.Integer">
+	select count(PRE_ID) from HS_PRE_AUDIT where TASK_ID=#{taskId} and APPLY_ID=#{applyId}
+  </select>
+  
+  
+  
+  <resultMap type="com.hoomsun.csas.audit.model.vo.AuditHistoryVo" id="AUDIT_HISTORY_MAP">
+  	<id column="ID_" property="taskId"/>
+  	<result column="NAME_" property="taskName"/>
+  	<result column="ASSIGNEE_" property="empId"/>
+  	<result column="START_TIME_" property="startTime"/>
+  	<result column="CLAIM_TIME_" property="assignee"/>
+  	<result column="END_TIME_" property="endTime"/>
+  	<result column="PROC_INST_ID_" property="procInstId"/>
+  	<result column="BUSINESS_KEY_" property="applyId"/>
+  	<result column="EMP_NAME" property="auditEmp"/>
+  	<result column="REMARKS" property="remark"/>
+  	<result column="HANDLE_OPINION_VAL" property="optionVal"/>
+  </resultMap>
+  <!-- 查询任务审核历史 -->
+  <select id="findAuditHistory" parameterType="java.lang.String" resultMap="AUDIT_HISTORY_MAP">
+  	SELECT 
+	ht.ID_,
+	ht.NAME_,
+	ht.ASSIGNEE_,
+	ht.START_TIME_,
+	ht.CLAIM_TIME_,
+	ht.END_TIME_,
+	ht.PROC_INST_ID_,
+	hp.BUSINESS_KEY_,
+	ahv.EMP_NAME,
+	ahv.REMARKS,
+	ahv.HANDLE_OPINION_VAL
+	FROM ACT_HI_TASKINST ht
+	LEFT JOIN ACT_HI_PROCINST hp ON ht.PROC_INST_ID_ = hp.PROC_INST_ID_
+	LEFT JOIN AUDIT_HISTORY_VIEW ahv ON hp.BUSINESS_KEY_ = ahv.APPLY_ID
+	where hp.BUSINESS_KEY_=#{applyId}
+  </select>
+  
+  <!-- liushuai add 查询退回原因 -->
+  <resultMap id="rollBackMap" type="com.hoomsun.csas.sales.api.model.vo.RollBackInfoVo" >
+  	<result column="AUDIT_DATE" property="handleTime"/>
+  	<result column="IN_HANDLE_OPINION" property="handleRemark"/>
+  </resultMap>
+  <select id="selectRollBackInfo" parameterType="java.lang.String" resultMap="rollBackMap" >
+  	SELECT AUDIT_DATE, IN_HANDLE_OPINION
+	FROM HS_FINAL_AUDIT 
+	WHERE APPLY_ID = #{applyId} AND HANDLE_OPINION=2
+	ORDER BY AUDIT_DATE
+  </select>
+</mapper>

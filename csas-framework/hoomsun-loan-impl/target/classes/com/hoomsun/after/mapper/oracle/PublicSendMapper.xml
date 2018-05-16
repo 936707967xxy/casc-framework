@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.PublicSendMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.PublicSend">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="SNED_DATE" jdbcType="VARCHAR" property="snedDate" />
+    <result column="TODAY_COUNT" jdbcType="DECIMAL" property="todayCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, SNED_DATE, TODAY_COUNT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFTER_PUBLIC_SEND
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFTER_PUBLIC_SEND
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.after.api.model.table.PublicSend">
+    insert into HS_AFTER_PUBLIC_SEND (ID, SNED_DATE, TODAY_COUNT
+      )
+    values (#{id,jdbcType=VARCHAR}, #{snedDate,jdbcType=VARCHAR}, #{todayCount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.PublicSend">
+    insert into HS_AFTER_PUBLIC_SEND
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="snedDate != null">
+        SNED_DATE,
+      </if>
+      <if test="todayCount != null">
+        TODAY_COUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="snedDate != null">
+        #{snedDate,jdbcType=VARCHAR},
+      </if>
+      <if test="todayCount != null">
+        #{todayCount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.PublicSend">
+    update HS_AFTER_PUBLIC_SEND
+    <set>
+      <if test="snedDate != null">
+        SNED_DATE = #{snedDate,jdbcType=VARCHAR},
+      </if>
+      <if test="todayCount != null">
+        TODAY_COUNT = #{todayCount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.PublicSend">
+    update HS_AFTER_PUBLIC_SEND
+    set SNED_DATE = #{snedDate,jdbcType=VARCHAR},
+      TODAY_COUNT = #{todayCount,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.IntentionMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.Intention">
+    <id column="ORDPLY_ID" jdbcType="VARCHAR" property="ordplyId" />
+    <result column="APPLYID" jdbcType="VARCHAR" property="applyid" />
+    <result column="LOANID" jdbcType="VARCHAR" property="loanid" />
+    <result column="APPLYDATE" jdbcType="OTHER" property="applydate" />
+    <result column="CUSTNAME" jdbcType="VARCHAR" property="custname" />
+    <result column="CUSTID" jdbcType="VARCHAR" property="custid" />
+    <result column="SEX" jdbcType="VARCHAR" property="sex" />
+    <result column="SEXVAL" jdbcType="VARCHAR" property="sexval" />
+    <result column="IDCERTTYPE" jdbcType="VARCHAR" property="idcerttype" />
+    <result column="IDCERTTYPEVAL" jdbcType="VARCHAR" property="idcerttypeval" />
+    <result column="PAPERID" jdbcType="VARCHAR" property="paperid" />
+    <result column="AGE" jdbcType="DECIMAL" property="age" />
+    <result column="CERTVALIDDATE" jdbcType="VARCHAR" property="certvaliddate" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="PRODNAME" jdbcType="VARCHAR" property="prodname" />
+    <result column="PRODID" jdbcType="VARCHAR" property="prodid" />
+    <result column="APPLYCHAN" jdbcType="VARCHAR" property="applychan" />
+    <result column="APPLYCHANEXP" jdbcType="VARCHAR" property="applychanexp" />
+    <result column="APPOPERID" jdbcType="VARCHAR" property="appoperid" />
+    <result column="APPOPERNAME" jdbcType="VARCHAR" property="appopername" />
+    <result column="APPOPERPHONE" jdbcType="VARCHAR" property="appoperphone" />
+    <result column="SOURCE" jdbcType="VARCHAR" property="source" />
+    <result column="SOURCEVAL" jdbcType="VARCHAR" property="sourceval" />
+    <result column="OPERID" jdbcType="VARCHAR" property="operid" />
+    <result column="ORGID" jdbcType="VARCHAR" property="orgid" />
+    <result column="DEPTID" jdbcType="VARCHAR" property="deptid" />
+    <result column="LEADERID" jdbcType="VARCHAR" property="leaderid" />
+    <result column="TEAMID" jdbcType="VARCHAR" property="teamid" />
+    <result column="DEPTNAME" jdbcType="VARCHAR" property="deptname" />
+    <result column="LEADERNAME" jdbcType="VARCHAR" property="leadername" />
+    <result column="LOANPURPOSE" jdbcType="VARCHAR" property="loanpurpose" />
+    <result column="LOANPURPOSEVAL" jdbcType="VARCHAR" property="loanpurposeval" />
+    <result column="LOANUSEEXP" jdbcType="VARCHAR" property="loanuseexp" />
+    <result column="LOANQUOTA" jdbcType="DECIMAL" property="loanquota" />
+    <result column="LOANTERMS" jdbcType="VARCHAR" property="loanterms" />
+    <result column="MAXRETUAMT" jdbcType="DECIMAL" property="maxretuamt" />
+    <result column="APPLISTSTAT" jdbcType="VARCHAR" property="appliststat" />
+    <result column="APPLISTSTATVAL" jdbcType="VARCHAR" property="appliststatval" />
+    <result column="LORDREFUCODE" jdbcType="VARCHAR" property="lordrefucode" />
+    <result column="LORDREFUCAUSE" jdbcType="VARCHAR" property="lordrefucause" />
+    <result column="OTHERREFUNOTE" jdbcType="VARCHAR" property="otherrefunote" />
+    <result column="LASTCHGDATE" jdbcType="VARCHAR" property="lastchgdate" />
+    <result column="ISROUNDLOAN" jdbcType="VARCHAR" property="isroundloan" />
+    <result column="ISROUNDLOANVAL" jdbcType="VARCHAR" property="isroundloanval" />
+    <result column="OLOANID" jdbcType="VARCHAR" property="oloanid" />
+    <result column="APPLYSTSTUS" jdbcType="VARCHAR" property="applyststus" />
+    <result column="APPROVEDAMOUNT" jdbcType="DECIMAL" property="approvedamount" />
+    <result column="APPROVEDPRODUCT" jdbcType="VARCHAR" property="approvedproduct" />
+    <result column="CONTRACTAMOUNT" jdbcType="DECIMAL" property="contractamount" />
+    <result column="CREATE_EMPLOYEE" jdbcType="VARCHAR" property="createEmployee" />
+    <result column="CREATE_EMPLOYEE_VAL" jdbcType="VARCHAR" property="createEmployeeVal" />
+    <result column="ORGNAME" jdbcType="VARCHAR" property="orgname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ORDPLY_ID, APPLYID, LOANID, APPLYDATE, CUSTNAME, CUSTID, SEX, SEXVAL, IDCERTTYPE, 
+    IDCERTTYPEVAL, PAPERID, AGE, CERTVALIDDATE, MOBILE, PRODNAME, PRODID, APPLYCHAN, 
+    APPLYCHANEXP, APPOPERID, APPOPERNAME, APPOPERPHONE, SOURCE, SOURCEVAL, OPERID, ORGID, 
+    DEPTID, LEADERID, TEAMID, DEPTNAME, LEADERNAME, LOANPURPOSE, LOANPURPOSEVAL, LOANUSEEXP, 
+    LOANQUOTA, LOANTERMS, MAXRETUAMT, APPLISTSTAT, APPLISTSTATVAL, LORDREFUCODE, LORDREFUCAUSE, 
+    OTHERREFUNOTE, LASTCHGDATE, ISROUNDLOAN, ISROUNDLOANVAL, OLOANID, APPLYSTSTUS, APPROVEDAMOUNT, 
+    APPROVEDPRODUCT, CONTRACTAMOUNT,CREATE_EMPLOYEE, CREATE_EMPLOYEE_VAL,ORGNAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_INTENTION
+    where ORDPLY_ID = #{ordplyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_INTENTION
+    where ORDPLY_ID = #{ordplyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.Intention">
+    insert into HS_INTENTION (ORDPLY_ID, APPLYID, LOANID, 
+      APPLYDATE, CUSTNAME, CUSTID, 
+      SEX, SEXVAL, IDCERTTYPE, 
+      IDCERTTYPEVAL, PAPERID, AGE, 
+      CERTVALIDDATE, MOBILE, PRODNAME, 
+      PRODID, APPLYCHAN, APPLYCHANEXP, 
+      APPOPERID, APPOPERNAME, APPOPERPHONE, 
+      SOURCE, SOURCEVAL, OPERID, 
+      ORGID, DEPTID, LEADERID, 
+      TEAMID, DEPTNAME, LEADERNAME, 
+      LOANPURPOSE, LOANPURPOSEVAL, LOANUSEEXP, 
+      LOANQUOTA, LOANTERMS, MAXRETUAMT, 
+      APPLISTSTAT, APPLISTSTATVAL, LORDREFUCODE, 
+      LORDREFUCAUSE, OTHERREFUNOTE, LASTCHGDATE, 
+      ISROUNDLOAN, ISROUNDLOANVAL, OLOANID, 
+      APPLYSTSTUS, APPROVEDAMOUNT, APPROVEDPRODUCT, 
+      CONTRACTAMOUNT, CREATE_EMPLOYEE, CREATE_EMPLOYEE_VAL, 
+      ORGNAME)
+    values (#{ordplyId,jdbcType=VARCHAR}, #{applyid,jdbcType=VARCHAR}, #{loanid,jdbcType=VARCHAR}, 
+      #{applydate,jdbcType=OTHER}, #{custname,jdbcType=VARCHAR}, #{custid,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{sexval,jdbcType=VARCHAR}, #{idcerttype,jdbcType=VARCHAR}, 
+      #{idcerttypeval,jdbcType=VARCHAR}, #{paperid,jdbcType=VARCHAR}, #{age,jdbcType=DECIMAL}, 
+      #{certvaliddate,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{prodname,jdbcType=VARCHAR}, 
+      #{prodid,jdbcType=VARCHAR}, #{applychan,jdbcType=VARCHAR}, #{applychanexp,jdbcType=VARCHAR}, 
+      #{appoperid,jdbcType=VARCHAR}, #{appopername,jdbcType=VARCHAR}, #{appoperphone,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{sourceval,jdbcType=VARCHAR}, #{operid,jdbcType=VARCHAR}, 
+      #{orgid,jdbcType=VARCHAR}, #{deptid,jdbcType=VARCHAR}, #{leaderid,jdbcType=VARCHAR}, 
+      #{teamid,jdbcType=VARCHAR}, #{deptname,jdbcType=VARCHAR}, #{leadername,jdbcType=VARCHAR}, 
+      #{loanpurpose,jdbcType=VARCHAR}, #{loanpurposeval,jdbcType=VARCHAR}, #{loanuseexp,jdbcType=VARCHAR}, 
+      #{loanquota,jdbcType=DECIMAL}, #{loanterms,jdbcType=VARCHAR}, #{maxretuamt,jdbcType=DECIMAL}, 
+      #{appliststat,jdbcType=VARCHAR}, #{appliststatval,jdbcType=VARCHAR}, #{lordrefucode,jdbcType=VARCHAR}, 
+      #{lordrefucause,jdbcType=VARCHAR}, #{otherrefunote,jdbcType=VARCHAR}, #{lastchgdate,jdbcType=VARCHAR}, 
+      #{isroundloan,jdbcType=VARCHAR}, #{isroundloanval,jdbcType=VARCHAR}, #{oloanid,jdbcType=VARCHAR}, 
+      #{applyststus,jdbcType=VARCHAR}, #{approvedamount,jdbcType=DECIMAL}, #{approvedproduct,jdbcType=VARCHAR}, 
+      #{contractamount,jdbcType=DECIMAL}, #{createEmployee,jdbcType=VARCHAR}, #{createEmployeeVal,jdbcType=VARCHAR}, 
+      #{orgname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.Intention">
+    insert into HS_INTENTION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ordplyId != null">
+        ORDPLY_ID,
+      </if>
+      <if test="applyid != null">
+        APPLYID,
+      </if>
+      <if test="loanid != null">
+        LOANID,
+      </if>
+      <if test="applydate != null">
+        APPLYDATE,
+      </if>
+      <if test="custname != null">
+        CUSTNAME,
+      </if>
+      <if test="custid != null">
+        CUSTID,
+      </if>
+      <if test="sex != null">
+        SEX,
+      </if>
+      <if test="sexval != null">
+        SEXVAL,
+      </if>
+      <if test="idcerttype != null">
+        IDCERTTYPE,
+      </if>
+      <if test="idcerttypeval != null">
+        IDCERTTYPEVAL,
+      </if>
+      <if test="paperid != null">
+        PAPERID,
+      </if>
+      <if test="age != null">
+        AGE,
+      </if>
+      <if test="certvaliddate != null">
+        CERTVALIDDATE,
+      </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="prodname != null">
+        PRODNAME,
+      </if>
+      <if test="prodid != null">
+        PRODID,
+      </if>
+      <if test="applychan != null">
+        APPLYCHAN,
+      </if>
+      <if test="applychanexp != null">
+        APPLYCHANEXP,
+      </if>
+      <if test="appoperid != null">
+        APPOPERID,
+      </if>
+      <if test="appopername != null">
+        APPOPERNAME,
+      </if>
+      <if test="appoperphone != null">
+        APPOPERPHONE,
+      </if>
+      <if test="source != null">
+        SOURCE,
+      </if>
+      <if test="sourceval != null">
+        SOURCEVAL,
+      </if>
+      <if test="operid != null">
+        OPERID,
+      </if>
+      <if test="orgid != null">
+        ORGID,
+      </if>
+      <if test="deptid != null">
+        DEPTID,
+      </if>
+      <if test="leaderid != null">
+        LEADERID,
+      </if>
+      <if test="teamid != null">
+        TEAMID,
+      </if>
+      <if test="deptname != null">
+        DEPTNAME,
+      </if>
+      <if test="leadername != null">
+        LEADERNAME,
+      </if>
+      <if test="loanpurpose != null">
+        LOANPURPOSE,
+      </if>
+      <if test="loanpurposeval != null">
+        LOANPURPOSEVAL,
+      </if>
+      <if test="loanuseexp != null">
+        LOANUSEEXP,
+      </if>
+      <if test="loanquota != null">
+        LOANQUOTA,
+      </if>
+      <if test="loanterms != null">
+        LOANTERMS,
+      </if>
+      <if test="maxretuamt != null">
+        MAXRETUAMT,
+      </if>
+      <if test="appliststat != null">
+        APPLISTSTAT,
+      </if>
+      <if test="appliststatval != null">
+        APPLISTSTATVAL,
+      </if>
+      <if test="lordrefucode != null">
+        LORDREFUCODE,
+      </if>
+      <if test="lordrefucause != null">
+        LORDREFUCAUSE,
+      </if>
+      <if test="otherrefunote != null">
+        OTHERREFUNOTE,
+      </if>
+      <if test="lastchgdate != null">
+        LASTCHGDATE,
+      </if>
+      <if test="isroundloan != null">
+        ISROUNDLOAN,
+      </if>
+      <if test="isroundloanval != null">
+        ISROUNDLOANVAL,
+      </if>
+      <if test="oloanid != null">
+        OLOANID,
+      </if>
+      <if test="applyststus != null">
+        APPLYSTSTUS,
+      </if>
+      <if test="approvedamount != null">
+        APPROVEDAMOUNT,
+      </if>
+      <if test="approvedproduct != null">
+        APPROVEDPRODUCT,
+      </if>
+      <if test="contractamount != null">
+        CONTRACTAMOUNT,
+      </if>
+      <if test="createEmployee != null">
+        CREATE_EMPLOYEE,
+      </if>
+      <if test="createEmployeeVal != null">
+        CREATE_EMPLOYEE_VAL,
+      </if>
+      <if test="orgname != null">
+        ORGNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ordplyId != null">
+        #{ordplyId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyid != null">
+        #{applyid,jdbcType=VARCHAR},
+      </if>
+      <if test="loanid != null">
+        #{loanid,jdbcType=VARCHAR},
+      </if>
+      <if test="applydate != null">
+        #{applydate,jdbcType=OTHER},
+      </if>
+      <if test="custname != null">
+        #{custname,jdbcType=VARCHAR},
+      </if>
+      <if test="custid != null">
+        #{custid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="sexval != null">
+        #{sexval,jdbcType=VARCHAR},
+      </if>
+      <if test="idcerttype != null">
+        #{idcerttype,jdbcType=VARCHAR},
+      </if>
+      <if test="idcerttypeval != null">
+        #{idcerttypeval,jdbcType=VARCHAR},
+      </if>
+      <if test="paperid != null">
+        #{paperid,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="certvaliddate != null">
+        #{certvaliddate,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null">
+        #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodid != null">
+        #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="applychan != null">
+        #{applychan,jdbcType=VARCHAR},
+      </if>
+      <if test="applychanexp != null">
+        #{applychanexp,jdbcType=VARCHAR},
+      </if>
+      <if test="appoperid != null">
+        #{appoperid,jdbcType=VARCHAR},
+      </if>
+      <if test="appopername != null">
+        #{appopername,jdbcType=VARCHAR},
+      </if>
+      <if test="appoperphone != null">
+        #{appoperphone,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceval != null">
+        #{sourceval,jdbcType=VARCHAR},
+      </if>
+      <if test="operid != null">
+        #{operid,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null">
+        #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null">
+        #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderid != null">
+        #{leaderid,jdbcType=VARCHAR},
+      </if>
+      <if test="teamid != null">
+        #{teamid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="leadername != null">
+        #{leadername,jdbcType=VARCHAR},
+      </if>
+      <if test="loanpurpose != null">
+        #{loanpurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="loanpurposeval != null">
+        #{loanpurposeval,jdbcType=VARCHAR},
+      </if>
+      <if test="loanuseexp != null">
+        #{loanuseexp,jdbcType=VARCHAR},
+      </if>
+      <if test="loanquota != null">
+        #{loanquota,jdbcType=DECIMAL},
+      </if>
+      <if test="loanterms != null">
+        #{loanterms,jdbcType=VARCHAR},
+      </if>
+      <if test="maxretuamt != null">
+        #{maxretuamt,jdbcType=DECIMAL},
+      </if>
+      <if test="appliststat != null">
+        #{appliststat,jdbcType=VARCHAR},
+      </if>
+      <if test="appliststatval != null">
+        #{appliststatval,jdbcType=VARCHAR},
+      </if>
+      <if test="lordrefucode != null">
+        #{lordrefucode,jdbcType=VARCHAR},
+      </if>
+      <if test="lordrefucause != null">
+        #{lordrefucause,jdbcType=VARCHAR},
+      </if>
+      <if test="otherrefunote != null">
+        #{otherrefunote,jdbcType=VARCHAR},
+      </if>
+      <if test="lastchgdate != null">
+        #{lastchgdate,jdbcType=VARCHAR},
+      </if>
+      <if test="isroundloan != null">
+        #{isroundloan,jdbcType=VARCHAR},
+      </if>
+      <if test="isroundloanval != null">
+        #{isroundloanval,jdbcType=VARCHAR},
+      </if>
+      <if test="oloanid != null">
+        #{oloanid,jdbcType=VARCHAR},
+      </if>
+      <if test="applyststus != null">
+        #{applyststus,jdbcType=VARCHAR},
+      </if>
+      <if test="approvedamount != null">
+        #{approvedamount,jdbcType=DECIMAL},
+      </if>
+      <if test="approvedproduct != null">
+        #{approvedproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="contractamount != null">
+        #{contractamount,jdbcType=DECIMAL},
+      </if>
+       <if test="createEmployee != null">
+        #{createEmployee,jdbcType=VARCHAR},
+      </if>
+      <if test="createEmployeeVal != null">
+        #{createEmployeeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="orgname != null">
+        #{orgname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.Intention">
+    update HS_INTENTION
+    <set>
+      <if test="applyid != null">
+        APPLYID = #{applyid,jdbcType=VARCHAR},
+      </if>
+      <if test="loanid != null">
+        LOANID = #{loanid,jdbcType=VARCHAR},
+      </if>
+      <if test="applydate != null">
+        APPLYDATE = #{applydate,jdbcType=OTHER},
+      </if>
+      <if test="custname != null">
+        CUSTNAME = #{custname,jdbcType=VARCHAR},
+      </if>
+      <if test="custid != null">
+        CUSTID = #{custid,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="sexval != null">
+        SEXVAL = #{sexval,jdbcType=VARCHAR},
+      </if>
+      <if test="idcerttype != null">
+        IDCERTTYPE = #{idcerttype,jdbcType=VARCHAR},
+      </if>
+      <if test="idcerttypeval != null">
+        IDCERTTYPEVAL = #{idcerttypeval,jdbcType=VARCHAR},
+      </if>
+      <if test="paperid != null">
+        PAPERID = #{paperid,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        AGE = #{age,jdbcType=DECIMAL},
+      </if>
+      <if test="certvaliddate != null">
+        CERTVALIDDATE = #{certvaliddate,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="prodname != null">
+        PRODNAME = #{prodname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodid != null">
+        PRODID = #{prodid,jdbcType=VARCHAR},
+      </if>
+      <if test="applychan != null">
+        APPLYCHAN = #{applychan,jdbcType=VARCHAR},
+      </if>
+      <if test="applychanexp != null">
+        APPLYCHANEXP = #{applychanexp,jdbcType=VARCHAR},
+      </if>
+      <if test="appoperid != null">
+        APPOPERID = #{appoperid,jdbcType=VARCHAR},
+      </if>
+      <if test="appopername != null">
+        APPOPERNAME = #{appopername,jdbcType=VARCHAR},
+      </if>
+      <if test="appoperphone != null">
+        APPOPERPHONE = #{appoperphone,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null">
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceval != null">
+        SOURCEVAL = #{sourceval,jdbcType=VARCHAR},
+      </if>
+      <if test="operid != null">
+        OPERID = #{operid,jdbcType=VARCHAR},
+      </if>
+      <if test="orgid != null">
+        ORGID = #{orgid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptid != null">
+        DEPTID = #{deptid,jdbcType=VARCHAR},
+      </if>
+      <if test="leaderid != null">
+        LEADERID = #{leaderid,jdbcType=VARCHAR},
+      </if>
+      <if test="teamid != null">
+        TEAMID = #{teamid,jdbcType=VARCHAR},
+      </if>
+      <if test="deptname != null">
+        DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      </if>
+      <if test="leadername != null">
+        LEADERNAME = #{leadername,jdbcType=VARCHAR},
+      </if>
+      <if test="loanpurpose != null">
+        LOANPURPOSE = #{loanpurpose,jdbcType=VARCHAR},
+      </if>
+      <if test="loanpurposeval != null">
+        LOANPURPOSEVAL = #{loanpurposeval,jdbcType=VARCHAR},
+      </if>
+      <if test="loanuseexp != null">
+        LOANUSEEXP = #{loanuseexp,jdbcType=VARCHAR},
+      </if>
+      <if test="loanquota != null">
+        LOANQUOTA = #{loanquota,jdbcType=DECIMAL},
+      </if>
+      <if test="loanterms != null">
+        LOANTERMS = #{loanterms,jdbcType=VARCHAR},
+      </if>
+      <if test="maxretuamt != null">
+        MAXRETUAMT = #{maxretuamt,jdbcType=DECIMAL},
+      </if>
+      <if test="appliststat != null">
+        APPLISTSTAT = #{appliststat,jdbcType=VARCHAR},
+      </if>
+      <if test="appliststatval != null">
+        APPLISTSTATVAL = #{appliststatval,jdbcType=VARCHAR},
+      </if>
+      <if test="lordrefucode != null">
+        LORDREFUCODE = #{lordrefucode,jdbcType=VARCHAR},
+      </if>
+      <if test="lordrefucause != null">
+        LORDREFUCAUSE = #{lordrefucause,jdbcType=VARCHAR},
+      </if>
+      <if test="otherrefunote != null">
+        OTHERREFUNOTE = #{otherrefunote,jdbcType=VARCHAR},
+      </if>
+      <if test="lastchgdate != null">
+        LASTCHGDATE = #{lastchgdate,jdbcType=VARCHAR},
+      </if>
+      <if test="isroundloan != null">
+        ISROUNDLOAN = #{isroundloan,jdbcType=VARCHAR},
+      </if>
+      <if test="isroundloanval != null">
+        ISROUNDLOANVAL = #{isroundloanval,jdbcType=VARCHAR},
+      </if>
+      <if test="oloanid != null">
+        OLOANID = #{oloanid,jdbcType=VARCHAR},
+      </if>
+      <if test="applyststus != null">
+        APPLYSTSTUS = #{applyststus,jdbcType=VARCHAR},
+      </if>
+      <if test="approvedamount != null">
+        APPROVEDAMOUNT = #{approvedamount,jdbcType=DECIMAL},
+      </if>
+      <if test="approvedproduct != null">
+        APPROVEDPRODUCT = #{approvedproduct,jdbcType=VARCHAR},
+      </if>
+      <if test="contractamount != null">
+        CONTRACTAMOUNT = #{contractamount,jdbcType=DECIMAL},
+      </if>
+       <if test="createEmployee != null">
+        CREATE_EMPLOYEE = #{createEmployee,jdbcType=VARCHAR},
+      </if>
+      <if test="createEmployeeVal != null">
+        CREATE_EMPLOYEE_VAL = #{createEmployeeVal,jdbcType=VARCHAR},
+      </if>
+       <if test="orgname != null">
+        ORGNAME = #{orgname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORDPLY_ID = #{ordplyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.Intention">
+       update HS_INTENTION
+    set APPLYID = #{applyid,jdbcType=VARCHAR},
+      LOANID = #{loanid,jdbcType=VARCHAR},
+      APPLYDATE = #{applydate,jdbcType=OTHER},
+      CUSTNAME = #{custname,jdbcType=VARCHAR},
+      CUSTID = #{custid,jdbcType=VARCHAR},
+      SEX = #{sex,jdbcType=VARCHAR},
+      SEXVAL = #{sexval,jdbcType=VARCHAR},
+      IDCERTTYPE = #{idcerttype,jdbcType=VARCHAR},
+      IDCERTTYPEVAL = #{idcerttypeval,jdbcType=VARCHAR},
+      PAPERID = #{paperid,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=DECIMAL},
+      CERTVALIDDATE = #{certvaliddate,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      PRODNAME = #{prodname,jdbcType=VARCHAR},
+      PRODID = #{prodid,jdbcType=VARCHAR},
+      APPLYCHAN = #{applychan,jdbcType=VARCHAR},
+      APPLYCHANEXP = #{applychanexp,jdbcType=VARCHAR},
+      APPOPERID = #{appoperid,jdbcType=VARCHAR},
+      APPOPERNAME = #{appopername,jdbcType=VARCHAR},
+      APPOPERPHONE = #{appoperphone,jdbcType=VARCHAR},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      SOURCEVAL = #{sourceval,jdbcType=VARCHAR},
+      OPERID = #{operid,jdbcType=VARCHAR},
+      ORGID = #{orgid,jdbcType=VARCHAR},
+      DEPTID = #{deptid,jdbcType=VARCHAR},
+      LEADERID = #{leaderid,jdbcType=VARCHAR},
+      TEAMID = #{teamid,jdbcType=VARCHAR},
+      DEPTNAME = #{deptname,jdbcType=VARCHAR},
+      LEADERNAME = #{leadername,jdbcType=VARCHAR},
+      LOANPURPOSE = #{loanpurpose,jdbcType=VARCHAR},
+      LOANPURPOSEVAL = #{loanpurposeval,jdbcType=VARCHAR},
+      LOANUSEEXP = #{loanuseexp,jdbcType=VARCHAR},
+      LOANQUOTA = #{loanquota,jdbcType=DECIMAL},
+      LOANTERMS = #{loanterms,jdbcType=VARCHAR},
+      MAXRETUAMT = #{maxretuamt,jdbcType=DECIMAL},
+      APPLISTSTAT = #{appliststat,jdbcType=VARCHAR},
+      APPLISTSTATVAL = #{appliststatval,jdbcType=VARCHAR},
+      LORDREFUCODE = #{lordrefucode,jdbcType=VARCHAR},
+      LORDREFUCAUSE = #{lordrefucause,jdbcType=VARCHAR},
+      OTHERREFUNOTE = #{otherrefunote,jdbcType=VARCHAR},
+      LASTCHGDATE = #{lastchgdate,jdbcType=VARCHAR},
+      ISROUNDLOAN = #{isroundloan,jdbcType=VARCHAR},
+      ISROUNDLOANVAL = #{isroundloanval,jdbcType=VARCHAR},
+      OLOANID = #{oloanid,jdbcType=VARCHAR},
+      APPLYSTSTUS = #{applyststus,jdbcType=VARCHAR},
+      APPROVEDAMOUNT = #{approvedamount,jdbcType=DECIMAL},
+      APPROVEDPRODUCT = #{approvedproduct,jdbcType=VARCHAR},
+      CONTRACTAMOUNT = #{contractamount,jdbcType=DECIMAL},
+      CREATE_EMPLOYEE = #{createEmployee,jdbcType=VARCHAR},
+      CREATE_EMPLOYEE_VAL = #{createEmployeeVal,jdbcType=VARCHAR},
+      ORGNAME = #{orgname,jdbcType=VARCHAR}
+    where ORDPLY_ID = #{ordplyId,jdbcType=VARCHAR}
+  </update>
+  <!-- 分页查询 -->
+  
+  <select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+	<![CDATA[
+		SELECT
+			it.*
+		FROM
+			(
+				SELECT
+					it.ORDPLY_ID, it.APPLYID, it.LOANID, it.APPLYDATE, it.CUSTNAME, it.CUSTID, it.SEX,it.SEXVAL,it.IDCERTTYPE, 
+				    it.IDCERTTYPEVAL, "REPLACE"(it.PAPERID, "SUBSTR"(it.PAPERID,7,8), '********') paperid, it.AGE, it.CERTVALIDDATE,"REPLACE"(it.MOBILE, "SUBSTR"(it.MOBILE,4,4), '****') mobile,it.PRODNAME, it.PRODID,it.APPLYCHAN, 
+				    it.APPLYCHANEXP, it.APPOPERID, it.APPOPERNAME, it.APPOPERPHONE, it.SOURCE, it.SOURCEVAL, it.OPERID,it.ORGID, 
+				    it.DEPTID, it.LEADERID, it.TEAMID, it.DEPTNAME, it.LEADERNAME, it.LOANPURPOSE, it.LOANPURPOSEVAL,it.LOANUSEEXP, 
+					it.LOANQUOTA, it.LOANTERMS, it.MAXRETUAMT, it.APPLISTSTAT, it.APPLISTSTATVAL, it.LORDREFUCODE,it.LORDREFUCAUSE, 
+				    it.OTHERREFUNOTE, it.LASTCHGDATE, it.ISROUNDLOAN, it.ISROUNDLOANVAL, it.OLOANID,it.APPLYSTSTUS,it.APPROVEDAMOUNT, 
+				    it.APPROVEDPRODUCT,it.CONTRACTAMOUNT,it.CREATE_EMPLOYEE,it.CREATE_EMPLOYEE_VAL,ROWNUM r	
+		    			
+				FROM HS_INTENTION it
+				
+				WHERE
+					ROWNUM <= #{page}*#{rows} 	AND it.CREATE_EMPLOYEE=#{empId}
+			) it
+		WHERE
+			1 <> 2
+		      
+      ]]>
+      	<if test="isMgr != 1"><!-- 1:部门负责人  0不是  -->
+				AND it.CREATE_EMPLOYEE=#{empId}
+	    </if>
+		 <if test="custname != null and custname != ''"> 
+			and it.CUSTNAME like #{custname}
+		</if>
+		 <if test="mobile != null and mobile != ''"> 
+			and it.MOBILE like #{mobile}
+		</if>
+	
+			and r > (#{page}-1)*#{rows}
+	</select>
+  	
+  	
+  	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[
+			
+			SELECT count(it.ORDPLY_ID) from HS_INTENTION it WHERE 1<>2 AND it.CREATE_EMPLOYEE=#{empId}
+
+		]]>
+		<if test="isMgr != 1"><!-- 1:部门负责人  0不是  -->
+				AND it.CREATE_EMPLOYEE=#{empId}
+	    </if>
+	</select>
+	
+
+	 <!-- 根据id查询预约信息表  -->
+	<select id="findIntentionById" parameterType="java.lang.String" resultMap="BaseResultMap">
+	
+		SELECT
+		 <include refid="Base_Column_List" />
+		  FROM  HS_INTENTION
+		  where ORDPLY_ID = #{ordplyId,jdbcType=VARCHAR}
+	</select> 
+	
+	<select id="findById" parameterType="java.lang.String" resultType="com.alibaba.fastjson.JSONObject" >
+		SELECT 
+		ORDPLY_ID, APPLYID, LOANID, APPLYDATE, CUSTNAME, CUSTID, SEX, SEXVAL, IDCERTTYPE, 
+    IDCERTTYPEVAL, PAPERID, AGE, CERTVALIDDATE, MOBILE, PRODNAME, PRODID, APPLYCHAN, 
+    APPLYCHANEXP, APPOPERID, APPOPERNAME, APPOPERPHONE, SOURCE, SOURCEVAL, OPERID, ORGID, 
+    DEPTID, LEADERID, TEAMID, DEPTNAME, LEADERNAME, LOANPURPOSE, LOANPURPOSEVAL, LOANUSEEXP, 
+    LOANQUOTA, LOANTERMS, MAXRETUAMT, APPLISTSTAT, APPLISTSTATVAL, LORDREFUCODE, LORDREFUCAUSE, 
+    OTHERREFUNOTE, LASTCHGDATE, ISROUNDLOAN, ISROUNDLOANVAL, OLOANID, APPLYSTSTUS, APPROVEDAMOUNT, 
+    APPROVEDPRODUCT, CONTRACTAMOUNT
+		FROM
+		HS_INTENTION
+		where ORDPLY_ID = #{ordplyId,jdbcType=VARCHAR}
+	</select>
+	
+	 <!-- 根据id查询预约与申请表的共同字段  -->
+	<select id="findByOrdplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+
+	SELECT
+	CUSTNAME,PAPERID,SEXVAL,MOBILE,PRODID,PRODNAME,LEADERID,LEADERNAME,TEAMID,DEPTNAME,SOURCE,SOURCEVAL,APPOPERID,APPOPERNAME
+	FROM HS_INTENTION
+	where ORDPLY_ID = #{ordplyId,jdbcType=VARCHAR}
+	</select> 
+	
+	<!-- 检查手机号是否存在 -->
+	<select id="checkPhone" parameterType="java.lang.String"  resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT count(it.MOBILE) from HS_INTENTION it WHERE it.MOBILE=#{phone}
+		]]>
+	</select>
+	
+	<!-- 检查手机号是否存在 -->
+	<select id="checkIdNumber" parameterType="java.lang.String" resultType="java.lang.Integer" >
+		<![CDATA[
+			SELECT count(it.PAPERID) from HS_INTENTION it WHERE it.PAPERID=#{idnumber}
+		]]>
+	</select>
+	
+	
+	<select id="findPagerByStore" parameterType="java.util.Map" resultMap="BaseResultMap">
+		<![CDATA[
+		SELECT
+			it.*
+		FROM
+			(
+				SELECT
+					it.ORDPLY_ID, it.APPLYID, it.LOANID, it.APPLYDATE, it.CUSTNAME,
+					REPLACE(it.PAPERID, SUBSTR(it.PAPERID,7,8), '********') PAPERID,
+					REPLACE(it.MOBILE, SUBSTR(it.MOBILE,4,4), '****') MOBILE,
+					it.SOURCEVAL, ROWNUM r	
+				FROM HS_INTENTION it
+				WHERE it.ORGID=#{storeId} and ROWNUM <= #{page}*#{rows} and it.APPLYDATE>=(SYSDATE-7) and it.APPLYDATE<=SYSDATE
+		 ]]>
+		
+		<if test="custname != null and custname != ''"> 
+			and it.CUSTNAME like #{custname}
+		</if>
+		 <if test="mobile != null and mobile != ''"> 
+			and it.MOBILE=#{mobile}
+		</if>
+		     ) it
+		<![CDATA[
+		WHERE 1<>2
+   
+		and r > (#{page}-1)*#{rows}
+		]]>
+	</select>
+  	
+  	
+  	<select id="findPagerCountByStore" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT count(it.ORDPLY_ID) from HS_INTENTION it WHERE it.ORGID=#{storeId} and it.APPLYDATE>=(SYSDATE-7)
+		]]>
+		<if test="custname != null and custname != ''"> 
+			and it.CUSTNAME like #{custname}
+		</if>
+		 <if test="mobile != null and mobile != ''"> 
+			and it.MOBILE=#{mobile}
+		</if>
+	</select>
+	<!-- 添加咨询时查询预约日期 -->
+	<select id="selectApplyDate" parameterType="java.lang.String" resultType="java.lang.String">
+		
+		SELECT it.APPLYDATE FROM HS_INTENTION it WHERE it.MOBILE=#{mobile} 
+		
+	</select>
+	
+    
+</mapper>

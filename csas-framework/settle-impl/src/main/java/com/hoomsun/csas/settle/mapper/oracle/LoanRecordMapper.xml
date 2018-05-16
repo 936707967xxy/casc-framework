@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.settle.dao.LoanRecordMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.csas.settle.model.LoanRecord">
+    <id column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="LOAN_CODE" jdbcType="VARCHAR" property="loanCode" />
+    <result column="LOAN_AMOUNT" jdbcType="DECIMAL" property="loanAmount" />
+    <result column="CON_AMOUNT" jdbcType="DECIMAL" property="conAmount" />
+    <result column="LOAN_TERM" jdbcType="INTEGER" property="loanTerm" />
+    <result column="INTEREST_RATE" jdbcType="DECIMAL" property="interestRate" />
+    <result column="LOAN_DATE" jdbcType="TIMESTAMP" property="loanDate" />
+    <result column="HANDLE_EMP" jdbcType="VARCHAR" property="handleEmp" />
+    <result column="HANDLE_EMP_NAME" jdbcType="VARCHAR" property="handleEmpName" />
+    <result column="HANDLE_DATE" jdbcType="TIMESTAMP" property="handleDate" />
+    <result column="HANDLE_REMARK" jdbcType="VARCHAR" property="handleRemark" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="PAY_TYPE" jdbcType="INTEGER" property="payType" />
+    <result column="PAY_ACCOUNT" jdbcType="VARCHAR" property="payAccount" />
+    <result column="PAY_DATE" jdbcType="TIMESTAMP" property="payDate" />
+    <result column="PAY_RESULT" jdbcType="VARCHAR" property="payResult" />
+    <result column="CON_ID" jdbcType="VARCHAR" property="conId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="HANDLE_OPTION" jdbcType="INTEGER" property="handleOption" />
+    <result column="HANDLE_OPTION_VAL" jdbcType="VARCHAR" property="handleOptionVal" />
+    <result column="TASK_ID" jdbcType="VARCHAR" property="taskId" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+    <result column="PAY_CHANNEL" jdbcType="DECIMAL" property="payChannel" />
+   	<result column="PAY_CHANNEL_VAL" jdbcType="DECIMAL" property="payChannelVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    LOAN_ID, LOAN_CODE, LOAN_AMOUNT, CON_AMOUNT, LOAN_TERM, INTEREST_RATE, LOAN_DATE, 
+    HANDLE_EMP, HANDLE_EMP_NAME, HANDLE_DATE, HANDLE_REMARK, PRODUCT_ID, PRODUCT_NAME, 
+    PAY_TYPE, PAY_ACCOUNT, PAY_DATE, PAY_RESULT, CON_ID, APPLY_ID, HANDLE_OPTION, HANDLE_OPTION_VAL, 
+    TASK_ID, PROC_INST_ID,PAY_CHANNEL,PAY_CHANNEL_VAL
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_LOAN_RECORD
+    where LOAN_ID = #{loanId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_LOAN_RECORD
+    where LOAN_ID = #{loanId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.settle.model.LoanRecord">
+    insert into HS_LOAN_RECORD (LOAN_ID, LOAN_CODE, LOAN_AMOUNT, 
+      CON_AMOUNT, LOAN_TERM, INTEREST_RATE, 
+      LOAN_DATE, HANDLE_EMP, HANDLE_EMP_NAME, 
+      HANDLE_DATE, HANDLE_REMARK, PRODUCT_ID, 
+      PRODUCT_NAME, PAY_TYPE, PAY_ACCOUNT, 
+      PAY_DATE, PAY_RESULT, CON_ID, 
+      APPLY_ID, HANDLE_OPTION, HANDLE_OPTION_VAL, 
+      TASK_ID, PROC_INST_ID, PAY_CHANNEL,PAY_CHANNEL_VAL
+      )
+    values (#{loanId,jdbcType=VARCHAR}, #{loanCode,jdbcType=VARCHAR}, #{loanAmount,jdbcType=DECIMAL}, 
+      #{conAmount,jdbcType=DECIMAL}, #{loanTerm,jdbcType=DECIMAL}, #{interestRate,jdbcType=DECIMAL}, 
+      #{loanDate,jdbcType=TIMESTAMP}, #{handleEmp,jdbcType=VARCHAR}, #{handleEmpName,jdbcType=VARCHAR}, 
+      #{handleDate,jdbcType=TIMESTAMP}, #{handleRemark,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR}, 
+      #{productName,jdbcType=VARCHAR}, #{payType,jdbcType=DECIMAL}, #{payAccount,jdbcType=VARCHAR}, 
+      #{payDate,jdbcType=TIMESTAMP}, #{payResult,jdbcType=VARCHAR}, #{conId,jdbcType=VARCHAR}, 
+      #{applyId,jdbcType=VARCHAR}, #{handleOption,jdbcType=DECIMAL}, #{handleOptionVal,jdbcType=VARCHAR}, 
+      #{taskId,jdbcType=VARCHAR}, #{procInstId,jdbcType=VARCHAR}, #{payChannel,jdbcType=DECIMAL},#{payChannelVal,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.settle.model.LoanRecord">
+    insert into HS_LOAN_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="loanCode != null">
+        LOAN_CODE,
+      </if>
+      <if test="loanAmount != null">
+        LOAN_AMOUNT,
+      </if>
+      <if test="conAmount != null">
+        CON_AMOUNT,
+      </if>
+      <if test="loanTerm != null">
+        LOAN_TERM,
+      </if>
+      <if test="interestRate != null">
+        INTEREST_RATE,
+      </if>
+      <if test="loanDate != null">
+        LOAN_DATE,
+      </if>
+      <if test="handleEmp != null">
+        HANDLE_EMP,
+      </if>
+      <if test="handleEmpName != null">
+        HANDLE_EMP_NAME,
+      </if>
+      <if test="handleDate != null">
+        HANDLE_DATE,
+      </if>
+      <if test="handleRemark != null">
+        HANDLE_REMARK,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="payType != null">
+        PAY_TYPE,
+      </if>
+      <if test="payAccount != null">
+        PAY_ACCOUNT,
+      </if>
+      <if test="payDate != null">
+        PAY_DATE,
+      </if>
+      <if test="payResult != null">
+        PAY_RESULT,
+      </if>
+      <if test="conId != null">
+        CON_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="handleOption != null">
+        HANDLE_OPTION,
+      </if>
+      <if test="handleOptionVal != null">
+        HANDLE_OPTION_VAL,
+      </if>
+      <if test="taskId != null">
+        TASK_ID,
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID,
+      </if>
+      <if test="payChannel != null">
+        PAY_CHANNEL,
+      </if>
+      <if test="payChannelVal != null">
+        PAY_CHANNEL_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanCode != null">
+        #{loanCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="conAmount != null">
+        #{conAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="loanTerm != null">
+        #{loanTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="interestRate != null">
+        #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="loanDate != null">
+        #{loanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleEmp != null">
+        #{handleEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="handleEmpName != null">
+        #{handleEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleDate != null">
+        #{handleDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleRemark != null">
+        #{handleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=DECIMAL},
+      </if>
+      <if test="payAccount != null">
+        #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payDate != null">
+        #{payDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payResult != null">
+        #{payResult,jdbcType=VARCHAR},
+      </if>
+      <if test="conId != null">
+        #{conId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOption != null">
+        #{handleOption,jdbcType=DECIMAL},
+      </if>
+      <if test="handleOptionVal != null">
+        #{handleOptionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null">
+        #{payChannel,jdbcType=DECIMAL},
+      </if>
+      <if test="payChannelVal != null">
+        #{payChannelVal,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.settle.model.LoanRecord">
+    update HS_LOAN_RECORD
+    <set>
+      <if test="loanCode != null">
+        LOAN_CODE = #{loanCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmount != null">
+        LOAN_AMOUNT = #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="conAmount != null">
+        CON_AMOUNT = #{conAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="loanTerm != null">
+        LOAN_TERM = #{loanTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="interestRate != null">
+        INTEREST_RATE = #{interestRate,jdbcType=DECIMAL},
+      </if>
+      <if test="loanDate != null">
+        LOAN_DATE = #{loanDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleEmp != null">
+        HANDLE_EMP = #{handleEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="handleEmpName != null">
+        HANDLE_EMP_NAME = #{handleEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="handleDate != null">
+        HANDLE_DATE = #{handleDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleRemark != null">
+        HANDLE_REMARK = #{handleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        PAY_TYPE = #{payType,jdbcType=DECIMAL},
+      </if>
+      <if test="payAccount != null">
+        PAY_ACCOUNT = #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payDate != null">
+        PAY_DATE = #{payDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payResult != null">
+        PAY_RESULT = #{payResult,jdbcType=VARCHAR},
+      </if>
+      <if test="conId != null">
+        CON_ID = #{conId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOption != null">
+        HANDLE_OPTION = #{handleOption,jdbcType=DECIMAL},
+      </if>
+      <if test="handleOptionVal != null">
+        HANDLE_OPTION_VAL = #{handleOptionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        TASK_ID = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null">
+        PAY_CHANNEL = #{payChannel,jdbcType=DECIMAL},
+      </if>
+      <if test="payChannelVal != null">
+        PAY_CHANNEL_VAL = #{payChannelVal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where LOAN_ID = #{loanId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.settle.model.LoanRecord">
+    update HS_LOAN_RECORD
+    set LOAN_CODE = #{loanCode,jdbcType=VARCHAR},
+      LOAN_AMOUNT = #{loanAmount,jdbcType=DECIMAL},
+      CON_AMOUNT = #{conAmount,jdbcType=DECIMAL},
+      LOAN_TERM = #{loanTerm,jdbcType=DECIMAL},
+      INTEREST_RATE = #{interestRate,jdbcType=DECIMAL},
+      LOAN_DATE = #{loanDate,jdbcType=TIMESTAMP},
+      HANDLE_EMP = #{handleEmp,jdbcType=VARCHAR},
+      HANDLE_EMP_NAME = #{handleEmpName,jdbcType=VARCHAR},
+      HANDLE_DATE = #{handleDate,jdbcType=TIMESTAMP},
+      HANDLE_REMARK = #{handleRemark,jdbcType=VARCHAR},
+      PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PAY_TYPE = #{payType,jdbcType=DECIMAL},
+      PAY_ACCOUNT = #{payAccount,jdbcType=VARCHAR},
+      PAY_DATE = #{payDate,jdbcType=TIMESTAMP},
+      PAY_RESULT = #{payResult,jdbcType=VARCHAR},
+      CON_ID = #{conId,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      HANDLE_OPTION = #{handleOption,jdbcType=DECIMAL},
+      HANDLE_OPTION_VAL = #{handleOptionVal,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=VARCHAR},
+      PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      PAY_CHANNEL = #{payChannel,jdbcType=DECIMAL},
+      PAY_CHANNEL_VAL = #{payChannelVal,jdbcType=DECIMAL}
+    where LOAN_ID = #{loanId,jdbcType=VARCHAR}
+  </update>
+  
+  
+	
+	<!-- 编辑区域方法  不可替换 -->
+	<resultMap type="com.hoomsun.csas.settle.model.vo.LoanVo" id="LOAN_AUDIT_RESULT_MAP">
+		<id column="CON_ID" property="conId" />
+		<result column="APPLY_ID" property="applyId" />
+		<result column="CON_NO" property="conCode" />
+		<result column="CUST_NAME" property="custName" />
+		<result column="CUST_MOBILE" property="custMobile" />
+		<result column="ID_NUMBER" property="idNumber" />
+		<result column="PRODUCT_ID" property="productId" />
+		<result column="PRODUCT_NAME" property="productName" />
+		<result column="CON_AMOUNT" property="conAmount" />
+		<result column="LOAN_AMOUNT" property="loanAmount" />
+		<result column="SIGN_TIME" property="signDate" />
+		<result column="PRODUCT_PERIOD" property="period" />
+		<result column="PROC_STATUS_VAL" property="procStatusVal" />
+		<result column="PROC_STATUS" property="procStatus" />
+	</resultMap>
+	<select id="findPager" parameterType="java.util.Map" resultMap="LOAN_AUDIT_RESULT_MAP">
+		SELECT tbl.* FROM (
+		SELECT
+		ROWNUM r,
+		con.CON_ID,
+		con.APPLY_ID,
+		con.SIGN_TIME,
+		con.CON_NO,
+		con.PRODUCT_NAME,
+		con.PRODUCT_ID,
+		con.LOAN_AMOUNT,
+		con.CON_AMOUNT,
+		con.PRODUCT_PERIOD,
+		con.CON_STATUS,
+		REPLACE(con.ID_NUMBER,SUBSTR(con.ID_NUMBER,7,8), '********') idNumber,
+		app.CUST_NAME,
+		app.PROC_INST_ID,
+		app.PROC_STATUS,
+		app.PROC_STATUS_VAL,
+		REPLACE(app.CUST_MOBILE,SUBSTR(app.CUST_MOBILE,4,4), '****') custMobile
+		FROM HS_CONTRACT con
+		LEFT JOIN HS_APPLY app on con.APPLY_ID=app.APPLY_ID
+		RIGHT JOIN (
+		SELECT DISTINCT BUSINESS_KEY_ FROM ACT_HI_PROCINST hp
+		LEFT JOIN ACT_HI_TASKINST ht ON hp.PROC_INST_ID_ = ht.PROC_INST_ID_
+		WHERE ht.TASK_DEF_KEY_='loanAudit' 
+		<choose>
+			<when test="nodeStatus == 0">AND ht.END_TIME_ IS NULL</when><!-- 未审核 -->
+			<when test="nodeStatus == 1">AND ht.END_TIME_ IS NOT NULL AND
+				HT.ASSIGNEE_=#{empId}</when><!-- 已经审核 -->
+			<when test="nodeStatus == -1">AND ((ht.END_TIME_ IS NULL OR ht.ASSIGNEE_ IS NULL)
+				OR HT.ASSIGNEE_=#{empId})</when><!-- 全部 -->
+		</choose>
+		) ACT ON app.APPLY_ID = ACT.BUSINESS_KEY_
+			<![CDATA[WHERE app.DEL_STATUE=0 and con.IS_ONLINE='0']]>
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME like #{custName}
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE LIKE #{custMobile}
+		</if>
+		<if test="conCode != null and conCode != ''">
+			and con.CON_NO LIKE #{conCode}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and con.ID_NUMBER LIKE #{idNumber}
+		</if>
+			<![CDATA[AND ROWNUM <=  #{pageIndex} * #{pageSize}]]>
+		ORDER BY con.SIGN_TIME DESC
+		)tbl WHERE r > (#{pageIndex} -1) *
+		#{pageSize}
+	</select>
+	<select id="findPagerCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		SELECT
+		count(con.CON_ID)
+		FROM HS_CONTRACT con
+		LEFT JOIN HS_APPLY app on
+		con.APPLY_ID=app.APPLY_ID
+		RIGHT JOIN (
+		SELECT DISTINCT BUSINESS_KEY_ FROM ACT_HI_PROCINST hp
+		LEFT JOIN ACT_HI_TASKINST ht ON hp.PROC_INST_ID_ = ht.PROC_INST_ID_
+		WHERE ht.TASK_DEF_KEY_='loanAudit'  
+		<choose>
+			<when test="nodeStatus == 0">AND ht.END_TIME_ IS NULL</when><!-- 未审核 -->
+			<when test="nodeStatus == 1">AND ht.END_TIME_ IS NOT NULL AND
+				HT.ASSIGNEE_=#{empId}</when><!-- 已经审核 -->
+			<when test="nodeStatus == -1">AND ((ht.END_TIME_ IS NULL OR ht.ASSIGNEE_ IS NULL)
+				OR HT.ASSIGNEE_=#{empId})</when><!-- 全部 -->
+		</choose>
+		) ACT ON app.APPLY_ID = ACT.BUSINESS_KEY_
+		<![CDATA[WHERE app.DEL_STATUE=0 and con.IS_ONLINE='0']]>
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME like #{custName}
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE LIKE #{custMobile}
+		</if>
+			<if test="conCode != null and conCode != ''">
+			and con.CON_NO LIKE #{conCode}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and con.ID_NUMBER LIKE #{idNumber}
+		</if>
+	</select>
+	
+	<select id="selectByApplyId" parameterType="java.lang.String" resultMap="LOAN_AUDIT_RESULT_MAP">
+		SELECT
+			con.CON_ID,
+			con.APPLY_ID,
+			con.SIGN_TIME,
+			con.CON_NO,
+			con.PRODUCT_NAME,
+			con.PRODUCT_ID,
+			con.LOAN_AMOUNT,
+			con.CON_AMOUNT,
+			con.PRODUCT_PERIOD,
+			con.CON_STATUS,
+			app.CUST_NAME,
+			app.ID_NUMBER,
+			app.PROC_INST_ID,
+			app.PROC_STATUS,
+			app.PROC_STATUS_VAL,
+			app.CUST_MOBILE
+		FROM HS_CONTRACT con
+		LEFT JOIN HS_APPLY app on con.APPLY_ID=app.APPLY_ID
+		WHERE app.APPLY_ID=#{applyId} 
+  </select>
+  
+  <select id="findByConId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+  	LOAN_ID, LOAN_CODE, LOAN_AMOUNT, CON_AMOUNT, LOAN_TERM, INTEREST_RATE, LOAN_DATE, 
+    HANDLE_EMP, HANDLE_EMP_NAME, HANDLE_DATE, HANDLE_REMARK, PRODUCT_ID, PRODUCT_NAME, 
+    PAY_TYPE, PAY_ACCOUNT, PAY_DATE, PAY_RESULT, CON_ID, APPLY_ID, HANDLE_OPTION, HANDLE_OPTION_VAL, 
+    TASK_ID, PROC_INST_ID
+    FROM HS_LOAN_RECORD where CON_ID=#{conId}
+    and HANDLE_DATE=(
+    	select max(HANDLE_DATE) FROM HS_LOAN_RECORD where CON_ID=#{conId}
+    )
+  </select>
+  
+  <select id="findByApplyId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select 
+  	LOAN_ID, LOAN_CODE, LOAN_AMOUNT, CON_AMOUNT, LOAN_TERM, INTEREST_RATE, LOAN_DATE, 
+    HANDLE_EMP, HANDLE_EMP_NAME, HANDLE_DATE, HANDLE_REMARK, PRODUCT_ID, PRODUCT_NAME, 
+    PAY_TYPE, PAY_ACCOUNT, PAY_DATE, PAY_RESULT, CON_ID, APPLY_ID, HANDLE_OPTION, HANDLE_OPTION_VAL, 
+    TASK_ID, PROC_INST_ID
+    FROM HS_LOAN_RECORD where APPLY_ID=#{applyId}
+    and HANDLE_DATE=(
+    	select max(HANDLE_DATE) FROM HS_LOAN_RECORD where APPLY_ID=#{applyId}
+    )
+  </select>
+  
+  <select id="findApplyIds" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_LOAN_RECORD
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="checkByApplyId" resultType="java.lang.Integer" parameterType="java.lang.String">
+  	select 
+  	COUNT(LOAN_ID)
+    FROM HS_LOAN_RECORD where APPLY_ID=#{applyId}
+  </select>
+  
+  <select id="checkByConId" resultType="java.lang.Integer" parameterType="java.lang.String">
+  	select 
+  	COUNT(LOAN_ID)
+    FROM HS_LOAN_RECORD where CON_ID=#{conId}
+  </select>
+  
+</mapper>

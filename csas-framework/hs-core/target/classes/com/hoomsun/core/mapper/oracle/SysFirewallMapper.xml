@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysFirewallMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysFirewall">
+    <id column="FW_ID" jdbcType="VARCHAR" property="fwId" />
+    <result column="IP_ADDR" jdbcType="VARCHAR" property="ipAddr" />
+    <result column="MAC_ADDR" jdbcType="VARCHAR" property="macAddr" />
+    <result column="FW_TYPE" jdbcType="INTEGER" property="fwType" />
+    <result column="FW_DESC" jdbcType="VARCHAR" property="fwDesc" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="CREATE_EMP" jdbcType="VARCHAR" property="createEmp" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    FW_ID, IP_ADDR, MAC_ADDR, FW_TYPE, FW_DESC, CREATE_TIME, CREATE_EMP
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_FIREWALL
+    where FW_ID = #{fwId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_FIREWALL
+    where FW_ID = #{fwId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysFirewall">
+    insert into HS_FIREWALL (FW_ID, IP_ADDR, MAC_ADDR, 
+      FW_TYPE, FW_DESC, CREATE_TIME, 
+      CREATE_EMP)
+    values (#{fwId,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR}, #{macAddr,jdbcType=VARCHAR}, 
+      #{fwType,jdbcType=INTEGER}, #{fwDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createEmp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysFirewall">
+    insert into HS_FIREWALL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="fwId != null">
+        FW_ID,
+      </if>
+      <if test="ipAddr != null">
+        IP_ADDR,
+      </if>
+      <if test="macAddr != null">
+        MAC_ADDR,
+      </if>
+      <if test="fwType != null">
+        FW_TYPE,
+      </if>
+      <if test="fwDesc != null">
+        FW_DESC,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="createEmp != null">
+        CREATE_EMP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="fwId != null">
+        #{fwId,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddr != null">
+        #{ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="macAddr != null">
+        #{macAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="fwType != null">
+        #{fwType,jdbcType=INTEGER},
+      </if>
+      <if test="fwDesc != null">
+        #{fwDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        #{createEmp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysFirewall">
+    update HS_FIREWALL
+    <set>
+      <if test="ipAddr != null">
+        IP_ADDR = #{ipAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="macAddr != null">
+        MAC_ADDR = #{macAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="fwType != null">
+        FW_TYPE = #{fwType,jdbcType=INTEGER},
+      </if>
+      <if test="fwDesc != null">
+        FW_DESC = #{fwDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createEmp != null">
+        CREATE_EMP = #{createEmp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FW_ID = #{fwId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysFirewall">
+    update HS_FIREWALL
+    set IP_ADDR = #{ipAddr,jdbcType=VARCHAR},
+      MAC_ADDR = #{macAddr,jdbcType=VARCHAR},
+      FW_TYPE = #{fwType,jdbcType=INTEGER},
+      FW_DESC = #{fwDesc,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_EMP = #{createEmp,jdbcType=VARCHAR}
+    where FW_ID = #{fwId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 获取黑名单 -->
+  <select id="findBlackList" resultType="java.lang.String">
+  	select IP_ADDR from HS_FIREWALL where FW_TYPE='0'
+  </select>
+  
+  <!-- 获取白名单 -->
+  <select id="findWhiteList" resultType="java.lang.String">
+  	select IP_ADDR from HS_FIREWALL where FW_TYPE='1'
+  </select>
+  
+   <!-- 分页查询 -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+	<![CDATA[select 
+    fire.FW_ID, fire.IP_ADDR, fire.MAC_ADDR, fire.FW_TYPE, fire.FW_DESC, fire.CREATE_TIME, fire.CREATE_EMP
+    from
+    (
+				SELECT
+					fire.*, ROWNUM r
+				FROM
+					(
+						SELECT
+							*
+						FROM 
+							HS_FIREWALL 
+						
+					) fire 
+				WHERE
+					 ROWNUM <= (#{pageIndex}/#{pageSize}+1)*#{pageSize} 
+			) fire 
+      WHERE 1<>2]]>
+		<if test="ipAddr != null and ipAddr != ''"> and fire.IP_ADDR like #{ipAddr}</if>
+		<if test="pageIndex != null and pageSize != null">
+			and r > #{pageIndex} 
+		</if>
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[
+			SELECT count(fire.FW_ID) from HS_FIREWALL fire WHERE 1<>2
+		]]>
+		<if test="ipAddr != null and ipAddr != ''"> and fire.IP_ADDR like #{ipAddr}</if>
+	</select>
+	
+	<select id="findAll" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		FROM HS_FIREWALL
+	</select>
+	<!-- 根据ip查询 -->
+  <select id="findByIP" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_FIREWALL
+		where IP_ADDR = #{ipAddr,jdbcType=VARCHAR}
+	</select>
+</mapper>

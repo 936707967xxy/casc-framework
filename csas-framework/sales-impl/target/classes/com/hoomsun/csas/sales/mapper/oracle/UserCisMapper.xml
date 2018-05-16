@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserCisMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserCis">
+    <id column="CIS_ID" jdbcType="VARCHAR" property="cisId" />
+    <result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+    <result column="LYNZXCXS" jdbcType="VARCHAR" property="lynzxcxs" />
+    <result column="ZGYQ_QS" jdbcType="VARCHAR" property="zgyqQs" />
+    <result column="ZGYQ_JE" jdbcType="VARCHAR" property="zgyqJe" />
+    <result column="DQYQ_ZE" jdbcType="VARCHAR" property="dqyqZe" />
+    <result column="DKYE" jdbcType="VARCHAR" property="dkye" />
+    <result column="WJQBS" jdbcType="VARCHAR" property="wjqbs" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="HTML_URL" jdbcType="VARCHAR" property="htmlUrl" />
+    <result column="FORECAST_LIVE_TIME_ZX" jdbcType="VARCHAR" property="forecastLiveTimeZx" />
+    <result column="MARITAL_STATUS_ZX" jdbcType="VARCHAR" property="maritalStatusZx" />
+    <result column="ADDRESS_ZX" jdbcType="VARCHAR" property="addressZx" />
+    <result column="COMPANY_NAME_ZX" jdbcType="VARCHAR" property="companyNameZx" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CIS_ID, ADD_DATE, LYNZXCXS, ZGYQ_QS, ZGYQ_JE, DQYQ_ZE, DKYE, WJQBS, APPLY_ID, HTML_URL, 
+    FORECAST_LIVE_TIME_ZX, MARITAL_STATUS_ZX, ADDRESS_ZX, COMPANY_NAME_ZX
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CIS
+    where CIS_ID = #{cisId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CIS
+    where CIS_ID = #{cisId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserCis">
+    insert into HS_CIS (CIS_ID, ADD_DATE, LYNZXCXS, 
+      ZGYQ_QS, ZGYQ_JE, DQYQ_ZE, 
+      DKYE, WJQBS, APPLY_ID, 
+      HTML_URL, FORECAST_LIVE_TIME_ZX, MARITAL_STATUS_ZX, 
+      ADDRESS_ZX, COMPANY_NAME_ZX)
+    values (#{cisId,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}, #{lynzxcxs,jdbcType=VARCHAR}, 
+      #{zgyqQs,jdbcType=VARCHAR}, #{zgyqJe,jdbcType=VARCHAR}, #{dqyqZe,jdbcType=VARCHAR}, 
+      #{dkye,jdbcType=VARCHAR}, #{wjqbs,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, 
+      #{htmlUrl,jdbcType=VARCHAR}, #{forecastLiveTimeZx,jdbcType=VARCHAR}, #{maritalStatusZx,jdbcType=VARCHAR}, 
+      #{addressZx,jdbcType=VARCHAR}, #{companyNameZx,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserCis">
+    insert into HS_CIS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cisId != null">
+        CIS_ID,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="lynzxcxs != null">
+        LYNZXCXS,
+      </if>
+      <if test="zgyqQs != null">
+        ZGYQ_QS,
+      </if>
+      <if test="zgyqJe != null">
+        ZGYQ_JE,
+      </if>
+      <if test="dqyqZe != null">
+        DQYQ_ZE,
+      </if>
+      <if test="dkye != null">
+        DKYE,
+      </if>
+      <if test="wjqbs != null">
+        WJQBS,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="htmlUrl != null">
+        HTML_URL,
+      </if>
+      <if test="forecastLiveTimeZx != null">
+        FORECAST_LIVE_TIME_ZX,
+      </if>
+      <if test="maritalStatusZx != null">
+        MARITAL_STATUS_ZX,
+      </if>
+      <if test="addressZx != null">
+        ADDRESS_ZX,
+      </if>
+      <if test="companyNameZx != null">
+        COMPANY_NAME_ZX,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cisId != null">
+        #{cisId,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lynzxcxs != null">
+        #{lynzxcxs,jdbcType=VARCHAR},
+      </if>
+      <if test="zgyqQs != null">
+        #{zgyqQs,jdbcType=VARCHAR},
+      </if>
+      <if test="zgyqJe != null">
+        #{zgyqJe,jdbcType=VARCHAR},
+      </if>
+      <if test="dqyqZe != null">
+        #{dqyqZe,jdbcType=VARCHAR},
+      </if>
+      <if test="dkye != null">
+        #{dkye,jdbcType=VARCHAR},
+      </if>
+      <if test="wjqbs != null">
+        #{wjqbs,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlUrl != null">
+        #{htmlUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastLiveTimeZx != null">
+        #{forecastLiveTimeZx,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusZx != null">
+        #{maritalStatusZx,jdbcType=VARCHAR},
+      </if>
+      <if test="addressZx != null">
+        #{addressZx,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameZx != null">
+        #{companyNameZx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserCis">
+    update HS_CIS
+    <set>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lynzxcxs != null">
+        LYNZXCXS = #{lynzxcxs,jdbcType=VARCHAR},
+      </if>
+      <if test="zgyqQs != null">
+        ZGYQ_QS = #{zgyqQs,jdbcType=VARCHAR},
+      </if>
+      <if test="zgyqJe != null">
+        ZGYQ_JE = #{zgyqJe,jdbcType=VARCHAR},
+      </if>
+      <if test="dqyqZe != null">
+        DQYQ_ZE = #{dqyqZe,jdbcType=VARCHAR},
+      </if>
+      <if test="dkye != null">
+        DKYE = #{dkye,jdbcType=VARCHAR},
+      </if>
+      <if test="wjqbs != null">
+        WJQBS = #{wjqbs,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlUrl != null">
+        HTML_URL = #{htmlUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastLiveTimeZx != null">
+        FORECAST_LIVE_TIME_ZX = #{forecastLiveTimeZx,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusZx != null">
+        MARITAL_STATUS_ZX = #{maritalStatusZx,jdbcType=VARCHAR},
+      </if>
+      <if test="addressZx != null">
+        ADDRESS_ZX = #{addressZx,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameZx != null">
+        COMPANY_NAME_ZX = #{companyNameZx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CIS_ID = #{cisId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserCis">
+    update HS_CIS
+    set ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      LYNZXCXS = #{lynzxcxs,jdbcType=VARCHAR},
+      ZGYQ_QS = #{zgyqQs,jdbcType=VARCHAR},
+      ZGYQ_JE = #{zgyqJe,jdbcType=VARCHAR},
+      DQYQ_ZE = #{dqyqZe,jdbcType=VARCHAR},
+      DKYE = #{dkye,jdbcType=VARCHAR},
+      WJQBS = #{wjqbs,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      HTML_URL = #{htmlUrl,jdbcType=VARCHAR},
+      FORECAST_LIVE_TIME_ZX = #{forecastLiveTimeZx,jdbcType=VARCHAR},
+      MARITAL_STATUS_ZX = #{maritalStatusZx,jdbcType=VARCHAR},
+      ADDRESS_ZX = #{addressZx,jdbcType=VARCHAR},
+      COMPANY_NAME_ZX = #{companyNameZx,jdbcType=VARCHAR}
+    where CIS_ID = #{cisId,jdbcType=VARCHAR}
+  </update>
+
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserCisMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserCis">
+    <id column="CIS_ID" jdbcType="VARCHAR" property="cisId" />
+    <result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+    <result column="LYNZXCXS" jdbcType="VARCHAR" property="lynzxcxs" />
+    <result column="ZGYQ_QS" jdbcType="VARCHAR" property="zgyqQs" />
+    <result column="ZGYQ_JE" jdbcType="VARCHAR" property="zgyqJe" />
+    <result column="DQYQ_ZE" jdbcType="VARCHAR" property="dqyqZe" />
+    <result column="DKYE" jdbcType="VARCHAR" property="dkye" />
+    <result column="WJQBS" jdbcType="VARCHAR" property="wjqbs" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="HTML_URL" jdbcType="VARCHAR" property="htmlUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CIS_ID, ADD_DATE, LYNZXCXS, ZGYQ_QS, ZGYQ_JE, DQYQ_ZE, DKYE, WJQBS, APPLY_ID, HTML_URL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CIS
+    where CIS_ID = #{cisId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CIS
+    where CIS_ID = #{cisId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserCis">
+    insert into HS_CIS (CIS_ID, ADD_DATE, LYNZXCXS, 
+      ZGYQ_QS, ZGYQ_JE, DQYQ_ZE, 
+      DKYE, WJQBS, APPLY_ID, 
+      HTML_URL)
+    values (#{cisId,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}, #{lynzxcxs,jdbcType=VARCHAR}, 
+      #{zgyqQs,jdbcType=VARCHAR}, #{zgyqJe,jdbcType=VARCHAR}, #{dqyqZe,jdbcType=VARCHAR}, 
+      #{dkye,jdbcType=VARCHAR}, #{wjqbs,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, 
+      #{htmlUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserCis">
+    insert into HS_CIS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cisId != null">
+        CIS_ID,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="lynzxcxs != null">
+        LYNZXCXS,
+      </if>
+      <if test="zgyqQs != null">
+        ZGYQ_QS,
+      </if>
+      <if test="zgyqJe != null">
+        ZGYQ_JE,
+      </if>
+      <if test="dqyqZe != null">
+        DQYQ_ZE,
+      </if>
+      <if test="dkye != null">
+        DKYE,
+      </if>
+      <if test="wjqbs != null">
+        WJQBS,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="htmlUrl != null">
+        HTML_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cisId != null">
+        #{cisId,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lynzxcxs != null">
+        #{lynzxcxs,jdbcType=VARCHAR},
+      </if>
+      <if test="zgyqQs != null">
+        #{zgyqQs,jdbcType=VARCHAR},
+      </if>
+      <if test="zgyqJe != null">
+        #{zgyqJe,jdbcType=VARCHAR},
+      </if>
+      <if test="dqyqZe != null">
+        #{dqyqZe,jdbcType=VARCHAR},
+      </if>
+      <if test="dkye != null">
+        #{dkye,jdbcType=VARCHAR},
+      </if>
+      <if test="wjqbs != null">
+        #{wjqbs,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlUrl != null">
+        #{htmlUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserCis">
+    update HS_CIS
+    <set>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lynzxcxs != null">
+        LYNZXCXS = #{lynzxcxs,jdbcType=VARCHAR},
+      </if>
+      <if test="zgyqQs != null">
+        ZGYQ_QS = #{zgyqQs,jdbcType=VARCHAR},
+      </if>
+      <if test="zgyqJe != null">
+        ZGYQ_JE = #{zgyqJe,jdbcType=VARCHAR},
+      </if>
+      <if test="dqyqZe != null">
+        DQYQ_ZE = #{dqyqZe,jdbcType=VARCHAR},
+      </if>
+      <if test="dkye != null">
+        DKYE = #{dkye,jdbcType=VARCHAR},
+      </if>
+      <if test="wjqbs != null">
+        WJQBS = #{wjqbs,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="htmlUrl != null">
+        HTML_URL = #{htmlUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CIS_ID = #{cisId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserCis">
+    update HS_CIS
+    set ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      LYNZXCXS = #{lynzxcxs,jdbcType=VARCHAR},
+      ZGYQ_QS = #{zgyqQs,jdbcType=VARCHAR},
+      ZGYQ_JE = #{zgyqJe,jdbcType=VARCHAR},
+      DQYQ_ZE = #{dqyqZe,jdbcType=VARCHAR},
+      DKYE = #{dkye,jdbcType=VARCHAR},
+      WJQBS = #{wjqbs,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      HTML_URL = #{htmlUrl,jdbcType=VARCHAR}
+    where CIS_ID = #{cisId,jdbcType=VARCHAR}
+  </update> -->
+  
+  
+
+	<!-- 一下为自定义编辑区域 不可修改变更 -->
+	<insert id="insertMap" parameterType="java.util.Map">
+		insert into HS_CIS (CIS_ID, ADD_DATE, LYNZXCXS,
+		ZGYQ_QS, ZGYQ_JE, DQYQ_ZE,
+		DKYE, WJQBS, APPLY_ID
+		)
+		values (#{CIS_ID}, #{ADD_DATE}, #{LYNZXCXS},
+		#{ZGYQ_QS}, #{ZGYQ_JE},
+		#{DQYQ_ZE},
+		#{DKYE}, #{WJQBS}, #{APPLY_ID}
+		)
+	</insert>
+
+
+	<select id="checkByApplyId" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT COUNT(CIS_ID) from HS_CIS WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM HS_CIS
+		where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+</mapper>

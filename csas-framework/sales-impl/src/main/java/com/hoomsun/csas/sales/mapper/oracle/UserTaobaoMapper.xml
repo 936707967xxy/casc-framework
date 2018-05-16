@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserTaobaoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserTaobao">
+    <id column="TB_ID" jdbcType="VARCHAR" property="tbId" />
+    <result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+    <result column="JSYPJHK" jdbcType="VARCHAR" property="jsypjhk" />
+    <result column="JSYZCJE" jdbcType="VARCHAR" property="jsyzcje" />
+    <result column="JSYZRJE" jdbcType="VARCHAR" property="jsyzrje" />
+    <result column="JSYXFZB" jdbcType="VARCHAR" property="jsyxfzb" />
+    <result column="BNYEBLJSY" jdbcType="VARCHAR" property="bnyebljsy" />
+    <result column="ZFBZHYE" jdbcType="VARCHAR" property="zfbzhye" />
+    <result column="HBED" jdbcType="VARCHAR" property="hbed" />
+    <result column="ADRSS" jdbcType="VARCHAR" property="adrss" />
+    <result column="SHDZZS" jdbcType="VARCHAR" property="shdzzs" />
+    <result column="BNSHDZ" jdbcType="VARCHAR" property="bnshdz" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TB_ID, ADD_DATE, JSYPJHK, JSYZCJE, JSYZRJE, JSYXFZB, BNYEBLJSY, ZFBZHYE, HBED, ADRSS, 
+    SHDZZS, BNSHDZ, APPLY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_TAOBAO
+    where TB_ID = #{tbId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_TAOBAO
+    where TB_ID = #{tbId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserTaobao">
+    insert into HS_TAOBAO (TB_ID, ADD_DATE, JSYPJHK, 
+      JSYZCJE, JSYZRJE, JSYXFZB, 
+      BNYEBLJSY, ZFBZHYE, HBED, 
+      ADRSS, SHDZZS, BNSHDZ, 
+      APPLY_ID)
+    values (#{tbId,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}, #{jsypjhk,jdbcType=VARCHAR}, 
+      #{jsyzcje,jdbcType=VARCHAR}, #{jsyzrje,jdbcType=VARCHAR}, #{jsyxfzb,jdbcType=VARCHAR}, 
+      #{bnyebljsy,jdbcType=VARCHAR}, #{zfbzhye,jdbcType=VARCHAR}, #{hbed,jdbcType=VARCHAR}, 
+      #{adrss,jdbcType=VARCHAR}, #{shdzzs,jdbcType=VARCHAR}, #{bnshdz,jdbcType=VARCHAR}, 
+      #{applyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserTaobao">
+    insert into HS_TAOBAO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tbId != null">
+        TB_ID,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="jsypjhk != null">
+        JSYPJHK,
+      </if>
+      <if test="jsyzcje != null">
+        JSYZCJE,
+      </if>
+      <if test="jsyzrje != null">
+        JSYZRJE,
+      </if>
+      <if test="jsyxfzb != null">
+        JSYXFZB,
+      </if>
+      <if test="bnyebljsy != null">
+        BNYEBLJSY,
+      </if>
+      <if test="zfbzhye != null">
+        ZFBZHYE,
+      </if>
+      <if test="hbed != null">
+        HBED,
+      </if>
+      <if test="adrss != null">
+        ADRSS,
+      </if>
+      <if test="shdzzs != null">
+        SHDZZS,
+      </if>
+      <if test="bnshdz != null">
+        BNSHDZ,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tbId != null">
+        #{tbId,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="jsypjhk != null">
+        #{jsypjhk,jdbcType=VARCHAR},
+      </if>
+      <if test="jsyzcje != null">
+        #{jsyzcje,jdbcType=VARCHAR},
+      </if>
+      <if test="jsyzrje != null">
+        #{jsyzrje,jdbcType=VARCHAR},
+      </if>
+      <if test="jsyxfzb != null">
+        #{jsyxfzb,jdbcType=VARCHAR},
+      </if>
+      <if test="bnyebljsy != null">
+        #{bnyebljsy,jdbcType=VARCHAR},
+      </if>
+      <if test="zfbzhye != null">
+        #{zfbzhye,jdbcType=VARCHAR},
+      </if>
+      <if test="hbed != null">
+        #{hbed,jdbcType=VARCHAR},
+      </if>
+      <if test="adrss != null">
+        #{adrss,jdbcType=VARCHAR},
+      </if>
+      <if test="shdzzs != null">
+        #{shdzzs,jdbcType=VARCHAR},
+      </if>
+      <if test="bnshdz != null">
+        #{bnshdz,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserTaobao">
+    update HS_TAOBAO
+    <set>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="jsypjhk != null">
+        JSYPJHK = #{jsypjhk,jdbcType=VARCHAR},
+      </if>
+      <if test="jsyzcje != null">
+        JSYZCJE = #{jsyzcje,jdbcType=VARCHAR},
+      </if>
+      <if test="jsyzrje != null">
+        JSYZRJE = #{jsyzrje,jdbcType=VARCHAR},
+      </if>
+      <if test="jsyxfzb != null">
+        JSYXFZB = #{jsyxfzb,jdbcType=VARCHAR},
+      </if>
+      <if test="bnyebljsy != null">
+        BNYEBLJSY = #{bnyebljsy,jdbcType=VARCHAR},
+      </if>
+      <if test="zfbzhye != null">
+        ZFBZHYE = #{zfbzhye,jdbcType=VARCHAR},
+      </if>
+      <if test="hbed != null">
+        HBED = #{hbed,jdbcType=VARCHAR},
+      </if>
+      <if test="adrss != null">
+        ADRSS = #{adrss,jdbcType=VARCHAR},
+      </if>
+      <if test="shdzzs != null">
+        SHDZZS = #{shdzzs,jdbcType=VARCHAR},
+      </if>
+      <if test="bnshdz != null">
+        BNSHDZ = #{bnshdz,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TB_ID = #{tbId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserTaobao">
+    update HS_TAOBAO
+    set ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      JSYPJHK = #{jsypjhk,jdbcType=VARCHAR},
+      JSYZCJE = #{jsyzcje,jdbcType=VARCHAR},
+      JSYZRJE = #{jsyzrje,jdbcType=VARCHAR},
+      JSYXFZB = #{jsyxfzb,jdbcType=VARCHAR},
+      BNYEBLJSY = #{bnyebljsy,jdbcType=VARCHAR},
+      ZFBZHYE = #{zfbzhye,jdbcType=VARCHAR},
+      HBED = #{hbed,jdbcType=VARCHAR},
+      ADRSS = #{adrss,jdbcType=VARCHAR},
+      SHDZZS = #{shdzzs,jdbcType=VARCHAR},
+      BNSHDZ = #{bnshdz,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    where TB_ID = #{tbId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <!-- 以下为数据的编辑区域 不可随意的修改 -->
+  <select id="checkByApplyId" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(TB_ID) FROM HS_CHSI WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="checkById" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(TB_ID) FROM HS_CHSI WHERE CHSI_ID = #{tbId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findIdByApplyId" parameterType="java.lang.String" resultType="java.lang.String">
+  	SELECT TB_ID FROM HS_CHSI WHERE CHSI_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  
+   <resultMap id="TAO_BAO_DATA_MAP" type="com.hoomsun.csas.sales.api.model.UserTaobao" extends="BaseResultMap">
+   		<collection property="addresses" javaType="java.util.ArrayList" ofType="com.hoomsun.csas.sales.api.model.UserTaoBaoAddress" resultMap="com.hoomsun.csas.sales.dao.UserTaoBaoAddressMapper.BaseResultMap"/>
+   </resultMap>
+   <select id="selectByApplyId" parameterType="java.lang.String" resultMap="TAO_BAO_DATA_MAP">
+    SELECT 
+    tb.TB_ID, tb.ADD_DATE, tb.JSYPJHK, tb.JSYZCJE, tb.JSYZRJE, tb.JSYXFZB, tb.BNYEBLJSY, tb.ZFBZHYE, tb.HBED, tb.ADRSS, 
+    tb.SHDZZS, tb.BNSHDZ, tb.APPLY_ID,
+    tbad.TB_ADDRESS_ID, tbad.PHONE, tbad.LOCATION, tbad.TAKEMAN, tbad.DETAILEDADDRESS, tbad.POSTCODE, tbad.TB_FKID
+    FROM HS_TAOBAO tb
+    left join HS_TAOBAO_ADDRESS tbad on tb.TB_ID=tbad.TB_FKID
+    WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <insert id="insertMap" parameterType="java.util.Map">
+    insert into HS_TAOBAO (TB_ID, ADD_DATE, JSYPJHK, 
+      JSYZCJE, JSYZRJE, JSYXFZB, 
+      BNYEBLJSY, ZFBZHYE, HBED, 
+      SHDZZS, BNSHDZ, APPLY_ID,
+      ADRSS
+      )
+    values (#{TB_ID}, #{ADD_DATE}, #{JSYPJHK}, 
+      #{JSYZCJE}, #{JSYZRJE}, #{JSYXFZB}, 
+      #{BNYEBLJSY}, #{ZFBZHYE}, #{HBED}, 
+      #{SHDZZS}, #{BNSHDZ}, #{APPLY_ID},
+      #{ADRSS}
+      )
+  </insert>
+</mapper>

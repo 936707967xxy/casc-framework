@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysEmployeeOAMapper">
+	<resultMap id="BaseResultMapEmp" type="com.hoomsun.core.model.vo.OAUser">
+		<id column="ID" property="userId" />
+		<result column="USER_NAME" property="userName" />
+		<result column="USER_ID" property="userCode" />
+		<result column="COMPANY_ID" property="comId" />
+		<result column="COMPANY_NAME" property="comName" />
+		<result column="PART_ID" property="partId" />
+		<result column="PART_NAME" property="partName" />
+		<result column="STATUS" property="status" />
+		<result column="MOBILE" property="mobile" />
+		<result column="CARD_NUMBER" property="cardNumber" />
+		<result column="COMPANY_EMAIL" property="companyEmail" />
+		<result column="USER_LOCK" property="userLock" />
+		<result column="ORG_TYPE" property="orgType" />
+		<result column="ORG_CODE" property="orgCode" />
+	</resultMap>
+
+	<!-- 登录验证  -->
+	<select id="simplLogin" resultMap="BaseResultMapEmp">
+		SELECT
+		emp.ID, emp.USER_ID, emp.USER_NAME, emp.USER_LOCK, emp.STATUS 
+		FROM ${hsoaDB}.HSOA_USER emp
+		WHERE (emp.USER_ID=#{loginName} or emp.MOBILE=#{loginName}) AND
+		emp.USER_PASS=#{passWord}
+	</select>
+	
+	<!-- 获取用户的基本信息 -->
+	<select id="findUserInfo" parameterType="java.lang.String" resultMap="BaseResultMapEmp">
+		SELECT
+		emp.ID, emp.USER_ID, emp.USER_NAME, emp.USER_LOCK,
+		dept.ID PART_ID,dept.PART_NAME,
+		dept.COMPANY_ID,dept.COMPANY_NAME
+		FROM ${hsoaDB}.HSOA_USER emp
+		LEFT JOIN ${hsoaDB}.HSOA_COMPANY_PART dept ON emp.PART_ID = dept.ID 
+		WHERE emp.ID=#{empId}
+	</select>
+	
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMapEmp">
+		SELECT 
+			emp.ID, 
+		    emp.USER_ID,
+		    emp.USER_NAME,
+		    emp.STATUS,
+		    emp.MOBILE,
+		    emp.PERSON_EMAIL COMPANY_EMAIL,
+		    emp.PART_NAME,
+		    emp.COMPANY_NAME
+				FROM (
+					SELECT empl.*, ROWNUM r, dept.PART_NAME, dept.COMPANY_NAME
+					FROM ${hsoaDB}.HSOA_USER empl
+					LEFT JOIN ${hsoaDB}.HSOA_COMPANY_PART dept ON empl.PART_ID = dept.ID 
+					<![CDATA[WHERE ROWNUM <= #{pageSize}*#{pageIndex} ]]>
+					<if test="empName != null and empName !=''"> and empl.USER_NAME like #{empName}</if>
+					<if test="empWorkNum != null and empWorkNum !=''"> and empl.USER_ID = #{empWorkNum}</if>
+					ORDER BY empl.FOUND_TIME
+				) emp
+			WHERE r > (#{pageSize}*(#{pageIndex} - 1)) 
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[select count(USER_ID) from ${hsoaDB}.HSOA_USER where 1<>2]]>
+		<if test="empName != null and empName !=''"> and USER_NAME like #{empName}</if>
+		<if test="empWorkNum != null and empWorkNum !=''"> and USER_ID = #{empWorkNum}</if>
+	</select>
+	
+	<resultMap type="com.hoomsun.core.model.SysRole" id="EMP_ROLE_CPT_MAP" extends="com.hoomsun.core.dao.SysRoleMapper.BaseResultMap">
+		<collection property="components" javaType="java.util.List" ofType="com.hoomsun.core.model.SysComponents" resultMap="com.hoomsun.core.dao.SysComponentsMapper.BaseResultMap"/>
+	</resultMap>
+	<!-- 获取用户的角色 资源操作等数据 -->
+	<select id="findEmpRoleCpt" resultMap="EMP_ROLE_CPT_MAP">
+		SELECT 
+		RL.ROLE_ID,
+		RL.ROLE_NAME,
+		CP.CPT_ID,
+		CP.CPT_TYPE,
+		CP.NAME,
+		CP.COMPONENT,
+		CP.PARENT_ID,
+		CP.CPT_VALUE
+		FROM
+		HS_EMP_ROLE ER
+		LEFT JOIN HS_ROLE RL ON ER.ROLE_ID=RL.ROLE_ID
+		LEFT JOIN HS_ROLE_CPT RC ON RL.ROLE_ID=RC.ROLE_ID
+		LEFT JOIN HS_COMPONENTS CP ON RC.CPT_ID=CP.CPT_ID
+		WHERE ER.EMP_ID=#{empId} and CP.ASCRIPTION=#{ascription}
+	</select>
+	
+	<select id="findEmpRoleId" parameterType="java.lang.String" resultType="java.lang.String">
+		<![CDATA[
+			select role.ROLE_ID
+			from HS_EMP_ROLE er
+			LEFT JOIN HS_ROLE role ON er.ROLE_ID=role.ROLE_ID
+			WHERE er.EMP_ID=#{empId}
+		]]>
+	</select>
+	
+	<!-- 审批组查询用户 -->
+	<select id="findUserInfoByUserCode" parameterType="java.lang.String" resultMap="BaseResultMapEmp">
+		SELECT
+		emp.ID, emp.USER_ID, emp.USER_NAME
+		FROM ${hsoaDB}.HSOA_USER emp
+		WHERE emp.USER_ID=#{userCode} 
+	</select>
+	
+	<!-- 某员工所在部门的所有员工数据 -->
+	<select id="findDeptEmp" parameterType="java.lang.String" resultMap="BaseResultMapEmp">
+		<![CDATA[SELECT ID, USER_ID, USER_NAME
+		FROM ${OADB}.HSOA_USER
+		WHERE PART_ID=(SELECT PART_ID FROM ${OADB}.HSOA_USER where ID=#{empId} and (USER_LOCK is null or USER_LOCK<>1))]]>
+	</select>
+	
+	<resultMap type="com.hoomsun.core.model.vo.OAStore" id="OA_STORE_MAP">
+		<id column="ID" property="storeId"/>
+		<result column="PART_NAME" property="storeName"/>
+		<result column="CITY_NAME" property="storeCityName"/>
+<!-- 		<result column="" property="shortCode"/> -->
+<!-- 		<result column="" property="storeCode"/> -->
+<!-- 		<result column="" property="storeAdd"/> -->
+<!-- 		<result column="" property="longitude"/> -->
+<!-- 		<result column="" property="latitude"/> -->
+	</resultMap>
+	
+	<!-- 根据部门ID获取员工所在的营业部的数据 -->
+	<select id="findStoreByDeptId" resultMap="OA_STORE_MAP">
+		SELECT ID,PART_NAME,CITY_NAME FROM ${OADB}.HSOA_COMPANY_PART CIL WHERE CIL.ORG_TYPE=3 START WITH cil.ID=#{deptId} CONNECT BY PRIOR CIL.PARENT_ID=CIL.ID
+	</select>
+	
+	<!-- 获取门店下的直属部门  -->
+	<select id="findSubDeptByStoreId" resultMap="OA_STORE_MAP">
+		SELECT CLD.ID,CLD.PART_NAME FROM ${OADB}.HSOA_COMPANY_PART PAR
+		LEFT JOIN ${OADB}.HSOA_COMPANY_PART CLD ON PAR.ID = CLD.PARENT_ID
+		WHERE PAR.ID=#{storeId}
+	</select>
+	
+	<select id="findEmpInDept" resultMap="BaseResultMapEmp">
+		<![CDATA[SELECT
+		emp.ID, emp.USER_ID, emp.USER_NAME, emp.USER_LOCK, emp.STATUS,emp.MOBILE
+		FROM ${OADB}.HSOA_USER emp
+		WHERE emp.PART_ID=#{deptId} AND emp.STATUS<>'离职']]>
+	</select>
+	
+	
+	<!-- app获取用户的销售部信息 -->
+	<select id="findAppUserInfo" parameterType="java.lang.String" resultType="java.util.Map">
+		SELECT
+		emp.ID, emp.USER_ID, emp.USER_NAME, emp.USER_LOCK,emp.STATUS,
+		dept.ID PART_ID,dept.PART_NAME,dept.PARENT_ID STORE_ID,
+		dept.COMPANY_ID,dept.COMPANY_NAME
+		FROM ${hsoaDB}.HSOA_USER emp
+		LEFT JOIN ${hsoaDB}.HSOA_COMPANY_PART dept ON emp.PART_ID = dept.ID 
+		WHERE emp.USER_ID=#{userCode}
+	</select>
+	
+	<!-- app获取用户的门店信息 -->
+	<select id="findAppUserStorInfo" parameterType="java.lang.String" resultType="java.util.Map">
+		SELECT ID,PART_NAME FROM ${hsoaDB}.HSOA_COMPANY_PART CIL WHERE CIL.ORG_TYPE=3 START WITH cil.ID=#{deptId} CONNECT BY PRIOR CIL.PARENT_ID=CIL.ID
+	</select>
+	
+	
+	<!-- app获取所以门店 经纬度定位 -->
+	<select id="findAllStoreData" parameterType="java.lang.String" resultType="java.util.Map">
+		SELECT CIL.ID,CIL.JINGDU,CIL.WEIDU,CIL.PART_ADDRESS FROM   ${hsoaDB}.HSOA_COMPANY_PART CIL 
+		WHERE CIL.ORG_TYPE=3    AND  (CIL.delete_status!='0'  OR  CIL.delete_status IS NULL)
+	</select>
+	
+	<!-- app获取所有门店信息签约时  -->
+    <select id="findStorebyId" parameterType="java.lang.String" resultType="java.util.Map">
+      SELECT CIL.ID,CIL.JINGDU,CIL.WEIDU,CIL.PART_ADDRESS,CIL.PART_NAME FROM   ${hsoaDB}.HSOA_COMPANY_PART CIL 
+      WHERE CIL.ID=#{storeId} AND (CIL.delete_status!='0'  OR  CIL.delete_status IS NULL)
+    </select>
+    
+    <!-- 获取某部门的负责人 -->
+    <select id="findDeptManager" parameterType="java.lang.String" resultType="java.lang.String">
+    	SELECT LEADER FROM ${hsoaDB}.HSOA_COMPANY_PART WHERE ID=#{deptId}
+    </select>
+    
+    <!-- 获取用户岗位 判断页面数据-->
+    <select id="findUserPost" parameterType="java.lang.String" resultType="java.util.Map">
+    	SELECT OA_USER.ID,OA_USER.USER_NAME,OA_USER.USER_ID,OA_USER.PART_ID,OA_POST.POST_NAME  
+    	FROM ${hsoaDB}.HSOA_USER OA_USER  
+		LEFT JOIN  ${hsoaDB}.HSOA_POST OA_POST  ON  OA_USER.POST_ID=OA_POST.ID
+		WHERE  OA_USER.ID=#{id}
+    </select>
+    
+</mapper>

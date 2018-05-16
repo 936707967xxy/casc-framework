@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserContactsMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserContacts">
+    <id column="CONT_ID" jdbcType="VARCHAR" property="contId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="ADD_DATE" jdbcType="TIMESTAMP" property="addDate" />
+    <result column="CALLCOUNTS" jdbcType="DECIMAL" property="callcounts" />
+    <result column="CALL_TIME" jdbcType="VARCHAR" property="callTime" />
+    <result column="MOBILE_ADDRESS" jdbcType="VARCHAR" property="mobileAddress" />
+    <result column="RELATIONSHIP" jdbcType="DECIMAL" property="relationship" />
+    <result column="RELATIONSHIP_VAL" jdbcType="VARCHAR" property="relationshipVal" />
+    <result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
+    <result column="CONTACT_ADDRESS" jdbcType="VARCHAR" property="contactAddress" />
+    <result column="IS_KNOW" jdbcType="DECIMAL" property="isKnow" />
+    <result column="IS_KNOW_VAL" jdbcType="VARCHAR" property="isKnowVal" />
+    <result column="IS_FILL_IN" jdbcType="DECIMAL" property="isFillIn" />
+    <result column="IS_FILL_IN_VAL" jdbcType="VARCHAR" property="isFillInVal" />
+    <result column="PHONE_TYPE" jdbcType="DECIMAL" property="phoneType" />
+    <result column="PHONE_TYPE_VAL" jdbcType="VARCHAR" property="phoneTypeVal" />
+    <result column="IS_LOCAL" jdbcType="DECIMAL" property="isLocal" />
+    <result column="IS_LOCAL_VAL" jdbcType="VARCHAR" property="isLocalVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CONT_ID, APPLY_ID, NAME, PHONE, ADD_DATE, CALLCOUNTS, CALL_TIME, MOBILE_ADDRESS, 
+    RELATIONSHIP, RELATIONSHIP_VAL, COMPANY_NAME, CONTACT_ADDRESS, IS_KNOW, IS_KNOW_VAL, 
+    IS_FILL_IN, IS_FILL_IN_VAL, PHONE_TYPE, PHONE_TYPE_VAL, IS_LOCAL, IS_LOCAL_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CONTACTS
+    where CONT_ID = #{contId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CONTACTS
+    where CONT_ID = #{contId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserContacts">
+    insert into HS_CONTACTS (CONT_ID, APPLY_ID, NAME, 
+      PHONE, ADD_DATE, CALLCOUNTS, 
+      CALL_TIME, MOBILE_ADDRESS, RELATIONSHIP, 
+      RELATIONSHIP_VAL, COMPANY_NAME, CONTACT_ADDRESS, 
+      IS_KNOW, IS_KNOW_VAL, IS_FILL_IN, 
+      IS_FILL_IN_VAL, PHONE_TYPE, PHONE_TYPE_VAL, 
+      IS_LOCAL, IS_LOCAL_VAL)
+    values (#{contId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{addDate,jdbcType=TIMESTAMP}, #{callcounts,jdbcType=DECIMAL}, 
+      #{callTime,jdbcType=VARCHAR}, #{mobileAddress,jdbcType=VARCHAR}, #{relationship,jdbcType=DECIMAL}, 
+      #{relationshipVal,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{contactAddress,jdbcType=VARCHAR}, 
+      #{isKnow,jdbcType=DECIMAL}, #{isKnowVal,jdbcType=VARCHAR}, #{isFillIn,jdbcType=DECIMAL}, 
+      #{isFillInVal,jdbcType=VARCHAR}, #{phoneType,jdbcType=DECIMAL}, #{phoneTypeVal,jdbcType=VARCHAR}, 
+      #{isLocal,jdbcType=DECIMAL}, #{isLocalVal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserContacts">
+    insert into HS_CONTACTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="contId != null">
+        CONT_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="callcounts != null">
+        CALLCOUNTS,
+      </if>
+      <if test="callTime != null">
+        CALL_TIME,
+      </if>
+      <if test="mobileAddress != null">
+        MOBILE_ADDRESS,
+      </if>
+      <if test="relationship != null">
+        RELATIONSHIP,
+      </if>
+      <if test="relationshipVal != null">
+        RELATIONSHIP_VAL,
+      </if>
+      <if test="companyName != null">
+        COMPANY_NAME,
+      </if>
+      <if test="contactAddress != null">
+        CONTACT_ADDRESS,
+      </if>
+      <if test="isKnow != null">
+        IS_KNOW,
+      </if>
+      <if test="isKnowVal != null">
+        IS_KNOW_VAL,
+      </if>
+      <if test="isFillIn != null">
+        IS_FILL_IN,
+      </if>
+      <if test="isFillInVal != null">
+        IS_FILL_IN_VAL,
+      </if>
+      <if test="phoneType != null">
+        PHONE_TYPE,
+      </if>
+      <if test="phoneTypeVal != null">
+        PHONE_TYPE_VAL,
+      </if>
+      <if test="isLocal != null">
+        IS_LOCAL,
+      </if>
+      <if test="isLocalVal != null">
+        IS_LOCAL_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="contId != null">
+        #{contId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callcounts != null">
+        #{callcounts,jdbcType=DECIMAL},
+      </if>
+      <if test="callTime != null">
+        #{callTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileAddress != null">
+        #{mobileAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null">
+        #{relationship,jdbcType=DECIMAL},
+      </if>
+      <if test="relationshipVal != null">
+        #{relationshipVal,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null">
+        #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isKnow != null">
+        #{isKnow,jdbcType=DECIMAL},
+      </if>
+      <if test="isKnowVal != null">
+        #{isKnowVal,jdbcType=VARCHAR},
+      </if>
+      <if test="isFillIn != null">
+        #{isFillIn,jdbcType=DECIMAL},
+      </if>
+      <if test="isFillInVal != null">
+        #{isFillInVal,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneType != null">
+        #{phoneType,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneTypeVal != null">
+        #{phoneTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="isLocal != null">
+        #{isLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="isLocalVal != null">
+        #{isLocalVal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserContacts">
+    update HS_CONTACTS
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="callcounts != null">
+        CALLCOUNTS = #{callcounts,jdbcType=DECIMAL},
+      </if>
+      <if test="callTime != null">
+        CALL_TIME = #{callTime,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileAddress != null">
+        MOBILE_ADDRESS = #{mobileAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null">
+        RELATIONSHIP = #{relationship,jdbcType=DECIMAL},
+      </if>
+      <if test="relationshipVal != null">
+        RELATIONSHIP_VAL = #{relationshipVal,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null">
+        CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isKnow != null">
+        IS_KNOW = #{isKnow,jdbcType=DECIMAL},
+      </if>
+      <if test="isKnowVal != null">
+        IS_KNOW_VAL = #{isKnowVal,jdbcType=VARCHAR},
+      </if>
+      <if test="isFillIn != null">
+        IS_FILL_IN = #{isFillIn,jdbcType=DECIMAL},
+      </if>
+      <if test="isFillInVal != null">
+        IS_FILL_IN_VAL = #{isFillInVal,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneType != null">
+        PHONE_TYPE = #{phoneType,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneTypeVal != null">
+        PHONE_TYPE_VAL = #{phoneTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="isLocal != null">
+        IS_LOCAL = #{isLocal,jdbcType=DECIMAL},
+      </if>
+      <if test="isLocalVal != null">
+        IS_LOCAL_VAL = #{isLocalVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CONT_ID = #{contId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserContacts">
+    update HS_CONTACTS
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      ADD_DATE = #{addDate,jdbcType=TIMESTAMP},
+      CALLCOUNTS = #{callcounts,jdbcType=DECIMAL},
+      CALL_TIME = #{callTime,jdbcType=VARCHAR},
+      MOBILE_ADDRESS = #{mobileAddress,jdbcType=VARCHAR},
+      RELATIONSHIP = #{relationship,jdbcType=DECIMAL},
+      RELATIONSHIP_VAL = #{relationshipVal,jdbcType=VARCHAR},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      IS_KNOW = #{isKnow,jdbcType=DECIMAL},
+      IS_KNOW_VAL = #{isKnowVal,jdbcType=VARCHAR},
+      IS_FILL_IN = #{isFillIn,jdbcType=DECIMAL},
+      IS_FILL_IN_VAL = #{isFillInVal,jdbcType=VARCHAR},
+      PHONE_TYPE = #{phoneType,jdbcType=DECIMAL},
+      PHONE_TYPE_VAL = #{phoneTypeVal,jdbcType=VARCHAR},
+      IS_LOCAL = #{isLocal,jdbcType=DECIMAL},
+      IS_LOCAL_VAL = #{isLocalVal,jdbcType=VARCHAR}
+    where CONT_ID = #{contId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 以下为编码区域 -->
+  <!-- 根据appid删除 -->
+  <delete id="deleteByApplyId" parameterType="java.lang.String">
+  	delete from HS_CONTACTS where APPLY_ID = #{applyId} AND IS_FILL_IN=1
+  </delete>
+  
+  <!-- 根据phoneId修改 -->
+  <update id="updateByApplyId" parameterType="com.hoomsun.csas.sales.api.model.UserContacts">
+    update HS_CONTACTS
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="relationship != null">
+        RELATIONSHIP = #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="relationshipVal != null">
+        RELATIONSHIP_VAL = #{relationshipVal,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null">
+        CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="isKnow != null">
+        IS_KNOW = #{isKnow,jdbcType=VARCHAR},
+      </if>
+      <if test="isKnowVal != null">
+        IS_KNOW_VAL = #{isKnowVal,jdbcType=VARCHAR},
+      </if>
+      <if test="isFillIn != null">
+        IS_FILL_IN = #{isFillIn,jdbcType=DECIMAL},
+      </if>
+      <if test="isFillInVal != null">
+        IS_FILL_IN_VAL = #{isFillInVal,jdbcType=VARCHAR},
+      </if>
+   	where CONT_ID = #{contId,jdbcType=VARCHAR}
+    </set>
+  </update>
+  <!-- 根据applyId查询，修改回显 -->
+  <select id="selectByApplyId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT 
+		 CONT_ID, APPLY_ID, NAME, PHONE, ADD_DATE, CALLCOUNTS, CALL_TIME, MOBILE_ADDRESS, RELATIONSHIP, 
+    	 RELATIONSHIP_VAL, COMPANY_NAME, CONTACT_ADDRESS, IS_KNOW, IS_KNOW_VAL
+ 	FROM HS_CONTACTS where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+ 	<if test="isFillIn != null"> and IS_FILL_IN = #{isFillIn}</if>
+  </select>
+  
+  <resultMap id="CONRACTS_BILLS_MAP" type="com.hoomsun.csas.sales.api.model.UserContacts" extends="BaseResultMap">
+  	<collection property="callDetails" javaType="java.util.ArrayList" ofType="com.hoomsun.csas.sales.api.model.UserCallDetail" resultMap="com.hoomsun.csas.sales.dao.UserCallDetailMapper.BaseResultMap"/>
+  </resultMap>
+  
+  <select id="findByApplyId" resultMap="CONRACTS_BILLS_MAP">
+  	SELECT 
+  	CS.CONT_ID, CS.APPLY_ID, CS.NAME, CS.PHONE, CS.ADD_DATE, CS.CALLCOUNTS, CS.CALL_TIME, 
+	CS.MOBILE_ADDRESS, CS.RELATIONSHIP,      
+	CS.RELATIONSHIP_VAL, CS.COMPANY_NAME, CS.CONTACT_ADDRESS, CS.IS_KNOW, CS.IS_KNOW_VAL,   
+	CD.PDID, CD.CALLMONEY, CD.CALLADDRESS, CD.CALLTYPE, CD.CALLTIME, CD.CALLDURATION,  CD.CALLWAY,CD.CALLNUMBER,IS_FILL_IN
+	FROM HS_CONTACTS CS 
+	LEFT JOIN HS_CALL_DETAIL CD ON CS.CONT_ID = CD.CONT_ID
+	where CS.APPLY_ID=#{applyId}
+	<if test="isFillIn != null"> and IS_FILL_IN = #{isFillIn}</if>
+  </select>
+  
+  
+  
+  
+  
+  <!-- =======================================联系人列表======================================================== -->
+	<select id="getContactsList" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+
+		select
+		 CONT_ID, APPLY_ID, NAME, PHONE, ADD_DATE, CALLCOUNTS, CALL_TIME, MOBILE_ADDRESS, RELATIONSHIP, 
+    RELATIONSHIP_VAL, COMPANY_NAME, CONTACT_ADDRESS, IS_KNOW, IS_KNOW_VAL,IS_FILL_IN, IS_FILL_IN_VAL
+		from
+		(select CONT_ID, APPLY_ID, NAME, PHONE, ADD_DATE, CALLCOUNTS, CALL_TIME, MOBILE_ADDRESS, RELATIONSHIP, 
+    RELATIONSHIP_VAL, COMPANY_NAME, CONTACT_ADDRESS, IS_KNOW, IS_KNOW_VAL,IS_FILL_IN, IS_FILL_IN_VAL,
+		ROWNUM AS r
+		from
+		HS_CONTACTS
+
+		<where>
+			APPLY_ID= #{loanId}
+		</where>
+		)
+	</select>
+
+
+  
+</mapper>

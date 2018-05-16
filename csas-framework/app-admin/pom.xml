@@ -1,0 +1,169 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.hoomsun</groupId>
+		<artifactId>csas-framework</artifactId>
+		<version>2.0.0</version>
+	</parent>
+	
+	<groupId>com.hoomsun.csas</groupId>
+	<artifactId>app-admin</artifactId>
+	<packaging>war</packaging>
+	<version>2.0</version>
+	<name>app-admin Maven Webapp</name>
+	
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>hs-act-task</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>sales-api</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>sales-impl</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+	      <groupId>com.hoomsun</groupId>
+	      <artifactId>hs-core</artifactId>
+	      <version>5.0.0</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>com.hoomsun</groupId>
+		    <artifactId>hs-common</artifactId>
+		    <version>5.0.0</version>
+	    </dependency>
+	    
+	    
+	    <dependency>
+	      <groupId>com.hoomsun</groupId>
+	      <artifactId>hs-msg</artifactId>
+	      <version>2.0.0</version>
+	    </dependency>
+	    
+	     <dependency>
+	      <groupId>com.hoomsun</groupId>
+	      <artifactId>hs-cust-server</artifactId>
+	      <version>2.0.0</version>
+	    </dependency>
+	    
+	    <!-- 贷后数据回填  -->
+	    <dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>hoomsun-loan-api</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+	      <groupId>com.hoomsun</groupId>
+	      <artifactId>hoomsun-loan-impl</artifactId>
+	      <version>2.0.0</version>
+	    </dependency>
+	    
+	 
+		<!-- <dependency>
+	        <groupId>com.hoomsun</groupId>
+		    <artifactId>hs-common</artifactId>
+		    <version>5.0.0</version>
+	    </dependency>
+		<dependency>
+	      <groupId>com.hoomsun</groupId>
+	      <artifactId>hs-core</artifactId>
+	      <version>5.0.0</version>
+	    </dependency> -->
+	    <!-- <dependency> -->
+		<!-- <groupId>com.hoomsun</groupId> -->
+		<!-- <artifactId>audit-impl</artifactId> -->
+		<!-- <version>1.0.0</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.hoomsun</groupId> -->
+		<!-- <artifactId>hs-core</artifactId> -->
+		<!-- <version>5.0.0</version> -->
+		<!-- </dependency> -->
+		<!-- 系统监控 -->
+		<dependency>
+			<groupId>net.bull.javamelody</groupId>
+			<artifactId>javamelody-core</artifactId>
+			<version>1.69.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jrobin</groupId>
+			<artifactId>jrobin</artifactId>
+			<version>1.5.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.10.7.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.mongodb</groupId>
+					<artifactId>mongo-java-driver</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+<!-- 云质询需要的解析jason工具类    刘栋梁 -->
+        <dependency>
+		  <groupId>com.google.code.gson</groupId>
+		  <artifactId>gson</artifactId>
+		  <version>2.2.4</version>
+		</dependency>
+<!-- 云质询help需要的解析jason  刘栋梁 -->		
+		<dependency>
+		  <groupId>net.sf.json-lib</groupId>
+		  <artifactId>json-lib</artifactId>
+		  <version>2.4</version>
+		  <classifier>jdk15</classifier>
+		</dependency>
+<!-- ckeditor和ckfinder -->
+		<dependency>
+			<groupId>com.ckeditor</groupId>
+			<artifactId>ckeditor-java-core</artifactId>
+			<version>3.5.3</version>
+		</dependency>
+		<!-- <dependency>
+			<groupId>com.ckfinder.hoomsun</groupId>
+			<artifactId>CKFinder</artifactId>
+			<version>2.6.2.1</version>
+		</dependency> -->
+<!-- 生成新闻模板-->		
+		<dependency>
+		  <groupId>org.freemarker</groupId>
+		  <artifactId>freemarker</artifactId>
+		  <version>2.3.26-incubating</version>
+		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.codehaus.jackson</groupId> -->
+<!-- 			<artifactId>jackson-mapper-asl</artifactId> -->
+<!-- 			<version>1.9.13</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.core</groupId> -->
+<!-- 			<artifactId>jackson-databind</artifactId> -->
+<!-- 			<version>2.9.2</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.fasterxml.jackson.core</groupId> -->
+<!-- 			<artifactId>jackson-annotations</artifactId> -->
+<!-- 			<version>2.9.2</version> -->
+<!-- 		</dependency> -->
+	
+	</dependencies>
+	
+	<build>
+		<finalName>app-admin</finalName>
+	</build>
+</project>

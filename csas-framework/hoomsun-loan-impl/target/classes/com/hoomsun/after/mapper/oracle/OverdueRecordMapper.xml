@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.OverdueRecordMapper">
+	<resultMap id="BaseResultMap"
+		type="com.hoomsun.after.api.model.table.OverdueRecord">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="OVERDUE_DAYS" jdbcType="DECIMAL" property="overdueDays" />
+		<result column="RECEIVE_PENALTY" jdbcType="DECIMAL" property="receivePenalty" />
+		<result column="RECEIVE_INTEREST" jdbcType="DECIMAL" property="receiveInterest" />
+		<result column="RECEIVE_PENALTY_INTEREST" jdbcType="DECIMAL"
+			property="receivePenaltyInterest" />
+		<result column="RECEIVE_CORPUS" jdbcType="DECIMAL" property="receiveCorpus" />
+		<result column="RECEIVE_SHOULDINTE" jdbcType="DECIMAL"
+			property="receiveShouldinte" />
+		<result column="AMT" jdbcType="DECIMAL" property="amt" />
+		<result column="RECEIVE_MONEY" jdbcType="DECIMAL" property="receiveMoney" />
+		<result column="OVERDUE_NUM" jdbcType="DECIMAL" property="overdueNum" />
+		<result column="SETTLE_FLAG" jdbcType="VARCHAR" property="settleFlag" />
+		<result column="TO_RED" jdbcType="VARCHAR" property="toRed" />
+		<result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, LOAN_ID, CON_NO, CAST_NAME, OVERDUE_DAYS,
+		RECEIVE_PENALTY,
+		RECEIVE_INTEREST,
+		RECEIVE_PENALTY_INTEREST,
+		RECEIVE_CORPUS, RECEIVE_SHOULDINTE, AMT, RECEIVE_MONEY,
+		OVERDUE_NUM,
+		SETTLE_FLAG, TO_RED, UPDATE_DATE, CREATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_OVERDUE_RECORD
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_OVERDUE_RECORD
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.OverdueRecord">
+		insert into
+		HS_AFTER_OVERDUE_RECORD (ID, LOAN_ID, CON_NO,
+		CAST_NAME, OVERDUE_DAYS,
+		RECEIVE_PENALTY,
+		RECEIVE_INTEREST, RECEIVE_PENALTY_INTEREST,
+		RECEIVE_CORPUS, RECEIVE_SHOULDINTE, AMT,
+		RECEIVE_MONEY, OVERDUE_NUM,
+		SETTLE_FLAG,
+		TO_RED, UPDATE_DATE, CREATE_TIME
+		)
+		values
+		(#{id,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR},
+		#{conNo,jdbcType=VARCHAR},
+		#{castName,jdbcType=VARCHAR},
+		#{overdueDays,jdbcType=DECIMAL}, #{receivePenalty,jdbcType=DECIMAL},
+		#{receiveInterest,jdbcType=DECIMAL},
+		#{receivePenaltyInterest,jdbcType=DECIMAL},
+		#{receiveCorpus,jdbcType=DECIMAL},
+		#{receiveShouldinte,jdbcType=DECIMAL}, #{amt,jdbcType=DECIMAL},
+		#{receiveMoney,jdbcType=DECIMAL}, #{overdueNum,jdbcType=DECIMAL},
+		#{settleFlag,jdbcType=VARCHAR},
+		#{toRed,jdbcType=VARCHAR},
+		#{updateDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.OverdueRecord">
+		insert into HS_AFTER_OVERDUE_RECORD
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="conNo != null">
+				CON_NO,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="overdueDays != null">
+				OVERDUE_DAYS,
+			</if>
+			<if test="receivePenalty != null">
+				RECEIVE_PENALTY,
+			</if>
+			<if test="receiveInterest != null">
+				RECEIVE_INTEREST,
+			</if>
+			<if test="receivePenaltyInterest != null">
+				RECEIVE_PENALTY_INTEREST,
+			</if>
+			<if test="receiveCorpus != null">
+				RECEIVE_CORPUS,
+			</if>
+			<if test="receiveShouldinte != null">
+				RECEIVE_SHOULDINTE,
+			</if>
+			<if test="amt != null">
+				AMT,
+			</if>
+			<if test="receiveMoney != null">
+				RECEIVE_MONEY,
+			</if>
+			<if test="overdueNum != null">
+				OVERDUE_NUM,
+			</if>
+			<if test="settleFlag != null">
+				SETTLE_FLAG,
+			</if>
+			<if test="toRed != null">
+				TO_RED,
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				#{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="overdueDays != null">
+				#{overdueDays,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenalty != null">
+				#{receivePenalty,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveInterest != null">
+				#{receiveInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenaltyInterest != null">
+				#{receivePenaltyInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveCorpus != null">
+				#{receiveCorpus,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveShouldinte != null">
+				#{receiveShouldinte,jdbcType=DECIMAL},
+			</if>
+			<if test="amt != null">
+				#{amt,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveMoney != null">
+				#{receiveMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueNum != null">
+				#{overdueNum,jdbcType=DECIMAL},
+			</if>
+			<if test="settleFlag != null">
+				#{settleFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="toRed != null">
+				#{toRed,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.OverdueRecord">
+		update HS_AFTER_OVERDUE_RECORD
+		<set>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				CON_NO = #{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="overdueDays != null">
+				OVERDUE_DAYS = #{overdueDays,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenalty != null">
+				RECEIVE_PENALTY = #{receivePenalty,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveInterest != null">
+				RECEIVE_INTEREST = #{receiveInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenaltyInterest != null">
+				RECEIVE_PENALTY_INTEREST =
+				#{receivePenaltyInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveCorpus != null">
+				RECEIVE_CORPUS = #{receiveCorpus,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveShouldinte != null">
+				RECEIVE_SHOULDINTE =
+				#{receiveShouldinte,jdbcType=DECIMAL},
+			</if>
+			<if test="amt != null">
+				AMT = #{amt,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveMoney != null">
+				RECEIVE_MONEY = #{receiveMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="overdueNum != null">
+				OVERDUE_NUM = #{overdueNum,jdbcType=DECIMAL},
+			</if>
+			<if test="settleFlag != null">
+				SETTLE_FLAG = #{settleFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="toRed != null">
+				TO_RED = #{toRed,jdbcType=VARCHAR},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.OverdueRecord">
+		update
+		HS_AFTER_OVERDUE_RECORD
+		set LOAN_ID = #{loanId,jdbcType=VARCHAR},
+		CON_NO = #{conNo,jdbcType=VARCHAR},
+		CAST_NAME =
+		#{castName,jdbcType=VARCHAR},
+		OVERDUE_DAYS =
+		#{overdueDays,jdbcType=DECIMAL},
+		RECEIVE_PENALTY =
+		#{receivePenalty,jdbcType=DECIMAL},
+		RECEIVE_INTEREST =
+		#{receiveInterest,jdbcType=DECIMAL},
+		RECEIVE_PENALTY_INTEREST =
+		#{receivePenaltyInterest,jdbcType=DECIMAL},
+		RECEIVE_CORPUS =
+		#{receiveCorpus,jdbcType=DECIMAL},
+		RECEIVE_SHOULDINTE =
+		#{receiveShouldinte,jdbcType=DECIMAL},
+		AMT = #{amt,jdbcType=DECIMAL},
+		RECEIVE_MONEY = #{receiveMoney,jdbcType=DECIMAL},
+		OVERDUE_NUM =
+		#{overdueNum,jdbcType=DECIMAL},
+		SETTLE_FLAG =
+		#{settleFlag,jdbcType=VARCHAR},
+		TO_RED = #{toRed,jdbcType=VARCHAR},
+		UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<select id="selectMinByLoanId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_OVERDUE_RECORD
+		where LOAN_ID = #{loanId,jdbcType=VARCHAR}
+		and OVERDUE_NUM =
+		(
+		select
+		min(OVERDUE_NUM)
+		from HS_AFTER_OVERDUE_RECORD
+		where LOAN_ID = #{loanId,jdbcType=VARCHAR}
+		and SETTLE_FLAG !='1'
+		group
+		by LOAN_ID)
+
+	</select>
+
+	<update id="updateSettleByLoanIdAndStream" parameterType="java.util.Map">
+
+		update
+		HS_AFTER_OVERDUE_RECORD
+
+		set SETTLE_FLAG='1'
+
+		where LOAN_ID= #{loanId} AND
+		OVERDUE_NUM=#{stream}
+
+
+	</update>
+
+	<select id="selectByLoanId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_OVERDUE_RECORD
+		where LOAN_ID= #{loanId} and SETTLE_FLAG
+		!='1' ORDER BY OVERDUE_NUM
+
+	</select>
+
+	<select id="selectByLoanIdAndStream" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_OVERDUE_RECORD
+		where LOAN_ID= #{loanId} and
+		OVERDUE_NUM=#{stream} and SETTLE_FLAG
+		!='1'
+
+	</select>
+
+	<select id="selectMaxDaysZeroByLoanId" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_OVERDUE_RECORD
+		where LOAN_ID= #{loanId} and
+		OVERDUE_NUM=(
+		select MAX(OVERDUE_NUM) FROM HS_AFTER_OVERDUE_RECORD WHERE LOAN_ID =
+		#{loanId} AND OVERDUE_DAYS=0
+
+		)
+
+	</select>
+
+	<delete id="deleteRollbackByLoanIdAndStream" parameterType="java.util.Map">
+
+		delete from HS_AFTER_OVERDUE_RECORD 
+	 <![CDATA[	where LOAN_ID= #{loanId} AND OVERDUE_DAYS=0 AND OVERDUE_NUM >= #{stream}]]>
+
+	</delete>
+
+
+	<select id="selSumByLoanID" parameterType="java.lang.String"
+		resultType="java.util.Map">
+
+
+		select
+		SUM(OVERDUE_DAYS) AS SUM_OVERDUE_DAYS  <!-- 逾期总天数 -->
+		SUM(RECEIVE_PENALTY) AS SUM_RECEIVE_PENALTY<!--逾期总 应收违约金 -->
+		SUM(RECEIVE_INTEREST) AS
+		SUM_RECEIVE_INTEREST<!--逾期总 应收罚息 -->
+		SUM(RECEIVE_PENALTY_INTEREST) AS
+		SUM_RECEIVE_PENALTY_INTEREST<!--逾期总 应收违罚金 -->
+		SUM(RECEIVE_CORPUS) AS SUM_RECEIVE_CORPUS<!--逾期总 应还本金 -->
+		SUM(RECEIVE_SHOULDINTE) AS
+		SUM_RECEIVE_SHOULDINTE<!--逾期总 应还利息 -->
+		SUM(AMT) AS SUM_AMT<!--逾期总 月还款额 -->
+		SUM(RECEIVE_MONEY) AS
+		SUM_RECEIVE_MONEY<!--逾期总 应收总额 -->
+
+
+		from
+		(
+
+		select
+
+		LOAN_ID,OVERDUE_DAYS,RECEIVE_PENALTY,RECEIVE_INTEREST,RECEIVE_PENALTY_INTEREST,RECEIVE_CORPUS,RECEIVE_SHOULDINTE,AMT,RECEIVE_MONEY
+		from HS_AFTER_OVERDUE_RECORD
+
+		where LOAN_ID= #{loanId}
+		) GROPU BY LOAN_ID
+
+
+	</select>
+
+
+
+
+
+	<select id="selectByLoanIds" parameterType="list"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_OVERDUE_RECORD
+		where LOAN_ID in
+		<foreach collection="list" open="(" close=")" separator=","
+			item="loanId">
+
+			#{loanId}
+
+		</foreach>
+
+
+		and SETTLE_FLAG
+		!='1' ORDER BY OVERDUE_NUM
+
+	</select>
+
+
+
+</mapper>

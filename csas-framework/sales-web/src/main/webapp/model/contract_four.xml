@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdf xmlns="http://www.idawn.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.idawn.org pdf.xsd">
+	<styles>
+		<style id="title" textalignment="CENTER" fontsize="16" bold="true" />
+		<style id="table" fontsize="8" />
+		<style id="bold" bold="true" />
+		<style id="margin-top-bottom" margin-top="36" margin-bottom="36" />
+		<style id="margin-bottom" margin-bottom="36" />
+		<style id="margin-top" margin-top="36" />
+		<style id="firstLineIndent"  />
+		<style id="sign-box"  margin-top="20" textalignment="RIGHT"/>
+		<style id="conrtact-box" textalignment="RIGHT"/>
+		<style id="center-box" textalignment="CENTER"/>
+		<style id="left-box" textalignment="LEFT"/>
+		<style id="no_border" border="0"/>
+	</styles>
+	
+	<body pagesize="A4" fontsize="10" margin-top="36" margin-right="45" margin-bottom="36" margin-left="45">
+		<page>
+			<title value="信用咨询及管理服务协议" style="title" />
+			<p fill="true" style="conrtact-box"><span>协议编号：#{loanId}</span></p>
+			<p first-line-indent="14" fill="true"><span>本信用咨询及管理服务协议（下称“本协议”）由以下双方于#{year}年#{month}月#{day}日在中华人民共和国签署并履行：</span></p>
+			<p style="bold"><span>甲方（借款人及共同借款人）：</span></p>
+			<p fill="true"><span>身份证号码：#{idNumber}</span></p>
+			<p fill="true"><span>现住址：#{houseAddress}</span></p>
+			<p style="bold"><span>乙方：红上至信商务信息咨询（上海）有限公司</span></p>
+			<p><span>地址：上海市嘉定区银翔路655号B区1155室</span></p>
+			<p><span>邮编：201801</span></p>
+			<p style="bold"><span>丙方：红上金融信息服务（上海）有限公司</span></p>
+			<p><span>地址：上海市嘉定区银翔路655号B区1158室</span></p>
+			<p><span>邮编：201801</span></p>
+			<p style="bold"><span>鉴于：</span></p>
+			<p first-line-indent="14"><span>1）甲方有一定的资金需求；</span></p>
+			<p first-line-indent="14"><span>2）乙方为甲方提供办理借款的信用咨询，并在甲方申请借款过程中协助其办理各项手续；</span></p>
+			<p first-line-indent="14"><span>3）丙方为甲方实现成功借款出具审核意见，提供出借人推荐，促成交易，以及还款管理等服务。</span></p>
+			<p><span>现三方就以上服务达成一致，特订立本协议。</span></p>
+			<p style="bold"><span>第一条 甲方权利与义务</span></p>
+			<p first-line-indent="14"><span>1）甲方有权向乙方了解其在丙方的信用评审进度及结果；</span></p>
+			<p first-line-indent="14"><span>2）甲方在申请及实现借款的全过程中，必须及时向乙方、丙方提供所要求提供的个人信息；</span></p>
+			<p first-line-indent="14"><span>3）甲方在丙方建立个人信用账户，授权丙方基于甲方提供的信息及丙方独立获取的信息来管理甲方的信用信息；</span></p>
+			<p first-line-indent="14" fill="true"><span>4）甲方在经丙方推荐，与特定的出借人于#{year}年#{month}月#{day}日签署《借款协议》（借款金额为RMB#{loanAmount}元，借款编号为#{conNo}，下文所提到的《借款协议》即指本特定的《借款协议》）；</span></p>
+			<p first-line-indent="14"><span>5）甲方应按照本协议的规定向乙方支付咨询费，向丙方支付审核费以及服务费；</span></p>
+			<p first-line-indent="14"><span>6）甲方同意，甲方成功借款后，丙方依据出借人的委托协调甲方按约定期限及金额进行还款，甲方有义务无条件及时配合丙方工作；</span></p>
+			<p first-line-indent="14"><span>7）对于甲方与特定的出借人签订的《借款协议》及本协议中所规定的任何应从甲方账户扣划的款项，甲方在此同意丙方委托合作机构每月从甲方指定账户中准确划扣相应数额；如果出现多划扣现象，由丙方负责将多划扣的部分退还给甲方。</span></p>
+			<p style="bold"><span>第二条 乙方权利与义务</span></p>
+			<p first-line-indent="14"><span>1）乙方须为甲方提供借款相关的全程信息咨询服务，并在甲方申请借款过程中协助其办理各项手续；</span></p>
+			<p first-line-indent="14"><span>2）乙方有权向甲方收取双方约定的咨询费；</span></p>
+			<p first-line-indent="14"><span>3）对于甲方提供给乙方的个人证件及其他各类信息，乙方有义务在本协议约定下为甲方保密。</span></p>
+			<p style="bold"><span>第三条 丙方权利与义务</span></p>
+			<p first-line-indent="14"><span>1）丙方有权通过甲方提供的个人信用信息及行为记录进行审核，为甲方提供还款方案建议，包括借款额度、还款期限等建议；</span></p>
+			<p first-line-indent="14"><span>2）丙方须为甲方提供借款相关的全程信用审核服务；</span></p>
+			<p first-line-indent="14"><span>3）丙方有权以信用审核的目的使用甲方个人信用信息；</span></p>
+		</page>
+		<page>
+			<p first-line-indent="14"><span>4）丙方有权根据对甲方的审核结果，决定是否将甲方的借款需求向出借人进行推荐，以协助甲方取得资金来源，促成交易；</span></p>
+			<p first-line-indent="14"><span>5）丙方有权向甲方收取双方约定的审核费及服务费；</span></p>
+			<p first-line-indent="14"><span>6）对于甲方提供给丙方的个人证件及其他各类信息，丙方有义务在本协议约定下为甲方保密，甲方信息仅限于丙方进行信用审核之用，同时，甲方允许丙方将其信息提供给多个出借人供出借参考。</span></p>
+			<p style="bold"><span>第四条 咨询费、审核费及服务费定义及支付方式</span></p>
+			<p first-line-indent="14"><span>在本协议中，“咨询费”是指乙方为甲方提供办理借款的信息咨询，并在甲方申请借款过程中协助其办各项手续并成功获得借款而由甲方支付给乙方的报酬；审核费是指因丙方为甲方实现成功借款出具审核意见而由甲方支付给丙方的报酬；“服务费”是指因丙方为甲方提供出借人推荐并在甲方成功获得借款后而由甲方支付给丙方的报酬。</span></p>
+			<p first-line-indent="14" fill="true"><span>对于乙、丙双方向甲方提供的上述服务，甲方同意在获得《借款协议》约定的借款资金的当日向乙方支付咨询费人民币（大写）#{consulfee} （RMB#{consul} 元），向丙方支付审核费人民币（大写）#{auditfee} （RMB#{audit}元）及服务费人民币（大写）#{servicefee} （RMB#{service} 元），乙丙双方合计收费人民币（大写）#{totalFee} （RMB #{total}元）。</span></p>
+			<p first-line-indent="14"><span>咨询费、审核费及服务费由甲方授权出借人在向其提供借款本金时一次性代为扣除，扣除的咨询费、审核费及服务费数额由出借人代为支付给乙方及丙方。</span></p>
+			<p first-line-indent="14"><span>若甲方提前还款给《借款协议》下特定的出借人，须提前三个工作日与丙方联系，提出书面申请，双方约定提前还款时间（还款日当日及节假日期间不受理），甲方需在约定的时间把相应款项存入指定账户（提前还款金额具体参见还款管理计划书）。</span></p>
+			<p first-line-indent="14"><span>因借款人未按合同约定及时还款而产生的催收费用全部由借款人及共同借款人承担。</span></p>
+			<p style="bold"><span>第五条 甲方指定账户及款项扣划</span></p>
+			<p first-line-indent="14"><span>甲方指定如下账户作为收款、还款等本协议项下资金往来的专用账户：（该账户须与《借款协议》中甲方指定专用账户保持一致。</span></p>
+			<p first-line-indent="14" fill="true"><span>户名（与甲方姓名一致）：#{custName}</span></p>
+			<p first-line-indent="14" fill="true"><span>开户银行（精确到分行、支行、储蓄所）：#{bank}</span></p>
+			<p first-line-indent="14" fill="true"><span>账号：#{bankNo}</span></p>
+			<p first-line-indent="14"><span>甲方须确保该账户为甲方名下合法有效的银行账户，如甲方需变更此指定账户，须在还款日前至少5个工作日向丙方提出申请，并签署《借款人客户信息变更书》。否则因此导致甲方未能实现即时还款，并因此导致的逾期违约金和罚息由甲方承担。</span></p>
+			<p first-line-indent="14"><span>在还款过程中，甲方有义务配合达成还款而进行的包括但不限于账户验证、账户变更、身份验证等事项，否则因甲方不配合而造成的未能正常还款的罚息、违约金等损失由甲方负责。</span></p>
+			<p style="bold"><span>第六条 违约规定</span></p>
+			<p first-line-indent="14"><span>任何一方违反本协议的约定，使得本协议的全部或部分不能履行，均应承担违约责任，并赔偿对方因此遭受的损失（包括由此产生的诉讼费和律师费等其他费用）；如三方均违约，根据实际情况各自承担相应责任。</span></p>
+			<p first-line-indent="14"><span>若甲方偿还金额不足，偿还顺序按照先后顺序为罚息、逾期违约金、应还利息、应还本金。</span></p>
+			<p first-line-indent="14"><span>丙方保留将甲方违约失信的相关信息在媒体披露的权利。因甲方逃避还款而带来的调查及诉讼费用将由甲方承担。</span></p>
+			<p style="bold"><span>第七条 变更通知</span></p>
+			<p first-line-indent="14"><span>本协议签订之日起至借款全部清偿之日止，甲方有义务在下列信息变更三日内提供更新后的信息给丙方和出借人（包含但不限于）：</span></p>
+			<p first-line-indent="14"><span>甲方本人、甲方的家庭联系人及紧急联系人工作单位、居住地址、住所电话、手机号码、电子邮箱的变更。若因甲方不及时提供上述变更信息而带来的丙方的调查及诉讼等其他相关费用将由甲方承担。</span></p>
+		</page>
+		<page>
+			<p style="bold"><span>第八条 其他</span></p>
+			<p first-line-indent="14"><span>1）甲乙丙三方签署本协议后，本协议于文首所载日期成立。自出借人将《借款协议》所规定的借款本金数额在扣除甲方应支付给乙方的咨询费、丙方的审核及服务费后的剩余款项支付到甲方专用账号之日起生效。</span></p>
+			<p first-line-indent="14"><span>2）本协议及其附件的任何修改、补充均须以书面形式作出。</span></p>
+			<p first-line-indent="14"><span>3）本协议的传真件、复印件、扫描件等有效复本的效力与本协议原件效力一致。</span></p>
+			<p first-line-indent="14"><span>4）甲乙丙三方均确认，本协议的签署、生效、履行以不违反中国的法律法规为前提。如果本协议中的任何一条或多条违反适用的法律法规，则该条将被视为无效，但该无效条款并不影响本协议其他条款的效力。</span></p>
+			<p first-line-indent="14"><span>5）如果甲乙丙三方在本协议履行过程中发生任何争议，应友好协商解决；如协商不成，则须提交陕西省西安市未央区人民法院进行诉讼。</span></p>
+			<p first-line-indent="14"><span>6）本协议一式叁份，甲乙丙叁方各保留壹份。</span></p>
+			<p style="center-box"><span>（以下无正文）</span></p>
+			<table column="2">
+				<th clm="1" row="1"  border="0">甲方：</th>
+				<th clm="1" row="1"  border="0">乙方:红上至信商务信息咨询(上海)有限公司</th>
+				<th clm="1" row="1"  border="0">签字：</th>
+				<th clm="1" row="1"  border="0">签章：</th>
+				<th clm="1" row="1"  border="0">丙方：红上金融信息服务（上海）有限公司</th>
+				<th clm="1" row="1"  border="0"></th>
+				<th clm="1" row="1"  border="0">签章：</th>
+			</table>
+		</page>
+	</body>
+</pdf>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.HotHeadlineMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.HotHeadline">
+		<id column="HOT_ID" jdbcType="VARCHAR" property="hotId" />
+		<result column="HEADLINE" jdbcType="VARCHAR" property="headline" />
+		<result column="CONTENT_URL" jdbcType="VARCHAR" property="contentUrl" />
+		<result column="VISIT_COUNT" jdbcType="INTEGER" property="visitCount" />
+		<result column="TIME" jdbcType="VARCHAR" property="time" />
+		<result column="TYPE" jdbcType="VARCHAR" property="type" />
+		<result column="ISOPEN" jdbcType="VARCHAR" property="isopen" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.hoomsun.app.api.model.HotHeadline">
+		<result column="CONTENT" jdbcType="LONGVARCHAR" property="content" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		HOT_ID, HEADLINE, CONTENT_URL, VISIT_COUNT, TIME, TYPE, ISOPEN
+	</sql>
+	<sql id="Blob_Column_List">
+		CONTENT
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from HS_HOT_HEADLINES
+		where HOT_ID = #{hotId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_HOT_HEADLINES
+		where HOT_ID = #{hotId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.app.api.model.HotHeadline">
+		insert into HS_HOT_HEADLINES (HOT_ID, HEADLINE, CONTENT_URL,
+		VISIT_COUNT, TIME, TYPE,
+		ISOPEN, CONTENT)
+		values (#{hotId,jdbcType=VARCHAR}, #{headline,jdbcType=VARCHAR},
+		#{contentUrl,jdbcType=VARCHAR},
+		#{visitCount,jdbcType=INTEGER}, #{time,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+		#{isopen,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.app.api.model.HotHeadline">
+		insert into HS_HOT_HEADLINES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="hotId != null">
+				HOT_ID,
+			</if>
+			<if test="headline != null">
+				HEADLINE,
+			</if>
+			<if test="contentUrl != null">
+				CONTENT_URL,
+			</if>
+			<if test="visitCount != null">
+				VISIT_COUNT,
+			</if>
+			<if test="time != null">
+				TIME,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+			<if test="isopen != null">
+				ISOPEN,
+			</if>
+			<if test="content != null">
+				CONTENT,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="hotId != null">
+				#{hotId,jdbcType=VARCHAR},
+			</if>
+			<if test="headline != null">
+				#{headline,jdbcType=VARCHAR},
+			</if>
+			<if test="contentUrl != null">
+				#{contentUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="visitCount != null">
+				#{visitCount,jdbcType=INTEGER},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="isopen != null">
+				#{isopen,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.HotHeadline">
+		update HS_HOT_HEADLINES
+		<set>
+			<if test="headline != null">
+				HEADLINE = #{headline,jdbcType=VARCHAR},
+			</if>
+			<if test="contentUrl != null">
+				CONTENT_URL = #{contentUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="visitCount != null">
+				VISIT_COUNT = #{visitCount,jdbcType=INTEGER},
+			</if>
+			<if test="time != null">
+				TIME = #{time,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				TYPE = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="isopen != null">
+				ISOPEN = #{isopen,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where HOT_ID = #{hotId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hoomsun.app.api.model.HotHeadline">
+		update HS_HOT_HEADLINES
+		set HEADLINE = #{headline,jdbcType=VARCHAR},
+		CONTENT_URL = #{contentUrl,jdbcType=VARCHAR},
+		VISIT_COUNT = #{visitCount,jdbcType=INTEGER},
+		TIME = #{time,jdbcType=VARCHAR},
+		TYPE = #{type,jdbcType=VARCHAR},
+		ISOPEN = #{isopen,jdbcType=VARCHAR},
+		CONTENT = #{content,jdbcType=LONGVARCHAR}
+		where HOT_ID = #{hotId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.HotHeadline">
+		update HS_HOT_HEADLINES
+		set HEADLINE = #{headline,jdbcType=VARCHAR},
+		CONTENT_URL = #{contentUrl,jdbcType=VARCHAR},
+		VISIT_COUNT = #{visitCount,jdbcType=INTEGER},
+		TIME = #{time,jdbcType=VARCHAR},
+		TYPE = #{type,jdbcType=VARCHAR},
+		ISOPEN = #{isopen,jdbcType=VARCHAR}
+		where HOT_ID = #{hotId,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 分页查询数据 liushuai -->
+	<select id="findPageData" parameterType="java.util.Map"	resultMap="BaseResultMap">
+	    <![CDATA[
+		  	SELECT 
+		  	        ver.*
+		  	FROM (
+		  	SELECT 
+			  	ROWNUM R,HOT_HEADLINES.*  FROM  HS_HOT_HEADLINES  HOT_HEADLINES
+		    WHERE 1<>2]]>
+		    <if test="headline != null and headline != ''">
+			and HEADLINE like #{headline}
+		    </if>
+		    <![CDATA[) ver WHERE ver.R <= (#{pageIndex}*#{pageSize}) AND ver.R > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+		    ORDER BY ISOPEN
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+	 	<![CDATA[ select count(HOT_ID) FROM HS_HOT_HEADLINES where 1<>2]]>
+		<if test="headline != null and headline != ''">
+			and HEADLINE like #{headline}
+		</if>
+	</select>
+
+	<!-- 查询出所有的数据 -->
+	<select id="findAllData" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		FROM HS_HOT_HEADLINES
+		ORDER BY ISOPEN
+	</select>
+	
+	<!-- 查询出所有打开的数据 -->
+	<select id="findAllOpenData" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		FROM HS_HOT_HEADLINES
+		WHERE ISOPEN = '1'
+	</select>
+	
+	<!-- 查询出所有打开的数据 -->
+	<select id="findAllAppBannerData" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		FROM HS_HOT_HEADLINES
+		WHERE ISOPEN = '0'  and TYPE = 'banner'
+	</select>
+</mapper>

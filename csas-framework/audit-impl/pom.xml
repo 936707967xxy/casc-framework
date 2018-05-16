@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.hoomsun</groupId>
+		<artifactId>csas-framework</artifactId>
+		<version>2.0.0</version>
+	</parent>
+	<artifactId>audit-impl</artifactId>
+	<name>audit-impl</name>
+	<description>audit system impl</description>
+	<dependencies>
+		<dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>audit-api</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>hs-msg</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<!-- 贷后数据回填 -->
+		<dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>hoomsun-loan-api</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>hoomsun-loan-impl</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+	</dependencies>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<finalName>audit-impl</finalName>
+	</build>
+</project>

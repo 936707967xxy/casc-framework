@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.api.dao.CmrateMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.Cmrate">
+    <id column="CMRATE_ID" jdbcType="VARCHAR" property="cmrateId" />
+    <result column="APPLY_APPROV_ALL" jdbcType="VARCHAR" property="applyApprovAll" />
+    <result column="APPLY_APPROV_ALLPRODNAME" jdbcType="VARCHAR" property="applyApprovAllprodname" />
+    <result column="EFFFLAG_VAL" jdbcType="VARCHAR" property="effFlagVal" />
+    <result column="MIX_CREDIT_AMT" jdbcType="VARCHAR" property="mixCreditAmt" />
+    <result column="MAX_CREDIT_AMT" jdbcType="VARCHAR" property="maxCreditAmt" />
+    <result column="productDesc" jdbcType="VARCHAR" property="productDesc" />
+    <result column="amtLimit" jdbcType="VARCHAR" property="amtLimit" />
+    <result column="productUrl" jdbcType="VARCHAR" property="productUrl" />
+    <result column="MAX_RATE" jdbcType="VARCHAR" property="maxRate" />
+    <result column="ISOPEN" jdbcType="VARCHAR" property="isopen" />
+    <result column="ISOPEN_VAL" jdbcType="VARCHAR" property="isopenVal" />
+    <result column="GOTOURL" jdbcType="VARCHAR" property="gotoUrl" />
+    <result column="ONLINE" jdbcType="VARCHAR" property="online" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CMRATE_ID, APPLY_APPROV_ALL, APPLY_APPROV_ALLPRODNAME, EFFFLAG_VAL, MIX_CREDIT_AMT, 
+    MAX_CREDIT_AMT, PRODUCTDESC, AMTLIMIT, PRODUCTURL, MAX_RATE, ISOPEN, ISOPEN_VAL, 
+    GOTOURL, ONLINE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CMRATE
+    where CMRATE_ID = #{cmrateId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CMRATE
+    where CMRATE_ID = #{cmrateId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.Cmrate">
+    insert into HS_CMRATE (CMRATE_ID, APPLY_APPROV_ALL, APPLY_APPROV_ALLPRODNAME, 
+      EFFFLAG_VAL, MIX_CREDIT_AMT, MAX_CREDIT_AMT, 
+      PRODUCTDESC, AMTLIMIT, PRODUCTURL, 
+      MAX_RATE, ISOPEN, ISOPEN_VAL, 
+      GOTOURL, ONLINE)
+    values (#{cmrateId,jdbcType=VARCHAR}, #{applyApprovAll,jdbcType=VARCHAR}, #{applyApprovAllprodname,jdbcType=VARCHAR}, 
+      #{effFlagVal,jdbcType=VARCHAR}, #{mixCreditAmt,jdbcType=VARCHAR}, #{maxCreditAmt,jdbcType=VARCHAR}, 
+      #{productDesc,jdbcType=VARCHAR}, #{amtLimit,jdbcType=VARCHAR}, #{productUrl,jdbcType=VARCHAR}, 
+      #{maxRate,jdbcType=VARCHAR}, #{isopen,jdbcType=VARCHAR}, #{isopenVal,jdbcType=VARCHAR}, 
+      #{gotoUrl,jdbcType=VARCHAR}, #{online,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.Cmrate">
+    insert into HS_CMRATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cmrateId != null">
+        CMRATE_ID,
+      </if>
+      <if test="applyApprovAll != null">
+        APPLY_APPROV_ALL,
+      </if>
+      <if test="applyApprovAllprodname != null">
+        APPLY_APPROV_ALLPRODNAME,
+      </if>
+      <if test="effFlagVal != null">
+        EFFFLAG_VAL,
+      </if>
+      <if test="mixCreditAmt != null">
+        MIX_CREDIT_AMT,
+      </if>
+      <if test="maxCreditAmt != null">
+        MAX_CREDIT_AMT,
+      </if>
+      <if test="productDesc != null">
+        productDesc,
+      </if>
+      <if test="amtLimit != null">
+        amtLimit,
+      </if>
+      <if test="productUrl != null">
+        productUrl,
+      </if>
+      <if test="maxRate != null">
+        MAX_RATE,
+      </if>
+      <if test="isopen != null">
+        ISOPEN,
+      </if>
+      <if test="isopenVal != null">
+        ISOPEN_VAL,
+      </if>
+      <if test="gotoUrl != null">
+        GOTOURL,
+      </if>
+      <if test="online != null">
+        ONLINE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cmrateId != null">
+        #{cmrateId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyApprovAll != null">
+        #{applyApprovAll,jdbcType=VARCHAR},
+      </if>
+      <if test="applyApprovAllprodname != null">
+        #{applyApprovAllprodname,jdbcType=VARCHAR},
+      </if>
+      <if test="effFlagVal != null">
+        #{effFlagVal,jdbcType=VARCHAR},
+      </if>
+      <if test="mixCreditAmt != null">
+        #{mixCreditAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="maxCreditAmt != null">
+        #{maxCreditAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="productDesc != null">
+        #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="amtLimit != null">
+        #{amtLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="productUrl != null">
+        #{productUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="maxRate != null">
+        #{maxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="isopen != null">
+        #{isopen,jdbcType=VARCHAR},
+      </if>
+      <if test="isopenVal != null">
+        #{isopenVal,jdbcType=VARCHAR},
+      </if>
+      <if test="gotoUrl != null">
+        #{gotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="online != null">
+        #{online,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.Cmrate">
+    update HS_CMRATE
+    <set>
+      <if test="applyApprovAll != null">
+        APPLY_APPROV_ALL = #{applyApprovAll,jdbcType=VARCHAR},
+      </if>
+      <if test="applyApprovAllprodname != null">
+        APPLY_APPROV_ALLPRODNAME = #{applyApprovAllprodname,jdbcType=VARCHAR},
+      </if>
+      <if test="effFlagVal != null">
+        EFFFLAG_VAL = #{effFlagVal,jdbcType=VARCHAR},
+      </if>
+      <if test="mixCreditAmt != null">
+        MIX_CREDIT_AMT = #{mixCreditAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="maxCreditAmt != null">
+        MAX_CREDIT_AMT = #{maxCreditAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="productDesc != null">
+        productDesc = #{productDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="amtLimit != null">
+        amtLimit = #{amtLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="productUrl != null">
+        productUrl = #{productUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="maxRate != null">
+        MAX_RATE = #{maxRate,jdbcType=VARCHAR},
+      </if>
+      <if test="isopen != null">
+        ISOPEN = #{isopen,jdbcType=VARCHAR},
+      </if>
+      <if test="isopenVal != null">
+        ISOPEN_VAL = #{isopenVal,jdbcType=VARCHAR},
+      </if>
+      <if test="gotoUrl != null">
+        gotoUrl = #{gotoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="online != null">
+        ONLINE = #{online,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CMRATE_ID = #{cmrateId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.Cmrate">
+    update HS_CMRATE
+    set APPLY_APPROV_ALL = #{applyApprovAll,jdbcType=VARCHAR},
+      APPLY_APPROV_ALLPRODNAME = #{applyApprovAllprodname,jdbcType=VARCHAR},
+      EFFFLAG_VAL = #{effFlagVal,jdbcType=VARCHAR},
+      MIX_CREDIT_AMT = #{mixCreditAmt,jdbcType=VARCHAR},
+      MAX_CREDIT_AMT = #{maxCreditAmt,jdbcType=VARCHAR},
+      productDesc = #{productDesc,jdbcType=VARCHAR},
+      amtLimit = #{amtLimit,jdbcType=VARCHAR},
+      productUrl = #{productUrl,jdbcType=VARCHAR},
+      MAX_RATE = #{maxRate,jdbcType=VARCHAR},
+      ISOPEN = #{isopen,jdbcType=VARCHAR},
+      ISOPEN_VAL = #{isopenVal,jdbcType=VARCHAR},
+      gotoUrl = #{gotoUrl,jdbcType=VARCHAR},
+      ONLINE = #{online,jdbcType=VARCHAR}
+    where CMRATE_ID = #{cmrateId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 分页查询数据 liushuai -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from HS_CMRATE
+		<if test="pageIndex != null and pageSize != null">
+			limit #{pageIndex},#{pageSize}
+		</if>
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+	 	select count(CMRATE_ID)
+	 	from HS_CMRATE
+	</select>
+
+	<!-- 查询出所有的数据 -->
+	<select id="findAllData" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from HS_CMRATE
+	</select>
+	<!-- 查询出APP所有的数据 -->
+	<select id="findAllDataApp" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from HS_CMRATE  where ISOPEN='0'  and online='1'
+	</select>
+	
+	<!-- 查询出APP所有线下产品的数据 -->
+	<select id="findAllDataCredit" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from HS_CMRATE  where ISOPEN='0'  and online='0'
+	</select>
+	
+	<!-- 查询出产品信息给小产品的数据 -->
+	<select id="findAllDataAppdetial" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select  APPLY_APPROV_ALL,APPLY_APPROV_ALLPRODNAME,PRODUCTURL,MIX_CREDIT_AMT,AMTLIMIT,MAX_RATE,gotoUrl
+	    from HS_CMRATE  where APPLY_APPROV_ALL = #{applyApprovAll,jdbcType=VARCHAR}
+	</select>
+</mapper>

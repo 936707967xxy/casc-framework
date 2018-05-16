@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.MakingOpinionMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.MakingOpinion">
+    <id column="MAKING_ID" jdbcType="VARCHAR" property="makingId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+    <result column="PRECESS_STATUS" jdbcType="VARCHAR" property="precessStatus" />
+    <result column="PRECESS_STATUS_VAL" jdbcType="VARCHAR" property="precessStatusVal" />
+    <result column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+    <result column="MAKING_TIMES" jdbcType="TIMESTAMP" property="makingTimes" />
+    <result column="HANDLE_OPINION" jdbcType="INTEGER" property="handleOpinion" />
+    <result column="HANDLE_OPINION_VAL" jdbcType="VARCHAR" property="handleOpinionVal" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result column="TASK_ID" jdbcType="VARCHAR" property="taskId" />
+    <result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MAKING_ID, APPLY_ID, PROC_INST_ID, PRECESS_STATUS, PRECESS_STATUS_VAL, EMP_ID, MAKING_TIMES, 
+    HANDLE_OPINION, HANDLE_OPINION_VAL, REMARKS, TASK_ID, EMP_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_MAKING
+    where MAKING_ID = #{makingId,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_MAKING
+    where MAKING_ID = #{makingId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.MakingOpinion">
+    insert into HS_MAKING (MAKING_ID, APPLY_ID, PROC_INST_ID, 
+      PRECESS_STATUS, PRECESS_STATUS_VAL, EMP_ID, 
+      MAKING_TIMES, HANDLE_OPINION, HANDLE_OPINION_VAL, 
+      REMARKS, TASK_ID, EMP_NAME
+      )
+    values (#{makingId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{procInstId,jdbcType=VARCHAR}, 
+      #{precessStatus,jdbcType=VARCHAR}, #{precessStatusVal,jdbcType=VARCHAR}, #{empId,jdbcType=VARCHAR}, 
+      #{makingTimes,jdbcType=TIMESTAMP}, #{handleOpinion,jdbcType=INTEGER}, #{handleOpinionVal,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR}, #{taskId,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.MakingOpinion">
+    insert into HS_MAKING
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="makingId != null">
+        MAKING_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID,
+      </if>
+      <if test="precessStatus != null">
+        PRECESS_STATUS,
+      </if>
+      <if test="precessStatusVal != null">
+        PRECESS_STATUS_VAL,
+      </if>
+      <if test="empId != null">
+        EMP_ID,
+      </if>
+      <if test="makingTimes != null">
+        MAKING_TIMES,
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION,
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL,
+      </if>
+      <if test="remarks != null">
+        REMARKS,
+      </if>
+      <if test="taskId != null">
+        TASK_ID,
+      </if>
+      <if test="empName != null">
+        EMP_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="makingId != null">
+        #{makingId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="precessStatus != null">
+        #{precessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="precessStatusVal != null">
+        #{precessStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="makingTimes != null">
+        #{makingTimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleOpinion != null">
+        #{handleOpinion,jdbcType=INTEGER},
+      </if>
+      <if test="handleOpinionVal != null">
+        #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.MakingOpinion">
+    update HS_MAKING
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="precessStatus != null">
+        PRECESS_STATUS = #{precessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="precessStatusVal != null">
+        PRECESS_STATUS_VAL = #{precessStatusVal,jdbcType=VARCHAR},
+      </if>
+      <if test="empId != null">
+        EMP_ID = #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="makingTimes != null">
+        MAKING_TIMES = #{makingTimes,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION = #{handleOpinion,jdbcType=INTEGER},
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        TASK_ID = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        EMP_NAME = #{empName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MAKING_ID = #{makingId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.MakingOpinion">
+    update HS_MAKING
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      PRECESS_STATUS = #{precessStatus,jdbcType=VARCHAR},
+      PRECESS_STATUS_VAL = #{precessStatusVal,jdbcType=VARCHAR},
+      EMP_ID = #{empId,jdbcType=VARCHAR},
+      MAKING_TIMES = #{makingTimes,jdbcType=TIMESTAMP},
+      HANDLE_OPINION = #{handleOpinion,jdbcType=INTEGER},
+      HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=VARCHAR},
+      EMP_NAME = #{empName,jdbcType=VARCHAR}
+    where MAKING_ID = #{makingId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="selectByApplyIdAndTaskId"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_MAKING
+    where APPLY_ID = #{applyId} and TASK_ID = #{taskId} 
+  </select>
+  <select id="selectByApplyId"  parameterType="java.lang.String" resultType="java.lang.String">
+    select 
+    REMARKS 
+    from HS_MAKING 
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    AND MAKING_TIMES=(
+    		select max(MAKING_TIMES) from HS_MAKING where APPLY_ID=#{applyId} 
+    )
+  </select>
+  <select id="selectByRollBackOpinion"  parameterType="java.lang.String" resultType="java.lang.String">
+    select  
+    REMARKS 
+    from HS_CONTRACT_CHECK where APPLY_ID=#{applyId} 
+    AND HANDLE_OPINION = 2  
+    AND CHECK_DATE=(
+    		select max(CHECK_DATE) from HS_CONTRACT_CHECK where APPLY_ID=#{applyId} 
+    )
+  </select>
+  
+</mapper>

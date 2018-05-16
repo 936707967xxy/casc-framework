@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.HxbReplaymentPlanMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.HxbReplaymentPlan">
+    <id column="PLAN_ID" jdbcType="VARCHAR" property="planId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="PHASE_NUMBER" jdbcType="INTEGER" property="phaseNumber" />
+    <result column="AMOUNT" jdbcType="DECIMAL" property="amount" />
+    <result column="PRINCIPAL" jdbcType="DECIMAL" property="principal" />
+    <result column="IN_REPAY_TOTAL_AMOUNT" jdbcType="DECIMAL" property="inRepayTotalAmount" />
+    <result column="CHANNEL_SERVICE_FEE" jdbcType="DECIMAL" property="channelServiceFee" />
+    <result column="CREDIT_SERVICE_FEE" jdbcType="DECIMAL" property="creditServiceFee" />
+    <result column="HXB_SERVICE_FEE" jdbcType="DECIMAL" property="hxbServiceFee" />
+    <result column="INTEREST" jdbcType="DECIMAL" property="interest" />
+    <result column="REPAY_DATE" jdbcType="TIMESTAMP" property="repayDate" />
+    <result column="INITIAL_PRINCIPAL" jdbcType="DECIMAL" property="initialPrincipal" />
+    <result column="FINAL_PRINCIPAL" jdbcType="DECIMAL" property="finalPrincipal" />
+    <result column="CON_ID" jdbcType="VARCHAR" property="conId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PLAN_ID, APPLY_ID, PHASE_NUMBER, AMOUNT, PRINCIPAL, IN_REPAY_TOTAL_AMOUNT, CHANNEL_SERVICE_FEE, 
+    CREDIT_SERVICE_FEE, HXB_SERVICE_FEE, INTEREST, REPAY_DATE, INITIAL_PRINCIPAL, FINAL_PRINCIPAL,CON_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_HXB_REPLAYMENT_PLAN
+    where PLAN_ID = #{planId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_HXB_REPLAYMENT_PLAN
+    where PLAN_ID = #{planId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.HxbReplaymentPlan">
+    insert into HS_HXB_REPLAYMENT_PLAN (PLAN_ID, APPLY_ID, PHASE_NUMBER, 
+      AMOUNT, PRINCIPAL, IN_REPAY_TOTAL_AMOUNT, 
+      CHANNEL_SERVICE_FEE, CREDIT_SERVICE_FEE, HXB_SERVICE_FEE, 
+      INTEREST, REPAY_DATE, INITIAL_PRINCIPAL, 
+      FINAL_PRINCIPAL,CON_ID)
+    values (#{planId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{phaseNumber,jdbcType=INTEGER}, 
+      #{amount,jdbcType=DECIMAL}, #{principal,jdbcType=DECIMAL}, #{inRepayTotalAmount,jdbcType=DECIMAL}, 
+      #{channelServiceFee,jdbcType=DECIMAL}, #{creditServiceFee,jdbcType=DECIMAL}, #{hxbServiceFee,jdbcType=DECIMAL}, 
+      #{interest,jdbcType=DECIMAL}, #{repayDate,jdbcType=TIMESTAMP}, #{initialPrincipal,jdbcType=DECIMAL}, 
+      #{finalPrincipal,jdbcType=DECIMAL}, #{conId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.HxbReplaymentPlan">
+    insert into HS_HXB_REPLAYMENT_PLAN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="planId != null">
+        PLAN_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="phaseNumber != null">
+        PHASE_NUMBER,
+      </if>
+      <if test="amount != null">
+        AMOUNT,
+      </if>
+      <if test="principal != null">
+        PRINCIPAL,
+      </if>
+      <if test="inRepayTotalAmount != null">
+        IN_REPAY_TOTAL_AMOUNT,
+      </if>
+      <if test="channelServiceFee != null">
+        CHANNEL_SERVICE_FEE,
+      </if>
+      <if test="creditServiceFee != null">
+        CREDIT_SERVICE_FEE,
+      </if>
+      <if test="hxbServiceFee != null">
+        HXB_SERVICE_FEE,
+      </if>
+      <if test="interest != null">
+        INTEREST,
+      </if>
+      <if test="repayDate != null">
+        REPAY_DATE,
+      </if>
+      <if test="initialPrincipal != null">
+        INITIAL_PRINCIPAL,
+      </if>
+      <if test="finalPrincipal != null">
+        FINAL_PRINCIPAL,
+      </if>
+      <if test="conId != null">
+        CON_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="planId != null">
+        #{planId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="phaseNumber != null">
+        #{phaseNumber,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="principal != null">
+        #{principal,jdbcType=DECIMAL},
+      </if>
+      <if test="inRepayTotalAmount != null">
+        #{inRepayTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="channelServiceFee != null">
+        #{channelServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="creditServiceFee != null">
+        #{creditServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="hxbServiceFee != null">
+        #{hxbServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="interest != null">
+        #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="repayDate != null">
+        #{repayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="initialPrincipal != null">
+        #{initialPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="finalPrincipal != null">
+        #{finalPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="conId != null">
+        #{conId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.HxbReplaymentPlan">
+    update HS_HXB_REPLAYMENT_PLAN
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="phaseNumber != null">
+        PHASE_NUMBER = #{phaseNumber,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null">
+        AMOUNT = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="principal != null">
+        PRINCIPAL = #{principal,jdbcType=DECIMAL},
+      </if>
+      <if test="inRepayTotalAmount != null">
+        IN_REPAY_TOTAL_AMOUNT = #{inRepayTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="channelServiceFee != null">
+        CHANNEL_SERVICE_FEE = #{channelServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="creditServiceFee != null">
+        CREDIT_SERVICE_FEE = #{creditServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="hxbServiceFee != null">
+        HXB_SERVICE_FEE = #{hxbServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="interest != null">
+        INTEREST = #{interest,jdbcType=DECIMAL},
+      </if>
+      <if test="repayDate != null">
+        REPAY_DATE = #{repayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="initialPrincipal != null">
+        INITIAL_PRINCIPAL = #{initialPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="finalPrincipal != null">
+        FINAL_PRINCIPAL = #{finalPrincipal,jdbcType=DECIMAL},
+      </if>
+      <if test="conId != null">
+        CON_ID = #{conId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PLAN_ID = #{planId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.HxbReplaymentPlan">
+    update HS_HXB_REPLAYMENT_PLAN
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      PHASE_NUMBER = #{phaseNumber,jdbcType=INTEGER},
+      AMOUNT = #{amount,jdbcType=DECIMAL},
+      PRINCIPAL = #{principal,jdbcType=DECIMAL},
+      IN_REPAY_TOTAL_AMOUNT = #{inRepayTotalAmount,jdbcType=DECIMAL},
+      CHANNEL_SERVICE_FEE = #{channelServiceFee,jdbcType=DECIMAL},
+      CREDIT_SERVICE_FEE = #{creditServiceFee,jdbcType=DECIMAL},
+      HXB_SERVICE_FEE = #{hxbServiceFee,jdbcType=DECIMAL},
+      INTEREST = #{interest,jdbcType=DECIMAL},
+      REPAY_DATE = #{repayDate,jdbcType=TIMESTAMP},
+      INITIAL_PRINCIPAL = #{initialPrincipal,jdbcType=DECIMAL},
+      FINAL_PRINCIPAL = #{finalPrincipal,jdbcType=DECIMAL},
+      CON_ID = #{conId,jdbcType=VARCHAR}
+    where PLAN_ID = #{planId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  
+  <delete id="deleteByApplyId" parameterType="java.lang.String">
+    delete from HS_HXB_REPLAYMENT_PLAN 
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </delete>
+  
+  <select id="countByApplyId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select count(PLAN_ID) from  HS_HXB_REPLAYMENT_PLAN
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_HXB_REPLAYMENT_PLAN
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <select id="selectByApplyIdAndPhaseNumber" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_HXB_REPLAYMENT_PLAN 
+    where APPLY_ID = #{applyId} and PHASE_NUMBER = #{phaseNumber}
+  </select>
+  
+</mapper>

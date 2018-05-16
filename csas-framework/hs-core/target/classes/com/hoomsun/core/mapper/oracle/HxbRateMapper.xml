@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.HxbRateMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.HxbRate">
+    <id column="HOOMXB_ID" jdbcType="VARCHAR" property="hoomxbId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="HXB_SERVICE_FEE" jdbcType="DECIMAL" property="hxbServiceFee" />
+    <result column="CHANNEL_SERVICE_FEE" jdbcType="DECIMAL" property="channelServiceFee" />
+    <result column="CREDIT_SERVICE_FEE" jdbcType="DECIMAL" property="creditServiceFee" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HOOMXB_ID, APPLY_ID, HXB_SERVICE_FEE, CHANNEL_SERVICE_FEE, CREDIT_SERVICE_FEE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_HXB_RATE
+    where HOOMXB_ID = #{hoomxbId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_HXB_RATE
+    where HOOMXB_ID = #{hoomxbId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.HxbRate">
+    insert into HS_HXB_RATE (HOOMXB_ID, APPLY_ID, HXB_SERVICE_FEE, 
+      CHANNEL_SERVICE_FEE, CREDIT_SERVICE_FEE)
+    values (#{hoomxbId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{hxbServiceFee,jdbcType=DECIMAL}, 
+      #{channelServiceFee,jdbcType=DECIMAL}, #{creditServiceFee,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.HxbRate">
+    insert into HS_HXB_RATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hoomxbId != null">
+        HOOMXB_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="hxbServiceFee != null">
+        HXB_SERVICE_FEE,
+      </if>
+      <if test="channelServiceFee != null">
+        CHANNEL_SERVICE_FEE,
+      </if>
+      <if test="creditServiceFee != null">
+        CREDIT_SERVICE_FEE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hoomxbId != null">
+        #{hoomxbId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="hxbServiceFee != null">
+        #{hxbServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="channelServiceFee != null">
+        #{channelServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="creditServiceFee != null">
+        #{creditServiceFee,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.HxbRate">
+    update HS_HXB_RATE
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="hxbServiceFee != null">
+        HXB_SERVICE_FEE = #{hxbServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="channelServiceFee != null">
+        CHANNEL_SERVICE_FEE = #{channelServiceFee,jdbcType=DECIMAL},
+      </if>
+      <if test="creditServiceFee != null">
+        CREDIT_SERVICE_FEE = #{creditServiceFee,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where HOOMXB_ID = #{hoomxbId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.HxbRate">
+    update HS_HXB_RATE
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      HXB_SERVICE_FEE = #{hxbServiceFee,jdbcType=DECIMAL},
+      CHANNEL_SERVICE_FEE = #{channelServiceFee,jdbcType=DECIMAL},
+      CREDIT_SERVICE_FEE = #{creditServiceFee,jdbcType=DECIMAL}
+    where HOOMXB_ID = #{hoomxbId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_HXB_RATE
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

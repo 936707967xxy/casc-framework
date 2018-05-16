@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.IncomeMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.Income">
+    <id column="INCOMEID" jdbcType="VARCHAR" property="incomeid" />
+    <result column="FK_ID" jdbcType="VARCHAR" property="fkId" />
+    <result column="INCOMEPATH" jdbcType="VARCHAR" property="incomepath" />
+    <result column="ADD_DATA" jdbcType="TIMESTAMP" property="addData" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    INCOMEID, FK_ID, INCOMEPATH, ADD_DATA
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_INCOME
+    where INCOMEID = #{incomeid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_INCOME
+    where INCOMEID = #{incomeid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.Income">
+    insert into HS_INCOME (INCOMEID, FK_ID, INCOMEPATH, 
+      ADD_DATA)
+    values (#{incomeid,jdbcType=VARCHAR}, #{fkId,jdbcType=VARCHAR}, #{incomepath,jdbcType=VARCHAR}, 
+      #{addData,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.Income">
+    insert into HS_INCOME
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="incomeid != null">
+        INCOMEID,
+      </if>
+      <if test="fkId != null">
+        FK_ID,
+      </if>
+      <if test="incomepath != null">
+        INCOMEPATH,
+      </if>
+      <if test="addData != null">
+        ADD_DATA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="incomeid != null">
+        #{incomeid,jdbcType=VARCHAR},
+      </if>
+      <if test="fkId != null">
+        #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="incomepath != null">
+        #{incomepath,jdbcType=VARCHAR},
+      </if>
+      <if test="addData != null">
+        #{addData,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.Income">
+    update HS_INCOME
+    <set>
+      <if test="fkId != null">
+        FK_ID = #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="incomepath != null">
+        INCOMEPATH = #{incomepath,jdbcType=VARCHAR},
+      </if>
+      <if test="addData != null">
+        ADD_DATA = #{addData,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where INCOMEID = #{incomeid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.Income">
+    update HS_INCOME
+    set FK_ID = #{fkId,jdbcType=VARCHAR},
+      INCOMEPATH = #{incomepath,jdbcType=VARCHAR},
+      ADD_DATA = #{addData,jdbcType=TIMESTAMP}
+    where INCOMEID = #{incomeid,jdbcType=VARCHAR}
+  </update>
+  
+<!-- 查询所有已上传的图像  -->  
+  <select id="selectAllByFkid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select  INCOMEPATH,ADD_DATA,ROWNUM R   from HS_INCOME  where  FK_ID = #{fkId,jdbcType=VARCHAR}  order by ADD_DATA 
+  </select>
+  
+  <delete id="deleteByFkid" parameterType="java.lang.String">
+    delete from HS_INCOME
+    where  FK_ID = #{fkId,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

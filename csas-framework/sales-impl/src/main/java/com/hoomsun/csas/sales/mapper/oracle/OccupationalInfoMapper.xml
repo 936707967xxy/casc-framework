@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.OccupationalInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.OccupationalInfo">
+    <id column="OCINFO_PK_ID" jdbcType="VARCHAR" property="ocinfoPkId" />
+    <result column="FULL_WORK_NAME" jdbcType="VARCHAR" property="fullWorkName" />
+    <result column="INDUSTRY_IN" jdbcType="DECIMAL" property="industryIn" />
+    <result column="COMPANY_ADDRESS" jdbcType="VARCHAR" property="companyAddress" />
+    <result column="COMPANY_PROV_CODE" jdbcType="VARCHAR" property="companyProvCode" />
+    <result column="COMPANY_PROV_NAME" jdbcType="VARCHAR" property="companyProvName" />
+    <result column="COMPANY_CITY_CODE" jdbcType="VARCHAR" property="companyCityCode" />
+    <result column="COMPANY_CITY_NAME" jdbcType="VARCHAR" property="companyCityName" />
+    <result column="COMPANY_AREA_CODE" jdbcType="VARCHAR" property="companyAreaCode" />
+    <result column="COMPANY_AREA_NAME" jdbcType="VARCHAR" property="companyAreaName" />
+    <result column="COMPANY_ADDRESS_DETAIL" jdbcType="VARCHAR" property="companyAddressDetail" />
+    <result column="COMPANY_ZIP_CODE" jdbcType="VARCHAR" property="companyZipCode" />
+    <result column="COMPANY_TEL" jdbcType="VARCHAR" property="companyTel" />
+    <result column="COMPANY_TEL_CODE" jdbcType="VARCHAR" property="companyTelCode" />
+    <result column="COMPANY_TEL_VALUE" jdbcType="VARCHAR" property="companyTelValue" />
+    <result column="COMPANY_TEL_EXT" jdbcType="VARCHAR" property="companyTelExt" />
+    <result column="COMPANY_SIZE" jdbcType="DECIMAL" property="companySize" />
+    <result column="COMPANY_SIZE_VAL" jdbcType="VARCHAR" property="companySizeVal" />
+    <result column="COMPANY_KIND" jdbcType="DECIMAL" property="companyKind" />
+    <result column="COMPANY_KIND_VA" jdbcType="VARCHAR" property="companyKindVa" />
+    <result column="COMPANY_KIND_TXT" jdbcType="VARCHAR" property="companyKindTxt" />
+    <result column="POSITION" jdbcType="DECIMAL" property="position" />
+    <result column="POSITION_VAL" jdbcType="VARCHAR" property="positionVal" />
+    <result column="POSITION_TXT" jdbcType="VARCHAR" property="positionTxt" />
+    <result column="WORK_DEPT" jdbcType="VARCHAR" property="workDept" />
+    <result column="START_WORK_TIME" jdbcType="OTHER" property="startWorkTime" />
+    <result column="PAY_DAY_MONTHLY_VAL" jdbcType="VARCHAR" property="payDayMonthlyVal" />
+    <result column="SOCIAL_SECURITY" jdbcType="DECIMAL" property="socialSecurity" />
+    <result column="SOCIAL_SECURITY_VAL" jdbcType="VARCHAR" property="socialSecurityVal" />
+    <result column="JOB_TITLE" jdbcType="VARCHAR" property="jobTitle" />
+    <result column="OTHTER_INCOME_MONTHLY" jdbcType="VARCHAR" property="othterIncomeMonthly" />
+    <result column="SALARY_MONTHLY" jdbcType="VARCHAR" property="salaryMonthly" />
+    <result column="PAY_METHOD" jdbcType="DECIMAL" property="payMethod" />
+    <result column="PAY_METHOD_VAL" jdbcType="VARCHAR" property="payMethodVal" />
+    <result column="PRIVATE_TYPE" jdbcType="DECIMAL" property="privateType" />
+    <result column="PRIVATE_TYPE_VAL" jdbcType="VARCHAR" property="privateTypeVal" />
+    <result column="PRIVATE_TYPE_TEXT" jdbcType="VARCHAR" property="privateTypeText" />
+    <result column="COMPANY_REGTIME" jdbcType="OTHER" property="companyRegtime" />
+    <result column="PERCENTAGE_SHARES" jdbcType="VARCHAR" property="percentageShares" />
+    <result column="EMPLOYEES_NUM" jdbcType="VARCHAR" property="employeesNum" />
+    <result column="PREMISES" jdbcType="DECIMAL" property="premises" />
+    <result column="PREMISES_VAL" jdbcType="VARCHAR" property="premisesVal" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="CREATE_TIME" jdbcType="OTHER" property="createTime" />
+    <result column="INDUSTRY_IN_VAL" jdbcType="VARCHAR" property="industryInVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    OCINFO_PK_ID, FULL_WORK_NAME, INDUSTRY_IN, COMPANY_ADDRESS, COMPANY_PROV_CODE, COMPANY_PROV_NAME, 
+    COMPANY_CITY_CODE, COMPANY_CITY_NAME, COMPANY_AREA_CODE, COMPANY_AREA_NAME, COMPANY_ADDRESS_DETAIL, 
+    COMPANY_ZIP_CODE, COMPANY_TEL, COMPANY_TEL_CODE, COMPANY_TEL_VALUE, COMPANY_TEL_EXT, 
+    COMPANY_SIZE, COMPANY_SIZE_VAL, COMPANY_KIND, COMPANY_KIND_VA, COMPANY_KIND_TXT, 
+    POSITION, POSITION_VAL, POSITION_TXT, WORK_DEPT, START_WORK_TIME, PAY_DAY_MONTHLY_VAL, 
+    SOCIAL_SECURITY, SOCIAL_SECURITY_VAL, JOB_TITLE, OTHTER_INCOME_MONTHLY, SALARY_MONTHLY, 
+    PAY_METHOD, PAY_METHOD_VAL, PRIVATE_TYPE, PRIVATE_TYPE_VAL, PRIVATE_TYPE_TEXT, COMPANY_REGTIME, 
+    PERCENTAGE_SHARES, EMPLOYEES_NUM, PREMISES, PREMISES_VAL, APPLY_ID, CREATE_TIME, 
+    INDUSTRY_IN_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_OCCUPATIONAL_INFO
+    where OCINFO_PK_ID = #{ocinfoPkId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_OCCUPATIONAL_INFO
+    where OCINFO_PK_ID = #{ocinfoPkId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.OccupationalInfo">
+    insert into HS_OCCUPATIONAL_INFO (OCINFO_PK_ID, FULL_WORK_NAME, INDUSTRY_IN, 
+      COMPANY_ADDRESS, COMPANY_PROV_CODE, COMPANY_PROV_NAME, 
+      COMPANY_CITY_CODE, COMPANY_CITY_NAME, COMPANY_AREA_CODE, 
+      COMPANY_AREA_NAME, COMPANY_ADDRESS_DETAIL, 
+      COMPANY_ZIP_CODE, COMPANY_TEL, COMPANY_TEL_CODE, 
+      COMPANY_TEL_VALUE, COMPANY_TEL_EXT, COMPANY_SIZE, 
+      COMPANY_SIZE_VAL, COMPANY_KIND, COMPANY_KIND_VA, 
+      COMPANY_KIND_TXT, POSITION, POSITION_VAL, 
+      POSITION_TXT, WORK_DEPT, START_WORK_TIME, 
+      PAY_DAY_MONTHLY_VAL, SOCIAL_SECURITY, SOCIAL_SECURITY_VAL, 
+      JOB_TITLE, OTHTER_INCOME_MONTHLY, SALARY_MONTHLY, 
+      PAY_METHOD, PAY_METHOD_VAL, PRIVATE_TYPE, 
+      PRIVATE_TYPE_VAL, PRIVATE_TYPE_TEXT, COMPANY_REGTIME, 
+      PERCENTAGE_SHARES, EMPLOYEES_NUM, PREMISES, 
+      PREMISES_VAL, APPLY_ID, CREATE_TIME, 
+      INDUSTRY_IN_VAL)
+    values (#{ocinfoPkId,jdbcType=VARCHAR}, #{fullWorkName,jdbcType=VARCHAR}, #{industryIn,jdbcType=DECIMAL}, 
+      #{companyAddress,jdbcType=VARCHAR}, #{companyProvCode,jdbcType=VARCHAR}, #{companyProvName,jdbcType=VARCHAR}, 
+      #{companyCityCode,jdbcType=VARCHAR}, #{companyCityName,jdbcType=VARCHAR}, #{companyAreaCode,jdbcType=VARCHAR}, 
+      #{companyAreaName,jdbcType=VARCHAR}, #{companyAddressDetail,jdbcType=VARCHAR}, 
+      #{companyZipCode,jdbcType=VARCHAR}, #{companyTel,jdbcType=VARCHAR}, #{companyTelCode,jdbcType=VARCHAR}, 
+      #{companyTelValue,jdbcType=VARCHAR}, #{companyTelExt,jdbcType=VARCHAR}, #{companySize,jdbcType=DECIMAL}, 
+      #{companySizeVal,jdbcType=VARCHAR}, #{companyKind,jdbcType=DECIMAL}, #{companyKindVa,jdbcType=VARCHAR}, 
+      #{companyKindTxt,jdbcType=VARCHAR}, #{position,jdbcType=DECIMAL}, #{positionVal,jdbcType=VARCHAR}, 
+      #{positionTxt,jdbcType=VARCHAR}, #{workDept,jdbcType=VARCHAR}, #{startWorkTime,jdbcType=OTHER}, 
+      #{payDayMonthlyVal,jdbcType=VARCHAR}, #{socialSecurity,jdbcType=DECIMAL}, #{socialSecurityVal,jdbcType=VARCHAR}, 
+      #{jobTitle,jdbcType=VARCHAR}, #{othterIncomeMonthly,jdbcType=VARCHAR}, #{salaryMonthly,jdbcType=VARCHAR}, 
+      #{payMethod,jdbcType=DECIMAL}, #{payMethodVal,jdbcType=VARCHAR}, #{privateType,jdbcType=DECIMAL}, 
+      #{privateTypeVal,jdbcType=VARCHAR}, #{privateTypeText,jdbcType=VARCHAR}, #{companyRegtime,jdbcType=OTHER}, 
+      #{percentageShares,jdbcType=VARCHAR}, #{employeesNum,jdbcType=VARCHAR}, #{premises,jdbcType=DECIMAL}, 
+      #{premisesVal,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{createTime,jdbcType=OTHER}, 
+      #{industryInVal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.OccupationalInfo">
+    insert into HS_OCCUPATIONAL_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ocinfoPkId != null">
+        OCINFO_PK_ID,
+      </if>
+      <if test="fullWorkName != null">
+        FULL_WORK_NAME,
+      </if>
+      <if test="industryIn != null">
+        INDUSTRY_IN,
+      </if>
+      <if test="companyAddress != null">
+        COMPANY_ADDRESS,
+      </if>
+      <if test="companyProvCode != null">
+        COMPANY_PROV_CODE,
+      </if>
+      <if test="companyProvName != null">
+        COMPANY_PROV_NAME,
+      </if>
+      <if test="companyCityCode != null">
+        COMPANY_CITY_CODE,
+      </if>
+      <if test="companyCityName != null">
+        COMPANY_CITY_NAME,
+      </if>
+      <if test="companyAreaCode != null">
+        COMPANY_AREA_CODE,
+      </if>
+      <if test="companyAreaName != null">
+        COMPANY_AREA_NAME,
+      </if>
+      <if test="companyAddressDetail != null">
+        COMPANY_ADDRESS_DETAIL,
+      </if>
+      <if test="companyZipCode != null">
+        COMPANY_ZIP_CODE,
+      </if>
+      <if test="companyTel != null">
+        COMPANY_TEL,
+      </if>
+      <if test="companyTelCode != null">
+        COMPANY_TEL_CODE,
+      </if>
+      <if test="companyTelValue != null">
+        COMPANY_TEL_VALUE,
+      </if>
+      <if test="companyTelExt != null">
+        COMPANY_TEL_EXT,
+      </if>
+      <if test="companySize != null">
+        COMPANY_SIZE,
+      </if>
+      <if test="companySizeVal != null">
+        COMPANY_SIZE_VAL,
+      </if>
+      <if test="companyKind != null">
+        COMPANY_KIND,
+      </if>
+      <if test="companyKindVa != null">
+        COMPANY_KIND_VA,
+      </if>
+      <if test="companyKindTxt != null">
+        COMPANY_KIND_TXT,
+      </if>
+      <if test="position != null">
+        POSITION,
+      </if>
+      <if test="positionVal != null">
+        POSITION_VAL,
+      </if>
+      <if test="positionTxt != null">
+        POSITION_TXT,
+      </if>
+      <if test="workDept != null">
+        WORK_DEPT,
+      </if>
+      <if test="startWorkTime != null">
+        START_WORK_TIME,
+      </if>
+      <if test="payDayMonthlyVal != null">
+        PAY_DAY_MONTHLY_VAL,
+      </if>
+      <if test="socialSecurity != null">
+        SOCIAL_SECURITY,
+      </if>
+      <if test="socialSecurityVal != null">
+        SOCIAL_SECURITY_VAL,
+      </if>
+      <if test="jobTitle != null">
+        JOB_TITLE,
+      </if>
+      <if test="othterIncomeMonthly != null">
+        OTHTER_INCOME_MONTHLY,
+      </if>
+      <if test="salaryMonthly != null">
+        SALARY_MONTHLY,
+      </if>
+      <if test="payMethod != null">
+        PAY_METHOD,
+      </if>
+      <if test="payMethodVal != null">
+        PAY_METHOD_VAL,
+      </if>
+      <if test="privateType != null">
+        PRIVATE_TYPE,
+      </if>
+      <if test="privateTypeVal != null">
+        PRIVATE_TYPE_VAL,
+      </if>
+      <if test="privateTypeText != null">
+        PRIVATE_TYPE_TEXT,
+      </if>
+      <if test="companyRegtime != null">
+        COMPANY_REGTIME,
+      </if>
+      <if test="percentageShares != null">
+        PERCENTAGE_SHARES,
+      </if>
+      <if test="employeesNum != null">
+        EMPLOYEES_NUM,
+      </if>
+      <if test="premises != null">
+        PREMISES,
+      </if>
+      <if test="premisesVal != null">
+        PREMISES_VAL,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="industryInVal != null">
+        INDUSTRY_IN_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ocinfoPkId != null">
+        #{ocinfoPkId,jdbcType=VARCHAR},
+      </if>
+      <if test="fullWorkName != null">
+        #{fullWorkName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryIn != null">
+        #{industryIn,jdbcType=DECIMAL},
+      </if>
+      <if test="companyAddress != null">
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyProvCode != null">
+        #{companyProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyProvName != null">
+        #{companyProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCityCode != null">
+        #{companyCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCityName != null">
+        #{companyCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAreaCode != null">
+        #{companyAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAreaName != null">
+        #{companyAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressDetail != null">
+        #{companyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyZipCode != null">
+        #{companyZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null">
+        #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelCode != null">
+        #{companyTelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelValue != null">
+        #{companyTelValue,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelExt != null">
+        #{companyTelExt,jdbcType=VARCHAR},
+      </if>
+      <if test="companySize != null">
+        #{companySize,jdbcType=DECIMAL},
+      </if>
+      <if test="companySizeVal != null">
+        #{companySizeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKind != null">
+        #{companyKind,jdbcType=DECIMAL},
+      </if>
+      <if test="companyKindVa != null">
+        #{companyKindVa,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKindTxt != null">
+        #{companyKindTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=DECIMAL},
+      </if>
+      <if test="positionVal != null">
+        #{positionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="positionTxt != null">
+        #{positionTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="workDept != null">
+        #{workDept,jdbcType=VARCHAR},
+      </if>
+      <if test="startWorkTime != null">
+        #{startWorkTime,jdbcType=OTHER},
+      </if>
+      <if test="payDayMonthlyVal != null">
+        #{payDayMonthlyVal,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSecurity != null">
+        #{socialSecurity,jdbcType=DECIMAL},
+      </if>
+      <if test="socialSecurityVal != null">
+        #{socialSecurityVal,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTitle != null">
+        #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="othterIncomeMonthly != null">
+        #{othterIncomeMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryMonthly != null">
+        #{salaryMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null">
+        #{payMethod,jdbcType=DECIMAL},
+      </if>
+      <if test="payMethodVal != null">
+        #{payMethodVal,jdbcType=VARCHAR},
+      </if>
+      <if test="privateType != null">
+        #{privateType,jdbcType=DECIMAL},
+      </if>
+      <if test="privateTypeVal != null">
+        #{privateTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="privateTypeText != null">
+        #{privateTypeText,jdbcType=VARCHAR},
+      </if>
+      <if test="companyRegtime != null">
+        #{companyRegtime,jdbcType=OTHER},
+      </if>
+      <if test="percentageShares != null">
+        #{percentageShares,jdbcType=VARCHAR},
+      </if>
+      <if test="employeesNum != null">
+        #{employeesNum,jdbcType=VARCHAR},
+      </if>
+      <if test="premises != null">
+        #{premises,jdbcType=DECIMAL},
+      </if>
+      <if test="premisesVal != null">
+        #{premisesVal,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=OTHER},
+      </if>
+      <if test="industryInVal != null">
+        #{industryInVal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+ 
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.OccupationalInfo">
+    update HS_OCCUPATIONAL_INFO
+    set FULL_WORK_NAME = #{fullWorkName,jdbcType=VARCHAR},
+      INDUSTRY_IN = #{industryIn,jdbcType=DECIMAL},
+      COMPANY_ADDRESS = #{companyAddress,jdbcType=VARCHAR},
+      COMPANY_PROV_CODE = #{companyProvCode,jdbcType=VARCHAR},
+      COMPANY_PROV_NAME = #{companyProvName,jdbcType=VARCHAR},
+      COMPANY_CITY_CODE = #{companyCityCode,jdbcType=VARCHAR},
+      COMPANY_CITY_NAME = #{companyCityName,jdbcType=VARCHAR},
+      COMPANY_AREA_CODE = #{companyAreaCode,jdbcType=VARCHAR},
+      COMPANY_AREA_NAME = #{companyAreaName,jdbcType=VARCHAR},
+      COMPANY_ADDRESS_DETAIL = #{companyAddressDetail,jdbcType=VARCHAR},
+      COMPANY_ZIP_CODE = #{companyZipCode,jdbcType=VARCHAR},
+      COMPANY_TEL = #{companyTel,jdbcType=VARCHAR},
+      COMPANY_TEL_CODE = #{companyTelCode,jdbcType=VARCHAR},
+      COMPANY_TEL_VALUE = #{companyTelValue,jdbcType=VARCHAR},
+      COMPANY_TEL_EXT = #{companyTelExt,jdbcType=VARCHAR},
+      COMPANY_SIZE = #{companySize,jdbcType=DECIMAL},
+      COMPANY_SIZE_VAL = #{companySizeVal,jdbcType=VARCHAR},
+      COMPANY_KIND = #{companyKind,jdbcType=DECIMAL},
+      COMPANY_KIND_VA = #{companyKindVa,jdbcType=VARCHAR},
+      COMPANY_KIND_TXT = #{companyKindTxt,jdbcType=VARCHAR},
+      POSITION = #{position,jdbcType=DECIMAL},
+      POSITION_VAL = #{positionVal,jdbcType=VARCHAR},
+      POSITION_TXT = #{positionTxt,jdbcType=VARCHAR},
+      WORK_DEPT = #{workDept,jdbcType=VARCHAR},
+      START_WORK_TIME = #{startWorkTime,jdbcType=OTHER},
+      PAY_DAY_MONTHLY_VAL = #{payDayMonthlyVal,jdbcType=VARCHAR},
+      SOCIAL_SECURITY = #{socialSecurity,jdbcType=DECIMAL},
+      SOCIAL_SECURITY_VAL = #{socialSecurityVal,jdbcType=VARCHAR},
+      JOB_TITLE = #{jobTitle,jdbcType=VARCHAR},
+      OTHTER_INCOME_MONTHLY = #{othterIncomeMonthly,jdbcType=VARCHAR},
+      SALARY_MONTHLY = #{salaryMonthly,jdbcType=VARCHAR},
+      PAY_METHOD = #{payMethod,jdbcType=DECIMAL},
+      PAY_METHOD_VAL = #{payMethodVal,jdbcType=VARCHAR},
+      PRIVATE_TYPE = #{privateType,jdbcType=DECIMAL},
+      PRIVATE_TYPE_VAL = #{privateTypeVal,jdbcType=VARCHAR},
+      PRIVATE_TYPE_TEXT = #{privateTypeText,jdbcType=VARCHAR},
+      COMPANY_REGTIME = #{companyRegtime,jdbcType=OTHER},
+      PERCENTAGE_SHARES = #{percentageShares,jdbcType=VARCHAR},
+      EMPLOYEES_NUM = #{employeesNum,jdbcType=VARCHAR},
+      PREMISES = #{premises,jdbcType=DECIMAL},
+      PREMISES_VAL = #{premisesVal,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=OTHER},
+      INDUSTRY_IN_VAL = #{industryInVal,jdbcType=VARCHAR}
+    where OCINFO_PK_ID = #{ocinfoPkId,jdbcType=VARCHAR}
+  </update>
+  
+  	<!-- 以下为编码区域 -->
+  	 <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.OccupationalInfo">
+    update HS_OCCUPATIONAL_INFO
+    <set>
+      <if test="fullWorkName != null">
+        FULL_WORK_NAME = #{fullWorkName,jdbcType=VARCHAR},
+      </if>
+      <if test="industryIn != null">
+        INDUSTRY_IN = #{industryIn,jdbcType=DECIMAL},
+      </if>
+      <if test="companyAddress != null">
+        COMPANY_ADDRESS = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyProvCode != null">
+        COMPANY_PROV_CODE = #{companyProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyProvName != null">
+        COMPANY_PROV_NAME = #{companyProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCityCode != null">
+        COMPANY_CITY_CODE = #{companyCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCityName != null">
+        COMPANY_CITY_NAME = #{companyCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAreaCode != null">
+        COMPANY_AREA_CODE = #{companyAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAreaName != null">
+        COMPANY_AREA_NAME = #{companyAreaName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressDetail != null">
+        COMPANY_ADDRESS_DETAIL = #{companyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyZipCode != null">
+        COMPANY_ZIP_CODE = #{companyZipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null">
+        COMPANY_TEL = #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelCode != null">
+        COMPANY_TEL_CODE = #{companyTelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelValue != null">
+        COMPANY_TEL_VALUE = #{companyTelValue,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelExt != null">
+        COMPANY_TEL_EXT = #{companyTelExt,jdbcType=VARCHAR},
+      </if>
+      <if test="companySize != null">
+        COMPANY_SIZE = #{companySize,jdbcType=DECIMAL},
+      </if>
+      <if test="companySizeVal != null">
+        COMPANY_SIZE_VAL = #{companySizeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKind != null">
+        COMPANY_KIND = #{companyKind,jdbcType=DECIMAL},
+      </if>
+      <if test="companyKindVa != null">
+        COMPANY_KIND_VA = #{companyKindVa,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKindTxt != null">
+        COMPANY_KIND_TXT = #{companyKindTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        POSITION = #{position,jdbcType=DECIMAL},
+      </if>
+      <if test="positionVal != null">
+        POSITION_VAL = #{positionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="positionTxt != null">
+        POSITION_TXT = #{positionTxt,jdbcType=VARCHAR},
+      </if>
+      <if test="workDept != null">
+        WORK_DEPT = #{workDept,jdbcType=VARCHAR},
+      </if>
+      <if test="startWorkTime != null">
+        START_WORK_TIME = #{startWorkTime,jdbcType=OTHER},
+      </if>
+      <if test="payDayMonthlyVal != null">
+        PAY_DAY_MONTHLY_VAL = #{payDayMonthlyVal,jdbcType=VARCHAR},
+      </if>
+      <if test="socialSecurity != null">
+        SOCIAL_SECURITY = #{socialSecurity,jdbcType=DECIMAL},
+      </if>
+      <if test="socialSecurityVal != null">
+        SOCIAL_SECURITY_VAL = #{socialSecurityVal,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTitle != null">
+        JOB_TITLE = #{jobTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="othterIncomeMonthly != null">
+        OTHTER_INCOME_MONTHLY = #{othterIncomeMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryMonthly != null">
+        SALARY_MONTHLY = #{salaryMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null">
+        PAY_METHOD = #{payMethod,jdbcType=DECIMAL},
+      </if>
+      <if test="payMethodVal != null">
+        PAY_METHOD_VAL = #{payMethodVal,jdbcType=VARCHAR},
+      </if>
+      <if test="privateType != null">
+        PRIVATE_TYPE = #{privateType,jdbcType=DECIMAL},
+      </if>
+      <if test="privateTypeVal != null">
+        PRIVATE_TYPE_VAL = #{privateTypeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="privateTypeText != null">
+        PRIVATE_TYPE_TEXT = #{privateTypeText,jdbcType=VARCHAR},
+      </if>
+      <if test="companyRegtime != null">
+        COMPANY_REGTIME = #{companyRegtime,jdbcType=OTHER},
+      </if>
+      <if test="companyRegtime == null">
+        COMPANY_REGTIME = null,
+      </if>      
+      <if test="percentageShares != null">
+        PERCENTAGE_SHARES = #{percentageShares,jdbcType=VARCHAR},
+      </if>
+      <if test="employeesNum != null">
+        EMPLOYEES_NUM = #{employeesNum,jdbcType=VARCHAR},
+      </if>
+      <if test="premises != null">
+        PREMISES = #{premises,jdbcType=DECIMAL},
+      </if>
+      <if test="premises == null">
+        PREMISES = null,
+      </if>
+      <if test="premisesVal != null">
+        PREMISES_VAL = #{premisesVal,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=OTHER},
+      </if>
+      <if test="industryInVal != null">
+        INDUSTRY_IN_VAL = #{industryInVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where OCINFO_PK_ID = #{ocinfoPkId,jdbcType=VARCHAR}
+  </update>
+  	<!-- 查询通过appid返回数据 -->
+	<select id="selectByApplyId" resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT 
+	OCINFO_PK_ID, FULL_WORK_NAME, INDUSTRY_IN, COMPANY_ADDRESS, COMPANY_PROV_CODE, COMPANY_PROV_NAME, 
+    COMPANY_CITY_CODE, COMPANY_CITY_NAME, COMPANY_AREA_CODE, COMPANY_AREA_NAME, COMPANY_ADDRESS_DETAIL, 
+    COMPANY_ZIP_CODE, COMPANY_TEL, COMPANY_TEL_CODE, COMPANY_TEL_VALUE, COMPANY_TEL_EXT, 
+    COMPANY_SIZE, COMPANY_SIZE_VAL, COMPANY_KIND, COMPANY_KIND_VA, COMPANY_KIND_TXT, 
+    POSITION, POSITION_VAL, POSITION_TXT, WORK_DEPT, START_WORK_TIME, PAY_DAY_MONTHLY_VAL, 
+    SOCIAL_SECURITY, SOCIAL_SECURITY_VAL, JOB_TITLE, OTHTER_INCOME_MONTHLY, SALARY_MONTHLY, 
+    PAY_METHOD, PAY_METHOD_VAL, PRIVATE_TYPE, PRIVATE_TYPE_VAL, PRIVATE_TYPE_TEXT, COMPANY_REGTIME, 
+    PERCENTAGE_SHARES, EMPLOYEES_NUM, PREMISES, PREMISES_VAL, APPLY_ID, 
+    INDUSTRY_IN_VAL FROM HS_OCCUPATIONAL_INFO WHERE APPLY_ID=#{applyId}
+	</select>
+</mapper>

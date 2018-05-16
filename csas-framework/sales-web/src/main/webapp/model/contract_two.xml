@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdf xmlns="http://www.idawn.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.idawn.org pdf.xsd">
+	<styles>
+		<style id="title" textalignment="CENTER" fontsize="16" bold="true" />
+		<style id="table" fontsize="8" />
+		<style id="bold" bold="true" />
+		<style id="margin-top-bottom" margin-top="36" margin-bottom="36" />
+		<style id="margin-bottom" margin-bottom="36" />
+		<style id="margin-top" margin-top="36" />
+		<style id="firstLineIndent"  />
+		<style id="sign-box"  margin-top="20" textalignment="CENTER"/>
+		<style id="conrtact-box" textalignment="RIGHT"/>
+		<style id="center-box" textalignment="CENTER"/>
+		<style id="left-box" textalignment="LEFT"/>
+		<style id="no_border" border="0"/>
+	</styles>
+	
+	<body pagesize="A4" fontsize="10" margin-top="36" margin-right="45" margin-bottom="36" margin-left="45">
+		<page>
+			<title  value="借款协议" style="title" />
+			<p fill="true" style="conrtact-box"><span>协议编号：#{conNo}</span></p>
+			<p first-line-indent="14" fill="true"><span>本借款协议（下称“本协议”）由以下双方于#{year}年#{month}月#{day}日在中华人民共和国签署并履行：</span></p>
+			<p><span>甲方（借款人及共同借款人）：</span></p>
+			<p fill="true"><span>身份证号码：#{idNumber}</span></p>
+			<p fill="true"><span>现住址：#{houseAddress}</span></p>
+			<p><span>乙方（出借人）：何源</span></p>
+			<p><span>身份证号码：513025197101278370</span></p>
+			<p><span>地址：西安市莲湖区劳动南路99号锦绣华庭17层6号</span></p>
+			<p style="bold"><span>第一条</span></p>
+			<p><span>甲方向乙方借款，借款信息如下：</span></p>
+			
+			<table column="20" style="center-box">
+				<th clm="4" row="1">借款详细用途 </th>
+				<th clm="6" row="1"></th>
+				<th clm="1" row="1">千</th>
+				<th clm="1" row="1">百</th>
+				<th clm="1" row="1">十</th>
+				<th clm="1" row="1">万</th>
+				<th clm="1" row="1">千</th>
+				<th clm="1" row="1">百</th>
+				<th clm="1" row="1">十</th>
+				<th clm="1" row="1">元</th>
+				<th clm="1" row="1">角</th>
+				<th clm="1" row="1">分</th>
+
+				
+				<th clm="4" row="1">借款本金数额 </th>
+				<th clm="6" row="1" fill="true">人民币（大写）#{conAmount}</th>
+				<th clm="1" row="1" fill="true">#{con9}</th>
+				<th clm="1" row="1" fill="true">#{con8}</th>
+				<th clm="1" row="1" fill="true">#{con7}</th>
+				<th clm="1" row="1" fill="true">#{con6}</th>
+				<th clm="1" row="1" fill="true">#{con5}</th>
+				<th clm="1" row="1" fill="true">#{con4}</th>
+				<th clm="1" row="1" fill="true">#{con3}</th>
+				<th clm="1" row="1" fill="true">#{con2}</th>
+				<th clm="1" row="1" fill="true">#{con1}</th>
+				<th clm="1" row="1" fill="true">#{con0}</th>
+				
+				<th clm="4" row="1">月偿还本息数额</th>
+				<th clm="6" row="1" fill="true">人民币（大写）#{shouldAmt}</th>
+				<th clm="1" row="1" fill="true">#{amt9}</th>
+				<th clm="1" row="1" fill="true">#{amt8}</th>
+				<th clm="1" row="1" fill="true">#{amt7}</th>
+				<th clm="1" row="1" fill="true">#{amt6}</th>
+				<th clm="1" row="1" fill="true">#{amt5}</th>
+				<th clm="1" row="1" fill="true">#{amt4}</th>
+				<th clm="1" row="1" fill="true">#{amt3}</th>
+				<th clm="1" row="1" fill="true">#{amt2}</th>
+				<th clm="1" row="1" fill="true">#{amt1}</th>
+				<th clm="1" row="1" fill="true">#{amt0}</th>
+				
+				<th clm="4" row="1">还款分期月数</th>
+				<th clm="3" row="1"  fill="true">#{productPeriod}期</th>
+				<th clm="2" row="1">还款日</th>
+				<th clm="11" row="1"  fill="true">每月 #{payDate} 日（16：00前，节假日不顺延）</th>
+				
+				<th clm="4" row="1">还款起止日期</th>
+				<th clm="16" row="1"  fill="true">#{startTime}起至 #{endTime}止</th>
+				
+				<th clm="4" row="1">甲方专用账户</th>
+				<th clm="1" row="1">户名</th>
+				<th clm="2" row="1"  fill="true">#{custName}</th>
+				<th clm="1" row="1">账号</th>
+				<th clm="4" row="1"  fill="true">#{bankNo}</th>
+				<th clm="3" row="1">开户行</th>
+				<th clm="5" row="1"  fill="true">#{bank}</th>
+			</table>
+			
+			<p  style="bold"><span>第二条</span></p>
+			<p first-line-indent="14"><span>借款本金付款方式：网上银行汇款，由乙方通过网上银行方式将款汇入到本协议第一条约定的甲方专用账号中。若遇到网上银行汇款无法支付的情况下，乙方则通过银行柜台汇款业务将借款汇入到本协议第一条甲方专用账号中。</span></p>
+			<p style="bold"><span>第三条</span></p>
+			<p first-line-indent="14"><span>甲乙双方对本协议第一条所述借款相关信息全部认可，自主自愿依据本协议第一条规定的内容，由乙方向甲方提供借款。在本协议签署后，经甲方同意及授权乙方将本协议第一条借款本金数额，在扣除代替甲方应交纳给红上至信商务信息咨询（上海）有限公司的咨询费、红上金融信息服务（上海）有限公司审核费及服务费后的剩余款项支付到本协议第一条规定的甲方专用账号中。（咨询费、审核费及服务费的有关事项及具体金额参见甲方与红上至信商务信息咨询（上海）有限公司、红上金融信息服务（上海）有限公司签订的《信用咨询及管理服务协议》）。</span></p>
+			<p style="bold"><span>第四条</span></p>
+			<p first-line-indent="14"><span>本合同如涉及两人以上借款，任一借款人均应履行本合同项下的义务，对全部借款承担连带清偿责任，乙方有权向任一借款人追索本金利息罚息违约金及其他费用。</span></p>
+			<p style="bold"><span>第五条</span></p>
+			<p first-line-indent="14"><span>本息偿还方式</span></p>
+			<p first-line-indent="14"><span>1）甲方必须按照本协议第一条的规定，按月足额偿还对乙方的借款本金和利息。</span></p>
+			<p first-line-indent="14"><span>2）任何应从甲方账户扣划的款项，甲方在此同意乙方委托合作机构每月从甲方指定账户中准确扣划相应数额。</span></p>
+			<p first-line-indent="14"><span>3）甲方必须在每月还款日当日（不得迟于16:00）或之前将本协议第一条规定的月偿还本息数额存入本协议第一条规定的甲方专用账号中。</span></p>
+			<p first-line-indent="14"><span>4）如果还款日遇到法定假日或公休日，还款日期不进行顺延。</span></p>
+			<p first-line-indent="14"><span>5）如果还款日为每月30日，则遇到天数不足30天的月份，还款日为应还款当月的最后一日。</span></p>
+		</page>
+		<page>	
+			<p first-line-indent="14"><span>6）若甲方提前还款，甲方需要至少提前三个工作日提出书面申请，并在甲方和乙方商定的日期当日或之前（非还款日及节假日），由甲方一次性将当月应还款及剩余本金存入本协议第一条规定的甲方专用账号中。</span></p>
+			<p style="bold"><span>第六条</span></p>
+			<p first-line-indent="14"><span>违约规定</span></p>
+			<p first-line-indent="14"><span>6.1若甲方晚于本协议第一条规定的还款日还款，或因甲方原因导致未能在还款日结清当月全部欠款，除应继续按本协议约定履行还款义务外，甲方同意按本条规定向乙方支付罚息和逾期违约金。</span></p>
+			<p first-line-indent="14"><span>罚息和逾期违约金计算方法如下：</span></p>
+			<p first-line-indent="14"><span>1）逾期违约金：如未按本协议第一条约定的还款时间足额还款，则按照当月应还本息的10%计算，不低于100元，每月单独计算。</span></p>
+			<p first-line-indent="14"><span>2）罚息：每日按合同金额的0.05%收取罚息，每月单独计算。</span></p>
+			<p first-line-indent="14"><span>3）如因甲方原因导致未能结清当月全部欠款，则按上述第1）、2）项执行。</span></p>
+			<p first-line-indent="14"><span>若甲方偿还金额不足，偿还顺序按照先后顺序为罚息、逾期违约金、应还利息、应还本金。</span></p>
+			<p first-line-indent="14"><span>6.2如果甲方擅自改变本协议第一条规定的借款用途或严重违反还款义务（包括但不限于逾期达到15天以上），乙方有权提前终止本协议，甲方须在乙方提出终止本协议要求的三日内一次性支付余下的所有本金、利息和逾期违约金。</span></p>
+			<p first-line-indent="14"><span>6.3甲方提供虚假资料或者故意隐瞒重要事实，构成违约，应承担违约责任，乙方有权要求解除合同，甲方需要在乙方要求解除合同后三日内一次性支付余下的款项，包括但不限于本金利息罚息违约金及其他费用；构成犯罪的，乙方将有权向相关国家机关报案，追究其刑事责任。</span></p>
+			<p first-line-indent="14"><span>6.4乙方保留将甲方违约失信的相关信息在媒体披露的权利。因甲方未还款而带来的调查及诉讼费用将由甲方承担。</span></p>
+			<p style="bold"><span>第七条</span></p>
+			<p first-line-indent="14"><span>变更通知</span></p>
+			<p first-line-indent="14"><span>本协议签订之日起至借款全部清偿之日止，甲方有义务在下列信息变更三日内提供更新后的信息给乙方（包含但不限于）：</span></p>
+			<p first-line-indent="14"><span>甲方本人、甲方的家庭联系人及紧急联系人工作单位、居住地址、住所电话、手机号码、电子邮箱的变更。若因甲方不及时提供上述变更信息而带来的乙方的调查及诉讼费用将由甲方承担。</span></p>
+			<p style="bold"><span>第八条</span></p>
+			<p first-line-indent="14"><span>甲方同意并理解，乙方可以根据自己的意愿进行本协议下其对甲方债权的全部或部分转让，无需通知甲方。在乙方的债权转让后，甲方需对债权受让人继续履行本协议下其对乙方的还款义务，不得以未接到债权转让通知为由拒绝履行还款义务，否则按第六条的规定承担相应责任。</span></p>
+			<p style="bold"><span>第九条</span></p>
+			<p first-line-indent="14"><span>其他</span></p>
+			<p first-line-indent="14"><span>甲方本人、甲方的家庭联系人及紧急联系人工作单位、居住地址、住所电话、手机号码、电子邮箱的变更。若因甲方不及时提供上述变更信息而带来的丙方的调查及诉讼等其他相关费用将由甲方承担。</span></p>
+			<p style="bold"><span>第八条 其他</span></p>
+			<p first-line-indent="14"><span>1）甲乙双方签订本协议后，本协议于文首所载日期成立；本协议自乙方将本协议第一条所规定的借款本金数额在扣除甲方应支付给红上至信商务信息咨询（上海）有限公司的咨询费、红上金融信息服务（上海）有限公司的审核费及服务费后的剩余款项支付到甲方专用账户之日起生效。甲方将本协议下全部本金、利息、罚息、逾期违约金及其他相关费用全部偿还完毕之日，本协议自动失效。</span></p>
+			<p first-line-indent="14"><span>2）本协议及其附件的任何修改、补充均须以书面的形式作出。本协议的补充协议及附件与本协议具有同等的法律效力。</span></p>
+			<p first-line-indent="14"><span>3）本协议的传真件、复印件、扫描件等有效复本的效力与本协议原件效力一致。</span></p>
+		</page>
+		<page>
+			<p first-line-indent="14"><span>4）甲乙双方均确认，本协议的签署、生效和履行以不违反中国的法律法规为前提，如果本协议中的任何一条或多条违反适用的法律法规，则该条将被视为无效，但该无效条款并不影响本协议其他条款的效力。</span></p>
+			<p first-line-indent="14"><span>5）如果甲乙双方在本协议履行过程中发生任何争议，应友好协商解决，如协议不成，则须提交陕西省西安市未央区人民法院进行诉讼。</span></p>
+			<p first-line-indent="14"><span>6）本协议一式叁份，甲方保留壹份，乙方保留贰份。</span></p>
+			<p style="conrtact-box"><span>附件一：借款人《还款管理计划书》</span></p>
+			<p style="center-box"><span>（以下无正文）</span></p>
+			<p><span></span></p>
+			<p><span></span></p>
+			<p style="left-box"><span>协议各方签字盖章</span></p>
+			<p><span></span></p>
+			<table column="2">
+				<th clm="1" row="1"  border="0">甲方（借款人）：</th>
+				<th clm="1" row="1"  border="0">乙方（出借人）：</th>
+				<th clm="1" row="1"  border="0">签字：</th>
+				<th clm="1" row="1"  border="0">签章：</th>
+				<th clm="1" row="1"  border="0">________年______月______日</th>
+			</table>
+		</page>
+	</body>
+</pdf>

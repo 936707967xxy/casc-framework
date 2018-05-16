@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.CunGongPublicSaveMapper">
+	
+	<!-- 查询存公记录列表 -->
+	<select id="queryCunGongPublicSave" parameterType="com.hoomsun.after.api.model.param.PublicSaveReq"
+		resultType="com.hoomsun.after.api.model.vo.CunGongPublicSaveResult">
+		SELECT * FROM(
+		<include refid="selectCunGongPublicSaveSql"/>
+		<include refid="fromCunGongPublicSaveSql"/>
+		<include refid="whereCunGongPublicSaveSql"/>
+		<include refid="descSql"/>
+		)
+		<![CDATA[ WHERE  r > (#{ page }- 1) * #{ pageSize }]]>
+	</select>
+
+     <!-- 查询总条数 -->
+    <select id="countCunGongPublicSave" parameterType="com.hoomsun.after.api.model.param.PublicSaveReq" resultType="java.lang.Integer">
+        <include refid="countSql"/>
+        <include refid="fromCunGongPublicSaveSql"/>
+		<include refid="whereCunGongPublicSaveSql"/>
+    </select>
+    
+    <sql id="countSql">
+       SELECT COUNT(haps.ID) 
+    </sql>
+    
+    <sql id="selectCunGongPublicSaveSql">
+        SELECT 
+		haps.ID AS id,
+		haps.ETYDAT AS etydat,
+		haps.ETYTIM AS etytim,
+		haps.TRANSACTION_DATE AS transactionDate,
+		haps.TRSCOD AS trscod,
+		haps.NARYUR AS naryur,
+		haps.TRSAMTC AS trsamtc,
+		haps.AMTCDR AS amtcdr,
+		haps.TRSBLV AS trsblv,
+		haps.REFNBR AS refnbr,
+		haps.REQNBR AS reqnbr,
+		haps.BUSNAM AS busnam,
+		haps.RPYNAM AS rpynam,
+		haps.RPYACC AS rpyacc,
+		haps.RPYBNK AS rpybnk,
+		haps.RPYADR AS rpyadr,
+		haps.NAREXT AS narext,
+		haps.TRSAMT AS trsamt,
+		haps.CREAT_TIME AS creatTime,
+		haps.CORPORATE_BANK_ACCOUNT AS corporateBankAccount,
+		haps.DATA_SOURCES AS dataSources,
+		haps.VERIFICATION_STATUS AS verificationStatus,
+		haps.CAST_ID AS castId,
+		haps.CAST_NAME AS castName,
+		haps.VERIFICATION_PEOPLE_ID AS verificationPeopleId,
+		haps.VERIFICATION_PEOPLE_NAME AS verificationPeopleName,
+		haps.VERIFICATION_PEOPLE_DATE AS verificationPeopleDate,
+		haps.LOAN_ID AS loanId,
+		haps.STREAM AS stream,
+        ROWNUM AS r
+    </sql>
+    
+    <sql id="fromCunGongPublicSaveSql">
+        FROM HS_AFTER_PUBLIC_SAVE haps 
+    </sql>
+    
+    <sql id="whereCunGongPublicSaveSql">
+    <where>
+		  <if test="amtcdr != null and amtcdr !='' ">
+		       haps.AMTCDR  =#{amtcdr}
+		  </if>
+		  <if test="transactionDate != null and transactionDate !='' ">
+		     AND TO_CHAR(haps.TRANSACTION_DATE,'yyyy-MM-dd') = #{transactionDate}
+		  </if>
+		  <if test="refnbr != null and refnbr !='' ">
+		      AND haps.REFNBR  =#{refnbr}
+		  </if>
+		  <if test="castId != null and castId !='' ">
+		      AND haps.CAST_ID  =#{castId}
+		  </if>
+		  <if test="dataSources != null and dataSources !='' ">
+		     AND haps.DATA_SOURCES  =#{dataSources}
+		  </if>
+		  <if test="verificationStatus != null and verificationStatus !='' ">
+		      AND haps.VERIFICATION_STATUS  =#{verificationStatus}
+		  </if>
+		  <if test="castName != null and castName !='' ">
+		      <![CDATA[AND haps.CAST_NAME  LIKE  '%'||#{castName}||'%' ]]>
+		  </if>
+		  <if test="page !='-1' ">
+		      <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		  </if>
+		</where>
+    </sql>
+    
+    <sql id="descSql">
+        ORDER BY haps.CREAT_TIME DESC
+    </sql>
+    
+    <!-- 添加存公信息 -->
+    <insert id="insertCunGongPublicSave" parameterType="com.hoomsun.after.api.model.table.PublicSave">
+       INSERT INTO HS_AFTER_PUBLIC_SAVE 
+      (
+        ID,
+		ETYDAT,
+		ETYTIM,
+		TRANSACTION_DATE,
+		 NARYUR,
+		 TRSAMTC,
+		 AMTCDR,
+		 REFNBR,
+		 RPYNAM,
+		 RPYACC,
+		 RPYBNK,
+		 TRSAMT,
+          CREAT_TIME,
+		  CORPORATE_BANK_ACCOUNT,
+		  DATA_SOURCES,
+		  VERIFICATION_STATUS
+      )
+      VALUES(
+        #{id},
+		#{etydat},
+		#{etytim},
+		#{transactionDate},
+		#{naryur},
+		#{trsamtc},
+		#{amtcdr},
+		#{refnbr},
+		#{rpynam},
+		#{rpyacc},
+		#{rpybnk},
+		#{trsamt},
+         sysdate,
+		#{corporateBankAccount},
+		#{dataSources},
+		#{verificationStatus}
+      )
+    </insert>
+    
+    <!-- 添加存公导入记录 -->
+    <insert id="insertCunGongPublicSaveLog" parameterType="com.hoomsun.after.api.model.table.PublicSaveLog" >
+      INSERT INTO HS_AFTER_PUBLIC_SAVE_LOG
+      (
+      ID,
+      CREAT_TIME,
+      REFNBR,
+      TRANSACTION_DATE,
+      AMTCDR,
+      CORPORATE_BANK_ACCOUNT,
+      DATA_SOURCES,
+      ERROR_CODE,
+      ERROR_MSG,
+      OPRATION_ID,
+      OPRATION_NAME,
+      HOST_IP
+      )
+      VALUES(
+      #{id},
+      sysdate,
+      #{refnbr},
+      #{transactionDate},
+      #{amtcdr},
+      #{corporateBankAccount},
+      #{dataSources},
+      #{errorCode},
+      #{errorMsg},
+      #{oprationId},
+      #{oprationName},
+      #{hostIp}
+      )
+    </insert>
+      
+      <!-- 查询存公信息 -->
+        <select id="queryPublicSaveDetails" parameterType="com.hoomsun.after.api.model.table.PublicSave" 
+        resultType="com.hoomsun.after.api.model.vo.CunGongPublicSaveResult">
+        SELECT 
+		haps.ID AS id
+		FROM HS_AFTER_PUBLIC_SAVE haps 
+		WHERE
+		haps.REFNBR = #{refnbr}
+		AND haps.TRANSACTION_DATE =#{transactionDate}
+        </select>
+</mapper>

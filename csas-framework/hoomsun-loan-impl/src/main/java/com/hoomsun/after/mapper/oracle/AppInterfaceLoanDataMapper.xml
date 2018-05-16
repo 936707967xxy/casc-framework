@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.AppInterfaceLoanDataMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.vo.AppInterfaceLoanData">
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="RECEIVE_MONEY" jdbcType="DECIMAL" property="receiveMoney" />
+    <result column="SHOULD_AMT" jdbcType="DECIMAL" property="shouldAmt" />
+    <result column="CURRENTPERIOD" jdbcType="DECIMAL" property="currentPeriod" />
+    <result column="RECEIVE_PENALTY_INTEREST" jdbcType="DECIMAL" property="receivePenaltyInterest" />
+    <result column="RECEIVE_PENALTY" jdbcType="DECIMAL" property="receivePenalty" />
+    <result column="SETTLE_FLAG" jdbcType="VARCHAR" property="settleFlag" />
+    <result column="DELAY_FLAG" jdbcType="CHAR" property="delayFlag" />
+    <result column="SHOULD_DATE" jdbcType="TIMESTAMP" property="shouldDate" />
+    <result column="SHOULD_INTE" jdbcType="DECIMAL" property="shouldInte" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+	  LOAN_ID, RECEIVE_MONEY, SHOULD_AMT, 
+      CURRENTPERIOD, RECEIVE_PENALTY_INTEREST, RECEIVE_PENALTY, 
+      SETTLE_FLAG, DELAY_FLAG, 
+      SHOULD_DATE, SHOULD_INTE 
+	</sql>
+  
+
+  <select id="selectByLoanId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from APP_INTERFACE_LOAN_DATA
+		where LOAN_ID = #{loanId,jdbcType=VARCHAR}
+	</select>
+</mapper>

@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.ExportMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.Export">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="EXPEND_TYPE" jdbcType="VARCHAR" property="expendType" />
+		<result column="EXPEND_TYPE_VAL" jdbcType="VARCHAR" property="expendTypeVal" />
+		<result column="EXPEND_MONEY" jdbcType="DECIMAL" property="expendMoney" />
+		<result column="EXPEND_DATE" jdbcType="TIMESTAMP" property="expendDate" />
+		<result column="SUB_MONEY" jdbcType="DECIMAL" property="subMoney" />
+		<result column="EXPEND_STREAM" jdbcType="DECIMAL" property="expendStream" />
+		<result column="RECEIVE_CORPUS" jdbcType="DECIMAL" property="receiveCorpus" />
+		<result column="RECEIVE_SHOULDINTE" jdbcType="DECIMAL"
+			property="receiveShouldinte" />
+		<result column="AMT" jdbcType="DECIMAL" property="amt" />
+		<result column="RECEIVE_PENALTY" jdbcType="DECIMAL" property="receivePenalty" />
+		<result column="RECEIVE_INTEREST" jdbcType="DECIMAL" property="receiveInterest" />
+		<result column="RECEIVE_PENALTY_INTEREST" jdbcType="DECIMAL"
+			property="receivePenaltyInterest" />
+		<result column="RECEIVE_MONEY" jdbcType="DECIMAL" property="receiveMoney" />
+		<result column="APPLICATION_CAST_ID" jdbcType="VARCHAR"
+			property="applicationCastId" />
+		<result column="APPLICATION_CAST_NAME" jdbcType="VARCHAR"
+			property="applicationCastName" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="RECEIVE_ADVANCE" jdbcType="DECIMAL" property="receiveAdvance" />
+		<result column="CHANNEL_SERVICE_FEE" jdbcType="DECIMAL"
+			property="channelServiceFee" />
+		<result column="CAST_ID" jdbcType="VARCHAR" property="castId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, LOAN_ID, CON_NO, CAST_NAME, EXPEND_TYPE,
+		EXPEND_TYPE_VAL,
+		EXPEND_MONEY, EXPEND_DATE,
+		SUB_MONEY, EXPEND_STREAM,
+		RECEIVE_CORPUS, RECEIVE_SHOULDINTE, AMT,
+		RECEIVE_PENALTY,
+		RECEIVE_INTEREST, RECEIVE_PENALTY_INTEREST, RECEIVE_MONEY,
+		APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		CREATE_TIME, UPDATE_DATE,
+		RECEIVE_ADVANCE, CHANNEL_SERVICE_FEE,CAST_ID
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_EXPORT
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_EXPORT
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.Export">
+		insert into HS_AFTER_EXPORT
+		(ID, LOAN_ID, CON_NO,
+		CAST_NAME, EXPEND_TYPE, EXPEND_TYPE_VAL,
+		EXPEND_MONEY, EXPEND_DATE, SUB_MONEY,
+		EXPEND_STREAM, RECEIVE_CORPUS,
+		RECEIVE_SHOULDINTE,
+		AMT, RECEIVE_PENALTY, RECEIVE_INTEREST,
+		RECEIVE_PENALTY_INTEREST, RECEIVE_MONEY, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME, CREATE_TIME, UPDATE_DATE,
+		RECEIVE_ADVANCE,
+		CHANNEL_SERVICE_FEE,CAST_ID)
+		values (#{id,jdbcType=VARCHAR},
+		#{loanId,jdbcType=VARCHAR},
+		#{conNo,jdbcType=VARCHAR},
+		#{castName,jdbcType=VARCHAR}, #{expendType,jdbcType=VARCHAR},
+		#{expendTypeVal,jdbcType=VARCHAR},
+		#{expendMoney,jdbcType=DECIMAL},
+		#{expendDate,jdbcType=TIMESTAMP},
+		#{subMoney,jdbcType=DECIMAL},
+		#{expendStream,jdbcType=DECIMAL}, #{receiveCorpus,jdbcType=DECIMAL},
+		#{receiveShouldinte,jdbcType=DECIMAL},
+		#{amt,jdbcType=DECIMAL},
+		#{receivePenalty,jdbcType=DECIMAL},
+		#{receiveInterest,jdbcType=DECIMAL},
+		#{receivePenaltyInterest,jdbcType=DECIMAL},
+		#{receiveMoney,jdbcType=DECIMAL},
+		#{applicationCastId,jdbcType=VARCHAR},
+		#{applicationCastName,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP},
+		#{receiveAdvance,jdbcType=DECIMAL},
+		#{channelServiceFee,jdbcType=DECIMAL},#{castId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.Export">
+		insert into HS_AFTER_EXPORT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="conNo != null">
+				CON_NO,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="expendType != null">
+				EXPEND_TYPE,
+			</if>
+			<if test="expendTypeVal != null">
+				EXPEND_TYPE_VAL,
+			</if>
+			<if test="expendMoney != null">
+				EXPEND_MONEY,
+			</if>
+			<if test="expendDate != null">
+				EXPEND_DATE,
+			</if>
+			<if test="subMoney != null">
+				SUB_MONEY,
+			</if>
+			<if test="expendStream != null">
+				EXPEND_STREAM,
+			</if>
+			<if test="receiveCorpus != null">
+				RECEIVE_CORPUS,
+			</if>
+			<if test="receiveShouldinte != null">
+				RECEIVE_SHOULDINTE,
+			</if>
+			<if test="amt != null">
+				AMT,
+			</if>
+			<if test="receivePenalty != null">
+				RECEIVE_PENALTY,
+			</if>
+			<if test="receiveInterest != null">
+				RECEIVE_INTEREST,
+			</if>
+			<if test="receivePenaltyInterest != null">
+				RECEIVE_PENALTY_INTEREST,
+			</if>
+			<if test="receiveMoney != null">
+				RECEIVE_MONEY,
+			</if>
+			<if test="applicationCastId != null">
+				APPLICATION_CAST_ID,
+			</if>
+			<if test="applicationCastName != null">
+				APPLICATION_CAST_NAME,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE,
+			</if>
+			<if test="receiveAdvance != null">
+				RECEIVE_ADVANCE,
+			</if>
+			<if test="channelServiceFee != null">
+				CHANNEL_SERVICE_FEE,
+			</if>
+			<if test="castId != null">
+				CAST_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				#{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="expendType != null">
+				#{expendType,jdbcType=VARCHAR},
+			</if>
+			<if test="expendTypeVal != null">
+				#{expendTypeVal,jdbcType=VARCHAR},
+			</if>
+			<if test="expendMoney != null">
+				#{expendMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="expendDate != null">
+				#{expendDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="subMoney != null">
+				#{subMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="expendStream != null">
+				#{expendStream,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveCorpus != null">
+				#{receiveCorpus,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveShouldinte != null">
+				#{receiveShouldinte,jdbcType=DECIMAL},
+			</if>
+			<if test="amt != null">
+				#{amt,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenalty != null">
+				#{receivePenalty,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveInterest != null">
+				#{receiveInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenaltyInterest != null">
+				#{receivePenaltyInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveMoney != null">
+				#{receiveMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="applicationCastId != null">
+				#{applicationCastId,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationCastName != null">
+				#{applicationCastName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="receiveAdvance != null">
+				#{receiveAdvance,jdbcType=DECIMAL},
+			</if>
+			<if test="channelServiceFee != null">
+				#{channelServiceFee,jdbcType=DECIMAL},
+			</if>
+			<if test="castId != null">
+				#{castId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.Export">
+		update HS_AFTER_EXPORT
+		<set>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				CON_NO = #{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="expendType != null">
+				EXPEND_TYPE = #{expendType,jdbcType=VARCHAR},
+			</if>
+			<if test="expendTypeVal != null">
+				EXPEND_TYPE_VAL = #{expendTypeVal,jdbcType=VARCHAR},
+			</if>
+			<if test="expendMoney != null">
+				EXPEND_MONEY = #{expendMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="expendDate != null">
+				EXPEND_DATE = #{expendDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="subMoney != null">
+				SUB_MONEY = #{subMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="expendStream != null">
+				EXPEND_STREAM = #{expendStream,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveCorpus != null">
+				RECEIVE_CORPUS = #{receiveCorpus,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveShouldinte != null">
+				RECEIVE_SHOULDINTE =
+				#{receiveShouldinte,jdbcType=DECIMAL},
+			</if>
+			<if test="amt != null">
+				AMT = #{amt,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenalty != null">
+				RECEIVE_PENALTY = #{receivePenalty,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveInterest != null">
+				RECEIVE_INTEREST = #{receiveInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receivePenaltyInterest != null">
+				RECEIVE_PENALTY_INTEREST =
+				#{receivePenaltyInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="receiveMoney != null">
+				RECEIVE_MONEY = #{receiveMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="applicationCastId != null">
+				APPLICATION_CAST_ID =
+				#{applicationCastId,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationCastName != null">
+				APPLICATION_CAST_NAME =
+				#{applicationCastName,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="receiveAdvance != null">
+				RECEIVE_ADVANCE = #{receiveAdvance,jdbcType=DECIMAL},
+			</if>
+			<if test="channelServiceFee != null">
+				CHANNEL_SERVICE_FEE =
+				#{channelServiceFee,jdbcType=DECIMAL},
+			</if>
+			<if test="castId != null">
+				CAST_ID= #{castId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.Export">
+		update
+		HS_AFTER_EXPORT
+		set LOAN_ID = #{loanId,jdbcType=VARCHAR},
+		CON_NO =
+		#{conNo,jdbcType=VARCHAR},
+		CAST_NAME = #{castName,jdbcType=VARCHAR},
+		EXPEND_TYPE = #{expendType,jdbcType=VARCHAR},
+		EXPEND_TYPE_VAL =
+		#{expendTypeVal,jdbcType=VARCHAR},
+		EXPEND_MONEY =
+		#{expendMoney,jdbcType=DECIMAL},
+		EXPEND_DATE =
+		#{expendDate,jdbcType=TIMESTAMP},
+		SUB_MONEY =
+		#{subMoney,jdbcType=DECIMAL},
+		EXPEND_STREAM =
+		#{expendStream,jdbcType=DECIMAL},
+		RECEIVE_CORPUS =
+		#{receiveCorpus,jdbcType=DECIMAL},
+		RECEIVE_SHOULDINTE =
+		#{receiveShouldinte,jdbcType=DECIMAL},
+		AMT = #{amt,jdbcType=DECIMAL},
+		RECEIVE_PENALTY = #{receivePenalty,jdbcType=DECIMAL},
+		RECEIVE_INTEREST
+		= #{receiveInterest,jdbcType=DECIMAL},
+		RECEIVE_PENALTY_INTEREST =
+		#{receivePenaltyInterest,jdbcType=DECIMAL},
+		RECEIVE_MONEY =
+		#{receiveMoney,jdbcType=DECIMAL},
+		APPLICATION_CAST_ID =
+		#{applicationCastId,jdbcType=VARCHAR},
+		APPLICATION_CAST_NAME =
+		#{applicationCastName,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		UPDATE_DATE =
+		#{updateDate,jdbcType=TIMESTAMP},
+		RECEIVE_ADVANCE =
+		#{receiveAdvance,jdbcType=DECIMAL},
+		CHANNEL_SERVICE_FEE =
+		#{channelServiceFee,jdbcType=DECIMAL},
+		CAST_ID=#{castId,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- -->
+
+	<select id="selectByCustId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_EXPORT
+		where CAST_ID = #{castId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectByLoanId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_EXPORT
+		where LOAN_ID = #{loanId,jdbcType=VARCHAR}
+	</select>
+
+</mapper>

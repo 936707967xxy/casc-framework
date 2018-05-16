@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.audit.dao.TracingFlowMapper">
+  <resultMap type="com.hoomsun.csas.audit.model.vo.UserApplyVO" id="USER_APPLY_VO_RESULT">
+  	<id column="APPLY_ID" property="applyId"/>
+  	<result column="STORE_NAME" property="storeName"/>
+  	<result column="STORE_ID" property="storeId"/>
+  	<result column="CUST_MOBILE" property="custMobile"/>
+  	<result column="ID_NUMBER" property="idNumber"/>
+  	<result column="CUST_NAME" property="custName"/>
+  	<result column="SOURCES" property="sources"/>
+  	<result column="PROC_STATUS_VAL" property="procStatusVal"/>
+  	<result column="PROC_STATUS" property="procStatus"/>
+  	<result column="PROC_INST_ID" property="procInstId"/>
+  	<result column="PRODUCT_NAME" property="productName"/>
+  	<result column="PRODUCT_ID" property="productId"/>
+  	<result column="LOAN_ID" property="loanId"/>
+  	<result column="APPLY_AMOUNT" property="applyAmount"/>
+  	<result column="APPLY_DATE" property="applyDate"/>
+  	<result column="START_TIME_" property="startTime"/>
+  	<result column="CLAIM_TIME_" property="claimTime"/>
+  	<result column="END_TIME_" property="endTime"/>
+  	<result column="ASSIGNEE_" property="assignee"/>
+  	<result column="SALES_EMP_ID" property="salesEmpId"/>
+  	<result column="SALES_EMP_NAME" property="salesEmpName"/>
+  	<result column="SALES_EMP_DEPT_ID" property="salesEmpDeptId"/>
+  	<result column="SALES_EMP_DEPT_NAME" property="salesEmpDeptName"/>
+  </resultMap>
+  <select id="findPager" parameterType="java.util.Map" resultMap="USER_APPLY_VO_RESULT">
+ 		SELECT * FROM (
+			SELECT ROWNUM r, AP.* FROM (
+				SELECT 
+					app.LOAN_ID, app.APPLY_ID, app.CUST_NAME, app.SOURCES, app.SOURCES_VALUE, 
+					REPLACE (app.CUST_MOBILE, SUBSTR (app.CUST_MOBILE, 4, 4), '****') AS CUST_MOBILE,
+					REPLACE (app.ID_NUMBER, SUBSTR (app.ID_NUMBER, 6, 8),'********') AS ID_NUMBER,
+					app.SALES_EMP_ID,
+					app.SALES_EMP_NAME,
+					app.SALES_EMP_DEPT_ID,
+					app.SALES_EMP_DEPT_NAME,
+					app.PRODUCT_ID,app.PRODUCT_NAME,app.APPLY_AMOUNT,app.PROC_STATUS_VAL,
+					app.PROC_STATUS,app.PROC_INST_ID,app.STORE_ID,
+					app.CREATE_EMPLOYEE,app.CREATE_EMPLOYEE_VAL,app.APPLY_DATE
+				FROM
+					HS_APPLY app
+				WHERE app.DEL_STATUE = 0 
+				<if test="custName != null and custName != ''">
+					and app.CUST_NAME LIKE #{custName} 
+				</if>
+				<if test="custMobile != null and custMobile != ''">
+					and app.CUST_MOBILE = #{custMobile}
+				</if>
+				<if test="idNumber != null and idNumber != ''">
+					and app.ID_NUMBER = #{idNumber}
+				</if>
+				<if test="salesEmpName != null and salesEmpName != ''">
+					and app.SALES_EMP_NAME LIKE #{salesEmpName}
+				</if>
+				<if test="loanId != null and loanId != ''">
+					and app.LOAN_ID = #{loanId} 
+				</if>
+				<if test="storeId != null and storeId != ''">
+					AND app.STORE_ID = #{storeId} 
+				</if>
+				ORDER BY app.APPLY_DATE DESC
+			) AP
+			WHERE <![CDATA[ROWNUM <=  #{pageIndex} * #{pageSize}]]>
+		)
+	WHERE r > (#{pageIndex} -1) * #{pageSize}
+  </select>
+  <select id="findTracingFlowCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT 
+		COUNT(app.APPLY_ID)
+		FROM
+			HS_APPLY app
+		WHERE app.DEL_STATUE = 0 
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName} 
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId} 
+		</if>
+		<if test="storeId != null and storeId != ''">
+			AND app.STORE_ID = #{storeId} 
+		</if>
+  </select>
+</mapper>

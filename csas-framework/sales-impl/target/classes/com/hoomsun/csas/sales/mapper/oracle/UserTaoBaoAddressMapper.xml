@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserTaoBaoAddressMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserTaoBaoAddress">
+    <id column="TB_ADDRESS_ID" jdbcType="VARCHAR" property="tbAddressId" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="LOCATION" jdbcType="VARCHAR" property="location" />
+    <result column="TAKEMAN" jdbcType="VARCHAR" property="takeman" />
+    <result column="DETAILEDADDRESS" jdbcType="VARCHAR" property="detailedaddress" />
+    <result column="POSTCODE" jdbcType="VARCHAR" property="postcode" />
+    <result column="TB_FKID" jdbcType="VARCHAR" property="tbFkid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    TB_ADDRESS_ID, PHONE, LOCATION, TAKEMAN, DETAILEDADDRESS, POSTCODE, TB_FKID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_TAOBAO_ADDRESS
+    where TB_ADDRESS_ID = #{tbAddressId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_TAOBAO_ADDRESS
+    where TB_ADDRESS_ID = #{tbAddressId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserTaoBaoAddress">
+    insert into HS_TAOBAO_ADDRESS (TB_ADDRESS_ID, PHONE, LOCATION, 
+      TAKEMAN, DETAILEDADDRESS, POSTCODE, 
+      TB_FKID)
+    values (#{tbAddressId,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{takeman,jdbcType=VARCHAR}, #{detailedaddress,jdbcType=VARCHAR}, #{postcode,jdbcType=VARCHAR}, 
+      #{tbFkid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserTaoBaoAddress">
+    insert into HS_TAOBAO_ADDRESS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tbAddressId != null">
+        TB_ADDRESS_ID,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="location != null">
+        LOCATION,
+      </if>
+      <if test="takeman != null">
+        TAKEMAN,
+      </if>
+      <if test="detailedaddress != null">
+        DETAILEDADDRESS,
+      </if>
+      <if test="postcode != null">
+        POSTCODE,
+      </if>
+      <if test="tbFkid != null">
+        TB_FKID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tbAddressId != null">
+        #{tbAddressId,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="takeman != null">
+        #{takeman,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedaddress != null">
+        #{detailedaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tbFkid != null">
+        #{tbFkid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserTaoBaoAddress">
+    update HS_TAOBAO_ADDRESS
+    <set>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        LOCATION = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="takeman != null">
+        TAKEMAN = #{takeman,jdbcType=VARCHAR},
+      </if>
+      <if test="detailedaddress != null">
+        DETAILEDADDRESS = #{detailedaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postcode != null">
+        POSTCODE = #{postcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tbFkid != null">
+        TB_FKID = #{tbFkid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TB_ADDRESS_ID = #{tbAddressId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserTaoBaoAddress">
+    update HS_TAOBAO_ADDRESS
+    set PHONE = #{phone,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=VARCHAR},
+      TAKEMAN = #{takeman,jdbcType=VARCHAR},
+      DETAILEDADDRESS = #{detailedaddress,jdbcType=VARCHAR},
+      POSTCODE = #{postcode,jdbcType=VARCHAR},
+      TB_FKID = #{tbFkid,jdbcType=VARCHAR}
+    where TB_ADDRESS_ID = #{tbAddressId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  <!-- 编辑区域 不可修改 -->
+  <delete id="deleteByFKId" parameterType="java.lang.String">
+  	DELETE FROM HS_TAOBAO_ADDRESS
+    WHERE TB_FKID = #{tbId,jdbcType=VARCHAR}
+  </delete>
+</mapper>

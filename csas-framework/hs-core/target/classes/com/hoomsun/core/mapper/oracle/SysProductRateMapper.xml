@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysProductRateMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysProductRate">
+    <id column="PR_ID" jdbcType="VARCHAR" property="prId" />
+    <result column="PR_NAME" jdbcType="VARCHAR" property="prName" />
+    <result column="PR_TYPE" jdbcType="VARCHAR" property="prType" />
+    <result column="CHARGING" jdbcType="DECIMAL" property="charging" />
+    <result column="COMPUTE" jdbcType="DECIMAL" property="compute" />
+    <result column="PROPORTION" jdbcType="DECIMAL" property="proportion" />
+    <result column="ISPERIOD" jdbcType="DECIMAL" property="isperiod" />
+    <result column="ISCAPITAL" jdbcType="DECIMAL" property="iscapital" />
+    <result column="PROD_ID" jdbcType="VARCHAR" property="prodId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PR_ID, PR_NAME, PR_TYPE, CHARGING, COMPUTE, PROPORTION, ISPERIOD, ISCAPITAL, PROD_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PRODUCT_RATE
+    where PR_ID = #{prId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PRODUCT_RATE
+    where PR_ID = #{prId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysProductRate">
+    insert into HS_PRODUCT_RATE (PR_ID, PR_NAME, PR_TYPE, 
+      CHARGING, COMPUTE, PROPORTION, 
+      ISPERIOD, ISCAPITAL, PROD_ID
+      )
+    values (#{prId,jdbcType=VARCHAR}, #{prName,jdbcType=VARCHAR}, #{prType,jdbcType=VARCHAR}, 
+      #{charging,jdbcType=DECIMAL}, #{compute,jdbcType=DECIMAL}, #{proportion,jdbcType=DECIMAL}, 
+      #{isperiod,jdbcType=DECIMAL}, #{iscapital,jdbcType=DECIMAL}, #{prodId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysProductRate">
+    insert into HS_PRODUCT_RATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prId != null">
+        PR_ID,
+      </if>
+      <if test="prName != null">
+        PR_NAME,
+      </if>
+      <if test="prType != null">
+        PR_TYPE,
+      </if>
+      <if test="charging != null">
+        CHARGING,
+      </if>
+      <if test="compute != null">
+        COMPUTE,
+      </if>
+      <if test="proportion != null">
+        PROPORTION,
+      </if>
+      <if test="isperiod != null">
+        ISPERIOD,
+      </if>
+      <if test="iscapital != null">
+        ISCAPITAL,
+      </if>
+      <if test="prodId != null">
+        PROD_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prId != null">
+        #{prId,jdbcType=VARCHAR},
+      </if>
+      <if test="prName != null">
+        #{prName,jdbcType=VARCHAR},
+      </if>
+      <if test="prType != null">
+        #{prType,jdbcType=VARCHAR},
+      </if>
+      <if test="charging != null">
+        #{charging,jdbcType=DECIMAL},
+      </if>
+      <if test="compute != null">
+        #{compute,jdbcType=DECIMAL},
+      </if>
+      <if test="proportion != null">
+        #{proportion,jdbcType=DECIMAL},
+      </if>
+      <if test="isperiod != null">
+        #{isperiod,jdbcType=DECIMAL},
+      </if>
+      <if test="iscapital != null">
+        #{iscapital,jdbcType=DECIMAL},
+      </if>
+      <if test="prodId != null">
+        #{prodId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysProductRate">
+    update HS_PRODUCT_RATE
+    <set>
+      <if test="prName != null">
+        PR_NAME = #{prName,jdbcType=VARCHAR},
+      </if>
+      <if test="prType != null">
+        PR_TYPE = #{prType,jdbcType=VARCHAR},
+      </if>
+      <if test="charging != null">
+        CHARGING = #{charging,jdbcType=DECIMAL},
+      </if>
+      <if test="compute != null">
+        COMPUTE = #{compute,jdbcType=DECIMAL},
+      </if>
+      <if test="proportion != null">
+        PROPORTION = #{proportion,jdbcType=DECIMAL},
+      </if>
+      <if test="isperiod != null">
+        ISPERIOD = #{isperiod,jdbcType=DECIMAL},
+      </if>
+      <if test="iscapital != null">
+        ISCAPITAL = #{iscapital,jdbcType=DECIMAL},
+      </if>
+      <if test="prodId != null">
+        PROD_ID = #{prodId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PR_ID = #{prId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysProductRate">
+    update HS_PRODUCT_RATE
+    set PR_NAME = #{prName,jdbcType=VARCHAR},
+      PR_TYPE = #{prType,jdbcType=VARCHAR},
+      CHARGING = #{charging,jdbcType=DECIMAL},
+      COMPUTE = #{compute,jdbcType=DECIMAL},
+      PROPORTION = #{proportion,jdbcType=DECIMAL},
+      ISPERIOD = #{isperiod,jdbcType=DECIMAL},
+      ISCAPITAL = #{iscapital,jdbcType=DECIMAL},
+      PROD_ID = #{prodId,jdbcType=VARCHAR}
+    where PR_ID = #{prId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 用于产品联查的Map  -->
+  <resultMap id="rateMap" type="com.hoomsun.core.model.SysProductRate">
+    <id column="RAT_PR_ID" jdbcType="VARCHAR" property="prId" />
+    <result column="RAT_PR_NAME" jdbcType="VARCHAR" property="prName" />
+    <result column="RAT_PR_TYPE" jdbcType="DECIMAL" property="prType" />
+    <result column="RAT_CHARGING" jdbcType="DECIMAL" property="charging" />
+    <result column="RAT_COMPUTE" jdbcType="DECIMAL" property="compute" />
+    <result column="RAT_PROPORTION" jdbcType="DECIMAL" property="proportion" />
+    <result column="RAT_ISPERIOD" jdbcType="DECIMAL" property="isperiod" />
+    <result column="RAT_ISCAPITAL" jdbcType="DECIMAL" property="iscapital" />
+    <result column="RAT_PROD_ID" jdbcType="VARCHAR" property="prodId" />
+  </resultMap>
+  
+  <delete id="deleteByProdId" parameterType="java.lang.String">
+  	DELETE FROM HS_PRODUCT_RATE
+    WHERE PROD_ID = #{prodId,jdbcType=VARCHAR} 
+  </delete>
+</mapper>

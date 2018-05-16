@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.AfreshProtoinfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.AfreshProtoinfo">
+    <id column="PROTOINFO_ID" jdbcType="VARCHAR" property="protoinfoId" />
+    <result column="FK_ID" jdbcType="VARCHAR" property="fkId" />
+    <result column="ACCBANKNAME" jdbcType="VARCHAR" property="accbankname" />
+    <result column="ACCBANKID" jdbcType="VARCHAR" property="accbankid" />
+    <result column="ACCNAME" jdbcType="VARCHAR" property="accname" />
+    <result column="ACCNO" jdbcType="VARCHAR" property="accno" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="mobile" />
+    <result column="BRANCHNAME_ADDRESS" jdbcType="VARCHAR" property="branchnameAddress" />
+    <result column="BRANCHNAME_PROV_NAME" jdbcType="VARCHAR" property="branchnameProvName" />
+    <result column="BRANCHNAME_CITY_NAME" jdbcType="VARCHAR" property="branchnameCityName" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="TYPE_VAL" jdbcType="VARCHAR" property="typeVal" />
+    <result column="DELETE_FLAG" jdbcType="VARCHAR" property="deleteFlag" />
+    <result column="DELETE_FLAG_VAL" jdbcType="VARCHAR" property="deleteFlagVal" />
+    <result column="IS_DEFAULT" jdbcType="VARCHAR" property="isDefault" />
+    <result column="IS_DEFAULT_VAL" jdbcType="VARCHAR" property="isDefaultVal" />
+    <result column="BRANCHNAME_PROV_CODE" jdbcType="VARCHAR" property="branchnameProvCode" />
+    <result column="BRANCHNAME_CITY_CODE" jdbcType="VARCHAR" property="branchnameCityCode" />
+    <result column="IS_SALARY" jdbcType="VARCHAR" property="isSalary" />
+    <result column="IS_SALARY_VAL" jdbcType="VARCHAR" property="isSalaryVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PROTOINFO_ID, FK_ID, ACCBANKNAME, ACCBANKID, ACCNAME, ACCNO, MOBILE, BRANCHNAME_ADDRESS, 
+    BRANCHNAME_PROV_NAME, BRANCHNAME_CITY_NAME, TYPE, TYPE_VAL, DELETE_FLAG, DELETE_FLAG_VAL, 
+    IS_DEFAULT, IS_DEFAULT_VAL, BRANCHNAME_PROV_CODE, BRANCHNAME_CITY_CODE, IS_SALARY, 
+    IS_SALARY_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFRESH_PROTOINFO
+    where PROTOINFO_ID = #{protoinfoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFRESH_PROTOINFO
+    where PROTOINFO_ID = #{protoinfoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.AfreshProtoinfo">
+    insert into HS_AFRESH_PROTOINFO (PROTOINFO_ID, FK_ID, ACCBANKNAME, 
+      ACCBANKID, ACCNAME, ACCNO, 
+      MOBILE, BRANCHNAME_ADDRESS, BRANCHNAME_PROV_NAME, 
+      BRANCHNAME_CITY_NAME, TYPE, TYPE_VAL, 
+      DELETE_FLAG, DELETE_FLAG_VAL, IS_DEFAULT, 
+      IS_DEFAULT_VAL, BRANCHNAME_PROV_CODE, BRANCHNAME_CITY_CODE, 
+      IS_SALARY, IS_SALARY_VAL)
+    values (#{protoinfoId,jdbcType=VARCHAR}, #{fkId,jdbcType=VARCHAR}, #{accbankname,jdbcType=VARCHAR}, 
+      #{accbankid,jdbcType=VARCHAR}, #{accname,jdbcType=VARCHAR}, #{accno,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{branchnameAddress,jdbcType=VARCHAR}, #{branchnameProvName,jdbcType=VARCHAR}, 
+      #{branchnameCityName,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{typeVal,jdbcType=VARCHAR}, 
+      #{deleteFlag,jdbcType=VARCHAR}, #{deleteFlagVal,jdbcType=VARCHAR}, #{isDefault,jdbcType=VARCHAR}, 
+      #{isDefaultVal,jdbcType=VARCHAR}, #{branchnameProvCode,jdbcType=VARCHAR}, #{branchnameCityCode,jdbcType=VARCHAR}, 
+      #{isSalary,jdbcType=VARCHAR}, #{isSalaryVal,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.AfreshProtoinfo">
+    insert into HS_AFRESH_PROTOINFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="protoinfoId != null">
+        PROTOINFO_ID,
+      </if>
+      <if test="fkId != null">
+        FK_ID,
+      </if>
+      <if test="accbankname != null">
+        ACCBANKNAME,
+      </if>
+      <if test="accbankid != null">
+        ACCBANKID,
+      </if>
+      <if test="accname != null">
+        ACCNAME,
+      </if>
+      <if test="accno != null">
+        ACCNO,
+      </if>
+      <if test="mobile != null">
+        MOBILE,
+      </if>
+      <if test="branchnameAddress != null">
+        BRANCHNAME_ADDRESS,
+      </if>
+      <if test="branchnameProvName != null">
+        BRANCHNAME_PROV_NAME,
+      </if>
+      <if test="branchnameCityName != null">
+        BRANCHNAME_CITY_NAME,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="typeVal != null">
+        TYPE_VAL,
+      </if>
+      <if test="deleteFlag != null">
+        DELETE_FLAG,
+      </if>
+      <if test="deleteFlagVal != null">
+        DELETE_FLAG_VAL,
+      </if>
+      <if test="isDefault != null">
+        IS_DEFAULT,
+      </if>
+      <if test="isDefaultVal != null">
+        IS_DEFAULT_VAL,
+      </if>
+      <if test="branchnameProvCode != null">
+        BRANCHNAME_PROV_CODE,
+      </if>
+      <if test="branchnameCityCode != null">
+        BRANCHNAME_CITY_CODE,
+      </if>
+      <if test="isSalary != null">
+        IS_SALARY,
+      </if>
+      <if test="isSalaryVal != null">
+        IS_SALARY_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="protoinfoId != null">
+        #{protoinfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="fkId != null">
+        #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="accbankname != null">
+        #{accbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="accbankid != null">
+        #{accbankid,jdbcType=VARCHAR},
+      </if>
+      <if test="accname != null">
+        #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="accno != null">
+        #{accno,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="branchnameAddress != null">
+        #{branchnameAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="branchnameProvName != null">
+        #{branchnameProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="branchnameCityName != null">
+        #{branchnameCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="typeVal != null">
+        #{typeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlagVal != null">
+        #{deleteFlagVal,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefaultVal != null">
+        #{isDefaultVal,jdbcType=VARCHAR},
+      </if>
+      <if test="branchnameProvCode != null">
+        #{branchnameProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchnameCityCode != null">
+        #{branchnameCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isSalary != null">
+        #{isSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="isSalaryVal != null">
+        #{isSalaryVal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.AfreshProtoinfo">
+    update HS_AFRESH_PROTOINFO
+    <set>
+      <if test="fkId != null">
+        FK_ID = #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="accbankname != null">
+        ACCBANKNAME = #{accbankname,jdbcType=VARCHAR},
+      </if>
+      <if test="accbankid != null">
+        ACCBANKID = #{accbankid,jdbcType=VARCHAR},
+      </if>
+      <if test="accname != null">
+        ACCNAME = #{accname,jdbcType=VARCHAR},
+      </if>
+      <if test="accno != null">
+        ACCNO = #{accno,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="branchnameAddress != null">
+        BRANCHNAME_ADDRESS = #{branchnameAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="branchnameProvName != null">
+        BRANCHNAME_PROV_NAME = #{branchnameProvName,jdbcType=VARCHAR},
+      </if>
+      <if test="branchnameCityName != null">
+        BRANCHNAME_CITY_NAME = #{branchnameCityName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="typeVal != null">
+        TYPE_VAL = #{typeVal,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlagVal != null">
+        DELETE_FLAG_VAL = #{deleteFlagVal,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefaultVal != null">
+        IS_DEFAULT_VAL = #{isDefaultVal,jdbcType=VARCHAR},
+      </if>
+      <if test="branchnameProvCode != null">
+        BRANCHNAME_PROV_CODE = #{branchnameProvCode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchnameCityCode != null">
+        BRANCHNAME_CITY_CODE = #{branchnameCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isSalary != null">
+        IS_SALARY = #{isSalary,jdbcType=VARCHAR},
+      </if>
+      <if test="isSalaryVal != null">
+        IS_SALARY_VAL = #{isSalaryVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PROTOINFO_ID = #{protoinfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.AfreshProtoinfo">
+    update HS_AFRESH_PROTOINFO
+    set FK_ID = #{fkId,jdbcType=VARCHAR},
+      ACCBANKNAME = #{accbankname,jdbcType=VARCHAR},
+      ACCBANKID = #{accbankid,jdbcType=VARCHAR},
+      ACCNAME = #{accname,jdbcType=VARCHAR},
+      ACCNO = #{accno,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      BRANCHNAME_ADDRESS = #{branchnameAddress,jdbcType=VARCHAR},
+      BRANCHNAME_PROV_NAME = #{branchnameProvName,jdbcType=VARCHAR},
+      BRANCHNAME_CITY_NAME = #{branchnameCityName,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      TYPE_VAL = #{typeVal,jdbcType=VARCHAR},
+      DELETE_FLAG = #{deleteFlag,jdbcType=VARCHAR},
+      DELETE_FLAG_VAL = #{deleteFlagVal,jdbcType=VARCHAR},
+      IS_DEFAULT = #{isDefault,jdbcType=VARCHAR},
+      IS_DEFAULT_VAL = #{isDefaultVal,jdbcType=VARCHAR},
+      BRANCHNAME_PROV_CODE = #{branchnameProvCode,jdbcType=VARCHAR},
+      BRANCHNAME_CITY_CODE = #{branchnameCityCode,jdbcType=VARCHAR},
+      IS_SALARY = #{isSalary,jdbcType=VARCHAR},
+      IS_SALARY_VAL = #{isSalaryVal,jdbcType=VARCHAR}
+    where PROTOINFO_ID = #{protoinfoId,jdbcType=VARCHAR}
+  </update>
+  
+  
+<!-- 查询是否存在银行卡 -->  
+<select id="selectByFkid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hs_afresh_protoinfo
+    where FK_ID = #{fkId,jdbcType=VARCHAR}  and DELETE_FLAG='1'
+</select>
+
+
+<!-- 重新设置还款卡  -->
+ <update id="updateByType"  parameterType="java.lang.String">
+    update hs_afresh_protoinfo set
+        TYPE = '2',
+      TYPE_VAL = '其他卡' 
+    where TYPE ='1' and  FK_ID = #{fkId,jdbcType=VARCHAR}
+  </update>
+ <update id="updateByProtoinfoId"  parameterType="java.util.Map">
+    update hs_afresh_protoinfo set
+     TYPE = #{type,jdbcType=VARCHAR},
+     TYPE_VAL = #{typeVal,jdbcType=VARCHAR} 
+    where PROTOINFO_ID = #{protoinfoId,jdbcType=VARCHAR}
+  </update>
+  
+<!-- 删除卡  伪删除  -->    
+  <update id="deleteByProtoinfoId"  parameterType="java.lang.String">
+    update hs_afresh_protoinfo set
+      DELETE_FLAG = '0',
+      DELETE_FLAG_VAL = '失效' 
+    where PROTOINFO_ID = #{protoinfoId,jdbcType=VARCHAR}
+  </update>
+  
+<!-- 根据客户id 和 默认卡  0 查询银行信息  -->     
+  <select id="selectByFkIdAndIsDefault" parameterType="java.lang.String" resultMap="BaseResultMap">
+  SELECT 
+  <include refid="Base_Column_List" /> 
+  FROM HS_AFRESH_PROTOINFO 
+  WHERE FK_ID=(SELECT CUST_ID FROM HS_APPLY WHERE APPLY_ID = #{applyId}) 
+  AND TYPE = '1' 
+</select>
+
+<!--查询该卡号是否存在  -->     
+  <select id="selectByAccno" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFRESH_PROTOINFO
+    where  ACCNO = #{accno,jdbcType=VARCHAR} and DELETE_FLAG='1'
+  </select>
+
+  
+</mapper>

@@ -1,0 +1,1499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.ApplyFoMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.ApplyFo">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="APPLY_TYPE" jdbcType="VARCHAR" property="applyType" />
+		<result column="APPLICATION_CAST_ID" jdbcType="VARCHAR"
+			property="applicationCastId" />
+		<result column="APPLICATION_CAST_NAME" jdbcType="VARCHAR"
+			property="applicationCastName" />
+		<result column="APPLICATION_DESC" jdbcType="VARCHAR" property="applicationDesc" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+		<result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="APPLY_STATUS" jdbcType="VARCHAR" property="applyStatus" />
+		<result column="APPLY_RETURN" jdbcType="VARCHAR" property="applyReturn" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS, APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_APPLY_FO
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_APPLY_FO
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.ApplyFo">
+		insert into HS_AFTER_APPLY_FO
+		(ID, APPLY_ID, APPLY_TYPE,
+		APPLICATION_CAST_ID, APPLICATION_CAST_NAME,
+		APPLICATION_DESC, CAST_NAME, CARD_NO,
+		CON_NO, LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME, UPDATE_DATE
+		)
+		values (#{id,jdbcType=VARCHAR},
+		#{applyId,jdbcType=VARCHAR},
+		#{applyType,jdbcType=VARCHAR},
+		#{applicationCastId,jdbcType=VARCHAR},
+		#{applicationCastName,jdbcType=VARCHAR},
+		#{applicationDesc,jdbcType=VARCHAR}, #{castName,jdbcType=VARCHAR},
+		#{cardNo,jdbcType=VARCHAR},
+		#{conNo,jdbcType=VARCHAR},
+		#{loanId,jdbcType=VARCHAR}, #{applyStatus,jdbcType=VARCHAR},
+		#{applyReturn,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.ApplyFo">
+		insert into HS_AFTER_APPLY_FO
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="applyId != null">
+				APPLY_ID,
+			</if>
+			<if test="applyType != null">
+				APPLY_TYPE,
+			</if>
+			<if test="applicationCastId != null">
+				APPLICATION_CAST_ID,
+			</if>
+			<if test="applicationCastName != null">
+				APPLICATION_CAST_NAME,
+			</if>
+			<if test="applicationDesc != null">
+				APPLICATION_DESC,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="cardNo != null">
+				CARD_NO,
+			</if>
+			<if test="conNo != null">
+				CON_NO,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="applyStatus != null">
+				APPLY_STATUS,
+			</if>
+			<if test="applyReturn != null">
+				APPLY_RETURN,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyType != null">
+				#{applyType,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationCastId != null">
+				#{applicationCastId,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationCastName != null">
+				#{applicationCastName,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationDesc != null">
+				#{applicationDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				#{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyStatus != null">
+				#{applyStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="applyReturn != null">
+				#{applyReturn,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.ApplyFo">
+		update HS_AFTER_APPLY_FO
+		<set>
+			<if test="applyId != null">
+				APPLY_ID = #{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyType != null">
+				APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationCastId != null">
+				APPLICATION_CAST_ID =
+				#{applicationCastId,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationCastName != null">
+				APPLICATION_CAST_NAME =
+				#{applicationCastName,jdbcType=VARCHAR},
+			</if>
+			<if test="applicationDesc != null">
+				APPLICATION_DESC = #{applicationDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				CON_NO = #{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyStatus != null">
+				APPLY_STATUS = #{applyStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="applyReturn != null">
+				APPLY_RETURN = #{applyReturn,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.ApplyFo">
+		update
+		HS_AFTER_APPLY_FO
+		set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+		APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+		APPLICATION_CAST_ID =
+		#{applicationCastId,jdbcType=VARCHAR},
+		APPLICATION_CAST_NAME =
+		#{applicationCastName,jdbcType=VARCHAR},
+		APPLICATION_DESC =
+		#{applicationDesc,jdbcType=VARCHAR},
+		CAST_NAME =
+		#{castName,jdbcType=VARCHAR},
+		CARD_NO = #{cardNo,jdbcType=VARCHAR},
+		CON_NO = #{conNo,jdbcType=VARCHAR},
+		LOAN_ID =
+		#{loanId,jdbcType=VARCHAR},
+		APPLY_STATUS =
+		#{applyStatus,jdbcType=VARCHAR},
+		APPLY_RETURN =
+		#{applyReturn,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		UPDATE_DATE =
+		#{updateDate,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- -->
+
+
+
+	<select id="selectByApplyId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		FROM HS_AFTER_APPLY_FO
+
+		WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+
+
+	</select>
+
+	<select id="selectMessageUpdateByStstus" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+
+		from (
+
+		select
+
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+
+
+		from HS_AFTER_APPLY_FO
+		where APPLY_STATUS =
+		#{status,jdbcType=VARCHAR}
+
+		<if test="castName!=null and castName!=''">
+			AND CAST_NAME= #{castName}
+		</if>
+		<if test="cardNo!=null and cardNo!=''">
+			AND CARD_NO= #{cardNo}
+		</if>
+		<if test="conditionCustID!=null and conditionCustID!=''">
+			AND APPLICATION_CAST_ID= #{conditionCustID}
+		</if>
+		<if test="conditionCustName!=null and conditionCustName!=''">
+			AND APPLICATION_CAST_NAME= #{conditionCustName}
+		</if>
+		<if test="createTime!=null">
+			AND trunc(CREATE_TIME)= #{createTime}
+		</if>
+
+		AND
+		APPLY_TYPE IN
+		('telChange','bankChange')
+		
+		 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		)
+		
+		 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+
+	</select>
+
+
+
+	<select id="selectMessageUpdateByStstusCount" parameterType="java.util.Map"
+		resultType="int">
+
+		select
+		COUNT(ID)
+		from HS_AFTER_APPLY_FO
+		where APPLY_STATUS =
+		#{status,jdbcType=VARCHAR}
+
+		<if test="castName!=null and castName!=''">
+			AND CAST_NAME= #{castName}
+		</if>
+		<if test="cardNo!=null and cardNo!=''">
+			AND CARD_NO= #{cardNo}
+		</if>
+		<if test="applicationCastId!=null and applicationCastId!=''">
+			AND APPLICATION_CAST_ID= #{conditionCustID}
+		</if>
+		<if test="applicationCastName!=null and applicationCastName!=''">
+			AND APPLICATION_CAST_NAME= #{conditionCustName}
+		</if>
+		<if test="createTime!=null">
+			AND trunc(CREATE_TIME)= #{createTime}
+		</if>
+
+		AND APPLY_TYPE IN
+		('telChange','bankChange')
+
+
+	</select>
+
+
+	<select id="selectMessageUpdateByStstusAndUsers" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+
+		from (
+
+		select
+
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+
+
+		from HS_AFTER_APPLY_FO
+		<where>
+			APPLY_STATUS =
+			#{status,jdbcType=VARCHAR}
+
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="conditionCustID!=null and conditionCustID!=''">
+				AND APPLICATION_CAST_ID= #{conditionCustID}
+			</if>
+			<if test="conditionCustName!=null and conditionCustName!=''">
+				AND APPLICATION_CAST_NAME= #{conditionCustName}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+			AND
+			APPLY_TYPE IN
+			('telChange','bankChange')
+
+			AND APPLICATION_CAST_ID IN
+
+			<foreach collection="userIds" open="(" close=")" separator=","
+				item="userId">
+
+				#{userId}
+			</foreach>
+
+
+
+		</where>
+		
+		
+		
+		 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		)
+		
+		 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+
+	</select>
+
+
+
+	<select id="selectMessageUpdateByStstusAndUsersCount"
+		parameterType="java.util.Map" resultType="int">
+
+		select
+		COUNT(ID)
+		from
+		HS_AFTER_APPLY_FO
+		<where>
+
+			APPLY_STATUS =#{status,jdbcType=VARCHAR}
+
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="conditionCustID!=null and conditionCustID!=''">
+				AND APPLICATION_CAST_ID= #{conditionCustID}
+			</if>
+			<if test="conditionCustName!=null and conditionCustName!=''">
+				AND APPLICATION_CAST_NAME= #{conditionCustName}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+
+
+			AND APPLY_TYPE IN
+			('telChange','bankChange')
+
+			AND APPLICATION_CAST_ID IN
+
+			<foreach collection="userIds" open="(" close=")" separator=","
+				item="userId">
+
+				#{userId}
+			</foreach>
+
+
+
+		</where>
+
+	</select>
+
+
+	<select id="getMessageUpdateHistory" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+
+		from (
+
+		SELECT
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_ID IN ( SELECT MAX(APPLY_ID) FROM HS_AFTER_APPLY_DETAIL WHERE
+			APPROVE_ID=#{applicationCastId} GROUP BY APPLY_ID)
+
+
+			AND APPLY_TYPE IN
+			('telChange','bankChange')
+
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+			<if test="applyStatus!=null and applyStatus!=''">
+				AND APPLY_STATUS= #{applyStatus}
+			</if>
+
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+			
+			
+			 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+
+		</where>
+		)
+	 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+	</select>
+
+	<select id="getMessageUpdateHistoryCount" parameterType="java.util.Map"
+		resultType="int">
+
+
+		SELECT
+		COUNT(ID)
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_ID IN ( SELECT MAX(APPLY_ID) FROM HS_AFTER_APPLY_DETAIL
+			WHERE
+			APPROVE_ID=#{applicationCastId} GROUP BY APPLY_ID)
+			AND APPLY_TYPE
+			IN
+			('telChange','bankChange')
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+			<if test="applyStatus!=null and applyStatus!=''">
+				AND APPLY_STATUS= #{applyStatus}
+			</if>
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+
+		</where>
+	</select>
+
+
+	<select id="getMessageUpdateHistoryAll" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+
+		from (
+
+		SELECT
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_TYPE IN
+			('telChange','bankChange')
+
+
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+			<if test="applyStatus!=null and applyStatus!=''">
+				AND APPLY_STATUS= #{applyStatus}
+			</if>
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+			
+			 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+
+		</where>
+		)
+	 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+	</select>
+
+	<select id="getMessageUpdateHistoryAllCount" parameterType="java.util.Map"
+		resultType="int">
+
+
+		SELECT
+		COUNT(ID)
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_TYPE IN
+			('telChange','bankChange')
+
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+			<if test="applyStatus!=null and applyStatus!=''">
+				AND APPLY_STATUS= #{applyStatus}
+			</if>
+
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+
+
+		</where>
+	</select>
+
+	<!-- -->
+
+
+
+
+	<select id="selectSubApplyByStstus" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+
+		from (
+
+		select
+
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+
+
+		from HS_AFTER_APPLY_FO
+		where APPLY_STATUS =
+		#{status,jdbcType=VARCHAR}
+
+		<if test="castName!=null and castName!=''">
+			AND CAST_NAME= #{castName}
+		</if>
+		<if test="cardNo!=null and cardNo!=''">
+			AND CARD_NO= #{cardNo}
+		</if>
+		<if test="loanId!=null and loanId!=''">
+			AND LOAN_ID= #{loanId}
+		</if>
+		<if test="conNo!=null and conNo!=''">
+			AND CON_NO= #{conNo}
+		</if>
+		<if test="applyType!=null and applyType!=''">
+			AND APPLY_TYPE= #{applyType}
+		</if>
+		<if test="conditionCustID!=null and conditionCustID!=''">
+			AND APPLICATION_CAST_ID= #{conditionCustID}
+		</if>
+		<if test="conditionCustName!=null and conditionCustName!=''">
+			AND APPLICATION_CAST_NAME= #{conditionCustName}
+		</if>
+		<if test="createTime!=null">
+			AND trunc(CREATE_TIME)= #{createTime}
+		</if>
+
+		AND
+		APPLY_TYPE IN
+		('overdueSingle','overdueAll')
+		
+		 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		)
+		
+		 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+
+	</select>
+
+
+
+	<select id="selectSubApplyByStstusCount" parameterType="java.util.Map"
+		resultType="int">
+
+		select
+		COUNT(ID)
+		from HS_AFTER_APPLY_FO
+		where APPLY_STATUS =
+		#{status,jdbcType=VARCHAR}
+		<if test="castName!=null and castName!=''">
+			AND CAST_NAME= #{castName}
+		</if>
+		<if test="cardNo!=null and cardNo!=''">
+			AND CARD_NO= #{cardNo}
+		</if>
+		<if test="loanId!=null and loanId!=''">
+			AND LOAN_ID= #{loanId}
+		</if>
+		<if test="conNo!=null and conNo!=''">
+			AND CON_NO= #{conNo}
+		</if>
+		<if test="applyType!=null and applyType!=''">
+			AND APPLY_TYPE= #{applyType}
+		</if>
+		<if test="conditionCustID!=null and conditionCustID!=''">
+			AND APPLICATION_CAST_ID= #{conditionCustID}
+		</if>
+		<if test="conditionCustName!=null and conditionCustName!=''">
+			AND APPLICATION_CAST_NAME= #{conditionCustName}
+		</if>
+		<if test="createTime!=null">
+			AND trunc(CREATE_TIME)= #{createTime}
+		</if>
+
+
+
+		AND APPLY_TYPE IN
+		('overdueSingle','overdueAll')
+
+
+	</select>
+
+
+	<select id="selectSubApplyByStstusAndUsers" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+
+		from (
+
+		select
+
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+
+
+		from HS_AFTER_APPLY_FO
+		<where>
+			APPLY_STATUS =
+			#{status,jdbcType=VARCHAR}
+
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="loanId!=null and loanId!=''">
+				AND LOAN_ID= #{loanId}
+			</if>
+			<if test="conNo!=null and conNo!=''">
+				AND CON_NO= #{conNo}
+			</if>
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+			<if test="conditionCustID!=null and conditionCustID!=''">
+				AND APPLICATION_CAST_ID= #{conditionCustID}
+			</if>
+			<if test="conditionCustName!=null and conditionCustName!=''">
+				AND APPLICATION_CAST_NAME= #{conditionCustName}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+
+			AND
+			APPLY_TYPE IN
+			('overdueSingle','overdueAll')
+
+			AND APPLICATION_CAST_ID
+			IN
+
+			<foreach collection="userIds" open="(" close=")" separator=","
+				item="userId">
+
+				#{userId}
+			</foreach>
+
+
+
+		</where>
+		 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		)
+		
+		 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+
+	</select>
+
+
+
+	<select id="selectSubApplyByStstusAndUsersCount" parameterType="java.util.Map"
+		resultType="int">
+
+		select
+		COUNT(ID)
+		from
+		HS_AFTER_APPLY_FO
+		<where>
+
+			APPLY_STATUS =#{status,jdbcType=VARCHAR}
+
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="loanId!=null and loanId!=''">
+				AND LOAN_ID= #{loanId}
+			</if>
+			<if test="conNo!=null and conNo!=''">
+				AND CON_NO= #{conNo}
+			</if>
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+			<if test="conditionCustID!=null and conditionCustID!=''">
+				AND APPLICATION_CAST_ID= #{conditionCustID}
+			</if>
+			<if test="conditionCustName!=null and conditionCustName!=''">
+				AND APPLICATION_CAST_NAME= #{conditionCustName}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+
+			AND APPLY_TYPE IN
+			('overdueSingle','overdueAll')
+
+			AND
+			APPLICATION_CAST_ID IN
+
+			<foreach collection="userIds" open="(" close=")" separator=","
+				item="userId">
+
+				#{userId}
+			</foreach>
+
+
+
+		</where>
+
+	</select>
+
+
+	<select id="getSubapplyHistory" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+
+		from (
+
+		SELECT
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_ID IN ( SELECT MAX(APPLY_ID) FROM HS_AFTER_APPLY_DETAIL WHERE
+			APPROVE_ID=#{applicationCastId} GROUP BY APPLY_ID)
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="loanId!=null and loanId!=''">
+				AND LOAN_ID= #{loanId}
+			</if>
+			<if test="conNo!=null and conNo!=''">
+				AND CON_NO= #{conNo}
+			</if>
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+			<if test="applyStatus!=null and applyStatus!=''">
+				AND APPLY_STATUS= #{applyStatus}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+
+
+
+
+			AND APPLY_TYPE IN
+			('overdueSingle','overdueAll')
+			
+			 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+
+		</where>
+		)
+	 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+	</select>
+
+	<select id="getSubapplyHistoryCount" parameterType="java.util.Map"
+		resultType="int">
+
+
+		SELECT
+		COUNT(ID)
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_ID IN ( SELECT MAX(APPLY_ID) FROM HS_AFTER_APPLY_DETAIL
+			WHERE
+			APPROVE_ID=#{applicationCastId} GROUP BY APPLY_ID)
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="loanId!=null and loanId!=''">
+				AND LOAN_ID= #{loanId}
+			</if>
+			<if test="conNo!=null and conNo!=''">
+				AND CON_NO= #{conNo}
+			</if>
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+			<if test="applyStatus!=null and applyStatus!=''">
+				AND APPLY_STATUS= #{applyStatus}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+
+
+
+			AND APPLY_TYPE
+			IN
+			('overdueSingle','overdueAll')
+
+		</where>
+	</select>
+
+
+	<select id="getSubapplyHistoryAll" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+
+		from (
+
+		SELECT
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_TYPE IN
+			('overdueSingle','overdueAll')
+
+
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="loanId!=null and loanId!=''">
+				AND LOAN_ID= #{loanId}
+			</if>
+			<if test="conNo!=null and conNo!=''">
+				AND CON_NO= #{conNo}
+			</if>
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+			<if test="applyStatus!=null and applyStatus!=''">
+				AND APPLY_STATUS= #{applyStatus}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+			
+			
+			 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+
+		</where>
+		)
+	 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+
+	</select>
+
+	<select id="getSubapplyHistoryAllCount" parameterType="java.util.Map"
+		resultType="int">
+
+
+		SELECT
+		COUNT(ID)
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_TYPE IN
+			('overdueSingle','overdueAll')
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="loanId!=null and loanId!=''">
+				AND LOAN_ID= #{loanId}
+			</if>
+			<if test="conNo!=null and conNo!=''">
+				AND CON_NO= #{conNo}
+			</if>
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+			<if test="applyStatus!=null and applyStatus!=''">
+				AND APPLY_STATUS= #{applyStatus}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+
+		</where>
+	</select>
+
+
+	<!-- -->
+
+
+	<select id="selectOutBoundByStstus" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+
+		from (
+
+		select
+
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+
+
+		from HS_AFTER_APPLY_FO
+		where APPLY_STATUS =
+		#{status,jdbcType=VARCHAR}
+		AND
+		APPLY_TYPE ='outBound'
+		<if test="castName!=null and castName!=''">
+			AND CAST_NAME= #{castName}
+		</if>
+		<if test="cardNo!=null and cardNo!=''">
+			AND CARD_NO= #{cardNo}
+		</if>
+		<if test="loanId!=null and loanId!=''">
+			AND LOAN_ID= #{loanId}
+		</if>
+		<if test="conNo!=null and conNo!=''">
+			AND CON_NO= #{conNo}
+		</if>
+		<if test="conditionCustID!=null and conditionCustID!=''">
+			AND APPLICATION_CAST_ID= #{conditionCustID}
+		</if>
+		<if test="conditionCustName!=null and conditionCustName!=''">
+			AND APPLICATION_CAST_NAME= #{conditionCustName}
+		</if>
+		<if test="createTime!=null">
+			AND trunc(CREATE_TIME)= #{createTime}
+		</if>
+		
+		
+		 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		)
+		
+		 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+
+	</select>
+
+
+
+	<select id="selectOutBoundByStstusCount" parameterType="int"
+		resultType="int">
+
+		select
+		COUNT(ID)
+		from HS_AFTER_APPLY_FO
+		where APPLY_STATUS =
+		#{status,jdbcType=VARCHAR} 
+		<if test="castName!=null and castName!=''">
+			AND CAST_NAME= #{castName}
+		</if>
+		<if test="cardNo!=null and cardNo!=''">
+			AND CARD_NO= #{cardNo}
+		</if>
+		<if test="loanId!=null and loanId!=''">
+			AND LOAN_ID= #{loanId}
+		</if>
+		<if test="conNo!=null and conNo!=''">
+			AND CON_NO= #{conNo}
+		</if>
+		<if test="conditionCustID!=null and conditionCustID!=''">
+			AND APPLICATION_CAST_ID= #{conditionCustID}
+		</if>
+		<if test="conditionCustName!=null and conditionCustName!=''">
+			AND APPLICATION_CAST_NAME= #{conditionCustName}
+		</if>
+		<if test="createTime!=null">
+			AND trunc(CREATE_TIME)= #{createTime}
+		</if>
+		
+		AND APPLY_TYPE ='outBound'
+
+
+	</select>
+
+
+	<select id="selectOutBoundByStstusAndUsers" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+
+		from (
+
+		select
+
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+
+
+		from HS_AFTER_APPLY_FO
+		<where>
+			APPLY_STATUS =
+			#{status,jdbcType=VARCHAR}
+			AND
+			APPLY_TYPE ='outBound'
+
+			AND
+			APPLICATION_CAST_ID IN
+
+			<foreach collection="userIds" open="(" close=")" separator=","
+				item="userId">
+
+				#{userId}
+			</foreach>
+
+
+
+		</where>
+		 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		)
+		
+		 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+
+	</select>
+
+
+
+	<select id="selectOutBoundByStstusCountAndUsers" parameterType="java.util.Map"
+		resultType="int">
+
+		select
+		COUNT(ID)
+		from
+		HS_AFTER_APPLY_FO
+		<where>
+
+			APPLY_STATUS =#{status,jdbcType=VARCHAR}
+			AND APPLY_TYPE = 'outBound'
+
+			AND
+			APPLICATION_CAST_ID IN
+
+			<foreach collection="userIds" open="(" close=")" separator=","
+				item="userId">
+
+				#{userId}
+			</foreach>
+
+
+
+		</where>
+
+	</select>
+
+	<select id="getOutboundHistory" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+
+		from (
+
+		SELECT
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_ID IN ( SELECT MAX(APPLY_ID) FROM HS_AFTER_APPLY_DETAIL WHERE
+			APPROVE_ID=#{applicationCastId} GROUP BY APPLY_ID)
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="loanId!=null and loanId!=''">
+				AND LOAN_ID= #{loanId}
+			</if>
+			<if test="conNo!=null and conNo!=''">
+				AND CON_NO= #{conNo}
+			</if>
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+			<if test="applyStatus!=null and applyStatus!=''">
+				AND APPLY_STATUS= #{applyStatus}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+
+			AND
+			APPLY_TYPE='outBound'
+			
+			 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+
+		</where>
+		)
+	 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+	</select>
+
+	<select id="getOutboundHistoryCount" parameterType="java.lang.String"
+		resultType="int">
+
+
+		SELECT
+		COUNT(ID)
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_ID IN ( SELECT MAX(APPLY_ID) FROM HS_AFTER_APPLY_DETAIL
+			WHERE
+			APPROVE_ID=#{applicationCastId} GROUP BY APPLY_ID)
+			<if test="castName!=null and castName!=''">
+				AND CAST_NAME= #{castName}
+			</if>
+			<if test="cardNo!=null and cardNo!=''">
+				AND CARD_NO= #{cardNo}
+			</if>
+			<if test="loanId!=null and loanId!=''">
+				AND LOAN_ID= #{loanId}
+			</if>
+			<if test="conNo!=null and conNo!=''">
+				AND CON_NO= #{conNo}
+			</if>
+			<if test="applyType!=null and applyType!=''">
+				AND APPLY_TYPE= #{applyType}
+			</if>
+			<if test="applyStatus!=null and applyStatus!=''">
+				AND APPLY_STATUS= #{applyStatus}
+			</if>
+
+			<if test="createTime!=null">
+				AND trunc(CREATE_TIME)= #{createTime}
+			</if>
+
+
+			AND APPLY_TYPE
+			='outBound'
+
+		</where>
+	</select>
+
+	<!-- -->
+
+
+
+
+	<select id="selectLeaveApplyByStstus" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+
+		from (
+
+		select
+
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+
+
+		from HS_AFTER_APPLY_FO
+		where APPLY_STATUS =
+		#{status,jdbcType=VARCHAR}
+		AND
+		APPLY_TYPE IN
+		('overdueLeave','outBoundLeave')
+		
+		 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		)
+		
+		 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+
+	</select>
+
+
+
+	<select id="selectLeaveApplyByStstusCount" parameterType="int"
+		resultType="int">
+
+		select
+		COUNT(ID)
+		from HS_AFTER_APPLY_FO
+		where APPLY_STATUS =
+		#{status,jdbcType=VARCHAR} AND APPLY_TYPE IN
+		('overdueLeave','outBoundLeave')
+
+
+	</select>
+
+
+	<select id="selectLeaveApplyByStstusAndUsers" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+
+		from (
+
+		select
+
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+
+
+		from HS_AFTER_APPLY_FO
+		<where>
+			APPLY_STATUS =
+			#{status,jdbcType=VARCHAR}
+			AND
+			APPLY_TYPE IN
+			('overdueLeave','outBoundLeave')
+
+			AND APPLICATION_CAST_ID IN
+
+			<foreach collection="userIds" open="(" close=")" separator=","
+				item="userId">
+
+				#{userId}
+			</foreach>
+
+
+
+		</where>
+		 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		)
+		
+		 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+
+	</select>
+
+
+
+	<select id="selectLeaveApplyByStstusAndUsersCount"
+		parameterType="java.util.Map" resultType="int">
+
+		select
+		COUNT(ID)
+		from
+		HS_AFTER_APPLY_FO
+		<where>
+
+			APPLY_STATUS =#{status,jdbcType=VARCHAR}
+			AND APPLY_TYPE IN
+			('overdueLeave','outBoundLeave')
+
+			AND APPLICATION_CAST_ID IN
+
+			<foreach collection="userIds" open="(" close=")" separator=","
+				item="userId">
+
+				#{userId}
+			</foreach>
+
+
+
+		</where>
+
+	</select>
+
+
+	<select id="getLeaveapplyHistory" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+
+		from (
+
+		SELECT
+		ID, APPLY_ID, APPLY_TYPE, APPLICATION_CAST_ID,
+		APPLICATION_CAST_NAME,
+		APPLICATION_DESC,
+		CAST_NAME, CARD_NO, CON_NO,
+		LOAN_ID, APPLY_STATUS,
+		APPLY_RETURN, CREATE_TIME,
+		UPDATE_DATE,ROWNUM AS
+		r
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_ID IN ( SELECT MAX(APPLY_ID) FROM HS_AFTER_APPLY_DETAIL WHERE
+			APPROVE_ID=#{applicationCastId} GROUP BY APPLY_ID)
+
+			AND APPLY_TYPE IN
+			('overdueLeave','outBoundLeave')
+			
+			 <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+
+		</where>
+		)
+	 <![CDATA[ WHERE  r > (#{page}- 1) * #{pageSize}]]>
+	</select>
+
+	<select id="getLeaveapplyHistoryCount" parameterType="java.lang.String"
+		resultType="int">
+
+
+		SELECT
+		COUNT(ID)
+		FROM
+		HS_AFTER_APPLY_FO
+		<where>
+			APPLY_ID IN ( SELECT MAX(APPLY_ID) FROM HS_AFTER_APPLY_DETAIL
+			WHERE
+			APPROVE_ID=#{applicationCastId} GROUP BY APPLY_ID)
+			AND APPLY_TYPE
+			IN
+			('overdueLeave','outBoundLeave')
+
+		</where>
+	</select>
+
+
+</mapper>

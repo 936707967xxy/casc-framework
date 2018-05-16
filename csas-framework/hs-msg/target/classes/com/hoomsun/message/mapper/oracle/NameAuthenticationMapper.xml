@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.message.dao.NameAuthentMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.message.model.NameAuthentication">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CUSTNAME" jdbcType="VARCHAR" property="custname" />
+    <result column="PAPERID" jdbcType="VARCHAR" property="paperid" />
+    <result column="ISAUTHENTICATION" jdbcType="VARCHAR" property="isauthentication" />
+    <result column="ISAUTHENTICATION_VAL" jdbcType="VARCHAR" property="isauthenticationVal" />
+    <result column="AUTHENTICATION_MESG" jdbcType="VARCHAR" property="authenticationMesg" />
+    <result column="RENFA_MESG" jdbcType="VARCHAR" property="renfaMesg" />
+    <result column="ISSESAME" jdbcType="VARCHAR" property="issesame" />
+    <result column="ISSESAME_VAL" jdbcType="VARCHAR" property="issesameVal" />
+    <result column="SESAME_GRADEVAL" jdbcType="VARCHAR" property="sesameGradeval" />
+    <result column="SESAME_TIME" jdbcType="VARCHAR" property="sesameTime" />
+    <result column="INCOME" jdbcType="VARCHAR" property="income" />
+    <result column="INCOME_TIME" jdbcType="VARCHAR" property="incomeTime" />
+    <result column="PHONE_TIME" jdbcType="VARCHAR" property="phoneTime" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="PWD" jdbcType="VARCHAR" property="pwd" />
+    <result column="REGISTRATIONID" jdbcType="VARCHAR" property="registrationid" />
+    <result column="UUID" jdbcType="VARCHAR" property="uuid" />
+    <result column="PHOTOPATH" jdbcType="VARCHAR" property="photopath" />
+    <result column="INVITEDEPTID" jdbcType="VARCHAR" property="invitedeptid" />
+    <result column="INVITECODE" jdbcType="VARCHAR" property="invitecode" />
+    <result column="BANKPWD" jdbcType="VARCHAR" property="bankpwd" />
+    <result column="WXTAKEN" jdbcType="VARCHAR" property="wxtaken" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="PUBLIC_KEY" jdbcType="VARCHAR" property="publicKey" />
+    <result column="PRIVATE_KEY" jdbcType="VARCHAR" property="privateKey" />
+    <result column="SIGN" jdbcType="VARCHAR" property="sign" />
+    <result column="CREATE_TIME" jdbcType="OTHER" property="createTime" />
+    <result column="PAY_ACCOUNT" jdbcType="VARCHAR" property="payAccount" />
+    <result column="PAY_PASSWORD" jdbcType="VARCHAR" property="payPassword" />
+    <result column="CONTACT" jdbcType="VARCHAR" property="contact" />
+    <result column="CONTACT_TIME" jdbcType="VARCHAR" property="contactTime" />
+    
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CUSTNAME, PAPERID, ISAUTHENTICATION, ISAUTHENTICATION_VAL, AUTHENTICATION_MESG, 
+    RENFA_MESG, ISSESAME, ISSESAME_VAL, SESAME_GRADEVAL, SESAME_TIME, INCOME, INCOME_TIME, 
+    PHONE_TIME, PHONE, PWD, REGISTRATIONID, UUID, PHOTOPATH, INVITEDEPTID, INVITECODE, 
+    BANKPWD, WXTAKEN, TYPE, PUBLIC_KEY, PRIVATE_KEY, SIGN, CREATE_TIME, PAY_ACCOUNT, 
+    PAY_PASSWORD,CONTACT,CONTACT_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_NAME_AUTHENTICATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_NAME_AUTHENTICATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.message.model.NameAuthentication">
+    insert into HS_NAME_AUTHENTICATION (ID, CUSTNAME, PAPERID, 
+      ISAUTHENTICATION, ISAUTHENTICATION_VAL, 
+      AUTHENTICATION_MESG, RENFA_MESG, ISSESAME, 
+      ISSESAME_VAL, SESAME_GRADEVAL, SESAME_TIME, 
+      INCOME, INCOME_TIME, PHONE_TIME, 
+      PHONE, PWD, REGISTRATIONID, 
+      UUID, PHOTOPATH, INVITEDEPTID, 
+      INVITECODE, BANKPWD, WXTAKEN, 
+      TYPE, PUBLIC_KEY, PRIVATE_KEY, 
+      SIGN, CREATE_TIME, PAY_ACCOUNT, 
+      PAY_PASSWORD,CONTACT,CONTACT_TIME)
+    values (#{id,jdbcType=VARCHAR}, #{custname,jdbcType=VARCHAR}, #{paperid,jdbcType=VARCHAR}, 
+      #{isauthentication,jdbcType=VARCHAR}, #{isauthenticationVal,jdbcType=VARCHAR}, 
+      #{authenticationMesg,jdbcType=VARCHAR}, #{renfaMesg,jdbcType=VARCHAR}, #{issesame,jdbcType=VARCHAR}, 
+      #{issesameVal,jdbcType=VARCHAR}, #{sesameGradeval,jdbcType=VARCHAR}, #{sesameTime,jdbcType=VARCHAR}, 
+      #{income,jdbcType=VARCHAR}, #{incomeTime,jdbcType=VARCHAR}, #{phoneTime,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{registrationid,jdbcType=VARCHAR}, 
+      #{uuid,jdbcType=VARCHAR}, #{photopath,jdbcType=VARCHAR}, #{invitedeptid,jdbcType=VARCHAR}, 
+      #{invitecode,jdbcType=VARCHAR}, #{bankpwd,jdbcType=VARCHAR}, #{wxtaken,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{publicKey,jdbcType=VARCHAR}, #{privateKey,jdbcType=VARCHAR}, 
+      #{sign,jdbcType=VARCHAR}, #{createTime,jdbcType=OTHER}, #{payAccount,jdbcType=VARCHAR}, 
+      #{payPassword,jdbcType=VARCHAR}),#{contact,jdbcType=VARCHAR}),#{contactTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.message.model.NameAuthentication">
+    insert into HS_NAME_AUTHENTICATION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="custname != null">
+        CUSTNAME,
+      </if>
+      <if test="paperid != null">
+        PAPERID,
+      </if>
+      <if test="isauthentication != null">
+        ISAUTHENTICATION,
+      </if>
+      <if test="isauthenticationVal != null">
+        ISAUTHENTICATION_VAL,
+      </if>
+      <if test="authenticationMesg != null">
+        AUTHENTICATION_MESG,
+      </if>
+      <if test="renfaMesg != null">
+        RENFA_MESG,
+      </if>
+      <if test="issesame != null">
+        ISSESAME,
+      </if>
+      <if test="issesameVal != null">
+        ISSESAME_VAL,
+      </if>
+      <if test="sesameGradeval != null">
+        SESAME_GRADEVAL,
+      </if>
+      <if test="sesameTime != null">
+        SESAME_TIME,
+      </if>
+      <if test="income != null">
+        INCOME,
+      </if>
+      <if test="incomeTime != null">
+        INCOME_TIME,
+      </if>
+      <if test="phoneTime != null">
+        PHONE_TIME,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="pwd != null">
+        PWD,
+      </if>
+      <if test="registrationid != null">
+        REGISTRATIONID,
+      </if>
+      <if test="uuid != null">
+        UUID,
+      </if>
+      <if test="photopath != null">
+        PHOTOPATH,
+      </if>
+      <if test="invitedeptid != null">
+        INVITEDEPTID,
+      </if>
+      <if test="invitecode != null">
+        INVITECODE,
+      </if>
+      <if test="bankpwd != null">
+        BANKPWD,
+      </if>
+      <if test="wxtaken != null">
+        WXTAKEN,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="publicKey != null">
+        PUBLIC_KEY,
+      </if>
+      <if test="privateKey != null">
+        PRIVATE_KEY,
+      </if>
+      <if test="sign != null">
+        SIGN,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="payAccount != null">
+        PAY_ACCOUNT,
+      </if>
+      <if test="payPassword != null">
+        PAY_PASSWORD,
+      </if>
+      <if test="contact != null">
+        CONTACT,
+      </if>
+      <if test="contactTime != null">
+        CONTACT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="custname != null">
+        #{custname,jdbcType=VARCHAR},
+      </if>
+      <if test="paperid != null">
+        #{paperid,jdbcType=VARCHAR},
+      </if>
+      <if test="isauthentication != null">
+        #{isauthentication,jdbcType=VARCHAR},
+      </if>
+      <if test="isauthenticationVal != null">
+        #{isauthenticationVal,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationMesg != null">
+        #{authenticationMesg,jdbcType=VARCHAR},
+      </if>
+      <if test="renfaMesg != null">
+        #{renfaMesg,jdbcType=VARCHAR},
+      </if>
+      <if test="issesame != null">
+        #{issesame,jdbcType=VARCHAR},
+      </if>
+      <if test="issesameVal != null">
+        #{issesameVal,jdbcType=VARCHAR},
+      </if>
+      <if test="sesameGradeval != null">
+        #{sesameGradeval,jdbcType=VARCHAR},
+      </if>
+      <if test="sesameTime != null">
+        #{sesameTime,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null">
+        #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeTime != null">
+        #{incomeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneTime != null">
+        #{phoneTime,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationid != null">
+        #{registrationid,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="photopath != null">
+        #{photopath,jdbcType=VARCHAR},
+      </if>
+      <if test="invitedeptid != null">
+        #{invitedeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="invitecode != null">
+        #{invitecode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankpwd != null">
+        #{bankpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="wxtaken != null">
+        #{wxtaken,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="publicKey != null">
+        #{publicKey,jdbcType=VARCHAR},
+      </if>
+      <if test="privateKey != null">
+        #{privateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=OTHER},
+      </if>
+      <if test="payAccount != null">
+        #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null">
+        #{payPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTime != null">
+         #{contactTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.message.model.NameAuthentication">
+    update HS_NAME_AUTHENTICATION
+    <set>
+      <if test="custname != null">
+        CUSTNAME = #{custname,jdbcType=VARCHAR},
+      </if>
+      <if test="paperid != null">
+        PAPERID = #{paperid,jdbcType=VARCHAR},
+      </if>
+      <if test="isauthentication != null">
+        ISAUTHENTICATION = #{isauthentication,jdbcType=VARCHAR},
+      </if>
+      <if test="isauthenticationVal != null">
+        ISAUTHENTICATION_VAL = #{isauthenticationVal,jdbcType=VARCHAR},
+      </if>
+      <if test="authenticationMesg != null">
+        AUTHENTICATION_MESG = #{authenticationMesg,jdbcType=VARCHAR},
+      </if>
+      <if test="renfaMesg != null">
+        RENFA_MESG = #{renfaMesg,jdbcType=VARCHAR},
+      </if>
+      <if test="issesame != null">
+        ISSESAME = #{issesame,jdbcType=VARCHAR},
+      </if>
+      <if test="issesameVal != null">
+        ISSESAME_VAL = #{issesameVal,jdbcType=VARCHAR},
+      </if>
+      <if test="sesameGradeval != null">
+        SESAME_GRADEVAL = #{sesameGradeval,jdbcType=VARCHAR},
+      </if>
+      <if test="sesameTime != null">
+        SESAME_TIME = #{sesameTime,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null">
+        INCOME = #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeTime != null">
+        INCOME_TIME = #{incomeTime,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneTime != null">
+        PHONE_TIME = #{phoneTime,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        PWD = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="registrationid != null">
+        REGISTRATIONID = #{registrationid,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null">
+        UUID = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="photopath != null">
+        PHOTOPATH = #{photopath,jdbcType=VARCHAR},
+      </if>
+      <if test="invitedeptid != null">
+        INVITEDEPTID = #{invitedeptid,jdbcType=VARCHAR},
+      </if>
+      <if test="invitecode != null">
+        INVITECODE = #{invitecode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankpwd != null">
+        BANKPWD = #{bankpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="wxtaken != null">
+        WXTAKEN = #{wxtaken,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="publicKey != null">
+        PUBLIC_KEY = #{publicKey,jdbcType=VARCHAR},
+      </if>
+      <if test="privateKey != null">
+        PRIVATE_KEY = #{privateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        SIGN = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=OTHER},
+      </if>
+      <if test="payAccount != null">
+        PAY_ACCOUNT = #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payPassword != null">
+        PAY_PASSWORD = #{payPassword,jdbcType=VARCHAR},
+      </if>
+       <if test="contact != null">
+        CONTACT =  #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTime != null">
+        CONTACT_TIME = #{contactTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.message.model.NameAuthentication">
+    update HS_NAME_AUTHENTICATION
+    set CUSTNAME = #{custname,jdbcType=VARCHAR},
+      PAPERID = #{paperid,jdbcType=VARCHAR},
+      ISAUTHENTICATION = #{isauthentication,jdbcType=VARCHAR},
+      ISAUTHENTICATION_VAL = #{isauthenticationVal,jdbcType=VARCHAR},
+      AUTHENTICATION_MESG = #{authenticationMesg,jdbcType=VARCHAR},
+      RENFA_MESG = #{renfaMesg,jdbcType=VARCHAR},
+      ISSESAME = #{issesame,jdbcType=VARCHAR},
+      ISSESAME_VAL = #{issesameVal,jdbcType=VARCHAR},
+      SESAME_GRADEVAL = #{sesameGradeval,jdbcType=VARCHAR},
+      SESAME_TIME = #{sesameTime,jdbcType=VARCHAR},
+      INCOME = #{income,jdbcType=VARCHAR},
+      INCOME_TIME = #{incomeTime,jdbcType=VARCHAR},
+      PHONE_TIME = #{phoneTime,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      PWD = #{pwd,jdbcType=VARCHAR},
+      REGISTRATIONID = #{registrationid,jdbcType=VARCHAR},
+      UUID = #{uuid,jdbcType=VARCHAR},
+      PHOTOPATH = #{photopath,jdbcType=VARCHAR},
+      INVITEDEPTID = #{invitedeptid,jdbcType=VARCHAR},
+      INVITECODE = #{invitecode,jdbcType=VARCHAR},
+      BANKPWD = #{bankpwd,jdbcType=VARCHAR},
+      WXTAKEN = #{wxtaken,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      PUBLIC_KEY = #{publicKey,jdbcType=VARCHAR},
+      PRIVATE_KEY = #{privateKey,jdbcType=VARCHAR},
+      SIGN = #{sign,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=OTHER},
+      PAY_ACCOUNT = #{payAccount,jdbcType=VARCHAR},
+      PAY_PASSWORD = #{payPassword,jdbcType=VARCHAR},
+      CONTACT =  #{contact,jdbcType=VARCHAR},
+      CONTACT_TIME = #{contactTime,jdbcType=VARCHAR},
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+   
+    
+  <!--查询所有数据补全签名  -->
+  
+  <select id="selectAllData" parameterType="com.hoomsun.message.model.NameAuthentication" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+    from hs_name_authentication
+  </select>
+	
+	<!--身份证查询用户信息激光id-->
+	<select id="selectByIdcard" resultMap="BaseResultMap" parameterType="java.lang.String">
+	SELECT 
+	 <include refid="Base_Column_List" />
+	FROM hs_name_authentication WHERE  PAPERID = #{paperid,jdbcType=VARCHAR}
+	</select>
+	
+	<!--贷后/信审推送-->
+	<select id="selectApplyByID"  resultType="java.util.Map"  parameterType="java.lang.String">
+	SELECT * FROM HS_APPLY WHERE  APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

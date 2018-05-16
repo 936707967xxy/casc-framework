@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.QcCheckMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.QcCheck">
+		<id column="QC_ID" jdbcType="VARCHAR" property="qcId" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+		<result column="TASK_ID" jdbcType="VARCHAR" property="taskId" />
+		<result column="QC_EMP" jdbcType="VARCHAR" property="qcEmp" />
+		<result column="QC_EMP_NAME" jdbcType="VARCHAR" property="qcEmpName" />
+		<result column="HANDLE_OPINION" jdbcType="DECIMAL" property="handleOpinion" />
+		<result column="HANDLE_OPINION_VAL" jdbcType="VARCHAR"
+			property="handleOpinionVal" />
+		<result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+		<result column="QC_DATE" jdbcType="TIMESTAMP" property="qcDate" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		QC_ID, APPLY_ID, PROC_INST_ID, TASK_ID, QC_EMP, QC_EMP_NAME, HANDLE_OPINION,
+		HANDLE_OPINION_VAL,
+		REMARKS, QC_DATE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_QC_CHECK
+		where QC_ID = #{qcId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_QC_CHECK
+		where QC_ID = #{qcId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.QcCheck">
+		insert into HS_QC_CHECK (QC_ID, APPLY_ID, PROC_INST_ID,
+		TASK_ID, QC_EMP, QC_EMP_NAME,
+		HANDLE_OPINION, HANDLE_OPINION_VAL, REMARKS,
+		QC_DATE)
+		values (#{qcId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR},
+		#{procInstId,jdbcType=VARCHAR},
+		#{taskId,jdbcType=VARCHAR}, #{qcEmp,jdbcType=VARCHAR}, #{qcEmpName,jdbcType=VARCHAR},
+		#{handleOpinion,jdbcType=DECIMAL},
+		#{handleOpinionVal,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR},
+		#{qcDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.QcCheck">
+		insert into HS_QC_CHECK
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="qcId != null">
+				QC_ID,
+			</if>
+			<if test="applyId != null">
+				APPLY_ID,
+			</if>
+			<if test="procInstId != null">
+				PROC_INST_ID,
+			</if>
+			<if test="taskId != null">
+				TASK_ID,
+			</if>
+			<if test="qcEmp != null">
+				QC_EMP,
+			</if>
+			<if test="qcEmpName != null">
+				QC_EMP_NAME,
+			</if>
+			<if test="handleOpinion != null">
+				HANDLE_OPINION,
+			</if>
+			<if test="handleOpinionVal != null">
+				HANDLE_OPINION_VAL,
+			</if>
+			<if test="remarks != null">
+				REMARKS,
+			</if>
+			<if test="qcDate != null">
+				QC_DATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="qcId != null">
+				#{qcId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="procInstId != null">
+				#{procInstId,jdbcType=VARCHAR},
+			</if>
+			<if test="taskId != null">
+				#{taskId,jdbcType=VARCHAR},
+			</if>
+			<if test="qcEmp != null">
+				#{qcEmp,jdbcType=VARCHAR},
+			</if>
+			<if test="qcEmpName != null">
+				#{qcEmpName,jdbcType=VARCHAR},
+			</if>
+			<if test="handleOpinion != null">
+				#{handleOpinion,jdbcType=DECIMAL},
+			</if>
+			<if test="handleOpinionVal != null">
+				#{handleOpinionVal,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="qcDate != null">
+				#{qcDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.QcCheck">
+		update HS_QC_CHECK
+		<set>
+			<if test="applyId != null">
+				APPLY_ID = #{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="procInstId != null">
+				PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+			</if>
+			<if test="taskId != null">
+				TASK_ID = #{taskId,jdbcType=VARCHAR},
+			</if>
+			<if test="qcEmp != null">
+				QC_EMP = #{qcEmp,jdbcType=VARCHAR},
+			</if>
+			<if test="qcEmpName != null">
+				QC_EMP_NAME = #{qcEmpName,jdbcType=VARCHAR},
+			</if>
+			<if test="handleOpinion != null">
+				HANDLE_OPINION = #{handleOpinion,jdbcType=DECIMAL},
+			</if>
+			<if test="handleOpinionVal != null">
+				HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				REMARKS = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="qcDate != null">
+				QC_DATE = #{qcDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where QC_ID = #{qcId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.QcCheck">
+		update HS_QC_CHECK
+		set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+		PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+		TASK_ID = #{taskId,jdbcType=VARCHAR},
+		QC_EMP = #{qcEmp,jdbcType=VARCHAR},
+		QC_EMP_NAME = #{qcEmpName,jdbcType=VARCHAR},
+		HANDLE_OPINION = #{handleOpinion,jdbcType=DECIMAL},
+		HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+		REMARKS = #{remarks,jdbcType=VARCHAR},
+		QC_DATE = #{qcDate,jdbcType=TIMESTAMP}
+		where QC_ID = #{qcId,jdbcType=VARCHAR}
+	</update>
+
+	<!-- <resultMap type="com.hoomsun.csas.sales.api.model.UserApply" id="USER_INFO_ALL" 
+		extends="BaseResultMap"> 联系人 <collection property="userContacts" javaType="java.util.ArrayList" 
+		ofType="com.hoomsun.csas.sales.api.model.UserContacts" resultMap="com.hoomsun.csas.sales.dao.UserContactsMapper.BaseResultById"/> 
+		资产 <collection property="assetInfo" javaType="java.util.ArrayList" ofType="com.hoomsun.csas.sales.api.model.AssetInfo" 
+		resultMap="com.hoomsun.csas.sales.dao.AssetInfoMapper.BaseResultById"/> 职业 
+		<collection property="userOccupationalInfo" javaType="java.util.ArrayList" 
+		ofType="com.hoomsun.csas.sales.api.model.OccupationalInfo" resultMap="com.hoomsun.csas.sales.dao.OccupationalInfoMapper.BaseResultById"/> 
+		</resultMap> -->
+
+	<!-- apply表所需字段， 以后增加条件（门店，app个人） -->
+	<select id="findPager" parameterType="java.util.Map" resultMap="com.hoomsun.csas.sales.dao.UserApplyMapper.BaseResultMap">
+		SELECT * FROM (
+			SELECT * FROM (
+				SELECT
+					ROWNUM r,
+					AP.*
+				FROM
+					(
+						SELECT
+							app.LOAN_ID,
+							app.APPLY_ID,
+							app.CUST_NAME,
+							app.SOURCES,
+							app.SOURCES_VALUE,
+							REPLACE (
+								app.CUST_MOBILE,
+								SUBSTR (app.CUST_MOBILE, 4, 4),
+								'****'
+							) AS CUST_MOBILE,
+							REPLACE (
+								app.ID_NUMBER,
+								SUBSTR (app.ID_NUMBER, 6, 8),
+								'********'
+							) AS ID_NUMBER,
+							app.PRODUCT_ID,
+							app.PRODUCT_NAME,
+							app.APPLY_AMOUNT,
+							app.PROC_STATUS_VAL,
+							app.PROC_STATUS,
+							app.PROC_INST_ID,
+							app.STORE_ID,
+							app.SALES_EMP_ID,
+							app.SALES_EMP_NAME,
+							app.CREATE_EMPLOYEE,
+							app.CREATE_EMPLOYEE_VAL,
+							app.APPLY_DATE,
+							tbl.ASSIGNEE_
+						FROM
+							HS_APPLY app
+						RIGHT JOIN (
+							SELECT
+								HP.BUSINESS_KEY_,
+								HT.ASSIGNEE_
+							FROM
+								ACT_HI_PROCINST HP
+							LEFT JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_
+							<choose>
+								<!-- 待签收 -->
+								<when test="nodeStatus == 0">
+									WHERE HT.TASK_DEF_KEY_ = 'qcCheck' AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+								</when>
+								
+								<!-- 已经签收，待审核 -->
+								<when test="nodeStatus == 1">
+									<choose>
+										<when test="isMgr == 1">
+											LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+											LEFT JOIN (
+												SELECT CIL.DEPT_ID
+												FROM HS_DEPARTMENT CIL
+												START WITH CIL.DEPT_ID=#{deptId}
+												CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+											) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+											WHERE HT.TASK_DEF_KEY_ = 'qcCheck' AND HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+										</when>
+										<!-- 非部门负责人 -->
+										<otherwise>
+											WHERE HT.TASK_DEF_KEY_ = 'qcCheck'
+											AND HT.ASSIGNEE_ =#{empId} AND HT.END_TIME_ IS NULL
+										</otherwise>
+									</choose>
+								</when>
+								
+								<!-- 已经审核 -->
+								<when test="nodeStatus == 2">
+									<choose>
+										<when test="isMgr == 1">
+											LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+											LEFT JOIN (
+												SELECT CIL.DEPT_ID
+												FROM HS_DEPARTMENT CIL
+												START WITH CIL.DEPT_ID=#{deptId}
+												CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+											) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+											WHERE HT.TASK_DEF_KEY_ = 'qcCheck' AND HT.END_TIME_ IS NOT NULL
+										</when>
+										<otherwise>
+											WHERE HT.TASK_DEF_KEY_ = 'qcCheck'
+											AND HT.ASSIGNEE_ =#{empId} AND HT.END_TIME_ IS NOT NULL
+										</otherwise>
+									</choose>
+								</when>
+								
+								<!-- 全部  已经签收 和 已经审核的任务-->
+								<when test="nodeStatus == 3">
+									<choose>
+										<when test="isMgr == 1">
+											LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+											LEFT JOIN (
+												SELECT CIL.DEPT_ID
+												FROM HS_DEPARTMENT CIL
+												START WITH CIL.DEPT_ID=#{deptId}
+												CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+											) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+											WHERE HT.TASK_DEF_KEY_ = 'qcCheck'
+										</when>
+										<otherwise>
+											WHERE HT.TASK_DEF_KEY_ = 'qcCheck'
+											AND HT.ASSIGNEE_ =#{empId}
+										</otherwise>
+									</choose>
+								</when>
+							</choose>
+							GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+						) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+						WHERE app.DEL_STATUE = 0 
+						AND app.STORE_ID = #{storeId} 
+						<if test="isMgr != 1">  
+							<![CDATA[and app.CREATE_EMPLOYEE <> #{empId}]]>
+				        </if> 
+						<if test="custName != null and custName != ''">
+							and app.CUST_NAME LIKE #{custName} 
+						</if>
+						<if test="custMobile != null and custMobile != ''">
+							and app.CUST_MOBILE = #{custMobile}
+						</if>
+						<if test="idNumber != null and idNumber != ''">
+							and app.ID_NUMBER = #{idNumber}
+						</if>
+						<if test="salesEmpName != null and salesEmpName != ''">
+							and app.SALES_EMP_NAME LIKE #{salesEmpName}
+						</if>
+						<if test="loanId != null and loanId != ''">
+							and app.LOAN_ID = #{loanId} 
+						</if>
+				        ORDER BY app.APPLY_DATE DESC
+					) AP
+				)
+				<![CDATA[WHERE r <=  #{pageIndex} * #{pageSize}]]>
+			)
+		<![CDATA[WHERE ROWNUM > (#{pageIndex} -1) * #{pageSize}]]>
+	</select>
+	
+	<!-- 查询记录数 -->
+	<select id="findPagerCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT
+			COUNT(app.APPLY_ID)
+		FROM
+			HS_APPLY app
+		RIGHT JOIN (
+			SELECT
+				HP.BUSINESS_KEY_,
+				HT.ASSIGNEE_
+			FROM
+				ACT_HI_PROCINST HP
+			LEFT JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_
+			<choose>
+				<!-- 待签收 -->
+				<when test="nodeStatus == 0">
+					WHERE HT.TASK_DEF_KEY_ = 'qcCheck' AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+				</when>
+				
+				<!-- 已经签收，待审核 -->
+				<when test="nodeStatus == 1">
+					<choose>
+						<when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							LEFT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'qcCheck' AND HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+						</when>
+						<!-- 非部门负责人 -->
+						<otherwise>
+							WHERE HT.TASK_DEF_KEY_ = 'qcCheck'
+							AND HT.ASSIGNEE_ = #{empId} AND HT.END_TIME_ IS NULL
+						</otherwise>
+					</choose>
+				</when>
+				
+				<!-- 已经审核 -->
+				<when test="nodeStatus == 2">
+					<choose>
+						<when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							LEFT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'qcCheck' AND HT.END_TIME_ IS NOT NULL
+						</when>
+						<otherwise>
+							WHERE HT.TASK_DEF_KEY_ = 'qcCheck'
+							AND HT.ASSIGNEE_ = #{empId} AND HT.END_TIME_ IS NOT NULL
+						</otherwise>
+					</choose>
+				</when>
+				
+				<!-- 全部  已经签收 和 已经审核的任务-->
+				<when test="nodeStatus == 3">
+					<choose>
+						<when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							LEFT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'qcCheck'
+						</when>
+						<otherwise>
+							WHERE HT.TASK_DEF_KEY_ = 'qcCheck'
+							AND HT.ASSIGNEE_ = #{empId}
+						</otherwise>
+					</choose>
+				</when>
+			</choose>
+			GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+		) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+		WHERE app.DEL_STATUE = 0 
+		AND app.STORE_ID = #{storeId}
+		<if test="isMgr != 1">  
+			<![CDATA[and app.CREATE_EMPLOYEE <> #{empId}]]>
+        </if>  
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName} 
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId} 
+		</if>
+	</select>
+
+	<resultMap type="com.hoomsun.csas.sales.api.model.UserApply"
+		id="APPLY_DATA_RESULT_MAP" extends="com.hoomsun.csas.sales.dao.UserApplyMapper.BaseResultMap">
+		<association property="assetInfo"
+			javaType="com.hoomsun.csas.sales.api.model.AssetInfo" resultMap="com.hoomsun.csas.sales.dao.AssetInfoMapper.BaseResultMap" />
+		<association property="userOccupationalInfo"
+			javaType="com.hoomsun.csas.sales.api.model.OccupationalInfo"
+			resultMap="com.hoomsun.csas.sales.dao.OccupationalInfoMapper.BaseResultMap" />
+		<collection property="userContacts" javaType="java.util.List"
+			ofType="com.hoomsun.csas.sales.api.model.UserContacts" resultMap="com.hoomsun.csas.sales.dao.UserContactsMapper.BaseResultMap" />
+	</resultMap>
+	<select id="findApplyById" parameterType="java.lang.String"
+		resultMap="APPLY_DATA_RESULT_MAP">
+		SELECT * FROM HS_APPLY APY
+		LEFT JOIN HS_ASSET_INFO ASS ON APY.APPLY_ID = ASS.APPLY_ID
+		LEFT JOIN HS_OCCUPATIONAL_INFO OCC ON APY.APPLY_ID = OCC.APPLY_ID
+		WHERE APY.APPLY_ID=#{applyId}
+	</select>
+	
+	<!-- 根据applyId获取质检复核信息  -->
+  <select id="findByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT 
+    QC_ID, APPLY_ID, PROC_INST_ID, TASK_ID, QC_EMP, QC_EMP_NAME, HANDLE_OPINION,
+	HANDLE_OPINION_VAL,
+	REMARKS, QC_DATE
+    FROM HS_QC_CHECK 
+    WHERE APPLY_ID=#{applyId} QC_DATE IN (
+    	SELECT MAX(QC_DATE) FROM HS_QC_CHECK WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    )
+  </select>
+  
+  
+  <!-- liushuai add 查询退回原因 -->
+  <resultMap id="rollBackMap" type="com.hoomsun.csas.sales.api.model.vo.RollBackInfoVo" >
+  	<result column="HANDLE_TIME" property="handleTime"/>
+  	<result column="INNER_REMARK" property="handleRemark"/>
+  </resultMap>
+  
+  <select id="selectRollBackInfo" parameterType="java.lang.String" resultMap="rollBackMap" >
+  	SELECT HANDLE_TIME, INNER_REMARK
+	FROM HS_PRE_AUDIT 
+	WHERE APPLY_ID = #{applyId} AND HANDLE_OPTION=2
+	ORDER BY HANDLE_TIME
+  </select>
+  
+  <!-- 撤回只撤回上一次审核的数据  -->
+  <delete id="deleteWhenWithDrow" parameterType="java.lang.String">
+  	DELETE FROM  HS_QC_CHECK WHERE APPLY_ID = #{applyId} AND PROC_INST_ID = #{processId} AND QC_DATE IN (
+    	SELECT MAX(QC_DATE) FROM HS_QC_CHECK WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    )
+  </delete>
+
+</mapper>

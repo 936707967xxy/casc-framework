@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.ApplyDetailMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.ApplyDetail">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="APPLY_TYPE" jdbcType="VARCHAR" property="applyType" />
+		<result column="APPLY_STATUS" jdbcType="VARCHAR" property="applyStatus" />
+		<result column="APPROVE_ID" jdbcType="VARCHAR" property="approveId" />
+		<result column="APPROVE_NAME" jdbcType="VARCHAR" property="approveName" />
+		<result column="APPROVE_DESC" jdbcType="VARCHAR" property="approveDesc" />
+		<result column="APPROVE_OPINION" jdbcType="VARCHAR" property="approveOpinion" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, APPLY_ID, APPLY_TYPE, APPLY_STATUS, APPROVE_ID,
+		APPROVE_NAME,
+		APPROVE_DESC, APPROVE_OPINION,
+		CREATE_TIME
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_APPLY_DETAIL
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_APPLY_DETAIL
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.ApplyDetail">
+		insert into
+		HS_AFTER_APPLY_DETAIL (ID, APPLY_ID, APPLY_TYPE,
+		APPLY_STATUS,
+		APPROVE_ID, APPROVE_NAME,
+		APPROVE_DESC, APPROVE_OPINION, CREATE_TIME
+		)
+		values (#{id,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR},
+		#{applyType,jdbcType=VARCHAR},
+		#{applyStatus,jdbcType=VARCHAR},
+		#{approveId,jdbcType=VARCHAR}, #{approveName,jdbcType=VARCHAR},
+		#{approveDesc,jdbcType=VARCHAR}, #{approveOpinion,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.ApplyDetail">
+		insert into HS_AFTER_APPLY_DETAIL
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="applyId != null">
+				APPLY_ID,
+			</if>
+			<if test="applyType != null">
+				APPLY_TYPE,
+			</if>
+			<if test="applyStatus != null">
+				APPLY_STATUS,
+			</if>
+			<if test="approveId != null">
+				APPROVE_ID,
+			</if>
+			<if test="approveName != null">
+				APPROVE_NAME,
+			</if>
+			<if test="approveDesc != null">
+				APPROVE_DESC,
+			</if>
+			<if test="approveOpinion != null">
+				APPROVE_OPINION,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyType != null">
+				#{applyType,jdbcType=VARCHAR},
+			</if>
+			<if test="applyStatus != null">
+				#{applyStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="approveId != null">
+				#{approveId,jdbcType=VARCHAR},
+			</if>
+			<if test="approveName != null">
+				#{approveName,jdbcType=VARCHAR},
+			</if>
+			<if test="approveDesc != null">
+				#{approveDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="approveOpinion != null">
+				#{approveOpinion,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.ApplyDetail">
+		update HS_AFTER_APPLY_DETAIL
+		<set>
+			<if test="applyId != null">
+				APPLY_ID = #{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyType != null">
+				APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+			</if>
+			<if test="applyStatus != null">
+				APPLY_STATUS = #{applyStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="approveId != null">
+				APPROVE_ID = #{approveId,jdbcType=VARCHAR},
+			</if>
+			<if test="approveName != null">
+				APPROVE_NAME = #{approveName,jdbcType=VARCHAR},
+			</if>
+			<if test="approveDesc != null">
+				APPROVE_DESC = #{approveDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="approveOpinion != null">
+				APPROVE_OPINION = #{approveOpinion,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.ApplyDetail">
+		update
+		HS_AFTER_APPLY_DETAIL
+		set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+		APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+		APPLY_STATUS =
+		#{applyStatus,jdbcType=VARCHAR},
+		APPROVE_ID =
+		#{approveId,jdbcType=VARCHAR},
+		APPROVE_NAME =
+		#{approveName,jdbcType=VARCHAR},
+		APPROVE_DESC =
+		#{approveDesc,jdbcType=VARCHAR},
+		APPROVE_OPINION =
+		#{approveOpinion,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- -->
+
+	<select id="getApplyDetail" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_APPLY_DETAIL
+		where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+
+		order by CREATE_TIME
+
+
+
+
+	</select>
+
+</mapper>

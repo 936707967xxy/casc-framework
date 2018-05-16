@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.CmsAccountMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.CmsAccount">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ACCNBR" jdbcType="VARCHAR" property="accnbr" />
+    <result column="BBKNBR" jdbcType="VARCHAR" property="bbknbr" />
+    <result column="C_BBKNBR" jdbcType="VARCHAR" property="cBbknbr" />
+    <result column="LGNNAM" jdbcType="VARCHAR" property="lgnnam" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ACCNBR, BBKNBR, C_BBKNBR, LGNNAM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CMB_ACCOUNT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CMB_ACCOUNT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.CmsAccount">
+    insert into HS_CMB_ACCOUNT (ID, ACCNBR, BBKNBR, 
+      C_BBKNBR, LGNNAM)
+    values (#{id,jdbcType=VARCHAR}, #{accnbr,jdbcType=VARCHAR}, #{bbknbr,jdbcType=VARCHAR}, 
+      #{cBbknbr,jdbcType=VARCHAR}, #{lgnnam,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.CmsAccount">
+    insert into HS_CMB_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="accnbr != null">
+        ACCNBR,
+      </if>
+      <if test="bbknbr != null">
+        BBKNBR,
+      </if>
+      <if test="cBbknbr != null">
+        C_BBKNBR,
+      </if>
+      <if test="lgnnam != null">
+        LGNNAM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="accnbr != null">
+        #{accnbr,jdbcType=VARCHAR},
+      </if>
+      <if test="bbknbr != null">
+        #{bbknbr,jdbcType=VARCHAR},
+      </if>
+      <if test="cBbknbr != null">
+        #{cBbknbr,jdbcType=VARCHAR},
+      </if>
+      <if test="lgnnam != null">
+        #{lgnnam,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.CmsAccount">
+    update HS_CMB_ACCOUNT
+    <set>
+      <if test="accnbr != null">
+        ACCNBR = #{accnbr,jdbcType=VARCHAR},
+      </if>
+      <if test="bbknbr != null">
+        BBKNBR = #{bbknbr,jdbcType=VARCHAR},
+      </if>
+      <if test="cBbknbr != null">
+        C_BBKNBR = #{cBbknbr,jdbcType=VARCHAR},
+      </if>
+      <if test="lgnnam != null">
+        LGNNAM = #{lgnnam,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.CmsAccount">
+    update HS_CMB_ACCOUNT
+    set ACCNBR = #{accnbr,jdbcType=VARCHAR},
+      BBKNBR = #{bbknbr,jdbcType=VARCHAR},
+      C_BBKNBR = #{cBbknbr,jdbcType=VARCHAR},
+      LGNNAM = #{lgnnam,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectAllData"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CMB_ACCOUNT
+  </select>
+  
+</mapper>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.AfreshCareerInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.AfreshCareerInfo">
+    <id column="RINFO_PK_ID" jdbcType="VARCHAR" property="rinfoPkId" />
+    <result column="FK_ID" jdbcType="VARCHAR" property="fkId" />
+    <result column="COMPANY_KIND" jdbcType="VARCHAR" property="companyKind" />
+    <result column="COMPANY_KIND_VAL" jdbcType="VARCHAR" property="companyKindVal" />
+    <result column="SALARY_MONTHLY" jdbcType="VARCHAR" property="salaryMonthly" />
+    <result column="FULL_WORK_NAME" jdbcType="VARCHAR" property="fullWorkName" />
+    <result column="COMPANY_ADDRESS" jdbcType="VARCHAR" property="companyAddress" />
+    <result column="COMPANY_ADDRESS_DETAIL_CODE" jdbcType="VARCHAR" property="companyAddressDetailCode" />
+    <result column="COMPANY_ADDRESS_CITY_CODE" jdbcType="VARCHAR" property="companyAddressCityCode" />
+    <result column="COMPANY_ADDRESS_CITY" jdbcType="VARCHAR" property="companyAddressCity" />
+    <result column="COMPANY_ADDRESS_PRO_CODE" jdbcType="VARCHAR" property="companyAddressProCode" />
+    <result column="COMPANY_ADDRESS_PRO" jdbcType="VARCHAR" property="companyAddressPro" />
+    <result column="COMPANY_ADDRESS_DETAIL" jdbcType="VARCHAR" property="companyAddressDetail" />
+    <result column="COMPANY_TEL" jdbcType="VARCHAR" property="companyTel" />
+    <result column="COMPANY_TEL_CODE" jdbcType="VARCHAR" property="companyTelCode" />
+    <result column="COMPANY_TEL_VALUE" jdbcType="VARCHAR" property="companyTelValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    RINFO_PK_ID, FK_ID, COMPANY_KIND, COMPANY_KIND_VAL, SALARY_MONTHLY, FULL_WORK_NAME, 
+    COMPANY_ADDRESS, COMPANY_ADDRESS_DETAIL_CODE, COMPANY_ADDRESS_CITY_CODE, COMPANY_ADDRESS_CITY, 
+    COMPANY_ADDRESS_PRO_CODE, COMPANY_ADDRESS_PRO, COMPANY_ADDRESS_DETAIL, COMPANY_TEL, 
+    COMPANY_TEL_CODE, COMPANY_TEL_VALUE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFRESH_CAREER_INFO
+    where RINFO_PK_ID = #{rinfoPkId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFRESH_CAREER_INFO
+    where RINFO_PK_ID = #{rinfoPkId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.AfreshCareerInfo">
+    insert into HS_AFRESH_CAREER_INFO (RINFO_PK_ID, FK_ID, COMPANY_KIND, 
+      COMPANY_KIND_VAL, SALARY_MONTHLY, FULL_WORK_NAME, 
+      COMPANY_ADDRESS, COMPANY_ADDRESS_DETAIL_CODE, 
+      COMPANY_ADDRESS_CITY_CODE, COMPANY_ADDRESS_CITY, 
+      COMPANY_ADDRESS_PRO_CODE, COMPANY_ADDRESS_PRO, 
+      COMPANY_ADDRESS_DETAIL, COMPANY_TEL, COMPANY_TEL_CODE, 
+      COMPANY_TEL_VALUE)
+    values (#{rinfoPkId,jdbcType=VARCHAR}, #{fkId,jdbcType=VARCHAR}, #{companyKind,jdbcType=VARCHAR}, 
+      #{companyKindVal,jdbcType=VARCHAR}, #{salaryMonthly,jdbcType=VARCHAR}, #{fullWorkName,jdbcType=VARCHAR}, 
+      #{companyAddress,jdbcType=VARCHAR}, #{companyAddressDetailCode,jdbcType=VARCHAR}, 
+      #{companyAddressCityCode,jdbcType=VARCHAR}, #{companyAddressCity,jdbcType=VARCHAR}, 
+      #{companyAddressProCode,jdbcType=VARCHAR}, #{companyAddressPro,jdbcType=VARCHAR}, 
+      #{companyAddressDetail,jdbcType=VARCHAR}, #{companyTel,jdbcType=VARCHAR}, #{companyTelCode,jdbcType=VARCHAR}, 
+      #{companyTelValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.AfreshCareerInfo">
+    insert into HS_AFRESH_CAREER_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="rinfoPkId != null">
+        RINFO_PK_ID,
+      </if>
+      <if test="fkId != null">
+        FK_ID,
+      </if>
+      <if test="companyKind != null">
+        COMPANY_KIND,
+      </if>
+      <if test="companyKindVal != null">
+        COMPANY_KIND_VAL,
+      </if>
+      <if test="salaryMonthly != null">
+        SALARY_MONTHLY,
+      </if>
+      <if test="fullWorkName != null">
+        FULL_WORK_NAME,
+      </if>
+      <if test="companyAddress != null">
+        COMPANY_ADDRESS,
+      </if>
+      <if test="companyAddressDetailCode != null">
+        COMPANY_ADDRESS_DETAIL_CODE,
+      </if>
+      <if test="companyAddressCityCode != null">
+        COMPANY_ADDRESS_CITY_CODE,
+      </if>
+      <if test="companyAddressCity != null">
+        COMPANY_ADDRESS_CITY,
+      </if>
+      <if test="companyAddressProCode != null">
+        COMPANY_ADDRESS_PRO_CODE,
+      </if>
+      <if test="companyAddressPro != null">
+        COMPANY_ADDRESS_PRO,
+      </if>
+      <if test="companyAddressDetail != null">
+        COMPANY_ADDRESS_DETAIL,
+      </if>
+      <if test="companyTel != null">
+        COMPANY_TEL,
+      </if>
+      <if test="companyTelCode != null">
+        COMPANY_TEL_CODE,
+      </if>
+      <if test="companyTelValue != null">
+        COMPANY_TEL_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="rinfoPkId != null">
+        #{rinfoPkId,jdbcType=VARCHAR},
+      </if>
+      <if test="fkId != null">
+        #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKind != null">
+        #{companyKind,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKindVal != null">
+        #{companyKindVal,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryMonthly != null">
+        #{salaryMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="fullWorkName != null">
+        #{fullWorkName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressDetailCode != null">
+        #{companyAddressDetailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressCityCode != null">
+        #{companyAddressCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressCity != null">
+        #{companyAddressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressProCode != null">
+        #{companyAddressProCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressPro != null">
+        #{companyAddressPro,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressDetail != null">
+        #{companyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null">
+        #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelCode != null">
+        #{companyTelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelValue != null">
+        #{companyTelValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.AfreshCareerInfo">
+    update HS_AFRESH_CAREER_INFO
+    <set>
+      <if test="fkId != null">
+        FK_ID = #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKind != null">
+        COMPANY_KIND = #{companyKind,jdbcType=VARCHAR},
+      </if>
+      <if test="companyKindVal != null">
+        COMPANY_KIND_VAL = #{companyKindVal,jdbcType=VARCHAR},
+      </if>
+      <if test="salaryMonthly != null">
+        SALARY_MONTHLY = #{salaryMonthly,jdbcType=VARCHAR},
+      </if>
+      <if test="fullWorkName != null">
+        FULL_WORK_NAME = #{fullWorkName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null">
+        COMPANY_ADDRESS = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressDetailCode != null">
+        COMPANY_ADDRESS_DETAIL_CODE = #{companyAddressDetailCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressCityCode != null">
+        COMPANY_ADDRESS_CITY_CODE = #{companyAddressCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressCity != null">
+        COMPANY_ADDRESS_CITY = #{companyAddressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressProCode != null">
+        COMPANY_ADDRESS_PRO_CODE = #{companyAddressProCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressPro != null">
+        COMPANY_ADDRESS_PRO = #{companyAddressPro,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddressDetail != null">
+        COMPANY_ADDRESS_DETAIL = #{companyAddressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null">
+        COMPANY_TEL = #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelCode != null">
+        COMPANY_TEL_CODE = #{companyTelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTelValue != null">
+        COMPANY_TEL_VALUE = #{companyTelValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where RINFO_PK_ID = #{rinfoPkId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.AfreshCareerInfo">
+    update HS_AFRESH_CAREER_INFO
+    set FK_ID = #{fkId,jdbcType=VARCHAR},
+      COMPANY_KIND = #{companyKind,jdbcType=VARCHAR},
+      COMPANY_KIND_VAL = #{companyKindVal,jdbcType=VARCHAR},
+      SALARY_MONTHLY = #{salaryMonthly,jdbcType=VARCHAR},
+      FULL_WORK_NAME = #{fullWorkName,jdbcType=VARCHAR},
+      COMPANY_ADDRESS = #{companyAddress,jdbcType=VARCHAR},
+      COMPANY_ADDRESS_DETAIL_CODE = #{companyAddressDetailCode,jdbcType=VARCHAR},
+      COMPANY_ADDRESS_CITY_CODE = #{companyAddressCityCode,jdbcType=VARCHAR},
+      COMPANY_ADDRESS_CITY = #{companyAddressCity,jdbcType=VARCHAR},
+      COMPANY_ADDRESS_PRO_CODE = #{companyAddressProCode,jdbcType=VARCHAR},
+      COMPANY_ADDRESS_PRO = #{companyAddressPro,jdbcType=VARCHAR},
+      COMPANY_ADDRESS_DETAIL = #{companyAddressDetail,jdbcType=VARCHAR},
+      COMPANY_TEL = #{companyTel,jdbcType=VARCHAR},
+      COMPANY_TEL_CODE = #{companyTelCode,jdbcType=VARCHAR},
+      COMPANY_TEL_VALUE = #{companyTelValue,jdbcType=VARCHAR}
+    where RINFO_PK_ID = #{rinfoPkId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByFkid" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AFRESH_CAREER_INFO
+    where FK_ID = #{fkId,jdbcType=VARCHAR}
+  </select>
+</mapper>

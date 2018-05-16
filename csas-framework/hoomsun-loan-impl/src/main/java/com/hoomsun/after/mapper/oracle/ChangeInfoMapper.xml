@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.ChangeInfoMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.ChangeInfo">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="APPLY_TYPE" jdbcType="VARCHAR" property="applyType" />
+		<result column="CUST_ID" jdbcType="VARCHAR" property="custId" />
+		<result column="SEX" jdbcType="VARCHAR" property="sex" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="OLD_TEL" jdbcType="VARCHAR" property="oldTel" />
+		<result column="NEW_TEL" jdbcType="VARCHAR" property="newTel" />
+		<result column="OLD_BANK" jdbcType="VARCHAR" property="oldBank" />
+		<result column="OLD_BANK_PHONE" jdbcType="VARCHAR" property="oldBankPhone" />
+		<result column="OLD_BANK_ACCOUNT" jdbcType="VARCHAR" property="oldBankAccount" />
+		<result column="OLD_BANK_CODE" jdbcType="VARCHAR" property="oldBankCode" />
+		<result column="NEW_BANK" jdbcType="VARCHAR" property="newBank" />
+		<result column="NEW_BANK_PHONE" jdbcType="VARCHAR" property="newBankPhone" />
+		<result column="NEW_BANK_ACCOUNT" jdbcType="VARCHAR" property="newBankAccount" />
+		<result column="NEW_BANK_CODE" jdbcType="VARCHAR" property="newBankCode" />
+		<result column="CHANGEINFO_STATUS" jdbcType="VARCHAR" property="changeinfoStatus" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, APPLY_ID, APPLY_TYPE, CUST_ID, SEX, CAST_NAME,CARD_NO,
+		OLD_TEL,
+		NEW_TEL,
+		OLD_BANK, OLD_BANK_PHONE,
+		OLD_BANK_ACCOUNT,
+		OLD_BANK_CODE,
+		NEW_BANK, NEW_BANK_PHONE, NEW_BANK_ACCOUNT,
+		NEW_BANK_CODE,
+		CHANGEINFO_STATUS, CREATE_TIME, UPDATE_DATE
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_CHANGEINFO
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_CHANGEINFO
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.ChangeInfo">
+		insert into
+		HS_AFTER_CHANGEINFO (ID, APPLY_ID, APPLY_TYPE,
+		CUST_ID, SEX,
+		CAST_NAME,CARD_NO,
+		OLD_TEL, NEW_TEL, OLD_BANK,
+		OLD_BANK_PHONE,
+		OLD_BANK_ACCOUNT,
+		OLD_BANK_CODE,
+		NEW_BANK, NEW_BANK_PHONE,
+		NEW_BANK_ACCOUNT,
+		NEW_BANK_CODE, CHANGEINFO_STATUS, CREATE_TIME,
+		UPDATE_DATE)
+		values
+		(#{id,jdbcType=VARCHAR},
+		#{applyId,jdbcType=VARCHAR},
+		#{applyType,jdbcType=VARCHAR},
+		#{custId,jdbcType=VARCHAR},
+		#{sex,jdbcType=VARCHAR},
+		#{castName,jdbcType=VARCHAR},#{cardNo,jdbcType=VARCHAR},
+		#{oldTel,jdbcType=VARCHAR}, #{newTel,jdbcType=VARCHAR},
+		#{oldBank,jdbcType=VARCHAR},
+		#{oldBankPhone,jdbcType=VARCHAR},
+		#{oldBankAccount,jdbcType=VARCHAR}, #{oldBankCode,jdbcType=VARCHAR},
+		#{newBank,jdbcType=VARCHAR}, #{newBankPhone,jdbcType=VARCHAR},
+		#{newBankAccount,jdbcType=VARCHAR},
+		#{newBankCode,jdbcType=VARCHAR},
+		#{changeinfoStatus,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.ChangeInfo">
+		insert into HS_AFTER_CHANGEINFO
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="applyId != null">
+				APPLY_ID,
+			</if>
+			<if test="applyType != null">
+				APPLY_TYPE,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="sex != null">
+				SEX,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="cardNo != null">
+				CARD_NO,
+			</if>
+			<if test="oldTel != null">
+				OLD_TEL,
+			</if>
+			<if test="newTel != null">
+				NEW_TEL,
+			</if>
+			<if test="oldBank != null">
+				OLD_BANK,
+			</if>
+			<if test="oldBankPhone != null">
+				OLD_BANK_PHONE,
+			</if>
+			<if test="oldBankAccount != null">
+				OLD_BANK_ACCOUNT,
+			</if>
+			<if test="oldBankCode != null">
+				OLD_BANK_CODE,
+			</if>
+			<if test="newBank != null">
+				NEW_BANK,
+			</if>
+			<if test="newBankPhone != null">
+				NEW_BANK_PHONE,
+			</if>
+			<if test="newBankAccount != null">
+				NEW_BANK_ACCOUNT,
+			</if>
+			<if test="newBankCode != null">
+				NEW_BANK_CODE,
+			</if>
+			<if test="changeinfoStatus != null">
+				CHANGEINFO_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyType != null">
+				#{applyType,jdbcType=VARCHAR},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="oldTel != null">
+				#{oldTel,jdbcType=VARCHAR},
+			</if>
+			<if test="newTel != null">
+				#{newTel,jdbcType=VARCHAR},
+			</if>
+			<if test="oldBank != null">
+				#{oldBank,jdbcType=VARCHAR},
+			</if>
+			<if test="oldBankPhone != null">
+				#{oldBankPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="oldBankAccount != null">
+				#{oldBankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="oldBankCode != null">
+				#{oldBankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="newBank != null">
+				#{newBank,jdbcType=VARCHAR},
+			</if>
+			<if test="newBankPhone != null">
+				#{newBankPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="newBankAccount != null">
+				#{newBankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="newBankCode != null">
+				#{newBankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="changeinfoStatus != null">
+				#{changeinfoStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.ChangeInfo">
+		update HS_AFTER_CHANGEINFO
+		<set>
+			<if test="applyId != null">
+				APPLY_ID = #{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyType != null">
+				APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+			</if>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				SEX = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="oldTel != null">
+				OLD_TEL = #{oldTel,jdbcType=VARCHAR},
+			</if>
+			<if test="newTel != null">
+				NEW_TEL = #{newTel,jdbcType=VARCHAR},
+			</if>
+			<if test="oldBank != null">
+				OLD_BANK = #{oldBank,jdbcType=VARCHAR},
+			</if>
+			<if test="oldBankPhone != null">
+				OLD_BANK_PHONE = #{oldBankPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="oldBankAccount != null">
+				OLD_BANK_ACCOUNT = #{oldBankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="oldBankCode != null">
+				OLD_BANK_CODE = #{oldBankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="newBank != null">
+				NEW_BANK = #{newBank,jdbcType=VARCHAR},
+			</if>
+			<if test="newBankPhone != null">
+				NEW_BANK_PHONE = #{newBankPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="newBankAccount != null">
+				NEW_BANK_ACCOUNT = #{newBankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="newBankCode != null">
+				NEW_BANK_CODE = #{newBankCode,jdbcType=VARCHAR},
+			</if>
+			<if test="changeinfoStatus != null">
+				CHANGEINFO_STATUS = #{changeinfoStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.ChangeInfo">
+		update
+		HS_AFTER_CHANGEINFO
+		set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+		APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+		CUST_ID =
+		#{custId,jdbcType=VARCHAR},
+		SEX = #{sex,jdbcType=VARCHAR},
+		CAST_NAME =
+		#{castName,jdbcType=VARCHAR},
+		CARD_NO =
+		#{cardNo,jdbcType=VARCHAR},
+		OLD_TEL = #{oldTel,jdbcType=VARCHAR},
+		NEW_TEL =
+		#{newTel,jdbcType=VARCHAR},
+		OLD_BANK =
+		#{oldBank,jdbcType=VARCHAR},
+		OLD_BANK_PHONE =
+		#{oldBankPhone,jdbcType=VARCHAR},
+		OLD_BANK_ACCOUNT =
+		#{oldBankAccount,jdbcType=VARCHAR},
+		OLD_BANK_CODE =
+		#{oldBankCode,jdbcType=VARCHAR},
+		NEW_BANK =
+		#{newBank,jdbcType=VARCHAR},
+		NEW_BANK_PHONE =
+		#{newBankPhone,jdbcType=VARCHAR},
+		NEW_BANK_ACCOUNT =
+		#{newBankAccount,jdbcType=VARCHAR},
+		NEW_BANK_CODE =
+		#{newBankCode,jdbcType=VARCHAR},
+		CHANGEINFO_STATUS =
+		#{changeinfoStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		UPDATE_DATE =
+		#{updateDate,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- -->
+
+	<select id="getChangeInfo" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_CHANGEINFO
+		where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+
+	</select>
+
+
+	<select id="selectByCustId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_CHANGEINFO
+		where CUST_ID = #{custId}
+
+	</select>
+</mapper>

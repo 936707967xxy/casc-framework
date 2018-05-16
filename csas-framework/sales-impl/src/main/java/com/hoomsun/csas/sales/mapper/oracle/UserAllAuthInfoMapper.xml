@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserAllAuthInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserAllAuthInfo">
+    <id column="ALL_AUTH_PK" jdbcType="VARCHAR" property="allAuthPk" />
+    <result column="ZHIMA_CODE" jdbcType="DECIMAL" property="zhimaCode" />
+    <result column="ACCUMULATION_FUND" jdbcType="DECIMAL" property="accumulationFund" />
+    <result column="CALL_LOG" jdbcType="DECIMAL" property="callLog" />
+    <result column="PROTOINFO_CODE" jdbcType="DECIMAL" property="protoinfoCode" />
+    <result column="SAVINGS" jdbcType="DECIMAL" property="savings" />
+    <result column="INCOME_CODE" jdbcType="DECIMAL" property="incomeCode" />
+    <result column="TAOBAO" jdbcType="DECIMAL" property="taobao" />
+    <result column="CHSI" jdbcType="DECIMAL" property="chsi" />
+    <result column="SOCIAL_SECURITY" jdbcType="DECIMAL" property="socialSecurity" />
+    <result column="BANK_BILL_FLOW" jdbcType="DECIMAL" property="bankBillFlow" />
+    <result column="ERROR_CODE" jdbcType="DECIMAL" property="errorCode" />
+    <result column="CREDIT_INVESTIGATION" jdbcType="DECIMAL" property="creditInvestigation" />
+    <result column="BORROWER_CODE" jdbcType="DECIMAL" property="borrowerCode" />
+    <result column="CONTACTER_CODE" jdbcType="DECIMAL" property="contacterCode" />
+    <result column="CAREER_CODE" jdbcType="DECIMAL" property="careerCode" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ALL_AUTH_PK, ZHIMA_CODE, ACCUMULATION_FUND, CALL_LOG, PROTOINFO_CODE, SAVINGS, INCOME_CODE, 
+    TAOBAO, CHSI, SOCIAL_SECURITY, BANK_BILL_FLOW, ERROR_CODE, CREDIT_INVESTIGATION, 
+    BORROWER_CODE, CONTACTER_CODE, CAREER_CODE, APPLY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_ALL_AUTH__INFO
+    where ALL_AUTH_PK = #{allAuthPk,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_ALL_AUTH__INFO
+    where ALL_AUTH_PK = #{allAuthPk,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserAllAuthInfo">
+    insert into HS_ALL_AUTH__INFO (ALL_AUTH_PK, ZHIMA_CODE, ACCUMULATION_FUND, 
+      CALL_LOG, PROTOINFO_CODE, SAVINGS, 
+      INCOME_CODE, TAOBAO, CHSI, 
+      SOCIAL_SECURITY, BANK_BILL_FLOW, ERROR_CODE, 
+      CREDIT_INVESTIGATION, BORROWER_CODE, CONTACTER_CODE, 
+      CAREER_CODE, APPLY_ID)
+    values (#{allAuthPk,jdbcType=VARCHAR}, #{zhimaCode,jdbcType=DECIMAL}, #{accumulationFund,jdbcType=DECIMAL}, 
+      #{callLog,jdbcType=DECIMAL}, #{protoinfoCode,jdbcType=DECIMAL}, #{savings,jdbcType=DECIMAL}, 
+      #{incomeCode,jdbcType=DECIMAL}, #{taobao,jdbcType=DECIMAL}, #{chsi,jdbcType=DECIMAL}, 
+      #{socialSecurity,jdbcType=DECIMAL}, #{bankBillFlow,jdbcType=DECIMAL}, #{errorCode,jdbcType=DECIMAL}, 
+      #{creditInvestigation,jdbcType=DECIMAL}, #{borrowerCode,jdbcType=DECIMAL}, #{contacterCode,jdbcType=DECIMAL}, 
+      #{careerCode,jdbcType=DECIMAL}, #{applyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserAllAuthInfo">
+    insert into HS_ALL_AUTH__INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="allAuthPk != null">
+        ALL_AUTH_PK,
+      </if>
+      <if test="zhimaCode != null">
+        ZHIMA_CODE,
+      </if>
+      <if test="accumulationFund != null">
+        ACCUMULATION_FUND,
+      </if>
+      <if test="callLog != null">
+        CALL_LOG,
+      </if>
+      <if test="protoinfoCode != null">
+        PROTOINFO_CODE,
+      </if>
+      <if test="savings != null">
+        SAVINGS,
+      </if>
+      <if test="incomeCode != null">
+        INCOME_CODE,
+      </if>
+      <if test="taobao != null">
+        TAOBAO,
+      </if>
+      <if test="chsi != null">
+        CHSI,
+      </if>
+      <if test="socialSecurity != null">
+        SOCIAL_SECURITY,
+      </if>
+      <if test="bankBillFlow != null">
+        BANK_BILL_FLOW,
+      </if>
+      <if test="errorCode != null">
+        ERROR_CODE,
+      </if>
+      <if test="creditInvestigation != null">
+        CREDIT_INVESTIGATION,
+      </if>
+      <if test="borrowerCode != null">
+        BORROWER_CODE,
+      </if>
+      <if test="contacterCode != null">
+        CONTACTER_CODE,
+      </if>
+      <if test="careerCode != null">
+        CAREER_CODE,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="allAuthPk != null">
+        #{allAuthPk,jdbcType=VARCHAR},
+      </if>
+      <if test="zhimaCode != null">
+        #{zhimaCode,jdbcType=DECIMAL},
+      </if>
+      <if test="accumulationFund != null">
+        #{accumulationFund,jdbcType=DECIMAL},
+      </if>
+      <if test="callLog != null">
+        #{callLog,jdbcType=DECIMAL},
+      </if>
+      <if test="protoinfoCode != null">
+        #{protoinfoCode,jdbcType=DECIMAL},
+      </if>
+      <if test="savings != null">
+        #{savings,jdbcType=DECIMAL},
+      </if>
+      <if test="incomeCode != null">
+        #{incomeCode,jdbcType=DECIMAL},
+      </if>
+      <if test="taobao != null">
+        #{taobao,jdbcType=DECIMAL},
+      </if>
+      <if test="chsi != null">
+        #{chsi,jdbcType=DECIMAL},
+      </if>
+      <if test="socialSecurity != null">
+        #{socialSecurity,jdbcType=DECIMAL},
+      </if>
+      <if test="bankBillFlow != null">
+        #{bankBillFlow,jdbcType=DECIMAL},
+      </if>
+      <if test="errorCode != null">
+        #{errorCode,jdbcType=DECIMAL},
+      </if>
+      <if test="creditInvestigation != null">
+        #{creditInvestigation,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowerCode != null">
+        #{borrowerCode,jdbcType=DECIMAL},
+      </if>
+      <if test="contacterCode != null">
+        #{contacterCode,jdbcType=DECIMAL},
+      </if>
+      <if test="careerCode != null">
+        #{careerCode,jdbcType=DECIMAL},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserAllAuthInfo">
+    update HS_ALL_AUTH__INFO
+    <set>
+      <if test="zhimaCode != null">
+        ZHIMA_CODE = #{zhimaCode,jdbcType=DECIMAL},
+      </if>
+      <if test="accumulationFund != null">
+        ACCUMULATION_FUND = #{accumulationFund,jdbcType=DECIMAL},
+      </if>
+      <if test="callLog != null">
+        CALL_LOG = #{callLog,jdbcType=DECIMAL},
+      </if>
+      <if test="protoinfoCode != null">
+        PROTOINFO_CODE = #{protoinfoCode,jdbcType=DECIMAL},
+      </if>
+      <if test="savings != null">
+        SAVINGS = #{savings,jdbcType=DECIMAL},
+      </if>
+      <if test="incomeCode != null">
+        INCOME_CODE = #{incomeCode,jdbcType=DECIMAL},
+      </if>
+      <if test="taobao != null">
+        TAOBAO = #{taobao,jdbcType=DECIMAL},
+      </if>
+      <if test="chsi != null">
+        CHSI = #{chsi,jdbcType=DECIMAL},
+      </if>
+      <if test="socialSecurity != null">
+        SOCIAL_SECURITY = #{socialSecurity,jdbcType=DECIMAL},
+      </if>
+      <if test="bankBillFlow != null">
+        BANK_BILL_FLOW = #{bankBillFlow,jdbcType=DECIMAL},
+      </if>
+      <if test="errorCode != null">
+        ERROR_CODE = #{errorCode,jdbcType=DECIMAL},
+      </if>
+      <if test="creditInvestigation != null">
+        CREDIT_INVESTIGATION = #{creditInvestigation,jdbcType=DECIMAL},
+      </if>
+      <if test="borrowerCode != null">
+        BORROWER_CODE = #{borrowerCode,jdbcType=DECIMAL},
+      </if>
+      <if test="contacterCode != null">
+        CONTACTER_CODE = #{contacterCode,jdbcType=DECIMAL},
+      </if>
+      <if test="careerCode != null">
+        CAREER_CODE = #{careerCode,jdbcType=DECIMAL},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ALL_AUTH_PK = #{allAuthPk,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserAllAuthInfo">
+    update HS_ALL_AUTH__INFO
+    set ZHIMA_CODE = #{zhimaCode,jdbcType=DECIMAL},
+      ACCUMULATION_FUND = #{accumulationFund,jdbcType=DECIMAL},
+      CALL_LOG = #{callLog,jdbcType=DECIMAL},
+      PROTOINFO_CODE = #{protoinfoCode,jdbcType=DECIMAL},
+      SAVINGS = #{savings,jdbcType=DECIMAL},
+      INCOME_CODE = #{incomeCode,jdbcType=DECIMAL},
+      TAOBAO = #{taobao,jdbcType=DECIMAL},
+      CHSI = #{chsi,jdbcType=DECIMAL},
+      SOCIAL_SECURITY = #{socialSecurity,jdbcType=DECIMAL},
+      BANK_BILL_FLOW = #{bankBillFlow,jdbcType=DECIMAL},
+      ERROR_CODE = #{errorCode,jdbcType=DECIMAL},
+      CREDIT_INVESTIGATION = #{creditInvestigation,jdbcType=DECIMAL},
+      BORROWER_CODE = #{borrowerCode,jdbcType=DECIMAL},
+      CONTACTER_CODE = #{contacterCode,jdbcType=DECIMAL},
+      CAREER_CODE = #{careerCode,jdbcType=DECIMAL},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    where ALL_AUTH_PK = #{allAuthPk,jdbcType=VARCHAR}
+  </update>
+  
+   <!--  根据申请id查询认证信息 -->
+  <select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT 
+  	<include refid="Base_Column_List" ></include>
+  	 FROM HS_ALL_AUTH__INFO allauth
+  	<if test="applyId !=null">
+  		WHERE allauth.APPLY_ID=#{applyId}
+  	</if>
+  </select>
+</mapper>

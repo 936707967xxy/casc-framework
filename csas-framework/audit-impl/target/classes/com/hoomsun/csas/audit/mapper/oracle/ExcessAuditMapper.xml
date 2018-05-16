@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.audit.dao.ExcessAuditMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.audit.model.ExcessAudit">
+    <id column="EXCESS_ID" jdbcType="VARCHAR" property="excessId" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+    <result column="TASK_ID" jdbcType="VARCHAR" property="taskId" />
+    <result column="EXCESS_STATUS" jdbcType="INTEGER" property="excessStatus" />
+    <result column="AUDIT_DATE" jdbcType="TIMESTAMP" property="auditDate" />
+    <result column="AUDIT_EMP_NAME" jdbcType="VARCHAR" property="auditEmpName" />
+    <result column="AUDIT_EMP" jdbcType="VARCHAR" property="auditEmp" />
+    <result column="IN_HANDLE_OPINION" jdbcType="VARCHAR" property="inHandleOpinion" />
+    <result column="HANDLE_OPINION_VAL" jdbcType="VARCHAR" property="handleOpinionVal" />
+    <result column="HANDLE_OPINION" jdbcType="INTEGER" property="handleOpinion" />
+    <result column="MONTH_PAY" jdbcType="DECIMAL" property="monthPay" />
+    <result column="APPROVED_AMOUNT" jdbcType="DECIMAL" property="approvedAmount" />
+    <result column="PRODUCT_PAY_VAL" jdbcType="VARCHAR" property="productPayVal" />
+    <result column="PRODUCT_PAY" jdbcType="INTEGER" property="productPay" />
+    <result column="PRODUCT_RATE" jdbcType="DECIMAL" property="productRate" />
+    <result column="PRODUCT_PERIOD" jdbcType="INTEGER" property="productPeriod" />
+    <result column="PRODUCT_FEE_RATE" jdbcType="DECIMAL" property="productFeeRate" />
+    <result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+    <result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    EXCESS_ID, PROC_INST_ID, TASK_ID, EXCESS_STATUS, AUDIT_DATE, AUDIT_EMP_NAME, AUDIT_EMP, 
+    IN_HANDLE_OPINION, HANDLE_OPINION_VAL, HANDLE_OPINION, MONTH_PAY, APPROVED_AMOUNT, 
+    PRODUCT_PAY_VAL, PRODUCT_PAY, PRODUCT_RATE, PRODUCT_PERIOD, PRODUCT_FEE_RATE, PRODUCT_NAME, 
+    PRODUCT_ID, APPLY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_EXCESS_AUDIT
+    where EXCESS_ID = #{procInstId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_EXCESS_AUDIT
+    where EXCESS_ID = #{procInstId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.audit.model.ExcessAudit">
+    insert into HS_EXCESS_AUDIT (EXCESS_ID, PROC_INST_ID, TASK_ID, 
+      EXCESS_STATUS, AUDIT_DATE, AUDIT_EMP_NAME, 
+      AUDIT_EMP, IN_HANDLE_OPINION, HANDLE_OPINION_VAL, 
+      HANDLE_OPINION, MONTH_PAY, APPROVED_AMOUNT, 
+      PRODUCT_PAY_VAL, PRODUCT_PAY, PRODUCT_RATE, 
+      PRODUCT_PERIOD, PRODUCT_FEE_RATE, PRODUCT_NAME, 
+      PRODUCT_ID, APPLY_ID)
+    values (#{procInstId,jdbcType=VARCHAR}, #{procInstId,jdbcType=VARCHAR}, #{taskId,jdbcType=VARCHAR}, 
+      #{excessStatus,jdbcType=INTEGER}, #{auditDate,jdbcType=TIMESTAMP}, #{auditEmpName,jdbcType=VARCHAR}, 
+      #{auditEmp,jdbcType=VARCHAR}, #{inHandleOpinion,jdbcType=VARCHAR}, #{handleOpinionVal,jdbcType=VARCHAR}, 
+      #{handleOpinion,jdbcType=INTEGER}, #{monthPay,jdbcType=DECIMAL}, #{approvedAmount,jdbcType=DECIMAL}, 
+      #{productPayVal,jdbcType=VARCHAR}, #{productPay,jdbcType=INTEGER}, #{productRate,jdbcType=DECIMAL}, 
+      #{productPeriod,jdbcType=INTEGER}, #{productFeeRate,jdbcType=DECIMAL}, #{productName,jdbcType=VARCHAR}, 
+      #{productId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.audit.model.ExcessAudit">
+    insert into HS_EXCESS_AUDIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="procInstId != null">
+        EXCESS_ID,
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID,
+      </if>
+      <if test="taskId != null">
+        TASK_ID,
+      </if>
+      <if test="excessStatus != null">
+        EXCESS_STATUS,
+      </if>
+      <if test="auditDate != null">
+        AUDIT_DATE,
+      </if>
+      <if test="auditEmpName != null">
+        AUDIT_EMP_NAME,
+      </if>
+      <if test="auditEmp != null">
+        AUDIT_EMP,
+      </if>
+      <if test="inHandleOpinion != null">
+        IN_HANDLE_OPINION,
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL,
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION,
+      </if>
+      <if test="monthPay != null">
+        MONTH_PAY,
+      </if>
+      <if test="approvedAmount != null">
+        APPROVED_AMOUNT,
+      </if>
+      <if test="productPayVal != null">
+        PRODUCT_PAY_VAL,
+      </if>
+      <if test="productPay != null">
+        PRODUCT_PAY,
+      </if>
+      <if test="productRate != null">
+        PRODUCT_RATE,
+      </if>
+      <if test="productPeriod != null">
+        PRODUCT_PERIOD,
+      </if>
+      <if test="productFeeRate != null">
+        PRODUCT_FEE_RATE,
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="excessId != null">
+        #{excessId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="excessStatus != null">
+        #{excessStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditDate != null">
+        #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditEmpName != null">
+        #{auditEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEmp != null">
+        #{auditEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="inHandleOpinion != null">
+        #{inHandleOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinionVal != null">
+        #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinion != null">
+        #{handleOpinion,jdbcType=INTEGER},
+      </if>
+      <if test="monthPay != null">
+        #{monthPay,jdbcType=DECIMAL},
+      </if>
+      <if test="approvedAmount != null">
+        #{approvedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productPayVal != null">
+        #{productPayVal,jdbcType=VARCHAR},
+      </if>
+      <if test="productPay != null">
+        #{productPay,jdbcType=INTEGER},
+      </if>
+      <if test="productRate != null">
+        #{productRate,jdbcType=DECIMAL},
+      </if>
+      <if test="productPeriod != null">
+        #{productPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="productFeeRate != null">
+        #{productFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.audit.model.ExcessAudit">
+    update HS_EXCESS_AUDIT
+    <set>
+      <if test="procInstId != null">
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        TASK_ID = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="excessStatus != null">
+        EXCESS_STATUS = #{excessStatus,jdbcType=INTEGER},
+      </if>
+      <if test="auditDate != null">
+        AUDIT_DATE = #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditEmpName != null">
+        AUDIT_EMP_NAME = #{auditEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEmp != null">
+        AUDIT_EMP = #{auditEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="inHandleOpinion != null">
+        IN_HANDLE_OPINION = #{inHandleOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION = #{handleOpinion,jdbcType=INTEGER},
+      </if>
+      <if test="monthPay != null">
+        MONTH_PAY = #{monthPay,jdbcType=DECIMAL},
+      </if>
+      <if test="approvedAmount != null">
+        APPROVED_AMOUNT = #{approvedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productPayVal != null">
+        PRODUCT_PAY_VAL = #{productPayVal,jdbcType=VARCHAR},
+      </if>
+      <if test="productPay != null">
+        PRODUCT_PAY = #{productPay,jdbcType=INTEGER},
+      </if>
+      <if test="productRate != null">
+        PRODUCT_RATE = #{productRate,jdbcType=DECIMAL},
+      </if>
+      <if test="productPeriod != null">
+        PRODUCT_PERIOD = #{productPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="productFeeRate != null">
+        PRODUCT_FEE_RATE = #{productFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="productName != null">
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EXCESS_ID = #{excessId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.audit.model.ExcessAudit">
+    update HS_EXCESS_AUDIT
+    set PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=VARCHAR},
+      EXCESS_STATUS = #{excessStatus,jdbcType=INTEGER},
+      AUDIT_DATE = #{auditDate,jdbcType=TIMESTAMP},
+      AUDIT_EMP_NAME = #{auditEmpName,jdbcType=VARCHAR},
+      AUDIT_EMP = #{auditEmp,jdbcType=VARCHAR},
+      IN_HANDLE_OPINION = #{inHandleOpinion,jdbcType=VARCHAR},
+      HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      HANDLE_OPINION = #{handleOpinion,jdbcType=INTEGER},
+      MONTH_PAY = #{monthPay,jdbcType=DECIMAL},
+      APPROVED_AMOUNT = #{approvedAmount,jdbcType=DECIMAL},
+      PRODUCT_PAY_VAL = #{productPayVal,jdbcType=VARCHAR},
+      PRODUCT_PAY = #{productPay,jdbcType=INTEGER},
+      PRODUCT_RATE = #{productRate,jdbcType=DECIMAL},
+      PRODUCT_PERIOD = #{productPeriod,jdbcType=INTEGER},
+      PRODUCT_FEE_RATE = #{productFeeRate,jdbcType=DECIMAL},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    where EXCESS_ID = #{excessId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- AND EXCESS_STATUS=1 -->
+  <select id="findByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT 
+    EXCESS_ID, PROC_INST_ID, TASK_ID, EXCESS_STATUS, AUDIT_DATE, AUDIT_EMP_NAME, AUDIT_EMP, 
+    IN_HANDLE_OPINION, HANDLE_OPINION_VAL, HANDLE_OPINION, MONTH_PAY, APPROVED_AMOUNT, 
+    PRODUCT_PAY_VAL, PRODUCT_PAY, PRODUCT_RATE, PRODUCT_PERIOD, PRODUCT_FEE_RATE, PRODUCT_NAME, 
+    PRODUCT_ID, APPLY_ID
+    FROM HS_EXCESS_AUDIT 
+    WHERE APPLY_ID=#{applyId} AND AUDIT_DATE IN (
+    	SELECT MAX(AUDIT_DATE) FROM HS_EXCESS_AUDIT WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    )
+  </select>
+  
+  <!-- 获取终审列表 FINAL_AUDIT_GROUP-->
+  <resultMap type="com.hoomsun.csas.audit.model.vo.UserApplyVO" id="USER_APPLY_VO_RESULT">
+  	<id column="APPLY_ID" property="applyId"/>
+  	<result column="STORE_NAME" property="storeName"/>
+  	<result column="STORE_ID" property="storeId"/>
+  	<result column="CUST_MOBILE" property="custMobile"/>
+  	<result column="ID_NUMBER" property="idNumber"/>
+  	<result column="CUST_NAME" property="custName"/>
+  	<result column="SOURCES" property="sources"/>
+  	<result column="PROC_STATUS_VAL" property="procStatusVal"/>
+  	<result column="PROC_STATUS" property="procStatus"/>
+  	<result column="PROC_INST_ID" property="procInstId"/>
+  	<result column="PRODUCT_NAME" property="productName"/>
+  	<result column="PRODUCT_ID" property="productId"/>
+  	<result column="LOAN_ID" property="loanId"/>
+  	<result column="APPLY_AMOUNT" property="applyAmount"/>
+  	<result column="APPLY_DATE" property="applyDate"/>
+  	<result column="START_TIME_" property="startTime"/>
+  	<result column="CLAIM_TIME_" property="claimTime"/>
+  	<result column="END_TIME_" property="endTime"/>
+  	<result column="ASSIGNEE_" property="assignee"/>
+  </resultMap>
+  <!-- excessAudit -->
+   <select id="findPager" parameterType="java.util.Map" resultMap="USER_APPLY_VO_RESULT">
+	SELECT * FROM (
+			SELECT ROWNUM r, AP.* FROM (
+				SELECT 
+					app.LOAN_ID, app.APPLY_ID, app.CUST_NAME, app.SOURCES, app.SOURCES_VALUE, 
+					REPLACE (app.CUST_MOBILE, SUBSTR (app.CUST_MOBILE, 4, 4), 'XXXX') AS CUST_MOBILE,
+					REPLACE (app.ID_NUMBER, SUBSTR (app.ID_NUMBER, 6, 8),'XXXXXXXX') AS ID_NUMBER,
+					app.PRODUCT_ID,app.PRODUCT_NAME,app.APPLY_AMOUNT,app.PROC_STATUS_VAL,
+					app.PROC_STATUS,app.PROC_INST_ID,app.STORE_ID,app.SALES_EMP_ID,
+					app.SALES_EMP_NAME,app.CREATE_EMPLOYEE,app.CREATE_EMPLOYEE_VAL,app.APPLY_DATE,
+					tbl.ASSIGNEE_
+				FROM
+					HS_APPLY app
+				RIGHT JOIN (
+					SELECT
+						 HP.BUSINESS_KEY_,
+						 HT.ASSIGNEE_
+					FROM
+					ACT_HI_PROCINST HP
+					INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+					<choose>
+						<!-- 待签收 -->
+						<when test="nodeStatus == 0">
+							WHERE HT.TASK_DEF_KEY_ = 'excessAudit'
+						    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+						</when>
+						<!-- 已经签收，待审核 -->
+						<when test="nodeStatus == 1">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'excessAudit' and HT.ASSIGNEE_ is not null AND HT.END_TIME_ IS NULL
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'excessAudit'
+						        		AND (HT.ASSIGNEE_=#{empId} and HT.ASSIGNEE_ IS not NULL AND HT.END_TIME_ IS NULL)
+						        </otherwise>
+							</choose>
+						</when>
+						
+						<!-- 已经审核 -->
+						<when test="nodeStatus == 2">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'excessAudit' AND HT.END_TIME_ IS NOT NULL
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'excessAudit'
+						        		AND HT.END_TIME_ IS NOT NULL
+						        		AND HT.ASSIGNEE_=#{empId}
+						        </otherwise>
+							</choose>
+						</when>
+						
+						<!-- 全部  已经签收 和 已经审核的任务-->
+						<when test="nodeStatus == 3">
+							<choose>
+								<!-- 部门负责人  -->  
+						        <when test="isMgr == 1">
+									LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+									RIGHT JOIN (
+										SELECT CIL.DEPT_ID
+										FROM HS_DEPARTMENT CIL
+										START WITH CIL.DEPT_ID=#{deptId}
+										CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+									) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+									WHERE HT.TASK_DEF_KEY_ = 'excessAudit'
+								</when>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'excessAudit'
+						        		AND HT.ASSIGNEE_=#{empId}
+						        </otherwise>
+							</choose>
+						</when>
+
+					</choose>
+					GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+				) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+				WHERE app.DEL_STATUE = 0 
+				
+				<if test="custName != null and custName != ''">
+					and app.CUST_NAME LIKE #{custName} 
+				</if>
+				<if test="custMobile != null and custMobile != ''">
+					and app.CUST_MOBILE = #{custMobile}
+				</if>
+				<if test="idNumber != null and idNumber != ''">
+					and app.ID_NUMBER = #{idNumber}
+				</if>
+				<if test="salesEmpName != null and salesEmpName != ''">
+					and app.SALES_EMP_NAME LIKE #{salesEmpName}
+				</if>
+				<if test="loanId != null and loanId != ''">
+					and app.LOAN_ID = #{loanId} 
+				</if>
+				ORDER BY app.APPLY_DATE DESC
+			) AP
+			WHERE <![CDATA[ROWNUM <=  #{pageIndex} * #{pageSize}]]>
+		)
+	WHERE r > (#{pageIndex} -1) * #{pageSize}
+  </select>
+  <select id="findExcessAuditCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+ 		SELECT 
+		COUNT(app.APPLY_ID)
+		FROM
+			HS_APPLY app
+		RIGHT JOIN (
+			SELECT
+			    HP.BUSINESS_KEY_,
+			    HT.ASSIGNEE_
+			FROM
+			ACT_HI_PROCINST HP
+			INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+			<choose>
+				<!-- 待签收 -->
+				<when test="nodeStatus == 0">
+					WHERE HT.TASK_DEF_KEY_ = 'excessAudit'
+				    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+				</when>
+				<!-- 已经签收，待审核 -->
+				<when test="nodeStatus == 1">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'excessAudit' AND HT.END_TIME_ IS NULL
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'excessAudit'
+				        		AND (HT.ASSIGNEE_=#{empId} OR HT.ASSIGNEE_ IS NULL)
+				        </otherwise>
+					</choose>
+				</when>
+				
+				<!-- 已经审核 -->
+				<when test="nodeStatus == 2">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'excessAudit' AND HT.END_TIME_ IS NOT NULL
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'excessAudit'
+				        		AND HT.END_TIME_ IS NOT NULL
+				        		AND HT.ASSIGNEE_=#{empId}
+				        </otherwise>
+					</choose>
+				</when>
+				
+				<!-- 全部  已经签收 和 已经审核的任务-->
+				<when test="nodeStatus == 3">
+					<choose>
+						<!-- 部门负责人  -->  
+				        <when test="isMgr == 1">
+							LEFT JOIN HS_EMPLOYEE EMP ON HT.ASSIGNEE_ = EMP.EMP_ID
+							RIGHT JOIN (
+								SELECT CIL.DEPT_ID
+								FROM HS_DEPARTMENT CIL
+								START WITH CIL.DEPT_ID=#{deptId}
+								CONNECT BY PRIOR CIL.DEPT_ID=CIL.DEPT_PARENT
+							) TDEPT ON TDEPT.DEPT_ID=EMP.DEPT_ID
+							WHERE HT.TASK_DEF_KEY_ = 'excessAudit'
+						</when>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'excessAudit'
+				        		AND HT.ASSIGNEE_=#{empId}
+				        </otherwise>
+					</choose>
+				</when>
+	
+			</choose>
+			GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+		) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+		WHERE app.DEL_STATUE = 0 
+		
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName} 
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId} 
+		</if>
+  </select>
+  
+  <!-- 根据流程信息和申请信息获取某一状态的数据的id -->
+  <select id="selectIdByProcess" resultType="java.lang.String" resultMap="BaseResultMap">
+  	 SELECT AUDIT_DATE AUDIT_DATE,EXCESS_ID FROM HS_EXCESS_AUDIT WHERE APPLY_ID=#{applyId} AND PROC_INST_ID=#{processInstanceId} AND TASK_ID=#{taskId}
+  	 AND AUDIT_DATE IN (
+		SELECT MAX(AUDIT_DATE)  FROM HS_EXCESS_AUDIT where APPLY_ID=#{applyId} AND PROC_INST_ID=#{processInstanceId} AND TASK_ID=#{taskId}
+	 )
+  </select>
+  
+  <!-- 时间最近的一次审核数据 -->
+  <select id="selectByExcessAu" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_EXCESS_AUDIT 
+    WHERE APPLY_ID=#{applyId} AND AUDIT_DATE = (
+	 SELECT MAX(AUDIT_DATE) FROM HS_EXCESS_AUDIT WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}<!--  AND PRE_STATUS=1 -->
+	)
+  </select>
+</mapper>

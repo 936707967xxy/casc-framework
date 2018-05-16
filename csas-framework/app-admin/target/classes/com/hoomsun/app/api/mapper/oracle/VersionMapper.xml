@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.VersionMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.Version">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="CODE" jdbcType="VARCHAR" property="code" />
+    <result column="NUMBER_" jdbcType="VARCHAR" property="number" />
+    <result column="TYPE" jdbcType="VARCHAR" property="type" />
+    <result column="MINTYPE" jdbcType="VARCHAR" property="mintype" />
+    <result column="APPROVAL" jdbcType="VARCHAR" property="approval" />
+    <result column="URL" jdbcType="VARCHAR" property="url" />
+    <result column="APKSIZE" jdbcType="VARCHAR" property="apksize" />
+    <result column="MD5CODE" jdbcType="VARCHAR" property="md5code" />
+    <result column="UPDATEDES" jdbcType="VARCHAR" property="updatedes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CODE, NUMBER_, TYPE, MINTYPE, APPROVAL, URL, APKSIZE, MD5CODE, UPDATEDES
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_VERSION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_VERSION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.Version">
+    insert into HS_VERSION (ID, CODE, NUMBER_, 
+      TYPE, MINTYPE, APPROVAL, 
+      URL, APKSIZE, MD5CODE, 
+      UPDATEDES)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{mintype,jdbcType=VARCHAR}, #{approval,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{apksize,jdbcType=VARCHAR}, #{md5code,jdbcType=VARCHAR}, 
+      #{updatedes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.Version">
+    insert into HS_VERSION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="code != null">
+        CODE,
+      </if>
+      <if test="number != null">
+        NUMBER_,
+      </if>
+      <if test="type != null">
+        TYPE,
+      </if>
+      <if test="mintype != null">
+        MINTYPE,
+      </if>
+      <if test="approval != null">
+        APPROVAL,
+      </if>
+      <if test="url != null">
+        URL,
+      </if>
+      <if test="apksize != null">
+        APKSIZE,
+      </if>
+      <if test="md5code != null">
+        MD5CODE,
+      </if>
+      <if test="updatedes != null">
+        UPDATEDES,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="mintype != null">
+        #{mintype,jdbcType=VARCHAR},
+      </if>
+      <if test="approval != null">
+        #{approval,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="apksize != null">
+        #{apksize,jdbcType=VARCHAR},
+      </if>
+      <if test="md5code != null">
+        #{md5code,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedes != null">
+        #{updatedes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.Version">
+    update HS_VERSION
+    <set>
+      <if test="code != null">
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        NUMBER_ = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="mintype != null">
+        MINTYPE = #{mintype,jdbcType=VARCHAR},
+      </if>
+      <if test="approval != null">
+        APPROVAL = #{approval,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="apksize != null">
+        APKSIZE = #{apksize,jdbcType=VARCHAR},
+      </if>
+      <if test="md5code != null">
+        MD5CODE = #{md5code,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedes != null">
+        UPDATEDES = #{updatedes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.Version">
+    update HS_VERSION
+    set CODE = #{code,jdbcType=VARCHAR},
+      NUMBER_ = #{number,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      MINTYPE = #{mintype,jdbcType=VARCHAR},
+      APPROVAL = #{approval,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      APKSIZE = #{apksize,jdbcType=VARCHAR},
+      MD5CODE = #{md5code,jdbcType=VARCHAR},
+      UPDATEDES = #{updatedes,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+<!-- 查询版本 --> 
+ <select id="selectBytype" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_VERSION
+    where TYPE = #{type,jdbcType=VARCHAR}
+  </select>
+  
+ 
+   <!-- 分页查询数据  liudongliang -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+	 <![CDATA[
+	  	SELECT ver.* FROM (
+	  	SELECT 
+		  	ROWNUM R,VERSION.*   FROM  HS_VERSION   VERSION
+	    WHERE 1<>2]]>
+	    <if test="type != null and type != ''">
+			and TYPE    like   #{type,jdbcType=VARCHAR}
+		</if>
+	    <![CDATA[) ver WHERE ver.R <= (#{pageIndex}*#{pageSize}) AND ver.R > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+	    ORDER BY CODE DESC
+	</select>
+	
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[ 
+	 	select 
+	 		count(ID)
+    	FROM HS_VERSION
+		where 1<>2]]>
+		<if test="type != null and type != ''">
+			and TYPE = #{type,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+	<!-- 查询出所有的数据 -->
+	<select id="findAllData" resultMap="BaseResultMap">
+		select 
+	    <include refid="Base_Column_List" />
+	    from HS_VERSION
+	    ORDER BY CODE DESC
+	</select>
+</mapper>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.SocialMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.Social">
+    <id column="SOCIAL_ID" jdbcType="VARCHAR" property="socialId" />
+    <result column="PROVINCEID" jdbcType="VARCHAR" property="provinceid" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="UNIQUEKEY" jdbcType="VARCHAR" property="uniqueKey" />
+    <result column="LOGINTYPE" jdbcType="VARCHAR" property="loginType" />
+    <result column="NOTE" jdbcType="VARCHAR" property="note" />
+    <result column="CRAWLER_SIGN" jdbcType="VARCHAR" property="crawlerSign" />
+    <result column="IMG_URL" jdbcType="VARCHAR" property="img_url" />
+    <result column="LOGIN_URL" jdbcType="VARCHAR" property="login_url" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SOCIAL_ID,PROVINCEID, PROVINCE, CITY, UNIQUEKEY, LOGINTYPE, NOTE, CRAWLER_SIGN,IMG_URL,LOGIN_URL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_SOCIAL
+    where SOCIAL_ID = #{socialId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_SOCIAL
+    where SOCIAL_ID = #{socialId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.Social">
+    insert into HS_SOCIAL (SOCIAL_ID, PROVINCEID,PROVINCE, CITY, 
+      UNIQUEKEY, LOGINTYPE, NOTE, 
+      CRAWLER_SIGN,IMG_URL,LOGIN_URL)
+    values (#{socialId,jdbcType=VARCHAR},#{provinceid,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{uniqueKey,jdbcType=VARCHAR}, #{loginType,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{crawlerSign,jdbcType=VARCHAR}, #{img_url,jdbcType=VARCHAR}, #{login_url,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.Social">
+    insert into HS_SOCIAL
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="socialId != null">
+        SOCIAL_ID,
+      </if>
+       <if test="provinceid != null">
+        PROVINCEID,
+      </if>
+      <if test="province != null">
+        PROVINCE,
+      </if>
+      <if test="city != null">
+        CITY,
+      </if>
+      <if test="uniqueKey != null">
+        UNIQUEKEY,
+      </if>
+      <if test="loginType != null">
+        LOGINTYPE,
+      </if>
+      <if test="note != null">
+        NOTE,
+      </if>
+      <if test="crawlerSign != null">
+        CRAWLER_SIGN,
+      </if>
+      <if test="img_url != null">
+        IMG_URL,
+      </if>
+      <if test="login_url != null">
+        LOGIN_URL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="socialId != null">
+        #{socialId,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceid != null">
+        #{provinceid,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueKey != null">
+        #{uniqueKey,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null">
+        #{loginType,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="crawlerSign != null">
+        #{crawlerSign,jdbcType=VARCHAR},
+      </if>
+      <if test="img_url != null">
+        #{img_url,jdbcType=VARCHAR},
+      </if>
+      <if test="login_url != null">
+        #{login_url,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.Social">
+    update HS_SOCIAL
+    <set>
+      <if test="provinceid != null">
+        PROVINCEID = #{provinceid,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="uniqueKey != null">
+        UNIQUEKEY = #{uniqueKey,jdbcType=VARCHAR},
+      </if>
+      <if test="loginType != null">
+        LOGINTYPE = #{loginType,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="crawlerSign != null">
+        CRAWLER_SIGN = #{crawlerSign,jdbcType=VARCHAR},
+      </if>
+      <if test="img_url != null">
+        IMG_URL=#{img_url,jdbcType=VARCHAR},
+      </if>
+      <if test="login_url != null">
+        LOGIN_URL=#{login_url,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SOCIAL_ID = #{socialId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.Social">
+    update HS_SOCIAL
+    set PROVINCEID = #{provinceid,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      UNIQUEKEY = #{uniqueKey,jdbcType=VARCHAR},
+      LOGINTYPE = #{loginType,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=VARCHAR},
+      CRAWLER_SIGN = #{crawlerSign,jdbcType=VARCHAR},
+      IMG_URL = #{img_url,jdbcType=VARCHAR},
+      LOGIN_URL = #{login_url,jdbcType=VARCHAR}
+    where SOCIAL_ID = #{socialId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 分页查询数据  liudongliang -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+		<![CDATA[
+	  	SELECT ver.* FROM (
+	  	SELECT 
+		  	ROWNUM R,SOCIAL.*   FROM  HS_SOCIAL SOCIAL
+	    WHERE 1<>2]]>
+	    <if test="province != null and province != ''">and PROVINCE    like   #{province,jdbcType=VARCHAR}</if>
+	    <![CDATA[) ver WHERE ver.R <= (#{pageIndex}*#{pageSize}) AND ver.R > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+	    ORDER BY PROVINCEID DESC
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[ 
+	 	select 
+	 		count(SOCIAL_ID)
+    	FROM HS_SOCIAL
+		where 1<>2]]>
+		<if test="province != null and province != ''">
+			and  PROVINCE    like   #{province,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<select id="selectByProvince" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select  PROVINCE, CITY, UNIQUEKEY, LOGINTYPE, NOTE, CRAWLER_SIGN,IMG_URL,LOGIN_URL
+	    from   HS_SOCIAL
+	    where PROVINCEID = #{provinceid,jdbcType=VARCHAR}
+	 </select>
+	 
+	 <select id="selectApiByUniqueKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+	    select  IMG_URL,LOGIN_URL
+	    from   HS_SOCIAL
+	    where  UNIQUEKEY = #{uniqueKey,jdbcType=VARCHAR}   and  CRAWLER_SIGN='0'
+	 </select>
+</mapper>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserTongDunMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserTongDun">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+    <result column="FORECAST_LIVE_TIME_TD" jdbcType="VARCHAR" property="forecastLiveTimeTd" />
+    <result column="MARITAL_STATUS_TD" jdbcType="VARCHAR" property="maritalStatusTd" />
+    <result column="ADDRESS_TD" jdbcType="VARCHAR" property="addressTd" />
+    <result column="COMPANY_NAME_TD" jdbcType="VARCHAR" property="companyNameTd" />
+    <result column="SCORE_TD" jdbcType="VARCHAR" property="scoreTd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, APPLY_ID, ADD_DATE, FORECAST_LIVE_TIME_TD, MARITAL_STATUS_TD, ADDRESS_TD, COMPANY_NAME_TD, 
+    SCORE_TD
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_TONGDUN
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_TONGDUN
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserTongDun">
+    insert into HS_TONGDUN (ID, APPLY_ID, ADD_DATE, 
+      FORECAST_LIVE_TIME_TD, MARITAL_STATUS_TD, ADDRESS_TD, 
+      COMPANY_NAME_TD, SCORE_TD)
+    values (#{id,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}, 
+      #{forecastLiveTimeTd,jdbcType=VARCHAR}, #{maritalStatusTd,jdbcType=VARCHAR}, #{addressTd,jdbcType=VARCHAR}, 
+      #{companyNameTd,jdbcType=VARCHAR}, #{scoreTd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserTongDun">
+    insert into HS_TONGDUN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="forecastLiveTimeTd != null">
+        FORECAST_LIVE_TIME_TD,
+      </if>
+      <if test="maritalStatusTd != null">
+        MARITAL_STATUS_TD,
+      </if>
+      <if test="addressTd != null">
+        ADDRESS_TD,
+      </if>
+      <if test="companyNameTd != null">
+        COMPANY_NAME_TD,
+      </if>
+      <if test="scoreTd != null">
+        SCORE_TD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastLiveTimeTd != null">
+        #{forecastLiveTimeTd,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusTd != null">
+        #{maritalStatusTd,jdbcType=VARCHAR},
+      </if>
+      <if test="addressTd != null">
+        #{addressTd,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameTd != null">
+        #{companyNameTd,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreTd != null">
+        #{scoreTd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserTongDun">
+    update HS_TONGDUN
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="forecastLiveTimeTd != null">
+        FORECAST_LIVE_TIME_TD = #{forecastLiveTimeTd,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatusTd != null">
+        MARITAL_STATUS_TD = #{maritalStatusTd,jdbcType=VARCHAR},
+      </if>
+      <if test="addressTd != null">
+        ADDRESS_TD = #{addressTd,jdbcType=VARCHAR},
+      </if>
+      <if test="companyNameTd != null">
+        COMPANY_NAME_TD = #{companyNameTd,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreTd != null">
+        SCORE_TD = #{scoreTd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserTongDun">
+    update HS_TONGDUN
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      FORECAST_LIVE_TIME_TD = #{forecastLiveTimeTd,jdbcType=VARCHAR},
+      MARITAL_STATUS_TD = #{maritalStatusTd,jdbcType=VARCHAR},
+      ADDRESS_TD = #{addressTd,jdbcType=VARCHAR},
+      COMPANY_NAME_TD = #{companyNameTd,jdbcType=VARCHAR},
+      SCORE_TD = #{scoreTd,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

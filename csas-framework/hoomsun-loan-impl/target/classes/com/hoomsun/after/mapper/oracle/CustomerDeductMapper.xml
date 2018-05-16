@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.CustomerDeductMapper">
+	
+	<!-- 查询客户划扣记录列表 -->
+	<select id="queryCustomerDeduct" parameterType="com.hoomsun.after.api.model.param.CustomerDeductReq" 
+	resultType="com.hoomsun.after.api.model.vo.CustomerDeductResult">
+	    SELECT * FROM (
+		 <include refid="queryCustomerDeductSql"/>
+		 <include refid="fromCustomerDeductSql"/>
+		 <include refid="whereCustomerDeductSql"/>
+		 <include refid="desc"/>
+		 )
+		  <![CDATA[ WHERE  r > (#{ page }- 1) * #{ pageSize }]]>
+	</select>
+	
+	<!--  查询客户划扣记录总条数 -->
+	<select id="countCustomerDeduct" parameterType="com.hoomsun.after.api.model.param.CustomerDeductReq"
+	    resultType="java.lang.Integer">
+	    <include refid="queryCountCustomerDeductSql"/>
+	    <include refid="fromCustomerDeductSql"/>
+		 <include refid="whereCustomerDeductSql"/>
+	</select>
+	
+	<sql id="queryCountCustomerDeductSql">
+	           SELECT COUNT(hand.LOAN_ID)
+	</sql>
+	
+	<sql id="queryCustomerDeductSql">
+	       SELECT
+	        hand.LOAN_ID AS loanId,
+			hand.CON_NO AS conNo,
+			hand.CAST_NAME AS castName,
+			hand.BANK AS bankName,
+			hand.DEDUCT_CHANNEL AS deductChannel,
+			hand.DEDUCT_MONEY AS deductMoney,
+			hand.DEDUCT_STATE_VAL AS deductStateVal,
+			hand.DEDUCT_SERVER_MONEY AS deductSercerMoney,
+			hand.DEDUCT_STATE AS deductState,
+            hand.BANK_PHONE AS tel,
+			hand.DEDUT_DATE AS deductDate,
+			hand.CHECK_DATE AS checkDate,
+			hand.ORDER_NO AS orderNo,
+            hand.CARD_NO AS cardNo,
+            hand.DEDUT_TYPE_VAL AS deductType,
+			hand.DEDUCT_BAL AS deductBal,
+            hand.BANK_ACCOUNT AS bankAcount,
+            hand.APPLICATION_CAST_NAME AS applicationCastName ,
+            hand.DEDUT_STREAM AS dedutStream,
+            bal.CAST_ID AS castId,
+            bal.POS_TYPE AS posType,
+			ROWNUM AS r
+	</sql>
+	
+	<sql id="fromCustomerDeductSql">
+	        FROM HS_AFTER_DEDUCT hand
+		    LEFT JOIN HS_AFTER_LOANBAL bal ON hand.LOAN_ID=bal.LOAN_ID
+	</sql>
+	
+	<sql id="whereCustomerDeductSql">
+	    <where>
+	         1=1
+	      <if test="conNo != null and conNo !='' ">
+		      AND hand.CON_NO =#{conNo}
+		  </if>
+	      <if test="loanId != null and loanId !='' ">
+		      AND hand.LOAN_ID =#{loanId}
+		  </if>
+	      <if test="cardNo != null and cardNo !='' ">
+		      AND hand.CARD_NO =#{cardNo}
+		  </if>
+	      <if test="posType != null and posType !='' ">
+		      AND bal.POS_TYPE =#{posType}
+		  </if>
+	      <if test="castName != null and castName !='' ">
+		      <![CDATA[AND hand.CAST_NAME  LIKE  '%'||#{castName}||'%' ]]>
+		  </if>
+	      <if test="deductChannel != null and deductChannel !='' ">
+		      AND hand.DEDUCT_CHANNEL =#{deductChannel}
+		  </if>
+	      <if test="deductType != null and deductType !='' ">
+		      AND hand.DEDUT_TYPE_VAL =#{deductType}
+		  </if>
+	      <if test="deductState != null and deductState !='' ">
+		      AND hand.DEDUCT_STATE =#{deductState}
+		  </if>
+	      <if test="managerCastId != null and managerCastId !='' ">
+		      AND bal.MANAGER_CAST_ID =#{managerCastId}
+		  </if>
+	      <if test="customerOrLoan != null and customerOrLoan !='' ">
+		      AND bal.CUSTOMER_OR_LOAN =#{customerOrLoan}
+		  </if>
+		   <if test="salesDeptment != null and salesDeptment !='' ">
+		      AND bal.SALES_DEPTMENT =#{salesDeptment}
+		  </if>
+		  <if test="startDate!=null and startDate !='' ">
+		     <![CDATA[AND hand.DEDUT_DATE >= to_date(#{startDate} , 'yyyy-MM-dd HH24:mi:ss')]]>
+			</if>
+			<if test="endDate!=null  and endDate!='' ">
+            <![CDATA[ AND hand.DEDUT_DATE <=to_date(#{endDate} , 'yyyy-MM-dd HH24:mi:ss')]]>
+			</if>
+		   <if test="page !='-1' ">
+		      <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		  </if>
+	    </where>
+	</sql>
+	
+	<sql id="desc">
+	     ORDER BY hand.DEDUT_DATE DESC
+	</sql>
+</mapper>

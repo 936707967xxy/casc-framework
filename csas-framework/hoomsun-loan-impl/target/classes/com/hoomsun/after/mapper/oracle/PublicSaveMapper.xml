@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.PublicSaveMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.PublicSave">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="ETYDAT" jdbcType="VARCHAR" property="etydat" />
+		<result column="ETYTIM" jdbcType="VARCHAR" property="etytim" />
+		<result column="TRANSACTION_DATE" jdbcType="TIMESTAMP"
+			property="transactionDate" />
+		<result column="TRSCOD" jdbcType="VARCHAR" property="trscod" />
+		<result column="NARYUR" jdbcType="VARCHAR" property="naryur" />
+		<result column="TRSAMTC" jdbcType="DECIMAL" property="trsamtc" />
+		<result column="AMTCDR" jdbcType="VARCHAR" property="amtcdr" />
+		<result column="TRSBLV" jdbcType="DECIMAL" property="trsblv" />
+		<result column="REFNBR" jdbcType="VARCHAR" property="refnbr" />
+		<result column="REQNBR" jdbcType="VARCHAR" property="reqnbr" />
+		<result column="BUSNAM" jdbcType="VARCHAR" property="busnam" />
+		<result column="RPYNAM" jdbcType="VARCHAR" property="rpynam" />
+		<result column="RPYACC" jdbcType="VARCHAR" property="rpyacc" />
+		<result column="RPYBNK" jdbcType="VARCHAR" property="rpybnk" />
+		<result column="RPYADR" jdbcType="VARCHAR" property="rpyadr" />
+		<result column="NAREXT" jdbcType="VARCHAR" property="narext" />
+		<result column="TRSAMT" jdbcType="DECIMAL" property="trsamt" />
+		<result column="CREAT_TIME" jdbcType="TIMESTAMP" property="creatTime" />
+		<result column="CORPORATE_BANK_ACCOUNT" jdbcType="VARCHAR"
+			property="corporateBankAccount" />
+		<result column="DATA_SOURCES" jdbcType="VARCHAR" property="dataSources" />
+		<result column="VERIFICATION_STATUS" jdbcType="VARCHAR"
+			property="verificationStatus" />
+		<result column="CAST_ID" jdbcType="VARCHAR" property="castId" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="VERIFICATION_PEOPLE_ID" jdbcType="VARCHAR"
+			property="verificationPeopleId" />
+		<result column="VERIFICATION_PEOPLE_NAME" jdbcType="VARCHAR"
+			property="verificationPeopleName" />
+		<result column="VERIFICATION_PEOPLE_DATE" jdbcType="TIMESTAMP"
+			property="verificationPeopleDate" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="STREAM" jdbcType="DECIMAL" property="stream" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, ETYDAT, ETYTIM, TRANSACTION_DATE, TRSCOD, NARYUR,
+		TRSAMTC, AMTCDR,
+		TRSBLV, REFNBR,
+		REQNBR, BUSNAM, RPYNAM, RPYACC, RPYBNK,
+		RPYADR, NAREXT, TRSAMT, CREAT_TIME,
+		CORPORATE_BANK_ACCOUNT,
+		DATA_SOURCES, VERIFICATION_STATUS, CAST_ID, CAST_NAME,
+		VERIFICATION_PEOPLE_ID,
+		VERIFICATION_PEOPLE_NAME,
+		VERIFICATION_PEOPLE_DATE, LOAN_ID, STREAM
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_PUBLIC_SAVE
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_PUBLIC_SAVE
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.PublicSave">
+		insert into
+		HS_AFTER_PUBLIC_SAVE (ID, ETYDAT, ETYTIM,
+		TRANSACTION_DATE, TRSCOD,
+		NARYUR,
+		TRSAMTC, AMTCDR, TRSBLV,
+		REFNBR, REQNBR, BUSNAM,
+		RPYNAM, RPYACC,
+		RPYBNK,
+		RPYADR, NAREXT, TRSAMT,
+		CREAT_TIME, CORPORATE_BANK_ACCOUNT,
+		DATA_SOURCES,
+		VERIFICATION_STATUS, CAST_ID, CAST_NAME,
+		VERIFICATION_PEOPLE_ID, VERIFICATION_PEOPLE_NAME,
+		VERIFICATION_PEOPLE_DATE, LOAN_ID, STREAM
+		)
+		values
+		(#{id,jdbcType=VARCHAR}, #{etydat,jdbcType=VARCHAR},
+		#{etytim,jdbcType=VARCHAR},
+		#{transactionDate,jdbcType=TIMESTAMP},
+		#{trscod,jdbcType=VARCHAR}, #{naryur,jdbcType=VARCHAR},
+		#{trsamtc,jdbcType=DECIMAL}, #{amtcdr,jdbcType=VARCHAR},
+		#{trsblv,jdbcType=DECIMAL},
+		#{refnbr,jdbcType=VARCHAR},
+		#{reqnbr,jdbcType=VARCHAR}, #{busnam,jdbcType=VARCHAR},
+		#{rpynam,jdbcType=VARCHAR}, #{rpyacc,jdbcType=VARCHAR},
+		#{rpybnk,jdbcType=VARCHAR},
+		#{rpyadr,jdbcType=VARCHAR},
+		#{narext,jdbcType=VARCHAR}, #{trsamt,jdbcType=DECIMAL},
+		#{creatTime,jdbcType=TIMESTAMP},
+		#{corporateBankAccount,jdbcType=VARCHAR},
+		#{dataSources,jdbcType=VARCHAR},
+		#{verificationStatus,jdbcType=VARCHAR}, #{castId,jdbcType=VARCHAR},
+		#{castName,jdbcType=VARCHAR},
+		#{verificationPeopleId,jdbcType=VARCHAR},
+		#{verificationPeopleName,jdbcType=VARCHAR},
+		#{verificationPeopleDate,jdbcType=TIMESTAMP},
+		#{loanId,jdbcType=VARCHAR}, #{stream,jdbcType=DECIMAL}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.PublicSave">
+		insert into HS_AFTER_PUBLIC_SAVE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="etydat != null">
+				ETYDAT,
+			</if>
+			<if test="etytim != null">
+				ETYTIM,
+			</if>
+			<if test="transactionDate != null">
+				TRANSACTION_DATE,
+			</if>
+			<if test="trscod != null">
+				TRSCOD,
+			</if>
+			<if test="naryur != null">
+				NARYUR,
+			</if>
+			<if test="trsamtc != null">
+				TRSAMTC,
+			</if>
+			<if test="amtcdr != null">
+				AMTCDR,
+			</if>
+			<if test="trsblv != null">
+				TRSBLV,
+			</if>
+			<if test="refnbr != null">
+				REFNBR,
+			</if>
+			<if test="reqnbr != null">
+				REQNBR,
+			</if>
+			<if test="busnam != null">
+				BUSNAM,
+			</if>
+			<if test="rpynam != null">
+				RPYNAM,
+			</if>
+			<if test="rpyacc != null">
+				RPYACC,
+			</if>
+			<if test="rpybnk != null">
+				RPYBNK,
+			</if>
+			<if test="rpyadr != null">
+				RPYADR,
+			</if>
+			<if test="narext != null">
+				NAREXT,
+			</if>
+			<if test="trsamt != null">
+				TRSAMT,
+			</if>
+			<if test="creatTime != null">
+				CREAT_TIME,
+			</if>
+			<if test="corporateBankAccount != null">
+				CORPORATE_BANK_ACCOUNT,
+			</if>
+			<if test="dataSources != null">
+				DATA_SOURCES,
+			</if>
+			<if test="verificationStatus != null">
+				VERIFICATION_STATUS,
+			</if>
+			<if test="castId != null">
+				CAST_ID,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="verificationPeopleId != null">
+				VERIFICATION_PEOPLE_ID,
+			</if>
+			<if test="verificationPeopleName != null">
+				VERIFICATION_PEOPLE_NAME,
+			</if>
+			<if test="verificationPeopleDate != null">
+				VERIFICATION_PEOPLE_DATE,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="stream != null">
+				STREAM,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="etydat != null">
+				#{etydat,jdbcType=VARCHAR},
+			</if>
+			<if test="etytim != null">
+				#{etytim,jdbcType=VARCHAR},
+			</if>
+			<if test="transactionDate != null">
+				#{transactionDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="trscod != null">
+				#{trscod,jdbcType=VARCHAR},
+			</if>
+			<if test="naryur != null">
+				#{naryur,jdbcType=VARCHAR},
+			</if>
+			<if test="trsamtc != null">
+				#{trsamtc,jdbcType=DECIMAL},
+			</if>
+			<if test="amtcdr != null">
+				#{amtcdr,jdbcType=VARCHAR},
+			</if>
+			<if test="trsblv != null">
+				#{trsblv,jdbcType=DECIMAL},
+			</if>
+			<if test="refnbr != null">
+				#{refnbr,jdbcType=VARCHAR},
+			</if>
+			<if test="reqnbr != null">
+				#{reqnbr,jdbcType=VARCHAR},
+			</if>
+			<if test="busnam != null">
+				#{busnam,jdbcType=VARCHAR},
+			</if>
+			<if test="rpynam != null">
+				#{rpynam,jdbcType=VARCHAR},
+			</if>
+			<if test="rpyacc != null">
+				#{rpyacc,jdbcType=VARCHAR},
+			</if>
+			<if test="rpybnk != null">
+				#{rpybnk,jdbcType=VARCHAR},
+			</if>
+			<if test="rpyadr != null">
+				#{rpyadr,jdbcType=VARCHAR},
+			</if>
+			<if test="narext != null">
+				#{narext,jdbcType=VARCHAR},
+			</if>
+			<if test="trsamt != null">
+				#{trsamt,jdbcType=DECIMAL},
+			</if>
+			<if test="creatTime != null">
+				#{creatTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="corporateBankAccount != null">
+				#{corporateBankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="dataSources != null">
+				#{dataSources,jdbcType=VARCHAR},
+			</if>
+			<if test="verificationStatus != null">
+				#{verificationStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="castId != null">
+				#{castId,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="verificationPeopleId != null">
+				#{verificationPeopleId,jdbcType=VARCHAR},
+			</if>
+			<if test="verificationPeopleName != null">
+				#{verificationPeopleName,jdbcType=VARCHAR},
+			</if>
+			<if test="verificationPeopleDate != null">
+				#{verificationPeopleDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="stream != null">
+				#{stream,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.PublicSave">
+		update HS_AFTER_PUBLIC_SAVE
+		<set>
+			<if test="etydat != null">
+				ETYDAT = #{etydat,jdbcType=VARCHAR},
+			</if>
+			<if test="etytim != null">
+				ETYTIM = #{etytim,jdbcType=VARCHAR},
+			</if>
+			<if test="transactionDate != null">
+				TRANSACTION_DATE = #{transactionDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="trscod != null">
+				TRSCOD = #{trscod,jdbcType=VARCHAR},
+			</if>
+			<if test="naryur != null">
+				NARYUR = #{naryur,jdbcType=VARCHAR},
+			</if>
+			<if test="trsamtc != null">
+				TRSAMTC = #{trsamtc,jdbcType=DECIMAL},
+			</if>
+			<if test="amtcdr != null">
+				AMTCDR = #{amtcdr,jdbcType=VARCHAR},
+			</if>
+			<if test="trsblv != null">
+				TRSBLV = #{trsblv,jdbcType=DECIMAL},
+			</if>
+			<if test="refnbr != null">
+				REFNBR = #{refnbr,jdbcType=VARCHAR},
+			</if>
+			<if test="reqnbr != null">
+				REQNBR = #{reqnbr,jdbcType=VARCHAR},
+			</if>
+			<if test="busnam != null">
+				BUSNAM = #{busnam,jdbcType=VARCHAR},
+			</if>
+			<if test="rpynam != null">
+				RPYNAM = #{rpynam,jdbcType=VARCHAR},
+			</if>
+			<if test="rpyacc != null">
+				RPYACC = #{rpyacc,jdbcType=VARCHAR},
+			</if>
+			<if test="rpybnk != null">
+				RPYBNK = #{rpybnk,jdbcType=VARCHAR},
+			</if>
+			<if test="rpyadr != null">
+				RPYADR = #{rpyadr,jdbcType=VARCHAR},
+			</if>
+			<if test="narext != null">
+				NAREXT = #{narext,jdbcType=VARCHAR},
+			</if>
+			<if test="trsamt != null">
+				TRSAMT = #{trsamt,jdbcType=DECIMAL},
+			</if>
+			<if test="creatTime != null">
+				CREAT_TIME = #{creatTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="corporateBankAccount != null">
+				CORPORATE_BANK_ACCOUNT =
+				#{corporateBankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="dataSources != null">
+				DATA_SOURCES = #{dataSources,jdbcType=VARCHAR},
+			</if>
+			<if test="verificationStatus != null">
+				VERIFICATION_STATUS =
+				#{verificationStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="castId != null">
+				CAST_ID = #{castId,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="verificationPeopleId != null">
+				VERIFICATION_PEOPLE_ID =
+				#{verificationPeopleId,jdbcType=VARCHAR},
+			</if>
+			<if test="verificationPeopleName != null">
+				VERIFICATION_PEOPLE_NAME =
+				#{verificationPeopleName,jdbcType=VARCHAR},
+			</if>
+			<if test="verificationPeopleDate != null">
+				VERIFICATION_PEOPLE_DATE =
+				#{verificationPeopleDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="stream != null">
+				STREAM = #{stream,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.PublicSave">
+		update
+		HS_AFTER_PUBLIC_SAVE
+		set ETYDAT = #{etydat,jdbcType=VARCHAR},
+		ETYTIM =
+		#{etytim,jdbcType=VARCHAR},
+		TRANSACTION_DATE =
+		#{transactionDate,jdbcType=TIMESTAMP},
+		TRSCOD =
+		#{trscod,jdbcType=VARCHAR},
+		NARYUR = #{naryur,jdbcType=VARCHAR},
+		TRSAMTC = #{trsamtc,jdbcType=DECIMAL},
+		AMTCDR =
+		#{amtcdr,jdbcType=VARCHAR},
+		TRSBLV = #{trsblv,jdbcType=DECIMAL},
+		REFNBR
+		= #{refnbr,jdbcType=VARCHAR},
+		REQNBR = #{reqnbr,jdbcType=VARCHAR},
+		BUSNAM = #{busnam,jdbcType=VARCHAR},
+		RPYNAM =
+		#{rpynam,jdbcType=VARCHAR},
+		RPYACC = #{rpyacc,jdbcType=VARCHAR},
+		RPYBNK
+		= #{rpybnk,jdbcType=VARCHAR},
+		RPYADR = #{rpyadr,jdbcType=VARCHAR},
+		NAREXT = #{narext,jdbcType=VARCHAR},
+		TRSAMT =
+		#{trsamt,jdbcType=DECIMAL},
+		CREAT_TIME =
+		#{creatTime,jdbcType=TIMESTAMP},
+		CORPORATE_BANK_ACCOUNT =
+		#{corporateBankAccount,jdbcType=VARCHAR},
+		DATA_SOURCES =
+		#{dataSources,jdbcType=VARCHAR},
+		VERIFICATION_STATUS =
+		#{verificationStatus,jdbcType=VARCHAR},
+		CAST_ID =
+		#{castId,jdbcType=VARCHAR},
+		CAST_NAME = #{castName,jdbcType=VARCHAR},
+		VERIFICATION_PEOPLE_ID = #{verificationPeopleId,jdbcType=VARCHAR},
+		VERIFICATION_PEOPLE_NAME = #{verificationPeopleName,jdbcType=VARCHAR},
+		VERIFICATION_PEOPLE_DATE =
+		#{verificationPeopleDate,jdbcType=TIMESTAMP},
+		LOAN_ID =
+		#{loanId,jdbcType=VARCHAR},
+		STREAM = #{stream,jdbcType=DECIMAL}
+		where ID
+		= #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- -->
+
+
+	<select id="getDeductList" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_PUBLIC_SAVE
+		<where>
+			VERIFICATION_STATUS =0
+
+			AND AMTCDR ='C'
+
+			<if test="rpynam !=null and rpynam !='' ">
+				AND RPYNAM =#{rpynam}
+			</if>
+			<if test="rpyacc !=null and rpyacc !='' ">
+				AND RPYACC =#{rpyacc}
+			</if>
+			<if test="naryur !=null and naryur !='' ">
+				AND NARYUR =#{naryur}
+			</if>
+			<if test="corporateBankAccount !=null and corporateBankAccount !='' ">
+				AND CORPORATE_BANK_ACCOUNT =#{corporateBankAccount}
+			</if>
+			<if test="transactionDate !=null">
+				AND trunc(TRANSACTION_DATE) = #{transactionDate}
+			</if>
+
+		</where>
+
+	</select>
+
+	<select id="selectByPrimaryKeys" parameterType="list" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_PUBLIC_SAVE
+		<where>
+
+			ID IN
+			<foreach collection="list" open="(" close=")" separator=","
+				item="id">
+
+				#{id}
+			</foreach>
+
+		</where>
+
+
+
+	</select>
+
+</mapper>

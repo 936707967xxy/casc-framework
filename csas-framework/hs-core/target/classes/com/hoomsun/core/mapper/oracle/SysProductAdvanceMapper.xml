@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysProductAdvanceMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysProductAdvance">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="PROD_ID" jdbcType="VARCHAR" property="prodId" />
+    <result column="START_PERIODS" jdbcType="VARCHAR" property="startPeriods" />
+    <result column="END_PERIODS" jdbcType="VARCHAR" property="endPeriods" />
+    <result column="RATE" jdbcType="DECIMAL" property="rate" />
+    <result column="COMPUTE_TYPE" jdbcType="DECIMAL" property="computeType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PROD_ID, START_PERIODS, END_PERIODS, RATE, COMPUTE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PRODUCT_ADVANCE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PRODUCT_ADVANCE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysProductAdvance">
+    insert into HS_PRODUCT_ADVANCE (ID, PROD_ID, START_PERIODS, 
+      END_PERIODS, RATE, COMPUTE_TYPE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{prodId,jdbcType=VARCHAR}, #{startPeriods,jdbcType=VARCHAR}, 
+      #{endPeriods,jdbcType=VARCHAR}, #{rate,jdbcType=DECIMAL}, #{computeType,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysProductAdvance">
+    insert into HS_PRODUCT_ADVANCE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="prodId != null">
+        PROD_ID,
+      </if>
+      <if test="startPeriods != null">
+        START_PERIODS,
+      </if>
+      <if test="endPeriods != null">
+        END_PERIODS,
+      </if>
+      <if test="rate != null">
+        RATE,
+      </if>
+      <if test="computeType != null">
+        COMPUTE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="prodId != null">
+        #{prodId,jdbcType=VARCHAR},
+      </if>
+      <if test="startPeriods != null">
+        #{startPeriods,jdbcType=VARCHAR},
+      </if>
+      <if test="endPeriods != null">
+        #{endPeriods,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="computeType != null">
+        #{computeType,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysProductAdvance">
+    update HS_PRODUCT_ADVANCE
+    <set>
+      <if test="prodId != null">
+        PROD_ID = #{prodId,jdbcType=VARCHAR},
+      </if>
+      <if test="startPeriods != null">
+        START_PERIODS = #{startPeriods,jdbcType=VARCHAR},
+      </if>
+      <if test="endPeriods != null">
+        END_PERIODS = #{endPeriods,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        RATE = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="computeType != null">
+        COMPUTE_TYPE = #{computeType,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysProductAdvance">
+    update HS_PRODUCT_ADVANCE
+    set PROD_ID = #{prodId,jdbcType=VARCHAR},
+      START_PERIODS = #{startPeriods,jdbcType=VARCHAR},
+      END_PERIODS = #{endPeriods,jdbcType=VARCHAR},
+      RATE = #{rate,jdbcType=DECIMAL},
+      COMPUTE_TYPE = #{computeType,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 用于产品联查的resultMap -->
+  <resultMap id="advanceMap" type="com.hoomsun.core.model.SysProductAdvance">
+    <id column="ADV_ID" jdbcType="VARCHAR" property="id" />
+    <result column="ADV_PROD_ID" jdbcType="VARCHAR" property="prodId" />
+    <result column="ADV_START_PERIODS" jdbcType="VARCHAR" property="startPeriods" />
+    <result column="ADV_END_PERIODS" jdbcType="VARCHAR" property="endPeriods" />
+    <result column="ADV_RATE" jdbcType="DECIMAL" property="rate" />
+    <result column="ADV_COMPUTE_TYPE" jdbcType="DECIMAL" property="computeType" />
+  </resultMap>
+  
+  <delete id="deleteByProdId" parameterType="java.lang.String">
+    delete from HS_PRODUCT_ADVANCE
+    where PROD_ID = #{prodId,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

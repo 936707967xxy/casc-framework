@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contract xmlns="http://www.idawn.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.idawn.org contract.xsd">
+
+	<styles>
+		<style id="code" textalignment="right" margin-top="-20"
+			fontsize="10" bold="true" />
+		<style id="title" textalignment="center" fontsize="16" bold="true" />
+		<style id="accessory-title" textalignment="left" fontsize="14"
+			bold="true" margin-bottom="20" />
+		<style id="table" fontsize="8" />
+		<style id="border" border="no" textalignment="left" fontsize="6"
+			height="40" padding-bottom="15" />
+		<style id="bold" bold="true" />
+		<style id="margin-top-bottom" margin-top="36" margin-bottom="36" />
+		<style id="margin-bottom" margin-bottom="36" />
+		<style id="margin-top" margin-top="36" />
+		<style id="firstlineindent" margin-bottom="20" />
+	</styles>
+	<content pagesize="A4" fontsize="12" margin-top="72"
+		margin-right="90" margin-bottom="72" margin-left="90">
+		<code value="还款管理计划书" fill="true" margin-right="50"
+			fontsize="14" style="code" />
+		<title value="还款管理计划书" style="title" />
+	<paragraphs>
+		<paragraph type="p"> #{custName}先生/女士，您好!</paragraph>
+		<paragraph type="p">为了您更加方便、快捷的进行还款，同时积累良好的信用记录，在此，请您特别注意如下事项:</paragraph>
+		<paragraph type="p">1. 还款账户：</paragraph>
+		<paragraph type="p">在借款协议里列示的专用账户是您每次用于还款的账户，请您妥善保管好该银行卡。如发生此银行卡丢失、损坏的情况，请您在第一时间联系我们，我们将根据具体情况，协助您安排按时还款事宜，以避免不必要的逾期违约金和罚息的产生，如您需要变更还款账户，请向我们提出申请（还款日当天不受理），我们相关的工作人员将协助您，进行变更借款协议中专用账号的事项办理。</paragraph>
+		<paragraph type="p">2. 还款账户最低余额为15元：</paragraph>
+		<paragraph type="p">为了保证您的还款成功扣款，请确保您的还款账户余额在划扣当月还款额以后，还有至少15元的余额存在您的还款账户里，此金额有可能用于支付还款银行的“年费”和其他相关费用。关于此“年费”和其他费用收费标准，请致电您的还款银行查询，同时为了保证扣款日能够成功划扣，请您保持专用账号中有充足的资金，避免因其他未知或遗忘的代扣等业务造成违约。</paragraph>
+		<paragraph type="p">3. 还款金额：</paragraph>
+		<paragraph type="p">您的每月还款额为RMB #{shouldAmt} 元,请您务必牢记此数字。（包含月账户管理费RMB0.00元，本息RMB #{amt}元）。</paragraph>
+		<paragraph type="p">4. 还款时间：</paragraph>
+		<paragraph type="p">请您在每月还款日16点以前，将每月还款额足额存到您的借记卡里、逾期将产生不必要的罚息和逾期违约金，并会影响您的个人信用记录。</paragraph>
+		<paragraph type="p">请您务必牢记还款日，此还款日期不因节假日顺延。我们将以成功划扣还款账户的还款金额时间为准，记录还款时间。</paragraph>
+		<paragraph type="p">5.如果您因特殊原因暂时无法按时足额还款时，请在第一时间（当月还款日期之前）与我们联系，(电话：400-602-7111)。我们将协助您安排预约还款并准确告知您还款金额（本息、逾期违约金，罚息，协议约定的相关费用等）。特别需要您值得注意的是：针对违约时长超过15天，根据借款协议，出借人有权提前终止借款协议，您须在出借人提出终止借款协议要求的三日内一次性支付余下的所有本金、利息，罚息和逾期违约金。</paragraph>
+		<paragraph type="p">6. 逾期违约金及罚息计算方法如下：</paragraph>
+		<paragraph type="p">1) 逾期违约金：如未按本协议第一条约定的还款时间足额还款，则按照当月应还本息的10%计算，不低于100元，每月单独计算。</paragraph>
+		<paragraph type="p">2) 罚息：每日按合同金额的0.05%收取罚息，每月单独计算。</paragraph>
+		<paragraph type="p">7. 联系方式变更：</paragraph>
+		<paragraph type="p">为了方便我们更好的服务于您，如果您需要变更还款账号，或者您（或是您共同借款人）的联系方式、工作单位、居住或工作地址等与借款有关的信息发生变化，请在第一时间拨打400-602-7111通知我们。注：在还款日当天不予变更还款账号，变更还款账号需提前。</paragraph>
+		<paragraph type="p">8. 循环贷情形：</paragraph>
+		<paragraph type="p">在您积累了一定的良好信用记录后，比如您已经按时还满一定期限后，如果您有新的借款需求，我们将接受您的再次申请，我们会根据您的信用级别，还款情况和还款额提供循环贷的帮助，循环贷咨询电话：400-602-7111。</paragraph>
+		<paragraph type="p">9. 提前还款（即一次性还款）：</paragraph>
+		<paragraph type="p">为了方便我们更好的服务于您，如果您决定一次性将全部款项结清，请您务必提前三个工作日与我们进行沟通（还款日及节假日期间不办理），我们将帮助您安排预约一次性还款的相关事宜（提前还款具体金额详见此还款管理计划书第10项）。提前还款电话：400-602-7111。</paragraph>
+		<paragraph type="p">10. 如您无法通过电话联系我们，请您到我们公司办理各种服务事项，我们将真诚为您服务。</paragraph>
+		<paragraph type="p">您的还款明细表如下（应还款项按照四舍五入计算）：</paragraph>
+	</paragraphs>
+		<accessorys>
+			<accessory>
+				<title value="附件:还款计划表" style="accessory-title" />
+				<paragraph type="table" column="5" foreach="true"
+					var="#{repaymentPlans}" item="plan">
+					<cell clm="1" row="1">期数</cell>
+					<cell clm="1" row="1">计划还款日</cell>
+					<cell clm="1" row="1">月还款额</cell>
+					<cell clm="1" row="1">尚欠本金</cell>
+					<cell clm="1" row="1">当期一次性还款金额</cell>
+					<cell clm="1" row="1" fill="true">#{plan.shouldTerm}</cell>
+					<cell clm="1" row="1" fill="true">#{plan.shouldDate}</cell>
+					<cell clm="1" row="1" fill="true">#{plan.shouldAmt}</cell>
+					<cell clm="1" row="1" fill="true">#{plan.bal}</cell>
+					<cell clm="1" row="1" fill="true">#{plan.preretutotalamt}</cell>
+				</paragraph>
+			</accessory>
+		</accessorys>
+		<paragraph type="p">以上内容由红上公司进行讲解，对于上述内容我已没有疑问。</paragraph>
+		<paragraph type="p">您的还款明细表如下（应还款项按照四舍五入计算）：</paragraph>
+		<paragraph type="p">借款人签字：_______________________</paragraph>
+		<paragraph type="p">讲解人签字：________________________</paragraph>
+		<paragraph type="p">签订日期：________年_______月_______日</paragraph>
+	</content>
+</contract>

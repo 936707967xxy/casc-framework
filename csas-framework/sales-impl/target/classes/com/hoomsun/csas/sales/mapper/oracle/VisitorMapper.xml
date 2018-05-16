@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.VisitorMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.Visitor">
+    <id column="VIS_ID" jdbcType="VARCHAR" property="visId" />
+    <result column="VIS_FKID" jdbcType="VARCHAR" property="visFkid" />
+    <result column="VIS_TIME" jdbcType="OTHER" property="visTime" />
+    <result column="VIS_RECORD" jdbcType="VARCHAR" property="visRecord" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    VIS_ID, VIS_FKID, VIS_TIME, VIS_RECORD
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_VISITOR
+    where VIS_ID = #{visId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_VISITOR
+    where VIS_ID = #{visId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.Visitor">
+    insert into HS_VISITOR (VIS_ID, VIS_FKID, VIS_TIME, 
+      VIS_RECORD)
+    values (#{visId,jdbcType=VARCHAR}, #{visFkid,jdbcType=VARCHAR}, #{visTime,jdbcType=OTHER}, 
+      #{visRecord,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.Visitor">
+    insert into HS_VISITOR
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="visId != null">
+        VIS_ID,
+      </if>
+      <if test="visFkid != null">
+        VIS_FKID,
+      </if>
+      <if test="visTime != null">
+        VIS_TIME,
+      </if>
+      <if test="visRecord != null">
+        VIS_RECORD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="visId != null">
+        #{visId,jdbcType=VARCHAR},
+      </if>
+      <if test="visFkid != null">
+        #{visFkid,jdbcType=VARCHAR},
+      </if>
+      <if test="visTime != null">
+        #{visTime,jdbcType=OTHER},
+      </if>
+      <if test="visRecord != null">
+        #{visRecord,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.Visitor">
+    update HS_VISITOR
+    <set>
+      <if test="visFkid != null">
+        VIS_FKID = #{visFkid,jdbcType=VARCHAR},
+      </if>
+      <if test="visTime != null">
+        VIS_TIME = #{visTime,jdbcType=OTHER},
+      </if>
+      <if test="visRecord != null">
+        VIS_RECORD = #{visRecord,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where VIS_ID = #{visId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.Visitor">
+    update HS_VISITOR
+    set VIS_FKID = #{visFkid,jdbcType=VARCHAR},
+      VIS_TIME = #{visTime,jdbcType=OTHER},
+      VIS_RECORD = #{visRecord,jdbcType=VARCHAR}
+    where VIS_ID = #{visId,jdbcType=VARCHAR}
+  </update>
+  
+   <!-- 分页查询 -->
+  
+  <select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+	<![CDATA[
+		SELECT
+			it.VIS_ID,it.VIS_FKID,it.VIS_TIME,it.VIS_RECORD
+		FROM
+			(
+				SELECT
+					it.VIS_ID,it.VIS_FKID,it.VIS_TIME,it.VIS_RECORD,
+					 ROWNUM r	
+		    			
+				FROM HS_VISITOR it
+				
+				WHERE
+					ROWNUM <= #{page}*#{rows} and it.VIS_FKID =#{visFkid}
+			) it
+		WHERE
+			1 <> 2
+		      
+      ]]>
+		 <if test="visTime != null and visTime != ''"> 
+			and it.VIS_TIME like #{visTime}
+		</if>
+		 <if test="visFkid != null and visFkid != ''"> 
+			and it.VIS_FKID =#{visFkid}
+		 </if>
+			and r > (#{page}-1)*#{rows}
+	</select>
+  	
+  	
+  	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		<![CDATA[
+			
+			SELECT count(it.VIS_ID) from HS_VISITOR it WHERE 1<>2 and  it.VIS_FKID =#{visFkid}
+
+		]]>
+		<if test="visTime != null and visTime != ''"> and it.VIS_TIME like #{visTime}</if>
+	</select>
+</mapper>

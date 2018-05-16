@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.NameAuthenticationInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.NameAuthenticationInfo">
+    <id column="AUTHINFO_PK_ID" jdbcType="VARCHAR" property="authinfoPkId" />
+    <result column="FK_ID" jdbcType="VARCHAR" property="fkId" />
+    <result column="VERIFY_STATUS" jdbcType="VARCHAR" property="verifyStatus" />
+    <result column="SIMILARITY" jdbcType="VARCHAR" property="similarity" />
+    <result column="AUTH_RESULT" jdbcType="VARCHAR" property="authResult" />
+    <result column="FAIL_REASON" jdbcType="VARCHAR" property="failReason" />
+    <result column="ID_NAME" jdbcType="VARCHAR" property="idName" />
+    <result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+    <result column="VALIDITY_PERIOD" jdbcType="VARCHAR" property="validityPeriod" />
+    <result column="ISSUING_AUTHORITY" jdbcType="VARCHAR" property="issuingAuthority" />
+    <result column="NATION" jdbcType="VARCHAR" property="nation" />
+    <result column="GENDER" jdbcType="VARCHAR" property="gender" />
+    <result column="BIRTHDAY" jdbcType="VARCHAR" property="birthday" />
+    <result column="AGE" jdbcType="VARCHAR" property="age" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hoomsun.csas.sales.api.model.NameAuthenticationInfoWithBLOBs">
+    <result column="IDCARD_FRONT_PHOTO" jdbcType="CLOB" property="idcardFrontPhoto" />
+    <result column="IDCARD_PORTRAIT_PHOTO" jdbcType="CLOB" property="idcardPortraitPhoto" />
+    <result column="IDCARD_BACK_PHOTO" jdbcType="CLOB" property="idcardBackPhoto" />
+    <result column="IDCARD_LIVING_PHOTO" jdbcType="CLOB" property="idcardLivingPhoto" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    AUTHINFO_PK_ID, FK_ID, VERIFY_STATUS, SIMILARITY, AUTH_RESULT, FAIL_REASON, ID_NAME, 
+    ID_NUMBER, VALIDITY_PERIOD, ISSUING_AUTHORITY, NATION, GENDER, BIRTHDAY, AGE, ADDRESS
+  </sql>
+  <sql id="Blob_Column_List">
+    IDCARD_FRONT_PHOTO, IDCARD_PORTRAIT_PHOTO, IDCARD_BACK_PHOTO, IDCARD_LIVING_PHOTO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from HS_AFRESH_AUTHENTICATION_INFO
+    where AUTHINFO_PK_ID = #{authinfoPkId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AFRESH_AUTHENTICATION_INFO
+    where AUTHINFO_PK_ID = #{authinfoPkId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.NameAuthenticationInfoWithBLOBs">
+    insert into HS_AFRESH_AUTHENTICATION_INFO (AUTHINFO_PK_ID, FK_ID, VERIFY_STATUS, 
+      SIMILARITY, AUTH_RESULT, FAIL_REASON, 
+      ID_NAME, ID_NUMBER, VALIDITY_PERIOD, 
+      ISSUING_AUTHORITY, NATION, GENDER, 
+      BIRTHDAY, AGE, ADDRESS, 
+      IDCARD_FRONT_PHOTO, IDCARD_PORTRAIT_PHOTO, IDCARD_BACK_PHOTO, 
+      IDCARD_LIVING_PHOTO)
+    values (#{authinfoPkId,jdbcType=VARCHAR}, #{fkId,jdbcType=VARCHAR}, #{verifyStatus,jdbcType=VARCHAR}, 
+      #{similarity,jdbcType=VARCHAR}, #{authResult,jdbcType=VARCHAR}, #{failReason,jdbcType=VARCHAR}, 
+      #{idName,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{validityPeriod,jdbcType=VARCHAR}, 
+      #{issuingAuthority,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{idcardFrontPhoto,jdbcType=CLOB}, #{idcardPortraitPhoto,jdbcType=CLOB}, #{idcardBackPhoto,jdbcType=CLOB}, 
+      #{idcardLivingPhoto,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.NameAuthenticationInfoWithBLOBs">
+    insert into HS_AFRESH_AUTHENTICATION_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="authinfoPkId != null">
+        AUTHINFO_PK_ID,
+      </if>
+      <if test="fkId != null">
+        FK_ID,
+      </if>
+      <if test="verifyStatus != null">
+        VERIFY_STATUS,
+      </if>
+      <if test="similarity != null">
+        SIMILARITY,
+      </if>
+      <if test="authResult != null">
+        AUTH_RESULT,
+      </if>
+      <if test="failReason != null">
+        FAIL_REASON,
+      </if>
+      <if test="idName != null">
+        ID_NAME,
+      </if>
+      <if test="idNumber != null">
+        ID_NUMBER,
+      </if>
+      <if test="validityPeriod != null">
+        VALIDITY_PERIOD,
+      </if>
+      <if test="issuingAuthority != null">
+        ISSUING_AUTHORITY,
+      </if>
+      <if test="nation != null">
+        NATION,
+      </if>
+      <if test="gender != null">
+        GENDER,
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY,
+      </if>
+      <if test="age != null">
+        AGE,
+      </if>
+      <if test="address != null">
+        ADDRESS,
+      </if>
+      <if test="idcardFrontPhoto != null">
+        IDCARD_FRONT_PHOTO,
+      </if>
+      <if test="idcardPortraitPhoto != null">
+        IDCARD_PORTRAIT_PHOTO,
+      </if>
+      <if test="idcardBackPhoto != null">
+        IDCARD_BACK_PHOTO,
+      </if>
+      <if test="idcardLivingPhoto != null">
+        IDCARD_LIVING_PHOTO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="authinfoPkId != null">
+        #{authinfoPkId,jdbcType=VARCHAR},
+      </if>
+      <if test="fkId != null">
+        #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyStatus != null">
+        #{verifyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="similarity != null">
+        #{similarity,jdbcType=VARCHAR},
+      </if>
+      <if test="authResult != null">
+        #{authResult,jdbcType=VARCHAR},
+      </if>
+      <if test="failReason != null">
+        #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="idName != null">
+        #{idName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="validityPeriod != null">
+        #{validityPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="issuingAuthority != null">
+        #{issuingAuthority,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardFrontPhoto != null">
+        #{idcardFrontPhoto,jdbcType=CLOB},
+      </if>
+      <if test="idcardPortraitPhoto != null">
+        #{idcardPortraitPhoto,jdbcType=CLOB},
+      </if>
+      <if test="idcardBackPhoto != null">
+        #{idcardBackPhoto,jdbcType=CLOB},
+      </if>
+      <if test="idcardLivingPhoto != null">
+        #{idcardLivingPhoto,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.NameAuthenticationInfoWithBLOBs">
+    update HS_AFRESH_AUTHENTICATION_INFO
+    <set>
+      <if test="fkId != null">
+        FK_ID = #{fkId,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyStatus != null">
+        VERIFY_STATUS = #{verifyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="similarity != null">
+        SIMILARITY = #{similarity,jdbcType=VARCHAR},
+      </if>
+      <if test="authResult != null">
+        AUTH_RESULT = #{authResult,jdbcType=VARCHAR},
+      </if>
+      <if test="failReason != null">
+        FAIL_REASON = #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="idName != null">
+        ID_NAME = #{idName,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="validityPeriod != null">
+        VALIDITY_PERIOD = #{validityPeriod,jdbcType=VARCHAR},
+      </if>
+      <if test="issuingAuthority != null">
+        ISSUING_AUTHORITY = #{issuingAuthority,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        NATION = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        GENDER = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        AGE = #{age,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardFrontPhoto != null">
+        IDCARD_FRONT_PHOTO = #{idcardFrontPhoto,jdbcType=CLOB},
+      </if>
+      <if test="idcardPortraitPhoto != null">
+        IDCARD_PORTRAIT_PHOTO = #{idcardPortraitPhoto,jdbcType=CLOB},
+      </if>
+      <if test="idcardBackPhoto != null">
+        IDCARD_BACK_PHOTO = #{idcardBackPhoto,jdbcType=CLOB},
+      </if>
+      <if test="idcardLivingPhoto != null">
+        IDCARD_LIVING_PHOTO = #{idcardLivingPhoto,jdbcType=CLOB},
+      </if>
+    </set>
+    where AUTHINFO_PK_ID = #{authinfoPkId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hoomsun.csas.sales.api.model.NameAuthenticationInfoWithBLOBs">
+    update HS_AFRESH_AUTHENTICATION_INFO
+    set FK_ID = #{fkId,jdbcType=VARCHAR},
+      VERIFY_STATUS = #{verifyStatus,jdbcType=VARCHAR},
+      SIMILARITY = #{similarity,jdbcType=VARCHAR},
+      AUTH_RESULT = #{authResult,jdbcType=VARCHAR},
+      FAIL_REASON = #{failReason,jdbcType=VARCHAR},
+      ID_NAME = #{idName,jdbcType=VARCHAR},
+      ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      VALIDITY_PERIOD = #{validityPeriod,jdbcType=VARCHAR},
+      ISSUING_AUTHORITY = #{issuingAuthority,jdbcType=VARCHAR},
+      NATION = #{nation,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      IDCARD_FRONT_PHOTO = #{idcardFrontPhoto,jdbcType=CLOB},
+      IDCARD_PORTRAIT_PHOTO = #{idcardPortraitPhoto,jdbcType=CLOB},
+      IDCARD_BACK_PHOTO = #{idcardBackPhoto,jdbcType=CLOB},
+      IDCARD_LIVING_PHOTO = #{idcardLivingPhoto,jdbcType=CLOB}
+    where AUTHINFO_PK_ID = #{authinfoPkId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.NameAuthenticationInfo">
+    update HS_AFRESH_AUTHENTICATION_INFO
+    set FK_ID = #{fkId,jdbcType=VARCHAR},
+      VERIFY_STATUS = #{verifyStatus,jdbcType=VARCHAR},
+      SIMILARITY = #{similarity,jdbcType=VARCHAR},
+      AUTH_RESULT = #{authResult,jdbcType=VARCHAR},
+      FAIL_REASON = #{failReason,jdbcType=VARCHAR},
+      ID_NAME = #{idName,jdbcType=VARCHAR},
+      ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+      VALIDITY_PERIOD = #{validityPeriod,jdbcType=VARCHAR},
+      ISSUING_AUTHORITY = #{issuingAuthority,jdbcType=VARCHAR},
+      NATION = #{nation,jdbcType=VARCHAR},
+      GENDER = #{gender,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=VARCHAR},
+      AGE = #{age,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR}
+    where AUTHINFO_PK_ID = #{authinfoPkId,jdbcType=VARCHAR}
+  </update>
+<!-- 查询是否该客户信息已经存取 --> 
+    <select id="selectByFkid" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from HS_AFRESH_AUTHENTICATION_INFO
+    where FK_ID = #{fkId,jdbcType=VARCHAR}
+  </select>
+<!-- 线下单子推送实名数据 -->  
+   <select id="selectDataByFkid" parameterType="java.lang.String" resultType="java.util.Map">
+    select  VERIFY_STATUS, 
+      SIMILARITY, AUTH_RESULT, FAIL_REASON, 
+      ID_NAME, ID_NUMBER, VALIDITY_PERIOD, 
+      ISSUING_AUTHORITY, NATION, GENDER, 
+      BIRTHDAY, AGE, ADDRESS   
+    from HS_AFRESH_AUTHENTICATION_INFO
+    where FK_ID = #{fkId,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.CreditCardMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.CreditCard">
+    <id column="CC_ID" jdbcType="VARCHAR" property="ccId" />
+    <result column="ACCOUNT_NAME" jdbcType="VARCHAR" property="accountName" />
+    <result column="CARD_NUMBER" jdbcType="VARCHAR" property="cardNumber" />
+    <result column="LIMIT_MONEY" jdbcType="VARCHAR" property="limitMoney" />
+    <result column="OPENING_BANK" jdbcType="VARCHAR" property="openingBank" />
+    <result column="OPEN_TIME" jdbcType="OTHER" property="openTime" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CC_ID, ACCOUNT_NAME, CARD_NUMBER, LIMIT_MONEY, OPENING_BANK, OPEN_TIME, APPLY_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CREDIT_CARD
+    where CC_ID = #{ccId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CREDIT_CARD
+    where CC_ID = #{ccId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.CreditCard">
+    insert into HS_CREDIT_CARD (CC_ID, ACCOUNT_NAME, CARD_NUMBER, 
+      LIMIT_MONEY, OPENING_BANK, OPEN_TIME, 
+      APPLY_ID)
+    values (#{ccId,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, #{cardNumber,jdbcType=VARCHAR}, 
+      #{limitMoney,jdbcType=VARCHAR}, #{openingBank,jdbcType=VARCHAR}, #{openTime,jdbcType=OTHER}, 
+      #{applyId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.CreditCard">
+    insert into HS_CREDIT_CARD
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ccId != null">
+        CC_ID,
+      </if>
+      <if test="accountName != null">
+        ACCOUNT_NAME,
+      </if>
+      <if test="cardNumber != null">
+        CARD_NUMBER,
+      </if>
+      <if test="limitMoney != null">
+        LIMIT_MONEY,
+      </if>
+      <if test="openingBank != null">
+        OPENING_BANK,
+      </if>
+      <if test="openTime != null">
+        OPEN_TIME,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ccId != null">
+        #{ccId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="limitMoney != null">
+        #{limitMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="openingBank != null">
+        #{openingBank,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null">
+        #{openTime,jdbcType=OTHER},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.CreditCard">
+    update HS_CREDIT_CARD
+    <set>
+      <if test="accountName != null">
+        ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        CARD_NUMBER = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="limitMoney != null">
+        LIMIT_MONEY = #{limitMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="openingBank != null">
+        OPENING_BANK = #{openingBank,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null">
+        OPEN_TIME = #{openTime,jdbcType=OTHER},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CC_ID = #{ccId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.CreditCard">
+    update HS_CREDIT_CARD
+    set ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+      CARD_NUMBER = #{cardNumber,jdbcType=VARCHAR},
+      LIMIT_MONEY = #{limitMoney,jdbcType=VARCHAR},
+      OPENING_BANK = #{openingBank,jdbcType=VARCHAR},
+      OPEN_TIME = #{openTime,jdbcType=OTHER},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR}
+    where CC_ID = #{ccId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  	<!-- 根据申请id查询信用卡账单 -->
+	<select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_CREDIT_CARD
+		where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+
+	<resultMap id="CREDIT_CARD_BILL_MAP" type="com.hoomsun.csas.sales.api.model.CreditCard" extends="BaseResultMap">
+		<collection property="cardBills" javaType="java.util.ArrayList" ofType="com.hoomsun.csas.sales.api.model.CreditCardBills" resultMap="com.hoomsun.csas.sales.dao.CreditCardBillsMapper.CREDIT_CARD_BILLS_MAP" />
+	</resultMap>
+	<select id="findByApplyId" parameterType="java.lang.String" resultMap="CREDIT_CARD_BILL_MAP">
+		SELECT 
+		cc.CC_ID, cc.ACCOUNT_NAME, cc.CARD_NUMBER, cc.LIMIT_MONEY, cc.OPENING_BANK, cc.OPEN_TIME,
+		ccb.CB_ID, ccb.BILLS_DATE, ccb.REPAYMENT_DATE, ccb.MINNI_MONEY, ccb.CURRENTSTERM_SHOULDMONEY,
+		 ccb.REPAYMENT_STATUS,ccb.CB_FKID,ccb.CREDITLIMIT,
+		cbi.HCCBI_ID, cbi.POST_AMT, cbi.TRAN_DESC, cbi.TRAN_DATE
+		FROM HS_CREDIT_CARD cc
+		LEFT JOIN HS_CREDIT_CARD_BILLS ccb on cc.CC_ID=ccb.CB_FKID
+		LEFT JOIN HS_CREDIT_CARD_BILLS_INFO cbi on ccb.CB_ID = cbi.HCCBI_FKID
+		WHERE APPLY_ID = #{applyId}
+	</select>
+
+	<select id="checkByApplyId" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT
+		COUNT(CC_ID)
+		FROM HS_CREDIT_CARD
+		WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+	<select id="checkById" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT
+		COUNT(CC_ID)
+		FROM HS_CREDIT_CARD
+		WHERE CARDBILLS_ID = #{cardbillsId,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByApplyId" parameterType="java.lang.String">
+		DELETE FROM HS_CREDIT_CARD WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</delete>
+</mapper>

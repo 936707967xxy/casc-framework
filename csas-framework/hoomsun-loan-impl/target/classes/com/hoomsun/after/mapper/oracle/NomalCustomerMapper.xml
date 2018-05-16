@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.NomalCustomerMapper">
+	
+	<!-- 查询正常客户列表 -->
+	<select id="queryNomalCustomer" parameterType="com.hoomsun.after.api.model.param.NomalCustomerReq"
+		resultType="com.hoomsun.after.api.model.vo.NomalCustomerResult">
+		SELECT * FROM(
+		<include refid="selectNomalCustomerSql"/>
+		<include refid="fromNomalCustomerSql"/>
+		<include refid="whereNomalCustomerSql"/>
+		<include refid="descSql"/>
+		)
+		<![CDATA[ WHERE  r > (#{ page }- 1) * #{ pageSize }]]>
+	</select>
+
+     <!-- 查询总条数 -->
+    <select id="countNomalCustomer" parameterType="com.hoomsun.after.api.model.param.NomalCustomerReq" resultType="java.lang.Integer">
+        <include refid="countSql"/>
+        <include refid="fromNomalCustomerSql"/>
+		<include refid="whereNomalCustomerSql"/>
+    </select>
+    
+    <sql id="countSql">
+       SELECT COUNT(bal.LOAN_ID) 
+    </sql>
+    
+    <sql id="selectNomalCustomerSql">
+        SELECT 
+		bal.LOAN_ID AS loanId,
+		bal.CON_NO AS conNo,
+		bal.CAST_NAME AS castName,
+		bal.CARD_NO AS cardNo,
+        bal.TEL AS tel,
+        bal.POS_TYPE AS posType,
+		hauc.BANK_ACCOUNT AS bankAcount,
+		hauc.BANK AS bankName,
+		bal.PRODUCT_NAME AS productName,
+		bal.LOAN_PERIOD AS loanPeriod,
+		bal.CURRENT_PERIOD AS currentPeriod,
+		bal.LOAN_MONEY AS loanMoney,
+		bal.LOAN_DATE AS loanDate,
+		bal.DELAY_FLAG AS dalayFlag,
+		bal.SETTLE_FLAG AS settleFlag,
+		bal.STATEMENT_DATE AS statementDate,
+		bal.CON_MONEY AS conMoney,
+		hauc.bal AS balAmt,
+		bal.REPAY_DATE AS repayDate,
+		bal.MANAGER_CAST AS managerCast,
+		bal.LOAN_MANAGER_CAST AS loanManagerCastName,
+		bal.UPDOWN_STATUS AS updownStatus,
+		bal.PRODUCTALIAS AS productAlias,
+		bal.CUSTOMER_OR_LOAN AS customerOrLoan,
+		bal.MANAGER_CAST_ID AS managerCastId,
+		bal.LAON_LEAVE AS loanLeave,
+		bal.HANG_UP AS hangUp,
+		bal.HANG_UP_DATE AS hangUpDate,
+		bal.M_SECTION AS mSection,
+		bal.SALES_DEPTMENT AS salesDeptment,
+		bal.CAST_ID AS castId,
+		
+		hrp.SHOULD_INTE AS shouldInte,
+		hrp.SHOULD_CAPI AS shouldCapi,
+		hrp.SHOULD_AMT AS  shouldAmt,
+		hrp.SHOULD_TERM AS shouldTerm,
+		nvl(hrp.ADVANCE_MONEY,0) AS advanceMoney,
+        ROWNUM AS r
+    </sql>
+    
+    <sql id="fromNomalCustomerSql">
+        FROM HS_AFTER_LOANBAL bal
+        LEFT JOIN HS_AFTER_USER_COUNT hauc ON  bal.CAST_ID=hauc.CAST_ID
+        LEFT JOIN HS_REPAYMENT_PLAN hrp ON bal.LOAN_ID=hrp.LOAN_ID
+    </sql>
+    
+    <sql id="whereNomalCustomerSql">
+    <where>
+            bal.CURRENT_PERIOD=hrp.SHOULD_TERM
+		  <if test="loanId != null and loanId !='' ">
+		      AND bal.LOAN_ID =#{loanId}
+		  </if>
+		  <if test="conNo != null and conNo !='' ">
+		      AND bal.CON_NO =#{conNo}
+		  </if>
+		  <if test="cardNo != null and cardNo !='' ">
+		      AND bal.CARD_NO =#{cardNo}
+		  </if>
+		  <if test="posType != null and posType !='' ">
+		      AND bal.POS_TYPE =#{posType}
+		  </if>
+		  <if test="tel != null and tel !='' ">
+		      AND bal.TEL =#{tel}
+		  </if>
+		  <if test="castName != null and castName !='' ">
+		      <![CDATA[AND bal.CAST_NAME  LIKE  '%'||#{castName}||'%' ]]>
+		  </if>
+		  <if test="dalayFlag != null and dalayFlag !='' ">
+		      AND bal.DELAY_FLAG =#{dalayFlag}
+		  </if>
+		  <if test="settleFlag != null and settleFlag !='' ">
+		      AND bal.SETTLE_FLAG =#{settleFlag}
+		  </if>
+		  <if test="customerOrLoan != null and customerOrLoan !='' ">
+		      AND bal.CUSTOMER_OR_LOAN =#{customerOrLoan}
+		  </if>
+		  <if test="managerCastId != null and managerCastId !='' ">
+		      AND bal.MANAGER_CAST_ID =#{managerCastId}
+		  </if>
+		  <if test="loanManagerCastId != null and loanManagerCastId !='' ">
+		      AND bal.LOAN_MANAGER_CAST_ID =#{loanManagerCastId}
+		  </if>
+		  <if test="salesDeptment != null and salesDeptment !='' ">
+		      AND bal.SALES_DEPTMENT =#{salesDeptment}
+		  </if>
+		  <if test="page !='-1' ">
+		      <![CDATA[AND  ROWNUM <= #{page}* #{pageSize}]]>
+		  </if>
+		</where>
+    </sql>
+    
+    <sql id="descSql">
+        ORDER BY bal.LOAN_DATE DESC
+    </sql>
+    
+    <!-- 月还详情信息 -->
+    <select id="ovedueAdvNomalDetailDetails" parameterType="com.hoomsun.after.api.model.param.NomalCustomerReq" 
+                    resultType="com.hoomsun.after.api.model.vo.NomalCustomerResult">
+        <include refid="queryDetalovedueAdvNomalSql"/>
+        <include refid="fromNomalCustomerSql"/>
+        <include refid="whereDetalovedueAdvNomalSql"/>
+    </select>
+    
+    <sql id="queryDetalovedueAdvNomalSql">
+       SELECT 
+		bal.LOAN_ID AS loanId,
+		bal.CON_NO AS conNo,
+		bal.CAST_NAME AS castName,
+		bal.CARD_NO AS cardNo,
+        bal.TEL AS tel,
+		hauc.BANK_ACCOUNT AS bankAcount,
+		hauc.BANK AS bankName,
+		bal.LOAN_PERIOD AS loanPeriod,
+		bal.CURRENT_PERIOD AS currentPeriod,
+		bal.LOAN_MONEY AS loanMoney,
+		bal.LOAN_DATE AS loanDate,
+		bal.CON_MONEY AS conMoney,
+		bal.REPAY_DATE AS repayDate,
+		hauc.bal AS balAmt,
+		bal.NORMAL_SUB_MONEY AS normalSubMoney,
+		bal.NORMAL_SUB_DATE AS normalSubDate,
+		bal.NORMAL_SUB_STREAM AS normalSubStream,
+		bal.ADVANCED_SUB_MONEY AS advancedSubMoney,
+		bal.ADVANCED_SUB_DATE AS advancedSubDate,
+		bal.ADVANCED_SUB_STREAM AS advancedSubStream,
+		hrp.SHOULD_INTE AS shouldInte,
+		hrp.SHOULD_CAPI AS shouldCapi,
+		hrp.SHOULD_AMT AS  shouldAmt,
+		hrp.SHOULD_TERM AS shouldTerm,
+		hrp.ADVANCE_MONEY AS advanceMoney
+    </sql>
+    
+    <sql id="whereDetalovedueAdvNomalSql">
+      <where>
+         bal.CURRENT_PERIOD=hrp.SHOULD_TERM
+        <if test="loanId != null and loanId !='' ">
+		       AND bal.LOAN_ID =#{loanId}
+		  </if>
+		  <if test="currentPeriod != null and currentPeriod !='' ">
+		      AND bal.CURRENT_PERIOD =#{currentPeriod}
+		  </if>
+      </where>
+    </sql>
+    
+    <!-- 判断当前登录用户是否副理 -->
+    <select id="getIsManagerCount" parameterType="java.lang.String" resultType="int">
+	    SELECT COUNT(EMP_ID)
+	    FROM HS_EMP_ROLE
+	    WHERE
+	    ROLE_ID='7ec5d07989c044a38238d6352f3c5a8d'
+	    AND
+	    EMP_ID=#{empId}
+  </select>
+  
+  <!-- 判断当前登录用户是否是电催 -->
+  <select id="getElectricStimulation" parameterType="java.lang.String" resultType="int">
+	  SELECT COUNT(ROLE_ID) 
+	  FROM
+	  HS_EMP_ROLE 
+	  WHERE  ROLE_ID='521143ed93474d7085630c88ffb9b5b1' 
+	  AND EMP_ID = #{empId}
+  </select>
+  
+</mapper>

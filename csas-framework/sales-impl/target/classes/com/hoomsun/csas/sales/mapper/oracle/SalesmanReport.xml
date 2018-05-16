@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.SalesmanReportVoMapper">
+	<resultMap id="BeResultMap" type="com.hoomsun.csas.sales.api.model.vo.SalesmanReportVo">
+	    <id column="ID" jdbcType="VARCHAR" property="id" />
+	    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+	    <result column="MOB" jdbcType="VARCHAR" property="mob" />
+	    <result column="RECORD" jdbcType="INTEGER" property="record" />
+	    <result column="LOAN_AMOUNT" jdbcType="DECIMAL" property="loanAmount" />
+	    <result column="CON_AMOUNT" jdbcType="DECIMAL" property="conAmount" />
+	    <result column="LOAN_COUNT" jdbcType="INTEGER" property="loanCount" />
+	    <result column="FINAL_BACK" jdbcType="INTEGER" property="finalBack" />
+	    <result column="FINAL_AUDIT" jdbcType="INTEGER" property="finalAudit" />
+	    <result column="APPROVED_AMOUNT" jdbcType="DECIMAL" property="approvedAmount" />
+	    <result column="FINAL_CON_AMOUNT" jdbcType="DECIMAL" property="finalConAmount" />
+	    <result column="DENIED_LOANS" jdbcType="INTEGER" property="deniedLoans" />
+	    <result column="GIVE_NUM" jdbcType="INTEGER" property="giveNum" />
+	 	<result column="GIVE_MONEY" jdbcType="DECIMAL" property="giveMoney" />
+	 	<result column="GIVE_CON_AMOUNT" jdbcType="DECIMAL" property="giveConAmount" />
+	 	<result column="AREA_ID" jdbcType="DECIMAL" property="areaId" /> <!-- 大区 -->
+	 	<result column="AREA_NAME" jdbcType="DECIMAL" property="areaName" />
+	 	<result column="CITY_ID" jdbcType="DECIMAL" property="cityId" /> <!-- 城市 -->
+	 	<result column="CITY_NAME" jdbcType="DECIMAL" property="cityName" />
+	 	<result column="STORE_ID" jdbcType="DECIMAL" property="storeId" /> <!-- 营业部  -->
+	 	<result column="STORE_NAME" jdbcType="DECIMAL" property="storeName" />
+	 	<result column="STORE_MANAGER" jdbcType="DECIMAL" property="storeManage" />
+	 	<result column="APPOPER_ID" jdbcType="DECIMAL" property="appoperId" /> <!--部门经理  -->
+	 	<result column="APPOPER_NAME" jdbcType="DECIMAL" property="appoperName" />
+	 	<result column="TEAM_ID" jdbcType="DECIMAL" property="teamId" /> <!-- 部门ID  -->
+	 	<result column="TEAM_NAME" jdbcType="DECIMAL" property="teamName" />
+	 	<result column="EMP_ID" jdbcType="DECIMAL" property="appoperId" /> <!-- 客服ID  -->
+	 	<result column="EMP_NAME" jdbcType="DECIMAL" property="appoperName" />
+  	</resultMap>
+  	<resultMap id="ParentInfoResultMap" type="com.hoomsun.csas.sales.api.model.vo.ParentDeptInfoVo">
+  		<result column="DEPT_ID" jdbcType="DECIMAL" property="id" />
+	 	<result column="DEPT_NAME" jdbcType="DECIMAL" property="deptName" />
+	 	<result column="EMP_NAME" jdbcType="DECIMAL" property="deptManager" />
+  	</resultMap>
+  	
+  	
+  	<!-- 以下是编码区域 -->
+  	<sql id="Be_Column_List">
+   		 ID,CUST_NAME,MOB,RECORD,LOAN_AMOUNT,CON_AMOUNT,APPLY,FINAL_BACK,FINAL_AUDIT,
+   		 FINAL_AMOUNT,FINAL_CON_AMOUNT,LOAN_COUNT,FINAL_BACK,APPROVED_AMOUNT,FINAL_AMOUNT,
+   		 FINAL_CON_AMOUNT,DENIED_LOANS,GIVE_NUM,GIVE_MONEY,GIVE_CON_AMOUNT
+    </sql>
+    
+    <select id="selectChildIdList" parameterType="java.lang.String" resultMap="ParentInfoResultMap">
+    	SELECT CIL.DEPT_ID, CIL.DEPT_NAME, CIL.MANAGER, EMP.EMP_NAME 
+    	FROM HS_DEPARTMENT CIL 
+    	LEFT JOIN HS_EMPLOYEE EMP ON CIL.MANAGER = EMP.EMP_ID
+    	WHERE CIL.DEPT_PARENT=#{parentId}
+    </select>
+    
+    <select id="selectParentDeptInfo" parameterType="java.lang.String"  resultMap="ParentInfoResultMap">
+    	SELECT PAR.DEPT_ID, PAR.DEPT_NAME 
+    	FROM HS_DEPARTMENT CIL 
+    	LEFT JOIN HS_DEPARTMENT PAR ON  CIL.DEPT_PARENT=PAR.DEPT_ID
+    	WHERE CIL.DEPT_ID=#{deptId}
+  	</select>
+    
+    <select id="selectDeptByManager" parameterType="java.lang.String"  resultType="java.lang.String">
+    	SELECT EMP.EMP_SCOPE empScope FROM HS_EMPLOYEE EMP WHERE EMP_ID=#{empId}
+  	</select>
+   	<select id="selectDeptLevel" parameterType="java.lang.String" resultType="java.lang.Integer">
+         SELECT
+	        COUNT(DEPT.DEPT_ID)
+	      FROM
+      	HS_DEPARTMENT DEPT START WITH DEPT.DEPT_ID = #{deptId} CONNECT BY PRIOR DEPT.DEPT_PARENT = DEPT.DEPT_ID
+  	</select>
+  	
+  	
+  	<select id="selectDeptInfo" parameterType="java.lang.String" resultMap="ParentInfoResultMap">
+        SELECT CIL.DEPT_ID, CIL.DEPT_NAME
+    	FROM HS_DEPARTMENT CIL 
+	    WHERE CIL.DEPT_ID = #{deptId}
+  	</select>
+  	
+    
+    <!-- 事业部  -->
+    <select id="selectByBigArea" parameterType="java.lang.String" resultMap="BeResultMap">
+	    SELECT
+		  TRUNC((SYSDATE-MIN(ap.APPLY_DATE))/30) MOB,
+		  COUNT(ap.APPLY_ID) LOANCOUNT,<!-- 进件数 -->
+		  COUNT(rec.LOAN_ID) RECORD,<!-- 放款数 -->
+		  SUM(rec.LOAN_AMOUNT) LOANAMOUNT,<!-- 放款额 -->
+		  SUM(rec.CON_AMOUNT) CONAMOUNT,<!-- 合同额 -->
+		  COUNT(auv.APPLY_ID) FINAL_BACK,<!-- 退件数 -->
+		  COUNT(con.APPLY_ID) FINALAUDIT,<!-- 批核数 -->
+		  SUM(con.LOAN_AMOUNT) APPROVEDAMOUNT,<!-- 批核额 -->
+		  SUM(con.CON_AMOUNT) FINALCONAMOUNT,<!-- 批核合同额 -->
+		  COUNT(app.APPLY_ID) DENIEDLOANS,<!-- 拒贷数 -->
+		  COUNT(wapp.APPLY_ID) GIVENUM,<!-- 放弃数 -->
+		  SUM(give.LOAN_AMOUNT) GIVEMONEY,<!-- 放弃额 -->
+		  SUM(give.CON_AMOUNT) GIVECONAMOUNT<!-- 放弃合同额 -->
+		FROM
+		  HS_APPLY ap LEFT JOIN(SELECT rec.LOAN_ID,rec.APPLY_ID,rec.LOAN_AMOUNT,rec.CON_AMOUNT FROM HS_LOAN_RECORD rec WHERE REC.HANDLE_OPTION=4) rec ON AP.APPLY_ID = rec.APPLY_ID
+		              LEFT JOIN(SELECT DISTINCT auv.APPLY_ID FROM AUDIT_VIEWS auv WHERE auv.HANDLE_OPINION = 2) auv ON AP.APPLY_ID = auv.APPLY_ID
+		              LEFT JOIN(SELECT con.APPLY_ID,con.LOAN_AMOUNT,con.CON_AMOUNT FROM HS_CONTRACT con) con ON AP.APPLY_ID = con.APPLY_ID
+		              LEFT JOIN(SELECT app.APPLY_ID FROM HS_APPLY app WHERE app.PROC_STATUS = 'reject') app ON AP.APPLY_ID = app.APPLY_ID
+		              LEFT JOIN(SELECT wapp.APPLY_ID FROM HS_APPLY wapp WHERE wapp.PROC_STATUS = 'waiver') wapp ON AP.APPLY_ID = wapp.APPLY_ID
+		              LEFT JOIN(SELECT give.APPLY_ID,give.CON_AMOUNT,give.LOAN_AMOUNT FROM HS_CONTRACT give) give ON AP.APPLY_ID = give.APPLY_ID AND ap.PROC_STATUS = 'waiver'
+		RIGHT  JOIN (
+		    SELECT
+		      emp.EMP_ID MANAGER_ID,emp.EMP_NAME MANAGER_NAME,
+		      dep.*
+		    FROM
+		      HS_EMPLOYEE emp
+		    RIGHT JOIN (
+		      SELECT
+		        CIL.DEPT_ID,
+		        CIL.DEPT_NAME,
+		        CIL.MANAGER
+		      FROM
+		        HS_DEPARTMENT CIL
+		      WHERE
+		        CIL.STORE_FLAG = 3 START WITH CIL.DEPT_ID = #{parentId} CONNECT BY PRIOR CIL.DEPT_ID = CIL.DEPT_PARENT
+		    ) dep ON emp.EMP_ID = dep.MANAGER  
+		) depTab ON ap.store_id = depTab.dept_id 
+		WHERE  <![CDATA[ap.APPLY_DATE>=TO_DATE(#{startDate}, 'yyyy-mm-dd') AND ap.APPLY_DATE<=TO_DATE(#{endDate}, 'yyyy-mm-dd')]]>
+	</select>
+	
+	<!-- 区域  -->
+    <select id="selectByArea" parameterType="java.lang.String" resultMap="BeResultMap">
+	    SELECT 
+	    	PAR.DEPT_ID AREA_ID, <!--大区ID-->
+			PAR.DEPT_NAME AREA_NAME,  <!--大区名称-->
+			MAX(MOB) MOB,
+			SUM(LOANCOUNT) LOANCOUNT,<!-- 进件数 -->
+			SUM(RECORD) RECORD,<!-- 放款数 -->
+			SUM(LOANAMOUNT) LOANAMOUNT,<!-- 放款额 -->
+			SUM(CONAMOUNT) CONAMOUNT,<!-- 合同额 -->
+			SUM(FINAL_BACK) FINAL_BACK,<!-- 退件数 -->
+			SUM(FINALAUDIT) FINALAUDIT,<!-- 批核数 -->
+			SUM(APPROVEDAMOUNT) APPROVEDAMOUNT,<!-- 批核额 -->
+			SUM(FINALCONAMOUNT) FINALCONAMOUNT,<!-- 批核合同额 -->
+			SUM(DENIEDLOANS) DENIEDLOANS,<!-- 拒贷数 -->
+			SUM(GIVENUM) GIVENUM,<!-- 放弃数 -->
+			SUM(GIVEMONEY) GIVEMONEY,<!-- 放弃额 -->
+			SUM(GIVECONAMOUNT) GIVECONAMOUNT<!-- 放弃合同额 -->
+			FROM (
+				SELECT 
+					PAR.DEPT_ID,
+					PAR.DEPT_PARENT,
+					PAR.DEPT_NAME,
+					MAX(MOB) MOB,
+					SUM(LOANCOUNT) LOANCOUNT,<!-- 进件数 -->
+					SUM(RECORD) RECORD,<!-- 放款数 -->
+					SUM(LOANAMOUNT) LOANAMOUNT,<!-- 放款额 -->
+					SUM(CONAMOUNT) CONAMOUNT,<!-- 合同额 -->
+					SUM(FINAL_BACK) FINAL_BACK,<!-- 退件数 -->
+					SUM(FINALAUDIT) FINALAUDIT,<!-- 批核数 -->
+					SUM(APPROVEDAMOUNT) APPROVEDAMOUNT,<!-- 批核额 -->
+					SUM(FINALCONAMOUNT) FINALCONAMOUNT,<!-- 批核合同额 -->
+					SUM(DENIEDLOANS) DENIEDLOANS,<!-- 拒贷数 -->
+					SUM(GIVENUM) GIVENUM,<!-- 放弃数 -->
+					SUM(GIVEMONEY) GIVEMONEY,<!-- 放弃额 -->
+					SUM(GIVECONAMOUNT) GIVECONAMOUNT<!-- 放弃合同额 -->
+					FROM (
+							SELECT
+							depTab.DEPT_ID,
+							depTab.DEPT_PARENT,
+							TRUNC((SYSDATE-MIN(ap.APPLY_DATE))/30) MOB,
+							COUNT(ap.APPLY_ID) LOANCOUNT,<!-- 进件数 -->
+							COUNT(rec.LOAN_ID) RECORD,<!-- 放款数 -->
+							SUM(rec.LOAN_AMOUNT) LOANAMOUNT,<!-- 放款额 -->
+							SUM(rec.CON_AMOUNT) CONAMOUNT,<!-- 合同额 -->
+							COUNT(auv.APPLY_ID) FINAL_BACK,<!-- 退件数 -->
+							COUNT(con.APPLY_ID) FINALAUDIT,<!-- 批核数 -->
+							SUM(con.LOAN_AMOUNT) APPROVEDAMOUNT,<!-- 批核额 -->
+							SUM(con.CON_AMOUNT) FINALCONAMOUNT,<!-- 批核合同额 -->
+							COUNT(app.APPLY_ID) DENIEDLOANS,<!-- 拒贷数 -->
+							COUNT(wapp.APPLY_ID) GIVENUM,<!-- 放弃数 -->
+							SUM(give.LOAN_AMOUNT) GIVEMONEY,<!-- 放弃额 -->
+							SUM(give.CON_AMOUNT) GIVECONAMOUNT<!-- 放弃合同额 -->
+						FROM
+						HS_APPLY ap LEFT JOIN(SELECT rec.LOAN_ID,rec.APPLY_ID,rec.LOAN_AMOUNT,rec.CON_AMOUNT FROM HS_LOAN_RECORD rec WHERE REC.HANDLE_OPTION=4) rec ON AP.APPLY_ID = rec.APPLY_ID
+						LEFT JOIN(SELECT DISTINCT auv.APPLY_ID FROM AUDIT_VIEWS auv WHERE auv.HANDLE_OPINION = 2) auv ON AP.APPLY_ID = auv.APPLY_ID
+						LEFT JOIN(SELECT con.APPLY_ID,con.LOAN_AMOUNT,con.CON_AMOUNT FROM HS_CONTRACT con) con ON AP.APPLY_ID = con.APPLY_ID
+						LEFT JOIN(SELECT app.APPLY_ID FROM HS_APPLY app WHERE app.PROC_STATUS = 'reject') app ON AP.APPLY_ID = app.APPLY_ID
+						LEFT JOIN(SELECT wapp.APPLY_ID FROM HS_APPLY wapp WHERE wapp.PROC_STATUS = 'waiver') wapp ON AP.APPLY_ID = wapp.APPLY_ID
+						LEFT JOIN(SELECT give.APPLY_ID,give.CON_AMOUNT,give.LOAN_AMOUNT FROM HS_CONTRACT give) give ON AP.APPLY_ID = give.APPLY_ID AND ap.PROC_STATUS = 'waiver'
+						RIGHT  JOIN (
+								SELECT
+										emp.EMP_ID MANAGER_ID,emp.EMP_NAME MANAGER_NAME,
+										dep.*
+								FROM
+									HS_EMPLOYEE emp
+									RIGHT JOIN (
+											SELECT
+												CIL.DEPT_ID,
+												CIL.DEPT_NAME,
+												CIL.DEPT_PARENT,
+												CIL.MANAGER
+											FROM HS_DEPARTMENT CIL
+											WHERE
+												CIL.STORE_FLAG = 3 START WITH CIL.DEPT_ID = #{parentId} CONNECT BY PRIOR CIL.DEPT_ID = CIL.DEPT_PARENT
+									) dep ON emp.EMP_ID = dep.MANAGER  
+							) depTab ON ap.store_id = depTab.dept_id
+							WHERE  <![CDATA[ap.APPLY_DATE>=TO_DATE(#{startDate}, 'yyyy-mm-dd') AND ap.APPLY_DATE<=TO_DATE(#{endDate}, 'yyyy-mm-dd')]]> 
+							GROUP BY depTab.DEPT_ID,depTab.DEPT_PARENT
+							) CHI 
+							LEFT JOIN HS_DEPARTMENT PAR ON CHI.DEPT_PARENT = PAR.DEPT_ID
+						GROUP BY PAR.DEPT_ID,PAR.DEPT_NAME,PAR.DEPT_PARENT
+				) CHI 
+			LEFT JOIN HS_DEPARTMENT PAR ON CHI.DEPT_PARENT = PAR.DEPT_ID
+			GROUP BY PAR.DEPT_ID,PAR.DEPT_NAME
+			ORDER BY PAR.DEPT_NAME
+	</select>
+	
+	
+	<!-- 单条业绩查询  (仅限城市以及城市以上的) -->
+	<select id="selectBySingDept" parameterType="java.lang.String" resultMap="BeResultMap">
+	    SELECT
+		  TRUNC((SYSDATE-MIN(ap.APPLY_DATE))/30) MOB,
+		  COUNT(ap.APPLY_ID) LOANCOUNT,<!-- 进件数 -->
+		  COUNT(rec.LOAN_ID) RECORD,<!-- 放款数 -->
+		  SUM(rec.LOAN_AMOUNT) LOANAMOUNT,<!-- 放款额 -->
+		  SUM(rec.CON_AMOUNT) CONAMOUNT,<!-- 合同额 -->
+		  COUNT(auv.APPLY_ID) FINAL_BACK,<!-- 退件数 -->
+		  COUNT(con.APPLY_ID) FINALAUDIT,<!-- 批核数 -->
+		  SUM(con.LOAN_AMOUNT) APPROVEDAMOUNT,<!-- 批核额 -->
+		  SUM(con.CON_AMOUNT) FINALCONAMOUNT,<!-- 批核合同额 -->
+		  COUNT(app.APPLY_ID) DENIEDLOANS,<!-- 拒贷数 -->
+		  COUNT(wapp.APPLY_ID) GIVENUM,<!-- 放弃数 -->
+		  SUM(give.LOAN_AMOUNT) GIVEMONEY,<!-- 放弃额 -->
+		  SUM(give.CON_AMOUNT) GIVECONAMOUNT<!-- 放弃合同额 -->
+		FROM
+		  HS_APPLY ap LEFT JOIN(SELECT rec.LOAN_ID,rec.APPLY_ID,rec.LOAN_AMOUNT,rec.CON_AMOUNT FROM HS_LOAN_RECORD rec WHERE REC.HANDLE_OPTION=4) rec ON AP.APPLY_ID = rec.APPLY_ID
+		              LEFT JOIN(SELECT DISTINCT auv.APPLY_ID FROM AUDIT_VIEWS auv WHERE auv.HANDLE_OPINION = 2) auv ON AP.APPLY_ID = auv.APPLY_ID
+		              LEFT JOIN(SELECT con.APPLY_ID,con.LOAN_AMOUNT,con.CON_AMOUNT FROM HS_CONTRACT con) con ON AP.APPLY_ID = con.APPLY_ID
+		              LEFT JOIN(SELECT app.APPLY_ID FROM HS_APPLY app WHERE app.PROC_STATUS = 'reject') app ON AP.APPLY_ID = app.APPLY_ID
+		              LEFT JOIN(SELECT wapp.APPLY_ID FROM HS_APPLY wapp WHERE wapp.PROC_STATUS = 'waiver') wapp ON AP.APPLY_ID = wapp.APPLY_ID
+		              LEFT JOIN(SELECT give.APPLY_ID,give.CON_AMOUNT,give.LOAN_AMOUNT FROM HS_CONTRACT give) give ON AP.APPLY_ID = give.APPLY_ID AND ap.PROC_STATUS = 'waiver'
+		RIGHT  JOIN (
+		    SELECT
+		      emp.EMP_ID MANAGER_ID,emp.EMP_NAME MANAGER_NAME,
+		      dep.*
+		    FROM
+		      HS_EMPLOYEE emp
+		    RIGHT JOIN (
+		      SELECT
+		        CIL.DEPT_ID,
+		        CIL.DEPT_NAME,
+		        CIL.DEPT_PARENT,
+		        CIL.MANAGER
+		      FROM
+		        HS_DEPARTMENT CIL
+		      WHERE
+		        CIL.STORE_FLAG = 3 START WITH CIL.DEPT_ID = #{parentId} CONNECT BY PRIOR CIL.DEPT_ID = CIL.DEPT_PARENT
+		    ) dep ON emp.EMP_ID = dep.MANAGER  
+		) depTab ON ap.store_id = depTab.dept_id 
+		WHERE  <![CDATA[ap.APPLY_DATE>=TO_DATE(#{startDate}, 'yyyy-mm-dd') AND ap.APPLY_DATE<=TO_DATE(#{endDate}, 'yyyy-mm-dd')]]>
+	</select>
+	
+	
+	<!-- 城市  -->
+    <select id="selectByCity" parameterType="java.lang.String" resultMap="BeResultMap">
+	     SELECT 
+	    	PAR.DEPT_ID CITY_ID,
+			PAR.DEPT_NAME CITY_NAME,
+			PARP.DEPT_ID AREA_ID, 
+			PARP.DEPT_NAME AREA_NAME,
+			MAX(MOB) MOB,
+			SUM(LOANCOUNT) LOANCOUNT,<!-- 进件数 -->
+			SUM(RECORD) RECORD,<!-- 放款数 -->
+			SUM(LOANAMOUNT) LOANAMOUNT,<!-- 放款额 -->
+			SUM(CONAMOUNT) CONAMOUNT,<!-- 合同额 -->
+			SUM(FINAL_BACK) FINAL_BACK,<!-- 退件数 -->
+			SUM(FINALAUDIT) FINALAUDIT,<!-- 批核数 -->
+			SUM(APPROVEDAMOUNT) APPROVEDAMOUNT,<!-- 批核额 -->
+			SUM(FINALCONAMOUNT) FINALCONAMOUNT,<!-- 批核合同额 -->
+			SUM(DENIEDLOANS) DENIEDLOANS,<!-- 拒贷数 -->
+			SUM(GIVENUM) GIVENUM,<!-- 放弃数 -->
+			SUM(GIVEMONEY) GIVEMONEY,<!-- 放弃额 -->
+			SUM(GIVECONAMOUNT) GIVECONAMOUNT<!-- 放弃合同额 -->
+			FROM (
+	      		SELECT
+					depTab.DEPT_ID,
+					depTab.DEPT_PARENT,
+		  			TRUNC((SYSDATE-MIN(ap.APPLY_DATE))/30) MOB,
+					COUNT(ap.APPLY_ID) LOANCOUNT,<!-- 进件数 -->
+					COUNT(rec.LOAN_ID) RECORD,<!-- 放款数 -->
+					SUM(rec.LOAN_AMOUNT) LOANAMOUNT,<!-- 放款额 -->
+					SUM(rec.CON_AMOUNT) CONAMOUNT,<!-- 合同额 -->
+					COUNT(auv.APPLY_ID) FINAL_BACK,<!-- 退件数 -->
+					COUNT(con.APPLY_ID) FINALAUDIT,<!-- 批核数 -->
+					SUM(con.LOAN_AMOUNT) APPROVEDAMOUNT,<!-- 批核额 -->
+					SUM(con.CON_AMOUNT) FINALCONAMOUNT,<!-- 批核合同额 -->
+					COUNT(app.APPLY_ID) DENIEDLOANS,<!-- 拒贷数 -->
+					COUNT(wapp.APPLY_ID) GIVENUM,<!-- 放弃数 -->
+					SUM(give.LOAN_AMOUNT) GIVEMONEY,<!-- 放弃额 -->
+					SUM(give.CON_AMOUNT) GIVECONAMOUNT<!-- 放弃合同额 -->
+				FROM
+		 		HS_APPLY ap LEFT JOIN(SELECT rec.LOAN_ID,rec.APPLY_ID,rec.LOAN_AMOUNT,rec.CON_AMOUNT FROM HS_LOAN_RECORD rec WHERE REC.HANDLE_OPTION=4) rec ON AP.APPLY_ID = rec.APPLY_ID
+				LEFT JOIN(SELECT DISTINCT auv.APPLY_ID FROM AUDIT_VIEWS auv WHERE auv.HANDLE_OPINION = 2) auv ON AP.APPLY_ID = auv.APPLY_ID
+				LEFT JOIN(SELECT con.APPLY_ID,con.LOAN_AMOUNT,con.CON_AMOUNT FROM HS_CONTRACT con) con ON AP.APPLY_ID = con.APPLY_ID
+				LEFT JOIN(SELECT app.APPLY_ID FROM HS_APPLY app WHERE app.PROC_STATUS = 'reject') app ON AP.APPLY_ID = app.APPLY_ID
+				LEFT JOIN(SELECT wapp.APPLY_ID FROM HS_APPLY wapp WHERE wapp.PROC_STATUS = 'waiver') wapp ON AP.APPLY_ID = wapp.APPLY_ID
+				LEFT JOIN(SELECT give.APPLY_ID,give.CON_AMOUNT,give.LOAN_AMOUNT FROM HS_CONTRACT give) give ON AP.APPLY_ID = give.APPLY_ID AND ap.PROC_STATUS = 'waiver'
+				RIGHT  JOIN (
+		    		SELECT
+		      			emp.EMP_ID MANAGER_ID,emp.EMP_NAME MANAGER_NAME,
+		      			dep.*
+		    		FROM
+		     			HS_EMPLOYEE emp
+		    			RIGHT JOIN (
+		      				SELECT
+		        				CIL.DEPT_ID,
+		       				 	CIL.DEPT_NAME,
+								CIL.DEPT_PARENT,
+		       			 		CIL.MANAGER
+		      				FROM HS_DEPARTMENT CIL
+		      				WHERE
+		        				CIL.STORE_FLAG = 3 START WITH CIL.DEPT_ID = #{parentId} CONNECT BY PRIOR CIL.DEPT_ID = CIL.DEPT_PARENT
+		   				) dep ON emp.EMP_ID = dep.MANAGER  
+					) depTab ON ap.store_id = depTab.dept_id
+					WHERE  <![CDATA[ap.APPLY_DATE>=TO_DATE(#{startDate}, 'yyyy-mm-dd') AND ap.APPLY_DATE<=TO_DATE(#{endDate}, 'yyyy-mm-dd')]]> 
+				GROUP BY depTab.DEPT_ID,depTab.DEPT_PARENT
+	      	) CHI 
+	      	LEFT JOIN HS_DEPARTMENT PAR ON CHI.DEPT_PARENT = PAR.DEPT_ID
+	      	LEFT JOIN HS_DEPARTMENT PARP ON PAR.DEPT_PARENT = PARP.DEPT_ID
+		  	GROUP BY PAR.DEPT_ID,PAR.DEPT_NAME,PARP.DEPT_ID, PARP.DEPT_NAME
+		  	ORDER BY PAR.DEPT_NAME, APPROVEDAMOUNT, LOANCOUNT, FINAL_BACK
+	</select>
+	
+	
+	<!-- 营业部 (通过城市查询) deptid可以是城市ID，也可以是营业部ID  -->
+    <select id="selectByStore" parameterType="java.lang.String" resultMap="BeResultMap">
+    	SELECT
+			depTab.DEPT_ID STORE_ID,
+			depTab.DEPT_NAME STORE_NAME,
+			PAR.DEPT_ID CITY_ID, 
+			PAR.DEPT_NAME CITY_NAME,
+			depTab.MANAGER_NAME STORE_MANAGER,
+  			TRUNC((SYSDATE-MIN(ap.APPLY_DATE))/30) MOB,
+			COUNT(ap.APPLY_ID) LOANCOUNT,<!-- 进件数 -->
+			COUNT(rec.LOAN_ID) RECORD,<!-- 放款数 -->
+			SUM(rec.LOAN_AMOUNT) LOANAMOUNT,<!-- 放款额 -->
+			SUM(rec.CON_AMOUNT) CONAMOUNT,<!-- 合同额 -->
+			COUNT(auv.APPLY_ID) FINAL_BACK,<!-- 退件数 -->
+			COUNT(con.APPLY_ID) FINALAUDIT,<!-- 批核数 -->
+			SUM(con.LOAN_AMOUNT) APPROVEDAMOUNT,<!-- 批核额 -->
+			SUM(con.CON_AMOUNT) FINALCONAMOUNT,<!-- 批核合同额 -->
+			COUNT(app.APPLY_ID) DENIEDLOANS,<!-- 拒贷数 -->
+			COUNT(wapp.APPLY_ID) GIVENUM,<!-- 放弃数 -->
+			SUM(give.LOAN_AMOUNT) GIVEMONEY,<!-- 放弃额 -->
+			SUM(give.CON_AMOUNT) GIVECONAMOUNT<!-- 放弃合同额 -->
+		FROM
+ 		HS_APPLY ap LEFT JOIN(SELECT rec.LOAN_ID,rec.APPLY_ID,rec.LOAN_AMOUNT,rec.CON_AMOUNT FROM HS_LOAN_RECORD rec WHERE REC.HANDLE_OPTION=4) rec ON AP.APPLY_ID = rec.APPLY_ID
+		LEFT JOIN(SELECT DISTINCT auv.APPLY_ID FROM AUDIT_VIEWS auv WHERE auv.HANDLE_OPINION = 2) auv ON AP.APPLY_ID = auv.APPLY_ID
+		LEFT JOIN(SELECT con.APPLY_ID,con.LOAN_AMOUNT,con.CON_AMOUNT FROM HS_CONTRACT con) con ON AP.APPLY_ID = con.APPLY_ID
+		LEFT JOIN(SELECT app.APPLY_ID FROM HS_APPLY app WHERE app.PROC_STATUS = 'reject') app ON AP.APPLY_ID = app.APPLY_ID
+		LEFT JOIN(SELECT wapp.APPLY_ID FROM HS_APPLY wapp WHERE wapp.PROC_STATUS = 'waiver') wapp ON AP.APPLY_ID = wapp.APPLY_ID
+		LEFT JOIN(SELECT give.APPLY_ID,give.CON_AMOUNT,give.LOAN_AMOUNT FROM HS_CONTRACT give) give ON AP.APPLY_ID = give.APPLY_ID AND ap.PROC_STATUS = 'waiver'
+		RIGHT  JOIN (
+    		SELECT
+      			emp.EMP_ID MANAGER_ID,emp.EMP_NAME MANAGER_NAME,
+      			dep.*
+    		FROM
+     			HS_EMPLOYEE emp
+    			RIGHT JOIN (
+      				SELECT
+        				CIL.DEPT_ID,
+       				 	CIL.DEPT_NAME,
+						CIL.DEPT_PARENT,
+       			 		CIL.MANAGER
+      				FROM HS_DEPARTMENT CIL
+      				WHERE
+        				CIL.STORE_FLAG = 3 START WITH CIL.DEPT_ID = #{parentId} CONNECT BY PRIOR CIL.DEPT_ID = CIL.DEPT_PARENT
+   				) dep ON emp.EMP_ID = dep.MANAGER  
+			) depTab ON ap.store_id = depTab.dept_id 
+		LEFT JOIN HS_DEPARTMENT PAR ON depTab.DEPT_PARENT = PAR.DEPT_ID
+		WHERE  <![CDATA[ap.APPLY_DATE>=TO_DATE(#{startDate}, 'yyyy-mm-dd') AND ap.APPLY_DATE<=TO_DATE(#{endDate}, 'yyyy-mm-dd')]]>
+		GROUP BY depTab.DEPT_ID,depTab.DEPT_NAME, PAR.DEPT_ID, PAR.DEPT_NAME, depTab.MANAGER_NAME
+		ORDER BY depTab.DEPT_NAME, APPROVEDAMOUNT, LOANCOUNT, FINAL_BACK
+	</select>
+    
+    <!-- 团队 ==营业部经理ID查询所有部门 (单查与多查都支持) -->
+    <select id="selectByTeam" parameterType="java.lang.String" resultMap="BeResultMap">
+	       SELECT
+			depTab.dept_id,
+			depTab.dept_id TEAM_ID,
+			depTab.DEPT_NAME TEAM_NAME,
+			depTab.MANAGER_NAME APPOPER_NAME,
+			PAR.DEPT_ID STPRE_ID, 
+			PAR.DEPT_NAME STORE_NAME,
+		  	TRUNC((SYSDATE-MIN(ap.APPLY_DATE))/30) MOB,
+		  	COUNT(ap.APPLY_ID) LOANCOUNT,<!-- 进件数 -->
+			COUNT(rec.LOAN_ID) RECORD,<!-- 放款数 -->
+			SUM(rec.LOAN_AMOUNT) LOANAMOUNT,<!-- 放款额 -->
+			SUM(rec.CON_AMOUNT) CONAMOUNT,<!-- 合同额 -->
+			COUNT(auv.APPLY_ID) FINAL_BACK,<!-- 退件数 -->
+			COUNT(con.APPLY_ID) FINALAUDIT,<!-- 批核数 -->
+			SUM(con.LOAN_AMOUNT) APPROVEDAMOUNT,<!-- 批核额 -->
+			SUM(con.CON_AMOUNT) FINALCONAMOUNT,<!-- 批核合同额 -->
+			COUNT(app.APPLY_ID) DENIEDLOANS,<!-- 拒贷数 -->
+			COUNT(wapp.APPLY_ID) GIVENUM,<!-- 放弃数 -->
+			SUM(give.LOAN_AMOUNT) GIVEMONEY,<!-- 放弃额 -->
+			SUM(give.CON_AMOUNT) GIVECONAMOUNT<!-- 放弃合同额 -->
+		FROM
+		  HS_APPLY ap LEFT JOIN(SELECT rec.LOAN_ID,rec.APPLY_ID,rec.LOAN_AMOUNT,rec.CON_AMOUNT FROM HS_LOAN_RECORD rec WHERE REC.HANDLE_OPTION=4) rec ON AP.APPLY_ID = rec.APPLY_ID
+		              LEFT JOIN(SELECT DISTINCT auv.APPLY_ID FROM AUDIT_VIEWS auv WHERE auv.HANDLE_OPINION = 2) auv ON AP.APPLY_ID = auv.APPLY_ID
+		              LEFT JOIN(SELECT con.APPLY_ID,con.LOAN_AMOUNT,con.CON_AMOUNT FROM HS_CONTRACT con) con ON AP.APPLY_ID = con.APPLY_ID
+		              LEFT JOIN(SELECT app.APPLY_ID FROM HS_APPLY app WHERE app.PROC_STATUS = 'reject') app ON AP.APPLY_ID = app.APPLY_ID
+		              LEFT JOIN(SELECT wapp.APPLY_ID FROM HS_APPLY wapp WHERE wapp.PROC_STATUS = 'waiver') wapp ON AP.APPLY_ID = wapp.APPLY_ID
+		              LEFT JOIN(SELECT give.APPLY_ID,give.CON_AMOUNT,give.LOAN_AMOUNT FROM HS_CONTRACT give) give ON AP.APPLY_ID = give.APPLY_ID AND ap.PROC_STATUS = 'waiver'
+		RIGHT  JOIN (
+		    SELECT
+		      emp.EMP_ID MANAGER_ID,emp.EMP_NAME MANAGER_NAME,
+		      dep.*
+		    FROM
+		      HS_EMPLOYEE emp
+		    RIGHT JOIN (
+		      SELECT
+		        CIL.DEPT_ID,
+		        CIL.DEPT_NAME,
+		        CIL.DEPT_PARENT,
+		        CIL.MANAGER
+		      FROM
+		        HS_DEPARTMENT CIL
+					WHERE cil.STORE_FLAG IS  NULL 
+		       START WITH CIL.DEPT_ID = #{parentId} CONNECT BY PRIOR CIL.DEPT_ID = CIL.DEPT_PARENT
+		    ) dep ON emp.EMP_ID = dep.MANAGER  
+		) depTab ON ap.SALES_EMP_DEPT_ID = depTab.dept_id 
+		LEFT JOIN HS_DEPARTMENT PAR ON depTab.DEPT_PARENT = PAR.DEPT_ID
+		WHERE  <![CDATA[ap.APPLY_DATE>=TO_DATE(#{startDate}, 'yyyy-mm-dd') AND ap.APPLY_DATE<=TO_DATE(#{endDate}, 'yyyy-mm-dd')]]>
+		GROUP BY  depTab.dept_id,depTab.DEPT_NAME, depTab.MANAGER_NAME, PAR.DEPT_ID, PAR.DEPT_NAME
+		ORDER BY depTab.DEPT_NAME
+	</select>
+	
+	
+	<!-- 客户经理==查询自己的客户  -->
+    <select id="selectByPerson" parameterType="java.lang.String" resultMap="BeResultMap">
+	      SELECT
+			depTab.EMP_WORK_NUM,
+			depTab.EMP_NAME,
+			depTab.DEPT_ID TEAM_ID, 
+			depTab.DEPT_NAME TEAM_NAME,
+			PAR.DEPT_ID STORE_ID, 
+			PAR.DEPT_NAME STORE_NAME,
+		  	COUNT(ap.APPLY_ID) LOANCOUNT,<!-- 进件数 -->
+			COUNT(rec.LOAN_ID) RECORD,<!-- 放款数 -->
+			SUM(rec.LOAN_AMOUNT) LOANAMOUNT,<!-- 放款额 -->
+			SUM(rec.CON_AMOUNT) CONAMOUNT,<!-- 合同额 -->
+			COUNT(auv.APPLY_ID) FINAL_BACK,<!-- 退件数 -->
+			COUNT(con.APPLY_ID) FINALAUDIT,<!-- 批核数 -->
+			SUM(con.LOAN_AMOUNT) APPROVEDAMOUNT,<!-- 批核额 -->
+			SUM(con.CON_AMOUNT) FINALCONAMOUNT,<!-- 批核合同额 -->
+			COUNT(app.APPLY_ID) DENIEDLOANS,<!-- 拒贷数 -->
+			COUNT(wapp.APPLY_ID) GIVENUM,<!-- 放弃数 -->
+			SUM(give.LOAN_AMOUNT) GIVEMONEY,<!-- 放弃额 -->
+			SUM(give.CON_AMOUNT) GIVECONAMOUNT<!-- 放弃合同额 -->
+		FROM
+		  HS_APPLY ap LEFT JOIN(SELECT rec.LOAN_ID,rec.APPLY_ID,rec.LOAN_AMOUNT,rec.CON_AMOUNT FROM HS_LOAN_RECORD rec WHERE REC.HANDLE_OPTION=4) rec ON AP.APPLY_ID = rec.APPLY_ID
+		              LEFT JOIN(SELECT DISTINCT auv.APPLY_ID FROM AUDIT_VIEWS auv WHERE auv.HANDLE_OPINION = 2) auv ON AP.APPLY_ID = auv.APPLY_ID
+		              LEFT JOIN(SELECT con.APPLY_ID,con.LOAN_AMOUNT,con.CON_AMOUNT FROM HS_CONTRACT con) con ON AP.APPLY_ID = con.APPLY_ID
+		              LEFT JOIN(SELECT app.APPLY_ID FROM HS_APPLY app WHERE app.PROC_STATUS = 'reject') app ON AP.APPLY_ID = app.APPLY_ID
+		              LEFT JOIN(SELECT wapp.APPLY_ID FROM HS_APPLY wapp WHERE wapp.PROC_STATUS = 'waiver') wapp ON AP.APPLY_ID = wapp.APPLY_ID
+		              LEFT JOIN(SELECT give.APPLY_ID,give.CON_AMOUNT,give.LOAN_AMOUNT FROM HS_CONTRACT give) give ON AP.APPLY_ID = give.APPLY_ID AND ap.PROC_STATUS = 'waiver'
+		RIGHT  JOIN (
+		    SELECT
+		      emp.EMP_ID, emp.EMP_WORK_NUM, emp.EMP_NAME, dep.*
+		    FROM
+		      HS_EMPLOYEE emp
+				 RIGHT JOIN (
+		      SELECT
+		        CIL.DEPT_ID,
+		        CIL.DEPT_NAME,
+		        CIL.DEPT_PARENT
+		      FROM
+		        HS_DEPARTMENT CIL
+					WHERE cil.STORE_FLAG IS  NULL 
+		       START WITH CIL.DEPT_ID = #{parentId} CONNECT BY PRIOR CIL.DEPT_ID = CIL.DEPT_PARENT
+		    ) dep ON emp.DEPT_ID = dep.DEPT_ID  
+		) depTab ON ap.SALES_EMP_ID = depTab.EMP_ID 
+		LEFT JOIN HS_DEPARTMENT PAR ON depTab.DEPT_PARENT = PAR.DEPT_ID
+		WHERE  <![CDATA[ap.APPLY_DATE>=TO_DATE(#{startDate}, 'yyyy-mm-dd') AND ap.APPLY_DATE<=TO_DATE(#{endDate}, 'yyyy-mm-dd')]]>
+		GROUP BY depTab.EMP_ID, depTab.EMP_WORK_NUM, depTab.EMP_NAME, depTab.DEPT_ID, depTab.DEPT_NAME, PAR.DEPT_ID, PAR.DEPT_NAME
+		<if test="isMgr == 0">
+			HAVING depTab.EMP_ID = #{empId}
+		</if>
+		ORDER BY depTab.DEPT_NAME, APPROVEDAMOUNT, LOANCOUNT, FINAL_BACK
+	</select>
+</mapper>

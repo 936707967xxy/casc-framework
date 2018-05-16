@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.CreditCardBillsInfoMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.CreditCardBillsInfo">
+    <id column="HCCBI_ID" jdbcType="VARCHAR" property="hccbiId" />
+    <result column="POST_AMT" jdbcType="VARCHAR" property="postAmt" />
+    <result column="TRAN_DESC" jdbcType="VARCHAR" property="tranDesc" />
+    <result column="TRAN_DATE" jdbcType="OTHER" property="tranDate" />
+    <result column="HCCBI_FKID" jdbcType="VARCHAR" property="hccbiFkid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    HCCBI_ID, POST_AMT, TRAN_DESC, TRAN_DATE, HCCBI_FKID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CREDIT_CARD_BILLS_INFO
+    where HCCBI_ID = #{hccbiId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CREDIT_CARD_BILLS_INFO
+    where HCCBI_ID = #{hccbiId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.CreditCardBillsInfo">
+    insert into HS_CREDIT_CARD_BILLS_INFO (HCCBI_ID, POST_AMT, TRAN_DESC, 
+      TRAN_DATE, HCCBI_FKID)
+    values (#{hccbiId,jdbcType=VARCHAR}, #{postAmt,jdbcType=VARCHAR}, #{tranDesc,jdbcType=VARCHAR}, 
+      #{tranDate,jdbcType=OTHER}, #{hccbiFkid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.CreditCardBillsInfo">
+    insert into HS_CREDIT_CARD_BILLS_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hccbiId != null">
+        HCCBI_ID,
+      </if>
+      <if test="postAmt != null">
+        POST_AMT,
+      </if>
+      <if test="tranDesc != null">
+        TRAN_DESC,
+      </if>
+      <if test="tranDate != null">
+        TRAN_DATE,
+      </if>
+      <if test="hccbiFkid != null">
+        HCCBI_FKID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hccbiId != null">
+        #{hccbiId,jdbcType=VARCHAR},
+      </if>
+      <if test="postAmt != null">
+        #{postAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="tranDesc != null">
+        #{tranDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="tranDate != null">
+        #{tranDate,jdbcType=OTHER},
+      </if>
+      <if test="hccbiFkid != null">
+        #{hccbiFkid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.CreditCardBillsInfo">
+    update HS_CREDIT_CARD_BILLS_INFO
+    <set>
+      <if test="postAmt != null">
+        POST_AMT = #{postAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="tranDesc != null">
+        TRAN_DESC = #{tranDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="tranDate != null">
+        TRAN_DATE = #{tranDate,jdbcType=OTHER},
+      </if>
+      <if test="hccbiFkid != null">
+        HCCBI_FKID = #{hccbiFkid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where HCCBI_ID = #{hccbiId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.CreditCardBillsInfo">
+    update HS_CREDIT_CARD_BILLS_INFO
+    set POST_AMT = #{postAmt,jdbcType=VARCHAR},
+      TRAN_DESC = #{tranDesc,jdbcType=VARCHAR},
+      TRAN_DATE = #{tranDate,jdbcType=OTHER},
+      HCCBI_FKID = #{hccbiFkid,jdbcType=VARCHAR}
+    where HCCBI_ID = #{hccbiId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysRepaymentPlanMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysRepaymentPlan">
+    <id column="PLAN_ID" jdbcType="VARCHAR" property="planId" />
+    <result column="CON_ID" jdbcType="VARCHAR" property="conId" />
+    <result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="SHOULD_TERM" jdbcType="DECIMAL" property="shouldTerm" />
+    <result column="SHOULD_AMT" jdbcType="DECIMAL" property="shouldAmt" />
+    <result column="SHOULD_CAPI" jdbcType="DECIMAL" property="shouldCapi" />
+    <result column="SHOULD_INTE" jdbcType="DECIMAL" property="shouldInte" />
+    <result column="BILLS_DATE" jdbcType="TIMESTAMP" property="billsDate" />
+    <result column="SHOULD_DATE" jdbcType="TIMESTAMP" property="shouldDate" />
+    <result column="REPAY_STATUS" jdbcType="DECIMAL" property="repayStatus" />
+    <result column="PRERETUAMT_HXB" jdbcType="DECIMAL" property="preretuamtHxb" />
+    <result column="PRERETUAMT_CHANNEL" jdbcType="DECIMAL" property="preretuamtChannel" />
+    <result column="PRERETUTAL_CREDIT" jdbcType="DECIMAL" property="preretuamtCredit" />
+    <result column="BAL" jdbcType="DECIMAL" property="bal" />
+    <result column="ADVANCE_SHOULD" jdbcType="DECIMAL" property="advanceShould" />
+    <result column="ADVANCE_MONEY" jdbcType="DECIMAL" property="advanceMoney" />
+    <result column="ADVANCE_REDUCE" jdbcType="DECIMAL" property="advanceReduce" />
+    <result column="END_BAL" jdbcType="DECIMAL" property="endBal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PLAN_ID, CON_ID, LOAN_ID, APPLY_ID, SHOULD_TERM, SHOULD_AMT, SHOULD_CAPI, SHOULD_INTE, 
+    BILLS_DATE, SHOULD_DATE,  REPAY_STATUS, PRERETUAMT_HXB, PRERETUAMT_CHANNEL, PRERETUTAL_CREDIT,
+    BAL, ADVANCE_SHOULD, ADVANCE_MONEY, ADVANCE_REDUCE,END_BAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_REPAYMENT_PLAN
+    where PLAN_ID = #{planId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_REPAYMENT_PLAN
+    where PLAN_ID = #{planId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.core.model.SysRepaymentPlan">
+    insert into HS_REPAYMENT_PLAN (PLAN_ID, CON_ID, LOAN_ID, 
+      APPLY_ID, SHOULD_TERM, SHOULD_AMT, 
+      SHOULD_CAPI, SHOULD_INTE, BILLS_DATE, 
+      SHOULD_DATE, REPAY_STATUS, 
+      PRERETUAMT_HXB, PRERETUAMT_CHANNEL,PRERETUTAL_CREDIT, BAL, 
+      ADVANCE_SHOULD, ADVANCE_MONEY, ADVANCE_REDUCE,END_BAL
+      )
+    values (#{planId,jdbcType=VARCHAR}, #{conId,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR}, 
+      #{applyId,jdbcType=VARCHAR}, #{shouldTerm,jdbcType=DECIMAL}, #{shouldAmt,jdbcType=DECIMAL}, 
+      #{shouldCapi,jdbcType=DECIMAL}, #{shouldInte,jdbcType=DECIMAL}, #{billsDate,jdbcType=TIMESTAMP}, 
+      #{shouldDate,jdbcType=TIMESTAMP},  #{repayStatus,jdbcType=DECIMAL}, 
+      #{preretuamtHxb,jdbcType=DECIMAL}, #{preretuamtChannel,jdbcType=DECIMAL},#{preretuamtCredit,jdbcType=DECIMAL}, #{bal,jdbcType=DECIMAL}, 
+      #{advanceShould,jdbcType=DECIMAL}, #{advanceMoney,jdbcType=DECIMAL}, #{advanceReduce,jdbcType=DECIMAL}, #{endBal,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.core.model.SysRepaymentPlan">
+    insert into HS_REPAYMENT_PLAN
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="planId != null">
+        PLAN_ID,
+      </if>
+      <if test="conId != null">
+        CON_ID,
+      </if>
+      <if test="loanId != null">
+        LOAN_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="shouldTerm != null">
+        SHOULD_TERM,
+      </if>
+      <if test="shouldAmt != null">
+        SHOULD_AMT,
+      </if>
+      <if test="shouldCapi != null">
+        SHOULD_CAPI,
+      </if>
+      <if test="shouldInte != null">
+        SHOULD_INTE,
+      </if>
+      <if test="billsDate != null">
+        BILLS_DATE,
+      </if>
+      <if test="shouldDate != null">
+        SHOULD_DATE,
+      </if>
+      <if test="repayStatus != null">
+        REPAY_STATUS,
+      </if>
+      <if test="preretuamtHxb != null">
+        PRERETUAMT_HXB,
+      </if>
+      <if test="preretuamtChannel != null">
+        PRERETUAMT_CHANNEL,
+      </if>
+      <if test="preretuamtCredit != null">
+        PRERETUTAL_CREDIT,
+      </if>
+      <if test="bal != null">
+        BAL,
+      </if>
+      <if test="advanceShould != null">
+        ADVANCE_SHOULD,
+      </if>
+      <if test="advanceMoney != null">
+        ADVANCE_MONEY,
+      </if>
+      <if test="advanceReduce != null">
+        ADVANCE_REDUCE,
+      </if>
+      <if test="endBal != null">
+        END_BAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="planId != null">
+        #{planId,jdbcType=VARCHAR},
+      </if>
+      <if test="conId != null">
+        #{conId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="shouldTerm != null">
+        #{shouldTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldAmt != null">
+        #{shouldAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldCapi != null">
+        #{shouldCapi,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldInte != null">
+        #{shouldInte,jdbcType=DECIMAL},
+      </if>
+      <if test="billsDate != null">
+        #{billsDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shouldDate != null">
+        #{shouldDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayStatus != null">
+        #{repayStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="preretuamtHxb != null">
+        #{preretuamtHxb,jdbcType=DECIMAL},
+      </if>
+      <if test="preretuamtChannel != null">
+        #{preretuamtChannel,jdbcType=DECIMAL},
+      </if>
+      <if test="preretuamtCredit != null">
+        #{preretuamtCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="bal != null">
+        #{bal,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceShould != null">
+        #{advanceShould,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceMoney != null">
+        #{advanceMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceReduce != null">
+        #{advanceReduce,jdbcType=DECIMAL},
+      </if>
+      <if test="endBal != null">
+        #{endBal,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysRepaymentPlan">
+    update HS_REPAYMENT_PLAN
+    <set>
+      <if test="conId != null">
+        CON_ID = #{conId,jdbcType=VARCHAR},
+      </if>
+      <if test="loanId != null">
+        LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="shouldTerm != null">
+        SHOULD_TERM = #{shouldTerm,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldAmt != null">
+        SHOULD_AMT = #{shouldAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldCapi != null">
+        SHOULD_CAPI = #{shouldCapi,jdbcType=DECIMAL},
+      </if>
+      <if test="shouldInte != null">
+        SHOULD_INTE = #{shouldInte,jdbcType=DECIMAL},
+      </if>
+      <if test="billsDate != null">
+        BILLS_DATE = #{billsDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shouldDate != null">
+        SHOULD_DATE = #{shouldDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repayStatus != null">
+        REPAY_STATUS = #{repayStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="preretuamtHxb != null">
+        PRERETUAMT_HXB = #{preretuamtHxb,jdbcType=DECIMAL},
+      </if>
+      <if test="preretuamtChannel != null">
+        PRERETUAMT_CHANNEL = #{preretuamtChannel,jdbcType=DECIMAL},
+      </if>
+      <if test="preretuamtCredit != null">
+        PRERETUTAL_CREDIT = #{preretuamtCredit,jdbcType=DECIMAL},
+      </if>
+      <if test="bal != null">
+        BAL = #{bal,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceShould != null">
+        ADVANCE_SHOULD = #{advanceShould,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceMoney != null">
+        ADVANCE_MONEY = #{advanceMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="advanceReduce != null">
+        ADVANCE_REDUCE = #{advanceReduce,jdbcType=DECIMAL},
+      </if>
+      <if test="endBal != null">
+        END_BAL = #{endBal,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where PLAN_ID = #{planId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysRepaymentPlan">
+    update HS_REPAYMENT_PLAN
+    set CON_ID = #{conId,jdbcType=VARCHAR},
+      LOAN_ID = #{loanId,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      SHOULD_TERM = #{shouldTerm,jdbcType=DECIMAL},
+      SHOULD_AMT = #{shouldAmt,jdbcType=DECIMAL},
+      SHOULD_CAPI = #{shouldCapi,jdbcType=DECIMAL},
+      SHOULD_INTE = #{shouldInte,jdbcType=DECIMAL},
+      BILLS_DATE = #{billsDate,jdbcType=TIMESTAMP},
+      SHOULD_DATE = #{shouldDate,jdbcType=TIMESTAMP},
+      REPAY_STATUS = #{repayStatus,jdbcType=DECIMAL},
+      PRERETUAMT_HXB = #{preretuamtHxb,jdbcType=DECIMAL},
+      PRERETUAMT_CHANNEL = #{preretuamtChannel,jdbcType=DECIMAL},
+      PRERETUTAL_CREDIT = #{preretuamtCredit,jdbcType=DECIMAL},
+      BAL = #{bal,jdbcType=DECIMAL},
+      ADVANCE_SHOULD = #{advanceShould,jdbcType=DECIMAL},
+      ADVANCE_MONEY = #{advanceMoney,jdbcType=DECIMAL},
+      ADVANCE_REDUCE = #{advanceReduce,jdbcType=DECIMAL},
+      END_BAL = #{endBal,jdbcType=DECIMAL} 
+    where PLAN_ID = #{planId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="findByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_REPAYMENT_PLAN
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR} 
+    ORDER BY SHOULD_TERM ASC 
+  </select>
+  
+  <select id="countFindByApplyId" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select 
+    count(PLAN_ID) 
+    from HS_REPAYMENT_PLAN
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR} 
+  </select>
+  
+  <delete id="deleteByApplyId" parameterType="java.lang.String">
+    delete from HS_REPAYMENT_PLAN
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR} 
+  </delete>
+  
+  <select id="findPlanByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select   
+      APPLY_ID, SHOULD_TERM, SHOULD_AMT, 
+      SHOULD_CAPI, SHOULD_INTE,SHOULD_DATE, 
+      BAL    from HS_REPAYMENT_PLAN
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR} 
+    ORDER BY SHOULD_TERM ASC 
+  </select>
+  
+</mapper>

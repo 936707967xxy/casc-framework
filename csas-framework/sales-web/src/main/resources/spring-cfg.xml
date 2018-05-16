@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+        http://www.springframework.org/schema/data/mongo
+        http://www.springframework.org/schema/data/mongo/spring-mongo-1.10.xsd">
+
+	<context:component-scan base-package="com.hoomsun.**.server,com.hoomsun.act.task.listener,com.hoomsun.risk.repos,com.hoomsun.csas.sales.act"/>
+
+	<context:property-placeholder location="classpath*:jdbc.properties,classpath*:cfg.properties" />
+
+	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+		<property name="slowSqlMillis" value="30000" />
+		<property name="logSlowSql" value="true" />
+	</bean>
+
+	<!-- 创建数据源 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="url" value="${jdbc_url}"></property>
+		<property name="username" value="${jdbc_username}"></property>
+		<property name="password" value="${jdbc_password}"></property>
+
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="wall,stat,config,log4j" />
+		<property name="proxyFilters">
+			<list>
+				<ref bean="stat-filter" />
+			</list>
+		</property>
+
+		<!-- 配置参数，让ConfigFilter解密密码 -->
+		<!--<property name="connectionProperties" value="config.decrypt=true;config.decrypt.key=${jdbc_publickey}" />-->
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="0" />
+		<!-- 连接池最大使用连接数量 -->
+		<property name="maxActive" value="20" />
+		<!-- 连接池最大空闲 <property name="maxIdle" value="20" /> -->
+
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="0" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="60000" />
+
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="33" />
+
+		<property name="validationQuery" value="${validationQuery}" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<property name="testWhileIdle" value="true" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+
+		<!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandoned" value="false" />
+		<!-- 1800秒，也就是30分钟 -->
+		<property name="removeAbandonedTimeout" value="1800" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="true" />
+	</bean>
+
+	<!-- myBatis文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+<!-- 		<property name="mapperLocations" value="classpath*:com/hoomsun/**/mapper/${db_type}/*.xml" /> -->
+		<property name="mapperLocations">
+			<array>
+				<value>classpath*:com/hoomsun/**/mapper/${db_type}/*.xml</value>
+			</array>
+		</property>
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.hoomsun.**.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- 配置事物管理 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!-- 采用注解方式配置事物 -->
+	<!--<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/> -->
+<!-- <bean id="dataPushAspect" class="com.hoomsun.flow.aop.DataPushAspect"/> -->
+	<!-- 拦截器方式配置事物 声明事务属性Advice -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="start*" propagation="REQUIRED" />
+			<tx:method name="edit*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="grant*" propagation="REQUIRED" />
+			<tx:method name="*upload*" propagation="REQUIRED" />
+			<tx:method name="*Upload" propagation="REQUIRED" />
+			<tx:method name="rollback*" propagation="REQUIRED" />
+			<tx:method name="withdraw*" propagation="REQUIRED" />
+			<tx:method name="complete*" propagation="REQUIRED" />
+			<tx:method name="claim*" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="REQUIRED" />
+
+			<tx:method name="init*" read-only="false" propagation="REQUIRED" />
+
+			<tx:method name="get*" propagation="SUPPORTS" />
+			<tx:method name="find*" propagation="SUPPORTS" />
+			<tx:method name="load*" propagation="SUPPORTS" />
+			<tx:method name="search*" propagation="SUPPORTS" />
+			<tx:method name="datagrid*" propagation="SUPPORTS" />
+
+             <!-- 
+             影响性能
+             <tx:method name="*" propagation="SUPPORTS" />
+              -->
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 使用aop，将事务管理的代码加到业务对象的方法上 -->
+	<aop:config>
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.hoomsun..*.server.impl.*Impl.*(..))" />
+		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
+	</aop:config>
+
+	<!-- flowable cfg -->
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="dataSource" />
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="databaseSchemaUpdate" value="true" />
+		<property name="asyncExecutorActivate" value="false" />
+		<property name="jobExecutorActivate" value="false" />
+		<property name="idGenerator">
+			<bean class="org.activiti.engine.impl.persistence.StrongUuidGenerator" />
+		</property>
+		<property name="activityFontName" value="宋体"></property>
+		<property name="labelFontName" value="宋体"></property>
+	</bean>
+
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+	<bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+	<bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+	<bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
+	<bean id="formService" factory-bean="processEngine" factory-method="getFormService" />
+
+	<!-- 文件上传路径 -->
+	<bean id="uploadPathUtil" class="com.hoomsun.common.util.UploadPathUtil">
+		<property name="uploadPath" value="${UPLOAD_PATH}" />
+		<property name="contextUrl" value="${CONTEXT_URL}" />
+		<property name="bannerFolder" value="${BANNER_FOLDER}" />
+		<property name="productFolder" value="${PRODUCT_FOLDER}" />
+		<property name="noticeFolder" value="${NOTICE_FOLDER}" />
+		<property name="userFolder" value="${USER_FOLDER}" />
+		<property name="bankFolder" value="${BANK_FOLDER}" /> 
+		<property name="versionFolder" value="${VERSION_FOLDER}" /> 
+		<property name="contractFolder" value="${CONTRACT_FOLDER}" /> 
+		<property name="auditFolder" value="${AUDIT_FOLDER}" /> 
+		<property name="applyFolder" value="${USER_APPLY}" />
+	</bean>
+
+	<!-- mongo 配置 -->
+	<mongo:mongo-client id="mongoClient" host="${mongo.host}" port="${mongo.port}" credentials="${mongo.user}:${mongo.pwd}@${mongo.dbname}">
+        <mongo:client-options
+                connections-per-host="${mongo.connectionsPerHost}"
+                min-connections-per-host="${mongo.minConnectionsPerHost}"
+                threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"
+                connect-timeout="${mongo.connectTimeout}"
+                max-wait-time="${mongo.maxWaitTime}"
+                socket-keep-alive="${mongo.socketKeepAlive}"
+                socket-timeout="${mongo.socketTimeout}"
+                description="${mongo.description}"
+                max-connection-idle-time="${mongo.maxConnectionIdleTime}"
+                max-connection-life-time="${mongo.maxConnectionLifeTime}"
+                heartbeat-socket-timeout="${mongo.heartbeatSocketTimeout}"
+                heartbeat-connect-timeout="${mongo.heartbeatConnectTimeout}"
+                min-heartbeat-frequency="${mongo.minHeartbeatFrequency}"
+                heartbeat-frequency="${mongo.heartbeatFrequency}"
+                write-concern="${mongo.writeConcern}"
+        />
+    </mongo:mongo-client>
+    
+<!-- 	<mongo:db-factory id="mongoDbFactory" client-uri="mongodb://${mongo.user}:${mongo.pwd}@${mongo.host}:${mongo.port}/${mongo.dbname}" mongo-ref="mongoClient"/> -->
+	<mongo:db-factory id="mongoDbFactory" mongo-ref="mongoClient" dbname="${mongo.dbname}"/>
+	
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+	  <constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+	</bean>
+	
+	<!-- 映射转换器，扫描back-package目录下的文件，根据注释，把它们作为mongodb的一个collection的映射 -->  
+    <mongo:mapping-converter base-package="com.hoomsun.risk.model" />  
+      
+    <!-- mongodb bean的仓库目录，会自动扫描扩展了MongoRepository接口的接口进行注入 -->  
+    <mongo:repositories base-package="com.hoomsun.risk.dao.mongo"/>  
+	
+	<bean id="threadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+          <!-- 线程池维护线程的最少数量 -->
+          <property name="corePoolSize" value="5" />
+          <!-- 允许的空闲时间 -->
+          <property name="keepAliveSeconds" value="200" />
+          <!-- 线程池维护线程的最大数量 -->
+          <property name="maxPoolSize" value="10" />
+          <!-- 缓存队列 -->
+         <property name="queueCapacity" value="20" />
+         <!-- 对拒绝task的处理策略 -->
+         <property name="rejectedExecutionHandler">
+             <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+         </property>
+     </bean>
+     
+     <bean id="cheatFunnyDelegate" class="com.hoomsun.csas.sales.act.CheatFunnyDelegate"/>
+     
+     
+     <!-- 还款日配置 -->
+     <!-- 1-8 还款日是当月30号   9-24还款日是下月15号   25到月底最后一天还款日是下月30号 -->
+     <!-- 
+     	billsDateRanges.add(new BillsDateRange(1, 8, 30, 0));
+		billsDateRanges.add(new BillsDateRange(9, 24, 15, 1));
+		billsDateRanges.add(new BillsDateRange(25, -1, 30, 1));
+      -->
+     <bean id="dateRange1" class="com.hoomsun.core.util.BillsDateRange">
+     	<property name="start" value="1"/>
+     	<property name="end" value="8"/>
+     	<property name="value" value="30"/>
+     	<property name="weight" value="0"/>
+     </bean>
+     
+     <bean id="dateRange2" class="com.hoomsun.core.util.BillsDateRange">
+     	<property name="start" value="9"/>
+     	<property name="end" value="24"/>
+     	<property name="value" value="15"/>
+     	<property name="weight" value="1"/>
+     </bean>
+     
+     <bean id="dateRange3" class="com.hoomsun.core.util.BillsDateRange">
+     	<property name="start" value="25"/>
+     	<property name="end" value="-1"/>
+     	<property name="value" value="30"/>
+     	<property name="weight" value="1"/>
+     </bean>
+     
+     
+     <bean id="onlineDateRange1" class="com.hoomsun.core.util.BillsDateRange">
+     	<property name="start" value="1"/>
+     	<property name="end" value="5"/>
+     	<property name="value" value="22"/>
+     	<property name="weight" value="0"/>
+     </bean>
+     
+     <bean id="onlineDateRange2" class="com.hoomsun.core.util.BillsDateRange">
+     	<property name="start" value="6"/>
+     	<property name="end" value="16"/>
+     	<property name="value" value="5"/>
+     	<property name="weight" value="1"/>
+     </bean>
+     
+     <bean id="onlineDateRange3" class="com.hoomsun.core.util.BillsDateRange">
+     	<property name="start" value="17"/>
+     	<property name="end" value="25"/>
+     	<property name="value" value="15"/>
+     	<property name="weight" value="1"/>
+     </bean>
+     
+     <bean id="onlineDateRange4" class="com.hoomsun.core.util.BillsDateRange">
+     	<property name="start" value="26"/>
+     	<property name="end" value="-1"/>
+     	<property name="value" value="22"/>
+     	<property name="weight" value="1"/>
+     </bean>
+     
+     <bean id="billsDateRangeUtil" class="com.hoomsun.core.util.BillsDateRangeCfg">
+     	<property name="billsDateRanges">
+     		<list>
+     			<ref bean="dateRange1"/>
+     			<ref bean="dateRange2"/>
+     			<ref bean="dateRange3"/>
+     		</list>
+     	</property>
+     	<property name="onlineBillsDateRanges">
+     		<list>
+     			<ref bean="onlineDateRange1"/>
+     			<ref bean="onlineDateRange2"/>
+     			<ref bean="onlineDateRange3"/>
+     			<ref bean="onlineDateRange4"/>
+     		</list>
+     	</property>
+     </bean>
+     
+</beans>

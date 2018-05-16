@@ -1,0 +1,41 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.hoomsun</groupId>
+		<artifactId>csas-framework</artifactId>
+		<version>2.0.0</version>
+	</parent>
+	<artifactId>hs-core</artifactId>
+	<version>5.0.0</version>
+	<name>hs-core</name>
+	<description>base core</description>
+	
+	<distributionManagement>
+		<repository>
+			<id>hs-deploy-release</id>
+			<url>http://192.168.1.178:9088/nexus/content/repositories/releases/</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>hs-deploy-snapshot</id>
+			<url>http://192.168.1.178:9088/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.hoomsun</groupId>
+			<artifactId>hs-common</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<finalName>hs-core</finalName>
+	</build>
+</project>

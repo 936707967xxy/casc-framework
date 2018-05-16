@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.SubMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.Sub">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="APPLY_TYPE" jdbcType="VARCHAR" property="applyType" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="SUB_PENALTY" jdbcType="DECIMAL" property="subPenalty" />
+		<result column="SUB_INTEREST" jdbcType="DECIMAL" property="subInterest" />
+		<result column="SUB_CORPUS" jdbcType="DECIMAL" property="subCorpus" />
+		<result column="SUB_SHOULDINTE" jdbcType="DECIMAL" property="subShouldinte" />
+		<result column="SUB_SUM" jdbcType="DECIMAL" property="subSum" />
+		<result column="SUB_STREAM" jdbcType="DECIMAL" property="subStream" />
+		<result column="SUB_DATE" jdbcType="TIMESTAMP" property="subDate" />
+		<result column="SUB_STATUS" jdbcType="VARCHAR" property="subStatus" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="SH_PENALTY" jdbcType="DECIMAL" property="shPenalty" />
+		<result column="SH_INTEREST" jdbcType="DECIMAL" property="shInterest" />
+		<result column="SH_CORPUS" jdbcType="DECIMAL" property="shCorpus" />
+		<result column="SH_SHOULDINTE" jdbcType="DECIMAL" property="shShouldinte" />
+		<result column="SH_SUM" jdbcType="DECIMAL" property="shSum" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, APPLY_ID, APPLY_TYPE, LOAN_ID, CON_NO, CAST_NAME,
+		SUB_PENALTY,
+		SUB_INTEREST,
+		SUB_CORPUS, SUB_SHOULDINTE, SUB_SUM,
+		SUB_STREAM, SUB_DATE, SUB_STATUS,
+		CREATE_TIME,
+		UPDATE_DATE, SH_PENALTY,
+		SH_INTEREST, SH_CORPUS, SH_SHOULDINTE, SH_SUM
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_SUB
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_SUB
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.Sub">
+		insert into HS_AFTER_SUB (ID,
+		APPLY_ID, APPLY_TYPE,
+		LOAN_ID, CON_NO, CAST_NAME,
+		SUB_PENALTY,
+		SUB_INTEREST, SUB_CORPUS,
+		SUB_SHOULDINTE, SUB_SUM, SUB_STREAM,
+		SUB_DATE, SUB_STATUS, CREATE_TIME,
+		UPDATE_DATE, SH_PENALTY,
+		SH_INTEREST,
+		SH_CORPUS, SH_SHOULDINTE, SH_SUM
+		)
+		values
+		(#{id,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR},
+		#{applyType,jdbcType=VARCHAR},
+		#{loanId,jdbcType=VARCHAR},
+		#{conNo,jdbcType=VARCHAR}, #{castName,jdbcType=VARCHAR},
+		#{subPenalty,jdbcType=DECIMAL}, #{subInterest,jdbcType=DECIMAL},
+		#{subCorpus,jdbcType=DECIMAL},
+		#{subShouldinte,jdbcType=DECIMAL},
+		#{subSum,jdbcType=DECIMAL}, #{subStream,jdbcType=DECIMAL},
+		#{subDate,jdbcType=TIMESTAMP}, #{subStatus,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateDate,jdbcType=TIMESTAMP},
+		#{shPenalty,jdbcType=DECIMAL}, #{shInterest,jdbcType=DECIMAL},
+		#{shCorpus,jdbcType=DECIMAL}, #{shShouldinte,jdbcType=DECIMAL},
+		#{shSum,jdbcType=DECIMAL}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.Sub">
+		insert into HS_AFTER_SUB
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="applyId != null">
+				APPLY_ID,
+			</if>
+			<if test="applyType != null">
+				APPLY_TYPE,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="conNo != null">
+				CON_NO,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="subPenalty != null">
+				SUB_PENALTY,
+			</if>
+			<if test="subInterest != null">
+				SUB_INTEREST,
+			</if>
+			<if test="subCorpus != null">
+				SUB_CORPUS,
+			</if>
+			<if test="subShouldinte != null">
+				SUB_SHOULDINTE,
+			</if>
+			<if test="subSum != null">
+				SUB_SUM,
+			</if>
+			<if test="subStream != null">
+				SUB_STREAM,
+			</if>
+			<if test="subDate != null">
+				SUB_DATE,
+			</if>
+			<if test="subStatus != null">
+				SUB_STATUS,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE,
+			</if>
+			<if test="shPenalty != null">
+				SH_PENALTY,
+			</if>
+			<if test="shInterest != null">
+				SH_INTEREST,
+			</if>
+			<if test="shCorpus != null">
+				SH_CORPUS,
+			</if>
+			<if test="shShouldinte != null">
+				SH_SHOULDINTE,
+			</if>
+			<if test="shSum != null">
+				SH_SUM,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyType != null">
+				#{applyType,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				#{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="subPenalty != null">
+				#{subPenalty,jdbcType=DECIMAL},
+			</if>
+			<if test="subInterest != null">
+				#{subInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="subCorpus != null">
+				#{subCorpus,jdbcType=DECIMAL},
+			</if>
+			<if test="subShouldinte != null">
+				#{subShouldinte,jdbcType=DECIMAL},
+			</if>
+			<if test="subSum != null">
+				#{subSum,jdbcType=DECIMAL},
+			</if>
+			<if test="subStream != null">
+				#{subStream,jdbcType=DECIMAL},
+			</if>
+			<if test="subDate != null">
+				#{subDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="subStatus != null">
+				#{subStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="shPenalty != null">
+				#{shPenalty,jdbcType=DECIMAL},
+			</if>
+			<if test="shInterest != null">
+				#{shInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="shCorpus != null">
+				#{shCorpus,jdbcType=DECIMAL},
+			</if>
+			<if test="shShouldinte != null">
+				#{shShouldinte,jdbcType=DECIMAL},
+			</if>
+			<if test="shSum != null">
+				#{shSum,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.Sub">
+		update HS_AFTER_SUB
+		<set>
+			<if test="applyId != null">
+				APPLY_ID = #{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyType != null">
+				APPLY_TYPE = #{applyType,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				CON_NO = #{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="subPenalty != null">
+				SUB_PENALTY = #{subPenalty,jdbcType=DECIMAL},
+			</if>
+			<if test="subInterest != null">
+				SUB_INTEREST = #{subInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="subCorpus != null">
+				SUB_CORPUS = #{subCorpus,jdbcType=DECIMAL},
+			</if>
+			<if test="subShouldinte != null">
+				SUB_SHOULDINTE = #{subShouldinte,jdbcType=DECIMAL},
+			</if>
+			<if test="subSum != null">
+				SUB_SUM = #{subSum,jdbcType=DECIMAL},
+			</if>
+			<if test="subStream != null">
+				SUB_STREAM = #{subStream,jdbcType=DECIMAL},
+			</if>
+			<if test="subDate != null">
+				SUB_DATE = #{subDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="subStatus != null">
+				SUB_STATUS = #{subStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="shPenalty != null">
+				SH_PENALTY = #{shPenalty,jdbcType=DECIMAL},
+			</if>
+			<if test="shInterest != null">
+				SH_INTEREST = #{shInterest,jdbcType=DECIMAL},
+			</if>
+			<if test="shCorpus != null">
+				SH_CORPUS = #{shCorpus,jdbcType=DECIMAL},
+			</if>
+			<if test="shShouldinte != null">
+				SH_SHOULDINTE = #{shShouldinte,jdbcType=DECIMAL},
+			</if>
+			<if test="shSum != null">
+				SH_SUM = #{shSum,jdbcType=DECIMAL},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.Sub">
+		update
+		HS_AFTER_SUB
+		set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+		APPLY_TYPE =
+		#{applyType,jdbcType=VARCHAR},
+		LOAN_ID = #{loanId,jdbcType=VARCHAR},
+		CON_NO = #{conNo,jdbcType=VARCHAR},
+		CAST_NAME =
+		#{castName,jdbcType=VARCHAR},
+		SUB_PENALTY =
+		#{subPenalty,jdbcType=DECIMAL},
+		SUB_INTEREST =
+		#{subInterest,jdbcType=DECIMAL},
+		SUB_CORPUS =
+		#{subCorpus,jdbcType=DECIMAL},
+		SUB_SHOULDINTE =
+		#{subShouldinte,jdbcType=DECIMAL},
+		SUB_SUM =
+		#{subSum,jdbcType=DECIMAL},
+		SUB_STREAM = #{subStream,jdbcType=DECIMAL},
+		SUB_DATE = #{subDate,jdbcType=TIMESTAMP},
+		SUB_STATUS =
+		#{subStatus,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		UPDATE_DATE =
+		#{updateDate,jdbcType=TIMESTAMP},
+		SH_PENALTY =
+		#{shPenalty,jdbcType=DECIMAL},
+		SH_INTEREST =
+		#{shInterest,jdbcType=DECIMAL},
+		SH_CORPUS =
+		#{shCorpus,jdbcType=DECIMAL},
+		SH_SHOULDINTE =
+		#{shShouldinte,jdbcType=DECIMAL},
+		SH_SUM = #{shSum,jdbcType=DECIMAL}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+
+	<!-- -->
+
+	<select id="selectByLoanIdAndStream" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_SUB
+		where LOAN_ID = #{loanId} and SUB_STREAM =
+		#{subStream} and SUB_STATUS =0
+
+
+	</select>
+
+	<select id="selectByLoanIdAndStream2" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_SUB
+		where LOAN_ID = #{loanId} and SUB_STREAM =
+		#{subStream} and SUB_STATUS =2
+
+
+	</select>
+
+	<select id="selectByLoanIdMin" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_SUB
+		where LOAN_ID = #{loanId} AND SUB_STATUS =0 AND
+		SUB_STREAM = (SELECT
+		MIN(SUB_STREAM) FROM HS_AFTER_SUB WHERE LOAN_ID =
+		#{loanId})
+
+
+	</select>
+
+
+
+
+	<select id="selectByApplyId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_SUB
+		where
+		APPLY_ID = #{applyId}
+
+	</select>
+
+	<select id="selectByLoanId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_SUB
+		where
+		LOAN_ID = #{loanId}
+
+	</select>
+
+	<update id="updateSubStatusByLoanIdAndSubStream" parameterType="java.util.Map">
+
+		update HS_AFTER_SUB set SUB_STATUS =#{subStatus}
+
+		where LOAN_ID =
+		#{loanId} and SUB_STREAM =#{subStream}
+
+	</update>
+
+</mapper>

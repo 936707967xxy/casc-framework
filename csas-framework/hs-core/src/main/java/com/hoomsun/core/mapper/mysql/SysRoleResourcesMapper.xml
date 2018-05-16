@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysRoleResourcesMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysRoleResources">
+		<id column="ROLE_ID" jdbcType="VARCHAR" property="roleId" />
+		<id column="RES_ID" jdbcType="VARCHAR" property="resId" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="com.hoomsun.core.model.SysRoleResources">
+		delete from HS_ROLE_RESOURCE
+		where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+		and RES_ID = #{resId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.core.model.SysRoleResources">
+		insert into HS_ROLE_RESOURCE (ROLE_ID, RES_ID)
+		values (#{roleId,jdbcType=VARCHAR}, #{resId,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.core.model.SysRoleResources">
+		insert into HS_ROLE_RESOURCE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">
+				ROLE_ID,
+			</if>
+			<if test="resId != null">
+				RES_ID,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="roleId != null">
+				#{roleId,jdbcType=VARCHAR},
+			</if>
+			<if test="resId != null">
+				#{resId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<!-- 根据角色ID删除角色资源的关系 -->
+	<delete id="deleteByRoleId" parameterType="java.lang.String">
+		delete from HS_ROLE_RESOURCE where ROLE_ID=#{roleId}
+	</delete>
+
+	<!-- 根据资源ID删除角色资源的关系 -->
+	<delete id="deleteByResId" parameterType="java.lang.String">
+		delete from HS_ROLE_RESOURCE where RES_ID=#{resId}
+	</delete>
+
+	<select id="findByRoleId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select ROLE_ID, RES_ID from HS_ROLE_RESOURCE where ROLE_ID=#{roleId}
+	</select>
+
+	<!-- 根据资源ID批量删除 -->
+	<delete id="batchDeleteByResIds" parameterType="java.util.List">
+		delete from HS_ROLE_RESOURCE where RES_ID in
+		<foreach collection="removeResIds" item="item" index="index" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+
+	<!-- 批量添加 -->
+	<insert id="batchInsert" parameterType="java.util.List">
+		insert into HS_ROLE_RESOURCE (ROLE_ID, RES_ID) values
+		<foreach collection="addRoleRes" item="item" index="index" separator=",">
+			(#{item.roleId,jdbcType=VARCHAR}, #{item.resId,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+</mapper>

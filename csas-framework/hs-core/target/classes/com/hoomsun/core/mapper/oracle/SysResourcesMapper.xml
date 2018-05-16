@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysResourcesMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysResources">
+		<id column="RES_ID" jdbcType="VARCHAR" property="resId" />
+		<result column="RES_NAME" jdbcType="VARCHAR" property="resName" />
+		<result column="RES_ICON" jdbcType="VARCHAR" property="resIcon" />
+		<result column="RES_LEVEL" jdbcType="INTEGER" property="resLevel" />
+		<result column="RES_SORT" jdbcType="INTEGER" property="resSort" />
+		<result column="RES_TYPE" jdbcType="VARCHAR" property="resType" />
+		<result column="RES_URL" jdbcType="VARCHAR" property="resUrl" />
+		<result column="RES_VALUE" jdbcType="VARCHAR" property="resValue" />
+		<result column="RES_PARENT" jdbcType="VARCHAR" property="resParent" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		RES_ID, RES_NAME, RES_ICON, RES_LEVEL, RES_SORT, RES_TYPE, RES_URL, RES_VALUE, RES_PARENT
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_RESOURCES
+		where RES_ID = #{resId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_RESOURCES
+		where RES_ID = #{resId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.core.model.SysResources">
+		insert into HS_RESOURCES (RES_ID, RES_NAME, RES_ICON,
+		RES_LEVEL, RES_SORT, RES_TYPE,
+		RES_URL, RES_VALUE, RES_PARENT
+		)
+		values (#{resId,jdbcType=VARCHAR}, #{resName,jdbcType=VARCHAR}, #{resIcon,jdbcType=VARCHAR},
+		#{resLevel,jdbcType=INTEGER}, #{resSort,jdbcType=INTEGER}, #{resType,jdbcType=VARCHAR},
+		#{resUrl,jdbcType=VARCHAR}, #{resValue,jdbcType=VARCHAR}, #{resParent,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.core.model.SysResources">
+		insert into HS_RESOURCES
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="resId != null">
+				RES_ID,
+			</if>
+			<if test="resName != null">
+				RES_NAME,
+			</if>
+			<if test="resIcon != null">
+				RES_ICON,
+			</if>
+			<if test="resLevel != null">
+				RES_LEVEL,
+			</if>
+			<if test="resSort != null">
+				RES_SORT,
+			</if>
+			<if test="resType != null">
+				RES_TYPE,
+			</if>
+			<if test="resUrl != null">
+				RES_URL,
+			</if>
+			<if test="resValue != null">
+				RES_VALUE,
+			</if>
+			<if test="resParent != null">
+				RES_PARENT,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="resId != null">
+				#{resId,jdbcType=VARCHAR},
+			</if>
+			<if test="resName != null">
+				#{resName,jdbcType=VARCHAR},
+			</if>
+			<if test="resIcon != null">
+				#{resIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="resLevel != null">
+				#{resLevel,jdbcType=INTEGER},
+			</if>
+			<if test="resSort != null">
+				#{resSort,jdbcType=INTEGER},
+			</if>
+			<if test="resType != null">
+				#{resType,jdbcType=VARCHAR},
+			</if>
+			<if test="resUrl != null">
+				#{resUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="resValue != null">
+				#{resValue,jdbcType=VARCHAR},
+			</if>
+			<if test="resParent != null">
+				#{resParent,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysResources">
+		update HS_RESOURCES
+		<set>
+			<if test="resName != null">
+				RES_NAME = #{resName,jdbcType=VARCHAR},
+			</if>
+			<if test="resIcon != null">
+				RES_ICON = #{resIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="resLevel != null">
+				RES_LEVEL = #{resLevel,jdbcType=INTEGER},
+			</if>
+			<if test="resSort != null">
+				RES_SORT = #{resSort,jdbcType=INTEGER},
+			</if>
+			<if test="resType != null">
+				RES_TYPE = #{resType,jdbcType=VARCHAR},
+			</if>
+			<if test="resUrl != null">
+				RES_URL = #{resUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="resValue != null">
+				RES_VALUE = #{resValue,jdbcType=VARCHAR},
+			</if>
+			<if test="resParent != null">
+				RES_PARENT = #{resParent,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where RES_ID = #{resId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysResources">
+		update HS_RESOURCES
+		set RES_NAME = #{resName,jdbcType=VARCHAR},
+		RES_ICON = #{resIcon,jdbcType=VARCHAR},
+		RES_LEVEL = #{resLevel,jdbcType=INTEGER},
+		RES_SORT = #{resSort,jdbcType=INTEGER},
+		RES_TYPE = #{resType,jdbcType=VARCHAR},
+		RES_URL = #{resUrl,jdbcType=VARCHAR},
+		RES_VALUE = #{resValue,jdbcType=VARCHAR},
+		RES_PARENT = #{resParent,jdbcType=VARCHAR}
+		where RES_ID = #{resId,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 分页查询数据 ywzou -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+  	<![CDATA[ select 
+  	res.RES_ID, res.RES_ICON, res.RES_LEVEL, res.RES_NAME, res.RES_SORT, res.RES_TYPE, res.RES_URL, res.RES_VALUE, res.RES_PARENT
+  	from
+  		(
+				SELECT
+					res.*, ROWNUM r 
+				FROM
+					(
+						SELECT
+							*
+						FROM 
+							HS_RESOURCES  
+					) res
+				WHERE
+					 ROWNUM <= (#{pageIndex}/#{pageSize}+1)*#{pageSize} 
+			) res 
+  	 where 1<>2]]>
+		<if test="resName != null and resName != ''">
+			and res.RES_NAME like #{resName} 
+		</if>
+		<if test="pageIndex != null and pageSize != null">
+			and r > #{pageIndex} 
+		</if>
+	</select>
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+  	<![CDATA[ select count(RES_ID) from HS_RESOURCES where 1<>2]]>
+		<if test="resName != null and resName != ''">
+			and RES_NAME like #{resName}
+		</if>
+	</select>
+
+	<!-- 查询出所有的数据 -->
+	<select id="findAllData" resultMap="BaseResultMap">
+  	<![CDATA[ select 
+  	RES_ID, RES_ICON, RES_LEVEL, RES_NAME, RES_SORT, RES_TYPE, RES_URL, RES_VALUE, RES_PARENT
+  	from HS_RESOURCES]]>
+	</select>
+</mapper>

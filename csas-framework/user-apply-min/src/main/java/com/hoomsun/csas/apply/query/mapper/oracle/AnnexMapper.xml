@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.apply.query.dao.AnnexMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.apply.query.model.Annex">
+    <id column="ANX_ID" jdbcType="VARCHAR" property="anxId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="FILE_NAME" jdbcType="VARCHAR" property="fileName" />
+    <result column="SAVE_NAME" jdbcType="VARCHAR" property="saveName" />
+    <result column="SAVE_PATH" jdbcType="VARCHAR" property="savePath" />
+    <result column="PRE_VIEW" jdbcType="VARCHAR" property="preView" />
+    <result column="FILE_SIZE" jdbcType="DECIMAL" property="fileSize" />
+    <result column="FILE_TYPE" jdbcType="VARCHAR" property="fileType" />
+    <result column="CREATE_DATE" jdbcType="OTHER" property="createDate" />
+    <result column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+    <result column="ACT_NODE" jdbcType="VARCHAR" property="actNode" />
+    <result column="APPLY_TYPE_ID" jdbcType="DECIMAL" property="applyTypeId" />
+    <result column="APPLY_TYPE_VAL" jdbcType="VARCHAR" property="applyTypeVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ANX_ID, APPLY_ID, FILE_NAME, SAVE_NAME, SAVE_PATH, PRE_VIEW, FILE_SIZE, FILE_TYPE, 
+    CREATE_DATE, EMP_ID, ACT_NODE, APPLY_TYPE_ID, APPLY_TYPE_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_ANNEX
+    where ANX_ID = #{anxId,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据申请id获取某类型的影像数据 -->
+  <select id="findByApplyIdImgType" resultMap="BaseResultMap">
+  	SELECT 
+  	ANX_ID, APPLY_ID, FILE_NAME, SAVE_NAME, SAVE_PATH, PRE_VIEW, FILE_SIZE, FILE_TYPE, 
+    CREATE_DATE, EMP_ID, ACT_NODE, APPLY_TYPE_ID, APPLY_TYPE_VAL
+    FROM
+    HS_ANNEX WHERE APPLY_ID=#{applyId} AND APPLY_TYPE_ID=#{imgType}
+  </select>
+  
+</mapper>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.SavingsBillsMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.SavingsBills">
+    <id column="SB_ID" jdbcType="VARCHAR" property="sbId" />
+    <result column="SC_ID" jdbcType="VARCHAR" property="scId" />
+    <result column="STREAM_VAL" jdbcType="DECIMAL" property="streamVal" />
+    <result column="THE_AVERAGE" jdbcType="DECIMAL" property="theAverage" />
+    <result column="COEFFICINT_VARIATION" jdbcType="DECIMAL" property="coefficintVariation" />
+    <result column="TOTAL" jdbcType="DECIMAL" property="total" />
+    <result column="ONE_MONTH" jdbcType="DECIMAL" property="oneMonth" />
+    <result column="TWO_MONTH" jdbcType="DECIMAL" property="twoMonth" />
+    <result column="THREE_MONTH" jdbcType="DECIMAL" property="threeMonth" />
+    <result column="FOUR_MONTH" jdbcType="DECIMAL" property="fourMonth" />
+    <result column="FIVE_MONTH" jdbcType="DECIMAL" property="fiveMonth" />
+    <result column="SIX_MONTH" jdbcType="DECIMAL" property="sixMonth" />
+    <result column="STANDARD" jdbcType="DECIMAL" property="standard" />
+    <result column="VARIANCE" jdbcType="DECIMAL" property="variance" />
+    <result column="MEDIAN" jdbcType="DECIMAL" property="median" />
+    <result column="STREAM_NAME" jdbcType="VARCHAR" property="streamName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    SB_ID, SC_ID, STREAM_VAL, THE_AVERAGE, COEFFICINT_VARIATION, TOTAL, ONE_MONTH, TWO_MONTH, 
+    THREE_MONTH, FOUR_MONTH, FIVE_MONTH, SIX_MONTH, STANDARD, VARIANCE, MEDIAN, STREAM_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_SAVINGS_BILLS
+    where SB_ID = #{sbId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_SAVINGS_BILLS
+    where SB_ID = #{sbId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.SavingsBills">
+    insert into HS_SAVINGS_BILLS (SB_ID, SC_ID, STREAM_VAL, 
+      THE_AVERAGE, COEFFICINT_VARIATION, TOTAL, 
+      ONE_MONTH, TWO_MONTH, THREE_MONTH, 
+      FOUR_MONTH, FIVE_MONTH, SIX_MONTH, 
+      STANDARD, VARIANCE, MEDIAN, 
+      STREAM_NAME)
+    values (#{sbId,jdbcType=VARCHAR}, #{scId,jdbcType=VARCHAR}, #{streamVal,jdbcType=DECIMAL}, 
+      #{theAverage,jdbcType=DECIMAL}, #{coefficintVariation,jdbcType=DECIMAL}, #{total,jdbcType=DECIMAL}, 
+      #{oneMonth,jdbcType=DECIMAL}, #{twoMonth,jdbcType=DECIMAL}, #{threeMonth,jdbcType=DECIMAL}, 
+      #{fourMonth,jdbcType=DECIMAL}, #{fiveMonth,jdbcType=DECIMAL}, #{sixMonth,jdbcType=DECIMAL}, 
+      #{standard,jdbcType=DECIMAL}, #{variance,jdbcType=DECIMAL}, #{median,jdbcType=DECIMAL}, 
+      #{streamName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.SavingsBills">
+    insert into HS_SAVINGS_BILLS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sbId != null">
+        SB_ID,
+      </if>
+      <if test="scId != null">
+        SC_ID,
+      </if>
+      <if test="streamVal != null">
+        STREAM_VAL,
+      </if>
+      <if test="theAverage != null">
+        THE_AVERAGE,
+      </if>
+      <if test="coefficintVariation != null">
+        COEFFICINT_VARIATION,
+      </if>
+      <if test="total != null">
+        TOTAL,
+      </if>
+      <if test="oneMonth != null">
+        ONE_MONTH,
+      </if>
+      <if test="twoMonth != null">
+        TWO_MONTH,
+      </if>
+      <if test="threeMonth != null">
+        THREE_MONTH,
+      </if>
+      <if test="fourMonth != null">
+        FOUR_MONTH,
+      </if>
+      <if test="fiveMonth != null">
+        FIVE_MONTH,
+      </if>
+      <if test="sixMonth != null">
+        SIX_MONTH,
+      </if>
+      <if test="standard != null">
+        STANDARD,
+      </if>
+      <if test="variance != null">
+        VARIANCE,
+      </if>
+      <if test="median != null">
+        MEDIAN,
+      </if>
+      <if test="streamName != null">
+        STREAM_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sbId != null">
+        #{sbId,jdbcType=VARCHAR},
+      </if>
+      <if test="scId != null">
+        #{scId,jdbcType=VARCHAR},
+      </if>
+      <if test="streamVal != null">
+        #{streamVal,jdbcType=DECIMAL},
+      </if>
+      <if test="theAverage != null">
+        #{theAverage,jdbcType=DECIMAL},
+      </if>
+      <if test="coefficintVariation != null">
+        #{coefficintVariation,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null">
+        #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="oneMonth != null">
+        #{oneMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="twoMonth != null">
+        #{twoMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="threeMonth != null">
+        #{threeMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="fourMonth != null">
+        #{fourMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="fiveMonth != null">
+        #{fiveMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="sixMonth != null">
+        #{sixMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="standard != null">
+        #{standard,jdbcType=DECIMAL},
+      </if>
+      <if test="variance != null">
+        #{variance,jdbcType=DECIMAL},
+      </if>
+      <if test="median != null">
+        #{median,jdbcType=DECIMAL},
+      </if>
+      <if test="streamName != null">
+        #{streamName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.SavingsBills">
+    update HS_SAVINGS_BILLS
+    <set>
+      <if test="scId != null">
+        SC_ID = #{scId,jdbcType=VARCHAR},
+      </if>
+      <if test="streamVal != null">
+        STREAM_VAL = #{streamVal,jdbcType=DECIMAL},
+      </if>
+      <if test="theAverage != null">
+        THE_AVERAGE = #{theAverage,jdbcType=DECIMAL},
+      </if>
+      <if test="coefficintVariation != null">
+        COEFFICINT_VARIATION = #{coefficintVariation,jdbcType=DECIMAL},
+      </if>
+      <if test="total != null">
+        TOTAL = #{total,jdbcType=DECIMAL},
+      </if>
+      <if test="oneMonth != null">
+        ONE_MONTH = #{oneMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="twoMonth != null">
+        TWO_MONTH = #{twoMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="threeMonth != null">
+        THREE_MONTH = #{threeMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="fourMonth != null">
+        FOUR_MONTH = #{fourMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="fiveMonth != null">
+        FIVE_MONTH = #{fiveMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="sixMonth != null">
+        SIX_MONTH = #{sixMonth,jdbcType=DECIMAL},
+      </if>
+      <if test="standard != null">
+        STANDARD = #{standard,jdbcType=DECIMAL},
+      </if>
+      <if test="variance != null">
+        VARIANCE = #{variance,jdbcType=DECIMAL},
+      </if>
+      <if test="median != null">
+        MEDIAN = #{median,jdbcType=DECIMAL},
+      </if>
+      <if test="streamName != null">
+        STREAM_NAME = #{streamName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SB_ID = #{sbId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.SavingsBills">
+    update HS_SAVINGS_BILLS
+    set SC_ID = #{scId,jdbcType=VARCHAR},
+      STREAM_VAL = #{streamVal,jdbcType=DECIMAL},
+      THE_AVERAGE = #{theAverage,jdbcType=DECIMAL},
+      COEFFICINT_VARIATION = #{coefficintVariation,jdbcType=DECIMAL},
+      TOTAL = #{total,jdbcType=DECIMAL},
+      ONE_MONTH = #{oneMonth,jdbcType=DECIMAL},
+      TWO_MONTH = #{twoMonth,jdbcType=DECIMAL},
+      THREE_MONTH = #{threeMonth,jdbcType=DECIMAL},
+      FOUR_MONTH = #{fourMonth,jdbcType=DECIMAL},
+      FIVE_MONTH = #{fiveMonth,jdbcType=DECIMAL},
+      SIX_MONTH = #{sixMonth,jdbcType=DECIMAL},
+      STANDARD = #{standard,jdbcType=DECIMAL},
+      VARIANCE = #{variance,jdbcType=DECIMAL},
+      MEDIAN = #{median,jdbcType=DECIMAL},
+      STREAM_NAME = #{streamName,jdbcType=VARCHAR}
+    where SB_ID = #{sbId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  <select id="countBills" parameterType="java.lang.String" resultType="java.lang.Integer">
+    select 
+    count(SB_ID)
+    from HS_SAVINGS_BILLS
+    where SC_ID = #{scId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByScId" parameterType="java.lang.String">
+    delete from HS_SAVINGS_BILLS
+    where SC_ID = #{scId,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

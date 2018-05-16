@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.sales.dao.UserChsiMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.sales.api.model.UserChsi">
+    <id column="CHSI_ID" jdbcType="VARCHAR" property="chsiId" />
+    <result column="ADD_DATE" jdbcType="VARCHAR" property="addDate" />
+    <result column="GRADUATION" jdbcType="VARCHAR" property="graduation" />
+    <result column="MAJOR" jdbcType="VARCHAR" property="major" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="SHOOL" jdbcType="VARCHAR" property="shool" />
+    <result column="MAX_EDU" jdbcType="VARCHAR" property="maxEdu" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="USER_SEX" jdbcType="VARCHAR" property="userSex" />
+    <result column="BIRTHDAY_TIME" jdbcType="VARCHAR" property="birthdayTime" />
+    <result column="NATIONALITY" jdbcType="VARCHAR" property="nationality" />
+    <result column="CARD_NUMBER" jdbcType="VARCHAR" property="cardNumber" />
+    <result column="LEVEL_" jdbcType="VARCHAR" property="level" />
+    <result column="QUALIFICATION_TYPE" jdbcType="VARCHAR" property="qualificationType" />
+    <result column="LEARNING_TYPE" jdbcType="VARCHAR" property="learningType" />
+    <result column="CLASS_GRADE" jdbcType="VARCHAR" property="classGrade" />
+    <result column="STUDENT_NUMBER" jdbcType="VARCHAR" property="studentNumber" />
+    <result column="JSON_TIME" jdbcType="VARCHAR" property="jsonTime" />
+    <result column="BRANCH_COURTS" jdbcType="VARCHAR" property="branchCourts" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CHSI_ID, ADD_DATE, GRADUATION, MAJOR, STATUS, SHOOL, MAX_EDU, APPLY_ID, USER_NAME, 
+    USER_SEX, BIRTHDAY_TIME, NATIONALITY, CARD_NUMBER, LEVEL_, QUALIFICATION_TYPE, LEARNING_TYPE, 
+    CLASS_GRADE, STUDENT_NUMBER, JSON_TIME, BRANCH_COURTS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CHSI
+    where CHSI_ID = #{chsiId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_CHSI
+    where CHSI_ID = #{chsiId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.sales.api.model.UserChsi">
+    insert into HS_CHSI (CHSI_ID, ADD_DATE, GRADUATION, 
+      MAJOR, STATUS, SHOOL, 
+      MAX_EDU, APPLY_ID, USER_NAME, 
+      USER_SEX, BIRTHDAY_TIME, NATIONALITY, 
+      CARD_NUMBER, LEVEL_, QUALIFICATION_TYPE, 
+      LEARNING_TYPE, CLASS_GRADE, STUDENT_NUMBER, 
+      JSON_TIME, BRANCH_COURTS)
+    values (#{chsiId,jdbcType=VARCHAR}, #{addDate,jdbcType=VARCHAR}, #{graduation,jdbcType=VARCHAR}, 
+      #{major,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{shool,jdbcType=VARCHAR}, 
+      #{maxEdu,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=VARCHAR}, #{birthdayTime,jdbcType=VARCHAR}, #{nationality,jdbcType=VARCHAR}, 
+      #{cardNumber,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, #{qualificationType,jdbcType=VARCHAR}, 
+      #{learningType,jdbcType=VARCHAR}, #{classGrade,jdbcType=VARCHAR}, #{studentNumber,jdbcType=VARCHAR}, 
+      #{jsonTime,jdbcType=VARCHAR}, #{branchCourts,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.sales.api.model.UserChsi">
+    insert into HS_CHSI
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="chsiId != null">
+        CHSI_ID,
+      </if>
+      <if test="addDate != null">
+        ADD_DATE,
+      </if>
+      <if test="graduation != null">
+        GRADUATION,
+      </if>
+      <if test="major != null">
+        MAJOR,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="shool != null">
+        SHOOL,
+      </if>
+      <if test="maxEdu != null">
+        MAX_EDU,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="userSex != null">
+        USER_SEX,
+      </if>
+      <if test="birthdayTime != null">
+        BIRTHDAY_TIME,
+      </if>
+      <if test="nationality != null">
+        NATIONALITY,
+      </if>
+      <if test="cardNumber != null">
+        CARD_NUMBER,
+      </if>
+      <if test="level != null">
+        LEVEL_,
+      </if>
+      <if test="qualificationType != null">
+        QUALIFICATION_TYPE,
+      </if>
+      <if test="learningType != null">
+        LEARNING_TYPE,
+      </if>
+      <if test="classGrade != null">
+        CLASS_GRADE,
+      </if>
+      <if test="studentNumber != null">
+        STUDENT_NUMBER,
+      </if>
+      <if test="jsonTime != null">
+        JSON_TIME,
+      </if>
+      <if test="branchCourts != null">
+        BRANCH_COURTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="chsiId != null">
+        #{chsiId,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="graduation != null">
+        #{graduation,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="shool != null">
+        #{shool,jdbcType=VARCHAR},
+      </if>
+      <if test="maxEdu != null">
+        #{maxEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayTime != null">
+        #{birthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="qualificationType != null">
+        #{qualificationType,jdbcType=VARCHAR},
+      </if>
+      <if test="learningType != null">
+        #{learningType,jdbcType=VARCHAR},
+      </if>
+      <if test="classGrade != null">
+        #{classGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNumber != null">
+        #{studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="jsonTime != null">
+        #{jsonTime,jdbcType=VARCHAR},
+      </if>
+      <if test="branchCourts != null">
+        #{branchCourts,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.sales.api.model.UserChsi">
+    update HS_CHSI
+    <set>
+      <if test="addDate != null">
+        ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      </if>
+      <if test="graduation != null">
+        GRADUATION = #{graduation,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        MAJOR = #{major,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="shool != null">
+        SHOOL = #{shool,jdbcType=VARCHAR},
+      </if>
+      <if test="maxEdu != null">
+        MAX_EDU = #{maxEdu,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        USER_SEX = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthdayTime != null">
+        BIRTHDAY_TIME = #{birthdayTime,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        NATIONALITY = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="cardNumber != null">
+        CARD_NUMBER = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        LEVEL_ = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="qualificationType != null">
+        QUALIFICATION_TYPE = #{qualificationType,jdbcType=VARCHAR},
+      </if>
+      <if test="learningType != null">
+        LEARNING_TYPE = #{learningType,jdbcType=VARCHAR},
+      </if>
+      <if test="classGrade != null">
+        CLASS_GRADE = #{classGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNumber != null">
+        STUDENT_NUMBER = #{studentNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="jsonTime != null">
+        JSON_TIME = #{jsonTime,jdbcType=VARCHAR},
+      </if>
+      <if test="branchCourts != null">
+        BRANCH_COURTS = #{branchCourts,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CHSI_ID = #{chsiId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.sales.api.model.UserChsi">
+    update HS_CHSI
+    set ADD_DATE = #{addDate,jdbcType=VARCHAR},
+      GRADUATION = #{graduation,jdbcType=VARCHAR},
+      MAJOR = #{major,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      SHOOL = #{shool,jdbcType=VARCHAR},
+      MAX_EDU = #{maxEdu,jdbcType=VARCHAR},
+      APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      USER_SEX = #{userSex,jdbcType=VARCHAR},
+      BIRTHDAY_TIME = #{birthdayTime,jdbcType=VARCHAR},
+      NATIONALITY = #{nationality,jdbcType=VARCHAR},
+      CARD_NUMBER = #{cardNumber,jdbcType=VARCHAR},
+      LEVEL_ = #{level,jdbcType=VARCHAR},
+      QUALIFICATION_TYPE = #{qualificationType,jdbcType=VARCHAR},
+      LEARNING_TYPE = #{learningType,jdbcType=VARCHAR},
+      CLASS_GRADE = #{classGrade,jdbcType=VARCHAR},
+      STUDENT_NUMBER = #{studentNumber,jdbcType=VARCHAR},
+      JSON_TIME = #{jsonTime,jdbcType=VARCHAR},
+      BRANCH_COURTS = #{branchCourts,jdbcType=VARCHAR}
+    where CHSI_ID = #{chsiId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  <!-- 以下为编辑区域不可修改 -->
+   <select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_CHSI
+    where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+					
+  <insert id="insertMap" parameterType="java.util.Map">
+    insert into HS_CHSI (CHSI_ID, ADD_DATE, GRADUATION, 
+      MAJOR, STATUS, SHOOL, 
+      MAX_EDU, APPLY_ID,BIRTHDAY_TIME,
+      NATIONALITY,CARD_NUMBER,LEARNING_TYPE,
+      CLASS_GRADE,STUDENT_NUMBER,JSON_TIME,BRANCH_COURTS
+      )
+    values (#{CHSI_ID}, #{ADD_DATE}, #{GRADUATION}, 
+      #{MAJOR}, #{STATUS}, #{SHOOL}, 
+      #{MAX_EDU}, #{APPLY_ID},#{BIRTHDAY_TIME},
+      #{NATIONALITY}, #{CARD_NUMBER},#{LEARNING_TYPE},
+      #{CLASS_GRADE}, #{STUDENT_NUMBER},#{JSON_TIME},#{BRANCH_COURTS}
+      )
+  </insert>
+  
+  <!-- 查询流程节点  -->
+   <select id="selectActrivity" parameterType="java.util.Map" resultType="java.util.Map"> 
+   SELECT tbl.* FROM
+	(
+	SELECT TASK_DEF_KEY_,NAME_,START_TIME_,END_TIME_ FROM 
+	act_hi_taskinst 
+	WHERE
+	TASK_DEF_KEY_ in (${precessStatus}) and   PROC_INST_ID_=#{precessId}  
+	ORDER BY START_TIME_ ASC
+	) AS tbl
+	GROUP BY tbl.TASK_DEF_KEY_ 
+	ORDER BY tbl.START_TIME_ ASC
+  </select>
+  
+  
+  <select id="checkByApplyId" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(CHSI_ID) FROM HS_CHSI WHERE APPLY_ID = #{applyId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="checkById" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	SELECT COUNT(CHSI_ID) FROM HS_CHSI WHERE CHSI_ID = #{chsiId,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

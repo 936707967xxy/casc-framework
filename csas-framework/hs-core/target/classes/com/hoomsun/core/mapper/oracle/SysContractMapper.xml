@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.SysContractMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.core.model.SysContract">
+		<id column="CON_ID" jdbcType="VARCHAR" property="conId" />
+		<result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="CON_AMOUNT" jdbcType="DECIMAL" property="conAmount" />
+		<result column="LOAN_AMOUNT" jdbcType="DECIMAL" property="loanAmount" />
+		<result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+		<result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+		<result column="PRODUCT_ID" jdbcType="VARCHAR" property="productId" />
+		<result column="PRODUCT_NAME" jdbcType="VARCHAR" property="productName" />
+		<result column="PRODUCT_RATE" jdbcType="DECIMAL" property="productRate" />
+		<result column="PRODUCT_PERIOD" jdbcType="DECIMAL" property="productPeriod" />
+		<result column="PRODUCT_FEE_RATE" jdbcType="VARCHAR" property="productFeeRate" />
+		<result column="PRODUCT_PAY" jdbcType="VARCHAR" property="productPay" />
+		<result column="PRODUCT_PAY_VAL" jdbcType="VARCHAR" property="productPayVal" />
+		<result column="BILL_DATE" jdbcType="VARCHAR" property="billDate" />
+		<result column="PAY_DATE" jdbcType="VARCHAR" property="payDate" />
+		<result column="SIGN_TYPE" jdbcType="DECIMAL" property="signType" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="SIGN_TIME" jdbcType="TIMESTAMP" property="signTime" />
+		<result column="START_TIME" jdbcType="TIMESTAMP" property="startTime" />
+		<result column="END_TIME" jdbcType="TIMESTAMP" property="endTime" />
+		<result column="CON_STATUS" jdbcType="DECIMAL" property="conStatus" />
+		<result column="BANK_ID" jdbcType="VARCHAR" property="bankId" />
+		<result column="BANK" jdbcType="VARCHAR" property="bank" />
+		<result column="SIGN_ADDR" jdbcType="VARCHAR" property="signAddr" />
+		<result column="SIGN_STORE" jdbcType="VARCHAR" property="signStore" />
+		<result column="BANK_NO" jdbcType="VARCHAR" property="bankNo" />
+		<result column="SURPLUS" jdbcType="DECIMAL" property="surplus" />
+		<result column="DEBT" jdbcType="DECIMAL" property="debt" />
+		<result column="SERVICE_FEE" jdbcType="VARCHAR" property="serviceFee" />
+		<result column="BACK_BRANCH" jdbcType="VARCHAR" property="backBranch" />
+		<result column="BACK_BRANCH_ADDR" jdbcType="VARCHAR" property="backBranchAddr" />
+		<result column="BANK_PHONE_NO" jdbcType="VARCHAR" property="bankPhoneNo" />
+		<result column="BANK_MANAGER_FEE" jdbcType="DECIMAL" property="bankManagerFee" />
+		<result column="APPLY_MONEY" jdbcType="DECIMAL" property="applyMoney" />
+		<result column="INTEREST" jdbcType="DECIMAL" property="interest" />
+		<result column="MONTH_MONEY" jdbcType="DECIMAL" property="monthMoney" />
+		<result column="PROD_ALIAS" jdbcType="VARCHAR" property="prodAlias" />
+		<result column="SUM_FEE" jdbcType="DECIMAL" property="sumFee" />
+		<result column="PRO_ID" jdbcType="VARCHAR" property="proId" />
+		<result column="PRO_NAME" jdbcType="VARCHAR" property="proName" />
+		<result column="CITY_ID" jdbcType="VARCHAR" property="cityId" />
+		<result column="CITY_NAME" jdbcType="VARCHAR" property="cityName" />
+		<result column="IS_ONLINE" jdbcType="INTEGER" property="isOnline" />
+		<result column="CREATE_EMP_ID" jdbcType="VARCHAR" property="createEmpId" />
+		<result column="CREATE_EMP_NAME" jdbcType="VARCHAR" property="createEmpName" />
+		<result column="REAL_RATE" jdbcType="DECIMAL" property="realRate" />
+    	<result column="IRR_VAL" jdbcType="DECIMAL" property="irrVal" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		CON_ID, CON_NO, LOAN_ID, APPLY_ID, CON_AMOUNT, LOAN_AMOUNT, CUST_NAME, ID_NUMBER,
+		PRODUCT_ID, PRODUCT_NAME, PRODUCT_RATE, PRODUCT_PERIOD, PRODUCT_FEE_RATE, PRODUCT_PAY,
+		PRODUCT_PAY_VAL, BILL_DATE, PAY_DATE, SIGN_TYPE, CREATE_TIME, SIGN_TIME, START_TIME,
+		END_TIME, CON_STATUS, BANK, SIGN_ADDR, SIGN_STORE, BANK_NO, SURPLUS, DEBT, SERVICE_FEE,
+		BACK_BRANCH, BACK_BRANCH_ADDR, BANK_PHONE_NO, BANK_MANAGER_FEE, APPLY_MONEY, INTEREST,
+		MONTH_MONEY,PROD_ALIAS,SUM_FEE,BANK_ID, BANK_ID, PRO_ID, PRO_NAME, CITY_ID, CITY_NAME,IS_ONLINE,
+		CREATE_EMP_ID, CREATE_EMP_NAME, REAL_RATE, IRR_VAL
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_CONTRACT
+		where CON_ID = #{conId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from HS_CONTRACT
+		where CON_ID = #{conId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.core.model.SysContract">
+		insert into HS_CONTRACT (CON_ID, CON_NO, LOAN_ID,
+		APPLY_ID, CON_AMOUNT, LOAN_AMOUNT,
+		CUST_NAME, ID_NUMBER, PRODUCT_ID,
+		PRODUCT_NAME, PRODUCT_RATE, PRODUCT_PERIOD,
+		PRODUCT_FEE_RATE, PRODUCT_PAY, PRODUCT_PAY_VAL,
+		BILL_DATE, PAY_DATE, SIGN_TYPE,
+		CREATE_TIME, SIGN_TIME, START_TIME,
+		END_TIME, CON_STATUS, BANK,
+		SIGN_ADDR, SIGN_STORE, BANK_NO,
+		SURPLUS, DEBT, SERVICE_FEE,
+		BACK_BRANCH, BACK_BRANCH_ADDR, BANK_PHONE_NO,
+		BANK_MANAGER_FEE, APPLY_MONEY, INTEREST,
+		MONTH_MONEY,PROD_ALIAS,SUM_FEE,BANK_ID, PRO_ID, PRO_NAME,
+		CITY_ID, CITY_NAME,IS_ONLINE,
+		CREATE_EMP_ID, CREATE_EMP_NAME, 
+      	REAL_RATE, IRR_VAL)
+		values (#{conId,jdbcType=VARCHAR}, #{conNo,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR},
+		#{applyId,jdbcType=VARCHAR}, #{conAmount,jdbcType=DECIMAL}, #{loanAmount,jdbcType=DECIMAL},
+		#{custName,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, #{productId,jdbcType=VARCHAR},
+		#{productName,jdbcType=VARCHAR}, #{productRate,jdbcType=DECIMAL}, #{productPeriod,jdbcType=DECIMAL},
+		#{productFeeRate,jdbcType=VARCHAR}, #{productPay,jdbcType=VARCHAR}, #{productPayVal,jdbcType=VARCHAR},
+		#{billDate,jdbcType=VARCHAR}, #{payDate,jdbcType=VARCHAR}, #{signType,jdbcType=DECIMAL},
+		#{createTime,jdbcType=TIMESTAMP}, #{signTime,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP},
+		#{endTime,jdbcType=TIMESTAMP}, #{conStatus,jdbcType=DECIMAL}, #{bank,jdbcType=VARCHAR},
+		#{signAddr,jdbcType=VARCHAR}, #{signStore,jdbcType=VARCHAR}, #{bankNo,jdbcType=VARCHAR},
+		#{surplus,jdbcType=DECIMAL}, #{debt,jdbcType=DECIMAL}, #{serviceFee,jdbcType=VARCHAR},
+		#{backBranch,jdbcType=VARCHAR}, #{backBranchAddr,jdbcType=VARCHAR}, #{bankPhoneNo,jdbcType=VARCHAR},
+		#{bankManagerFee,jdbcType=DECIMAL}, #{applyMoney,jdbcType=DECIMAL}, #{interest,jdbcType=DECIMAL},
+		#{monthMoney,jdbcType=DECIMAL}, #{prodAlias,jdbcType=VARCHAR}, #{sumFee,jdbcType=DECIMAL}, #{bankId,jdbcType=VARCHAR}, #{proId,jdbcType=VARCHAR}, #{proName,jdbcType=VARCHAR},
+		#{cityId,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{isOnline,jdbcType=INTEGER},
+		#{createEmpId,jdbcType=VARCHAR}, #{createEmpName,jdbcType=VARCHAR},#{realRate,jdbcType=DECIMAL}, #{irrVal,jdbcType=DECIMAL})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.core.model.SysContract">
+		insert into HS_CONTRACT
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="conId != null">
+				CON_ID,
+			</if>
+			<if test="conNo != null">
+				CON_NO,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="applyId != null">
+				APPLY_ID,
+			</if>
+			<if test="conAmount != null">
+				CON_AMOUNT,
+			</if>
+			<if test="loanAmount != null">
+				LOAN_AMOUNT,
+			</if>
+			<if test="custName != null">
+				CUST_NAME,
+			</if>
+			<if test="idNumber != null">
+				ID_NUMBER,
+			</if>
+			<if test="productId != null">
+				PRODUCT_ID,
+			</if>
+			<if test="productName != null">
+				PRODUCT_NAME,
+			</if>
+			<if test="productRate != null">
+				PRODUCT_RATE,
+			</if>
+			<if test="productPeriod != null">
+				PRODUCT_PERIOD,
+			</if>
+			<if test="productFeeRate != null">
+				PRODUCT_FEE_RATE,
+			</if>
+			<if test="productPay != null">
+				PRODUCT_PAY,
+			</if>
+			<if test="productPayVal != null">
+				PRODUCT_PAY_VAL,
+			</if>
+			<if test="billDate != null">
+				BILL_DATE,
+			</if>
+			<if test="payDate != null">
+				PAY_DATE,
+			</if>
+			<if test="signType != null">
+				SIGN_TYPE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="signTime != null">
+				SIGN_TIME,
+			</if>
+			<if test="startTime != null">
+				START_TIME,
+			</if>
+			<if test="endTime != null">
+				END_TIME,
+			</if>
+			<if test="conStatus != null">
+				CON_STATUS,
+			</if>
+			<if test="bank != null">
+				BANK,
+			</if>
+			<if test="signAddr != null">
+				SIGN_ADDR,
+			</if>
+			<if test="signStore != null">
+				SIGN_STORE,
+			</if>
+			<if test="bankNo != null">
+				BANK_NO,
+			</if>
+			<if test="surplus != null">
+				SURPLUS,
+			</if>
+			<if test="debt != null">
+				DEBT,
+			</if>
+			<if test="serviceFee != null">
+				SERVICE_FEE,
+			</if>
+			<if test="backBranch != null">
+				BACK_BRANCH,
+			</if>
+			<if test="backBranchAddr != null">
+				BACK_BRANCH_ADDR,
+			</if>
+			<if test="bankPhoneNo != null">
+				BANK_PHONE_NO,
+			</if>
+			<if test="bankManagerFee != null">
+				BANK_MANAGER_FEE,
+			</if>
+			<if test="applyMoney != null">
+				APPLY_MONEY,
+			</if>
+			<if test="interest != null">
+				INTEREST,
+			</if>
+			<if test="monthMoney != null">
+				MONTH_MONEY,
+			</if>
+			<if test="prodAlias != null">
+				PROD_ALIAS,
+			</if>
+			<if test="sumFee != null">
+				SUM_FEE,
+			</if>
+			<if test="bankId != null">
+				BANK_ID,
+			</if>
+			<if test="proId != null">
+				PRO_ID,
+			</if>
+			<if test="proName != null">
+				PRO_NAME,
+			</if>
+			<if test="cityId != null">
+				CITY_ID,
+			</if>
+			<if test="cityName != null">
+				CITY_NAME,
+			</if>
+			<if test="isOnline != null">
+				IS_ONLINE,
+			</if>
+			<if test="createEmpId != null">
+				CREATE_EMP_ID,
+			</if>
+			<if test="createEmpName != null">
+				CREATE_EMP_NAME,
+			</if>
+			<if test="realRate != null">
+		        REAL_RATE,
+	      </if>
+	      <if test="irrVal != null">
+	        IRR_VAL,
+	      </if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="conId != null">
+				#{conId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				#{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="conAmount != null">
+				#{conAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="loanAmount != null">
+				#{loanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="custName != null">
+				#{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="idNumber != null">
+				#{idNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="productId != null">
+				#{productId,jdbcType=VARCHAR},
+			</if>
+			<if test="productName != null">
+				#{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="productRate != null">
+				#{productRate,jdbcType=DECIMAL},
+			</if>
+			<if test="productPeriod != null">
+				#{productPeriod,jdbcType=DECIMAL},
+			</if>
+			<if test="productFeeRate != null">
+				#{productFeeRate,jdbcType=VARCHAR},
+			</if>
+			<if test="productPay != null">
+				#{productPay,jdbcType=VARCHAR},
+			</if>
+			<if test="productPayVal != null">
+				#{productPayVal,jdbcType=VARCHAR},
+			</if>
+			<if test="billDate != null">
+				#{billDate,jdbcType=VARCHAR},
+			</if>
+			<if test="payDate != null">
+				#{payDate,jdbcType=VARCHAR},
+			</if>
+			<if test="signType != null">
+				#{signType,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="signTime != null">
+				#{signTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="startTime != null">
+				#{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				#{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="conStatus != null">
+				#{conStatus,jdbcType=DECIMAL},
+			</if>
+			<if test="bank != null">
+				#{bank,jdbcType=VARCHAR},
+			</if>
+			<if test="signAddr != null">
+				#{signAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="signStore != null">
+				#{signStore,jdbcType=VARCHAR},
+			</if>
+			<if test="bankNo != null">
+				#{bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="surplus != null">
+				#{surplus,jdbcType=DECIMAL},
+			</if>
+			<if test="debt != null">
+				#{debt,jdbcType=DECIMAL},
+			</if>
+			<if test="serviceFee != null">
+				#{serviceFee,jdbcType=VARCHAR},
+			</if>
+			<if test="backBranch != null">
+				#{backBranch,jdbcType=VARCHAR},
+			</if>
+			<if test="backBranchAddr != null">
+				#{backBranchAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="bankPhoneNo != null">
+				#{bankPhoneNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bankManagerFee != null">
+				#{bankManagerFee,jdbcType=DECIMAL},
+			</if>
+			<if test="applyMoney != null">
+				#{applyMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="interest != null">
+				#{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="monthMoney != null">
+				#{monthMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="prodAlias != null">
+				#{prodAlias,jdbcType=VARCHAR},
+			</if>
+			<if test="sumFee != null">
+				#{sumFee,jdbcType=DECIMAL},
+			</if>
+			<if test="bankId != null">
+				#{bankId,jdbcType=VARCHAR},
+			</if>
+			<if test="proId != null">
+				#{proId,jdbcType=VARCHAR},
+			</if>
+			<if test="proName != null">
+				#{proName,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				#{cityId,jdbcType=VARCHAR},
+			</if>
+			<if test="cityName != null">
+				#{cityName,jdbcType=VARCHAR},
+			</if>
+			<if test="isOnline != null">
+				#{isOnline,jdbcType=INTEGER},
+			</if>
+			<if test="createEmpId != null">
+				#{createEmpId,jdbcType=VARCHAR},
+			</if>
+			<if test="createEmpName != null">
+				#{createEmpName,jdbcType=VARCHAR},
+			</if>
+			<if test="realRate != null">
+	        #{realRate,jdbcType=DECIMAL},
+	      </if>
+	      <if test="irrVal != null">
+	        #{irrVal,jdbcType=DECIMAL},
+	      </if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.core.model.SysContract">
+		update HS_CONTRACT
+		<set>
+			<if test="conNo != null">
+				CON_NO = #{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="applyId != null">
+				APPLY_ID = #{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="conAmount != null">
+				CON_AMOUNT = #{conAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="loanAmount != null">
+				LOAN_AMOUNT = #{loanAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="custName != null">
+				CUST_NAME = #{custName,jdbcType=VARCHAR},
+			</if>
+			<if test="idNumber != null">
+				ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="productId != null">
+				PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+			</if>
+			<if test="productName != null">
+				PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+			</if>
+			<if test="productRate != null">
+				PRODUCT_RATE = #{productRate,jdbcType=DECIMAL},
+			</if>
+			<if test="productPeriod != null">
+				PRODUCT_PERIOD = #{productPeriod,jdbcType=DECIMAL},
+			</if>
+			<if test="productFeeRate != null">
+				PRODUCT_FEE_RATE = #{productFeeRate,jdbcType=VARCHAR},
+			</if>
+			<if test="productPay != null">
+				PRODUCT_PAY = #{productPay,jdbcType=VARCHAR},
+			</if>
+			<if test="productPayVal != null">
+				PRODUCT_PAY_VAL = #{productPayVal,jdbcType=VARCHAR},
+			</if>
+			<if test="billDate != null">
+				BILL_DATE = #{billDate,jdbcType=VARCHAR},
+			</if>
+			<if test="payDate != null">
+				PAY_DATE = #{payDate,jdbcType=VARCHAR},
+			</if>
+			<if test="signType != null">
+				SIGN_TYPE = #{signType,jdbcType=DECIMAL},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="signTime != null">
+				SIGN_TIME = #{signTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="startTime != null">
+				START_TIME = #{startTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="endTime != null">
+				END_TIME = #{endTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="conStatus != null">
+				CON_STATUS = #{conStatus,jdbcType=DECIMAL},
+			</if>
+			<if test="bank != null">
+				BANK = #{bank,jdbcType=VARCHAR},
+			</if>
+			<if test="signAddr != null">
+				SIGN_ADDR = #{signAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="signStore != null">
+				SIGN_STORE = #{signStore,jdbcType=VARCHAR},
+			</if>
+			<if test="bankNo != null">
+				BANK_NO = #{bankNo,jdbcType=VARCHAR},
+			</if>
+			<if test="surplus != null">
+				SURPLUS = #{surplus,jdbcType=DECIMAL},
+			</if>
+			<if test="debt != null">
+				DEBT = #{debt,jdbcType=DECIMAL},
+			</if>
+			<if test="serviceFee != null">
+				SERVICE_FEE = #{serviceFee,jdbcType=VARCHAR},
+			</if>
+			<if test="backBranch != null">
+				BACK_BRANCH = #{backBranch,jdbcType=VARCHAR},
+			</if>
+			<if test="backBranchAddr != null">
+				BACK_BRANCH_ADDR = #{backBranchAddr,jdbcType=VARCHAR},
+			</if>
+			<if test="bankPhoneNo != null">
+				BANK_PHONE_NO = #{bankPhoneNo,jdbcType=VARCHAR},
+			</if>
+			<if test="bankManagerFee != null">
+				BANK_MANAGER_FEE = #{bankManagerFee,jdbcType=DECIMAL},
+			</if>
+			<if test="applyMoney != null">
+				APPLY_MONEY = #{applyMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="interest != null">
+				INTEREST = #{interest,jdbcType=DECIMAL},
+			</if>
+			<if test="monthMoney != null">
+				MONTH_MONEY = #{monthMoney,jdbcType=DECIMAL},
+			</if>
+			<if test="prodAlias != null">
+				PROD_ALIAS = #{prodAlias,jdbcType=VARCHAR},
+			</if>
+			<if test="sumFee != null">
+				SUM_FEE = #{sumFee,jdbcType=DECIMAL},
+			</if>
+			<if test="bankId != null">
+				BANK_ID = #{bankId,jdbcType=VARCHAR},
+			</if>
+			<if test="proId != null">
+				PRO_ID = #{proId,jdbcType=VARCHAR},
+			</if>
+			<if test="proName != null">
+				PRO_NAME = #{proName,jdbcType=VARCHAR},
+			</if>
+			<if test="cityId != null">
+				CITY_ID = #{cityId,jdbcType=VARCHAR},
+			</if>
+			<if test="cityName != null">
+				CITY_NAME = #{cityName,jdbcType=VARCHAR},
+			</if>
+			<if test="isOnline != null">
+				IS_ONLINE = #{isOnline,jdbcType=INTEGER},
+			</if>
+			<if test="createEmpId != null">
+				CREATE_EMP_ID = #{createEmpId,jdbcType=VARCHAR},
+			</if>
+			<if test="createEmpName != null">
+				CREATE_EMP_NAME = #{createEmpName,jdbcType=VARCHAR},
+			</if>
+			<if test="realRate != null">
+		        REAL_RATE = #{realRate,jdbcType=DECIMAL},
+		      </if>
+		      <if test="irrVal != null">
+		        IRR_VAL = #{irrVal,jdbcType=DECIMAL},
+		      </if>
+		</set>
+		where CON_ID = #{conId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.core.model.SysContract">
+		update HS_CONTRACT
+		set CON_NO = #{conNo,jdbcType=VARCHAR},
+		LOAN_ID = #{loanId,jdbcType=VARCHAR},
+		APPLY_ID = #{applyId,jdbcType=VARCHAR},
+		CON_AMOUNT = #{conAmount,jdbcType=DECIMAL},
+		LOAN_AMOUNT = #{loanAmount,jdbcType=DECIMAL},
+		CUST_NAME = #{custName,jdbcType=VARCHAR},
+		ID_NUMBER = #{idNumber,jdbcType=VARCHAR},
+		PRODUCT_ID = #{productId,jdbcType=VARCHAR},
+		PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+		PRODUCT_RATE = #{productRate,jdbcType=DECIMAL},
+		PRODUCT_PERIOD = #{productPeriod,jdbcType=DECIMAL},
+		PRODUCT_FEE_RATE = #{productFeeRate,jdbcType=VARCHAR},
+		PRODUCT_PAY = #{productPay,jdbcType=VARCHAR},
+		PRODUCT_PAY_VAL = #{productPayVal,jdbcType=VARCHAR},
+		BILL_DATE = #{billDate,jdbcType=VARCHAR},
+		PAY_DATE = #{payDate,jdbcType=VARCHAR},
+		SIGN_TYPE = #{signType,jdbcType=DECIMAL},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		SIGN_TIME = #{signTime,jdbcType=TIMESTAMP},
+		START_TIME = #{startTime,jdbcType=TIMESTAMP},
+		END_TIME = #{endTime,jdbcType=TIMESTAMP},
+		CON_STATUS = #{conStatus,jdbcType=DECIMAL},
+		BANK = #{bank,jdbcType=VARCHAR},
+		SIGN_ADDR = #{signAddr,jdbcType=VARCHAR},
+		SIGN_STORE = #{signStore,jdbcType=VARCHAR},
+		BANK_NO = #{bankNo,jdbcType=VARCHAR},
+		SURPLUS = #{surplus,jdbcType=DECIMAL},
+		DEBT = #{debt,jdbcType=DECIMAL},
+		SERVICE_FEE = #{serviceFee,jdbcType=VARCHAR},
+		BACK_BRANCH = #{backBranch,jdbcType=VARCHAR},
+		BACK_BRANCH_ADDR = #{backBranchAddr,jdbcType=VARCHAR},
+		BANK_PHONE_NO = #{bankPhoneNo,jdbcType=VARCHAR},
+		BANK_MANAGER_FEE = #{bankManagerFee,jdbcType=DECIMAL},
+		APPLY_MONEY = #{applyMoney,jdbcType=DECIMAL},
+		INTEREST = #{interest,jdbcType=DECIMAL},
+		MONTH_MONEY = #{monthMoney,jdbcType=DECIMAL},
+		PROD_ALIAS = #{prodAlias,jdbcType=VARCHAR},
+		SUM_FEE = #{sumFee,jdbcType=DECIMAL},
+		BANK_ID = #{bankId,jdbcType=VARCHAR},
+		PRO_ID = #{proId,jdbcType=VARCHAR},
+		PRO_NAME = #{proName,jdbcType=VARCHAR},
+		CITY_ID = #{cityId,jdbcType=VARCHAR},
+		CITY_NAME = #{cityName,jdbcType=VARCHAR},
+		IS_ONLINE = #{isOnline,jdbcType=INTEGER},
+		CREATE_EMP_ID = #{createEmpId,jdbcType=VARCHAR},
+		CREATE_EMP_NAME = #{createEmpName,jdbcType=VARCHAR},
+		REAL_RATE = #{realRate,jdbcType=DECIMAL},
+      	IRR_VAL = #{irrVal,jdbcType=DECIMAL}
+		where CON_ID = #{conId,jdbcType=VARCHAR}
+	</update>
+
+
+	<!-- 自定义编辑区域 -->
+	<select id="selectByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_CONTRACT
+		where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectByApplyIdCount" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(CON_ID)
+		from HS_CONTRACT
+		where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+
+	<delete id="deleteByApplyId" parameterType="java.lang.String">
+		delete from HS_CONTRACT
+		where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</delete>
+
+
+	<resultMap type="com.hoomsun.core.model.SysContract" id="CONTRACT_PLAN_RESULT_MAP" extends="BaseResultMap">
+		<collection property="repaymentPlans" javaType="java.util.ArrayList" ofType="com.hoomsun.core.model.SysRepaymentPlan" resultMap="com.hoomsun.core.dao.SysRepaymentPlanMapper.BaseResultMap" />
+	</resultMap>
+	<select id="findByConId" parameterType="java.lang.String" resultMap="CONTRACT_PLAN_RESULT_MAP">
+		SELECT
+		con.CON_ID,con.CREATE_EMP_ID,con.IRR_VAL, con.CREATE_EMP_NAME,con.PRO_ID,con.IS_ONLINE,con.PRO_NAME,con.CITY_ID,con.CITY_NAME,con.PROD_ALIAS,con.BANK_ID,con.SUM_FEE,con.APPLY_MONEY, con.CON_NO,
+		con.LOAN_ID, con.APPLY_ID, con.CON_AMOUNT, con.LOAN_AMOUNT, con.CUST_NAME, con.ID_NUMBER,
+		con.PRODUCT_ID, con.PRODUCT_NAME, con.PRODUCT_RATE, con.PRODUCT_PERIOD, con.PRODUCT_FEE_RATE, con.PRODUCT_PAY,
+		con.PRODUCT_PAY_VAL, con.BILL_DATE, con.PAY_DATE, con.SIGN_TYPE, con.CREATE_TIME, con.SIGN_TIME, con.START_TIME,
+		con.END_TIME, con.CON_STATUS, con.BANK, con.SIGN_ADDR, con.SIGN_STORE, con.BANK_NO, con.SURPLUS, con.DEBT, con.SERVICE_FEE,
+		con.BACK_BRANCH, con.BACK_BRANCH_ADDR, con.BANK_PHONE_NO, con.BANK_MANAGER_FEE,con.REAL_RATE,
+		plan.PLAN_ID, plan.SHOULD_TERM, plan.SHOULD_AMT, plan.SHOULD_CAPI, plan.SHOULD_INTE,
+		plan.BILLS_DATE, plan.SHOULD_DATE, plan.REPAY_STATUS, plan.PRERETUAMT_HXB, plan.PRERETUAMT_CHANNEL,
+		plan.BAL, plan.ADVANCE_SHOULD, plan.ADVANCE_MONEY, plan.ADVANCE_REDUCE,plan.END_BAL
+		FROM HS_CONTRACT con
+		LEFT JOIN HS_REPAYMENT_PLAN plan on con.CON_ID=plan.CON_ID
+		WHERE con.CON_ID = #{conId}
+		ORDER BY plan.SHOULD_TERM ASC,plan.SHOULD_DATE ASC
+	</select>
+
+
+	<select id="findByApplyId" parameterType="java.lang.String" resultMap="CONTRACT_PLAN_RESULT_MAP">
+		SELECT
+		con.CON_ID,con.CREATE_EMP_ID, con.IRR_VAL,con.CREATE_EMP_NAME,con.PRO_ID,con.IS_ONLINE,con.PRO_NAME,con.CITY_ID,con.CITY_NAME,con.PROD_ALIAS,con.BANK_ID,con.SUM_FEE, con.APPLY_MONEY,con.CON_NO,
+		con.LOAN_ID, con.APPLY_ID, con.CON_AMOUNT, con.LOAN_AMOUNT, con.CUST_NAME, con.ID_NUMBER,
+		con.PRODUCT_ID, con.PRODUCT_NAME, con.PRODUCT_RATE, con.PRODUCT_PERIOD, con.PRODUCT_FEE_RATE, con.PRODUCT_PAY,
+		con.PRODUCT_PAY_VAL, con.BILL_DATE, con.PAY_DATE, con.SIGN_TYPE, con.CREATE_TIME, con.SIGN_TIME, con.START_TIME,
+		con.END_TIME,con.MONTH_MONEY, con.CON_STATUS, con.BANK, con.SIGN_ADDR, con.SIGN_STORE, con.BANK_NO, con.SURPLUS, con.DEBT, con.SERVICE_FEE,
+		con.BACK_BRANCH, con.BACK_BRANCH_ADDR, con.BANK_PHONE_NO, con.BANK_MANAGER_FEE,con.REAL_RATE,
+		plan.PLAN_ID, plan.SHOULD_TERM, plan.SHOULD_AMT, plan.SHOULD_CAPI, plan.SHOULD_INTE,
+		plan.BILLS_DATE, plan.SHOULD_DATE, plan.REPAY_STATUS, plan.PRERETUAMT_HXB, plan.PRERETUAMT_CHANNEL,
+		plan.BAL, plan.ADVANCE_SHOULD, plan.ADVANCE_MONEY, plan.ADVANCE_REDUCE,plan.END_BAL
+		FROM HS_CONTRACT con
+		LEFT JOIN HS_REPAYMENT_PLAN plan on con.CON_ID=plan.CON_ID
+		WHERE con.APPLY_ID = #{applyId}
+		ORDER BY plan.SHOULD_TERM ASC,plan.SHOULD_DATE ASC
+	</select>
+
+
+	<!-- 签约列表 -->
+	<select id="findinfoByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT LOAN_ID,CON_NO,LOAN_AMOUNT,IS_ONLINE,CON_AMOUNT,START_TIME,END_TIME,PRODUCT_PERIOD,BANK,BANK_NO,BACK_BRANCH,INTEREST,PAY_DATE
+		FROM HS_CONTRACT where APPLY_ID=#{applyId,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 放款成功时修改合同状态为1 -->
+	<update id="updateConStatus" parameterType="java.lang.String">
+		update HS_CONTRACT set CON_STATUS='1' where APPLY_ID=#{applyId}
+	</update>
+
+	<select id="findApplyIdByConId" parameterType="java.lang.String" resultType="java.lang.String">
+		select
+		APPLY_ID
+		from HS_CONTRACT
+		where CON_ID = #{conId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="findConIdByApplyId" parameterType="java.lang.String" resultType="java.lang.String">
+		select
+		CON_ID
+		from HS_CONTRACT
+		where APPLY_ID = #{applyId,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 根据APPLYID修改合同状态 -->
+	<update id="updateConStatusByApplyId" parameterType="java.util.Map">
+		update
+		HS_CONTRACT set CON_STATUS=#{status} where APPLY_ID=#{applyId}
+	</update>
+	
+	<!-- 根据卡号 查询合同 获取合同还款日 修改还款卡 -->
+	<select id="findConPayData" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM HS_CONTRACT
+		WHERE BANK_NO = #{bankNo,jdbcType=VARCHAR}
+		AND CON_STATUS !='2' AND CON_STATUS !='4'
+	</select>
+
+</mapper>

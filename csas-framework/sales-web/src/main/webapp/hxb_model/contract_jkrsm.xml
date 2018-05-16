@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdf xmlns="http://www.idawn.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.idawn.org pdf.xsd">
+	<styles>
+		<style id="title" textalignment="CENTER" fontsize="16" bold="true" />
+		<style id="table" fontsize="8" />
+		<style id="bold" bold="true" />
+		<style id="margin-top-bottom" margin-top="36" margin-bottom="36" />
+		<style id="margin-bottom" margin-bottom="36" />
+		<style id="margin-top" margin-top="36" />
+		<style id="firstLineIndent"  />
+		<style id="sign-box"  margin-top="20" textalignment="RIGHT"/>
+		<style id="no_border" border="0"/>
+		<style id="ce-box"  textalignment="CENTER"/>
+		<style id="le-box"  textalignment="LEFT"/>
+	</styles>
+	
+	<body pagesize="A4" fontsize="10" margin-top="36" margin-right="45" margin-bottom="36" margin-left="45">
+		<page>
+			<title value="借款人声明" style="title" />
+			<p><span></span></p>
+			<p first-line-indent="14" fill="true"><span>本人#{custName}，身份证号码：#{idNumber}特此声明如下：</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>本人知悉并同意将与红上至信商务信息咨询（上海）有限公司签署《信用咨询及管理服务协议》以及该等协议之条款内容，并对依据《信用咨询及管理服务协议》自相关出借人处借款并将签署之《借款协议》的全部条款内容知悉并同意，签署该等法律文件均为本人真实意思的表示，未受任何胁迫、误导或欺诈；同时本人承诺：</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>本人无配偶，本人进行前述法律行为无需得到其他主体的同意。（无配偶借款人在空白处抄写此段）</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>本人进行前述法律行为已得到了本人配偶的知晓和同意，本人本次借款系为夫妻共同债务,本人配偶同意以夫妻共同财产偿付本人在前述法律文件项下所负之各项债务。（有配偶的借款人在空白处抄写此段）</span></p>
+			<p><span></span></p>
+			<p first-line-indent="14"><span>_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</span></p>
+			<p><span></span></p>
+			<p style="le-box"><span>特此声明！</span></p>
+			<p><span></span></p>
+			<p><span></span></p>
+			<p><span></span></p>
+			<p><span></span></p>
+			<p><span></span></p>
+			<table column="1" style="sign-box">
+				<th clm="1" row="1" border="0">声明人（签字按手印）：_________________</th>
+				<th clm="1" row="1" border="0">日期：______年____月____日</th>
+			</table>
+		</page>
+
+	</body>
+</pdf>

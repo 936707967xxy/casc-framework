@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.app.api.dao.ProvincesHegeMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.app.api.model.ProvincesHege">
+    <id column="PROVINCEID" jdbcType="VARCHAR" property="provinceid" />
+    <result column="PROVINCE" jdbcType="VARCHAR" property="province" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PROVINCEID, PROVINCE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PROVINCES_HEGE
+    where PROVINCEID = #{provinceid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_PROVINCES_HEGE
+    where PROVINCEID = #{provinceid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.app.api.model.ProvincesHege">
+    insert into HS_PROVINCES_HEGE (PROVINCEID, PROVINCE)
+    values (#{provinceid,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.app.api.model.ProvincesHege">
+    insert into HS_PROVINCES_HEGE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="provinceid != null">
+        PROVINCEID,
+      </if>
+      <if test="province != null">
+        PROVINCE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="provinceid != null">
+        #{provinceid,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.app.api.model.ProvincesHege">
+    update HS_PROVINCES_HEGE
+    <set>
+      <if test="province != null">
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PROVINCEID = #{provinceid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.app.api.model.ProvincesHege">
+    update HS_PROVINCES_HEGE
+    set PROVINCE = #{province,jdbcType=VARCHAR}
+    where PROVINCEID = #{provinceid,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 获取所有省份信息  -->
+  <select id="selectAllData" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_PROVINCES_HEGE
+  </select>
+  
+  <!-- 获取门店省份  -->
+  <select id="selectStoreCitysData" parameterType="java.lang.String" resultMap="BaseResultMap">
+     select 
+    <include refid="Base_Column_List" />
+    from HS_PROVINCES_HEGE
+  </select>
+  
+</mapper>

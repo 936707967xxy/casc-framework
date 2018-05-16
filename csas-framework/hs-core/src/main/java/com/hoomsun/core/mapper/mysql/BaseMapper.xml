@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.core.dao.BaseMapper">
+ 
+ <!-- 获取所有的省信息 -->
+  <select id="findAllProvinces" resultType="java.util.Map">
+  	SELECT provinceid,province FROM HS_PROVINCES ORDER BY provinceid ASC
+  </select>
+  
+  <!-- 省下的市 -->
+  <select id="findCitieByPro" resultType="java.util.Map" parameterType="java.lang.String">
+  	SELECT cityid,city FROM HS_CITIES WHERE provinceid=#{provinceId} ORDER BY cityid ASC
+  </select>
+  
+  <!-- 市下的区 -->
+  <select id="findAreaByCity" resultType="java.util.Map" parameterType="java.lang.String">
+  	SELECT areaid,area FROM HS_AREAS WHERE cityid=#{cityId} ORDER BY areaid ASC
+  </select>
+  
+</mapper>

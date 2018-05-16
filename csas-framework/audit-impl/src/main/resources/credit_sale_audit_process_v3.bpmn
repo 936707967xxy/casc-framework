@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="creditSaleAuditSystem" name="creditSaleAuditProcess" isExecutable="true">
+    <startEvent id="startEvent" name="开始"></startEvent>
+    <userTask id="qcCheck" name="质检复核">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="${qcAuditTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="start_to_qccheck" sourceRef="startEvent" targetRef="qcCheck"></sequenceFlow>
+    <userTask id="preAudit" name="初审">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="${preAuditTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="finalAudit" name="终审">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="${finalAuditTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="makeCon" name="协议拟制">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="${createConAuditTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="conAudit" name="协议审批">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="${conAuditTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <userTask id="loanAudit" name="财务放款">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="${loanAuditTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <endEvent id="endEvent" name="结束"></endEvent>
+    <sequenceFlow id="loanaudit_to_end" sourceRef="loanAudit" targetRef="endEvent"></sequenceFlow>
+    <exclusiveGateway id="preexcgw" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="preaudit_to_preexcgw" sourceRef="preAudit" targetRef="preexcgw"></sequenceFlow>
+    <sequenceFlow id="preexcgw_to_finalaudit" sourceRef="preexcgw" targetRef="finalAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{presupp=='0'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="addData" name="补充资料">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="${addAuditTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="preexcgw_to_adddata" name="补充资料" sourceRef="preexcgw" targetRef="addData">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{presupp=='1'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="adddataexcgw" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="flow11" sourceRef="addData" targetRef="adddataexcgw"></sequenceFlow>
+    <exclusiveGateway id="finalexcgw" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="finalexcgw_to_makecon" name="通过" sourceRef="finalexcgw" targetRef="makeCon">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{finalsupp=='0'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="conexcgw" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="conaudit_to_conexcgw" sourceRef="conAudit" targetRef="conexcgw"></sequenceFlow>
+    <sequenceFlow id="conexcgw_to_adddata" name="补充资料" sourceRef="conexcgw" targetRef="addData">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{checksupp=='1'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="adddataexcgw_to_preaudit" sourceRef="adddataexcgw" targetRef="preAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{goto=='preaudit'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="adddataexcgw_to_conaudit" sourceRef="adddataexcgw" targetRef="conAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{goto=='conaudit'}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway id="qcexcgw" name="Exclusive Gateway"></exclusiveGateway>
+    <sequenceFlow id="qccheck_to_qcexcgw" sourceRef="qcCheck" targetRef="qcexcgw"></sequenceFlow>
+    <sequenceFlow id="qcexcgw_to_preaudit" sourceRef="qcexcgw" targetRef="preAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{qctoadd=='0'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="qccheck_to_adddata" name="补充资料" sourceRef="qcexcgw" targetRef="addData">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{qctoadd=='1'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="adddataexcgw_to_qccheck" sourceRef="adddataexcgw" targetRef="qcCheck">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{goto=='qccheck'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="conexcgw_to_loanaudit" sourceRef="conexcgw" targetRef="loanAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{checksupp=='0'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="finalaudit_to_finalexcgw" sourceRef="finalAudit" targetRef="finalexcgw"></sequenceFlow>
+    <sequenceFlow id="finalexcgw_to_add_data" sourceRef="finalexcgw" targetRef="addData">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{finalsupp=='1'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="adddataexcgw_to_finalaudit" sourceRef="adddataexcgw" targetRef="finalAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{goto=='finalaudit'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="excessAudit" name="超额审批"></userTask>
+    <sequenceFlow id="flow12" name="超额" sourceRef="finalexcgw" targetRef="excessAudit">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{finalsupp=='2'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow13" sourceRef="excessAudit" targetRef="makeCon"></sequenceFlow>
+    <userTask id="rejectPool" name="拒贷"></userTask>
+    <sequenceFlow id="flow14" name="拒贷" sourceRef="finalexcgw" targetRef="rejectPool">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[#{finalsupp=='3'}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="reconsideration" name="复议审核">
+      <extensionElements>
+        <activiti:taskListener event="create" delegateExpression="${reviewAuditTaskListener}"></activiti:taskListener>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow15" name="发起复议" sourceRef="rejectPool" targetRef="reconsideration"></sequenceFlow>
+    <intermediateCatchEvent id="rejectTimeOut" name="TimerCatchEvent">
+      <timerEventDefinition>
+        <timeDate>P7D</timeDate>
+      </timerEventDefinition>
+    </intermediateCatchEvent>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow16" sourceRef="rejectTimeOut" targetRef="endevent1"></sequenceFlow>
+    <intermediateCatchEvent id="signTimeOut" name="TimerCatchEvent">
+      <timerEventDefinition>
+        <timeDate>P30D</timeDate>
+      </timerEventDefinition>
+    </intermediateCatchEvent>
+    <endEvent id="endevent3" name="End"></endEvent>
+    <sequenceFlow id="flow20" sourceRef="signTimeOut" targetRef="endevent3"></sequenceFlow>
+    <sequenceFlow id="flow21" sourceRef="makeCon" targetRef="conAudit"></sequenceFlow>
+    <sequenceFlow id="flow22" sourceRef="reconsideration" targetRef="finalAudit"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_creditSaleAuditSystem">
+    <bpmndi:BPMNPlane bpmnElement="creditSaleAuditSystem" id="BPMNPlane_creditSaleAuditSystem">
+      <bpmndi:BPMNShape bpmnElement="startEvent" id="BPMNShape_startEvent">
+        <omgdc:Bounds height="35.0" width="35.0" x="180.0" y="220.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="qcCheck" id="BPMNShape_qcCheck">
+        <omgdc:Bounds height="55.0" width="105.0" x="280.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="preAudit" id="BPMNShape_preAudit">
+        <omgdc:Bounds height="55.0" width="105.0" x="530.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="finalAudit" id="BPMNShape_finalAudit">
+        <omgdc:Bounds height="55.0" width="105.0" x="730.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="makeCon" id="BPMNShape_makeCon">
+        <omgdc:Bounds height="55.0" width="105.0" x="730.0" y="356.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="conAudit" id="BPMNShape_conAudit">
+        <omgdc:Bounds height="55.0" width="105.0" x="530.0" y="356.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="loanAudit" id="BPMNShape_loanAudit">
+        <omgdc:Bounds height="55.0" width="105.0" x="280.0" y="356.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endEvent" id="BPMNShape_endEvent">
+        <omgdc:Bounds height="35.0" width="35.0" x="180.0" y="366.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="preexcgw" id="BPMNShape_preexcgw">
+        <omgdc:Bounds height="40.0" width="40.0" x="670.0" y="217.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="addData" id="BPMNShape_addData">
+        <omgdc:Bounds height="55.0" width="105.0" x="830.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="adddataexcgw" id="BPMNShape_adddataexcgw">
+        <omgdc:Bounds height="40.0" width="40.0" x="862.0" y="50.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="finalexcgw" id="BPMNShape_finalexcgw">
+        <omgdc:Bounds height="40.0" width="40.0" x="862.0" y="217.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="conexcgw" id="BPMNShape_conexcgw">
+        <omgdc:Bounds height="40.0" width="40.0" x="440.0" y="363.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="qcexcgw" id="BPMNShape_qcexcgw">
+        <omgdc:Bounds height="40.0" width="40.0" x="430.0" y="217.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="excessAudit" id="BPMNShape_excessAudit">
+        <omgdc:Bounds height="55.0" width="105.0" x="730.0" y="280.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="rejectPool" id="BPMNShape_rejectPool">
+        <omgdc:Bounds height="55.0" width="105.0" x="1020.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="reconsideration" id="BPMNShape_reconsideration">
+        <omgdc:Bounds height="55.0" width="105.0" x="1020.0" y="302.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="rejectTimeOut" id="BPMNShape_rejectTimeOut">
+        <omgdc:Bounds height="35.0" width="35.0" x="1055.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="1055.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="signTimeOut" id="BPMNShape_signTimeOut">
+        <omgdc:Bounds height="35.0" width="35.0" x="810.0" y="341.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
+        <omgdc:Bounds height="35.0" width="35.0" x="902.0" y="341.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="start_to_qccheck" id="BPMNEdge_start_to_qccheck">
+        <omgdi:waypoint x="215.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="280.0" y="237.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="loanaudit_to_end" id="BPMNEdge_loanaudit_to_end">
+        <omgdi:waypoint x="280.0" y="383.0"></omgdi:waypoint>
+        <omgdi:waypoint x="215.0" y="383.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="preaudit_to_preexcgw" id="BPMNEdge_preaudit_to_preexcgw">
+        <omgdi:waypoint x="635.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="670.0" y="237.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="preexcgw_to_finalaudit" id="BPMNEdge_preexcgw_to_finalaudit">
+        <omgdi:waypoint x="710.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="730.0" y="237.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="preexcgw_to_adddata" id="BPMNEdge_preexcgw_to_adddata">
+        <omgdi:waypoint x="690.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="689.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="830.0" y="157.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="48.0" x="701.0" y="162.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="882.0" y="130.0"></omgdi:waypoint>
+        <omgdi:waypoint x="882.0" y="90.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="finalexcgw_to_makecon" id="BPMNEdge_finalexcgw_to_makecon">
+        <omgdi:waypoint x="882.0" y="257.0"></omgdi:waypoint>
+        <omgdi:waypoint x="882.0" y="383.0"></omgdi:waypoint>
+        <omgdi:waypoint x="835.0" y="383.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="24.0" x="854.0" y="386.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="conaudit_to_conexcgw" id="BPMNEdge_conaudit_to_conexcgw">
+        <omgdi:waypoint x="530.0" y="383.0"></omgdi:waypoint>
+        <omgdi:waypoint x="480.0" y="383.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="conexcgw_to_adddata" id="BPMNEdge_conexcgw_to_adddata">
+        <omgdi:waypoint x="460.0" y="403.0"></omgdi:waypoint>
+        <omgdi:waypoint x="459.0" y="433.0"></omgdi:waypoint>
+        <omgdi:waypoint x="982.0" y="433.0"></omgdi:waypoint>
+        <omgdi:waypoint x="982.0" y="280.0"></omgdi:waypoint>
+        <omgdi:waypoint x="982.0" y="156.0"></omgdi:waypoint>
+        <omgdi:waypoint x="935.0" y="157.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="48.0" x="474.0" y="439.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="adddataexcgw_to_preaudit" id="BPMNEdge_adddataexcgw_to_preaudit">
+        <omgdi:waypoint x="862.0" y="70.0"></omgdi:waypoint>
+        <omgdi:waypoint x="582.0" y="69.0"></omgdi:waypoint>
+        <omgdi:waypoint x="582.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="adddataexcgw_to_conaudit" id="BPMNEdge_adddataexcgw_to_conaudit">
+        <omgdi:waypoint x="902.0" y="70.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1000.0" y="69.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1000.0" y="460.0"></omgdi:waypoint>
+        <omgdi:waypoint x="830.0" y="460.0"></omgdi:waypoint>
+        <omgdi:waypoint x="582.0" y="460.0"></omgdi:waypoint>
+        <omgdi:waypoint x="582.0" y="411.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="qccheck_to_qcexcgw" id="BPMNEdge_qccheck_to_qcexcgw">
+        <omgdi:waypoint x="385.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="430.0" y="237.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="qcexcgw_to_preaudit" id="BPMNEdge_qcexcgw_to_preaudit">
+        <omgdi:waypoint x="470.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="530.0" y="237.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="qccheck_to_adddata" id="BPMNEdge_qccheck_to_adddata">
+        <omgdi:waypoint x="450.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="449.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="615.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="721.0" y="157.0"></omgdi:waypoint>
+        <omgdi:waypoint x="830.0" y="157.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="48.0" x="454.0" y="172.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="adddataexcgw_to_qccheck" id="BPMNEdge_adddataexcgw_to_qccheck">
+        <omgdi:waypoint x="862.0" y="70.0"></omgdi:waypoint>
+        <omgdi:waypoint x="332.0" y="69.0"></omgdi:waypoint>
+        <omgdi:waypoint x="332.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="conexcgw_to_loanaudit" id="BPMNEdge_conexcgw_to_loanaudit">
+        <omgdi:waypoint x="440.0" y="383.0"></omgdi:waypoint>
+        <omgdi:waypoint x="385.0" y="383.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="finalaudit_to_finalexcgw" id="BPMNEdge_finalaudit_to_finalexcgw">
+        <omgdi:waypoint x="835.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="862.0" y="237.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="finalexcgw_to_add_data" id="BPMNEdge_finalexcgw_to_add_data">
+        <omgdi:waypoint x="882.0" y="217.0"></omgdi:waypoint>
+        <omgdi:waypoint x="882.0" y="185.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="adddataexcgw_to_finalaudit" id="BPMNEdge_adddataexcgw_to_finalaudit">
+        <omgdi:waypoint x="862.0" y="70.0"></omgdi:waypoint>
+        <omgdi:waypoint x="782.0" y="70.0"></omgdi:waypoint>
+        <omgdi:waypoint x="782.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="882.0" y="257.0"></omgdi:waypoint>
+        <omgdi:waypoint x="881.0" y="306.0"></omgdi:waypoint>
+        <omgdi:waypoint x="835.0" y="307.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="24.0" x="845.0" y="309.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="782.0" y="335.0"></omgdi:waypoint>
+        <omgdi:waypoint x="782.0" y="356.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="902.0" y="237.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1020.0" y="237.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="24.0" x="933.0" y="237.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="1072.0" y="265.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1072.0" y="302.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="48.0" x="1072.0" y="269.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
+        <omgdi:waypoint x="1072.0" y="190.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1072.0" y="175.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow20" id="BPMNEdge_flow20">
+        <omgdi:waypoint x="845.0" y="358.0"></omgdi:waypoint>
+        <omgdi:waypoint x="902.0" y="358.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow21" id="BPMNEdge_flow21">
+        <omgdi:waypoint x="730.0" y="383.0"></omgdi:waypoint>
+        <omgdi:waypoint x="635.0" y="383.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow22" id="BPMNEdge_flow22">
+        <omgdi:waypoint x="1072.0" y="357.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1072.0" y="474.0"></omgdi:waypoint>
+        <omgdi:waypoint x="709.0" y="474.0"></omgdi:waypoint>
+        <omgdi:waypoint x="709.0" y="266.0"></omgdi:waypoint>
+        <omgdi:waypoint x="730.0" y="237.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

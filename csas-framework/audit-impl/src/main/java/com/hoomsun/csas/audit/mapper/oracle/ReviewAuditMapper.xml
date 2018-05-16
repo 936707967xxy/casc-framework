@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.audit.dao.ReviewAuditMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.audit.model.ReviewAudit">
+    <id column="REVIEW_ID" jdbcType="VARCHAR" property="reviewId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="PROC_INST_ID" jdbcType="VARCHAR" property="procInstId" />
+    <result column="TASK_ID" jdbcType="VARCHAR" property="taskId" />
+    <result column="AUDIT_EMP" jdbcType="VARCHAR" property="auditEmp" />
+    <result column="AUDIT_EMP_NAME" jdbcType="VARCHAR" property="auditEmpName" />
+    <result column="AUDIT_DATE" jdbcType="TIMESTAMP" property="auditDate" />
+    <result column="HANDLE_OPINION" jdbcType="DECIMAL" property="handleOpinion" />
+    <result column="HANDLE_OPINION_VAL" jdbcType="VARCHAR" property="handleOpinionVal" />
+    <result column="REVIEW_REMARK" jdbcType="VARCHAR" property="reviewRemark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    REVIEW_ID, APPLY_ID, PROC_INST_ID, TASK_ID, AUDIT_EMP, AUDIT_EMP_NAME, AUDIT_DATE, 
+    HANDLE_OPINION, HANDLE_OPINION_VAL, REVIEW_REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_REVIEW_AUDIT
+    where REVIEW_ID = #{reviewId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_REVIEW_AUDIT
+    where REVIEW_ID = #{reviewId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.audit.model.ReviewAudit">
+    insert into HS_REVIEW_AUDIT (REVIEW_ID, APPLY_ID, PROC_INST_ID, 
+      TASK_ID, AUDIT_EMP, AUDIT_EMP_NAME, 
+      AUDIT_DATE, HANDLE_OPINION, HANDLE_OPINION_VAL, 
+      REVIEW_REMARK)
+    values (#{reviewId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{procInstId,jdbcType=VARCHAR}, 
+      #{taskId,jdbcType=VARCHAR}, #{auditEmp,jdbcType=VARCHAR}, #{auditEmpName,jdbcType=VARCHAR}, 
+      #{auditDate,jdbcType=TIMESTAMP}, #{handleOpinion,jdbcType=DECIMAL}, #{handleOpinionVal,jdbcType=VARCHAR}, 
+      #{reviewRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.audit.model.ReviewAudit">
+    insert into HS_REVIEW_AUDIT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reviewId != null">
+        REVIEW_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID,
+      </if>
+      <if test="taskId != null">
+        TASK_ID,
+      </if>
+      <if test="auditEmp != null">
+        AUDIT_EMP,
+      </if>
+      <if test="auditEmpName != null">
+        AUDIT_EMP_NAME,
+      </if>
+      <if test="auditDate != null">
+        AUDIT_DATE,
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION,
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL,
+      </if>
+      <if test="reviewRemark != null">
+        REVIEW_REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reviewId != null">
+        #{reviewId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEmp != null">
+        #{auditEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEmpName != null">
+        #{auditEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditDate != null">
+        #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleOpinion != null">
+        #{handleOpinion,jdbcType=DECIMAL},
+      </if>
+      <if test="handleOpinionVal != null">
+        #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewRemark != null">
+        #{reviewRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.audit.model.ReviewAudit">
+    update HS_REVIEW_AUDIT
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="procInstId != null">
+        PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      </if>
+      <if test="taskId != null">
+        TASK_ID = #{taskId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEmp != null">
+        AUDIT_EMP = #{auditEmp,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEmpName != null">
+        AUDIT_EMP_NAME = #{auditEmpName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditDate != null">
+        AUDIT_DATE = #{auditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="handleOpinion != null">
+        HANDLE_OPINION = #{handleOpinion,jdbcType=DECIMAL},
+      </if>
+      <if test="handleOpinionVal != null">
+        HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      </if>
+      <if test="reviewRemark != null">
+        REVIEW_REMARK = #{reviewRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REVIEW_ID = #{reviewId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.audit.model.ReviewAudit">
+    update HS_REVIEW_AUDIT
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      PROC_INST_ID = #{procInstId,jdbcType=VARCHAR},
+      TASK_ID = #{taskId,jdbcType=VARCHAR},
+      AUDIT_EMP = #{auditEmp,jdbcType=VARCHAR},
+      AUDIT_EMP_NAME = #{auditEmpName,jdbcType=VARCHAR},
+      AUDIT_DATE = #{auditDate,jdbcType=TIMESTAMP},
+      HANDLE_OPINION = #{handleOpinion,jdbcType=DECIMAL},
+      HANDLE_OPINION_VAL = #{handleOpinionVal,jdbcType=VARCHAR},
+      REVIEW_REMARK = #{reviewRemark,jdbcType=VARCHAR}
+    where REVIEW_ID = #{reviewId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  	<!-- 获取终审列表 FINAL_AUDIT_GROUP -->
+	<resultMap type="com.hoomsun.csas.audit.model.vo.UserApplyVO" id="USER_APPLY_VO_RESULT">
+		<id column="APPLY_ID" property="applyId" />
+		<result column="STORE_NAME" property="storeName" />
+		<result column="STORE_ID" property="storeId" />
+		<result column="CUST_MOBILE" property="custMobile" />
+		<result column="ID_NUMBER" property="idNumber" />
+		<result column="CUST_NAME" property="custName" />
+		<result column="SOURCES" property="sources" />
+		<result column="PROC_STATUS_VAL" property="procStatusVal" />
+		<result column="PROC_STATUS" property="procStatus" />
+		<result column="PROC_INST_ID" property="procInstId" />
+		<result column="PRODUCT_NAME" property="productName" />
+		<result column="PRODUCT_ID" property="productId" />
+		<result column="LOAN_ID" property="loanId" />
+		<result column="APPLY_AMOUNT" property="applyAmount" />
+		<result column="APPLY_DATE" property="applyDate"/>
+	  	<result column="START_TIME_" property="startTime"/>
+	  	<result column="CLAIM_TIME_" property="claimTime"/>
+	  	<result column="END_TIME_" property="endTime"/>
+	  	<result column="ASSIGNEE_" property="assignee"/>
+	</resultMap>
+  
+  <select id="findPager" parameterType="java.util.Map" resultMap="USER_APPLY_VO_RESULT">
+		 		SELECT * FROM (
+			SELECT ROWNUM r, AP.* FROM (
+				SELECT 
+					app.LOAN_ID, app.APPLY_ID, app.CUST_NAME, app.SOURCES, app.SOURCES_VALUE, 
+					REPLACE (app.CUST_MOBILE, SUBSTR (app.CUST_MOBILE, 4, 4), '****') AS CUST_MOBILE,
+					REPLACE (app.ID_NUMBER, SUBSTR (app.ID_NUMBER, 6, 8),'********') AS ID_NUMBER,
+					app.PRODUCT_ID,app.PRODUCT_NAME,app.APPLY_AMOUNT,app.PROC_STATUS_VAL,
+					app.PROC_STATUS,app.PROC_INST_ID,app.STORE_ID,app.SALES_EMP_ID,
+					app.SALES_EMP_NAME,app.CREATE_EMPLOYEE,app.CREATE_EMPLOYEE_VAL,app.APPLY_DATE,
+					tbl.ASSIGNEE_
+				FROM
+					HS_APPLY app
+				INNER JOIN (
+					SELECT
+						 HP.BUSINESS_KEY_,
+						 HT.ASSIGNEE_
+					FROM
+					ACT_HI_PROCINST HP
+					INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+					<choose>
+						<!-- 待签收 -->
+						<when test="nodeStatus == 0">
+							WHERE HT.TASK_DEF_KEY_ = 'reconsideration'
+						    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+						</when>
+						<!-- 已经签收，待审核 -->
+						<when test="nodeStatus == 1">
+							<choose>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'reconsideration'
+						        		AND (HT.ASSIGNEE_=#{empId} and HT.ASSIGNEE_ IS not NULL AND HT.END_TIME_ IS NULL)
+						        </otherwise>
+							</choose>
+						</when>
+						
+						<!-- 已经审核 -->
+						<when test="nodeStatus == 2">
+							<choose>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'reconsideration'
+						        		AND HT.END_TIME_ IS NOT NULL
+						        		AND HT.ASSIGNEE_=#{empId}
+						        </otherwise>
+							</choose>
+						</when>
+						
+						<!-- 全部  已经签收 和 已经审核的任务-->
+						<when test="nodeStatus == 3">
+							<choose>
+						        <!-- 非部门负责人 -->
+						        <otherwise>
+						        		WHERE HT.TASK_DEF_KEY_ = 'reconsideration'
+						        		AND HT.ASSIGNEE_=#{empId}
+						        </otherwise>
+							</choose>
+						</when>
+
+					</choose>
+					GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+				) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+				WHERE app.DEL_STATUE = 0 
+				
+				<if test="custName != null and custName != ''">
+					and app.CUST_NAME LIKE #{custName} 
+				</if>
+				<if test="custMobile != null and custMobile != ''">
+					and app.CUST_MOBILE = #{custMobile}
+				</if>
+				<if test="idNumber != null and idNumber != ''">
+					and app.ID_NUMBER = #{idNumber}
+				</if>
+				<if test="salesEmpName != null and salesEmpName != ''">
+					and app.SALES_EMP_NAME LIKE #{salesEmpName}
+				</if>
+				<if test="loanId != null and loanId != ''">
+					and app.LOAN_ID = #{loanId} 
+				</if>
+				ORDER BY app.APPLY_DATE DESC
+			) AP
+			WHERE <![CDATA[ROWNUM <=  #{pageIndex} * #{pageSize}]]>
+		)
+	WHERE r > (#{pageIndex} -1) * #{pageSize}
+	</select>
+	
+	
+	<select id="findReviewAuditCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+		SELECT 
+		COUNT(app.APPLY_ID)
+		FROM
+			HS_APPLY app
+		INNER JOIN (
+			SELECT
+			    HP.BUSINESS_KEY_,
+			    HT.ASSIGNEE_
+			FROM
+			ACT_HI_PROCINST HP
+			INNER JOIN ACT_HI_TASKINST HT ON HP.PROC_INST_ID_ = HT.PROC_INST_ID_ 
+			<choose>
+				<!-- 待签收 -->
+				<when test="nodeStatus == 0">
+					WHERE HT.TASK_DEF_KEY_ = 'reconsideration'
+				    AND HT.ASSIGNEE_ IS NULL AND HT.END_TIME_ IS NULL
+				</when>
+				<!-- 已经签收，待审核 -->
+				<when test="nodeStatus == 1">
+					<choose>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'reconsideration'
+				        		AND (HT.ASSIGNEE_=#{empId} OR HT.ASSIGNEE_ IS NULL)
+				        </otherwise>
+					</choose>
+				</when>
+				
+				<!-- 已经审核 -->
+				<when test="nodeStatus == 2">
+					<choose>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'reconsideration'
+				        		AND HT.END_TIME_ IS NOT NULL
+				        		AND HT.ASSIGNEE_=#{empId}
+				        </otherwise>
+					</choose>
+				</when>
+				
+				<!-- 全部  已经签收 和 已经审核的任务-->
+				<when test="nodeStatus == 3">
+					<choose>
+				        <!-- 非部门负责人 -->
+				        <otherwise>
+				        		WHERE HT.TASK_DEF_KEY_ = 'reconsideration'
+				        		AND HT.ASSIGNEE_=#{empId}
+				        </otherwise>
+					</choose>
+				</when>
+	
+			</choose>
+			GROUP BY HT.ASSIGNEE_, HP.BUSINESS_KEY_
+		) tbl ON app.APPLY_ID=tbl.BUSINESS_KEY_
+		WHERE app.DEL_STATUE = 0 
+		
+		<if test="custName != null and custName != ''">
+			and app.CUST_NAME LIKE #{custName} 
+		</if>
+		<if test="custMobile != null and custMobile != ''">
+			and app.CUST_MOBILE = #{custMobile}
+		</if>
+		<if test="idNumber != null and idNumber != ''">
+			and app.ID_NUMBER = #{idNumber}
+		</if>
+		<if test="salesEmpName != null and salesEmpName != ''">
+			and app.SALES_EMP_NAME LIKE #{salesEmpName}
+		</if>
+		<if test="loanId != null and loanId != ''">
+			and app.LOAN_ID = #{loanId} 
+		</if>
+	</select>
+</mapper>

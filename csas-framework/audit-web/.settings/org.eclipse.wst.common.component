@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="audit-web-2.0.0">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="settle-api-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/settle-api-2.0.0/settle-api-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hs-act-task-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hs-act-task-2.0.0/hs-act-task-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hs-core-5.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hs-core-5.0.0/hs-core-5.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="settle-impl-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/settle-impl-2.0.0/settle-impl-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hs-msg-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hs-msg-2.0.0/hs-msg-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hoomsun-loan-api-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hoomsun-loan-api-2.0.0/hoomsun-loan-api-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hoomsun-loan-impl-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hoomsun-loan-impl-2.0.0/hoomsun-loan-impl-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="audit-api-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/audit-api-2.0.0/audit-api-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sales-api-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sales-api-2.0.0/sales-api-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="audit-impl-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/audit-impl-2.0.0/audit-impl-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hs-common-5.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hs-common-5.0.0/hs-common-5.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="sales-impl-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/sales-impl-2.0.0/sales-impl-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="risk-server-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/risk-server-2.0.0/risk-server-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="hs-cust-server-2.0.0.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/hs-cust-server-2.0.0/hs-cust-server-2.0.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="audit-web"/>
+        <property name="java-output-path" value="/audit-web-2.0.0/target/classes"/>
+    </wb-module>
+</project-modules>

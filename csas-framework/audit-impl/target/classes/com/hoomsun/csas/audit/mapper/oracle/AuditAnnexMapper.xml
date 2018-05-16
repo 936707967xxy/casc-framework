@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.csas.audit.dao.AuditAnnexMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.csas.audit.model.AuditAnnex">
+    <id column="ANX_ID" jdbcType="VARCHAR" property="anxId" />
+    <result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+    <result column="FILE_NAME" jdbcType="VARCHAR" property="fileName" />
+    <result column="SAVE_NAME" jdbcType="VARCHAR" property="saveName" />
+    <result column="SAVE_PATH" jdbcType="VARCHAR" property="savePath" />
+    <result column="PRE_VIEW" jdbcType="VARCHAR" property="preView" />
+    <result column="FILE_SIZE" jdbcType="DECIMAL" property="fileSize" />
+    <result column="FILE_TYPE" jdbcType="VARCHAR" property="fileType" />
+    <result column="CREATE_DATE" jdbcType="OTHER" property="createDate" />
+    <result column="EMP_ID" jdbcType="VARCHAR" property="empId" />
+    <result column="EMP_NAME" jdbcType="VARCHAR" property="empName" />
+    <result column="ACT_ID" jdbcType="VARCHAR" property="actId" />
+    <result column="ACT_NODE" jdbcType="VARCHAR" property="actNode" />
+    <result column="ANX_TYPE" jdbcType="INTEGER" property="anxType" />
+    <result column="ANX_TYPE_VAL" jdbcType="VARCHAR" property="anxTypeVal" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ANX_ID, APPLY_ID, FILE_NAME, SAVE_NAME, SAVE_PATH, PRE_VIEW, FILE_SIZE, FILE_TYPE, 
+    CREATE_DATE, EMP_ID, EMP_NAME, ACT_ID, ACT_NODE, ANX_TYPE, ANX_TYPE_VAL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_AUDIT_ANNEX
+    where ANX_ID = #{anxId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_AUDIT_ANNEX
+    where ANX_ID = #{anxId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.csas.audit.model.AuditAnnex">
+    insert into HS_AUDIT_ANNEX (ANX_ID, APPLY_ID, FILE_NAME, 
+      SAVE_NAME, SAVE_PATH, PRE_VIEW, 
+      FILE_SIZE, FILE_TYPE, CREATE_DATE, 
+      EMP_ID, EMP_NAME, ACT_ID, 
+      ACT_NODE, ANX_TYPE, ANX_TYPE_VAL
+      )
+    values (#{anxId,jdbcType=VARCHAR}, #{applyId,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, 
+      #{saveName,jdbcType=VARCHAR}, #{savePath,jdbcType=VARCHAR}, #{preView,jdbcType=VARCHAR}, 
+      #{fileSize,jdbcType=DECIMAL}, #{fileType,jdbcType=VARCHAR}, #{createDate,jdbcType=OTHER}, 
+      #{empId,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, #{actId,jdbcType=VARCHAR}, 
+      #{actNode,jdbcType=VARCHAR}, #{anxType,jdbcType=INTEGER}, #{anxTypeVal,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.csas.audit.model.AuditAnnex">
+    insert into HS_AUDIT_ANNEX
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="anxId != null">
+        ANX_ID,
+      </if>
+      <if test="applyId != null">
+        APPLY_ID,
+      </if>
+      <if test="fileName != null">
+        FILE_NAME,
+      </if>
+      <if test="saveName != null">
+        SAVE_NAME,
+      </if>
+      <if test="savePath != null">
+        SAVE_PATH,
+      </if>
+      <if test="preView != null">
+        PRE_VIEW,
+      </if>
+      <if test="fileSize != null">
+        FILE_SIZE,
+      </if>
+      <if test="fileType != null">
+        FILE_TYPE,
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE,
+      </if>
+      <if test="empId != null">
+        EMP_ID,
+      </if>
+      <if test="empName != null">
+        EMP_NAME,
+      </if>
+      <if test="actId != null">
+        ACT_ID,
+      </if>
+      <if test="actNode != null">
+        ACT_NODE,
+      </if>
+      <if test="anxType != null">
+        ANX_TYPE,
+      </if>
+      <if test="anxTypeVal != null">
+        ANX_TYPE_VAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="anxId != null">
+        #{anxId,jdbcType=VARCHAR},
+      </if>
+      <if test="applyId != null">
+        #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="saveName != null">
+        #{saveName,jdbcType=VARCHAR},
+      </if>
+      <if test="savePath != null">
+        #{savePath,jdbcType=VARCHAR},
+      </if>
+      <if test="preView != null">
+        #{preView,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=DECIMAL},
+      </if>
+      <if test="fileType != null">
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=OTHER},
+      </if>
+      <if test="empId != null">
+        #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="actId != null">
+        #{actId,jdbcType=VARCHAR},
+      </if>
+      <if test="actNode != null">
+        #{actNode,jdbcType=VARCHAR},
+      </if>
+      <if test="anxType != null">
+        #{anxType,jdbcType=INTEGER},
+      </if>
+      <if test="anxTypeVal != null">
+        #{anxTypeVal,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.csas.audit.model.AuditAnnex">
+    update HS_AUDIT_ANNEX
+    <set>
+      <if test="applyId != null">
+        APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="saveName != null">
+        SAVE_NAME = #{saveName,jdbcType=VARCHAR},
+      </if>
+      <if test="savePath != null">
+        SAVE_PATH = #{savePath,jdbcType=VARCHAR},
+      </if>
+      <if test="preView != null">
+        PRE_VIEW = #{preView,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        FILE_SIZE = #{fileSize,jdbcType=DECIMAL},
+      </if>
+      <if test="fileType != null">
+        FILE_TYPE = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        CREATE_DATE = #{createDate,jdbcType=OTHER},
+      </if>
+      <if test="empId != null">
+        EMP_ID = #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        EMP_NAME = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="actId != null">
+        ACT_ID = #{actId,jdbcType=VARCHAR},
+      </if>
+      <if test="actNode != null">
+        ACT_NODE = #{actNode,jdbcType=VARCHAR},
+      </if>
+      <if test="anxType != null">
+        ANX_TYPE = #{anxType,jdbcType=INTEGER},
+      </if>
+      <if test="anxTypeVal != null">
+        ANX_TYPE_VAL = #{anxTypeVal,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ANX_ID = #{anxId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.csas.audit.model.AuditAnnex">
+    update HS_AUDIT_ANNEX
+    set APPLY_ID = #{applyId,jdbcType=VARCHAR},
+      FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      SAVE_NAME = #{saveName,jdbcType=VARCHAR},
+      SAVE_PATH = #{savePath,jdbcType=VARCHAR},
+      PRE_VIEW = #{preView,jdbcType=VARCHAR},
+      FILE_SIZE = #{fileSize,jdbcType=DECIMAL},
+      FILE_TYPE = #{fileType,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=OTHER},
+      EMP_ID = #{empId,jdbcType=VARCHAR},
+      EMP_NAME = #{empName,jdbcType=VARCHAR},
+      ACT_ID = #{actId,jdbcType=VARCHAR},
+      ACT_NODE = #{actNode,jdbcType=VARCHAR},
+      ANX_TYPE = #{anxType,jdbcType=INTEGER},
+      ANX_TYPE_VAL = #{anxTypeVal,jdbcType=VARCHAR}
+    where ANX_ID = #{anxId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="findByApplyId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT 
+  	ANX_ID, APPLY_ID, FILE_NAME, SAVE_NAME, SAVE_PATH, PRE_VIEW, FILE_SIZE, FILE_TYPE, 
+    CREATE_DATE, EMP_ID, EMP_NAME, ACT_ID, ACT_NODE, ANX_TYPE, ANX_TYPE_VAL
+    FROM HS_AUDIT_ANNEX WHERE APPLY_ID=#{applyId}
+  </select>
+  
+  <select id="findByapplyIdAndAnnexType"  resultMap="BaseResultMap">
+  	SELECT 
+  	ANX_ID, APPLY_ID, FILE_NAME, SAVE_NAME, SAVE_PATH, PRE_VIEW, FILE_SIZE, FILE_TYPE, 
+    CREATE_DATE, EMP_ID, EMP_NAME, ACT_ID, ACT_NODE, ANX_TYPE, ANX_TYPE_VAL
+    FROM HS_AUDIT_ANNEX WHERE APPLY_ID=#{applyId} AND ANX_TYPE=#{anxType} 
+  </select>
+  
+</mapper>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.after.dao.OutBoundMapper">
+	<resultMap id="BaseResultMap" type="com.hoomsun.after.api.model.table.OutBound">
+		<id column="ID" jdbcType="VARCHAR" property="id" />
+		<result column="LOAN_ID" jdbcType="VARCHAR" property="loanId" />
+		<result column="CON_NO" jdbcType="VARCHAR" property="conNo" />
+		<result column="OUTBOUND_ADDRESS" jdbcType="VARCHAR" property="outboundAddress" />
+		<result column="OVERDUE_STATUS" jdbcType="VARCHAR" property="overdueStatus" />
+		<result column="OUTBOUND_DATE" jdbcType="TIMESTAMP" property="outboundDate" />
+		<result column="OVERDUE_DESC" jdbcType="VARCHAR" property="overdueDesc" />
+		<result column="APPLY_DESC" jdbcType="VARCHAR" property="applyDesc" />
+		<result column="OUTBOUND_STATUS" jdbcType="VARCHAR" property="outboundStatus" />
+		<result column="OUTBOUND_ID" jdbcType="VARCHAR" property="outboundId" />
+		<result column="OUTBOUND_NAME" jdbcType="VARCHAR" property="outboundName" />
+		<result column="OUTBOUND_DESC" jdbcType="VARCHAR" property="outboundDesc" />
+		<result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+		<result column="APPLY_ID" jdbcType="VARCHAR" property="applyId" />
+		<result column="CAST_NAME" jdbcType="VARCHAR" property="castName" />
+		<result column="CARD_NO" jdbcType="VARCHAR" property="cardNo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, LOAN_ID, CON_NO, OUTBOUND_ADDRESS, OVERDUE_STATUS,
+		OUTBOUND_DATE,
+		OVERDUE_DESC,
+		APPLY_DESC, OUTBOUND_STATUS, OUTBOUND_ID,
+		OUTBOUND_NAME, OUTBOUND_DESC,
+		CREATE_TIME,
+		UPDATE_DATE, APPLY_ID,
+		CAST_NAME, CARD_NO
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_OUTBOUND
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		HS_AFTER_OUTBOUND
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hoomsun.after.api.model.table.OutBound">
+		insert into HS_AFTER_OUTBOUND
+		(ID, LOAN_ID, CON_NO,
+		OUTBOUND_ADDRESS, OVERDUE_STATUS, OUTBOUND_DATE,
+		OVERDUE_DESC, APPLY_DESC, OUTBOUND_STATUS,
+		OUTBOUND_ID, OUTBOUND_NAME,
+		OUTBOUND_DESC,
+		CREATE_TIME, UPDATE_DATE, APPLY_ID,
+		CAST_NAME, CARD_NO)
+		values (#{id,jdbcType=VARCHAR}, #{loanId,jdbcType=VARCHAR},
+		#{conNo,jdbcType=VARCHAR},
+		#{outboundAddress,jdbcType=VARCHAR},
+		#{overdueStatus,jdbcType=VARCHAR},
+		#{outboundDate,jdbcType=TIMESTAMP},
+		#{overdueDesc,jdbcType=VARCHAR}, #{applyDesc,jdbcType=VARCHAR},
+		#{outboundStatus,jdbcType=VARCHAR},
+		#{outboundId,jdbcType=VARCHAR},
+		#{outboundName,jdbcType=VARCHAR},
+		#{outboundDesc,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP},
+		#{applyId,jdbcType=VARCHAR},
+		#{castName,jdbcType=VARCHAR},
+		#{cardNo,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hoomsun.after.api.model.table.OutBound">
+		insert into HS_AFTER_OUTBOUND
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="loanId != null">
+				LOAN_ID,
+			</if>
+			<if test="conNo != null">
+				CON_NO,
+			</if>
+			<if test="outboundAddress != null">
+				OUTBOUND_ADDRESS,
+			</if>
+			<if test="overdueStatus != null">
+				OVERDUE_STATUS,
+			</if>
+			<if test="outboundDate != null">
+				OUTBOUND_DATE,
+			</if>
+			<if test="overdueDesc != null">
+				OVERDUE_DESC,
+			</if>
+			<if test="applyDesc != null">
+				APPLY_DESC,
+			</if>
+			<if test="outboundStatus != null">
+				OUTBOUND_STATUS,
+			</if>
+			<if test="outboundId != null">
+				OUTBOUND_ID,
+			</if>
+			<if test="outboundName != null">
+				OUTBOUND_NAME,
+			</if>
+			<if test="outboundDesc != null">
+				OUTBOUND_DESC,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE,
+			</if>
+			<if test="applyId != null">
+				APPLY_ID,
+			</if>
+			<if test="castName != null">
+				CAST_NAME,
+			</if>
+			<if test="cardNo != null">
+				CARD_NO,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="loanId != null">
+				#{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				#{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundAddress != null">
+				#{outboundAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="overdueStatus != null">
+				#{overdueStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundDate != null">
+				#{outboundDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="overdueDesc != null">
+				#{overdueDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="applyDesc != null">
+				#{applyDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundStatus != null">
+				#{outboundStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundId != null">
+				#{outboundId,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundName != null">
+				#{outboundName,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundDesc != null">
+				#{outboundDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				#{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="applyId != null">
+				#{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				#{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.after.api.model.table.OutBound">
+		update HS_AFTER_OUTBOUND
+		<set>
+			<if test="loanId != null">
+				LOAN_ID = #{loanId,jdbcType=VARCHAR},
+			</if>
+			<if test="conNo != null">
+				CON_NO = #{conNo,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundAddress != null">
+				OUTBOUND_ADDRESS = #{outboundAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="overdueStatus != null">
+				OVERDUE_STATUS = #{overdueStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundDate != null">
+				OUTBOUND_DATE = #{outboundDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="overdueDesc != null">
+				OVERDUE_DESC = #{overdueDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="applyDesc != null">
+				APPLY_DESC = #{applyDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundStatus != null">
+				OUTBOUND_STATUS = #{outboundStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundId != null">
+				OUTBOUND_ID = #{outboundId,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundName != null">
+				OUTBOUND_NAME = #{outboundName,jdbcType=VARCHAR},
+			</if>
+			<if test="outboundDesc != null">
+				OUTBOUND_DESC = #{outboundDesc,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateDate != null">
+				UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="applyId != null">
+				APPLY_ID = #{applyId,jdbcType=VARCHAR},
+			</if>
+			<if test="castName != null">
+				CAST_NAME = #{castName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hoomsun.after.api.model.table.OutBound">
+		update
+		HS_AFTER_OUTBOUND
+		set LOAN_ID = #{loanId,jdbcType=VARCHAR},
+		CON_NO =
+		#{conNo,jdbcType=VARCHAR},
+		OUTBOUND_ADDRESS =
+		#{outboundAddress,jdbcType=VARCHAR},
+		OVERDUE_STATUS =
+		#{overdueStatus,jdbcType=VARCHAR},
+		OUTBOUND_DATE =
+		#{outboundDate,jdbcType=TIMESTAMP},
+		OVERDUE_DESC =
+		#{overdueDesc,jdbcType=VARCHAR},
+		APPLY_DESC =
+		#{applyDesc,jdbcType=VARCHAR},
+		OUTBOUND_STATUS =
+		#{outboundStatus,jdbcType=VARCHAR},
+		OUTBOUND_ID =
+		#{outboundId,jdbcType=VARCHAR},
+		OUTBOUND_NAME =
+		#{outboundName,jdbcType=VARCHAR},
+		OUTBOUND_DESC =
+		#{outboundDesc,jdbcType=VARCHAR},
+		CREATE_TIME =
+		#{createTime,jdbcType=TIMESTAMP},
+		UPDATE_DATE =
+		#{updateDate,jdbcType=TIMESTAMP},
+		APPLY_ID =
+		#{applyId,jdbcType=VARCHAR},
+		CAST_NAME = #{castName,jdbcType=VARCHAR},
+		CARD_NO = #{cardNo,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- -->
+
+	<select id="getOutbound" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_OUTBOUND
+		where APPLY_ID = #{applyId}
+	</select>
+
+	<select id="selectByLoanId" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from HS_AFTER_OUTBOUND
+		where LOAN_ID = #{loanId}
+	</select>
+
+	<update id="updateOutBoundStatusToOne" parameterType="java.lang.String">
+		update HS_AFTER_OUTBOUND
+
+		set OUTBOUND_STATUS='3'
+
+		where LOAN_ID = #{loanId}
+
+	</update>
+
+</mapper>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hoomsun.message.dao.NoticeMapper">
+  <resultMap id="BaseResultMap" type="com.hoomsun.message.model.Notice">
+    <id column="NOTICEID" jdbcType="VARCHAR" property="noticeid" />
+    <result column="CUSTID" jdbcType="VARCHAR" property="custid" />
+    <result column="APPLYID" jdbcType="VARCHAR" property="applyid" />
+    <result column="FLAG" jdbcType="VARCHAR" property="flag" />
+    <result column="FLAG_VAL" jdbcType="VARCHAR" property="flagVal" />
+    <result column="CONSULT" jdbcType="VARCHAR" property="consult" />
+    <result column="NOTICE_DATA" jdbcType="TIMESTAMP" property="noticeData" />
+    <result column="MESSAGE" jdbcType="VARCHAR" property="message" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    NOTICEID, CUSTID, APPLYID, FLAG, FLAG_VAL, CONSULT, NOTICE_DATA, MESSAGE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_NOTICE
+    where NOTICEID = #{noticeid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from HS_NOTICE
+    where NOTICEID = #{noticeid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hoomsun.message.model.Notice">
+    insert into HS_NOTICE (NOTICEID, CUSTID, APPLYID, 
+      FLAG, FLAG_VAL, CONSULT, 
+      NOTICE_DATA, MESSAGE)
+    values (#{noticeid,jdbcType=VARCHAR}, #{custid,jdbcType=VARCHAR}, #{applyid,jdbcType=VARCHAR}, 
+      #{flag,jdbcType=VARCHAR}, #{flagVal,jdbcType=VARCHAR}, #{consult,jdbcType=VARCHAR}, 
+      #{noticeData,jdbcType=TIMESTAMP}, #{message,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hoomsun.message.model.Notice">
+    insert into HS_NOTICE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="noticeid != null">
+        NOTICEID,
+      </if>
+      <if test="custid != null">
+        CUSTID,
+      </if>
+      <if test="applyid != null">
+        APPLYID,
+      </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
+      <if test="flagVal != null">
+        FLAG_VAL,
+      </if>
+      <if test="consult != null">
+        CONSULT,
+      </if>
+      <if test="noticeData != null">
+        NOTICE_DATA,
+      </if>
+      <if test="message != null">
+        MESSAGE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="noticeid != null">
+        #{noticeid,jdbcType=VARCHAR},
+      </if>
+      <if test="custid != null">
+        #{custid,jdbcType=VARCHAR},
+      </if>
+      <if test="applyid != null">
+        #{applyid,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="flagVal != null">
+        #{flagVal,jdbcType=VARCHAR},
+      </if>
+      <if test="consult != null">
+        #{consult,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeData != null">
+        #{noticeData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hoomsun.message.model.Notice">
+    update HS_NOTICE
+    <set>
+      <if test="custid != null">
+        CUSTID = #{custid,jdbcType=VARCHAR},
+      </if>
+      <if test="applyid != null">
+        APPLYID = #{applyid,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        FLAG = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="flagVal != null">
+        FLAG_VAL = #{flagVal,jdbcType=VARCHAR},
+      </if>
+      <if test="consult != null">
+        CONSULT = #{consult,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeData != null">
+        NOTICE_DATA = #{noticeData,jdbcType=TIMESTAMP},
+      </if>
+      <if test="message != null">
+        MESSAGE = #{message,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where NOTICEID = #{noticeid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hoomsun.message.model.Notice">
+    update HS_NOTICE
+    set CUSTID = #{custid,jdbcType=VARCHAR},
+      APPLYID = #{applyid,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=VARCHAR},
+      FLAG_VAL = #{flagVal,jdbcType=VARCHAR},
+      CONSULT = #{consult,jdbcType=VARCHAR},
+      NOTICE_DATA = #{noticeData,jdbcType=TIMESTAMP},
+      MESSAGE = #{message,jdbcType=VARCHAR}
+    where NOTICEID = #{noticeid,jdbcType=VARCHAR}
+  </update>
+ 
+ 
+<!-- 查询客户信息总条数 --> 
+  <select id="selectSumByCustid" parameterType="java.lang.String" resultType="java.util.Map">
+    select count(*)  COUNT from HS_NOTICE
+    where CUSTID = #{custid,jdbcType=VARCHAR}   and  CONSULT  ='0'
+  </select> 
+ 
+ 
+ <!-- 查询客户最近俩条  -->
+  <select id="selectLatelynotice" parameterType="java.lang.String" resultMap="BaseResultMap" >
+  select  NOTICE .*,ROWNUM   from 
+  (SELECT *   FROM   HS_NOTICE   WHERE      CUSTID = #{custid,jdbcType=VARCHAR}  order by  NOTICE_DATA  DESC)  NOTICE 
+   where <![CDATA[   ROWNUM <=2]]>   
+  </select> 
+ 
+  <!-- 查询客户所有消息  -->
+  <select id="selectallynotice" parameterType="java.lang.String" resultMap="BaseResultMap" >
+  SELECT *   FROM   HS_NOTICE   WHERE    CUSTID = #{custid,jdbcType=VARCHAR}  order by  NOTICE_DATA  DESC
+    
+  </select> 
+ 
+<!-- 查询客户首页信息 --> 
+  <select id="selectCountByCustid" parameterType="java.util.Map" resultType="java.util.Map">
+    select count(*) COUNT from HS_NOTICE
+    where CUSTID = #{custid,jdbcType=VARCHAR}  and FLAG = #{flag,jdbcType=VARCHAR} and  CONSULT  ='0'
+  </select> 
+  
+<!-- 查询客户首页信息未读 -->
+  <select id="selectDataByCustid" parameterType="java.util.Map" resultMap="BaseResultMap">
+    <!-- select NOTICEID, CUSTID, APPLYID, FLAG, FLAG_VAL, CONSULT,NOTICE_DATA, MESSAGE
+    from HS_NOTICE
+    where CUSTID = #{custid,jdbcType=VARCHAR}  and FLAG = #{flag,jdbcType=VARCHAR}  and rownum =1
+    ORDER BY NOTICE_DATA DESC  -->
+    SELECT *  FROM   HS_NOTICE WHERE   
+     NOTICE_DATA=(SELECT MAX(NOTICE_DATA) FROM   HS_NOTICE  
+     WHERE CUSTID = #{custid,jdbcType=VARCHAR}  AND  FLAG = #{flag,jdbcType=VARCHAR}  )  
+     AND  CUSTID = #{custid,jdbcType=VARCHAR}  AND  FLAG = #{flag,jdbcType=VARCHAR}   AND  ROWNUM=1
+  </select> 
+<!-- 查询客户所有信息 --> 
+  <select id="selectByCustid" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from HS_NOTICE
+    where CUSTID = #{custid,jdbcType=VARCHAR}  and FLAG = #{flag,jdbcType=VARCHAR} 
+     ORDER BY NOTICE_DATA DESC 
+  </select>
+  
+  <!-- 分页查询数据 liushuai -->
+	<select id="findPageData" parameterType="java.util.Map" resultMap="BaseResultMap">
+	
+	   <![CDATA[
+	  	SELECT ver.* FROM (
+	  	SELECT 
+		  	ROWNUM R,NOTICE.*   FROM  HS_NOTICE  NOTICE
+	    WHERE 1<>2]]>
+	    <if test="custid != null and custid != ''">
+			and CUSTID  LIKE #{custid,jdbcType=VARCHAR}
+		</if>
+	    <![CDATA[) ver WHERE ver.R <= (#{pageIndex}*#{pageSize}) AND ver.R > (#{pageIndex}*#{pageSize}-#{pageSize})]]>
+	    ORDER BY CUSTID, NOTICE_DATA
+	</select>
+	
+	
+	<select id="findPageCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+	 	<![CDATA[select count(NOTICEID)
+	 	from   HS_NOTICE
+	 	WHERE 1<>2]]>
+	 	<if test="custid != null and custid != ''">
+			and CUSTID     like    #{custid,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<update id="updateAllById" parameterType="com.hoomsun.message.model.Notice">
+	    update HS_NOTICE
+	    set  CONSULT = '1'
+	    where CUSTID = #{custid,jdbcType=VARCHAR} and  FLAG = #{flag,jdbcType=VARCHAR}
+  </update>
+ 
+ 
+  <update id="updateAll" parameterType="java.lang.String">
+	    update HS_NOTICE   set  CONSULT = '1'  where  CUSTID = #{custid,jdbcType=VARCHAR} 
+  </update>
+  
+</mapper>
